@@ -1,10 +1,9 @@
 #include "application.h"
+#include "engine_context.h"
 #include <iostream>
 
 namespace Blade
 {
-	EngineContext Application::m_EngineContext;
-
 	Application::~Application()
 	{
 	}
@@ -12,13 +11,13 @@ namespace Blade
 
 	bool Application::Initialize(int* argc, char* argv[])
 	{
-		if (!m_EngineContext.Initialize())
+		if (!EngineContext::Initialize())
 		{
 			std::cerr << "Application initialization failed!" << std::endl;
 			return false;
 		}
 
-		m_timer.Start();
+		m_Timer.Start();
 
 		return true;
 	}

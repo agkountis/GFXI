@@ -115,7 +115,7 @@ namespace Blade
 
 		ShowWindow(m_Handle, SW_SHOWDEFAULT);
 		UpdateWindow(m_Handle);
-		ShowCursor(Window::ShowCursor());
+		SetShowCursor(Window::ShowCursor());
 	}
 
 	LRESULT CALLBACK Win32Window::WinProc(HWND handle, UINT msg, WPARAM wparam, LPARAM lparam)

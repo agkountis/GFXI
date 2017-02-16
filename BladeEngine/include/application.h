@@ -10,9 +10,7 @@ namespace Blade
 	private:
 		bool m_Terminate{ false };
 
-		static EngineContext m_EngineContext;
-
-		Timer m_timer;
+		Timer m_Timer;
 
 	public:
 		Application() = default;
@@ -33,17 +31,17 @@ namespace Blade
 
 		double GetDelta() const noexcept
 		{
-			return m_timer.GetDelta();
+			return m_Timer.GetDelta();
 		}
 
 		long GetMsec() const noexcept
 		{
-			return m_timer.GetMsec();
+			return m_Timer.GetMsec();
 		}
 
 		double GetSec() const noexcept
 		{
-			return m_timer.GetSec();
+			return m_Timer.GetSec();
 		}
 
 		virtual bool Initialize(int* argc, char* argv[]);

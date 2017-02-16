@@ -14,5 +14,13 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\battle_arena_application.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\battle_arena_application.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

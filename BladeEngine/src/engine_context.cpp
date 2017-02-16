@@ -18,8 +18,8 @@ namespace Blade
 
 	bool EngineContext::Initialize()
 	{
-#if defined(GLACIERENGINE_BUILD_D3D)
-		m_GAPI_context = new D3D11Context;
+#if defined(BLADE_BUILD_D3D)
+		mGAPIContext = new D3D11Context;
 #else
 		//Allocate GL context
 #endif
