@@ -1,5 +1,5 @@
-#ifndef GLACIER_ENGINE_D3D11_VBO_H_
-#define GLACIER_ENGINE_D3D11_VBO_H_
+#ifndef BLADE_D3D11_VBO_H_
+#define BLADE_D3D11_VBO_H_
 #include "../VBO.h"
 #include <D3D/d3d11.h>
 #include "../types.h"
@@ -22,4 +22,4 @@ namespace Blade
 	};
 }
 
-#endif //GLACIER_ENGINE_D3D11_VBO_H_
+#endif //BLADE_D3D11_VBO_H_

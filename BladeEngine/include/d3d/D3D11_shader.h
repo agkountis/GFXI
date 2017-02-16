@@ -1,5 +1,5 @@
-#ifndef GLACIER_ENGINE_D3D11_SHADER_H_
-#define GLACIER_ENGINE_D3D11_SHADER_H_
+#ifndef BLADE_D3D11_SHADER_H_
+#define BLADE_D3D11_SHADER_H_
 #include "shader.h"
 #include "../types.h"
 #include <D3D/d3d11.h>
@@ -23,4 +23,4 @@ namespace Blade
 	};
 }
 
-#endif //GLACIER_ENGINE_D3D11_SHADER_H_
+#endif //BLADE_D3D11_SHADER_H_

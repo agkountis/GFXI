@@ -1,5 +1,5 @@
-#ifndef GLACIER_D3D11_TEXTURE_H_
-#define GLACIER_D3D11_TEXTURE_H_
+#ifndef BLADE_D3D11_TEXTURE_H_
+#define BLADE_D3D11_TEXTURE_H_
 #include "texture.h"
 #include "types.h"
 #include "D3D/D3D11.h"
@@ -24,4 +24,4 @@ namespace Blade
 	};
 }
 
-#endif
+#endif //BLADE_D3D11_TEXTURE_H_

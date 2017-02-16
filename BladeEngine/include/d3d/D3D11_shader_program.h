@@ -1,5 +1,5 @@
-#ifndef GLACIER_D3D11_SHADER_PROGRAM_H_
-#define GLACIER_D3D11_SHADER_PROGRAM_H_
+#ifndef BLADE_D3D11_SHADER_PROGRAM_H_
+#define BLADE_D3D11_SHADER_PROGRAM_H_
 #include "../shader_program.h"
 #include "../types.h"
 #include "D3D11_IBO.h"
@@ -30,4 +30,4 @@ namespace Blade
 	};
 }
 
-#endif //GLACIER_D3D11_SHADER_PROGRAM_H_
+#endif //BLADE_D3D11_SHADER_PROGRAM_H_
