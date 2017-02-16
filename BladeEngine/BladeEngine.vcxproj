@@ -160,6 +160,7 @@
     <ClInclude Include="include\d3d\D3D11_shader_program.h" />
     <ClInclude Include="include\d3d\D3D11_texture.h" />
     <ClInclude Include="include\d3d\D3D11_VBO.h" />
+    <ClInclude Include="include\d3d\D3D11_window.h" />
     <ClInclude Include="include\engine_context.h" />
     <ClInclude Include="include\GAPI_context.h" />
     <ClInclude Include="include\IBO.h" />
@@ -187,6 +188,11 @@
     <ClInclude Include="include\types.h" />
     <ClInclude Include="include\VBO.h" />
     <ClInclude Include="include\vertex.h" />
+    <ClInclude Include="include\win32_utils.h" />
+    <ClInclude Include="include\win32_window.h" />
+    <ClInclude Include="include\window.h" />
+    <ClInclude Include="include\windowing_service.h" />
+    <ClInclude Include="include\windowing_types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
@@ -201,6 +207,7 @@
     <ClCompile Include="src\d3d\D3D11_shader_program.cpp" />
     <ClCompile Include="src\d3d\D3D11_texture.cpp" />
     <ClCompile Include="src\d3d\D3D11_VBO.cpp" />
+    <ClCompile Include="src\d3d\D3D11_window.cpp" />
     <ClCompile Include="src\engine_context.cpp" />
     <ClCompile Include="src\GAPI_context.cpp" />
     <ClCompile Include="src\IBO.cpp" />
@@ -222,6 +229,9 @@
     <ClCompile Include="src\shader_program_manager.cpp" />
     <ClCompile Include="src\system.cpp" />
     <ClCompile Include="src\VBO.cpp" />
+    <ClCompile Include="src\win32_window.cpp" />
+    <ClCompile Include="src\window.cpp" />
+    <ClCompile Include="src\windowing_service.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

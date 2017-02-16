@@ -146,6 +146,24 @@
     <ClInclude Include="include\system.h">
       <Filter>include\systems</Filter>
     </ClInclude>
+    <ClInclude Include="include\win32_utils.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\win32_window.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\window.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windowing_service.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windowing_types.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_window.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GAPI_context.cpp">
@@ -246,6 +264,18 @@
     </ClCompile>
     <ClCompile Include="src\observer_subject.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win32_window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\windowing_service.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_window.cpp">
+      <Filter>src\d3d</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
