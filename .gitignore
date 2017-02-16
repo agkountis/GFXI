@@ -428,3 +428,4 @@ __pycache__/
 # !tools/packages.config
 
 BattleArena/Debug - DirectX/
+BladeEngine/Debug - DirectX/
