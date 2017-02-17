@@ -9,7 +9,7 @@ namespace Blade
 	{
 	private:
 #if defined(BLADE_BUILD_D3D)
-		static D3D11Context* mGAPIContext;
+		static D3D11Context* m_GAPIContext;
 #else
 #endif
 		//TODO: Declare all the systems as statics here
@@ -27,11 +27,11 @@ namespace Blade
 #if defined(BLADE_BUILD_D3D)
 		static D3D11Context* get_GAPI_context() noexcept
 		{
-			return mGAPIContext;
+			return m_GAPIContext;
 		}
 #endif
 
-		//TODO: Implement Getters and setters for the systems.
+		//TODO: Implement getters and setters for the systems.
 	};
 }
 
