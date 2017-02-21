@@ -4,13 +4,31 @@
 
 namespace Blade
 {
+	int Component::m_Id{ 0 };
+
+	Component::Component(const std::string& type, Entity* parent) : m_Type{ type }, p_Parent{ parent }
+	{
+		++m_Id;
+		parent->AddComponent(this);
+	}
+
 	Component::~Component()
 	{
 	}
 
-	Component::Component(const std::string& type, Entity* parent) : m_Type{ type }, p_Parent{ parent }
+	const std::string& Component::GetType() const noexcept
 	{
-		parent->AddComponent(this);
+		return m_Type;
+	}
+
+	Entity* Component::GetParent() const noexcept
+	{
+		return p_Parent;
+	}
+
+	int Component::GetId() noexcept
+	{
+		return m_Id;
 	}
 
 	void Component::OnMessage(const MessageContainer& msg)

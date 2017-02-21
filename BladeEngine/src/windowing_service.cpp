@@ -36,7 +36,7 @@ namespace Blade
 		                         enable_MSAA,
 		                         MSAA_sample_count,
 		                         callbacks);
-#elif defined(GLACIERENGINE_BUILD_OPENGL)
+#elif defined(BLADE_BUILD_OPENGL)
 		//Create win32 GL window.
 #endif
 #elif defined(__APPLE__)

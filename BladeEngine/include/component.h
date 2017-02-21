@@ -14,24 +14,22 @@ namespace Blade
 
 		Entity* p_Parent{ nullptr };
 
+		static int m_Id;
+
 	public:
 		Component(const std::string& type, Entity* parent);
 
-		Component(const Component& other) = default;
-		Component& operator=(const Component& other) = default;
-		Component& operator=(Component&& other) noexcept = default;
+		Component(const Component& other) = delete;
+
+		Component& operator=(const Component& other) = delete;
 
 		virtual ~Component();
 
-		const std::string& GetType() const noexcept
-		{
-			return m_Type;
-		}
+		const std::string& GetType() const noexcept;
 
-		Entity* GetParent() const noexcept
-		{
-			return p_Parent;
-		}
+		Entity* GetParent() const noexcept;
+
+		static int GetId() noexcept;
 
 		virtual void Setup() noexcept = 0;
 
