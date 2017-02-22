@@ -6,15 +6,9 @@ namespace Blade
 
 	SceneManager::~SceneManager()
 	{
-		try
+		for (auto scene : m_Scenes)
 		{
-			for (auto scene : m_Scenes)
-			{
-				delete scene;
-			}
-		}
-		catch (...)
-		{
+			delete scene;
 		}
 
 		m_Scenes.clear();
@@ -22,7 +16,7 @@ namespace Blade
 
 	void SceneManager::PushScene(Scene* scene) noexcept
 	{
-		scene->initialize();
+		scene->Initialize();
 		m_Scenes.push_back(scene);
 	}
 

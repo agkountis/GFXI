@@ -24,7 +24,7 @@ namespace Blade
 
 		bool Initialize() noexcept override;
 		
-		void Process(float deltaTime) noexcept override;
+		void Process(float deltaTime = 0) noexcept override;
 	};
 }
 

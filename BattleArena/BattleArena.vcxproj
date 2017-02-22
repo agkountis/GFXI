@@ -149,10 +149,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\battle_arena_application.cpp" />
+    <ClCompile Include="src\game_scene.cpp" />
+    <ClCompile Include="src\game_scene_color_pass.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h" />
+    <ClInclude Include="include\game_scene.h" />
+    <ClInclude Include="include\game_scene_color_pass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sdr\render_texture.ps.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="sdr\render_texture.vs.hlsl">
+      <FileType>Document</FileType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

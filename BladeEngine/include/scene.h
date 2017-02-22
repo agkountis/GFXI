@@ -21,7 +21,7 @@ namespace Blade
 		Scene(const Scene& other) = default;
 		Scene& operator=(const Scene& other) = default;
 
-		virtual void initialize() = 0;
+		virtual void Initialize() = 0;
 
 		void AddEntity(Entity* object) noexcept;
 
@@ -36,7 +36,7 @@ namespace Blade
 
 		virtual void OnMouseMotion(int x, int y) noexcept = 0;
 
-		virtual void OnMouseClick(int button, bool state, int x, int y) = 0;
+		virtual void OnMouseClick(int button, bool state, int x, int y) noexcept = 0;
 
 		virtual void Update(float deltaTime, long time = 0) noexcept;
 

@@ -2,6 +2,8 @@
 #include "scene_manager.h"
 #include "windowing_types.h"
 #include "windowing_service.h"
+#include "shader_program_manager.h"
+#include "game_scene.h"
 
 using namespace Blade;
 
@@ -76,15 +78,26 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 	                         4,
 	                         callbacks);
 
+	if (!ShaderProgramManager::Create("render_texture_sdrprog", IL_POSITION | IL_TEXCOORD, L"render_texture.vs.hlsl", L"render_texture.ps.hlsl")) {
+		return false;
+	}
+
+	GameScene* gameScene{ new GameScene };
+	SceneManager::PushScene(gameScene);
+
 	return true;
 }
 
 void BattleArenaApplication::Update() noexcept
 {
+	SceneManager::Update(GetDelta(), GetMsec());
 }
 
 void BattleArenaApplication::Draw() const noexcept
 {
+	SceneManager::Draw();
+
+	WindowingService::SwapBuffers();
 }
 
 int BattleArenaApplication::Run() noexcept
