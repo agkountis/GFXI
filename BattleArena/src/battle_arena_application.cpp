@@ -82,7 +82,7 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 		return false;
 	}
 
-	if (!ShaderProgramManager::Create("default_sdrprog", IL_POSITION | IL_NORMAL | IL_TEXCOORD, L"default.vs.hlsl", L"default.ps.hlsl")) {
+	if (!ShaderProgramManager::Create("default_sdrprog", IL_POSITION | IL_NORMAL | IL_TANGENT | IL_TEXCOORD, L"default.vs.hlsl", L"default.ps.hlsl")) {
 		return false;
 	}
 

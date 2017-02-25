@@ -12,6 +12,8 @@ struct UniformBuffer
 {
 	Mat4f MVP;
 	Mat4f ITMV;
+	Mat4f MV;
+	Mat4f V;
 	Mat4f textureMatrix;
 	Vec4f diffuse;
 	Vec4f specular;
@@ -98,68 +100,118 @@ bool GameSceneColorPassStage::Initialize()
 PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vector<RenderComponent*>& data, const PipelineData<D3D11RenderTarget*>& tdata) noexcept
 {
 
-	//TODO: Draw here
+	//Bind the render target.
 	m_ColorRenderTarget.Bind(RenderTargetBindType::COLOR_AND_DEPTH);
 
+	//Define a clear color and clear the color buffer and depth stencil.
 	Vec4f clearColor{ 0.2f, 0.2f, 0.2f, 0.0f };
 	m_ColorRenderTarget.Clear(&clearColor[0]);
 
+	//Get the window size.
 	Vec2i winSize{ WindowingService::GetWindow(0)->GetSize() };
 
+	//Get the device context.
 	D3D11Context* context{ EngineContext::get_GAPI_context() };
 	ID3D11DeviceContext* device_context{ context->GetDeviceContext() };
 
+	//Bind the requested shader program.
 	ShaderProgramManager::get("default_sdrprog")->Bind();
 
+	//Set the linear wrap texture sampler.
+	device_context->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
+
+	//Iterate through the render components.
 	for (auto renderComponent : data)
 	{
+		//Get the model matrix from the Entity.
+		Mat4f m{ renderComponent->GetParent()->GetXform() };
+		
+		//Temporarily define a fixed projection matrix.
 		Mat4f p{ MathUtils::PerspectiveLH(MathUtils::ToRadians(60.0f), static_cast<float>(winSize.x), static_cast<float>(winSize.y), 0.1f, 500.0f) };
 
+		//Temporarily define a fixed view matrix.
 		Mat4f v{ MathUtils::Translate(Mat4f{1.0f}, Vec3f{0.0f, 0.0f, 2.0f}) };
 
-		Mat4f mvp{ p * v };
+		//Calculate the ModelViewProjection matrix. 
+		Mat4f mvp{ p * v * m };
 
+		//Calculate the ModelView matrix.
+		Mat4f mv{ v * m };
+
+		Mat4f textureMatrix{ MathUtils::Scale(Mat4f{1.0f}, Vec3f{4.0f, 4.0f, 0.0f}) };
+
+		//Fill up the uniform structure.
 		UniformBuffer uniforms;
 		uniforms.MVP = MathUtils::Transpose(mvp);
 		uniforms.ITMV = MathUtils::Inverse(v);
+		uniforms.MV = MathUtils::Transpose(mv);
+		uniforms.V = MathUtils::Transpose(v);
+		uniforms.textureMatrix = MathUtils::Transpose(textureMatrix);
 
+		//Get the material from the RenderComponent.
 		Material material{ renderComponent->GetMaterial() };
 
 		uniforms.diffuse = material.diffuse;
 		uniforms.specular = material.specular;
 
-		D3D11_MAPPED_SUBRESOURCE ms;
+		// If the material has a diffuse texture bind it.
+		if (material.textures[TEX_DIFFUSE])
+		{
+			material.textures[TEX_DIFFUSE]->Bind();
+		}
 
+		// If the material has a specular texture bind it.
+		if (material.textures[TEX_SPECULAR])
+		{
+			material.textures[TEX_SPECULAR]->Bind();
+		}
+
+		// If the material has a normal map texture bind it.
+		if (material.textures[TEX_NORMAL])
+		{
+			material.textures[TEX_NORMAL]->Bind();
+		}
+
+		//Copy the data into the D3D11 constant buffer.
+		D3D11_MAPPED_SUBRESOURCE ms;
 		device_context->Map(m_ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &ms);
 		memcpy(ms.pData, &uniforms, sizeof(UniformBuffer));
 		device_context->Unmap(m_ConstantBuffer.Get(), 0);
 
+		//Set the constant buffer to both the Vertex shader and the Pixel shader.
 		device_context->VSSetConstantBuffers(0, 1, m_ConstantBuffer.GetAddressOf());
 		device_context->PSSetConstantBuffers(0, 1, m_ConstantBuffer.GetAddressOf());
 
+		//Get the Mesh from the Render component.
 		Mesh* mesh{ renderComponent->GetMesh() };
 
+		//Set the blend state of the RenderComponent's material
 		RenderStateManager::Set(material.blendState);
 
+		//Bind the VBO
 		mesh->GetVbo()->Bind();
 
+		//If the mesh is indexed Draw indexed.
 		if (mesh->GetIndexCount())
 		{
 			mesh->GetIbo()->Bind();
 			mesh->GetIbo()->Draw();
 		}
-		else
+		else //Else draw arrays.
 		{
 			mesh->GetVbo()->Draw();
 		}
 
+		// Disable any blend states activated.
 		RenderStateManager::Set(RenderStateType::BS_BLEND_DISSABLED);
 	}
 
-
+	//Unbind the render target.
 	m_ColorRenderTarget.Unbind();
 
+	//Disaply to the fullscreen quad.
 	DisplayToScreen();
 
+	// Return the render target so that the next stage of the pipeline can process it if needed.
 	return PipelineData<D3D11RenderTarget*>{ &m_ColorRenderTarget };
 }

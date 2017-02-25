@@ -6,15 +6,15 @@
 
 namespace Blade
 {
-	class D3D11_texture : public Texture
+	class D3D11Texture : public Texture
 	{
 	private:
 		ComPtr<ID3D11ShaderResourceView> m_ShaderResourceView;
 
 	public:
-		D3D11_texture() = default;
+		D3D11Texture() = default;
 
-		explicit D3D11_texture(TextureType textureType) : Texture{ textureType }
+		explicit D3D11Texture(TextureType textureType) : Texture{ textureType }
 		{
 		}
 
