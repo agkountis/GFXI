@@ -3,24 +3,27 @@
 #include "system.h"
 #include <vector>
 #include "render_pass.h"
+#include "pipeline.h"
 
 namespace Blade
 {
 	class RenderSystem : public System
 	{
 	private:
-		std::vector<RenderPass*> m_RenderPasses;
+		RenderPassPipeline* m_RenderPassPipeline{ nullptr };
 		
 		std::vector<RenderComponent*> m_RenderComponents;
 		
 	public:
+		~RenderSystem();
+
 		void RegisterComponent(RenderComponent* renderComponent) noexcept;
 
 		void UnregisterComponent(int id) noexcept;
 
-		void AddRenderPass(RenderPass* renderPass) noexcept;
+		void SetRenderPassPipeline(RenderPassPipeline* renderPass) noexcept;
 
-		void ClearRenderPasses() noexcept;
+		void ClearRenderPassPipeline() noexcept;
 
 		bool Initialize() noexcept override;
 		

@@ -7,7 +7,7 @@
 
 using namespace Blade;
 
-void GameSceneColorPass::DisplayToScreen() const
+void GameSceneColorPassStage::DisplayToScreen() const
 {
 	D3D11Context* ctx{ EngineContext::get_GAPI_context() };
 
@@ -34,7 +34,7 @@ void GameSceneColorPass::DisplayToScreen() const
 	dev_con->PSSetShaderResources(0, 1, &null_srv);
 }
 
-bool GameSceneColorPass::Initialize()
+bool GameSceneColorPassStage::Initialize()
 {
 	Vec2i windowSize{ WindowingService::GetWindow(0)->GetSize() };
 	
@@ -69,16 +69,18 @@ bool GameSceneColorPass::Initialize()
 	return true;
 }
 
-void GameSceneColorPass::Execute(const std::vector<RenderComponent*>& renderComponents) const noexcept
+PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vector<RenderComponent*>& data, const PipelineData<D3D11RenderTarget*>& tdata) noexcept
 {
 
 	//TODO: Draw here
 	m_ColorRenderTarget.Bind(RenderTargetBindType::COLOR_AND_DEPTH);
 
-	Vec4f clearColor{ 1.0f, 0.0f, 0.0f, 0.0f };
+	Vec4f clearColor{ 0.2f, 0.2f, 0.2f, 0.0f };
 	m_ColorRenderTarget.Clear(&clearColor[0]);
 
 	m_ColorRenderTarget.Unbind();
 
 	DisplayToScreen();
+
+	return PipelineData<D3D11RenderTarget*>{ &m_ColorRenderTarget };
 }

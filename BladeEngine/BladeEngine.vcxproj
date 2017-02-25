@@ -175,6 +175,8 @@
     <ClInclude Include="include\entity.h" />
     <ClInclude Include="include\observer.h" />
     <ClInclude Include="include\observer_subject.h" />
+    <ClInclude Include="include\pipeline.h" />
+    <ClInclude Include="include\pipeline_stage.h" />
     <ClInclude Include="include\render_component.h" />
     <ClInclude Include="include\render_pass.h" />
     <ClInclude Include="include\render_state.h" />
@@ -224,6 +226,7 @@
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\observer.cpp" />
     <ClCompile Include="src\observer_subject.cpp" />
+    <ClCompile Include="src\pipeline.cpp" />
     <ClCompile Include="src\render_component.cpp" />
     <ClCompile Include="src\render_state.cpp" />
     <ClCompile Include="src\render_state_manager.cpp" />

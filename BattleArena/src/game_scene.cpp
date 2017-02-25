@@ -5,6 +5,7 @@
 #include "resource_manager.h"
 #include "engine_context.h"
 #include "game_scene_color_pass.h"
+#include "pipeline.h"
 
 using namespace Blade;
 
@@ -31,10 +32,15 @@ void GameScene::Initialize()
 	//Add the entity to the scene so it will get updated.
 	AddEntity(entity);
 
-	//Add the GameScene render pass to the render system.
-	GameSceneColorPass* pass{ new GameSceneColorPass{ "GameSceneColorPass" } };
-	pass->Initialize();
-	EngineContext::GetRenderSystem()->AddRenderPass(pass);
+	//Allocate and initialize the a render pass pipeline stage.
+	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
+	colorPassStage->Initialize();
+
+	//Allocate a render pass pipeline and add the pass to it.
+	RenderPassPipeline* pipeline{ new RenderPassPipeline};
+	pipeline->AddStage(colorPassStage);
+
+	EngineContext::GetRenderSystem()->SetRenderPassPipeline(pipeline);
 }
 
 void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept

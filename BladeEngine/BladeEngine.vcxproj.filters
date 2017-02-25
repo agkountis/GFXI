@@ -194,6 +194,12 @@
     <ClInclude Include="include\render_system.h">
       <Filter>include\systems</Filter>
     </ClInclude>
+    <ClInclude Include="include\pipeline.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline_stage.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GAPI_context.cpp">
@@ -312,6 +318,9 @@
     </ClCompile>
     <ClCompile Include="src\render_system.cpp">
       <Filter>src\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline.cpp">
+      <Filter>src\rendering</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,6 +2,11 @@
 
 namespace Blade
 {
+	RenderSystem::~RenderSystem()
+	{
+		delete m_RenderPassPipeline;
+	}
+
 	void RenderSystem::RegisterComponent(RenderComponent* renderComponent) noexcept
 	{
 		m_RenderComponents.push_back(renderComponent);
@@ -18,19 +23,26 @@ namespace Blade
 		);
 	}
 
-	void RenderSystem::AddRenderPass(RenderPass* renderPass) noexcept
+	void RenderSystem::SetRenderPassPipeline(RenderPassPipeline* renderPass) noexcept
 	{
-		m_RenderPasses.push_back(renderPass);
+		if (m_RenderPassPipeline)
+		{
+			delete m_RenderPassPipeline;
+			m_RenderPassPipeline = renderPass;
+		}
+		else
+		{
+			m_RenderPassPipeline = renderPass;
+		}
 	}
 
-	void RenderSystem::ClearRenderPasses() noexcept
+	void RenderSystem::ClearRenderPassPipeline() noexcept
 	{
-		for (auto renderPass : m_RenderPasses)
+		if (m_RenderPassPipeline)
 		{
-			delete renderPass;
+			delete m_RenderPassPipeline;
+			m_RenderPassPipeline = nullptr;
 		}
-
-		m_RenderPasses.clear();
 	}
 
 	bool RenderSystem::Initialize() noexcept
@@ -40,9 +52,6 @@ namespace Blade
 
 	void RenderSystem::Process(float deltaTime) noexcept
 	{
-		for (auto renderPass : m_RenderPasses)
-		{
-			renderPass->Execute(m_RenderComponents);
-		}
+		m_RenderPassPipeline->Execute(m_RenderComponents);
 	}
 }

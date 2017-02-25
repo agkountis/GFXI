@@ -1,9 +1,9 @@
-#ifndef BATTLE_ARENA_GAME_SCENE_COLOR_PASS_H_
-#define BATTLE_ARENA_GAME_SCENE_COLOR_PASS_H_
+#ifndef BATTLE_ARENA_GAME_SCENE_COLOR_PASS_STAGE_H_
+#define BATTLE_ARENA_GAME_SCENE_COLOR_PASS_STAGE_H_
 #include "render_pass.h"
 #include "d3d/D3D11_render_target.h"
 
-class GameSceneColorPass : public Blade::RenderPass
+class GameSceneColorPassStage : public Blade::RenderPassStage
 {
 private:
 	Blade::D3D11RenderTarget m_ColorRenderTarget;
@@ -13,14 +13,15 @@ private:
 	void DisplayToScreen() const;
 
 public:
-	GameSceneColorPass(const std::string& name)
-		: RenderPass{ name }
+	GameSceneColorPassStage(const std::string& name)
+		: Blade::RenderPassStage{ name }
 	{
 	}
 
 	bool Initialize() override;
 
-	void Execute(const std::vector<Blade::RenderComponent*>& renderComponents) const noexcept override;
+	Blade::PipelineData<Blade::D3D11RenderTarget*> Execute(const std::vector<Blade::RenderComponent*>& data,
+	                                                       const Blade::PipelineData<Blade::D3D11RenderTarget*>& tdata) noexcept override;
 };
 
-#endif //BATTLE_ARENA_GAME_SCENE_COLOR_PASS_H_
+#endif //BATTLE_ARENA_GAME_SCENE_COLOR_PASS_STAGE_H_
