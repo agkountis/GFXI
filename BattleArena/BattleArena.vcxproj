@@ -166,6 +166,15 @@
       <FileType>Document</FileType>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="sdr\default.ps.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="sdr\default.vs.hlsl">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug - DirectX|Win32'">5.0</ShaderModel>
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

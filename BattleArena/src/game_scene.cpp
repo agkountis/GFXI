@@ -12,7 +12,7 @@ using namespace Blade;
 void GameScene::Initialize()
 {
 	//Generate a cube.
-	Mesh* cube{ MeshUtils::GenerateCube(1.0f) };
+	Mesh* cube{ MeshUtils::GenerateUvSphere(1.0f, 30, 30, 1.0f, 1.0f) };
 
 	//Register the resource to the manager, so it manages it's lifetime.
 	ResourceManager::RegisterResource(cube, L"cube");

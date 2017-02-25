@@ -430,3 +430,4 @@ __pycache__/
 BattleArena/Debug - DirectX/
 BladeEngine/Debug - DirectX/
 BladeEngine/doc/
+*.compilation_errors.txt

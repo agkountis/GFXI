@@ -82,6 +82,10 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 		return false;
 	}
 
+	if (!ShaderProgramManager::Create("default_sdrprog", IL_POSITION | IL_NORMAL | IL_TEXCOORD, L"default.vs.hlsl", L"default.ps.hlsl")) {
+		return false;
+	}
+
 	GameScene* gameScene{ new GameScene };
 	SceneManager::PushScene(gameScene);
 

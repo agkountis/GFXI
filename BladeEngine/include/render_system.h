@@ -2,7 +2,6 @@
 #define BLADE_RENDER_SYSTEM_H_
 #include "system.h"
 #include <vector>
-#include "render_pass.h"
 #include "pipeline.h"
 
 namespace Blade
@@ -21,7 +20,7 @@ namespace Blade
 
 		void UnregisterComponent(int id) noexcept;
 
-		void SetRenderPassPipeline(RenderPassPipeline* renderPass) noexcept;
+		void SetRenderPassPipeline(RenderPassPipeline* renderPassPipeline) noexcept;
 
 		void ClearRenderPassPipeline() noexcept;
 

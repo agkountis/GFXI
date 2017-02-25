@@ -7,6 +7,16 @@
 
 using namespace Blade;
 
+//Temporary test
+struct UniformBuffer
+{
+	Mat4f MVP;
+	Mat4f ITMV;
+	Mat4f textureMatrix;
+	Vec4f diffuse;
+	Vec4f specular;
+};
+
 void GameSceneColorPassStage::DisplayToScreen() const
 {
 	D3D11Context* ctx{ EngineContext::get_GAPI_context() };
@@ -66,6 +76,22 @@ bool GameSceneColorPassStage::Initialize()
 		std::cerr << "Linear Texture Wrap sampler creation failed!" << std::endl;
 	}
 
+	UniformBuffer uniforms = {};
+	D3D11_BUFFER_DESC cbDesc;
+	cbDesc.ByteWidth = sizeof(uniforms);
+	cbDesc.Usage = D3D11_USAGE_DYNAMIC;
+	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cbDesc.MiscFlags = 0;
+	cbDesc.StructureByteStride = 0;
+
+	res = device->CreateBuffer(&cbDesc, nullptr, m_ConstantBuffer.ReleaseAndGetAddressOf());
+
+	if (FAILED(res))
+	{
+		std::cerr << "Renderer initialization failed: Uniform buffer creation failed." << std::endl;
+	}
+
 	return true;
 }
 
@@ -77,6 +103,59 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 	Vec4f clearColor{ 0.2f, 0.2f, 0.2f, 0.0f };
 	m_ColorRenderTarget.Clear(&clearColor[0]);
+
+	Vec2i winSize{ WindowingService::GetWindow(0)->GetSize() };
+
+	D3D11Context* context{ EngineContext::get_GAPI_context() };
+	ID3D11DeviceContext* device_context{ context->GetDeviceContext() };
+
+	ShaderProgramManager::get("default_sdrprog")->Bind();
+
+	for (auto renderComponent : data)
+	{
+		Mat4f p{ MathUtils::PerspectiveLH(MathUtils::ToRadians(60.0f), static_cast<float>(winSize.x), static_cast<float>(winSize.y), 0.1f, 500.0f) };
+
+		Mat4f v{ MathUtils::Translate(Mat4f{1.0f}, Vec3f{0.0f, 0.0f, 2.0f}) };
+
+		Mat4f mvp{ p * v };
+
+		UniformBuffer uniforms;
+		uniforms.MVP = MathUtils::Transpose(mvp);
+		uniforms.ITMV = MathUtils::Inverse(v);
+
+		Material material{ renderComponent->GetMaterial() };
+
+		uniforms.diffuse = material.diffuse;
+		uniforms.specular = material.specular;
+
+		D3D11_MAPPED_SUBRESOURCE ms;
+
+		device_context->Map(m_ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &ms);
+		memcpy(ms.pData, &uniforms, sizeof(UniformBuffer));
+		device_context->Unmap(m_ConstantBuffer.Get(), 0);
+
+		device_context->VSSetConstantBuffers(0, 1, m_ConstantBuffer.GetAddressOf());
+		device_context->PSSetConstantBuffers(0, 1, m_ConstantBuffer.GetAddressOf());
+
+		Mesh* mesh{ renderComponent->GetMesh() };
+
+		RenderStateManager::Set(material.blendState);
+
+		mesh->GetVbo()->Bind();
+
+		if (mesh->GetIndexCount())
+		{
+			mesh->GetIbo()->Bind();
+			mesh->GetIbo()->Draw();
+		}
+		else
+		{
+			mesh->GetVbo()->Draw();
+		}
+
+		RenderStateManager::Set(RenderStateType::BS_BLEND_DISSABLED);
+	}
+
 
 	m_ColorRenderTarget.Unbind();
 

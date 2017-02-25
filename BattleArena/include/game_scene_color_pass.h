@@ -10,6 +10,8 @@ private:
 
 	Blade::ComPtr<ID3D11SamplerState> m_SamplerLinearWrap;
 
+	Blade::ComPtr<ID3D11Buffer> m_ConstantBuffer;
+
 	void DisplayToScreen() const;
 
 public:
