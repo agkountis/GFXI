@@ -31,7 +31,7 @@ void GameSceneColorPassStage::DisplayToScreen() const
 	dev_con->ClearRenderTargetView(ctx->GetDefaultRenderTargetView(), &cl_col[0]);
 	dev_con->ClearDepthStencilView(ctx->GetDefaultDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	ShaderProgramManager::get("render_texture_sdrprog")->Bind();
+	ShaderProgramManager::Get("render_texture_sdrprog")->Bind();
 
 	ComPtr<ID3D11ShaderResourceView> srv{ m_ColorRenderTarget.GetColorAttachment() };
 	dev_con->PSSetShaderResources(0, 1, srv.GetAddressOf());
@@ -115,7 +115,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	ID3D11DeviceContext* device_context{ context->GetDeviceContext() };
 
 	//Bind the requested shader program.
-	ShaderProgramManager::get("default_sdrprog")->Bind();
+	ShaderProgramManager::Get("default_sdrprog")->Bind();
 
 	//Set the linear wrap texture sampler.
 	device_context->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());

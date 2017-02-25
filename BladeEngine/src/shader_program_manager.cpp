@@ -51,7 +51,7 @@ namespace Blade
 		return true;
 	}
 
-	ShaderProgram* ShaderProgramManager::get(const std::string& prog_name) noexcept
+	ShaderProgram* ShaderProgramManager::Get(const std::string& prog_name) noexcept
 	{
 		return m_ShaderProgramByName[prog_name];
 	}
