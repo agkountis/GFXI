@@ -29,7 +29,7 @@ namespace Blade
 		                   const std::wstring& ds = L"",
 		                   const std::wstring& gs = L"") noexcept;
 
-		static ShaderProgram* get(const std::string& progName) noexcept;
+		static ShaderProgram* Get(const std::string& progName) noexcept;
 	};
 }
 

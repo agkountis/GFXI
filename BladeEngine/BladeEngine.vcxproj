@@ -92,7 +92,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;BLADE_BUILD_D3D;GLM_FORCE_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FloatingPointExceptions>true</FloatingPointExceptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <DisableSpecificWarnings>4005;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -175,8 +175,13 @@
     <ClInclude Include="include\entity.h" />
     <ClInclude Include="include\observer.h" />
     <ClInclude Include="include\observer_subject.h" />
+    <ClInclude Include="include\pipeline.h" />
+    <ClInclude Include="include\pipeline_stage.h" />
+    <ClInclude Include="include\render_component.h" />
+    <ClInclude Include="include\render_pass.h" />
     <ClInclude Include="include\render_state.h" />
     <ClInclude Include="include\render_state_manager.h" />
+    <ClInclude Include="include\render_system.h" />
     <ClInclude Include="include\render_target.h" />
     <ClInclude Include="include\resource.h" />
     <ClInclude Include="include\resource_manager.h" />
@@ -221,8 +226,11 @@
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\observer.cpp" />
     <ClCompile Include="src\observer_subject.cpp" />
+    <ClCompile Include="src\pipeline.cpp" />
+    <ClCompile Include="src\render_component.cpp" />
     <ClCompile Include="src\render_state.cpp" />
     <ClCompile Include="src\render_state_manager.cpp" />
+    <ClCompile Include="src\render_system.cpp" />
     <ClCompile Include="src\render_target.cpp" />
     <ClCompile Include="src\resource.cpp" />
     <ClCompile Include="src\resource_manager.cpp" />

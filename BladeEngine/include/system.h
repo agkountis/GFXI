@@ -14,7 +14,7 @@ namespace Blade
 
 		virtual bool Initialize() noexcept = 0;
 
-		virtual void Process(const std::vector<Entity*>& objects, float deltaTime) const noexcept = 0;
+		virtual void Process(float deltaTime) noexcept = 0;
 	};
 }
 

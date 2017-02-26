@@ -6,7 +6,7 @@
 
 namespace Blade
 {
-	bool D3D11_texture::Load(const std::wstring& file_name) noexcept
+	bool D3D11Texture::Load(const std::wstring& file_name) noexcept
 	{
 		D3D11Context* context{ EngineContext::get_GAPI_context() };
 
@@ -28,7 +28,7 @@ namespace Blade
 		return true;
 	}
 
-	void D3D11_texture::Bind() const noexcept
+	void D3D11Texture::Bind() const noexcept
 	{
 		D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
 

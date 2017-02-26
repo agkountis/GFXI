@@ -26,9 +26,9 @@ namespace Blade
 
 		D3D11RenderTarget(const Vec2i& size,
 		                  bool MSAA,
-		                  int sampleCount) : RenderTarget(size),
-		                                      m_MSAA(MSAA),
-		                                      m_SampleCount(sampleCount)
+		                  int sampleCount) : RenderTarget{ size },
+		                                     m_MSAA{ MSAA },
+		                                     m_SampleCount{ sampleCount }
 		{
 		}
 

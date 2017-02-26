@@ -10,6 +10,7 @@ namespace Blade
 #else
 #endif
 
+	std::unique_ptr<RenderSystem> EngineContext::m_RenderSystem{ std::make_unique<RenderSystem>()};
 
 	EngineContext::~EngineContext()
 	{
@@ -30,9 +31,19 @@ namespace Blade
 		}
 
 		//TODO: Initialise the systems here
+		if (!m_RenderSystem->Initialize())
+		{
+			std::cerr << "Failed to initialize the RenderSystem." << std::endl;
+			return false;
+		}
 
 		RenderStateManager::Initialize();
 
 		return true;
+	}
+
+	RenderSystem* EngineContext::GetRenderSystem() noexcept
+	{
+		return m_RenderSystem.get();
 	}
 }

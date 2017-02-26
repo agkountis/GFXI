@@ -1,7 +1,7 @@
 #ifndef BLADE_CONTEXT_H_
 #define BLADE_CONTEXT_H_
-
 #include "d3d/D3D11_context.h"
+#include "render_system.h"
 
 namespace Blade
 {
@@ -12,6 +12,7 @@ namespace Blade
 		static D3D11Context* m_GAPIContext;
 #else
 #endif
+		static std::unique_ptr<RenderSystem> m_RenderSystem;
 		//TODO: Declare all the systems as statics here
 
 	public:
@@ -30,7 +31,7 @@ namespace Blade
 			return m_GAPIContext;
 		}
 #endif
-
+		static RenderSystem* GetRenderSystem() noexcept;
 		//TODO: Implement getters and setters for the systems.
 	};
 }

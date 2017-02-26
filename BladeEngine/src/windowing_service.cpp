@@ -36,7 +36,7 @@ namespace Blade
 		                         enable_MSAA,
 		                         MSAA_sample_count,
 		                         callbacks);
-#elif defined(GLACIERENGINE_BUILD_OPENGL)
+#elif defined(BLADE_BUILD_OPENGL)
 		//Create win32 GL window.
 #endif
 #elif defined(__APPLE__)
@@ -63,11 +63,11 @@ namespace Blade
 
 	Window* WindowingService::GetWindow(unsigned int win_id) noexcept
 	{
-		for (Window* win : m_Windows)
+		for (auto window : m_Windows)
 		{
-			if (win->GetId() == win_id)
+			if (window->GetId() == win_id)
 			{
-				return win;
+				return window;
 			}
 		}
 
@@ -76,11 +76,11 @@ namespace Blade
 
 	Window* WindowingService::GetWindow(const std::wstring& title) noexcept
 	{
-		for (Window* win : m_Windows)
+		for (auto window : m_Windows)
 		{
-			if (win->GetTitle() == title)
+			if (window->GetTitle() == title)
 			{
-				return win;
+				return window;
 			}
 		}
 
@@ -91,7 +91,6 @@ namespace Blade
 	{
 		return m_Windows.size();
 	}
-
 
 	void WindowingService::SwapBuffers() noexcept
 	{

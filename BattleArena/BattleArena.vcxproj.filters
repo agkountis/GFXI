@@ -9,6 +9,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="sdr">
+      <UniqueIdentifier>{df6fd9ce-34a6-449c-97b4-e91a998d9ca1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -17,10 +20,36 @@
     <ClCompile Include="src\battle_arena_application.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\game_scene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game_scene_color_pass.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\game_scene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game_scene_color_pass.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sdr\render_texture.ps.hlsl">
+      <Filter>sdr</Filter>
+    </None>
+    <None Include="sdr\render_texture.vs.hlsl">
+      <Filter>sdr</Filter>
+    </None>
+    <None Include="sdr\default.vs.hlsl">
+      <Filter>sdr</Filter>
+    </None>
+    <None Include="sdr\default.ps.hlsl">
+      <Filter>sdr</Filter>
+    </None>
   </ItemGroup>
 </Project>
