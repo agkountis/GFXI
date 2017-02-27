@@ -128,11 +128,11 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		//Get the model matrix from the Entity.
 		Mat4f m{ renderComponent->GetParent()->GetXform() };
 		
-		//Temporarily define a fixed projection matrix.
-		Mat4f p{ MathUtils::PerspectiveLH(MathUtils::ToRadians(60.0f), static_cast<float>(winSize.x), static_cast<float>(winSize.y), 0.1f, 500.0f) };
+		//Get the active camera projection matrix.
+		Mat4f p{ EngineContext::GetCameraSystem()->GetActiveCameraProjectionMatrtix() };
 
-		//Temporarily define a fixed view matrix.
-		Mat4f v{ MathUtils::Translate(Mat4f{1.0f}, Vec3f{0.0f, 0.0f, 2.0f}) };
+		//Get the active camera view matrix.
+		Mat4f v{ EngineContext::GetCameraSystem()->GetActiveCameraViewMatrix() };
 
 		//Calculate the ModelViewProjection matrix. 
 		Mat4f mvp{ p * v * m };
@@ -189,6 +189,9 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 		//Set the blend state of the RenderComponent's material
 		RenderStateManager::Set(material.blendState);
+
+		//Set the viewport of the active camera.
+		EngineContext::GetCameraSystem()->GetActiveCameraViewport().Set();
 
 		//Bind the VBO
 		mesh->GetVbo()->Bind();
