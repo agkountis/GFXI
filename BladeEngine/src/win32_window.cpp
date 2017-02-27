@@ -5,7 +5,7 @@
 
 namespace Blade
 {
-	const std::wstring Win32Window::WindowClass::m_WinClassName{ L"GlacierWindowClass" };
+	const std::wstring Win32Window::WindowClass::m_WinClassName{ L"BladeWindowClass" };
 	int Win32Window::WindowClass::m_Count{ 0 };
 
 	// Private Class implementation ----------------------------------------------------------------
