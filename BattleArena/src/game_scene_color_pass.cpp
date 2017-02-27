@@ -4,6 +4,8 @@
 #include "engine_context.h"
 #include "windowing_service.h"
 #include <iostream>
+#include "math_utils.h"
+#include "entity.h"
 
 using namespace Blade;
 
