@@ -200,9 +200,6 @@
     <ClInclude Include="include\pipeline_stage.h">
       <Filter>include\rendering</Filter>
     </ClInclude>
-    <ClInclude Include="SystemSimulation.h">
-      <Filter>include\systems</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GAPI_context.cpp">
@@ -324,9 +321,6 @@
     </ClCompile>
     <ClCompile Include="src\pipeline.cpp">
       <Filter>src\rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="SystemSimulation.cpp">
-      <Filter>src\systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

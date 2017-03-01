@@ -201,7 +201,6 @@
     <ClInclude Include="include\window.h" />
     <ClInclude Include="include\windowing_service.h" />
     <ClInclude Include="include\windowing_types.h" />
-    <ClInclude Include="SystemSimulation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
@@ -244,7 +243,6 @@
     <ClCompile Include="src\win32_window.cpp" />
     <ClCompile Include="src\window.cpp" />
     <ClCompile Include="src\windowing_service.cpp" />
-    <ClCompile Include="SystemSimulation.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
