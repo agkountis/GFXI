@@ -1,5 +1,9 @@
-#pragma once
+#ifndef BLADE_SIMULATION_SYSTEM_H_
+#define BLADE_SIMULATION_SYSTEM_H_
+
 #include "System.h"
+#include "collider_component.h"
+#include "rigid_body_component.h"
 class SystemSimulation: Blade::System
 {
 private:
@@ -26,3 +30,4 @@ public:
 	//TO DO: add register and unregistered methods
 };
 
+#endif //BLADE_SIMULATION_SYSTEM_H_

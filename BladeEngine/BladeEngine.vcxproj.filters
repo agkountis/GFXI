@@ -48,6 +48,12 @@
     <Filter Include="src\windowing">
       <UniqueIdentifier>{071d4431-3edb-427e-9b13-33b20f4a704f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\objects">
+      <UniqueIdentifier>{705bfbe3-d0a9-47bd-a706-c18a3277a989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\objects">
+      <UniqueIdentifier>{c2308fe3-4034-4f67-b72a-621b1da28fd4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -209,6 +215,18 @@
     <ClInclude Include="include\GAPI_context.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="bounding_volume.h">
+      <Filter>include\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="bounding_sphere.h">
+      <Filter>include\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="bounding_box.h">
+      <Filter>include\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="bounding_cylinder.h">
+      <Filter>include\objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GAPI_context.cpp">
@@ -339,6 +357,18 @@
     </ClCompile>
     <ClCompile Include="src\collider_component.cpp">
       <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="bounding_volume.cpp">
+      <Filter>src\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="bounding_sphere.cpp">
+      <Filter>src\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="bounding_box.cpp">
+      <Filter>src\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="bounding_cylinder.cpp">
+      <Filter>src\objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

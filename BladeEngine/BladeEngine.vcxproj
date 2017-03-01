@@ -151,6 +151,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="bounding_box.h" />
+    <ClInclude Include="bounding_cylinder.h" />
+    <ClInclude Include="bounding_sphere.h" />
+    <ClInclude Include="bounding_volume.h" />
     <ClInclude Include="include\application.h" />
     <ClInclude Include="include\collider_component.h" />
     <ClInclude Include="include\component.h" />
@@ -206,6 +210,10 @@
     <ClInclude Include="include\windowing_types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bounding_box.cpp" />
+    <ClCompile Include="bounding_cylinder.cpp" />
+    <ClCompile Include="bounding_sphere.cpp" />
+    <ClCompile Include="bounding_volume.cpp" />
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\collider_component.cpp" />
     <ClCompile Include="src\component.cpp" />

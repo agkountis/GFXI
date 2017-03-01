@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BLADE_RIGIDBODY_COMPONENT_H_
+#define BLADE_RIGIDBODY_COMPONENT_H_
 
 #include "component.h"
 class Entity;
@@ -18,4 +19,5 @@ public:
 
 
 };
+#endif //BLADE_RIGIDBODY_COMPONENT_H_
 
