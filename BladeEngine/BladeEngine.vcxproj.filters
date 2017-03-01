@@ -332,7 +332,7 @@
       <Filter>src\systems</Filter>
     </ClCompile>
     <ClCompile Include="src\rigid_body_component.cpp">
-      <Filter>src</Filter>
+      <Filter>src\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
