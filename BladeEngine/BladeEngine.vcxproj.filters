@@ -203,6 +203,9 @@
     <ClInclude Include="include\SystemSimulation.h">
       <Filter>include\systems</Filter>
     </ClInclude>
+    <ClInclude Include="include\rigid_body_component.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GAPI_context.cpp">
@@ -327,6 +330,9 @@
     </ClCompile>
     <ClCompile Include="src\SystemSimulation.cpp">
       <Filter>src\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rigid_body_component.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
