@@ -4,21 +4,24 @@
 
 #include "bounding_volume.h"
 #include "math_utils.h"
-/**
-* \brief Bounding Box class
-*/
-class BoundingBox : public BoundingVolume
+
+namespace Blade
 {
+	/**
+	* \brief Bounding Box class
+	*/
+	class BoundingBox : public BoundingVolume
+	{
 
-private:
-	Blade::Vec3d m_Size;// unused yet!
-    //TO DO: Add all relevant members
-public:
-	BoundingBox();
-	BoundingBox(BoundingBox &) = delete;
-	BoundingBox& operator=(BoundingBox&) = delete;
-	~BoundingBox();
+	private:
+		Blade::Vec3d m_Size;// unused yet!
+		//TO DO: Add all relevant members
+	public:
+		BoundingBox();
+		BoundingBox(BoundingBox &) = delete;
+		BoundingBox& operator=(BoundingBox&) = delete;
+		~BoundingBox();
 
-};
-
+	};
+}
 #endif // BLADE_BOUNDING_BOX_H_

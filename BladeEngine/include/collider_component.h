@@ -2,19 +2,21 @@
 #define BLADE_COLLIDER_COMPONENT_H_
 
 #include<component.h>
-class Entity;
-class ColliderComponent // will inherit from component, but after we sort out the behaviours and stuff
+namespace Blade
 {
+	class Entity;
+	class ColliderComponent // will inherit from component, but after we sort out the behaviours and stuff
+	{
 
-private:
-	Entity* m_pParent;
-	bool m_CollisionResponse;
-public:
-	ColliderComponent(Entity* parent);
-	ColliderComponent(ColliderComponent&) = delete;
-	ColliderComponent& operator=(ColliderComponent&) = delete;
+	private:
+		Entity* m_pParent;
+		bool m_CollisionResponse;
+	public:
+		ColliderComponent(Entity* parent);
+		ColliderComponent(ColliderComponent&) = delete;
+		ColliderComponent& operator=(ColliderComponent&) = delete;
 
-	~ColliderComponent();
-};
-
+		~ColliderComponent();
+	};
+}
 #endif //BLADE_COLLIDER_COMPONENT_H_

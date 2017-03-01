@@ -1,9 +1,11 @@
 #include "bounding_cylinder.h"
-
-BoundingCylinder::BoundingCylinder(): BoundingVolume()
+namespace Blade
 {
-}
+	BoundingCylinder::BoundingCylinder() : BoundingVolume()
+	{
+	}
 
-BoundingCylinder::~BoundingCylinder()
-{
+	BoundingCylinder::~BoundingCylinder()
+	{
+	}
 }

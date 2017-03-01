@@ -1,9 +1,11 @@
 #include "bounding_box.h"
-
-BoundingBox::BoundingBox(): BoundingVolume()
+namespace Blade
 {
-}
+	BoundingBox::BoundingBox() : BoundingVolume()
+	{
+	}
 
-BoundingBox::~BoundingBox()
-{
+	BoundingBox::~BoundingBox()
+	{
+	}
 }

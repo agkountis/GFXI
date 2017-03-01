@@ -1,21 +1,35 @@
 #include "SystemSimulation.h"
 
-
-
-SystemSimulation::SystemSimulation():System()
+namespace Blade
 {
-}
+
+	SystemSimulation::SystemSimulation() :System()
+	{
+	}
 
 
-SystemSimulation::~SystemSimulation()
-{
-}
+	SystemSimulation::~SystemSimulation()
+	{
+	}
 
-bool SystemSimulation::Initialize() noexcept
-{
-	return true;
-}
+	bool SystemSimulation::Initialize() noexcept
+	{
+		return true;
+	}
 
-void SystemSimulation::Process(float deltaTime) noexcept
-{
+	void SystemSimulation::Process(float deltaTime) noexcept
+	{
+	}
+
+	void SystemSimulation::Register(RigidBodyComponent * rbc) noexcept
+	{
+	}
+
+	void SystemSimulation::Register(ColliderComponent * col) noexcept
+	{
+	}
+
+	void SystemSimulation::Unregister(Component * c) noexcept
+	{
+	}
 }
