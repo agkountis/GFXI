@@ -77,9 +77,6 @@
     <ClInclude Include="include\entity.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\GAPI_context.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\d3d\D3D11_blend_state.h">
       <Filter>include\d3d</Filter>
     </ClInclude>
@@ -204,6 +201,12 @@
       <Filter>include\systems</Filter>
     </ClInclude>
     <ClInclude Include="include\rigid_body_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\collider_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GAPI_context.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -332,6 +335,9 @@
       <Filter>src\systems</Filter>
     </ClCompile>
     <ClCompile Include="src\rigid_body_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collider_component.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
   </ItemGroup>

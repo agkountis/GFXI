@@ -2,9 +2,9 @@
 
 
 
-RigidBodyComponent::RigidBodyComponent(Entity* parent)
+RigidBodyComponent::RigidBodyComponent(Entity* parent) :
+	m_pParent(parent)
 {
-	m_pParent = parent;
 }
 
 

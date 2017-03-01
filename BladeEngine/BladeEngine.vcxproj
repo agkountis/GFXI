@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h" />
+    <ClInclude Include="include\collider_component.h" />
     <ClInclude Include="include\component.h" />
     <ClInclude Include="include\d3d\D3D11_blend_state.h" />
     <ClInclude Include="include\d3d\D3D11_context.h" />
@@ -206,6 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
+    <ClCompile Include="src\collider_component.cpp" />
     <ClCompile Include="src\component.cpp" />
     <ClCompile Include="src\d3d\D3D11_blend_state.cpp" />
     <ClCompile Include="src\d3d\D3D11_context.cpp" />
