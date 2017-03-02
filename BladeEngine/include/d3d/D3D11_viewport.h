@@ -10,12 +10,28 @@ namespace Blade
 	class D3D11Viewport : public AbstractViewport
 	{
 	private:
+		/**
+		 * \brief Minimum depth value of the depth buffer.
+		 */
 		float m_MinDepth{ 0.0f };
+		
+		/**
+		 * \brief Maximum depth value of the depth buffer.
+		 */
 		float m_MaxDepth{ 1.0f };
 
 	public:
+		/**
+		 * \brief D3D11Viewport default constructor.
+		 */
 		D3D11Viewport() = default;
 
+		/**
+		 * \brief D3D11Viewport constructor.
+		 * \param rect The dimensions of the viewport.
+		 * \param minDepth The minimum value of the depth buffer.
+		 * \param maxDepth The maximum value of the depth buffer.
+		 */
 		D3D11Viewport(const Rect& rect, float minDepth, float maxDepth)
 			: AbstractViewport{ rect },
 			  m_MinDepth{ minDepth },
