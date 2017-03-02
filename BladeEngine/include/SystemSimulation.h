@@ -1,10 +1,14 @@
 #ifndef BLADE_SIMULATION_SYSTEM_H_
 #define BLADE_SIMULATION_SYSTEM_H_
 
+#include <vector>
+
 #include "System.h"
 #include "component.h" // just temporary!
 #include "collider_component.h"
 #include "rigid_body_component.h"
+
+
 
 namespace Blade
 {
@@ -12,6 +16,8 @@ namespace Blade
 	{
 	private:
 		 // TO DO: Add data members
+		std::vector<RigidBodyComponent*> m_RigidBodyList;
+		std::vector<ColliderComponent*> m_ColliderList;
 
 	public:
 		SystemSimulation() = delete; // Do not allow user to create instance of the class!
