@@ -1,7 +1,6 @@
 #include "camera_component.h"
 #include "engine_context.h"
 #include "entity.h"
-#include "windowing_service.h"
 
 namespace Blade
 {

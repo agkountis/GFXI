@@ -68,7 +68,7 @@ void GameScene::Initialize()
 	cc->SetClippingPlanes(0.1f, 500.0f);
 
 	//Set the FoV.
-	cc->SetFov(MathUtils::ToRadians(60.0f));
+	cc->SetFov(MathUtils::ToRadians(45.0f));
 
 	//Call the component's Setup method.
 	cc->Setup();
@@ -81,6 +81,16 @@ void GameScene::Initialize()
 
 	//Instruct the Camera system to set this camera as the active one.
 	EngineContext::GetCameraSystem()->SetActiveCamera("Camera1");
+
+	entity = new Entity{ "Camera2" };
+	cc = new CameraComponent{ entity };
+	cc->SetViewport(Viewport{ rect, 0.0f, 1.0f });
+	cc->SetClippingPlanes(0.1f, 500.0f);
+	cc->SetFov(MathUtils::ToRadians(45.0f));
+	cc->Setup();
+	entity->SetPosition(Vec3f{ 0.0f, 0.0f, -4.0f });
+
+	AddEntity(entity);
 	// --------------------------------------------------------------------------------------------------------------------
 
 	// Pipeline Creation --------------------------------------------------------------------------------------------------
@@ -99,6 +109,17 @@ void GameScene::Initialize()
 
 void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 {
+	switch (key)
+	{
+	case '1':
+		EngineContext::GetCameraSystem()->SetActiveCamera("Camera1");
+		break;
+	case '2':
+		EngineContext::GetCameraSystem()->SetActiveCamera("Camera2");
+		break;
+	default:
+		break;
+	}
 }
 
 void GameScene::OnKeyUp(unsigned char key, int x, int y) noexcept
@@ -115,6 +136,12 @@ void GameScene::OnMouseClick(int button, bool state, int x, int y) noexcept
 
 void GameScene::Update(float deltaTime, long time) noexcept
 {
+	//Animate the active camera for fun!
+	Entity* cam{ EngineContext::GetCameraSystem()->GetActiveCamera()->GetParent() };
+
+	Vec3f currentPos{ cam->GetPosition() };
+	cam->SetPosition(Vec3f{ sin(time / 1000.0f) * 2.0f, currentPos.yz });
+
 	Scene::Update(deltaTime, time);
 }
 

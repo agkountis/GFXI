@@ -4,6 +4,9 @@
 
 namespace Blade
 {
+	/**
+	 * \brief D3D11 implementation of the AbstractViewport.
+	 */
 	class D3D11Viewport : public AbstractViewport
 	{
 	private:

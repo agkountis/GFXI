@@ -56,6 +56,16 @@ namespace Blade
 		return p_ActiveCamera->GetViewport();
 	}
 
+	CameraComponent* CameraSystem::GetActiveCamera() const noexcept
+	{
+		return p_ActiveCamera;
+	}
+
+	CameraComponent* CameraSystem::GetCamera(const std::string& name) noexcept
+	{
+		return m_CameraComponents[name];
+	}
+
 	bool CameraSystem::Initialize() noexcept
 	{
 		return true;
