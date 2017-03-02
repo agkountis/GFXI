@@ -3,9 +3,9 @@
 namespace Blade
 {
 
-	SystemSimulation::SystemSimulation() :System()
+	/*SystemSimulation::SystemSimulation() :System()
 	{
-	}
+	}*/
 
 
 	SystemSimulation::~SystemSimulation()

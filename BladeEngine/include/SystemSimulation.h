@@ -11,9 +11,10 @@ namespace Blade
 	class SystemSimulation : System
 	{
 	private:
-		SystemSimulation(); // Do not allow user to create instance of the class!
+		 // TO DO: Add data members
 
 	public:
+		SystemSimulation() = delete; // Do not allow user to create instance of the class!
 		SystemSimulation& operator=(SystemSimulation&) = delete;
 		SystemSimulation(SystemSimulation&) = delete;
 		~SystemSimulation();
@@ -23,15 +24,15 @@ namespace Blade
 		* \brief Performs system initialization.
 		* \return TRUE if initialization is successfull, FALSE otherwise.
 		*/
-		bool Initialize() noexcept;
+		bool Initialize() noexcept override;
 
 		/**
 		* \brief Updates physics simulation.
 		* \param deltaTime The time elapsed from the previous frame of the application.
 		*/
-		void Process(float deltaTime) noexcept;
+		void Process(float deltaTime) noexcept override;
 
-		//TO DO: add register and unregistered methods
+		//*** SYSTEM SIMULATION SPECIFIC METHODS
 
 		/**
 		* \brief Registers Rigid Body Component with the Simulation System.
@@ -43,7 +44,7 @@ namespace Blade
 		* \brief Registers Collider Component with the Simulation System.
 		* \param rbc Pointer to the component - DOES NOT TAKE OWNERSHIP
 		*/
-		void Register(ColliderComponent* col) noexcept;
+		void Register(ColliderComponent* col) noexcept ;
 
 		/**
 		* \brief Unregisters a given Component with the Simulation System(if it is registered).
