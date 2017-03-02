@@ -5,6 +5,10 @@
 namespace Blade
 {
 #if defined(BLADE_BUILD_D3D)
+	/**
+	 * \brief Type alias of a concrete Viewport implementation 
+	 * depending on the build configuration.
+	 */
 	using Viewport = D3D11Viewport;
 #else
 #endif
