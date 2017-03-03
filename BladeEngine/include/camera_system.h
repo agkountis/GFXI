@@ -24,6 +24,18 @@ namespace Blade
 		 */
 		CameraComponent* p_ActiveCamera{ nullptr };
 
+		/**
+		* \brief Initializes the CameraSystem.
+		* \return TRUE if initialization is successfull, FALSE otherwise.
+		*/
+		bool Initialize() noexcept override;
+
+		/**
+		* \brief Processes the CameraComponents.
+		* \param deltaTime The time elapsed from the previous frame of the application.
+		*/
+		void Process(float deltaTime) noexcept override;
+
 	public:
 		/**
 		 * \brief Registeres the specified CameraComponent to the CameraSystem.
@@ -73,18 +85,6 @@ namespace Blade
 		 * \return The CameraComponent of the camera with the specified name.
 		 */
 		CameraComponent* GetCamera(const std::string &name) noexcept;
-
-		/**
-		 * \brief Initializes the CameraSystem.
-		 * \return TRUE if initialization is successfull, FALSE otherwise.
-		 */
-		bool Initialize() noexcept override;
-	
-		/**
-		* \brief Processes the CameraComponents.
-		* \param deltaTime The time elapsed from the previous frame of the application.
-		*/
-		void Process(float deltaTime) noexcept override;
 	};
 }
 

@@ -2,12 +2,12 @@
 
 namespace Blade
 {
-	const Rect& AbstractViewport::GetRect() const noexcept
+	const Recti& AbstractViewport::GetRect() const noexcept
 	{
 		return m_Rect;
 	}
 
-	void AbstractViewport::SetRect(const Rect& rect) noexcept
+	void AbstractViewport::SetRect(const Recti& rect) noexcept
 	{
 		m_Rect = rect;
 	}

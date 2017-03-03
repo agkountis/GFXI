@@ -7,7 +7,7 @@ namespace Blade
 	/**
 	 * \brief Type alias of a Vec4i.
 	 */
-	using Rect = Vec4i;
+	using Recti = Vec4i;
 
 	/**
 	 * \brief Describes an implementation agnostic Viewport.
@@ -18,7 +18,7 @@ namespace Blade
 		/**
 		 * \brief The dimensions of the viewport.
 		 */
-		Rect m_Rect;
+		Recti m_Rect;
 
 	public:
 		/**
@@ -30,7 +30,7 @@ namespace Blade
 		 * \brief AbstractViewport's constructor.
 		 * \param rect The dimensions of the Viewport.
 		 */
-		explicit AbstractViewport(const Rect& rect)
+		explicit AbstractViewport(const Recti& rect)
 			: m_Rect{ rect }
 		{
 		}
@@ -44,13 +44,13 @@ namespace Blade
 		 * \brief Provides the dimensions of the Viewport.
 		 * \return The dimensions of the Viewport.
 		 */
-		const Rect& GetRect() const noexcept;
+		const Recti& GetRect() const noexcept;
 
 		/**
 		 * \brief Sets the dimensions of the Viewport.
 		 * \param rect The dimensions of the Viewport.
 		 */
-		void SetRect(const Rect& rect) noexcept;
+		void SetRect(const Recti& rect) noexcept;
 
 		/**
 		 * \brief Sets the Viewport to the Rasterizer.

@@ -38,12 +38,6 @@ namespace Blade
 			return false;
 		}
 
-		if (!m_CameraSystem->Initialize())
-		{
-			std::cerr << "Failed to initialize the CameraSystem." << std::endl;
-			return false;
-		}
-
 		RenderStateManager::Initialize();
 
 		return true;
