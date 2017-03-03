@@ -72,8 +72,8 @@ namespace Blade
 
 		/**
 		 * \brief Updates the Component on each frame.
-		 * \param dt The time elapsed from the previous frame of the application.
-		 * \param time The elapsed time since the start of the application.
+		 * \param dt The time elapsed from the previous frame of the Application.
+		 * \param time The elapsed time since the start of the Application.
 		 */
 		virtual void Update(float dt, long time = 0) noexcept = 0;
 
