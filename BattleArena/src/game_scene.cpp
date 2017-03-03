@@ -42,7 +42,6 @@ void GameScene::Initialize()
 	RenderComponent* rc{ new RenderComponent{entity} };
 	rc->SetMesh(cube);
 	rc->SetMaterial(material);
-	rc->Setup();
 
 	//Add the entity to the scene so it will get updated.
 	AddEntity(entity);
@@ -59,7 +58,7 @@ void GameScene::Initialize()
 	Vec2i windowSize{ WindowingService::GetWindow(0)->GetSize() };
 
 	//Create a Rect for the viewport.
-	Rect rect{0, 0, windowSize };
+	Recti rect{0, 0, windowSize };
 
 	//Set the viewport.
 	cc->SetViewport(Viewport{ rect, 0.0f, 1.0f });

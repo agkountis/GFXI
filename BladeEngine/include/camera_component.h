@@ -40,6 +40,10 @@ namespace Blade
 		 */
 		Mat4f m_ProjectionMatrix;
 
+		void Teardown() noexcept override;
+
+		//TODO: Later on update matrices only when it's needed. (Dirty bit)
+
 	public:
 		/**
 		 * \brief CameraComponent's constructor.
@@ -47,6 +51,27 @@ namespace Blade
 		 * \param parent The entity the CameraComponent will be attached to.
 		 */
 		explicit CameraComponent(Entity* parent);
+
+		/**
+		 * \overload
+		 * \param parent The entity the CameraComponent will be attached to.
+		 * \param fov The field of view.
+		 * \param viewport The viewport of the camera.
+		 * \param nearPlane The near clipping plane.
+		 * \param farPlane The far clipping plane.
+		 */
+		CameraComponent(Entity* parent, float fov, const Viewport& viewport, float nearPlane, float farPlane);
+
+		/**
+		 * \overload
+		 * \param parent The entity the CameraComponent will be attached to.
+		 * \param fov The field of view.
+		 * \param viewport The viewport of the camera.
+		 * \param clippingPlanes The clipping planes for the projection.
+		 * \details clippingPlanes.x - The near clipping plane.
+		 * \details clippingPlanes.y - The far clipping plane.
+		 */
+		CameraComponent(Entity* parent, float fov, const Viewport& viewport, const Vec2f& clippingPlanes);
 
 		/**
 		 * \brief CameraComponent's destructor.
@@ -150,8 +175,6 @@ namespace Blade
 		 * \param time The elapsed time since the start of the Application.
 		 */
 		void Update(float dt, long time) noexcept override;
-		
-		void Teardown() noexcept override;
 	};
 }
 

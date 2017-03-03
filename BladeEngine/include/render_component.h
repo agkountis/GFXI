@@ -24,6 +24,12 @@ namespace Blade
 		 */
 		Material m_Material;
 
+		void Setup() noexcept override;
+
+		void Update(float dt, long time = 0) noexcept override;
+
+		void Teardown() noexcept override;
+
 	public:
 		/**
 		 * \brief RenderComponent's constructor. Registers the RenderComponent
@@ -61,12 +67,6 @@ namespace Blade
 		 * \param material The Material to be set.
 		 */
 		void SetMaterial(const Material& material) noexcept;
-
-		void Setup() noexcept override;
-
-		void Update(float dt, long time = 0) noexcept override;
-
-		void Teardown() noexcept override;
 	};
 }
 

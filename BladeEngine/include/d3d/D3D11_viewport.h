@@ -32,7 +32,7 @@ namespace Blade
 		 * \param minDepth The minimum value of the depth buffer.
 		 * \param maxDepth The maximum value of the depth buffer.
 		 */
-		D3D11Viewport(const Rect& rect, float minDepth, float maxDepth)
+		D3D11Viewport(const Recti& rect, float minDepth, float maxDepth)
 			: AbstractViewport{ rect },
 			  m_MinDepth{ minDepth },
 			  m_MaxDepth{ maxDepth }
