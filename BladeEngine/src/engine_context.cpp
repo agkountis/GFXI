@@ -10,7 +10,8 @@ namespace Blade
 #else
 #endif
 
-	std::unique_ptr<RenderSystem> EngineContext::m_RenderSystem{ std::make_unique<RenderSystem>()};
+	std::unique_ptr<RenderSystem> EngineContext::m_RenderSystem{ std::make_unique<RenderSystem>() };
+	std::unique_ptr<CameraSystem> EngineContext::m_CameraSystem{ std::make_unique<CameraSystem>() };
 
 	EngineContext::~EngineContext()
 	{
@@ -45,5 +46,10 @@ namespace Blade
 	RenderSystem* EngineContext::GetRenderSystem() noexcept
 	{
 		return m_RenderSystem.get();
+	}
+
+	CameraSystem* EngineContext::GetCameraSystem() noexcept
+	{
+		return m_CameraSystem.get();
 	}
 }

@@ -200,6 +200,21 @@
     <ClInclude Include="include\pipeline_stage.h">
       <Filter>include\rendering</Filter>
     </ClInclude>
+    <ClInclude Include="include\camera_system.h">
+      <Filter>include\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\camera_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\abstract_viewport.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\viewport.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_viewport.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GAPI_context.cpp">
@@ -321,6 +336,18 @@
     </ClCompile>
     <ClCompile Include="src\pipeline.cpp">
       <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\abstract_viewport.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_viewport.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera_system.cpp">
+      <Filter>src\systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
