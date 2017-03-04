@@ -4,11 +4,13 @@
 
 namespace Blade
 {
-	int Component::m_Id{ 0 };
+	int Component::s_IdCounter{ 0 };
 
-	Component::Component(const std::string& type, Entity* parent) : m_Type{ type }, p_Parent{ parent }
+	Component::Component(const std::string& type, Entity* parent) :
+		m_Type{ type }, 
+		p_Parent{ parent },
+		m_Id{++s_IdCounter }
 	{
-		++m_Id;
 		parent->AddComponent(this);
 	}
 
