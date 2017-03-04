@@ -1,17 +1,353 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
+    <Filter Include="src">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
+    <Filter Include="include">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="include\d3d">
+      <UniqueIdentifier>{32ad73cd-e900-4810-ae12-31b65fc33fb8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\d3d">
+      <UniqueIdentifier>{06d4fcb4-5ee1-4649-97fa-82b4b10e9dbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\components">
+      <UniqueIdentifier>{f0e7bd9f-508c-4f1e-bb3b-e0fbe3c24bdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\components">
+      <UniqueIdentifier>{34930e0f-7003-457b-90f6-1800021b99fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\systems">
+      <UniqueIdentifier>{6f4cac0e-aecd-4b3e-afcd-c05c594b7024}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\systems">
+      <UniqueIdentifier>{fefecb36-7868-4f95-acd2-473237095d0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\managers">
+      <UniqueIdentifier>{501466a6-c666-4535-81fd-8513ac3e4366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\rendering">
+      <UniqueIdentifier>{0640128c-940f-4dcd-89d7-8cf6fc0ca5e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\windowing">
+      <UniqueIdentifier>{dc80d382-1356-4b29-8478-150dfa460129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\utilities">
+      <UniqueIdentifier>{afece6e2-5ec0-4d96-9d0b-31f8ab0080b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\managers">
+      <UniqueIdentifier>{bcbb661e-b948-4836-a3e8-2484fdc7064a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\rendering">
+      <UniqueIdentifier>{9d0d6202-cf32-4370-a7f2-91557383a601}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\windowing">
+      <UniqueIdentifier>{071d4431-3edb-427e-9b13-33b20f4a704f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\application.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine_context.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\message.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\observer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\observer_subject.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resource.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\timer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\types.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entity.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GAPI_context.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_blend_state.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_context.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_depth_stencil_state.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_IBO.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_rasterizer_state.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_render_target.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_shader.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_shader_program.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_VBO.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_texture.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system.h">
+      <Filter>include\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_window.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shader_program_manager.h">
+      <Filter>include\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\render_state_manager.h">
+      <Filter>include\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene_manager.h">
+      <Filter>include\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resource_manager.h">
+      <Filter>include\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mesh.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\material.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IBO.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\texture.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\render_target.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vertex.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shader_program.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shader.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VBO.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\win32_utils.h">
+      <Filter>include\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\win32_window.h">
+      <Filter>include\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\window.h">
+      <Filter>include\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windowing_types.h">
+      <Filter>include\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windowing_service.h">
+      <Filter>include\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="include\render_state.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mesh_utils.h">
+      <Filter>include\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math_utils.h">
+      <Filter>include\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\render_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\render_pass.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\render_system.h">
+      <Filter>include\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline_stage.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\camera_system.h">
+      <Filter>include\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\camera_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\abstract_viewport.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\viewport.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_viewport.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GAPI_context.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\application.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine_context.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesh_utils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\message.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\observer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_blend_state.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_context.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_depth_stencil_state.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_IBO.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_rasterizer_state.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_render_target.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_shader.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_shader_program.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_texture.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_VBO.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\system.cpp">
+      <Filter>src\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\observer_subject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_window.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render_state_manager.cpp">
+      <Filter>src\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource_manager.cpp">
+      <Filter>src\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shader_program_manager.cpp">
+      <Filter>src\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene_manager.cpp">
+      <Filter>src\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mesh.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\material.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IBO.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render_target.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render_state.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shader_program.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VBO.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\windowing_service.cpp">
+      <Filter>src\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="src\window.cpp">
+      <Filter>src\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win32_window.cpp">
+      <Filter>src\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render_system.cpp">
+      <Filter>src\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\abstract_viewport.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_viewport.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera_system.cpp">
+      <Filter>src\systems</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
