@@ -22,6 +22,14 @@ namespace Blade
 		std::vector<PipelineStage<T, Tdata>*> m_Stages;
 
 	public:
+		~Pipeline()
+		{
+			for (auto stage : m_Stages)
+			{
+				delete stage;
+			}
+		}
+
 		/**
 		 * \brief Adds a PipelineStage to the Pipeline.
 		 * \param stage The PipelineStage to be added to the Pipeline.

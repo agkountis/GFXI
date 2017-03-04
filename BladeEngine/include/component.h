@@ -30,10 +30,9 @@ namespace Blade
 		 */
 		int m_Id;
 
-
 		/**
 		* \brief Counter variable to track the number of created Components.
-		* \brief Used to create unique component ID of each component.
+		* \details Used to create unique component ID of each component.
 		*/
 		static int s_IdCounter;
 
@@ -70,7 +69,7 @@ namespace Blade
 		 * \brief Returns the unique Component ID.
 		 * \return The unique Component ID.
 		 */
-		int GetId() noexcept;
+		int GetId() const noexcept;
 
 		/**
 		 * \brief Performs setup actions after the Component's creation
