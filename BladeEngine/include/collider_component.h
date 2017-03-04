@@ -30,7 +30,18 @@ namespace Blade
 		ColliderComponent& operator=(ColliderComponent&) = delete;
 		~ColliderComponent();
 
+
+		/**
+		* \brief Creates actual component internals(bounding volume) and registers it with SimulationSystem.
+		* \param Bounding volume type(Sphere,Box or Cylinder).
+		* \return true if successfull.
+		*/
 		bool Create(BVolumeType bVolumeType);
+
+		/**
+		* \brief Checks if collider is valid - has bounding volume.
+		* \return true if valid.
+		*/
 		bool isValid();
 
 

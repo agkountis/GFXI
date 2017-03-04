@@ -20,6 +20,7 @@ namespace Blade
 
 	ColliderComponent::~ColliderComponent()
 	{
+		if (m_ValidFlag) EngineContext::GetSimulationSystem()->UnregisterComponent(this);
 		if (m_pBVolume != nullptr) delete m_pBVolume;
 	}
 

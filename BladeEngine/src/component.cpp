@@ -28,7 +28,7 @@ namespace Blade
 		return p_Parent;
 	}
 
-	int Component::GetId() noexcept
+	int Component::GetId()const noexcept
 	{
 		return m_Id;
 	}

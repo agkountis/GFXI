@@ -70,7 +70,9 @@ namespace Blade
 		 * \brief Returns the unique Component ID.
 		 * \return The unique Component ID.
 		 */
-		int GetId() noexcept;
+		int GetId() const noexcept;
+
+		
 
 		/**
 		 * \brief Performs setup actions after the Component's creation
