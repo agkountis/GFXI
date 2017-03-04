@@ -5,7 +5,7 @@
 namespace Blade
 {
 	CameraComponent::CameraComponent(Entity* parent)
-		: Component{ "co_camera", parent }
+		: Component{ ID_CAMERA_COMPONENT, parent }
 	{
 		EngineContext::GetCameraSystem()->RegisterComponent(this);
 	}
@@ -15,7 +15,7 @@ namespace Blade
 	                                 const Viewport& viewport,
 	                                 float nearPlane,
 	                                 float farPlane)
-		: Component{ "co_camera", parent },
+		: Component{ ID_CAMERA_COMPONENT, parent },
 		  m_Fov{ fov },
 		  m_Viewport{ viewport },
 		  m_ClippingPlanes{ Vec2f{ nearPlane, farPlane } }
@@ -27,7 +27,7 @@ namespace Blade
 	                                 float fov,
 	                                 const Viewport& viewport,
 	                                 const Vec2f& clippingPlanes)
-		: Component{ "co_camera", parent },
+		: Component{ ID_CAMERA_COMPONENT, parent },
 		  m_Fov{ fov },
 		  m_Viewport{ viewport },
 		  m_ClippingPlanes{ clippingPlanes }

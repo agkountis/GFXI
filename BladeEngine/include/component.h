@@ -1,6 +1,8 @@
 #ifndef BLADE_COMPONENT_H_
 #define BLADE_COMPONENT_H_
 #include <string>
+
+#include "strings.h"
 #include "observer.h"
 
 namespace Blade

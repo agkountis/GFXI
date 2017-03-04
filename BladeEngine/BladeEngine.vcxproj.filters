@@ -215,6 +215,9 @@
     <ClInclude Include="include\d3d\D3D11_viewport.h">
       <Filter>include\d3d</Filter>
     </ClInclude>
+    <ClInclude Include="include\strings.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GAPI_context.cpp">

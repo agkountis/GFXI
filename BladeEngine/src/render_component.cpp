@@ -4,7 +4,7 @@
 namespace Blade
 {
 	RenderComponent::RenderComponent(Entity* parent)
-		: Component{ "co_render", parent }
+		: Component{ ID_RENDER_COMPONENT, parent }
 	{
 		EngineContext::GetRenderSystem()->RegisterComponent(this);
 	}
