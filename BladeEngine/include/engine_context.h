@@ -3,6 +3,7 @@
 #include "d3d/D3D11_context.h"
 #include "render_system.h"
 #include "camera_system.h"
+#include "SystemSimulation.h"
 
 namespace Blade
 {
@@ -15,6 +16,7 @@ namespace Blade
 #endif
 		static std::unique_ptr<RenderSystem> m_RenderSystem;
 		static std::unique_ptr<CameraSystem> m_CameraSystem;
+		static std::unique_ptr<SystemSimulation> m_SystemSimulation;
 		//TODO: Declare all the systems as statics here
 
 	public:
@@ -36,6 +38,10 @@ namespace Blade
 		static RenderSystem* GetRenderSystem() noexcept;
 
 		static CameraSystem* GetCameraSystem() noexcept;
+
+		static SystemSimulation* GetSimulationSystem() noexcept;
+
+		
 		//TODO: Implement getters and setters for the systems.
 	};
 }

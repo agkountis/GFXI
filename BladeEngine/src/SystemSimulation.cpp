@@ -17,6 +17,7 @@ namespace Blade
 	void SystemSimulation::Process(float deltaTime) noexcept
 	{
 		//TO DO: Simulation code
+		
 	}
 
 	void SystemSimulation::RegisterComponent(RigidBodyComponent* rbc) noexcept
@@ -36,17 +37,17 @@ namespace Blade
 		
 		// TO BE CHANGED..
 		
-		//auto positionIteratorRB = std::find(m_RigidBodyList.begin(), m_RigidBodyList.end(), c);
-		//if (positionIteratorRB != m_RigidBodyList.end()) // element found!
-		//{
-		//	m_RigidBodyList.erase(positionIteratorRB);
-		//}
-		//else //not in rigidbodies.. look for it in colliders
-		//{
-		//	auto positionIteratorCOL = std::find(m_ColliderList.begin(), m_ColliderList.end(), c);
-		//	//if found... remove it from the list
-		//	if (positionIteratorCOL != m_ColliderList.end())  m_ColliderList.erase(positionIteratorCOL);
-		//}
+		auto positionIteratorRB = std::find(m_RigidBodyList.begin(), m_RigidBodyList.end(), c);
+		if (positionIteratorRB != m_RigidBodyList.end()) // element found!
+		{
+			m_RigidBodyList.erase(positionIteratorRB);
+		}
+		else //not in rigidbodies.. look for it in colliders
+		{
+			auto positionIteratorCOL = std::find(m_ColliderList.begin(), m_ColliderList.end(), c);
+			//if found... remove it from the list
+			if (positionIteratorCOL != m_ColliderList.end())  m_ColliderList.erase(positionIteratorCOL);
+		}
 
 	}
 }
