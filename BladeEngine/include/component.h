@@ -28,7 +28,14 @@ namespace Blade
 		/**
 		 * \brief A unique identifier for the Component.
 		 */
-		static int m_Id;
+		int m_Id;
+
+
+		/**
+		* \brief Counter variable to track the number of created Components.
+		* \brief Used to create unique component ID of each component.
+		*/
+		static int s_IdCounter;
 
 	public:
 		/**
@@ -63,7 +70,7 @@ namespace Blade
 		 * \brief Returns the unique Component ID.
 		 * \return The unique Component ID.
 		 */
-		static int GetId() noexcept;
+		int GetId() noexcept;
 
 		/**
 		 * \brief Performs setup actions after the Component's creation
@@ -72,8 +79,8 @@ namespace Blade
 
 		/**
 		 * \brief Updates the Component on each frame.
-		 * \param dt The time elapsed from the previous frame of the application.
-		 * \param time The elapsed time since the start of the application.
+		 * \param dt The time elapsed from the previous frame of the Application.
+		 * \param time The elapsed time since the start of the Application.
 		 */
 		virtual void Update(float dt, long time = 0) noexcept = 0;
 

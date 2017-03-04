@@ -227,6 +227,21 @@
     <ClInclude Include="include\bounding_box.h">
       <Filter>include\objects</Filter>
     </ClInclude>
+    <ClInclude Include="include\camera_system.h">
+      <Filter>include\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\camera_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\abstract_viewport.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\viewport.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="include\d3d\D3D11_viewport.h">
+      <Filter>include\d3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GAPI_context.cpp">
@@ -347,6 +362,9 @@
       <Filter>src\systems</Filter>
     </ClCompile>
     <ClCompile Include="src\pipeline.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\abstract_viewport.cpp">
       <Filter>src\rendering</Filter>
     </ClCompile>
     <ClCompile Include="src\SystemSimulation.cpp">

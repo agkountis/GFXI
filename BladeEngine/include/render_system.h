@@ -7,7 +7,7 @@
 namespace Blade
 {
 	/**
-	 * \brief A System responsible for processing the rendering components by
+	 * \brief A System responsible for processing the RenderComponents by
 	 * passing them through a specified pipeline.
 	 */
 	class RenderSystem : public System
@@ -19,7 +19,7 @@ namespace Blade
 		RenderPassPipeline* m_RenderPassPipeline{ nullptr };
 		
 		/**
-		 * \brief A vector of the registered rendering components to be processed
+		 * \brief The registered RenderComponents to be processed.
 		 * by the RenderSystem.
 		 */
 		std::vector<RenderComponent*> m_RenderComponents;
@@ -32,7 +32,7 @@ namespace Blade
 
 		/**
 		 * \brief Registeres a RenderComponent to the RenderSystem.
-		 * \param renderComponent The component to be registered in the RenderSytstem for processing.
+		 * \param renderComponent The component to be registered to the RenderSytstem for processing.
 		 */
 		void RegisterComponent(RenderComponent* renderComponent) noexcept;
 

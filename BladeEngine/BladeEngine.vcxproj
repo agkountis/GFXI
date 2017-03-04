@@ -152,6 +152,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h" />
+    <ClInclude Include="include\camera_component.h" />
+    <ClInclude Include="include\camera_system.h" />
     <ClInclude Include="include\bounding_box.h" />
     <ClInclude Include="include\bounding_cylinder.h" />
     <ClInclude Include="include\bounding_sphere.h" />
@@ -168,6 +170,7 @@
     <ClInclude Include="include\d3d\D3D11_shader_program.h" />
     <ClInclude Include="include\d3d\D3D11_texture.h" />
     <ClInclude Include="include\d3d\D3D11_VBO.h" />
+    <ClInclude Include="include\d3d\D3D11_viewport.h" />
     <ClInclude Include="include\d3d\D3D11_window.h" />
     <ClInclude Include="include\engine_context.h" />
     <ClInclude Include="include\GAPI_context.h" />
@@ -203,6 +206,8 @@
     <ClInclude Include="include\types.h" />
     <ClInclude Include="include\VBO.h" />
     <ClInclude Include="include\vertex.h" />
+    <ClInclude Include="include\abstract_viewport.h" />
+    <ClInclude Include="include\viewport.h" />
     <ClInclude Include="include\win32_utils.h" />
     <ClInclude Include="include\win32_window.h" />
     <ClInclude Include="include\window.h" />
@@ -210,7 +215,10 @@
     <ClInclude Include="include\windowing_types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\abstract_viewport.cpp" />
     <ClCompile Include="src\application.cpp" />
+    <ClCompile Include="src\camera_component.cpp" />
+    <ClCompile Include="src\camera_system.cpp" />
     <ClCompile Include="src\bounding_box.cpp" />
     <ClCompile Include="src\bounding_cylinder.cpp" />
     <ClCompile Include="src\bounding_sphere.cpp" />
@@ -227,6 +235,7 @@
     <ClCompile Include="src\d3d\D3D11_shader_program.cpp" />
     <ClCompile Include="src\d3d\D3D11_texture.cpp" />
     <ClCompile Include="src\d3d\D3D11_VBO.cpp" />
+    <ClCompile Include="src\d3d\D3D11_viewport.cpp" />
     <ClCompile Include="src\d3d\D3D11_window.cpp" />
     <ClCompile Include="src\engine_context.cpp" />
     <ClCompile Include="src\GAPI_context.cpp" />
