@@ -1,6 +1,5 @@
 #include "battle_arena_application.h"
-#include "blade_trace.h"
-
+#include "trace.h"
 
 int main(int argc, char** argv)
 {

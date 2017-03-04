@@ -215,7 +215,7 @@
     <ClInclude Include="include\d3d\D3D11_viewport.h">
       <Filter>include\d3d</Filter>
     </ClInclude>
-    <ClInclude Include="include\blade_trace.h">
+    <ClInclude Include="include\trace.h">
       <Filter>include\utilities</Filter>
     </ClInclude>
   </ItemGroup>
