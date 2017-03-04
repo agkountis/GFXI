@@ -44,19 +44,19 @@ namespace Blade
 		* \brief Registers Rigid Body Component with the Simulation System.
 		* \param rbc Pointer to the component - DOES NOT TAKE OWNERSHIP
 		*/
-		void Register(RigidBodyComponent* rbc) noexcept;
+		void RegisterComponent(RigidBodyComponent* rbc) noexcept;
 
 		/**
 		* \brief Registers Collider Component with the Simulation System.
 		* \param rbc Pointer to the component - DOES NOT TAKE OWNERSHIP
 		*/
-		void Register(ColliderComponent* col) noexcept ;
+		void RegisterComponent(ColliderComponent* col) noexcept ;
 
 		/**
 		* \brief Unregisters a given Component with the Simulation System(if it is registered).
 		* \param rbc Pointer to the component
 		*/
-		void Unregister(Component* c) noexcept;
+		void UnregisterComponent(Component* c) noexcept;
 	};
 }
 #endif //BLADE_SIMULATION_SYSTEM_H_

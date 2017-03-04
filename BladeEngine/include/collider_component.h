@@ -1,7 +1,14 @@
 #ifndef BLADE_COLLIDER_COMPONENT_H_
 #define BLADE_COLLIDER_COMPONENT_H_
 
-#include<component.h>
+#include "component.h"
+#include "bounding_volume.h"
+enum class BVolumeType
+{
+	Sphere, 
+	Box, 
+	Cylinder
+};
 namespace Blade
 {
 	class Entity;
@@ -9,13 +16,14 @@ namespace Blade
 	{
 
 	private:
-		Entity* m_pParent;
 		bool m_CollisionResponse;
+		BoundingVolume* m_pBVolume;
+
+
 	public:
-		ColliderComponent(Entity* parent);
+		ColliderComponent(Entity* parent, BVolumeType bVolumeType);
 		ColliderComponent(ColliderComponent&) = delete;
 		ColliderComponent& operator=(ColliderComponent&) = delete;
-
 		~ColliderComponent();
 	};
 }

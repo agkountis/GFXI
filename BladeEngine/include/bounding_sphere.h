@@ -14,7 +14,7 @@ namespace Blade
 		float m_Radius;//unused yet
 		//TO DO: Add all relevant members
 	public:
-		BoundingSphere();
+		BoundingSphere(Mesh* mesh);
 		BoundingSphere(BoundingSphere&) = delete;
 		BoundingSphere& operator=(BoundingSphere&) = delete;
 		~BoundingSphere();

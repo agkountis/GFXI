@@ -1,6 +1,7 @@
 #ifndef BLADE_BOUNDING_VOLUME_H_
 #define BLADE_BOUNDING_VOLUME_H_
 
+#include "mesh.h"
 namespace Blade
 {
 	/**
@@ -12,10 +13,12 @@ namespace Blade
 	private:
 		//TO DO: Add all relevant members
 	public:
-		BoundingVolume();
+		BoundingVolume(Mesh* mesh);
 		BoundingVolume(BoundingVolume&) = delete;
 		BoundingVolume& operator=(BoundingVolume&) = delete;
 		virtual ~BoundingVolume();
+
+		
 
 	};
 }

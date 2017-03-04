@@ -15,7 +15,7 @@ namespace Blade
 		float m_Radius;
 		//TO DO: Add all relevant members
 	public:
-		BoundingCylinder();
+		BoundingCylinder(Mesh* mesh);
 		BoundingCylinder(BoundingCylinder&) = delete;
 		BoundingCylinder& operator=(BoundingCylinder) = delete;
 		~BoundingCylinder();

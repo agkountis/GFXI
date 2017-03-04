@@ -19,17 +19,17 @@ namespace Blade
 		//TO DO: Simulation code
 	}
 
-	void SystemSimulation::Register(RigidBodyComponent* rbc) noexcept
+	void SystemSimulation::RegisterComponent(RigidBodyComponent* rbc) noexcept
 	{
 		m_RigidBodyList.push_back(rbc);
 	}
 
-	void SystemSimulation::Register(ColliderComponent* col) noexcept
+	void SystemSimulation::RegisterComponent(ColliderComponent* col) noexcept
 	{
 		m_ColliderList.push_back(col);
 	}
 
-	void SystemSimulation::Unregister(Component* c) noexcept
+	void SystemSimulation::UnregisterComponent(Component* c) noexcept
 	{
 	
 		//m_RigidBodyList.erase(std::remove(m_RigidBodyList.begin(), m_RigidBodyList.end(), c), m_RigidBodyList.end()); - not used

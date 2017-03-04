@@ -1,7 +1,7 @@
 #include "bounding_box.h"
 namespace Blade
 {
-	BoundingBox::BoundingBox() : BoundingVolume()
+	BoundingBox::BoundingBox(Mesh* mesh) : BoundingVolume(mesh)
 	{
 	}
 

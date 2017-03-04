@@ -15,9 +15,10 @@ namespace Blade
 
 	private:
 		Blade::Vec3d m_Size;// unused yet!
+		
 		//TO DO: Add all relevant members
 	public:
-		BoundingBox();
+		BoundingBox(Mesh* mesh);
 		BoundingBox(BoundingBox &) = delete;
 		BoundingBox& operator=(BoundingBox&) = delete;
 		~BoundingBox();
