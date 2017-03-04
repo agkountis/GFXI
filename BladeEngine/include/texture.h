@@ -30,7 +30,7 @@ namespace Blade
 
 		void SetTextureType(TextureType texture_type) noexcept
 		{
-			//m_TextureType = texture_type;
+			m_TextureType = texture_type;
 		}
 
 		TextureType GetTextureType() const noexcept
