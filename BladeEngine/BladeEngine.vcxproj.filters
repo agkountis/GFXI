@@ -218,6 +218,12 @@
     <ClInclude Include="include\trace.h">
       <Filter>include\utilities</Filter>
     </ClInclude>
+    <ClInclude Include="include\light_system.h">
+      <Filter>include\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\light_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GAPI_context.cpp">
@@ -350,6 +356,9 @@
       <Filter>src\components</Filter>
     </ClCompile>
     <ClCompile Include="src\camera_system.cpp">
+      <Filter>src\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\light_system.cpp">
       <Filter>src\systems</Filter>
     </ClCompile>
   </ItemGroup>
