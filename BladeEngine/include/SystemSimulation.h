@@ -20,7 +20,6 @@ namespace Blade
 		std::vector<ColliderComponent*> m_ColliderList;
 
 	public:
-		//SystemSimulation() = delete; // Do not allow user to create instance of the class!
 		SystemSimulation() = default;
 		SystemSimulation& operator=(SystemSimulation&) = delete;
 		SystemSimulation(SystemSimulation&) = delete;
