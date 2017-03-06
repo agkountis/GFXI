@@ -1,5 +1,5 @@
-#include "SystemSimulation.h"
 #include "collider_component.h"
+#include "simulation_system.h"
 #include "bounding_sphere.h"
 #include "bounding_box.h"
 #include "bounding_cylinder.h"
@@ -17,6 +17,15 @@ namespace Blade
 	{
 	}
 
+	ColliderComponent::ColliderComponent(Entity * parent, BVolumeType type):
+		Component::Component{ "co_col",parent },//here component is added to entity
+		m_CollisionResponse{ true },
+		m_pBVolume{ nullptr },
+		m_ValidFlag{ false }
+	{
+		this->CreateBShape(type);
+	}
+
 
 	ColliderComponent::~ColliderComponent()
 	{
@@ -24,8 +33,9 @@ namespace Blade
 		if (m_pBVolume != nullptr) delete m_pBVolume;
 	}
 
-	bool ColliderComponent::Create(BVolumeType bVolumeType)
+	bool ColliderComponent::CreateBShape(BVolumeType bVolumeType)
 	{
+		if (m_ValidFlag) return true;
 
 		//Fish out render component, if not found return false - failed to create 
 		Component* c = GetParent()->GetComponent("co_render");

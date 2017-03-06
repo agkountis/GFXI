@@ -1,36 +1,38 @@
 #include <algorithm>
-#include "SystemSimulation.h"
+#include "simulation_system.h"
 
 
 namespace Blade
 {
 
-	SystemSimulation::~SystemSimulation()
+	SimulationSystem::~SimulationSystem()
 	{
 	}
 
-	bool SystemSimulation::Initialize() noexcept
+	bool SimulationSystem::Initialize() noexcept
 	{
 		return true;
 	}
 
-	void SystemSimulation::Process(float deltaTime) noexcept
+	void SimulationSystem::Process(float deltaTime) noexcept
 	{
+
+		//BLADE_TRACE("PHYSICS UPDATE");
 		//TO DO: Simulation code
 		
 	}
 
-	void SystemSimulation::RegisterComponent(RigidBodyComponent* rbc) noexcept
+	void SimulationSystem::RegisterComponent(RigidBodyComponent* rbc) noexcept
 	{
 		m_RigidBodyList.push_back(rbc);
 	}
 
-	void SystemSimulation::RegisterComponent(ColliderComponent* col) noexcept
+	void SimulationSystem::RegisterComponent(ColliderComponent* col) noexcept
 	{
 		m_ColliderList.push_back(col);
 	}
 
-	void SystemSimulation::UnregisterComponent(Component* c) noexcept
+	void SimulationSystem::UnregisterComponent(Component* c) noexcept
 	{
 	
 		

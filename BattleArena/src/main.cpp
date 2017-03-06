@@ -1,10 +1,12 @@
 #include "battle_arena_application.h"
 #include "trace.h"
 
+
 int main(int argc, char** argv)
 {
+
 	BattleArenaApplication application;
-	
+
 
 	if (!application.Initialize(&argc, argv))
 	{

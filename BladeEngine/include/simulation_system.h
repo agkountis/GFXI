@@ -7,12 +7,10 @@
 #include "component.h" // just temporary!
 #include "collider_component.h"
 #include "rigid_body_component.h"
-
-
-
+#include "trace.h"
 namespace Blade
 {
-	class SystemSimulation : System
+	class SimulationSystem : System
 	{
 	private:
 		 // TO DO: Add data members
@@ -20,10 +18,10 @@ namespace Blade
 		std::vector<ColliderComponent*> m_ColliderList;
 
 	public:
-		SystemSimulation() = default;
-		SystemSimulation& operator=(SystemSimulation&) = delete;
-		SystemSimulation(SystemSimulation&) = delete;
-		~SystemSimulation();
+		SimulationSystem() = default;
+		SimulationSystem& operator=(SimulationSystem&) = delete;
+		SimulationSystem(SimulationSystem&) = delete;
+		~SimulationSystem();
 
 
 		/**

@@ -25,7 +25,22 @@ namespace Blade
 		BoundingVolume* BVolume() { return m_pBVolume; }
 
 	public:
+		/**
+		* \brief Creates collider component without bounding shape.
+		* \brief Bounding shape can be created latter with a Create() method.
+		* \param Pointer to parent enitity.
+		*/
 		ColliderComponent(Entity* parent);
+
+		/**
+		* \brief Creates collider component with choosen bounding shape.
+		* \brief If parent entity has no render component, bounding shape will not be created at construction time.
+		* \brief It can be created latter with a Create() method.
+		* \param Pointer to parent enitity.
+		* \param Bounding volume type to create.
+		*/
+		ColliderComponent(Entity* parent, BVolumeType type);
+
 		ColliderComponent(ColliderComponent&) = delete;
 		ColliderComponent& operator=(ColliderComponent&) = delete;
 		~ColliderComponent();
@@ -36,10 +51,10 @@ namespace Blade
 		* \param Bounding volume type(Sphere,Box or Cylinder).
 		* \return true if successfull.
 		*/
-		bool Create(BVolumeType bVolumeType);
+		bool CreateBShape(BVolumeType bVolumeType);
 
 		/**
-		* \brief Checks if collider is valid - has bounding volume.
+		* \brief Checks if collider is valid - It is if has a bounding volume.
 		* \return true if valid.
 		*/
 		bool isValid();
