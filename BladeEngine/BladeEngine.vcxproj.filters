@@ -83,6 +83,9 @@
     <ClInclude Include="include\entity.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\GAPI_context.h">
+      <Filter>include</Filter>
+    </ClInclude>
     <ClInclude Include="include\d3d\D3D11_blend_state.h">
       <Filter>include\d3d</Filter>
     </ClInclude>
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="include\d3d\D3D11_viewport.h">
       <Filter>include\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\trace.h">
+      <Filter>include\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

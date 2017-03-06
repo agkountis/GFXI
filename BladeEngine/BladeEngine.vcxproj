@@ -174,6 +174,7 @@
     <ClInclude Include="include\d3d\D3D11_window.h" />
     <ClInclude Include="include\engine_context.h" />
     <ClInclude Include="include\GAPI_context.h" />
+    <ClInclude Include="include\trace.h" />
     <ClInclude Include="include\IBO.h" />
     <ClInclude Include="include\material.h" />
     <ClInclude Include="include\math_utils.h" />
