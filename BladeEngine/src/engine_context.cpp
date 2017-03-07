@@ -12,6 +12,7 @@ namespace Blade
 
 	std::unique_ptr<RenderSystem> EngineContext::m_RenderSystem{ std::make_unique<RenderSystem>() };
 	std::unique_ptr<CameraSystem> EngineContext::m_CameraSystem{ std::make_unique<CameraSystem>() };
+	std::unique_ptr<SimulationSystem> EngineContext::m_SimulationSystem{ std::make_unique<SimulationSystem>() };
 
 	EngineContext::~EngineContext()
 	{
@@ -38,6 +39,12 @@ namespace Blade
 			return false;
 		}
 
+		if (!m_SimulationSystem->Initialize())
+		{
+			std::cerr << "Failed to initialize the SimulationSystem." << std::endl;
+			return false;
+		}
+
 		RenderStateManager::Initialize();
 
 		return true;
@@ -51,5 +58,9 @@ namespace Blade
 	CameraSystem* EngineContext::GetCameraSystem() noexcept
 	{
 		return m_CameraSystem.get();
+	}
+	SimulationSystem * EngineContext::GetSimulationSystem() noexcept
+	{
+		return m_SimulationSystem.get();
 	}
 }
