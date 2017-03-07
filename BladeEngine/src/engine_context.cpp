@@ -6,25 +6,21 @@
 namespace Blade
 {
 #if defined(BLADE_BUILD_D3D)
-	D3D11Context* EngineContext::m_GAPIContext{ nullptr };
+	std::unique_ptr<D3D11Context> EngineContext::m_GAPIContext{ std::make_unique<D3D11Context>() };
+
+	D3D11Context* EngineContext::get_GAPI_context() noexcept
+	{
+		return m_GAPIContext.get();
+	}
 #else
 #endif
 
 	std::unique_ptr<RenderSystem> EngineContext::m_RenderSystem{ std::make_unique<RenderSystem>() };
 	std::unique_ptr<CameraSystem> EngineContext::m_CameraSystem{ std::make_unique<CameraSystem>() };
-
-	EngineContext::~EngineContext()
-	{
-		delete m_GAPIContext;
-	}
+	std::unique_ptr<LightSystem> EngineContext::m_LightSystem{ std::make_unique<LightSystem>() };
 
 	bool EngineContext::Initialize()
 	{
-#if defined(BLADE_BUILD_D3D)
-		m_GAPIContext = new D3D11Context;
-#else
-		//Allocate GL context
-#endif
 		if (!m_GAPIContext->Create())
 		{
 			std::cerr << "Failed to initialize the engine's Graphics Context!" << std::endl;
@@ -51,5 +47,10 @@ namespace Blade
 	CameraSystem* EngineContext::GetCameraSystem() noexcept
 	{
 		return m_CameraSystem.get();
+	}
+
+	LightSystem* EngineContext::GetLightSystem() noexcept
+	{
+		return m_LightSystem.get();
 	}
 }

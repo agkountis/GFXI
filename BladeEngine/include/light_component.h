@@ -6,7 +6,7 @@ namespace Blade
 {
 	enum class LightType
 	{
-		POSITIONAL,
+		POINT,
 		DIRECTIONAL,
 		SPOTLIGHT
 	};
@@ -29,7 +29,7 @@ namespace Blade
 		Vec3f direction;
 	};
 
-	struct SpotLightDesc : PointLightDesc, DirectionalLightDesc
+	struct SpotlightDesc : PointLightDesc, DirectionalLightDesc
 	{
 		float spotCutoff;
 		float spotExponent;
@@ -41,6 +41,7 @@ namespace Blade
 		LightType m_LightType;
 
 		int m_LightDescCacheIndex{ -1 };
+
 	public:
 		LightComponent(LightType lightType, Entity* parent)
 			: Component{ "co_light", parent },
@@ -63,71 +64,11 @@ namespace Blade
 			m_LightDescCacheIndex = index;
 		}
 
-		void Setup() noexcept override;
+		void Setup() noexcept override = 0;
 
-		void Update(float dt, long time) noexcept override;
+		void Update(float dt, long time) noexcept override = 0;
 
-		void Teardown() noexcept override;
-	};
-
-	class PointLightComponent : public LightComponent
-	{
-	private:
-		PointLightDesc m_LightDescription;
-
-	public:
-		PointLightComponent(const PointLightDesc& lightDesc,
-		                    LightType lightType,
-		                    Entity* parent) : LightComponent{ lightType, parent },
-		                                      m_LightDescription{ lightDesc }
-		{
-		}
-
-		const PointLightDesc& GetLightDescription() const noexcept;
-
-		PointLightDesc* GetLightDescriptionPtr() const noexcept;
-
-		void Setup() noexcept override;
-
-		void Update(float dt, long time) noexcept override;
-
-		void Teardown() noexcept override;
-	};
-
-	class DirectionalLightComponent : public LightComponent
-	{
-	private:
-		DirectionalLightDesc m_LightDescription;
-
-	public:
-		DirectionalLightComponent(const DirectionalLightDesc& lightDesc,
-		                          LightType lightType,
-		                          Entity* parent) : LightComponent{ lightType, parent },
-		                                            m_LightDescription{ lightDesc }
-		{
-		}
-
-		const DirectionalLightDesc& GetLightDescription() const noexcept;
-
-		DirectionalLightDesc* GetLightDescriptionPtr() const noexcept;
-	};
-
-	class SpotLightComponent : public LightComponent
-	{
-	private:
-		SpotLightDesc m_LightDescription;
-
-	public:
-		SpotLightComponent(const SpotLightDesc& lightDesc,
-		                   LightType lightType,
-		                   Entity* parent) : LightComponent{ lightType, parent },
-		                                     m_LightDescription{ lightDesc }
-		{
-		}
-
-		const SpotLightDesc& GetLightDescription() const noexcept;
-
-		SpotLightDesc* GetLightDescriptionPtr() const noexcept;
+		void Teardown() noexcept override = 0;
 	};
 }
 

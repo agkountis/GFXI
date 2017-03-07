@@ -4,21 +4,21 @@
 
 #ifdef _DEBUG
 
-/* MEMORY LEAKS DETECTION */
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
-using namespace std;
-
-struct AtExit
-{
-	~AtExit()
-	{
-		_CrtDumpMemoryLeaks();
-	}
-} doAtExit;
-
-/* ENDS - MEMORY LEAKS DETECTION */
+///* MEMORY LEAKS DETECTION */
+//#define _CRTDBG_MAP_ALLOC
+//#include <stdlib.h>
+//#include <crtdbg.h>
+//using namespace std;
+//
+//struct AtExit
+//{
+//	~AtExit()
+//	{
+//		_CrtDumpMemoryLeaks();
+//	}
+//} doAtExit;
+//
+///* ENDS - MEMORY LEAKS DETECTION */
 
 #include <iostream>
 #include <sstream>

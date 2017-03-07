@@ -224,6 +224,15 @@
     <ClInclude Include="include\light_component.h">
       <Filter>include\components</Filter>
     </ClInclude>
+    <ClInclude Include="include\point_light_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\directional_light_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\spotlight_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GAPI_context.cpp">
@@ -360,6 +369,15 @@
     </ClCompile>
     <ClCompile Include="src\light_system.cpp">
       <Filter>src\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\point_light_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\directional_light_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spotlight_component.cpp">
+      <Filter>src\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
