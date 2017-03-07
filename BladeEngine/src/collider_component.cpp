@@ -29,8 +29,14 @@ namespace Blade
 
 	ColliderComponent::~ColliderComponent()
 	{
-		if (m_ValidFlag) EngineContext::GetSimulationSystem()->UnregisterComponent(this);
-		if (m_pBVolume != nullptr) delete m_pBVolume;
+		if (m_ValidFlag)
+		{
+			EngineContext::GetSimulationSystem()->UnregisterComponent(this);
+		}
+		if (m_pBVolume)
+		{
+			delete m_pBVolume;
+		}
 	}
 
 	bool ColliderComponent::CreateBShape(BVolumeType bVolumeType)
@@ -83,7 +89,10 @@ namespace Blade
 
 		}
 
-		if (m_ValidFlag) EngineContext::GetSimulationSystem()->RegisterComponent(this);
+		if (m_ValidFlag)
+		{
+			EngineContext::GetSimulationSystem()->RegisterComponent(this);
+		}
 		return m_ValidFlag;
 
 	}

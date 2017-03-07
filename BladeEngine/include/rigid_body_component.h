@@ -37,7 +37,7 @@ namespace Blade
 		* \brief Adds force to the rigid body.
 		* \param Force vector to add.
 		*/
-		void AddForce(Vec3d& f) noexcept;
+		void AddForce(Vec3d& force) noexcept;
 
 		/**
 		* \brief Adds force to the rigid body.

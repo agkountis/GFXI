@@ -16,15 +16,14 @@ namespace Blade
 	{
 	}
 
-
 	RigidBodyComponent::~RigidBodyComponent()
 	{
 		EngineContext::GetSimulationSystem()->UnregisterComponent(this);
 	}
 
-	void RigidBodyComponent::AddForce(Vec3d & f) noexcept
+	void RigidBodyComponent::AddForce(Vec3d & force) noexcept
 	{
-		m_Velocity += f;
+		m_Velocity += force;
 	}
 
 	Vec3d RigidBodyComponent::GetVelocity() const noexcept

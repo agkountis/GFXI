@@ -14,7 +14,7 @@ namespace Blade
 	{
 
 	private:
-		Blade::Vec3d m_Size;// unused yet!
+		Blade::Vec3f m_Size;// unused yet!
 		
 		//TO DO: Add all relevant members
 	public:
