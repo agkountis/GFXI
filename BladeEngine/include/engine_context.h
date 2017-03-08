@@ -4,6 +4,7 @@
 #include "render_system.h"
 #include "camera_system.h"
 #include "light_system.h"
+#include "simulation_system.h"
 
 namespace Blade
 {
@@ -17,6 +18,7 @@ namespace Blade
 		static std::unique_ptr<RenderSystem> m_RenderSystem;
 		static std::unique_ptr<CameraSystem> m_CameraSystem;
 		static std::unique_ptr<LightSystem> m_LightSystem;
+		static std::unique_ptr<SimulationSystem> m_SimulationSystem;
 		//TODO: Declare all the systems as statics here
 
 	public:
@@ -37,6 +39,8 @@ namespace Blade
 		static CameraSystem* GetCameraSystem() noexcept;
 
 		static LightSystem* GetLightSystem() noexcept;
+
+		static SimulationSystem* GetSimulationSystem() noexcept;
 		//TODO: Implement getters and setters for the systems.
 	};
 }

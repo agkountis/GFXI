@@ -81,7 +81,10 @@ namespace Blade
 	{
 		if (m_Scenes.back())
 		{
+			
 			m_Scenes.back()->Draw();
+			//system processes stuff <-------------
+			// m_Scenes.back()->PostDraw();
 		}
 	}
 }

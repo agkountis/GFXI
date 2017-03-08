@@ -48,6 +48,12 @@
     <Filter Include="src\windowing">
       <UniqueIdentifier>{071d4431-3edb-427e-9b13-33b20f4a704f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\objects">
+      <UniqueIdentifier>{705bfbe3-d0a9-47bd-a706-c18a3277a989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\objects">
+      <UniqueIdentifier>{c2308fe3-4034-4f67-b72a-621b1da28fd4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -75,9 +81,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\entity.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GAPI_context.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\d3d\D3D11_blend_state.h">
@@ -200,6 +203,27 @@
     <ClInclude Include="include\pipeline_stage.h">
       <Filter>include\rendering</Filter>
     </ClInclude>
+    <ClInclude Include="include\rigid_body_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\collider_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GAPI_context.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bounding_volume.h">
+      <Filter>include\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bounding_cylinder.h">
+      <Filter>include\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bounding_sphere.h">
+      <Filter>include\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bounding_box.h">
+      <Filter>include\objects</Filter>
+    </ClInclude>
     <ClInclude Include="include\camera_system.h">
       <Filter>include\systems</Filter>
     </ClInclude>
@@ -216,7 +240,10 @@
       <Filter>include\d3d</Filter>
     </ClInclude>
     <ClInclude Include="include\trace.h">
-      <Filter>include\utilities</Filter>
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\simulation_system.h">
+      <Filter>include\systems</Filter>
     </ClInclude>
     <ClInclude Include="include\light_system.h">
       <Filter>include\systems</Filter>
@@ -358,13 +385,34 @@
     <ClCompile Include="src\abstract_viewport.cpp">
       <Filter>src\rendering</Filter>
     </ClCompile>
-    <ClCompile Include="src\d3d\D3D11_viewport.cpp">
-      <Filter>src\d3d</Filter>
-    </ClCompile>
-    <ClCompile Include="src\camera_component.cpp">
+    <ClCompile Include="src\rigid_body_component.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
+    <ClCompile Include="src\collider_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bounding_volume.cpp">
+      <Filter>src\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bounding_box.cpp">
+      <Filter>src\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bounding_sphere.cpp">
+      <Filter>src\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bounding_cylinder.cpp">
+      <Filter>src\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera_component.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\camera_system.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_viewport.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\simulation_system.cpp">
       <Filter>src\systems</Filter>
     </ClCompile>
     <ClCompile Include="src\light_system.cpp">
