@@ -12,6 +12,15 @@ private:
 
 	Blade::ComPtr<ID3D11Buffer> m_ConstantBuffer;
 
+	Blade::ComPtr<ID3D11Buffer> m_PointLightStructuredBuffer;
+	Blade::ComPtr<ID3D11ShaderResourceView> m_PointLightSrv;
+
+	Blade::ComPtr<ID3D11Buffer> m_DirectionalLightStructuredBuffer;
+	Blade::ComPtr<ID3D11ShaderResourceView> m_DirectionalLightSrv;
+
+	Blade::ComPtr<ID3D11Buffer> m_SpotlightStructuredBuffer;
+	Blade::ComPtr<ID3D11ShaderResourceView> m_SpotlightSrv;
+
 	void DisplayToScreen() const;
 
 public:

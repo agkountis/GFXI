@@ -8,6 +8,7 @@
 #include "pipeline.h"
 #include "d3d/D3D11_texture.h"
 #include "windowing_service.h"
+#include "directional_light_component.h"
 
 using namespace Blade;
 
@@ -92,6 +93,21 @@ void GameScene::Initialize()
 	AddEntity(entity);
 	// --------------------------------------------------------------------------------------------------------------------
 
+	//Light Creation ------------------------------------------------------------------------------------------------------
+	entity = new Entity{ "DirectionalLight1" };
+	
+	DirectionalLightDesc dlDesc;
+	dlDesc.ambientIntensity = Vec4f{ 0.0f, 0.0f, 0.0f, 0.0f };
+	dlDesc.diffuseIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
+	dlDesc.specularIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f };
+	dlDesc.active = true;
+
+	DirectionalLightComponent* dlc{ new DirectionalLightComponent{dlDesc, entity} };
+	entity->SetAlive(false);
+
+	AddEntity(entity);
+	// --------------------------------------------------------------------------------------------------------------------
+
 	// Pipeline Creation --------------------------------------------------------------------------------------------------
 	//Allocate and initialize the a render pass pipeline stage.
 	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
@@ -142,6 +158,8 @@ void GameScene::Update(float deltaTime, long time) noexcept
 	cam->SetPosition(Vec3f{ sin(time / 1000.0f) * 2.0f, currentPos.yz });
 
 	Scene::Update(deltaTime, time);
+
+	EngineContext::GetLightSystem()->Process();
 }
 
 void GameScene::Draw() const noexcept

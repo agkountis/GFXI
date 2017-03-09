@@ -9,14 +9,15 @@ int main(int argc, char** argv)
 
 	if (!application.Initialize(&argc, argv))
 	{
+		BLADE_TRACE("Application Terminating! Exit code 1");
 		return 1;
 	}
 
-	BLADE_TRACE_VSOUT("APP INITIALIZED.."); // viusal studio output printout
-	BLADE_TRACE_CON("APP INITIALIZED.."); // console output printout
-	BLADE_TRACE("CONSOLE AND VS PRINTOUT.."); // console and vs output printout
+	BLADE_TRACE("Application Initialized!") // console and vs output printout
 	
+	BLADE_TRACE("Running Application!")
 	application.Run();
 
+	BLADE_TRACE("Application Terimating! Exit code 0")
 	return 0;
 }

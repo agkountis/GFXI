@@ -12,6 +12,8 @@ namespace Blade
 	public:
 		SpotlightComponent(const SpotlightDesc& lightDesc, Entity* parent);
 
+		~SpotlightComponent();
+
 		const SpotlightDesc& GetLightDescription() const noexcept;
 
 		SpotlightDesc* GetLightDescriptionPtr() noexcept;

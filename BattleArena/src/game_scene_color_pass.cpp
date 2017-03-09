@@ -19,6 +19,10 @@ struct UniformBuffer
 	Mat4f textureMatrix;
 	Vec4f diffuse;
 	Vec4f specular;
+	int pointLightCount;
+	int directionalLightCount;
+	int spotlightCount;
+	int pad;
 };
 
 void GameSceneColorPassStage::DisplayToScreen() const
@@ -77,11 +81,13 @@ bool GameSceneColorPassStage::Initialize()
 
 	if (FAILED(res))
 	{
-		std::cerr << "Linear Texture Wrap sampler creation failed!" << std::endl;
+		std::cerr << "GameSceneColorPass: Linear Texture Wrap sampler creation failed!" << std::endl;
+		
+		return false;
 	}
 
 	UniformBuffer uniforms = {};
-	D3D11_BUFFER_DESC cbDesc;
+	D3D11_BUFFER_DESC cbDesc = {};
 	cbDesc.ByteWidth = sizeof(uniforms);
 	cbDesc.Usage = D3D11_USAGE_DYNAMIC;
 	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
@@ -93,7 +99,35 @@ bool GameSceneColorPassStage::Initialize()
 
 	if (FAILED(res))
 	{
-		std::cerr << "Renderer initialization failed: Uniform buffer creation failed." << std::endl;
+		std::cerr << "GameSceneColorPass: Uniform buffer creation failed." << std::endl;
+		
+		return false;
+	}
+
+	D3D11_BUFFER_DESC dirLightBufferDesc = {};
+	dirLightBufferDesc.ByteWidth = MAX_LIGHTS * sizeof(DirectionalLightDesc);
+	dirLightBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+	dirLightBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+	dirLightBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	dirLightBufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
+	dirLightBufferDesc.StructureByteStride = sizeof(DirectionalLightDesc);
+
+	res = device->CreateBuffer(&dirLightBufferDesc, nullptr, m_DirectionalLightStructuredBuffer.ReleaseAndGetAddressOf());
+
+	if (FAILED(res))
+	{
+		std::cerr << "GameSceneColorPass: Directional light structured buffer creation failed!" << std::endl;
+		
+		return false;
+	}
+
+	res = device->CreateShaderResourceView(m_DirectionalLightStructuredBuffer.Get(), nullptr, m_DirectionalLightSrv.ReleaseAndGetAddressOf());
+
+	if (FAILED(res))
+	{
+		std::cerr << "GameSceneColorPass: Directional light shader resource view creation failed!" << std::endl;
+
+		return false;
 	}
 
 	return true;

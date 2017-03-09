@@ -1,3 +1,5 @@
+#include "directional_light_utils.hlsl"
+
 struct PInput
 {
 	float4 position : SV_POSITION;
@@ -20,13 +22,19 @@ cbuffer uniforms
 	float4x4 textureMatrix;
 	float4 diffuse;
 	float4 specular;
+	int pointLightCount;
+	int directionalLightCount;
+	int spotlightCount;
+	int pad;
 };
+
+SamplerState texture_sampler : register(s0);
 
 Texture2D diffuse_tex : register(t0);
 Texture2D specular_tex : register(t1);
 Texture2D normalmap_tex : register(t2);
 
-SamplerState texture_sampler : register(s0);
+StructuredBuffer<DirectionalLight> directionalLights : register(t3);
 
 POutput main(PInput input)
 {

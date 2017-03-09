@@ -1,11 +1,18 @@
 #include "spotlight_component.h"
+#include "engine_context.h"
 
 namespace Blade
 {
 	SpotlightComponent::SpotlightComponent(const struct SpotlightDesc& lightDesc, Entity* parent)
 		: LightComponent{ LightType::SPOTLIGHT, parent },
-		m_LightDescription{ lightDesc }
+		  m_LightDescription{ lightDesc }
 	{
+		EngineContext::GetLightSystem()->RegisterComponent(this);
+	}
+
+	SpotlightComponent::~SpotlightComponent()
+	{
+		EngineContext::GetLightSystem()->UnregisterComponent(GetId());
 	}
 
 	const SpotlightDesc& SpotlightComponent::GetLightDescription() const noexcept

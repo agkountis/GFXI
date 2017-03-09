@@ -12,9 +12,17 @@ namespace Blade
 	public:
 		DirectionalLightComponent(const DirectionalLightDesc& lightDesc, Entity* parent);
 
+		~DirectionalLightComponent();
+
 		const DirectionalLightDesc& GetLightDescription() const noexcept;
 
 		DirectionalLightDesc* GetLightDescriptionPtr() noexcept;
+
+		void Setup() noexcept override;
+		
+		void Update(float dt, long time) noexcept override;
+		
+		void Teardown() noexcept override;
 	};
 }
 

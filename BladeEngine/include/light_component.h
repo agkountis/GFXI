@@ -22,6 +22,9 @@ namespace Blade
 	struct PointLightDesc : LightDesc
 	{
 		Vec3f position;
+		float constantAttenuation;
+		float linearAttenuation;
+		float quadraticAttenuation;
 	};
 
 	struct DirectionalLightDesc : LightDesc

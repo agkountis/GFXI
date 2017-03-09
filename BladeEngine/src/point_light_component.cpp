@@ -1,4 +1,5 @@
 #include "point_light_component.h"
+#include "engine_context.h"
 
 namespace Blade
 {
@@ -6,6 +7,12 @@ namespace Blade
 		: LightComponent{ LightType::POINT, parent },
 		m_LightDescription{ lightDesc }
 	{
+		EngineContext::GetLightSystem()->RegisterComponent(this);
+	}
+
+	PointLightComponent::~PointLightComponent()
+	{
+		EngineContext::GetLightSystem()->UnregisterComponent(GetId());
 	}
 
 	const PointLightDesc& PointLightComponent::GetLightDescription() const noexcept

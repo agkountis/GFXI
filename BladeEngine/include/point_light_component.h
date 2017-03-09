@@ -12,6 +12,8 @@ namespace Blade
 	public:
 		PointLightComponent(const PointLightDesc& lightDesc, Entity* parent);
 
+		~PointLightComponent();
+
 		const PointLightDesc& GetLightDescription() const noexcept;
 
 		PointLightDesc* GetLightDescriptionPtr() noexcept;

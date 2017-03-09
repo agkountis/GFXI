@@ -23,7 +23,10 @@ cbuffer uniforms
 	float4x4 textureMatrix;
 	float4 diffuse;
 	float4 specular;
-
+	int pointLightCount;
+	int directionalLightCount;
+	int spotlightCount;
+	int pad;
 };
 
 VOutput main(VInput input)
