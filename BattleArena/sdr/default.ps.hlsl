@@ -1,4 +1,4 @@
-#include "directional_light_utils.hlsl"
+#include "light_utils.hlsl"
 
 struct PInput
 {
@@ -35,6 +35,8 @@ Texture2D specular_tex : register(t1);
 Texture2D normalmap_tex : register(t2);
 
 StructuredBuffer<DirectionalLight> directionalLights : register(t3);
+StructuredBuffer<PointLight> pointLights : register(t4);
+StructuredBuffer<Spotlight> spotlights : register(t5);
 
 POutput main(PInput input)
 {
@@ -61,6 +63,18 @@ POutput main(PInput input)
 
 	//Lighting calculation.
 	float4 lightContribution = lit(n_dot_l, n_dot_h, specular.a);
+
+	float4 ambient = float4(0.0, 0.0, 0.0, 0.0);
+	float4 diffuse = float4(0.0, 0.0, 0.0, 0.0);
+	float4 specular = float4(0.0, 0.0, 0.0, 0.0);
+
+	AccumulateDirectionalLights(directionalLights,
+								directionalLightCount,
+								n,
+								v,
+								ambient,
+								diffuse,
+								specular);
 
 	//Sample the diffuse texture.
 	float4 diffuseTexel = diffuse_tex.Sample(texture_sampler, input.texcoord);

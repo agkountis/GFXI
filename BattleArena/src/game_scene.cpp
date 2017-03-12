@@ -103,7 +103,8 @@ void GameScene::Initialize()
 	dlDesc.active = true;
 
 	DirectionalLightComponent* dlc{ new DirectionalLightComponent{dlDesc, entity} };
-	entity->SetAlive(false);
+
+	entity->SetPosition(Vec3f{ 10.0f, 10.0f, -10.0f });
 
 	AddEntity(entity);
 	// --------------------------------------------------------------------------------------------------------------------

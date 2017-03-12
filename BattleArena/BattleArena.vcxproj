@@ -177,7 +177,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="sdr\directional_light_utils.hlsl">
+    <None Include="sdr\light_utils.hlsl">
       <FileType>Document</FileType>
     </None>
   </ItemGroup>

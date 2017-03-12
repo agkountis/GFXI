@@ -31,11 +31,11 @@ namespace Blade
 
 		void UnregisterComponent(int id) noexcept;
 
-		std::vector<PointLightDesc>&& GetPointLightDescriptions() const noexcept;
+		std::vector<PointLightDesc> GetPointLightDescriptions() const noexcept;
 
-		std::vector<DirectionalLightDesc>&& GetDirectionalLightDescriptions() const noexcept;
+		std::vector<DirectionalLightDesc> GetDirectionalLightDescriptions() const noexcept;
 
-		std::vector<SpotlightDesc>&& GetSpotlightDescriptions() const noexcept;
+		std::vector<SpotlightDesc> GetSpotlightDescriptions() const noexcept;
 
 		bool Initialize() noexcept override;
 

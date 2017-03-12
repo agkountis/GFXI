@@ -136,7 +136,7 @@ namespace Blade
 		}
 	}
 
-	std::vector<PointLightDesc>&& LightSystem::GetPointLightDescriptions() const noexcept
+	std::vector<PointLightDesc> LightSystem::GetPointLightDescriptions() const noexcept
 	{
 		std::vector<PointLightDesc> lightDescs;
 
@@ -145,10 +145,10 @@ namespace Blade
 			lightDescs.push_back(*std::get<PointLightDesc*>(lightDescTuple));
 		}
 		
-		return std::move(lightDescs);
+		return lightDescs;
 	}
 
-	std::vector<DirectionalLightDesc>&& LightSystem::GetDirectionalLightDescriptions() const noexcept
+	std::vector<DirectionalLightDesc> LightSystem::GetDirectionalLightDescriptions() const noexcept
 	{
 		std::vector<DirectionalLightDesc> lightDescs;
 
@@ -157,10 +157,10 @@ namespace Blade
 			lightDescs.push_back(*std::get<DirectionalLightDesc*>(lightDescTuple));
 		}
 
-		return std::move(lightDescs);
+		return lightDescs;
 	}
 
-	std::vector<SpotlightDesc>&& LightSystem::GetSpotlightDescriptions() const noexcept
+	std::vector<SpotlightDesc> LightSystem::GetSpotlightDescriptions() const noexcept
 	{
 		std::vector<SpotlightDesc> lightDescs;
 
@@ -169,7 +169,7 @@ namespace Blade
 			lightDescs.push_back(*std::get<SpotlightDesc*>(lightDescTuple));
 		}
 
-		return std::move(lightDescs);
+		return lightDescs;
 	}
 
 	bool LightSystem::Initialize() noexcept
