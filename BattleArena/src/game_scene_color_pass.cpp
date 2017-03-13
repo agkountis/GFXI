@@ -260,7 +260,13 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 			deviceContext->Unmap(m_SpotlightStructuredBuffer.Get(), 0);
 		}
 
+		deviceContext->VSSetShaderResources(0, 1, m_DirectionalLightSrv.GetAddressOf());
+		deviceContext->VSSetShaderResources(1, 1, m_PointLightSrv.GetAddressOf());
+		deviceContext->VSSetShaderResources(2, 1, m_SpotlightSrv.GetAddressOf());
+
 		deviceContext->PSSetShaderResources(3, 1, m_DirectionalLightSrv.GetAddressOf());
+		deviceContext->PSSetShaderResources(4, 1, m_PointLightSrv.GetAddressOf());
+		deviceContext->PSSetShaderResources(5, 1, m_SpotlightSrv.GetAddressOf());
 
 		//Fill up the uniform structure.
 		UniformBuffer uniforms;

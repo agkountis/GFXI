@@ -100,11 +100,23 @@ void GameScene::Initialize()
 	dlDesc.ambientIntensity = Vec4f{ 0.0f, 0.0f, 0.0f, 0.0f };
 	dlDesc.diffuseIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
 	dlDesc.specularIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f };
-	dlDesc.active = true;
 
 	DirectionalLightComponent* dlc{ new DirectionalLightComponent{dlDesc, entity} };
 
-	entity->SetPosition(Vec3f{ 10.0f, 10.0f, -10.0f });
+	entity->SetPosition(Vec3f{ 0.0f, 10.0f, 0.0f });
+
+	AddEntity(entity);
+
+	entity = new Entity{ "DirectionalLight2" };
+
+	DirectionalLightDesc dlDesc2;
+	dlDesc2.ambientIntensity = Vec4f{ 0.0f, 0.0f, 0.0f, 0.0f };
+	dlDesc2.diffuseIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 0.0f };
+	dlDesc2.specularIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f };
+
+	dlc = new DirectionalLightComponent{ dlDesc2, entity };
+
+	entity->SetPosition(Vec3f{ 0.0f, -10.0f, 0.0f });
 
 	AddEntity(entity);
 	// --------------------------------------------------------------------------------------------------------------------
@@ -115,7 +127,7 @@ void GameScene::Initialize()
 	colorPassStage->Initialize();
 
 	//Allocate a render pass pipeline and add the pass to it.
-	RenderPassPipeline* pipeline{ new RenderPassPipeline};
+	RenderPassPipeline* pipeline{ new RenderPassPipeline };
 	pipeline->AddStage(colorPassStage);
 
 	//Set the pipeline to the render system.

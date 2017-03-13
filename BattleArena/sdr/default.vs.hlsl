@@ -37,6 +37,7 @@ StructuredBuffer<DirectionalLight> directionalLights : register(t0);
 StructuredBuffer<PointLight> pointLights : register(t1);
 StructuredBuffer<Spotlight> spotlights : register(t2);
 
+
 VOutput main(VInput input)
 {
 	VOutput output;
@@ -67,21 +68,18 @@ VOutput main(VInput input)
 	//Move the view direction to tangent space.
 	output.t_viewDirection = mul(-v_vertexPosition.xyz, TBN);
 	
-	PopulateDirectionalLightDirections(directionalLights,
-									   directionalLightCount,
-									   V,
-									   TBN,
+	PopulateDirectionalLightDirections(directionalLights, 
+									   V, 
+									   TBN, 
 									   output.t_directionalLightDirections);
 
 	CalculatePointLightDirections(pointLights,
-								  pointLightCount,
 								  v_vertexPosition.xyz,
 								  V,
 								  TBN,
 								  output.t_pointLightDirections);
 
 	PopulateSpotlightDirections(spotlights,
-							    spotlightCount,
 								output.t_spotlightDirections);
 
 	return output;

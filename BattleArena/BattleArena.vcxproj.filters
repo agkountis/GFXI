@@ -45,13 +45,13 @@
     <None Include="sdr\render_texture.vs.hlsl">
       <Filter>sdr</Filter>
     </None>
-    <None Include="sdr\default.vs.hlsl">
-      <Filter>sdr</Filter>
-    </None>
     <None Include="sdr\default.ps.hlsl">
       <Filter>sdr</Filter>
     </None>
     <None Include="sdr\light_utils.hlsl">
+      <Filter>sdr</Filter>
+    </None>
+    <None Include="sdr\default.vs.hlsl">
       <Filter>sdr</Filter>
     </None>
   </ItemGroup>

@@ -16,7 +16,6 @@ namespace Blade
 		Vec4f ambientIntensity;
 		Vec4f diffuseIntensity;
 		Vec4f specularIntensity;
-		bool active;
 	};
 
 	struct PointLightDesc : LightDesc

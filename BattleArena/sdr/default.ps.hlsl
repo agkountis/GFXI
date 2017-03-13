@@ -4,8 +4,10 @@ struct PInput
 {
 	float4 position : SV_POSITION;
 	float2 texcoord : TEXCOORD0;
-	float3 t_lightDirection : LIGHT_DIRECTION;
 	float3 t_viewDirection : VIEW_DIRECTION;
+	float3 t_directionalLightDirections[MAX_DIRECTIONAL_LIGHTS] : DIR_LIGHT_DIRECTIONS;
+	float3 t_pointLightDirections[MAX_POINT_LIGHTS] : POINT_LIGHT_DIRECTIONS;
+	float3 t_spotlightDirections[MAX_SPOTLIGHTS] : SPOTLIGHT_DIRECTIONS;
 };
 
 struct POutput
@@ -28,7 +30,7 @@ cbuffer uniforms
 	int pad;
 };
 
-SamplerState texture_sampler : register(s0);
+SamplerState textureSamplerLinear : register(s0);
 
 Texture2D diffuse_tex : register(t0);
 Texture2D specular_tex : register(t1);
@@ -43,48 +45,40 @@ POutput main(PInput input)
 	POutput output;
 
 	//Sample the normalmap to get the normal value (already in tangent space)
-	float4 normalmapTexel = normalmap_tex.Sample(texture_sampler, input.texcoord);
+	float4 normalmapTexel = normalmap_tex.Sample(textureSamplerLinear, input.texcoord);
 	
 	//Move the texel value from [0,1] to [-1,1] so it can be used as an actual normal.
 	float3 n = normalize(normalmapTexel.xyz * 2.0 - 1.0);
-
-	//Normalize the light direction.
-	float3 l = normalize(input.t_lightDirection);
 	
 	//Normalize the view direction.
 	float3 v = normalize(input.t_viewDirection);
-	
-	//Compute the half vector
-	float3 h = normalize(v + l);
 
-	//Compute the required dot products.
-	float n_dot_l = max(dot(n, l), 0.0);
-	float n_dot_h = max(dot(n, h), 0.0);
-
-	//Lighting calculation.
-	float4 lightContribution = lit(n_dot_l, n_dot_h, specular.a);
-
-	float4 ambient = float4(0.0, 0.0, 0.0, 0.0);
-	float4 diffuse = float4(0.0, 0.0, 0.0, 0.0);
-	float4 specular = float4(0.0, 0.0, 0.0, 0.0);
+	float4 ambientLight = float4(0.0, 0.0, 0.0, 0.0);
+	float4 diffuseLight = float4(0.0, 0.0, 0.0, 0.0);
+	float4 specularLight = float4(0.0, 0.0, 0.0, 0.0);
 
 	AccumulateDirectionalLights(directionalLights,
 								directionalLightCount,
 								n,
 								v,
-								ambient,
-								diffuse,
-								specular);
+								specular.a,
+								input.t_directionalLightDirections,
+								ambientLight,
+								diffuseLight,
+								specularLight);
 
 	//Sample the diffuse texture.
-	float4 diffuseTexel = diffuse_tex.Sample(texture_sampler, input.texcoord);
+	float4 diffuseTexel = diffuse_tex.Sample(textureSamplerLinear, input.texcoord);
 	
 	//Sample the specular texture.
-	float4 specularTexel = specular_tex.Sample(texture_sampler, input.texcoord);
+	float4 specularTexel = specular_tex.Sample(textureSamplerLinear, input.texcoord);
 
 	//Compute the final output color and return it.
-	float4 finalColor = diffuse * diffuseTexel * lightContribution.y
-		+ float4(specular.rgb, 1.0) * specularTexel * lightContribution.z;
+	float4 finalColor = ambientLight +
+					    diffuseTexel * diffuse * diffuseLight +
+						specularTexel * float4(specular.xyz, 1.0) * specularLight;
+
+	finalColor.a = diffuse.a;
 	
 	output.color = finalColor;
 
