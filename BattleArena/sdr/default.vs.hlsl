@@ -18,7 +18,7 @@ struct VOutput
 	float3 t_spotlightDirections[MAX_SPOTLIGHTS] : SPOTLIGHT_DIRECTIONS;
 };
 
-cbuffer uniforms
+cbuffer uniforms : register(c0)
 {
 	float4x4 MVP;
 	float4x4 ITMV;
@@ -80,6 +80,8 @@ VOutput main(VInput input)
 								  output.t_pointLightDirections);
 
 	PopulateSpotlightDirections(spotlights,
+								V,
+								TBN,
 								output.t_spotlightDirections);
 
 	return output;

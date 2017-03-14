@@ -10,9 +10,9 @@ namespace Blade
 	{
 		D3D11Context* context{ EngineContext::get_GAPI_context() };
 
-		ComPtr<ID3D11Device> device{ context->GetDevice() };
+		ID3D11Device* device{ context->GetDevice() };
 
-		HRESULT res{ D3DX11CreateShaderResourceViewFromFile(device.Get(),
+		HRESULT res{ D3DX11CreateShaderResourceViewFromFile(device,
 		                                                    file_name.c_str(),
 		                                                    nullptr,
 		                                                    nullptr,
@@ -32,7 +32,7 @@ namespace Blade
 	{
 		D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
 
-		ComPtr<ID3D11DeviceContext> device_context{ GAPI_context->GetDeviceContext() };
+		ID3D11DeviceContext* device_context{ GAPI_context->GetDeviceContext() };
 
 		device_context->PSSetShaderResources(GetTextureType(), 1, m_ShaderResourceView.GetAddressOf());
 	}

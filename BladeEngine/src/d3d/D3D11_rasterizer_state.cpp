@@ -102,7 +102,7 @@ namespace Blade
 	{
 		D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
 
-		ComPtr<ID3D11DeviceContext> device_context{ GAPI_context->GetDeviceContext() };
+		ID3D11DeviceContext* device_context{ GAPI_context->GetDeviceContext() };
 
 		device_context->RSSetState(m_RasterizerState.Get());
 	}

@@ -15,6 +15,9 @@ struct PointLight
 	float4 diffuseIntensity;
 	float4 specularIntensity;
 	float3 position;
+	float constantAttenuation;
+	float linearAttenuation;
+	float quadraticAttenuation;
 };
 
 struct Spotlight
@@ -23,7 +26,12 @@ struct Spotlight
 	float4 diffuseIntensity;
 	float4 specularIntensity;
 	float3 position;
+	float constantAttenuation;
+	float linearAttenuation;
+	float quadraticAttenuation;
 	float3 direction;
+	float spotCutoff;
+	float spotExponent;
 };
 
 #define MAX_DIRECTIONAL_LIGHTS 5
@@ -84,11 +92,13 @@ void CalculatePointLightDirections(StructuredBuffer<PointLight> lights,
 }
 
 void PopulateSpotlightDirections(StructuredBuffer<Spotlight> lights,
+								 float4x4 viewMatrix,
+								 float3x3 TBN,
 								 inout float3 directions[MAX_SPOTLIGHTS])
 {
 	for (int i = 0; i < MAX_SPOTLIGHTS; i++)
 	{
-		directions[i] = float3(0.0, 0.0, 0.0);
+		directions[i] = mul(mul(lights[i].direction, (float3x3)viewMatrix), TBN);
 	}
 }
 

@@ -15,7 +15,7 @@ struct POutput
 	float4 color : SV_TARGET;
 };
 
-cbuffer uniforms
+cbuffer uniforms : register(c0)
 {
 	float4x4 MVP;
 	float4x4 ITMV;

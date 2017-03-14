@@ -90,7 +90,7 @@ namespace Blade
 				{
 				case LightType::POINT:
 					//If the description is not in the end of the vector
-					if (component->GetLightDescCacheIndex() < m_PointLightDescCache.size() - 1)
+					if (cacheIndex < m_PointLightDescCache.size() - 1)
 					{
 						//swap the last element with the one we want to remove. (We don't really care about the ordering and we avoid linear complexity)
 						swap(m_PointLightDescCache[cacheIndex], m_PointLightDescCache.back());
@@ -104,7 +104,7 @@ namespace Blade
 					break;
 
 				case LightType::DIRECTIONAL:
-					if (component->GetLightDescCacheIndex() < m_DirectionalLightDescCache.size() - 1)
+					if (cacheIndex < m_DirectionalLightDescCache.size() - 1)
 					{
 						swap(m_DirectionalLightDescCache[cacheIndex], m_DirectionalLightDescCache.back());
 
@@ -115,7 +115,7 @@ namespace Blade
 					break;
 
 				case LightType::SPOTLIGHT:
-					if (component->GetLightDescCacheIndex() < m_SpotlightDescCache.size() - 1)
+					if (cacheIndex < m_SpotlightDescCache.size() - 1)
 					{
 						swap(m_SpotlightDescCache[cacheIndex], m_SpotlightDescCache.back());
 
@@ -144,7 +144,7 @@ namespace Blade
 		{
 			lightDescs.push_back(*std::get<PointLightDesc*>(lightDescTuple));
 		}
-		
+
 		return lightDescs;
 	}
 
@@ -192,19 +192,19 @@ namespace Blade
 				PointLightComponent* pointLightComponent{ static_cast<PointLightComponent*>(lightComponent) };
 				pointLightComponent->GetLightDescriptionPtr()->position = pointLightComponent->GetParent()->GetPosition();
 			}
-			break;
+				break;
 			case LightType::DIRECTIONAL:
 			{
 				DirectionalLightComponent* directionalLightComponent{ static_cast<DirectionalLightComponent*>(lightComponent) };
 				directionalLightComponent->GetLightDescriptionPtr()->direction = directionalLightComponent->GetParent()->GetPosition();
 			}
-			break;
+				break;
 			case LightType::SPOTLIGHT:
 			{
 				SpotlightComponent* spotlightComponent{ static_cast<SpotlightComponent*>(lightComponent) };
 				spotlightComponent->GetLightDescriptionPtr()->position = spotlightComponent->GetParent()->GetPosition();
 			}
-			break;
+				break;
 			}
 		}
 	}

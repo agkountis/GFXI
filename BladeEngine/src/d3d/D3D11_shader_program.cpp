@@ -14,16 +14,16 @@ namespace Blade
 	                                const std::wstring& ds,
 	                                const std::wstring& gs) noexcept
 	{
-		const D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+		D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
 
-		const ComPtr<ID3D11Device> device{ GAPI_context->GetDevice() };
+		ID3D11Device* device{ GAPI_context->GetDevice() };
 
 		if (!vs.empty())
 		{
 			SetShader(ResourceManager::Get<D3D11Shader>(SHADER_PATH + vs), VERTEX_SHADER);
 
-			const D3D11Shader* shader{ GetShader(VERTEX_SHADER) };
-			const ComPtr<ID3DBlob> blob{ shader->GetBlob() };
+			D3D11Shader* shader{ GetShader(VERTEX_SHADER) };
+			ID3DBlob* blob{ shader->GetBlob() };
 
 			HRESULT res{ 0 };
 			res = device->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_VertexShader.ReleaseAndGetAddressOf());
@@ -78,9 +78,9 @@ namespace Blade
 		{
 			SetShader(ResourceManager::Get<D3D11Shader>(SHADER_PATH + hs), HULL_SHADER);
 
-			const D3D11Shader* shader{ static_cast<const D3D11Shader*>(GetShader(DOMAIN_SHADER)) };
+			D3D11Shader* shader{ GetShader(DOMAIN_SHADER) };
 
-			ComPtr<ID3DBlob> blob{ shader->GetBlob() };
+			ID3DBlob* blob{ shader->GetBlob() };
 
 			HRESULT res{ 0 };
 			res = device->CreateHullShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_HullShader.ReleaseAndGetAddressOf());
@@ -95,9 +95,9 @@ namespace Blade
 		{
 			SetShader(ResourceManager::Get<D3D11Shader>(SHADER_PATH + ds), DOMAIN_SHADER);
 
-			const D3D11Shader* shader{ static_cast<const D3D11Shader*>(GetShader(DOMAIN_SHADER)) };
+			D3D11Shader* shader{ GetShader(DOMAIN_SHADER) };
 
-			ComPtr<ID3DBlob> blob{ shader->GetBlob() };
+			ID3DBlob* blob{ shader->GetBlob() };
 
 			HRESULT res{ 0 };
 			res = device->CreateDomainShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_DomainShader.ReleaseAndGetAddressOf());
@@ -112,9 +112,9 @@ namespace Blade
 		{
 			SetShader(ResourceManager::Get<D3D11Shader>(SHADER_PATH + gs), GEOMETRY_SHADER);
 
-			const D3D11Shader* shader{ static_cast<const D3D11Shader*>(GetShader(GEOMETRY_SHADER)) };
+			D3D11Shader* shader{ GetShader(GEOMETRY_SHADER) };
 
-			ComPtr<ID3DBlob> blob{ shader->GetBlob() };
+			ID3DBlob* blob{ shader->GetBlob() };
 
 			HRESULT res{ 0 };
 			res = device->CreateGeometryShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_GeometryShader.ReleaseAndGetAddressOf());
@@ -129,9 +129,9 @@ namespace Blade
 		{
 			SetShader(ResourceManager::Get<D3D11Shader>(SHADER_PATH + fs), FRAGMENT_SHADER);
 
-			const D3D11Shader* shader{ static_cast<const D3D11Shader*>(GetShader(FRAGMENT_SHADER)) };
+			D3D11Shader* shader{ GetShader(FRAGMENT_SHADER) };
 
-			ComPtr<ID3DBlob> blob{ shader->GetBlob() };
+			ID3DBlob* blob{ shader->GetBlob() };
 
 			HRESULT res{ 0 };
 			res = device->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_PixelShader.ReleaseAndGetAddressOf());
@@ -149,7 +149,7 @@ namespace Blade
 	{
 		D3D11Context* context{ EngineContext::get_GAPI_context() };
 
-		ComPtr<ID3D11DeviceContext> device_context{ context->GetDeviceContext() };
+		ID3D11DeviceContext* device_context{ context->GetDeviceContext() };
 
 		device_context->VSSetShader(m_VertexShader.Get(), nullptr, 0);
 		device_context->IASetInputLayout(m_InputLayout.Get());
