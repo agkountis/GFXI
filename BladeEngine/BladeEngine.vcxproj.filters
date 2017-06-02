@@ -307,9 +307,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\GAPI_context.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\application.cpp">
       <Filter>src</Filter>
     </ClCompile>

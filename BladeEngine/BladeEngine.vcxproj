@@ -260,7 +260,6 @@
     <ClCompile Include="src\directional_light.cpp" />
     <ClCompile Include="src\directional_light_component.cpp" />
     <ClCompile Include="src\engine_context.cpp" />
-    <ClCompile Include="src\GAPI_context.cpp" />
     <ClCompile Include="src\IBO.cpp" />
     <ClCompile Include="src\light_system.cpp" />
     <ClCompile Include="src\material.cpp" />
