@@ -9,6 +9,8 @@
 #include "d3d/D3D11_texture.h"
 #include "windowing_service.h"
 #include "directional_light_component.h"
+#include "camera.h"
+#include "directional_light.h"
 
 using namespace Blade;
 
@@ -58,67 +60,52 @@ void GameScene::Initialize()
 	//Get the window size.
 	Vec2i windowSize{ WindowingService::GetWindow(0)->GetSize() };
 
-	//Create a Rect for the viewport.
-	Recti rect{0, 0, windowSize };
+	CameraDesc cd;
+	cd.viewport = Viewport{ Recti{ 0, 0, windowSize }, 0.0f, 1.0f };
+	cd.nearPlane = 0.1f;
+	cd.farPlane = 500.0f;
+	cd.fov = MathUtils::ToRadians(45.0f);
 
-	//Set the viewport.
-	cc->SetViewport(Viewport{ rect, 0.0f, 1.0f });
-
-	//Set the clipping planes.
-	cc->SetClippingPlanes(0.1f, 500.0f);
-
-	//Set the FoV.
-	cc->SetFov(MathUtils::ToRadians(45.0f));
-
-	//Call the component's Setup method.
-	cc->Setup();
-
+	Camera* cam{ new Camera{ "Camera1", cd } };
 	//Set the position of the camera.
-	entity->SetPosition(Vec3f{ 0.0f, 0.0f, -10.0f });
+	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -10.0f });
 
 	//Add it to the scene.
-	AddEntity(entity);
+	AddEntity(cam);
 
 	//Instruct the Camera system to set this camera as the active one.
 	EngineContext::GetCameraSystem()->SetActiveCamera("Camera1");
 
-	entity = new Entity{ "Camera2" };
-	cc = new CameraComponent{ entity };
-	cc->SetViewport(Viewport{ rect, 0.0f, 1.0f });
-	cc->SetClippingPlanes(0.1f, 500.0f);
-	cc->SetFov(MathUtils::ToRadians(45.0f));
-	cc->Setup();
-	entity->SetPosition(Vec3f{ 0.0f, 0.0f, -4.0f });
+	cam = new Camera{ "Camera2", cd };
 
-	AddEntity(entity);
+	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -4.0f });
+
+	AddEntity(cam);
 	// --------------------------------------------------------------------------------------------------------------------
 
 	//Light Creation ------------------------------------------------------------------------------------------------------
-	entity = new Entity{ "DirectionalLight1" };
 
 	DirectionalLightDesc dlDesc;
 	dlDesc.ambientIntensity = Vec4f{ 0.0f, 0.0f, 0.0f, 0.0f };
 	dlDesc.diffuseIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
 	dlDesc.specularIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f };
 
-	DirectionalLightComponent* dlc{ new DirectionalLightComponent{dlDesc, entity} };
+	DirectionalLight* dl{ new DirectionalLight{"DirectionalLight1", dlDesc} };
 
-	entity->SetPosition(Vec3f{ 0.0f, 10.0f, 0.0f });
+	dl->SetPosition(Vec3f{ 0.0f, 10.0f, 0.0f });
 
-	AddEntity(entity);
-
-	entity = new Entity{ "DirectionalLight2" };
+	AddEntity(dl);
 
 	DirectionalLightDesc dlDesc2;
 	dlDesc2.ambientIntensity = Vec4f{ 0.0f, 0.0f, 0.0f, 0.0f };
 	dlDesc2.diffuseIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 0.0f };
 	dlDesc2.specularIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f };
 
-	dlc = new DirectionalLightComponent{ dlDesc2, entity };
+	dl = new DirectionalLight{ "DirectionalLight2", dlDesc2 };
 
-	entity->SetPosition(Vec3f{ 0.0f, -10.0f, 0.0f });
+	dl->SetPosition(Vec3f{ 0.0f, -10.0f, 0.0f });
 
-	AddEntity(entity);
+	AddEntity(dl);
 	// --------------------------------------------------------------------------------------------------------------------
 
 	// Pipeline Creation --------------------------------------------------------------------------------------------------

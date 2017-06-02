@@ -60,6 +60,12 @@
     <Filter Include="src\networking">
       <UniqueIdentifier>{a40502fe-5035-478d-8e00-f2495a88f626}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\entities">
+      <UniqueIdentifier>{c69dd40e-addc-4593-be34-197256e21fd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities">
+      <UniqueIdentifier>{df865eb9-a470-4b08-a484-3443d3938bd9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -287,6 +293,18 @@
     <ClInclude Include="include\network_message.h">
       <Filter>include\networking</Filter>
     </ClInclude>
+    <ClInclude Include="include\directional_light.h">
+      <Filter>include\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\point_light.h">
+      <Filter>include\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\spotlight.h">
+      <Filter>include\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\camera.h">
+      <Filter>include\entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GAPI_context.cpp">
@@ -459,6 +477,18 @@
     </ClCompile>
     <ClCompile Include="src\socket.cpp">
       <Filter>src\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\directional_light.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\point_light.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spotlight.cpp">
+      <Filter>src\entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
