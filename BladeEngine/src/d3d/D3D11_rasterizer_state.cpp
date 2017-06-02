@@ -24,7 +24,7 @@ namespace Blade
 			rasterizer_desc.MultisampleEnable = false;
 			rasterizer_desc.AntialiasedLineEnable = false;
 
-			D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 			ComPtr<ID3D11Device> device{ GAPI_context->GetDevice() };
 
 			HRESULT res = device->CreateRasterizerState(&rasterizer_desc, m_RasterizerState.ReleaseAndGetAddressOf());
@@ -45,7 +45,7 @@ namespace Blade
 			rasterizer_desc.MultisampleEnable = false;
 			rasterizer_desc.AntialiasedLineEnable = false;
 
-			D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 			ComPtr<ID3D11Device> device{ GAPI_context->GetDevice() };
 
 			HRESULT res = device->CreateRasterizerState(&rasterizer_desc, m_RasterizerState.ReleaseAndGetAddressOf());
@@ -66,7 +66,7 @@ namespace Blade
 			rasterizer_desc.MultisampleEnable = false;
 			rasterizer_desc.AntialiasedLineEnable = false;
 
-			D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 			ComPtr<ID3D11Device> device{ GAPI_context->GetDevice() };
 
 			HRESULT res = device->CreateRasterizerState(&rasterizer_desc, m_RasterizerState.ReleaseAndGetAddressOf());
@@ -87,7 +87,7 @@ namespace Blade
 			rasterizer_desc.MultisampleEnable = false;
 			rasterizer_desc.AntialiasedLineEnable = false;
 
-			D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 			ComPtr<ID3D11Device> device{ GAPI_context->GetDevice() };
 
 			HRESULT res = device->CreateRasterizerState(&rasterizer_desc, m_RasterizerState.ReleaseAndGetAddressOf());
@@ -100,7 +100,7 @@ namespace Blade
 
 	void D3D11RasterizerState::Set() const noexcept
 	{
-		D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
 		ID3D11DeviceContext* device_context{ GAPI_context->GetDeviceContext() };
 

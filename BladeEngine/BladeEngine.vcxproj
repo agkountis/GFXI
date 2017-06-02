@@ -92,8 +92,10 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;BLADE_BUILD_D3D;GLM_FORCE_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FloatingPointExceptions>true</FloatingPointExceptions>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4005;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <SDLCheck>true</SDLCheck>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -179,6 +181,7 @@
     <ClInclude Include="include\light_system.h" />
     <ClInclude Include="include\point_light_component.h" />
     <ClInclude Include="include\spotlight_component.h" />
+    <ClInclude Include="include\thread_pool.h" />
     <ClInclude Include="include\trace.h" />
     <ClInclude Include="include\IBO.h" />
     <ClInclude Include="include\material.h" />
@@ -272,6 +275,7 @@
     <ClCompile Include="src\spotlight_component.cpp" />
     <ClCompile Include="src\system.cpp" />
     <ClCompile Include="src\simulation_system.cpp" />
+    <ClCompile Include="src\thread_pool.cpp" />
     <ClCompile Include="src\VBO.cpp" />
     <ClCompile Include="src\win32_window.cpp" />
     <ClCompile Include="src\window.cpp" />

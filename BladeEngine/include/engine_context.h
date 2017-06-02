@@ -5,12 +5,15 @@
 #include "camera_system.h"
 #include "light_system.h"
 #include "simulation_system.h"
+#include "thread_pool.h"
 
 namespace Blade
 {
 	class EngineContext
 	{
 	private:
+		static std::unique_ptr<ThreadPool> m_ThreadPool;
+
 #if defined(BLADE_BUILD_D3D)
 		static std::unique_ptr<D3D11Context> m_GAPIContext;
 #else
@@ -31,7 +34,7 @@ namespace Blade
 		static bool Initialize();
 
 #if defined(BLADE_BUILD_D3D)
-		static D3D11Context* get_GAPI_context() noexcept;
+		static D3D11Context* GetGAPIContext() noexcept;
 #else
 #endif
 		static RenderSystem* GetRenderSystem() noexcept;
@@ -41,7 +44,8 @@ namespace Blade
 		static LightSystem* GetLightSystem() noexcept;
 
 		static SimulationSystem* GetSimulationSystem() noexcept;
-		//TODO: Implement getters and setters for the systems.
+
+		static ThreadPool* GetThreadPool() noexcept;
 	};
 }
 

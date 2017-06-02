@@ -9,7 +9,7 @@ namespace Blade
 	{
 		SetSize(size);
 
-		D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+		D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 
 		ID3D11Device* device{ ctx->GetDevice() };
 
@@ -136,7 +136,7 @@ namespace Blade
 
 	bool D3D11RenderTarget::Bind(RenderTargetBindType bind_type) const
 	{
-		D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+		D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 
 		ID3D11DeviceContext* context{ ctx->GetDeviceContext() };
 
@@ -158,7 +158,7 @@ namespace Blade
 
 	bool D3D11RenderTarget::Unbind() const
 	{
-		D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+		D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 
 		ID3D11DeviceContext* context{ ctx->GetDeviceContext() };
 		ID3D11DepthStencilView* null_dsv{ nullptr };
@@ -170,7 +170,7 @@ namespace Blade
 
 	void D3D11RenderTarget::Clear(float* color) const noexcept
 	{
-		D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
 		ID3D11DeviceContext* device_context{ GAPI_context->GetDeviceContext() };
 

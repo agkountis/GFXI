@@ -14,7 +14,7 @@ namespace Blade
 	                                const std::wstring& ds,
 	                                const std::wstring& gs) noexcept
 	{
-		D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
 		ID3D11Device* device{ GAPI_context->GetDevice() };
 
@@ -147,7 +147,7 @@ namespace Blade
 
 	void D3D11ShaderProgram::Bind() const noexcept
 	{
-		D3D11Context* context{ EngineContext::get_GAPI_context() };
+		D3D11Context* context{ EngineContext::GetGAPIContext() };
 
 		ID3D11DeviceContext* device_context{ context->GetDeviceContext() };
 

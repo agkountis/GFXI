@@ -17,7 +17,7 @@ namespace Blade
 		 * \brief The field of view.
 		 */
 		float m_Fov{ 0.0f };
-		
+
 		/**
 		 * \brief The viewport of the camera.
 		 */

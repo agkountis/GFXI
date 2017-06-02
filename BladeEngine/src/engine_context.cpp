@@ -5,10 +5,12 @@
 
 namespace Blade
 {
+	std::unique_ptr<ThreadPool> EngineContext::m_ThreadPool{ std::make_unique<ThreadPool>() };
+
 #if defined(BLADE_BUILD_D3D)
 	std::unique_ptr<D3D11Context> EngineContext::m_GAPIContext{ std::make_unique<D3D11Context>() };
 
-	D3D11Context* EngineContext::get_GAPI_context() noexcept
+	D3D11Context* EngineContext::GetGAPIContext() noexcept
 	{
 		return m_GAPIContext.get();
 	}
@@ -22,13 +24,18 @@ namespace Blade
 
 	bool EngineContext::Initialize()
 	{
-		if (!m_GAPIContext->Create())
+		if (!m_ThreadPool->Initialize())
 		{
-			std::cerr << "Failed to initialize the engine's Graphics Context!" << std::endl;
+			std::cerr << "Failed to initialize the thread pool." << std::endl;
 			return false;
 		}
 
-		//TODO: Initialise the systems here
+		if (!m_GAPIContext->Create())
+		{
+			std::cerr << "Failed to initialize the engine's Graphics Context." << std::endl;
+			return false;
+		}
+
 		if (!m_RenderSystem->Initialize())
 		{
 			std::cerr << "Failed to initialize the RenderSystem." << std::endl;
@@ -64,5 +71,10 @@ namespace Blade
 	SimulationSystem * EngineContext::GetSimulationSystem() noexcept
 	{
 		return m_SimulationSystem.get();
+	}
+
+	ThreadPool* EngineContext::GetThreadPool() noexcept
+	{
+		return m_ThreadPool.get();
 	}
 }

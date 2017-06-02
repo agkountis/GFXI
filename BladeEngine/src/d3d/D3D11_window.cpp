@@ -122,7 +122,7 @@ namespace Blade
 
 	bool D3D11Window::Initialize()
 	{
-		D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+		D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 
 		if (!CreateSwapChain(ctx)) {
 			return false;

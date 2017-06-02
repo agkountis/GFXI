@@ -27,7 +27,7 @@ namespace Blade
 			desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 			desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-			D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
 			ID3D11Device* device{ GAPI_context->GetDevice() };
 
@@ -53,7 +53,7 @@ namespace Blade
 			desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 			desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-			D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
 			ID3D11Device* device{ GAPI_context->GetDevice() };
 
@@ -79,7 +79,7 @@ namespace Blade
 			desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 			desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-			D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
 			ID3D11Device* device{ GAPI_context->GetDevice() };
 
@@ -105,7 +105,7 @@ namespace Blade
 			desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 			desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-			D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
 			ID3D11Device* device{ GAPI_context->GetDevice() };
 
@@ -119,7 +119,7 @@ namespace Blade
 
 	void D3D11DepthStencilState::Set() const noexcept
 	{
-		D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
 		ID3D11DeviceContext* device_context{ GAPI_context->GetDeviceContext() };
 

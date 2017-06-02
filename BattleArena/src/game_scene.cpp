@@ -63,7 +63,7 @@ void GameScene::Initialize()
 
 	//Set the viewport.
 	cc->SetViewport(Viewport{ rect, 0.0f, 1.0f });
-	
+
 	//Set the clipping planes.
 	cc->SetClippingPlanes(0.1f, 500.0f);
 
@@ -95,7 +95,7 @@ void GameScene::Initialize()
 
 	//Light Creation ------------------------------------------------------------------------------------------------------
 	entity = new Entity{ "DirectionalLight1" };
-	
+
 	DirectionalLightDesc dlDesc;
 	dlDesc.ambientIntensity = Vec4f{ 0.0f, 0.0f, 0.0f, 0.0f };
 	dlDesc.diffuseIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };

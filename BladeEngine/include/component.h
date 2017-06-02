@@ -9,7 +9,7 @@ namespace Blade
 
 	/**
 	 * \brief Base Component class of the engine. All the components of the engine
-	 * derive from this class. Compoment inherits from the Observer class so it can 
+	 * derive from this class. Compoment inherits from the Observer class so it can
 	 * register and receive specific messages.
 	 */
 	class Component : public Observer
@@ -23,7 +23,7 @@ namespace Blade
 		/**
 		 * \brief The Entity that the component is attached to.
 		 */
-		Entity* p_Parent{ nullptr };
+		Entity* p_Parent;
 
 		/**
 		 * \brief A unique identifier for the Component.

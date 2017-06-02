@@ -3,35 +3,38 @@
 
 struct DirectionalLight
 {
-	float4 ambientIntensity;
-	float4 diffuseIntensity;
-	float4 specularIntensity;
-	float3 direction;
+    float4 ambientIntensity;
+    float4 diffuseIntensity;
+    float4 specularIntensity;
+    float3 direction;
+    float pad;
 };
 
 struct PointLight
 {
-	float4 ambientIntensity;
-	float4 diffuseIntensity;
-	float4 specularIntensity;
-	float3 position;
-	float constantAttenuation;
-	float linearAttenuation;
-	float quadraticAttenuation;
+    float4 ambientIntensity;
+    float4 diffuseIntensity;
+    float4 specularIntensity;
+    float3 position;
+    float constantAttenuation;
+    float linearAttenuation;
+    float quadraticAttenuation;
+    float2 pad;
 };
 
 struct Spotlight
 {
-	float4 ambientIntensity;
-	float4 diffuseIntensity;
-	float4 specularIntensity;
-	float3 position;
-	float constantAttenuation;
-	float linearAttenuation;
-	float quadraticAttenuation;
-	float3 direction;
-	float spotCutoff;
-	float spotExponent;
+    float4 ambientIntensity;
+    float4 diffuseIntensity;
+    float4 specularIntensity;
+    float3 position;
+    float constantAttenuation;
+    float linearAttenuation;
+    float quadraticAttenuation;
+    float3 direction;
+    float spotCutoff;
+    float spotExponent;
+    float pad;
 };
 
 #define MAX_DIRECTIONAL_LIGHTS 5
@@ -48,24 +51,24 @@ void AccumulateDirectionalLights(StructuredBuffer<DirectionalLight> lights,
 								 inout float4 diffuseLight,
 								 inout float4 specularLight)
 {
-	for (int i = 0; i < lightCount; i++)
-	{
+    for (int i = 0; i < lightCount; i++)
+    {
 		//Normalize the light direction.
-		float3 l = normalize(t_dirLightDirections[i]);
+        float3 l = normalize(t_dirLightDirections[i]);
 
 		//Compute the half vector
-		float3 h = normalize(v_viewDirection + l);
+        float3 h = normalize(v_viewDirection + l);
 
 		//Compute the required dot products.
-		float n_dot_l = max(dot(normal, l), 0.0);
-		float n_dot_h = max(dot(normal, h), 0.0);
+        float n_dot_l = max(dot(normal, l), 0.0);
+        float n_dot_h = max(dot(normal, h), 0.0);
 
-		float4 litResult = lit(n_dot_l, n_dot_h, shininess);
+        float4 litResult = lit(n_dot_l, n_dot_h, shininess);
 
-		ambientLight += lights[i].ambientIntensity * litResult.x;
-		diffuseLight += lights[i].diffuseIntensity * litResult.y;
-		specularLight += lights[i].specularIntensity * litResult.z;
-	}
+        ambientLight += lights[i].ambientIntensity * litResult.x;
+        diffuseLight += lights[i].diffuseIntensity * litResult.y;
+        specularLight += lights[i].specularIntensity * litResult.z;
+    }
 }
 
 void PopulateDirectionalLightDirections(StructuredBuffer<DirectionalLight> lights,
@@ -73,10 +76,10 @@ void PopulateDirectionalLightDirections(StructuredBuffer<DirectionalLight> light
 										float3x3 TBN,
 										inout float3 directions[MAX_DIRECTIONAL_LIGHTS])
 {
-	for (int i = 0; i < MAX_DIRECTIONAL_LIGHTS; i++)
-	{
-		directions[i] = mul(mul(lights[i].direction, (float3x3) viewMatrix), TBN);
-	}
+    for (int i = 0; i < MAX_DIRECTIONAL_LIGHTS; i++)
+    {
+        directions[i] = mul(mul(lights[i].direction, (float3x3) viewMatrix), TBN);
+    }
 }
 
 void CalculatePointLightDirections(StructuredBuffer<PointLight> lights,
@@ -85,10 +88,10 @@ void CalculatePointLightDirections(StructuredBuffer<PointLight> lights,
 								   float3x3 TBN,
 								   inout float3 directions[MAX_POINT_LIGHTS])
 {
-	for (int i = 0; i < MAX_POINT_LIGHTS; i++)
-	{
-		directions[i] = mul(mul(float4(lights[i].position, 1.0), viewMatrix).xyz - v_Vertex, TBN);
-	}
+    for (int i = 0; i < MAX_POINT_LIGHTS; i++)
+    {
+        directions[i] = mul(mul(float4(lights[i].position, 1.0), viewMatrix).xyz - v_Vertex, TBN);
+    }
 }
 
 void PopulateSpotlightDirections(StructuredBuffer<Spotlight> lights,
@@ -96,10 +99,10 @@ void PopulateSpotlightDirections(StructuredBuffer<Spotlight> lights,
 								 float3x3 TBN,
 								 inout float3 directions[MAX_SPOTLIGHTS])
 {
-	for (int i = 0; i < MAX_SPOTLIGHTS; i++)
-	{
-		directions[i] = mul(mul(lights[i].direction, (float3x3)viewMatrix), TBN);
-	}
+    for (int i = 0; i < MAX_SPOTLIGHTS; i++)
+    {
+        directions[i] = mul(mul(lights[i].direction, (float3x3) viewMatrix), TBN);
+    }
 }
 
 #endif //LIGHT_UTILS_HLSL_

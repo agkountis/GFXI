@@ -15,7 +15,7 @@ namespace Blade
 		buffer_desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 		buffer_desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
-		D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+		D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 
 		ID3D11Device* device{ ctx->GetDevice() };
 
@@ -42,7 +42,7 @@ namespace Blade
 
 	void D3D11IBO::Bind() const noexcept
 	{
-		D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
 		ID3D11DeviceContext* device_context{ GAPI_context->GetDeviceContext() };
 
@@ -51,7 +51,7 @@ namespace Blade
 
 	void D3D11IBO::Draw() const noexcept
 	{
-		D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+		D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 
 		ID3D11DeviceContext* device_context{ ctx->GetDeviceContext() };
 

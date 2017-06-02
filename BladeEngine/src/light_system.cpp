@@ -4,6 +4,8 @@
 #include "point_light_component.h"
 #include "directional_light_component.h"
 #include "spotlight_component.h"
+#include "thread_pool.h"
+#include "engine_context.h"
 
 namespace Blade
 {
@@ -31,9 +33,9 @@ namespace Blade
 				//Set the index of the description in the cache to the component.
 				lightComponent->SetLightDescCacheIndex(m_PointLightDescCache.size() - 1);
 
-				BLADE_TRACE("Registered point light!")
+				BLADE_TRACE("Registered point light!");
 			}
-				break;
+			break;
 
 			case LightType::DIRECTIONAL:
 			{
@@ -43,9 +45,9 @@ namespace Blade
 
 				lightComponent->SetLightDescCacheIndex(m_DirectionalLightDescCache.size() - 1);
 
-				BLADE_TRACE("Registered directional light!")
+				BLADE_TRACE("Registered directional light!");
 			}
-				break;
+			break;
 
 			case LightType::SPOTLIGHT:
 			{
@@ -55,16 +57,16 @@ namespace Blade
 
 				lightComponent->SetLightDescCacheIndex(m_SpotlightDescCache.size() - 1);
 
-				BLADE_TRACE("Registered spot light!")
+				BLADE_TRACE("Registered spot light!");
 			}
-				break;
+			break;
 			}
 
-			BLADE_TRACE("Registered LightComponent!")
+			BLADE_TRACE("Registered LightComponent!");
 		}
 		else
 		{
-			BLADE_TRACE("Maximum amount of lights reached! LightComponent registration failed.")
+			BLADE_TRACE("Maximum amount of lights reached! LightComponent registration failed.");
 		}
 	}
 
@@ -145,7 +147,7 @@ namespace Blade
 			lightDescs.push_back(*std::get<PointLightDesc*>(lightDescTuple));
 		}
 
-		return lightDescs;
+		return std::move(lightDescs);
 	}
 
 	std::vector<DirectionalLightDesc> LightSystem::GetDirectionalLightDescriptions() const noexcept
@@ -157,7 +159,7 @@ namespace Blade
 			lightDescs.push_back(*std::get<DirectionalLightDesc*>(lightDescTuple));
 		}
 
-		return lightDescs;
+		return std::move(lightDescs);
 	}
 
 	std::vector<SpotlightDesc> LightSystem::GetSpotlightDescriptions() const noexcept
@@ -169,7 +171,7 @@ namespace Blade
 			lightDescs.push_back(*std::get<SpotlightDesc*>(lightDescTuple));
 		}
 
-		return lightDescs;
+		return std::move(lightDescs);
 	}
 
 	bool LightSystem::Initialize() noexcept
@@ -179,33 +181,38 @@ namespace Blade
 
 	void LightSystem::Process(float deltaTime) noexcept
 	{
-		for (auto entry : m_LightComponents)
-		{
-			LightComponent* lightComponent{ entry.second };
+		ThreadPool* threadPool{ EngineContext::GetThreadPool() };
 
-			LightType lightType{ lightComponent->GetLightType() };
+		threadPool->AddTask([this]() {
 
-			switch (lightType)
+			for (auto entry : m_LightComponents)
 			{
-			case LightType::POINT:
-			{
-				PointLightComponent* pointLightComponent{ static_cast<PointLightComponent*>(lightComponent) };
-				pointLightComponent->GetLightDescriptionPtr()->position = pointLightComponent->GetParent()->GetPosition();
-			}
+				LightComponent* lightComponent{ entry.second };
+
+				LightType lightType{ lightComponent->GetLightType() };
+
+				switch (lightType)
+				{
+				case LightType::POINT:
+				{
+					PointLightComponent* pointLightComponent{ static_cast<PointLightComponent*>(lightComponent) };
+					pointLightComponent->GetLightDescriptionPtr()->position = pointLightComponent->GetParent()->GetPosition();
+				}
 				break;
-			case LightType::DIRECTIONAL:
-			{
-				DirectionalLightComponent* directionalLightComponent{ static_cast<DirectionalLightComponent*>(lightComponent) };
-				directionalLightComponent->GetLightDescriptionPtr()->direction = directionalLightComponent->GetParent()->GetPosition();
-			}
+				case LightType::DIRECTIONAL:
+				{
+					DirectionalLightComponent* directionalLightComponent{ static_cast<DirectionalLightComponent*>(lightComponent) };
+					directionalLightComponent->GetLightDescriptionPtr()->direction = directionalLightComponent->GetParent()->GetPosition();
+				}
 				break;
-			case LightType::SPOTLIGHT:
-			{
-				SpotlightComponent* spotlightComponent{ static_cast<SpotlightComponent*>(lightComponent) };
-				spotlightComponent->GetLightDescriptionPtr()->position = spotlightComponent->GetParent()->GetPosition();
-			}
+				case LightType::SPOTLIGHT:
+				{
+					SpotlightComponent* spotlightComponent{ static_cast<SpotlightComponent*>(lightComponent) };
+					spotlightComponent->GetLightDescriptionPtr()->position = spotlightComponent->GetParent()->GetPosition();
+				}
 				break;
+				}
 			}
-		}
+		});
 	}
 }

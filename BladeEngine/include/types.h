@@ -2,9 +2,13 @@
 #define BLADE_TYPES_H_
 
 #include "GLM/glm.hpp"
-#include "GLM/gtc/constants.inl"
+#include "GLM/gtx/quaternion.hpp"
 #include "wrl.h"
 #include "message.h"
+
+#ifdef _DEBUG
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#endif
 
 namespace Blade
 {
@@ -31,6 +35,8 @@ namespace Blade
 	using Mat2d = glm::dmat2;
 	using Mat3d = glm::dmat3;
 	using Mat4d = glm::dmat4;
+
+	using Quatf = glm::quat;
 
 	template <typename T>
 	using ComPtr = Microsoft::WRL::ComPtr<T>;
@@ -62,7 +68,7 @@ namespace Blade
 
 		RefCountedContainer(const RefCountedContainer& other)
 			: m_Data(other.m_Data),
-			  m_ReferenceCount(other.m_ReferenceCount)
+			m_ReferenceCount(other.m_ReferenceCount)
 		{
 			AddReference();
 		}

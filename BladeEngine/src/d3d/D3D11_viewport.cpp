@@ -13,7 +13,7 @@ namespace Blade
 		viewport.MinDepth = m_MinDepth;
 		viewport.MaxDepth = m_MaxDepth;
 
-		D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+		D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 
 		ID3D11DeviceContext* context{ ctx->GetDeviceContext() };
 		

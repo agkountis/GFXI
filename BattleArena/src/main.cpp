@@ -4,6 +4,9 @@
 
 int main(int argc, char** argv)
 {
+	int flag = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+	flag |= _CRTDBG_LEAK_CHECK_DF;
+	_CrtSetDbgFlag(flag);
 
 	BattleArenaApplication application;
 
@@ -14,10 +17,12 @@ int main(int argc, char** argv)
 	}
 
 	BLADE_TRACE("Application Initialized!") // console and vs output printout
-	
+
 	BLADE_TRACE("Running Application!")
-	application.Run();
+	int res = application.Run();
+
+	_CrtDumpMemoryLeaks();
 
 	BLADE_TRACE("Application Terimating! Exit code 0")
-	return 0;
+	return res;
 }

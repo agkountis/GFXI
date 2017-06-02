@@ -27,7 +27,7 @@ struct UniformBuffer
 
 void GameSceneColorPassStage::DisplayToScreen() const
 {
-	D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+	D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 
 	ComPtr<ID3D11DeviceContext> dev_con{ ctx->GetDeviceContext() };
 
@@ -39,8 +39,8 @@ void GameSceneColorPassStage::DisplayToScreen() const
 
 	ShaderProgramManager::Get("render_texture_sdrprog")->Bind();
 
-	ComPtr<ID3D11ShaderResourceView> srv{ m_ColorRenderTarget.GetColorAttachment() };
-	dev_con->PSSetShaderResources(0, 1, srv.GetAddressOf());
+	ID3D11ShaderResourceView* srv{ m_ColorRenderTarget.GetColorAttachment() };
+	dev_con->PSSetShaderResources(0, 1, &srv);
 	dev_con->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
 
 	RenderStateManager::Set(RenderStateType::RS_DRAW_SOLID);
@@ -55,7 +55,7 @@ void GameSceneColorPassStage::DisplayToScreen() const
 bool GameSceneColorPassStage::Initialize()
 {
 	Vec2i windowSize{ WindowingService::GetWindow(0)->GetSize() };
-	
+
 	if (!m_ColorRenderTarget.Create(windowSize))
 	{
 		return false;
@@ -74,7 +74,7 @@ bool GameSceneColorPassStage::Initialize()
 	samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
 
 	// Create the texture sampler state.
-	D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+	D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 	ComPtr<ID3D11Device> device{ ctx->GetDevice() };
 
 	HRESULT res = device->CreateSamplerState(&samplerDesc, m_SamplerLinearWrap.ReleaseAndGetAddressOf());
@@ -82,7 +82,7 @@ bool GameSceneColorPassStage::Initialize()
 	if (FAILED(res))
 	{
 		std::cerr << "GameSceneColorPass: Linear Texture Wrap sampler creation failed!" << std::endl;
-		
+
 		return false;
 	}
 
@@ -100,7 +100,7 @@ bool GameSceneColorPassStage::Initialize()
 	if (FAILED(res))
 	{
 		std::cerr << "GameSceneColorPass: Uniform buffer creation failed." << std::endl;
-		
+
 		return false;
 	}
 
@@ -143,7 +143,7 @@ bool GameSceneColorPassStage::Initialize()
 	if (FAILED(res))
 	{
 		std::cerr << "GameSceneColorPass: Directional light structured buffer creation failed!" << std::endl;
-		
+
 		return false;
 	}
 
@@ -157,12 +157,12 @@ bool GameSceneColorPassStage::Initialize()
 	}
 
 	D3D11_BUFFER_DESC spotlightBufferDesc = {};
-	spotlightBufferDesc.ByteWidth = MAX_LIGHTS * sizeof(PointLightDesc);
+	spotlightBufferDesc.ByteWidth = MAX_LIGHTS * sizeof(SpotlightDesc);
 	spotlightBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
 	spotlightBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
 	spotlightBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	spotlightBufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
-	spotlightBufferDesc.StructureByteStride = sizeof(PointLightDesc);
+	spotlightBufferDesc.StructureByteStride = sizeof(SpotlightDesc);
 
 	res = device->CreateBuffer(&spotlightBufferDesc, nullptr, m_SpotlightStructuredBuffer.ReleaseAndGetAddressOf());
 
@@ -185,9 +185,9 @@ bool GameSceneColorPassStage::Initialize()
 	return true;
 }
 
-PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vector<RenderComponent*>& data, const PipelineData<D3D11RenderTarget*>& tdata) noexcept
+PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vector<RenderComponent*>& data,
+	const PipelineData<D3D11RenderTarget*>& tdata) noexcept
 {
-
 	//Bind the render target.
 	m_ColorRenderTarget.Bind(RenderTargetBindType::COLOR_AND_DEPTH);
 
@@ -199,7 +199,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	Vec2i winSize{ WindowingService::GetWindow(0)->GetSize() };
 
 	//Get the device context.
-	D3D11Context* context{ EngineContext::get_GAPI_context() };
+	D3D11Context* context{ EngineContext::GetGAPIContext() };
 	ID3D11DeviceContext* deviceContext{ context->GetDeviceContext() };
 
 	//Bind the requested shader program.
@@ -213,7 +213,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	{
 		//Get the model matrix from the Entity.
 		Mat4f m{ renderComponent->GetParent()->GetXform() };
-		
+
 		//Get the active camera projection matrix.
 		Mat4f p{ EngineContext::GetCameraSystem()->GetActiveCameraProjectionMatrtix() };
 
@@ -226,7 +226,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		//Calculate the ModelView matrix.
 		Mat4f mv{ v * m };
 
-		Mat4f textureMatrix{ MathUtils::Scale(Mat4f{1.0f}, Vec3f{4.0f, 4.0f, 0.0f}) };
+		Mat4f textureMatrix{ MathUtils::Scale(Mat4f{ 1.0f }, Vec3f{ 4.0f, 4.0f, 0.0f }) };
 
 		LightSystem* lightSystem{ EngineContext::GetLightSystem() };
 
@@ -236,7 +236,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		{
 			D3D11_MAPPED_SUBRESOURCE pointLightMs;
 			deviceContext->Map(m_PointLightStructuredBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &pointLightMs);
-			memcpy(pointLightMs.pData, &pointLights[0], pointLights.size() * sizeof(PointLightDesc));
+			memcpy(pointLightMs.pData, pointLights.data(), pointLights.size() * sizeof(PointLightDesc));
 			deviceContext->Unmap(m_PointLightStructuredBuffer.Get(), 0);
 		}
 
@@ -246,7 +246,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		{
 			D3D11_MAPPED_SUBRESOURCE directionalLightMs;
 			deviceContext->Map(m_DirectionalLightStructuredBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &directionalLightMs);
-			memcpy(directionalLightMs.pData, &directionalLights[0], directionalLights.size() * sizeof(DirectionalLightDesc));
+			memcpy(directionalLightMs.pData, directionalLights.data(), directionalLights.size() * sizeof(DirectionalLightDesc));
 			deviceContext->Unmap(m_DirectionalLightStructuredBuffer.Get(), 0);
 		}
 
@@ -256,7 +256,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		{
 			D3D11_MAPPED_SUBRESOURCE spotlightMs;
 			deviceContext->Map(m_SpotlightStructuredBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &spotlightMs);
-			memcpy(spotlightMs.pData, &directionalLights[0], directionalLights.size() * sizeof(SpotlightDesc));
+			memcpy(spotlightMs.pData, spotlights.data(), spotlights.size() * sizeof(SpotlightDesc));
 			deviceContext->Unmap(m_SpotlightStructuredBuffer.Get(), 0);
 		}
 
