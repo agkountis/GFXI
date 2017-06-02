@@ -34,7 +34,7 @@ namespace Blade
 		ShaderProgram& operator=(const ShaderProgram&) = default;
 
 #if defined(BLADE_BUILD_D3D)
-		const D3D11Shader* GetShader(ShaderType shaderType)
+		D3D11Shader* GetShader(ShaderType shaderType)
 		{
 			return m_Shaders[shaderType];
 		}

@@ -9,7 +9,7 @@ namespace Blade
 
 	/**
 	 * \brief Base Component class of the engine. All the components of the engine
-	 * derive from this class. Compoment inherits from the Observer class so it can 
+	 * derive from this class. Compoment inherits from the Observer class so it can
 	 * register and receive specific messages.
 	 */
 	class Component : public Observer
@@ -23,17 +23,16 @@ namespace Blade
 		/**
 		 * \brief The Entity that the component is attached to.
 		 */
-		Entity* p_Parent{ nullptr };
+		Entity* p_Parent;
 
 		/**
 		 * \brief A unique identifier for the Component.
 		 */
 		int m_Id;
 
-
 		/**
 		* \brief Counter variable to track the number of created Components.
-		* \brief Used to create unique component ID of each component.
+		* \details Used to create unique component ID of each component.
 		*/
 		static int s_IdCounter;
 
@@ -71,8 +70,6 @@ namespace Blade
 		 * \return The unique Component ID.
 		 */
 		int GetId() const noexcept;
-
-		
 
 		/**
 		 * \brief Performs setup actions after the Component's creation

@@ -8,7 +8,7 @@
 namespace Blade
 {
 	// Private Methods -----------------------------------------------------------------------------------------------------------------------------
-	bool D3D11Window::create_swap_chain(const D3D11Context* ctx)
+	bool D3D11Window::CreateSwapChain(D3D11Context* ctx)
 	{
 		//Describe the swapchain
 		DXGI_SWAP_CHAIN_DESC swap_chain_desc;
@@ -20,9 +20,9 @@ namespace Blade
 		swap_chain_desc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 		swap_chain_desc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
 
-		if (m_enable_MSAA) {
-			swap_chain_desc.SampleDesc.Count = m_sample_count;
-			swap_chain_desc.SampleDesc.Quality = ctx->GetMSAAQuality(m_sample_count) - 1;
+		if (m_EnableMSAA) {
+			swap_chain_desc.SampleDesc.Count = m_SampleCount;
+			swap_chain_desc.SampleDesc.Quality = ctx->GetMSAAQuality(m_SampleCount) - 1;
 		}
 		else { //No MSAA
 			swap_chain_desc.SampleDesc.Count = 0;
@@ -51,7 +51,7 @@ namespace Blade
 		h_result = dxgi_adapter->GetParent(__uuidof(IDXGIFactory), reinterpret_cast<void**>(dxgi_factory.GetAddressOf()));
 
 		//At last create the swap chain.
-		h_result = dxgi_factory->CreateSwapChain(device.Get(), &swap_chain_desc, m_swap_chain.ReleaseAndGetAddressOf());
+		h_result = dxgi_factory->CreateSwapChain(device.Get(), &swap_chain_desc, m_SwapChain.ReleaseAndGetAddressOf());
 
 		if (FAILED(h_result)) {
 			MessageBox(GetHandle(), L"DXGISwapChain creation failed.", nullptr, 0);
@@ -61,11 +61,11 @@ namespace Blade
 		return true;
 	}
 
-	bool D3D11Window::create_render_target_view(D3D11Context* ctx) const noexcept
+	bool D3D11Window::CreateRenderTargetView(D3D11Context* ctx) const noexcept
 	{
 		// get the address of the back buffer
 		ComPtr<ID3D11Texture2D> backbuffer;
-		HRESULT res = m_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(backbuffer.GetAddressOf()));
+		HRESULT res = m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(backbuffer.GetAddressOf()));
 
 		if (FAILED(res)) {
 			std::cerr << "Failed to get the adress of the back buffer." << std::endl;
@@ -73,7 +73,7 @@ namespace Blade
 		}
 		
 		// use the back buffer address to create the render target
-		ComPtr<ID3D11Device> device{ ctx->GetDevice() };
+		ID3D11Device* device{ ctx->GetDevice() };
 		res = device->CreateRenderTargetView(backbuffer.Get(), nullptr, ctx->GetGetAddressOfDefaultRenderTargetView());
 
 		if (FAILED(res)) {
@@ -84,7 +84,7 @@ namespace Blade
 		return true;
 	}
 
-	bool D3D11Window::create_depth_stencil_view(D3D11Context* ctx) const noexcept
+	bool D3D11Window::CreateDepthStencilView(D3D11Context* ctx) const noexcept
 	{
 		D3D11_TEXTURE2D_DESC depth_attachment_desc;
 		ZeroMemory(&depth_attachment_desc, sizeof(depth_attachment_desc));
@@ -93,11 +93,11 @@ namespace Blade
 		depth_attachment_desc.MipLevels = 1;
 		depth_attachment_desc.ArraySize = 1;
 		depth_attachment_desc.Format = DXGI_FORMAT_D32_FLOAT;
-		depth_attachment_desc.SampleDesc.Count = m_sample_count;
+		depth_attachment_desc.SampleDesc.Count = m_SampleCount;
 		depth_attachment_desc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 
 		ComPtr<ID3D11Texture2D> depth;
-		ComPtr<ID3D11Device> device{ ctx->GetDevice() };
+		ID3D11Device* device{ ctx->GetDevice() };
 		HRESULT res = device->CreateTexture2D(&depth_attachment_desc, nullptr, depth.GetAddressOf());
 
 		if (FAILED(res)) {
@@ -120,19 +120,19 @@ namespace Blade
 		return true;
 	}
 
-	bool D3D11Window::initialize()
+	bool D3D11Window::Initialize()
 	{
-		D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+		D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 
-		if (!create_swap_chain(ctx)) {
+		if (!CreateSwapChain(ctx)) {
 			return false;
 		}
 
-		if (!create_render_target_view(ctx)) {
+		if (!CreateRenderTargetView(ctx)) {
 			return false;
 		}
 
-		if (!create_depth_stencil_view(ctx)) {
+		if (!CreateDepthStencilView(ctx)) {
 			return false;
 		}
 
@@ -144,7 +144,7 @@ namespace Blade
 		viewport.MinDepth = 0.0f;
 		viewport.MaxDepth = 1.0f;
 
-		ComPtr<ID3D11DeviceContext> context{ ctx->GetDeviceContext() };
+		ID3D11DeviceContext* context{ ctx->GetDeviceContext() };
 		context->RSSetViewports(1, &viewport);
 
 		return true;
@@ -152,7 +152,7 @@ namespace Blade
 
 	void D3D11Window::SwapBuffers() const noexcept
 	{
-		m_swap_chain->Present(0, 0);
+		m_SwapChain->Present(0, 0);
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------------------------------

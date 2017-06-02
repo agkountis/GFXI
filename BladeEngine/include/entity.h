@@ -147,6 +147,11 @@ namespace Blade
 		{
 			return m_alive;
 		}
+		
+		void SetAlive(bool state) noexcept
+		{
+			m_alive = state;
+		}
 
 		virtual void Update(float dt, long time = 0) noexcept;
 

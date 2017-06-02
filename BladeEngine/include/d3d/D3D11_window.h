@@ -10,65 +10,65 @@ namespace Blade
 
 	class D3D11Window : public Win32Window {
 	private:
-		ComPtr<IDXGISwapChain> m_swap_chain;
+		ComPtr<IDXGISwapChain> m_SwapChain;
 
-		bool m_enable_MSAA{ false };
-		int m_sample_count{ 4 };
-		unsigned int m_MSAA_quality;
+		bool m_EnableMSAA{ false };
+		int m_SampleCount{ 4 };
+		unsigned int m_MSAAQuality;
 
-		bool create_swap_chain(const D3D11Context* ctx);
+		bool CreateSwapChain(D3D11Context* ctx);
 
-		bool create_render_target_view(D3D11Context* ctx) const noexcept;
+		bool CreateRenderTargetView(D3D11Context* ctx) const noexcept;
 
-		bool create_depth_stencil_view(D3D11Context* ctx) const noexcept;
+		bool CreateDepthStencilView(D3D11Context* ctx) const noexcept;
 
-		bool initialize();
+		bool Initialize();
 
 	public:
 		D3D11Window(const std::wstring& title,
 		            const Vec2i& size,
 		            const Vec2i& position,
-		            const unsigned int window_id,
+		            const unsigned int windowId,
 		            const bool focused,
 		            const bool minimized,
 		            const bool resizeable,
-		            const bool show_cursor,
-		            const bool enable_MSAA,
-		            const int MSAA_sample_count,
+		            const bool showCursor,
+		            const bool enableMSAA,
+		            const int msaaSampleCount,
 		            const WindowFunctionCallbacks& callbacks) : Win32Window{ title,
 			                                                        size,
 			                                                        position,
-			                                                        window_id,
+			                                                        windowId,
 			                                                        focused,
 			                                                        minimized,
 			                                                        resizeable,
-			                                                        show_cursor,
+			                                                        showCursor,
 			                                                        callbacks },
-		                                                        m_enable_MSAA{ enable_MSAA },
-		                                                        m_sample_count{ MSAA_sample_count },
-																m_MSAA_quality{ 0 }
+		                                                        m_EnableMSAA{ enableMSAA },
+		                                                        m_SampleCount{ msaaSampleCount },
+																m_MSAAQuality{ 0 }
 		{
-			initialize();
+			Initialize();
 		}
 
-		void enable_MSAA(bool state) noexcept
+		void EnableMSAA(bool state) noexcept
 		{
-			m_enable_MSAA = state;
+			m_EnableMSAA = state;
 		}
 
-		bool MSAA_enabled() const noexcept
+		bool MSAAEnabled() const noexcept
 		{
-			return m_enable_MSAA;
+			return m_EnableMSAA;
 		}
 
-		int get_sample_count() const noexcept
+		int GetSampleCount() const noexcept
 		{
-			return m_sample_count;
+			return m_SampleCount;
 		}
 
-		unsigned int get_MSAA_quality() const noexcept
+		unsigned int GetMSAAQuality() const noexcept
 		{
-			return m_MSAA_quality;
+			return m_MSAAQuality;
 		}
 
 		void SwapBuffers() const noexcept override;

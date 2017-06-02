@@ -6,7 +6,7 @@
 
 namespace Blade
 {
-	static std::map<std::wstring, std::string> shader_profiles{ // parasoft-suppress  PB-23 "It just a normal construction of a map using an initializer list"
+	static std::map<std::wstring, std::string> shader_profiles{
 		{ L"vs", "vs_5_0" },
 		{ L"hs", "hs_5_0" },
 		{ L"ds", "ds_5_0" },

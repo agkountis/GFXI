@@ -1,3 +1,5 @@
+#include "light_utils.hlsl"
+
 struct VInput
 {
 	float3 position : POSITION;
@@ -10,11 +12,13 @@ struct VOutput
 {
 	float4 position : SV_POSITION;
 	float2 texcoord : TEXCOORD0;
-	float3 t_lightDirection : LIGHT_DIRECTION;
 	float3 t_viewDirection : VIEW_DIRECTION;
+	float3 t_directionalLightDirections[MAX_DIRECTIONAL_LIGHTS] : DIR_LIGHT_DIRECTIONS;
+	float3 t_pointLightDirections[MAX_POINT_LIGHTS] : POINT_LIGHT_DIRECTIONS;
+	float3 t_spotlightDirections[MAX_SPOTLIGHTS] : SPOTLIGHT_DIRECTIONS;
 };
 
-cbuffer uniforms
+cbuffer uniforms : register(c0)
 {
 	float4x4 MVP;
 	float4x4 ITMV;
@@ -23,8 +27,16 @@ cbuffer uniforms
 	float4x4 textureMatrix;
 	float4 diffuse;
 	float4 specular;
-
+	int pointLightCount;
+	int directionalLightCount;
+	int spotlightCount;
+	int pad;
 };
+
+StructuredBuffer<DirectionalLight> directionalLights : register(t0);
+StructuredBuffer<PointLight> pointLights : register(t1);
+StructuredBuffer<Spotlight> spotlights : register(t2);
+
 
 VOutput main(VInput input)
 {
@@ -50,17 +62,27 @@ VOutput main(VInput input)
 									  binormal, 
 									  normal));
 
-	//Temporary hardcoded light direction.
-	float3 lightDirection = float3(10.0, 10.0, -10.0);
-
 	//Move the vertex to view space.
 	float4 v_vertexPosition = mul(float4(input.position, 1.0), V);
 	
 	//Move the view direction to tangent space.
 	output.t_viewDirection = mul(-v_vertexPosition.xyz, TBN);
 	
-	//Move the light direction to tangent space.
-	output.t_lightDirection = mul(mul(lightDirection, (float3x3)V), TBN);
+	PopulateDirectionalLightDirections(directionalLights, 
+									   V, 
+									   TBN, 
+									   output.t_directionalLightDirections);
+
+	CalculatePointLightDirections(pointLights,
+								  v_vertexPosition.xyz,
+								  V,
+								  TBN,
+								  output.t_pointLightDirections);
+
+	PopulateSpotlightDirections(spotlights,
+								V,
+								TBN,
+								output.t_spotlightDirections);
 
 	return output;
 }

@@ -7,7 +7,7 @@
 namespace Blade
 {
 	/**
-	 * \brief A System responsible to processe and manage the CameraComponents
+	 * \brief A System responsible to process and manage the CameraComponents
 	 * by swapping the current active camera and providing the current active camera's
 	 * matrices.
 	 */

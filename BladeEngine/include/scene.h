@@ -17,9 +17,9 @@ namespace Blade
 
 		virtual ~Scene();
 
+		Scene(const Scene& other) = delete;
 
-		Scene(const Scene& other) = default;
-		Scene& operator=(const Scene& other) = default;
+		Scene& operator=(const Scene& other) = delete;
 
 		virtual void Initialize() = 0;
 

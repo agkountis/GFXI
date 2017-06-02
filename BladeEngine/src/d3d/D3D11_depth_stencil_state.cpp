@@ -27,11 +27,11 @@ namespace Blade
 			desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 			desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-			D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
-			ComPtr<ID3D11Device> device{ GAPI_context->GetDevice() };
+			ID3D11Device* device{ GAPI_context->GetDevice() };
 
-			HRESULT res = device->CreateDepthStencilState(&desc, m_DepthStencilState.ReleaseAndGetAddressOf());
+			HRESULT res{ device->CreateDepthStencilState(&desc, m_DepthStencilState.ReleaseAndGetAddressOf()) };
 		}
 			break;
 		case RenderStateType::DSS_DEPTH_TEST_ENABLE:
@@ -53,11 +53,11 @@ namespace Blade
 			desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 			desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-			D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
-			ComPtr<ID3D11Device> device{ GAPI_context->GetDevice() };
+			ID3D11Device* device{ GAPI_context->GetDevice() };
 
-			HRESULT res = device->CreateDepthStencilState(&desc, m_DepthStencilState.ReleaseAndGetAddressOf());
+			HRESULT res{ device->CreateDepthStencilState(&desc, m_DepthStencilState.ReleaseAndGetAddressOf()) };
 		}
 			break;
 		case RenderStateType::DSS_DEPTH_MASK_0:
@@ -79,11 +79,11 @@ namespace Blade
 			desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 			desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-			D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
-			ComPtr<ID3D11Device> device{ GAPI_context->GetDevice() };
+			ID3D11Device* device{ GAPI_context->GetDevice() };
 
-			HRESULT res = device->CreateDepthStencilState(&desc, m_DepthStencilState.ReleaseAndGetAddressOf());
+			HRESULT res{ device->CreateDepthStencilState(&desc, m_DepthStencilState.ReleaseAndGetAddressOf()) };
 		}
 			break;
 		case RenderStateType::DSS_DEPTH_MASK_1:
@@ -105,11 +105,11 @@ namespace Blade
 			desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 			desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-			D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
-			ComPtr<ID3D11Device> device{ GAPI_context->GetDevice() };
+			ID3D11Device* device{ GAPI_context->GetDevice() };
 
-			HRESULT res = device->CreateDepthStencilState(&desc, m_DepthStencilState.ReleaseAndGetAddressOf());
+			HRESULT res{ device->CreateDepthStencilState(&desc, m_DepthStencilState.ReleaseAndGetAddressOf()) };
 		}
 			break;
 		default:
@@ -119,9 +119,9 @@ namespace Blade
 
 	void D3D11DepthStencilState::Set() const noexcept
 	{
-		D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
-		ComPtr<ID3D11DeviceContext> device_context{ GAPI_context->GetDeviceContext() };
+		ID3D11DeviceContext* device_context{ GAPI_context->GetDeviceContext() };
 
 		device_context->OMSetDepthStencilState(m_DepthStencilState.Get(), 0);
 	}

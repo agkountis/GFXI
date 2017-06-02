@@ -15,9 +15,9 @@ namespace Blade
 		buffer_desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 		buffer_desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
-		D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+		D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 
-		ComPtr<ID3D11Device> device{ ctx->GetDevice() };
+		ID3D11Device* device{ ctx->GetDevice() };
 
 		HRESULT res = device->CreateBuffer(&buffer_desc, nullptr, m_IndexBuffer.ReleaseAndGetAddressOf());
 		if (FAILED(res))
@@ -29,7 +29,7 @@ namespace Blade
 		D3D11_MAPPED_SUBRESOURCE index_data;
 		ZeroMemory(&index_data, sizeof(index_data));
 
-		ComPtr<ID3D11DeviceContext> device_context{ ctx->GetDeviceContext() };
+		ID3D11DeviceContext* device_context{ ctx->GetDeviceContext() };
 
 		device_context->Map(m_IndexBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &index_data);
 		memcpy(index_data.pData, indices.data(), sizeof(unsigned int) * indices.size());
@@ -42,18 +42,18 @@ namespace Blade
 
 	void D3D11IBO::Bind() const noexcept
 	{
-		D3D11Context* GAPI_context{ EngineContext::get_GAPI_context() };
+		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
-		ComPtr<ID3D11DeviceContext> device_context{ GAPI_context->GetDeviceContext() };
+		ID3D11DeviceContext* device_context{ GAPI_context->GetDeviceContext() };
 
 		device_context->IASetIndexBuffer(m_IndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
 	}
 
 	void D3D11IBO::Draw() const noexcept
 	{
-		D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+		D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 
-		ComPtr<ID3D11DeviceContext> device_context{ ctx->GetDeviceContext() };
+		ID3D11DeviceContext* device_context{ ctx->GetDeviceContext() };
 
 		device_context->DrawIndexed(GetIndexCount(), 0, 0);
 	}

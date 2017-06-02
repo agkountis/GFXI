@@ -19,11 +19,15 @@ struct UniformBuffer
 	Mat4f textureMatrix;
 	Vec4f diffuse;
 	Vec4f specular;
+	int pointLightCount;
+	int directionalLightCount;
+	int spotlightCount;
+	int pad;
 };
 
 void GameSceneColorPassStage::DisplayToScreen() const
 {
-	D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+	D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 
 	ComPtr<ID3D11DeviceContext> dev_con{ ctx->GetDeviceContext() };
 
@@ -35,8 +39,8 @@ void GameSceneColorPassStage::DisplayToScreen() const
 
 	ShaderProgramManager::Get("render_texture_sdrprog")->Bind();
 
-	ComPtr<ID3D11ShaderResourceView> srv{ m_ColorRenderTarget.GetColorAttachment() };
-	dev_con->PSSetShaderResources(0, 1, srv.GetAddressOf());
+	ID3D11ShaderResourceView* srv{ m_ColorRenderTarget.GetColorAttachment() };
+	dev_con->PSSetShaderResources(0, 1, &srv);
 	dev_con->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
 
 	RenderStateManager::Set(RenderStateType::RS_DRAW_SOLID);
@@ -51,7 +55,7 @@ void GameSceneColorPassStage::DisplayToScreen() const
 bool GameSceneColorPassStage::Initialize()
 {
 	Vec2i windowSize{ WindowingService::GetWindow(0)->GetSize() };
-	
+
 	if (!m_ColorRenderTarget.Create(windowSize))
 	{
 		return false;
@@ -70,18 +74,20 @@ bool GameSceneColorPassStage::Initialize()
 	samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
 
 	// Create the texture sampler state.
-	D3D11Context* ctx{ EngineContext::get_GAPI_context() };
+	D3D11Context* ctx{ EngineContext::GetGAPIContext() };
 	ComPtr<ID3D11Device> device{ ctx->GetDevice() };
 
 	HRESULT res = device->CreateSamplerState(&samplerDesc, m_SamplerLinearWrap.ReleaseAndGetAddressOf());
 
 	if (FAILED(res))
 	{
-		std::cerr << "Linear Texture Wrap sampler creation failed!" << std::endl;
+		std::cerr << "GameSceneColorPass: Linear Texture Wrap sampler creation failed!" << std::endl;
+
+		return false;
 	}
 
 	UniformBuffer uniforms = {};
-	D3D11_BUFFER_DESC cbDesc;
+	D3D11_BUFFER_DESC cbDesc = {};
 	cbDesc.ByteWidth = sizeof(uniforms);
 	cbDesc.Usage = D3D11_USAGE_DYNAMIC;
 	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
@@ -93,15 +99,95 @@ bool GameSceneColorPassStage::Initialize()
 
 	if (FAILED(res))
 	{
-		std::cerr << "Renderer initialization failed: Uniform buffer creation failed." << std::endl;
+		std::cerr << "GameSceneColorPass: Uniform buffer creation failed." << std::endl;
+
+		return false;
+	}
+
+	D3D11_BUFFER_DESC pointLightBufferDesc = {};
+	pointLightBufferDesc.ByteWidth = MAX_LIGHTS * sizeof(PointLightDesc);
+	pointLightBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+	pointLightBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+	pointLightBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	pointLightBufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
+	pointLightBufferDesc.StructureByteStride = sizeof(PointLightDesc);
+
+	res = device->CreateBuffer(&pointLightBufferDesc, nullptr, m_PointLightStructuredBuffer.ReleaseAndGetAddressOf());
+
+	if (FAILED(res))
+	{
+		std::cerr << "GameSceneColorPass: Point light structured buffer creation failed!" << std::endl;
+
+		return false;
+	}
+
+	res = device->CreateShaderResourceView(m_PointLightStructuredBuffer.Get(), nullptr, m_PointLightSrv.ReleaseAndGetAddressOf());
+
+	if (FAILED(res))
+	{
+		std::cerr << "GameSceneColorPass: Point light shader resource view creation failed!" << std::endl;
+
+		return false;
+	}
+
+	D3D11_BUFFER_DESC dirLightBufferDesc = {};
+	dirLightBufferDesc.ByteWidth = MAX_LIGHTS * sizeof(DirectionalLightDesc);
+	dirLightBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+	dirLightBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+	dirLightBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	dirLightBufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
+	dirLightBufferDesc.StructureByteStride = sizeof(DirectionalLightDesc);
+
+	res = device->CreateBuffer(&dirLightBufferDesc, nullptr, m_DirectionalLightStructuredBuffer.ReleaseAndGetAddressOf());
+
+	if (FAILED(res))
+	{
+		std::cerr << "GameSceneColorPass: Directional light structured buffer creation failed!" << std::endl;
+
+		return false;
+	}
+
+	res = device->CreateShaderResourceView(m_DirectionalLightStructuredBuffer.Get(), nullptr, m_DirectionalLightSrv.ReleaseAndGetAddressOf());
+
+	if (FAILED(res))
+	{
+		std::cerr << "GameSceneColorPass: Directional light shader resource view creation failed!" << std::endl;
+
+		return false;
+	}
+
+	D3D11_BUFFER_DESC spotlightBufferDesc = {};
+	spotlightBufferDesc.ByteWidth = MAX_LIGHTS * sizeof(SpotlightDesc);
+	spotlightBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+	spotlightBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+	spotlightBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	spotlightBufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
+	spotlightBufferDesc.StructureByteStride = sizeof(SpotlightDesc);
+
+	res = device->CreateBuffer(&spotlightBufferDesc, nullptr, m_SpotlightStructuredBuffer.ReleaseAndGetAddressOf());
+
+	if (FAILED(res))
+	{
+		std::cerr << "GameSceneColorPass: Point light structured buffer creation failed!" << std::endl;
+
+		return false;
+	}
+
+	res = device->CreateShaderResourceView(m_SpotlightStructuredBuffer.Get(), nullptr, m_SpotlightSrv.ReleaseAndGetAddressOf());
+
+	if (FAILED(res))
+	{
+		std::cerr << "GameSceneColorPass: Point light shader resource view creation failed!" << std::endl;
+
+		return false;
 	}
 
 	return true;
 }
 
-PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vector<RenderComponent*>& data, const PipelineData<D3D11RenderTarget*>& tdata) noexcept
+PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vector<RenderComponent*>& data,
+	const PipelineData<D3D11RenderTarget*>& tdata) noexcept
 {
-
 	//Bind the render target.
 	m_ColorRenderTarget.Bind(RenderTargetBindType::COLOR_AND_DEPTH);
 
@@ -113,21 +199,21 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	Vec2i winSize{ WindowingService::GetWindow(0)->GetSize() };
 
 	//Get the device context.
-	D3D11Context* context{ EngineContext::get_GAPI_context() };
-	ID3D11DeviceContext* device_context{ context->GetDeviceContext() };
+	D3D11Context* context{ EngineContext::GetGAPIContext() };
+	ID3D11DeviceContext* deviceContext{ context->GetDeviceContext() };
 
 	//Bind the requested shader program.
 	ShaderProgramManager::Get("default_sdrprog")->Bind();
 
 	//Set the linear wrap texture sampler.
-	device_context->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
+	deviceContext->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
 
 	//Iterate through the render components.
 	for (auto renderComponent : data)
 	{
 		//Get the model matrix from the Entity.
 		Mat4f m{ renderComponent->GetParent()->GetXform() };
-		
+
 		//Get the active camera projection matrix.
 		Mat4f p{ EngineContext::GetCameraSystem()->GetActiveCameraProjectionMatrtix() };
 
@@ -140,7 +226,47 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		//Calculate the ModelView matrix.
 		Mat4f mv{ v * m };
 
-		Mat4f textureMatrix{ MathUtils::Scale(Mat4f{1.0f}, Vec3f{4.0f, 4.0f, 0.0f}) };
+		Mat4f textureMatrix{ MathUtils::Scale(Mat4f{ 1.0f }, Vec3f{ 4.0f, 4.0f, 0.0f }) };
+
+		LightSystem* lightSystem{ EngineContext::GetLightSystem() };
+
+		auto pointLights{ lightSystem->GetPointLightDescriptions() };
+
+		if (!pointLights.empty())
+		{
+			D3D11_MAPPED_SUBRESOURCE pointLightMs;
+			deviceContext->Map(m_PointLightStructuredBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &pointLightMs);
+			memcpy(pointLightMs.pData, pointLights.data(), pointLights.size() * sizeof(PointLightDesc));
+			deviceContext->Unmap(m_PointLightStructuredBuffer.Get(), 0);
+		}
+
+		auto directionalLights{ lightSystem->GetDirectionalLightDescriptions() };
+
+		if (!directionalLights.empty())
+		{
+			D3D11_MAPPED_SUBRESOURCE directionalLightMs;
+			deviceContext->Map(m_DirectionalLightStructuredBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &directionalLightMs);
+			memcpy(directionalLightMs.pData, directionalLights.data(), directionalLights.size() * sizeof(DirectionalLightDesc));
+			deviceContext->Unmap(m_DirectionalLightStructuredBuffer.Get(), 0);
+		}
+
+		auto spotlights{ lightSystem->GetSpotlightDescriptions() };
+
+		if (!spotlights.empty())
+		{
+			D3D11_MAPPED_SUBRESOURCE spotlightMs;
+			deviceContext->Map(m_SpotlightStructuredBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &spotlightMs);
+			memcpy(spotlightMs.pData, spotlights.data(), spotlights.size() * sizeof(SpotlightDesc));
+			deviceContext->Unmap(m_SpotlightStructuredBuffer.Get(), 0);
+		}
+
+		deviceContext->VSSetShaderResources(0, 1, m_DirectionalLightSrv.GetAddressOf());
+		deviceContext->VSSetShaderResources(1, 1, m_PointLightSrv.GetAddressOf());
+		deviceContext->VSSetShaderResources(2, 1, m_SpotlightSrv.GetAddressOf());
+
+		deviceContext->PSSetShaderResources(3, 1, m_DirectionalLightSrv.GetAddressOf());
+		deviceContext->PSSetShaderResources(4, 1, m_PointLightSrv.GetAddressOf());
+		deviceContext->PSSetShaderResources(5, 1, m_SpotlightSrv.GetAddressOf());
 
 		//Fill up the uniform structure.
 		UniformBuffer uniforms;
@@ -149,6 +275,9 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		uniforms.MV = MathUtils::Transpose(mv);
 		uniforms.V = MathUtils::Transpose(v);
 		uniforms.textureMatrix = MathUtils::Transpose(textureMatrix);
+		uniforms.pointLightCount = pointLights.size();
+		uniforms.directionalLightCount = directionalLights.size();
+		uniforms.spotlightCount = spotlights.size();
 
 		//Get the material from the RenderComponent.
 		Material material{ renderComponent->GetMaterial() };
@@ -176,13 +305,13 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 		//Copy the data into the D3D11 constant buffer.
 		D3D11_MAPPED_SUBRESOURCE ms;
-		device_context->Map(m_ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &ms);
+		deviceContext->Map(m_ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &ms);
 		memcpy(ms.pData, &uniforms, sizeof(UniformBuffer));
-		device_context->Unmap(m_ConstantBuffer.Get(), 0);
+		deviceContext->Unmap(m_ConstantBuffer.Get(), 0);
 
 		//Set the constant buffer to both the Vertex shader and the Pixel shader.
-		device_context->VSSetConstantBuffers(0, 1, m_ConstantBuffer.GetAddressOf());
-		device_context->PSSetConstantBuffers(0, 1, m_ConstantBuffer.GetAddressOf());
+		deviceContext->VSSetConstantBuffers(0, 1, m_ConstantBuffer.GetAddressOf());
+		deviceContext->PSSetConstantBuffers(0, 1, m_ConstantBuffer.GetAddressOf());
 
 		//Get the Mesh from the Render component.
 		Mesh* mesh{ renderComponent->GetMesh() };
