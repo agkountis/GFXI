@@ -38,7 +38,7 @@ namespace Blade
 		}
 	}
 
-	void Scene::OnMessage(const MessageContainer& msg) const noexcept
+	void Scene::OnMessage(const MessageContainer<std::string>& msg) const noexcept
 	{
 		for (auto object : m_Entities)
 		{

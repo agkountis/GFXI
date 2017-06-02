@@ -54,6 +54,12 @@
     <Filter Include="include\d3d">
       <UniqueIdentifier>{32ad73cd-e900-4810-ae12-31b65fc33fb8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\networking">
+      <UniqueIdentifier>{f911331d-e4b1-4d26-a908-3a4cffa2e9e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\networking">
+      <UniqueIdentifier>{a40502fe-5035-478d-8e00-f2495a88f626}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -263,6 +269,24 @@
     <ClInclude Include="include\thread_pool.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\ref_counted_container.h">
+      <Filter>include\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\serialization_utils.h">
+      <Filter>include\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\serializable.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\socket.h">
+      <Filter>include\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network_manager.h">
+      <Filter>include\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network_message.h">
+      <Filter>include\networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GAPI_context.cpp">
@@ -275,9 +299,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\mesh_utils.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\message.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\observer.cpp">
@@ -432,6 +453,12 @@
     </ClCompile>
     <ClCompile Include="src\thread_pool.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network_manager.cpp">
+      <Filter>src\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\socket.cpp">
+      <Filter>src\networking</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

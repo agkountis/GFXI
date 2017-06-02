@@ -4,44 +4,37 @@
 
 #ifdef _DEBUG
 
-// Please merge into dev with this commented out, it causes some linker errors when I include it in simulation_system-
-// I don't understand why yet.
-// Error code url (msn): https://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k(LNK2005)&rd=true
-///* MEMORY LEAKS DETECTION */
-//#define _CRTDBG_MAP_ALLOC
-//#include <stdlib.h>
-//#include <crtdbg.h>
-//using namespace std;
-//
-//struct AtExit // <-- this struct causes problems
-//{
-//	~AtExit()
-//	{
-//		_CrtDumpMemoryLeaks();
-//	}
-//} doAtExit;  //
-///* ENDS - MEMORY LEAKS DETECTION */
-
 #include <iostream>
-#include <sstream>
-#include <string>
 
-#define BLADE_TRACE_CON(trace) std::clog << "TRACE: " << trace << std::endl;
+// Trace macros
+#define BLADE_TRACE_CON(trace) std::clog << "TRACE: " << trace << std::endl
 
 #define BLADE_TRACE_VSOUT(trace) \
 { std::wstringstream s;  s << "TRACE: " << (trace) << std::endl; \
-  OutputDebugString(s.str().c_str()); \
-} 
+OutputDebugString(s.str().c_str()); }
 
+#define BLADE_TRACE(trace) BLADE_TRACE_CON(trace)
 
-#define BLADE_TRACE(trace)  {BLADE_TRACE_CON(trace); BLADE_TRACE_VSOUT(trace)}
+// Error macros
+#define BLADE_ERROR_CON(error) std::cerr << "ERROR: " << error << std::endl
+
+#define BLADE_ERROR_VSOUT(error) \
+{std::wstringstream s; s << "ERROR: "<< error << std::endl; \
+OutputDebugString(s.str().c_str());}
+
+#define BLADE_ERROR(error) BLADE_ERROR_CON(error)
+
+// Warning macros
+#define BLADE_WARNING_CON(warning) std::clog << "WARNING: " << warning << std::endl
+#define BLADE_WARNING(warning) BLADE_WARNING_CON(warning)
 
 #else
 #define BLADE_TRACE_CON(trace)
 #define BLADE_TRACE_VSOUT(trace)
-#define BLADE_TRACE(trace) 
+#define BLADE_TRACE(trace)
+#define BLADE_ERROR(trace)
+#define BLADE_WARNING(trace)
 #endif
 
 
 #endif //BLADE_TRACE_H_
-

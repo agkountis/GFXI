@@ -56,7 +56,7 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 		return false;
 	}
 
-	BLADE_TRACE("BattleArenaApplication Initialization Starts!")
+	BLADE_TRACE("BattleArenaApplication Initialization Starts!");
 
 	WindowFunctionCallbacks callbacks;
 	callbacks.passive_motion_func = PassiveMouseMotion;
@@ -69,7 +69,7 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 
 	std::srand(time(nullptr));
 
-	BLADE_TRACE("Creating Window!")
+	BLADE_TRACE("Creating Window!");
 
 	WindowingService::Create(L"BattleArena",
 	                         Vec2i{ 1600, 900 },
@@ -90,13 +90,13 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 		return false;
 	}
 
-	BLADE_TRACE("Creating the GameScene!")
+	BLADE_TRACE("Creating the GameScene!");
 	GameScene* gameScene{ new GameScene };
 
-	BLADE_TRACE("Pusing the GameScreen into the ScreenManager!")
+	BLADE_TRACE("Pusing the GameScreen into the ScreenManager!");
 	SceneManager::PushScene(gameScene);
 
-	BLADE_TRACE("BattleArenaApplication Initialization Successfull!")
+	BLADE_TRACE("BattleArenaApplication Initialization Successfull!");
 	return true;
 }
 

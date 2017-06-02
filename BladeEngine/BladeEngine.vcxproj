@@ -89,7 +89,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;BLADE_BUILD_D3D;GLM_FORCE_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;BLADE_BUILD_D3D;GLM_FORCE_SWIZZLE;WIN32_LEAN_AND_MEAN;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -179,7 +179,13 @@
     <ClInclude Include="include\GAPI_context.h" />
     <ClInclude Include="include\light_component.h" />
     <ClInclude Include="include\light_system.h" />
+    <ClInclude Include="include\network_manager.h" />
+    <ClInclude Include="include\network_message.h" />
     <ClInclude Include="include\point_light_component.h" />
+    <ClInclude Include="include\ref_counted_container.h" />
+    <ClInclude Include="include\serializable.h" />
+    <ClInclude Include="include\serialization_utils.h" />
+    <ClInclude Include="include\socket.h" />
     <ClInclude Include="include\spotlight_component.h" />
     <ClInclude Include="include\thread_pool.h" />
     <ClInclude Include="include\trace.h" />
@@ -254,8 +260,8 @@
     <ClCompile Include="src\material.cpp" />
     <ClCompile Include="src\mesh.cpp" />
     <ClCompile Include="src\mesh_utils.cpp" />
-    <ClCompile Include="src\message.cpp" />
     <ClCompile Include="src\entity.cpp" />
+    <ClCompile Include="src\network_manager.cpp" />
     <ClCompile Include="src\observer.cpp" />
     <ClCompile Include="src\observer_subject.cpp" />
     <ClCompile Include="src\pipeline.cpp" />
@@ -272,6 +278,7 @@
     <ClCompile Include="src\scene_manager.cpp" />
     <ClCompile Include="src\shader_program.cpp" />
     <ClCompile Include="src\shader_program_manager.cpp" />
+    <ClCompile Include="src\socket.cpp" />
     <ClCompile Include="src\spotlight_component.cpp" />
     <ClCompile Include="src\system.cpp" />
     <ClCompile Include="src\simulation_system.cpp" />

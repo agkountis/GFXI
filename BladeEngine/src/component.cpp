@@ -33,7 +33,7 @@ namespace Blade
 		return m_Id;
 	}
 
-	void Component::OnMessage(const MessageContainer& msg)
+	void Component::OnMessage(const MessageContainer<std::string>& msg)
 	{
 		SceneManager::OnMessage(msg);
 	}

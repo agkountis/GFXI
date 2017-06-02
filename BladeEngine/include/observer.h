@@ -1,6 +1,7 @@
 #ifndef BLADE_OBSERVER_H_
 #define BLADE_OBSERVER_H_
 #include "types.h"
+#include <string>
 
 namespace Blade
 {
@@ -10,7 +11,7 @@ namespace Blade
 		Observer() = default;
 		virtual ~Observer();
 
-		virtual void OnMessage(const MessageContainer& msg) = 0;
+		virtual void OnMessage(const MessageContainer<std::string>& msg) = 0;
 	};
 }
 

@@ -32,7 +32,7 @@ namespace Blade
 		static void OnMouseClick(int button, bool state, int x, int y) noexcept;
 
 		// Respond to messages
-		static void OnMessage(const MessageContainer& msg) noexcept;
+		static void OnMessage(const MessageContainer<std::string>& msg) noexcept;
 
 		static void Update(float delta_time, long time) noexcept;
 

@@ -61,7 +61,7 @@ namespace Blade
 		}
 	}
 
-	void SceneManager::OnMessage(const MessageContainer& msg) noexcept
+	void SceneManager::OnMessage(const MessageContainer<std::string>& msg) noexcept
 	{
 		if (m_Scenes.back())
 		{
@@ -81,7 +81,6 @@ namespace Blade
 	{
 		if (m_Scenes.back())
 		{
-			
 			m_Scenes.back()->Draw();
 			//system processes stuff <-------------
 			// m_Scenes.back()->PostDraw();
