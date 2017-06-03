@@ -499,5 +499,8 @@
     <ClCompile Include="src\behaviour_sytem.cpp">
       <Filter>src\systems</Filter>
     </ClCompile>
+    <ClCompile Include="include\behaviour_component.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

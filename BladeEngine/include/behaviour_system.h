@@ -16,21 +16,19 @@ namespace Blade
 		/**
 		* \brief The registered BehaviourComponents.
 		*/
-		std::map<std::string, BehaviourComponent*> m_BehaviourComponents;
+		std::map<std::string, BehaviourComponent*> m_BehaviourComponents;	
 
-		/**
-		* \brief Initializes the BehaviourSystem.
-		* \return TRUE if initialization is successful, FALSE otherwise.
-		*/
-		bool Initialize() noexcept override;
-
+	public:
 		/**
 		* \brief Processes the BehaviourComponent.
 		* \param deltaTime The time elapsed from the previous frame of the application.
 		*/
 		void Process(float deltaTime) noexcept override;
-
-	public:
+		/**
+		* \brief Initializes the BehaviourSystem.
+		* \return TRUE if initialization is successful, FALSE otherwise.
+		*/
+		bool Initialize() noexcept override;
 		/**
 		* \brief Registers the specified BehaviourComponent to the BehaviourSystem.
 		* \param behaviourComponent The BehaviourComponent to be registered to the BehaviourSystem for processing.

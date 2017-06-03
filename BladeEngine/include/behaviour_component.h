@@ -13,6 +13,17 @@ namespace Blade
 	{
 	public:
 		/**
+		* \brief Component constructor.
+		* \param type The type of the Component as a string.
+		* \param parent The Entity the Component will be attached to.
+		*/
+		BehaviourComponent(const std::string& type, Entity* parent);
+
+		BehaviourComponent(const BehaviourComponent& other) = delete;
+
+		BehaviourComponent& operator=(const BehaviourComponent& other) = delete;
+
+		/**
 		* \brief Updates the Component on each frame.
 		* \param dt The time elapsed from the previous frame of the Application.
 		* \param time The elapsed time since the start of the Application.

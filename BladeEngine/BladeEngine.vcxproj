@@ -245,6 +245,7 @@
     <ClInclude Include="include\windowing_types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\behaviour_component.cpp" />
     <ClCompile Include="src\abstract_viewport.cpp" />
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\behaviour_sytem.cpp" />
