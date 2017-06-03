@@ -21,6 +21,7 @@ namespace Blade
 	std::unique_ptr<LightSystem> EngineContext::m_LightSystem{ std::make_unique<LightSystem>() };
 	std::unique_ptr<SimulationSystem> EngineContext::m_SimulationSystem{ std::make_unique<SimulationSystem>() };
 	std::unique_ptr<BehaviourSystem> EngineContext::m_BehaviourSystem{ std::make_unique<BehaviourSystem>() };
+	std::unique_ptr<InputManager> EngineContext::m_InputManager{ std::make_unique<InputManager>() };
 
 	bool EngineContext::Initialize()
 	{
@@ -51,6 +52,12 @@ namespace Blade
 		if (!m_BehaviourSystem->Initialize())
 		{
 			BLADE_ERROR("Failed to initialize the BehaviourSystem.");
+			return false;
+		}
+
+		if (!m_InputManager->Initialize())
+		{
+			BLADE_ERROR("Failed to initialize the InputManager.");
 			return false;
 		}
 
@@ -87,5 +94,9 @@ namespace Blade
 	BehaviourSystem * EngineContext::GetBehaviourSystem() noexcept
 	{
 		return m_BehaviourSystem.get();
+	}
+	InputManager * EngineContext::GetInputManager() noexcept
+	{
+		return m_InputManager.get();
 	}
 }

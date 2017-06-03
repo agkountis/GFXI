@@ -66,6 +66,12 @@
     <Filter Include="src\entities">
       <UniqueIdentifier>{df865eb9-a470-4b08-a484-3443d3938bd9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\input">
+      <UniqueIdentifier>{f2c6e43d-55ba-4cdd-9e86-b6903bf14fce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\input">
+      <UniqueIdentifier>{fa27e588-9ce2-4fd8-98c2-7f595f394106}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -314,6 +320,15 @@
     <ClInclude Include="include\behaviour_system.h">
       <Filter>include\systems</Filter>
     </ClInclude>
+    <ClInclude Include="include\input_device.h">
+      <Filter>include\input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input_state.h">
+      <Filter>include\input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input_manager.h">
+      <Filter>include\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -501,6 +516,15 @@
     </ClCompile>
     <ClCompile Include="include\behaviour_component.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input_manager.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input_device.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input_state.cpp">
+      <Filter>src\input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
