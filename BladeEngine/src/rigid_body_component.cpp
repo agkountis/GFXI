@@ -7,7 +7,7 @@ namespace Blade
 		Component::Component{ "co_rb", parent },
 		m_Mass{mass}
 	{
-		EngineContext::GetSimulationSystem()->RegisterComponent(this);
+		G_SimulationSystem.RegisterComponent(this);
 	}
 
 	RigidBodyComponent::RigidBodyComponent(Entity * parent, float density, float volume):
@@ -18,7 +18,7 @@ namespace Blade
 
 	RigidBodyComponent::~RigidBodyComponent()
 	{
-		EngineContext::GetSimulationSystem()->UnregisterComponent(this);
+		G_SimulationSystem.UnregisterComponent(this);
 	}
 
 	void RigidBodyComponent::AddForce(Vec3d & force) noexcept

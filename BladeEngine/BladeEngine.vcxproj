@@ -198,7 +198,6 @@
     <ClInclude Include="include\ref_counted_container.h" />
     <ClInclude Include="include\serializable.h" />
     <ClInclude Include="include\serialization_utils.h" />
-    <ClInclude Include="include\singleton.h" />
     <ClInclude Include="include\socket.h" />
     <ClInclude Include="include\spotlight.h" />
     <ClInclude Include="include\spotlight_component.h" />

@@ -3,11 +3,10 @@
 #include <vector>
 #include "scene.h"
 #include <memory>
-#include "singleton.h"
 
 namespace Blade
 {
-	class SceneManager : public Singleton<SceneManager>
+	class SceneManager
 	{
 	private:
 		std::vector<std::unique_ptr<Scene>> m_Scenes;
@@ -31,8 +30,6 @@ namespace Blade
 
 		void Draw() noexcept;
 	};
-
-#define STN_SceneManager SceneManager::GetInstance()
 }
 
 #endif //BLADE_SCENE_MANAGER_H_

@@ -6,7 +6,6 @@
 #include <queue>
 #include "network_message.h"
 #include "socket.h"
-#include "singleton.h"
 
 namespace Blade
 {
@@ -16,7 +15,7 @@ namespace Blade
 
 	using OnClientDisconnectCallback = std::function<void()>;
 
-	class NetworkManager : public Singleton<NetworkManager>
+	class NetworkManager
 	{
 	private:
 		std::map<int, std::unique_ptr<Socket>> m_Connections;
@@ -64,8 +63,6 @@ namespace Blade
 
 		void SetOnClientDisconnectCallback(const OnClientDisconnectCallback& callback) noexcept;
 	};
-
-#define STN_NetworkManager NetworkManager::GetInstance()
 }
 
 #endif //BLADE_NETWORK_MANAGER_H_

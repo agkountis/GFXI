@@ -305,9 +305,6 @@
     <ClInclude Include="include\camera.h">
       <Filter>include\entities</Filter>
     </ClInclude>
-    <ClInclude Include="include\singleton.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\behaviour_component.h">
       <Filter>include\components</Filter>
     </ClInclude>

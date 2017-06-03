@@ -31,7 +31,7 @@ namespace Blade
 	{
 		if (m_ValidFlag)
 		{
-			EngineContext::GetSimulationSystem()->UnregisterComponent(this);
+			G_SimulationSystem.UnregisterComponent(this);
 		}
 		if (m_pBVolume)
 		{
@@ -91,7 +91,7 @@ namespace Blade
 
 		if (m_ValidFlag)
 		{
-			EngineContext::GetSimulationSystem()->RegisterComponent(this);
+			G_SimulationSystem.RegisterComponent(this);
 		}
 		return m_ValidFlag;
 

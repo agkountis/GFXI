@@ -2,12 +2,11 @@
 #define BLADE_RENDER_STATE_MANAGER_H_
 #include <map>
 #include "render_state.h"
-#include "singleton.h"
 #include <memory>
 
 namespace Blade
 {
-	class RenderStateManager : public Singleton<RenderStateManager>
+	class RenderStateManager
 	{
 	private:
 		std::map<RenderStateType, std::unique_ptr<RenderState>> m_RenderStates;
@@ -17,8 +16,6 @@ namespace Blade
 
 		void Set(RenderStateType renderState) noexcept;
 	};
-
-#define STN_RenderStateManager RenderStateManager::GetInstance()
 }
 
 #endif //BLADE_RENDER_STATE_MANAGER_H_

@@ -1,7 +1,6 @@
 #include "d3d/D3D11_shader_program.h"
 #include "d3d/D3D11_context.h"
 #include "d3d/D3D11_shader.h"
-#include "resource_manager.h"
 #include "vertex.h"
 #include "engine_context.h"
 
@@ -15,7 +14,7 @@ namespace Blade
 
 		if (!shaderProgramDesc.vertexShader.empty())
 		{
-			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.vertexShader), VERTEX_SHADER);
+			SetShader(G_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.vertexShader), VERTEX_SHADER);
 
 			D3D11Shader* shader{ GetShader(VERTEX_SHADER) };
 			ID3DBlob* blob{ shader->GetBlob() };
@@ -71,7 +70,7 @@ namespace Blade
 
 		if (!shaderProgramDesc.hullShader.empty())
 		{
-			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.hullShader), HULL_SHADER);
+			SetShader(G_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.hullShader), HULL_SHADER);
 
 			D3D11Shader* shader{ GetShader(HULL_SHADER) };
 
@@ -88,7 +87,7 @@ namespace Blade
 
 		if (!shaderProgramDesc.domainShader.empty())
 		{
-			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.domainShader), DOMAIN_SHADER);
+			SetShader(G_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.domainShader), DOMAIN_SHADER);
 
 			D3D11Shader* shader{ GetShader(DOMAIN_SHADER) };
 
@@ -105,7 +104,7 @@ namespace Blade
 
 		if (!shaderProgramDesc.geometryShader.empty())
 		{
-			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.geometryShader), GEOMETRY_SHADER);
+			SetShader(G_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.geometryShader), GEOMETRY_SHADER);
 
 			D3D11Shader* shader{ GetShader(GEOMETRY_SHADER) };
 
@@ -122,7 +121,7 @@ namespace Blade
 
 		if (!shaderProgramDesc.fragmentShader.empty())
 		{
-			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.fragmentShader), FRAGMENT_SHADER);
+			SetShader(G_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.fragmentShader), FRAGMENT_SHADER);
 
 			D3D11Shader* shader{ GetShader(FRAGMENT_SHADER) };
 

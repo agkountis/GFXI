@@ -7,6 +7,11 @@
 #include "simulation_system.h"
 #include "behaviour_system.h"
 #include "thread_pool.h"
+#include "network_manager.h"
+#include "render_state_manager.h"
+#include "resource_manager.h"
+#include "scene_manager.h"
+#include "shader_program_manager.h"
 
 namespace Blade
 {
@@ -17,12 +22,21 @@ namespace Blade
 		static std::unique_ptr<D3D11Context> m_GAPIContext;
 #else
 #endif
-		static std::unique_ptr<RenderSystem> m_RenderSystem;
-		static std::unique_ptr<CameraSystem> m_CameraSystem;
-		static std::unique_ptr<LightSystem> m_LightSystem;
-		static std::unique_ptr<SimulationSystem> m_SimulationSystem;
-		static std::unique_ptr<BehaviourSystem> m_BehaviourSystem;
-		//TODO: Declare all the systems as statics here
+		static ThreadPool m_ThreadPool;
+
+		// Systems
+		static RenderSystem m_RenderSystem;
+		static CameraSystem m_CameraSystem;
+		static LightSystem m_LightSystem;
+		static SimulationSystem m_SimulationSystem;
+		static BehaviourSystem m_BehaviourSystem;
+
+		// Managers
+		static NetworkManager m_NetworkManager;
+		static RenderStateManager m_RenderStateManager;
+		static ResourceManager m_ResourceManager;
+		static SceneManager m_SceneManager;
+		static ShaderProgramManager m_ShaderProgramManager;
 
 	public:
 		EngineContext() = default;
@@ -37,16 +51,42 @@ namespace Blade
 		static D3D11Context* GetGAPIContext() noexcept;
 #else
 #endif
-		static RenderSystem* GetRenderSystem() noexcept;
+		static ThreadPool& GetThreadPool() noexcept;
 
-		static CameraSystem* GetCameraSystem() noexcept;
+		static RenderSystem& GetRenderSystem() noexcept;
 
-		static LightSystem* GetLightSystem() noexcept;
+		static CameraSystem& GetCameraSystem() noexcept;
 
-		static SimulationSystem* GetSimulationSystem() noexcept;
+		static LightSystem& GetLightSystem() noexcept;
 
-		static BehaviourSystem* GetBehaviourSystem() noexcept;
+		static SimulationSystem& GetSimulationSystem() noexcept;
+
+		static BehaviourSystem& GetBehaviourSystem() noexcept;
+
+		static NetworkManager& GetNetworkManager() noexcept;
+
+		static RenderStateManager& GetRenderStateManager() noexcept;
+
+		static ResourceManager& GetResourceManager() noexcept;
+
+		static SceneManager& GetSceneManager() noexcept;
+
+		static ShaderProgramManager& GetShaderProgramManager() noexcept;
 	};
+
+#define G_ThreadPool EngineContext::GetThreadPool()
+
+#define G_RenderSystem EngineContext::GetRenderSystem()
+#define G_CameraSystem EngineContext::GetCameraSystem()
+#define G_LightSystem EngineContext::GetLightSystem()
+#define G_SimulationSystem EngineContext::GetSimulationSystem()
+#define G_BehaviourSystem EngineContext::GetBehaviourSystem()
+
+#define G_NetworkManager EngineContext::GetNetworkManager()
+#define G_RenderStateManager EngineContext::GetRenderStateManager()
+#define G_ResourceManager EngineContext::GetResourceManager()
+#define G_SceneManager EngineContext::GetSceneManager()
+#define G_ShaderProgramManager EngineContext::GetShaderProgramManager()
 }
 
 #endif //BLADE_CONTEXT_H_

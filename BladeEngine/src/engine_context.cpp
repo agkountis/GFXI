@@ -1,8 +1,5 @@
 #include "engine_context.h"
-#include "d3d/D3D11_context.h"
 #include <iostream>
-#include "render_state_manager.h"
-#include "network_manager.h"
 
 namespace Blade
 {
@@ -16,15 +13,25 @@ namespace Blade
 #else
 #endif
 
-	std::unique_ptr<RenderSystem> EngineContext::m_RenderSystem{ std::make_unique<RenderSystem>() };
-	std::unique_ptr<CameraSystem> EngineContext::m_CameraSystem{ std::make_unique<CameraSystem>() };
-	std::unique_ptr<LightSystem> EngineContext::m_LightSystem{ std::make_unique<LightSystem>() };
-	std::unique_ptr<SimulationSystem> EngineContext::m_SimulationSystem{ std::make_unique<SimulationSystem>() };
-	std::unique_ptr<BehaviourSystem> EngineContext::m_BehaviourSystem{ std::make_unique<BehaviourSystem>() };
+	ThreadPool EngineContext::m_ThreadPool;
+
+	// Systems
+	RenderSystem EngineContext::m_RenderSystem;
+	CameraSystem EngineContext::m_CameraSystem;
+	LightSystem EngineContext::m_LightSystem;
+	SimulationSystem EngineContext::m_SimulationSystem;
+	BehaviourSystem EngineContext::m_BehaviourSystem;
+
+	// Managers
+	NetworkManager EngineContext::m_NetworkManager;
+	RenderStateManager EngineContext::m_RenderStateManager;
+	ResourceManager EngineContext::m_ResourceManager;
+	SceneManager EngineContext::m_SceneManager;
+	ShaderProgramManager EngineContext::m_ShaderProgramManager;
 
 	bool EngineContext::Initialize()
 	{
-		if (!STN_ThreadPool.Initialize())
+		if (!m_ThreadPool.Initialize())
 		{
 			BLADE_ERROR("Failed to initialize the thread pool.");
 			return false;
@@ -36,27 +43,27 @@ namespace Blade
 			return false;
 		}
 
-		if (!m_RenderSystem->Initialize())
+		if (!m_RenderSystem.Initialize())
 		{
 			BLADE_ERROR("Failed to initialize the RenderSystem.");
 			return false;
 		}
 
-		if (!m_SimulationSystem->Initialize())
+		if (!m_SimulationSystem.Initialize())
 		{
 			BLADE_ERROR("Failed to initialize the SimulationSystem.");
 			return false;
 		}
 
-		if (!m_BehaviourSystem->Initialize())
+		if (!m_BehaviourSystem.Initialize())
 		{
 			BLADE_ERROR("Failed to initialize the BehaviourSystem.");
 			return false;
 		}
 
-		STN_RenderStateManager.Initialize();
+		m_RenderStateManager.Initialize();
 
-		if (!STN_NetworkManager.Initialize())
+		if (!m_NetworkManager.Initialize())
 		{
 			BLADE_ERROR("Failed to initialize the NetworkManager.");
 			return false;
@@ -65,27 +72,58 @@ namespace Blade
 		return true;
 	}
 
-	RenderSystem* EngineContext::GetRenderSystem() noexcept
+	ThreadPool& EngineContext::GetThreadPool() noexcept
 	{
-		return m_RenderSystem.get();
+		return m_ThreadPool;
 	}
 
-	CameraSystem* EngineContext::GetCameraSystem() noexcept
+	RenderSystem& EngineContext::GetRenderSystem() noexcept
 	{
-		return m_CameraSystem.get();
+		return m_RenderSystem;
 	}
 
-	LightSystem* EngineContext::GetLightSystem() noexcept
+	CameraSystem& EngineContext::GetCameraSystem() noexcept
 	{
-		return m_LightSystem.get();
+		return m_CameraSystem;
 	}
 
-	SimulationSystem * EngineContext::GetSimulationSystem() noexcept
+	LightSystem& EngineContext::GetLightSystem() noexcept
 	{
-		return m_SimulationSystem.get();
+		return m_LightSystem;
 	}
-	BehaviourSystem * EngineContext::GetBehaviourSystem() noexcept
+
+	SimulationSystem& EngineContext::GetSimulationSystem() noexcept
 	{
-		return m_BehaviourSystem.get();
+		return m_SimulationSystem;
+	}
+
+	BehaviourSystem& EngineContext::GetBehaviourSystem() noexcept
+	{
+		return m_BehaviourSystem;
+	}
+
+	NetworkManager& EngineContext::GetNetworkManager() noexcept
+	{
+		return m_NetworkManager;
+	}
+
+	RenderStateManager& EngineContext::GetRenderStateManager() noexcept
+	{
+		return m_RenderStateManager;
+	}
+
+	ResourceManager& EngineContext::GetResourceManager() noexcept
+	{
+		return m_ResourceManager;
+	}
+
+	SceneManager& EngineContext::GetSceneManager() noexcept
+	{
+		return m_SceneManager;
+	}
+
+	ShaderProgramManager& EngineContext::GetShaderProgramManager() noexcept
+	{
+		return m_ShaderProgramManager;
 	}
 }

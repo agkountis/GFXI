@@ -7,12 +7,12 @@ namespace Blade
 		: LightComponent{ LightType::DIRECTIONAL, parent },
 		m_LightDescription{ lightDesc }
 	{
-		EngineContext::GetLightSystem()->RegisterComponent(this);
+		G_LightSystem.RegisterComponent(this);
 	}
 
 	DirectionalLightComponent::~DirectionalLightComponent()
 	{
-		EngineContext::GetLightSystem()->UnregisterComponent(GetId());
+		G_LightSystem.UnregisterComponent(GetId());
 	}
 
 	const DirectionalLightDesc& DirectionalLightComponent::GetLightDescription() const noexcept
