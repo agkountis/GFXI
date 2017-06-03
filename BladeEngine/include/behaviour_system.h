@@ -42,6 +42,16 @@ namespace Blade
 		* \param id The unique id of the BehaviourComponent to be unregistered.
 		*/
 		void UnregisterComponent(int id) noexcept;
+
+		/**
+		* \brief Setup all the BehaviourComponent that are currently registered with the  BehaviourSystem.
+		*/
+		virtual void Setup() noexcept;
+
+		/**
+		* \brief Teardown all the BehaviourComponent that are currently registered with the BehaviourSystem.
+		*/
+		virtual void Teardown() noexcept;
 	};
 }
 #endif

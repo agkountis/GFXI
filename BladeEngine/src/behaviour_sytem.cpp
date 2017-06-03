@@ -13,7 +13,7 @@ namespace Blade
 	{
 		for (auto pair : m_BehaviourComponents)
 		{
-			auto component  = pair.second;
+			auto component{ pair.second };
 			component->Update(deltaTime);
 		}
 	}
@@ -39,6 +39,24 @@ namespace Blade
 			{
 				++it;
 			}
+		}
+	}
+
+	void BehaviourSystem::Setup() noexcept
+	{
+		for (auto pair : m_BehaviourComponents)
+		{
+			auto behaviour{ pair.second };
+			behaviour->Setup();
+		}
+	}
+
+	void BehaviourSystem::Teardown() noexcept
+	{
+		for (auto pair : m_BehaviourComponents)
+		{
+			auto behaviour{ pair.second };
+			behaviour->Teardown();
 		}
 	}
 }

@@ -28,38 +28,7 @@ namespace Blade
 	void Entity::Update(float dt, long time) noexcept
 	{
 		CalculateXform();
-
-		for (auto component : m_Components)
-		{
-			auto behaviourComponent = dynamic_cast<BehaviourComponent*>(component);
-			if (behaviourComponent != nullptr)
-			{
-				behaviourComponent->Update(dt, time);
-			}
-		}
 	}
 
-	void Entity::Setup() noexcept
-	{
-		for (auto component : m_Components)
-		{
-			auto behaviourComponent = dynamic_cast<BehaviourComponent*>(component);
-			if (behaviourComponent != nullptr)
-			{
-			behaviourComponent->Setup();
-			}
-		}
-	}
-
-	void Entity::Teardown() noexcept
-	{
-		for (auto component : m_Components)
-		{
-			auto behaviourComponent = dynamic_cast<BehaviourComponent*>(component);
-			if (behaviourComponent != nullptr)
-			{
-				behaviourComponent->Teardown();
-			}
-		}
-	}
+	
 }
