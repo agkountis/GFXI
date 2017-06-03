@@ -72,23 +72,6 @@ namespace Blade
 		int GetId() const noexcept;
 
 		/**
-		 * \brief Performs setup actions after the Component's creation
-		 */
-		virtual void Setup() noexcept = 0;
-
-		/**
-		 * \brief Updates the Component on each frame.
-		 * \param dt The time elapsed from the previous frame of the Application.
-		 * \param time The elapsed time since the start of the Application.
-		 */
-		virtual void Update(float dt, long time = 0) noexcept = 0;
-
-		/**
-		 * \brief Performs actions before the Component is destroyed.
-		 */
-		virtual void Teardown() noexcept = 0;
-
-		/**
 		 * \brief Broadcasts the recieved message to the current active Scene
 		 * through the SceneManager.
 		 * \param msg The message received.

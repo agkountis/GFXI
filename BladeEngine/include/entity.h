@@ -154,10 +154,6 @@ namespace Blade
 		}
 
 		virtual void Update(float dt, long time = 0) noexcept;
-
-		virtual void Setup() noexcept;
-
-		virtual void Teardown() noexcept;
 	};
 }
 

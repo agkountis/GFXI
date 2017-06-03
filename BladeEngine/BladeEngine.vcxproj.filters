@@ -308,6 +308,12 @@
     <ClInclude Include="include\singleton.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\behaviour_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\behaviour_system.h">
+      <Filter>include\systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -445,12 +451,6 @@
     <ClCompile Include="src\bounding_cylinder.cpp">
       <Filter>src\objects</Filter>
     </ClCompile>
-    <ClCompile Include="src\camera_component.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\camera_system.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\d3d\D3D11_viewport.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -489,6 +489,18 @@
     </ClCompile>
     <ClCompile Include="src\spotlight.cpp">
       <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera_system.cpp">
+      <Filter>src\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviour_sytem.cpp">
+      <Filter>src\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="include\behaviour_component.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

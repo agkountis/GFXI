@@ -11,7 +11,6 @@
 #include "directional_light_component.h"
 #include "camera.h"
 #include "directional_light.h"
-
 using namespace Blade;
 
 void GameScene::Initialize()
@@ -160,6 +159,8 @@ void GameScene::Update(float deltaTime, long time) noexcept
 	Scene::Update(deltaTime, time);
 
 	EngineContext::GetLightSystem()->Process();
+
+	EngineContext::GetBehaviourSystem()->Process(deltaTime);
 }
 
 void GameScene::Draw() const noexcept

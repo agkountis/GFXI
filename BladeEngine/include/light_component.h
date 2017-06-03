@@ -105,11 +105,6 @@ namespace Blade
 			m_LightDescCacheIndex = index;
 		}
 
-		void Setup() noexcept override = 0;
-
-		void Update(float dt, long time) noexcept override = 0;
-
-		void Teardown() noexcept override = 0;
 	};
 }
 

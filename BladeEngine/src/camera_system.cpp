@@ -1,12 +1,13 @@
 #include "camera_system.h"
 #include "entity.h"
 #include <iostream>
-
+#include "trace.h"
 namespace Blade
 {
 	void CameraSystem::RegisterComponent(CameraComponent* cameraComponent) noexcept
 	{
 		m_CameraComponents[cameraComponent->GetParent()->GetName()] = cameraComponent;
+		BLADE_TRACE("Registered camera component!");
 	}
 
 	void CameraSystem::UnregisterComponent(int id) noexcept
@@ -16,10 +17,13 @@ namespace Blade
 		while (it != m_CameraComponents.end())
 		{
 			auto entry{ *it };
+
 			if (entry.second->GetId() == id)
+
 			{
 				it = m_CameraComponents.erase(it);
 			}
+
 			else
 			{
 				++it;
@@ -34,6 +38,7 @@ namespace Blade
 		if (camera)
 		{
 			p_ActiveCamera = camera;
+			BLADE_TRACE("Set new active camera!");
 		}
 		else
 		{

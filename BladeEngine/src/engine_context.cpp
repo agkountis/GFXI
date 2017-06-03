@@ -20,6 +20,7 @@ namespace Blade
 	std::unique_ptr<CameraSystem> EngineContext::m_CameraSystem{ std::make_unique<CameraSystem>() };
 	std::unique_ptr<LightSystem> EngineContext::m_LightSystem{ std::make_unique<LightSystem>() };
 	std::unique_ptr<SimulationSystem> EngineContext::m_SimulationSystem{ std::make_unique<SimulationSystem>() };
+	std::unique_ptr<BehaviourSystem> EngineContext::m_BehaviourSystem{ std::make_unique<BehaviourSystem>() };
 
 	bool EngineContext::Initialize()
 	{
@@ -44,6 +45,12 @@ namespace Blade
 		if (!m_SimulationSystem->Initialize())
 		{
 			BLADE_ERROR("Failed to initialize the SimulationSystem.");
+			return false;
+		}
+
+		if (!m_BehaviourSystem->Initialize())
+		{
+			BLADE_ERROR("Failed to initialize the BehaviourSystem.");
 			return false;
 		}
 
@@ -76,5 +83,9 @@ namespace Blade
 	SimulationSystem * EngineContext::GetSimulationSystem() noexcept
 	{
 		return m_SimulationSystem.get();
+	}
+	BehaviourSystem * EngineContext::GetBehaviourSystem() noexcept
+	{
+		return m_BehaviourSystem.get();
 	}
 }

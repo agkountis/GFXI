@@ -40,9 +40,6 @@ namespace Blade
 		 */
 		Mat4f m_ProjectionMatrix;
 
-		void Teardown() noexcept override;
-
-		//TODO: Later on update matrices only when it's needed. (Dirty bit)
 
 	public:
 		/**
@@ -156,6 +153,14 @@ namespace Blade
 		 */
 		const Mat4f& GetViewMatrix() const noexcept;
 
+
+		/**
+		* \brief Sets the view matrix
+		* \param farPlane The new view matrix
+		*/
+		void SetViewMatrix(const Mat4f& viewMatrix) noexcept;
+		
+
 		/**
 		 * \brief Provides the projection matrix.
 		 * \return The projection matrix.
@@ -163,18 +168,10 @@ namespace Blade
 		const Mat4f& GetProjectionMatrix() const noexcept;
 
 		/**
-		 * \brief Sets up the CameraComponent.
-		 * \details Calculates and caches the projection matrix.
-		 */
-		void Setup() noexcept override;
+		* \brief Set the projection matrix with perspectiveLH.
+		*/
+		void UsePerspectiveProjection() noexcept;
 
-		/**
-		 * \brief Updates the CameraComponent
-		 * \details Calculates the view matrix.
-		 * \param dt The time elapsed from the previous frame of the Application.
-		 * \param time The elapsed time since the start of the Application.
-		 */
-		void Update(float dt, long time) noexcept override;
 	};
 }
 

@@ -34,15 +34,4 @@ namespace Blade
 		m_Material = material;
 	}
 
-	void RenderComponent::Setup() noexcept
-	{
-	}
-
-	void RenderComponent::Update(float dt, long time) noexcept
-	{
-	}
-
-	void RenderComponent::Teardown() noexcept
-	{
-	}
 }

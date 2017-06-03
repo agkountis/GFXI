@@ -8,6 +8,5 @@ namespace Blade
 	{
 		m_PointLightComponent = new PointLightComponent{ lightDescription, this };
 
-		m_PointLightComponent->Setup();
 	}
 }

@@ -25,15 +25,4 @@ namespace Blade
 		return &m_LightDescription;
 	}
 
-	void DirectionalLightComponent::Setup() noexcept
-	{
-	}
-
-	void DirectionalLightComponent::Update(float dt, long time) noexcept
-	{
-	}
-
-	void DirectionalLightComponent::Teardown() noexcept
-	{
-	}
 }
