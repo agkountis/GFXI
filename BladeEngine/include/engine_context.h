@@ -12,8 +12,6 @@ namespace Blade
 	class EngineContext
 	{
 	private:
-		static std::unique_ptr<ThreadPool> m_ThreadPool;
-
 #if defined(BLADE_BUILD_D3D)
 		static std::unique_ptr<D3D11Context> m_GAPIContext;
 #else
@@ -44,8 +42,6 @@ namespace Blade
 		static LightSystem* GetLightSystem() noexcept;
 
 		static SimulationSystem* GetSimulationSystem() noexcept;
-
-		static ThreadPool* GetThreadPool() noexcept;
 	};
 }
 

@@ -69,7 +69,7 @@ namespace Blade
 
 					m_Connections[++s_ClientId] = std::make_unique<Socket>(std::move(connectionSocket));
 
-					std::cout << "Connection count: " << m_Connections.size() << std::endl;
+					BLADE_TRACE("Connection count: " + std::to_string(m_Connections.size()));
 				}
 
 				int tmp{ s_ClientId };
@@ -98,9 +98,9 @@ namespace Blade
 	void NetworkManager::ReceiveThreadMain(const int idx)
 	{
 		int receivedBytes{ 0 };
-		char buffer[1024];
+		Byte buffer[1024];
 
-		std::vector<char> accumulationBuffer;
+		std::vector<Byte> accumulationBuffer;
 
 		// Start receiving bytes untill we get an invalid value.
 		while ((receivedBytes = m_Connections[idx]->Receive(buffer, sizeof buffer)) > 0 && !m_Terminating)
@@ -113,7 +113,7 @@ namespace Blade
 
 			while (size >= sizeof(int) && size >= (Unpack(accumulationBuffer, 0, packetSize) , packetSize))
 			{
-				std::vector<char> buff;
+				std::vector<Byte> buff;
 				buff.insert(buff.end(), accumulationBuffer.begin(), accumulationBuffer.begin() + packetSize);
 
 				accumulationBuffer.erase(accumulationBuffer.begin(), accumulationBuffer.begin() + packetSize);
@@ -145,14 +145,14 @@ namespace Blade
 			}
 		}
 
-		std::cout << "Connection count: " << m_Connections.size() << std::endl;
+		BLADE_TRACE("Connection count: " + std::to_string(m_Connections.size()));
 	}
 
 	void NetworkManager::SendThreadMain()
 	{
 		while (!m_Terminating)
 		{
-			NetworkMessage* message{ nullptr };
+			std::shared_ptr<NetworkMessage> message{ nullptr };
 
 			{
 				std::lock_guard<std::mutex> lock{ m_Mutex };
@@ -160,6 +160,7 @@ namespace Blade
 				if (!m_MessageQueue.empty())
 				{
 					message = m_MessageQueue.front();
+
 					m_MessageQueue.pop();
 				}
 			}
@@ -186,12 +187,9 @@ namespace Blade
 		}
 
 		std::lock_guard<std::mutex> lock{ m_Mutex };
+
 		for (int i = 0; i < m_MessageQueue.size(); ++i)
 		{
-			auto message = m_MessageQueue.front();
-
-			delete message;
-
 			m_MessageQueue.pop();
 		}
 
@@ -206,12 +204,15 @@ namespace Blade
 		WSADATA wsaData;
 
 		BLADE_TRACE("Initializing Windows sockets (WSA).");
+
 		int res{ WSAStartup(MAKEWORD(2, 2), &wsaData) };
+
 		if (res)
 		{
 			BLADE_ERROR("WSAStartup failed! Error: " + std::to_string(res));
 			return false;
 		}
+
 		BLADE_TRACE("Windows socket initialization successful!");
 #endif
 
@@ -225,6 +226,7 @@ namespace Blade
 	void NetworkManager::Listen(unsigned short port) noexcept
 	{
 		BLADE_TRACE("Starting connection listening thread.");
+
 		std::thread listeningThread{ [this, port]() { ConnectionAcceptorThreadMain(port); } };
 
 		listeningThread.detach();
@@ -238,17 +240,16 @@ namespace Blade
 	}
 
 
-	void NetworkManager::QueueMessage(NetworkMessage* msg)
-	noexcept
+	void NetworkManager::QueueMessage(const std::shared_ptr<NetworkMessage>& message) noexcept
 	{
 		std::lock_guard<std::mutex> lock{ m_Mutex };
-		m_MessageQueue.push(msg);
+		m_MessageQueue.push(message);
 	}
 
-	void NetworkManager::SendObject(NetworkMessage* object)
-	noexcept
+	void NetworkManager::SendObject(const std::shared_ptr<NetworkMessage>& object) noexcept
 	{
- 		auto data = object->Serialize();
+		auto data = object->Serialize();
+
 		for (const auto& entry : m_Connections)
 		{
 			entry.second->Send(data.data(), data.size());

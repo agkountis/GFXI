@@ -37,13 +37,13 @@ void GameSceneColorPassStage::DisplayToScreen() const
 	dev_con->ClearRenderTargetView(ctx->GetDefaultRenderTargetView(), &cl_col[0]);
 	dev_con->ClearDepthStencilView(ctx->GetDefaultDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	ShaderProgramManager::Get("render_texture_sdrprog")->Bind();
+	STN_ShaderProgramManager.Get("render_texture_sdrprog")->Bind();
 
 	ID3D11ShaderResourceView* srv{ m_ColorRenderTarget.GetColorAttachment() };
 	dev_con->PSSetShaderResources(0, 1, &srv);
 	dev_con->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
 
-	RenderStateManager::Set(RenderStateType::RS_DRAW_SOLID);
+	STN_RenderStateManager.Set(RenderStateType::RS_DRAW_SOLID);
 	dev_con->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
 	dev_con->Draw(4, 0);
@@ -86,9 +86,9 @@ bool GameSceneColorPassStage::Initialize()
 		return false;
 	}
 
-	UniformBuffer uniforms = {};
-	D3D11_BUFFER_DESC cbDesc = {};
-	cbDesc.ByteWidth = sizeof(uniforms);
+
+	D3D11_BUFFER_DESC cbDesc{};
+	cbDesc.ByteWidth = sizeof(UniformBuffer);
 	cbDesc.Usage = D3D11_USAGE_DYNAMIC;
 	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	cbDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
@@ -104,7 +104,7 @@ bool GameSceneColorPassStage::Initialize()
 		return false;
 	}
 
-	D3D11_BUFFER_DESC pointLightBufferDesc = {};
+	D3D11_BUFFER_DESC pointLightBufferDesc{};
 	pointLightBufferDesc.ByteWidth = MAX_LIGHTS * sizeof(PointLightDesc);
 	pointLightBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
 	pointLightBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
@@ -130,7 +130,7 @@ bool GameSceneColorPassStage::Initialize()
 		return false;
 	}
 
-	D3D11_BUFFER_DESC dirLightBufferDesc = {};
+	D3D11_BUFFER_DESC dirLightBufferDesc{};
 	dirLightBufferDesc.ByteWidth = MAX_LIGHTS * sizeof(DirectionalLightDesc);
 	dirLightBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
 	dirLightBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
@@ -156,7 +156,7 @@ bool GameSceneColorPassStage::Initialize()
 		return false;
 	}
 
-	D3D11_BUFFER_DESC spotlightBufferDesc = {};
+	D3D11_BUFFER_DESC spotlightBufferDesc{};
 	spotlightBufferDesc.ByteWidth = MAX_LIGHTS * sizeof(SpotlightDesc);
 	spotlightBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
 	spotlightBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
@@ -203,7 +203,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	ID3D11DeviceContext* deviceContext{ context->GetDeviceContext() };
 
 	//Bind the requested shader program.
-	ShaderProgramManager::Get("default_sdrprog")->Bind();
+	STN_ShaderProgramManager.Get("default_sdrprog")->Bind();
 
 	//Set the linear wrap texture sampler.
 	deviceContext->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
@@ -220,7 +220,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		//Get the active camera view matrix.
 		Mat4f v{ EngineContext::GetCameraSystem()->GetActiveCameraViewMatrix() };
 
-		//Calculate the ModelViewProjection matrix. 
+		//Calculate the ModelViewProjection matrix.
 		Mat4f mvp{ p * v * m };
 
 		//Calculate the ModelView matrix.
@@ -317,7 +317,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		Mesh* mesh{ renderComponent->GetMesh() };
 
 		//Set the blend state of the RenderComponent's material
-		RenderStateManager::Set(material.blendState);
+		STN_RenderStateManager.Set(material.blendState);
 
 		//Set the viewport of the active camera.
 		EngineContext::GetCameraSystem()->GetActiveCameraViewport().Set();
@@ -337,7 +337,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		}
 
 		// Disable any blend states activated.
-		RenderStateManager::Set(RenderStateType::BS_BLEND_DISSABLED);
+		STN_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
 	}
 
 	//Unbind the render target.

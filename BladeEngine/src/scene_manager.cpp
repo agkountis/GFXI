@@ -2,31 +2,15 @@
 
 namespace Blade
 {
-	std::vector<Scene*> SceneManager::m_Scenes;
-
-	SceneManager::~SceneManager()
-	{
-		for (auto scene : m_Scenes)
-		{
-			delete scene;
-		}
-
-		m_Scenes.clear();
-	}
-
-	void SceneManager::PushScene(Scene* scene) noexcept
+	void SceneManager::PushScene(std::unique_ptr<Scene> scene) noexcept
 	{
 		scene->Initialize();
-		m_Scenes.push_back(scene);
+		m_Scenes.push_back(std::move(scene));
 	}
 
-	Scene* SceneManager::PopScene() noexcept
+	void SceneManager::PopScene() noexcept
 	{
-		Scene* sc{ m_Scenes.back() };
-
-		m_Scenes.erase(m_Scenes.end());
-
-		return sc;
+		m_Scenes.pop_back();
 	}
 
 	void SceneManager::OnKeyDown(unsigned char key, int x, int y) noexcept
@@ -82,8 +66,6 @@ namespace Blade
 		if (m_Scenes.back())
 		{
 			m_Scenes.back()->Draw();
-			//system processes stuff <-------------
-			// m_Scenes.back()->PostDraw();
 		}
 	}
 }

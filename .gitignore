@@ -433,3 +433,5 @@ BladeEngine/doc/
 *.compilation_errors.txt
 BattleArena/data/
 PredictedInputCache_Debug - DirectX_x86.dat
+BladeEngine/Release - DirectX/
+Release - DirectX/

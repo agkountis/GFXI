@@ -17,6 +17,17 @@ namespace Blade
 
 	static const std::wstring SHADER_PATH{ L"sdr\\" };
 
+	struct ShaderProgramDesc
+	{
+		std::string name;
+		unsigned int inputLayoutMask;
+		std::wstring vertexShader;
+		std::wstring fragmentShader;
+		std::wstring hullShader;
+		std::wstring domainShader;
+		std::wstring geometryShader;
+	};
+
 	class ShaderProgram
 	{
 	private:
@@ -46,12 +57,7 @@ namespace Blade
 #else
 #endif
 
-		virtual bool Create(unsigned int inputLayoutMask,
-		                    const std::wstring& vs,
-		                    const std::wstring& fs = L"",
-		                    const std::wstring& hs = L"",
-		                    const std::wstring& ds = L"",
-		                    const std::wstring& gs = L"") noexcept = 0;
+		virtual bool Create(const ShaderProgramDesc& shaderProgramDesc) noexcept = 0;
 
 		virtual void Bind() const noexcept = 0;
 	};

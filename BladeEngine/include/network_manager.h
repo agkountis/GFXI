@@ -6,7 +6,7 @@
 #include <queue>
 #include "network_message.h"
 #include "socket.h"
-#include <atomic>
+#include "singleton.h"
 
 namespace Blade
 {
@@ -16,14 +16,14 @@ namespace Blade
 
 	using OnClientDisconnectCallback = std::function<void()>;
 
-	class NetworkManager
+	class NetworkManager : public Singleton<NetworkManager>
 	{
 	private:
 		std::map<int, std::unique_ptr<Socket>> m_Connections;
 
 		std::mutex m_Mutex;
 
-		std::queue<NetworkMessage*> m_MessageQueue;
+		std::queue<std::shared_ptr<NetworkMessage>> m_MessageQueue;
 
 		std::vector<std::thread> m_Threads;
 
@@ -35,7 +35,7 @@ namespace Blade
 
 		void SendThreadMain();
 
-		void SendObject(NetworkMessage* object) noexcept;
+		void SendObject(const std::shared_ptr<NetworkMessage>& object) noexcept;
 
 		OnNewPacketCallback m_OnNewPacket;
 
@@ -54,7 +54,7 @@ namespace Blade
 
 		void Connect(const std::string& host, unsigned short port) noexcept;
 
-		void QueueMessage(NetworkMessage* msg) noexcept;
+		void QueueMessage(const std::shared_ptr<NetworkMessage>& message) noexcept;
 
 		size_t GetConnectionCount() noexcept;
 
@@ -64,6 +64,8 @@ namespace Blade
 
 		void SetOnClientDisconnectCallback(const OnClientDisconnectCallback& callback) noexcept;
 	};
+
+#define STN_NetworkManager NetworkManager::GetInstance()
 }
 
 #endif //BLADE_NETWORK_MANAGER_H_

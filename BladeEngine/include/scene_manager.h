@@ -2,42 +2,37 @@
 #define BLADE_SCENE_MANAGER_H_
 #include <vector>
 #include "scene.h"
+#include <memory>
+#include "singleton.h"
 
 namespace Blade
 {
-	class SceneManager
+	class SceneManager : public Singleton<SceneManager>
 	{
 	private:
-		static std::vector<Scene*> m_Scenes;
+		std::vector<std::unique_ptr<Scene>> m_Scenes;
 
 	public:
-		SceneManager() = default;
+		void PushScene(std::unique_ptr<Scene> scene) noexcept;
 
-		~SceneManager();
+		void PopScene() noexcept;
 
-		SceneManager(const SceneManager&) = delete;
+		void OnKeyDown(unsigned char key, int x, int y) noexcept;
 
-		SceneManager& operator=(const SceneManager&) = delete;
+		void OnKeyUp(unsigned char key, int x, int y) noexcept;
 
-		static void PushScene(Scene* scene) noexcept;
+		void OnMouseMotion(int x, int y) noexcept;
 
-		static Scene* PopScene() noexcept;
+		void OnMouseClick(int button, bool state, int x, int y) noexcept;
 
-		static void OnKeyDown(unsigned char key, int x, int y) noexcept;
+		void OnMessage(const MessageContainer<std::string>& msg) noexcept;
 
-		static void OnKeyUp(unsigned char key, int x, int y) noexcept;
+		void Update(float delta_time, long time) noexcept;
 
-		static void OnMouseMotion(int x, int y) noexcept;
-
-		static void OnMouseClick(int button, bool state, int x, int y) noexcept;
-
-		// Respond to messages
-		static void OnMessage(const MessageContainer<std::string>& msg) noexcept;
-
-		static void Update(float delta_time, long time) noexcept;
-
-		static void Draw() noexcept;
+		void Draw() noexcept;
 	};
+
+#define STN_SceneManager SceneManager::GetInstance()
 }
 
 #endif //BLADE_SCENE_MANAGER_H_

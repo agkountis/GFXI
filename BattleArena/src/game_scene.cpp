@@ -21,22 +21,22 @@ void GameScene::Initialize()
 	Mesh* cube{ MeshUtils::GenerateUvSphere(1.0f, 30, 30, 1.0f, 1.0f) };
 
 	//Register the resource to the manager, so it manages it's lifetime(memory).
-	ResourceManager::RegisterResource(cube, L"cube");
+	STN_ResourceManager.RegisterResource(cube, L"cube");
 
 	//Define a material.
 	Material material;
 	material.diffuse = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
 	material.specular = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f }; //the w value is the shininess.
 
-	Texture* diffuseTexture{ ResourceManager::Get<D3D11Texture>(TEXTURE_PATH + L"tunnelDiff5.png") };
+	Texture* diffuseTexture{ STN_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelDiff5.png") };
 	diffuseTexture->SetTextureType(TEX_DIFFUSE);
 	material.textures[TEX_DIFFUSE] = diffuseTexture;
 
-	Texture* specularTexture{ ResourceManager::Get<D3D11Texture>(TEXTURE_PATH + L"tunnelSpec5.png") };
+	Texture* specularTexture{ STN_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelSpec5.png") };
 	specularTexture->SetTextureType(TEX_SPECULAR);
 	material.textures[TEX_SPECULAR] = specularTexture;
 
-	Texture* normalmapTexture{ ResourceManager::Get<D3D11Texture>(TEXTURE_PATH + L"tunnelNorm5.png") };
+	Texture* normalmapTexture{ STN_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelNorm5.png") };
 	normalmapTexture->SetTextureType(TEX_NORMAL);
 	material.textures[TEX_NORMAL] = normalmapTexture;
 
