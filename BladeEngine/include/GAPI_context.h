@@ -7,7 +7,9 @@ namespace Blade
 	{
 	public:
 		GAPIContext() = default;
-		virtual ~GAPIContext();
+
+		virtual ~GAPIContext() = default;
+
 		virtual bool Create() = 0;
 	};
 }

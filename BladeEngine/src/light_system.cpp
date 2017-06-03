@@ -181,9 +181,7 @@ namespace Blade
 
 	void LightSystem::Process(float deltaTime) noexcept
 	{
-		ThreadPool* threadPool{ EngineContext::GetThreadPool() };
-
-		threadPool->AddTask([this]() {
+		STN_ThreadPool.AddTask([this]() {
 
 			for (auto entry : m_LightComponents)
 			{

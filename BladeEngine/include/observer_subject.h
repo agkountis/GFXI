@@ -25,7 +25,7 @@ namespace Blade
 		void UnregisterObserver(const std::string& msg, Observer* o) noexcept;
 
 		// Broadcast a message to any listeners
-		void BroadcastMessage(const MessageContainer& msg) const noexcept;
+		void BroadcastMessage(const MessageContainer<std::string>& msg) const noexcept;
 	};
 }
 

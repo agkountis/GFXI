@@ -9,7 +9,7 @@ namespace Blade
 	Component::Component(const std::string& type, Entity* parent) :
 		m_Type{ type }, 
 		p_Parent{ parent },
-		m_Id{++s_IdCounter }
+		m_Id{ ++s_IdCounter }
 	{
 		parent->AddComponent(this);
 	}
@@ -33,8 +33,8 @@ namespace Blade
 		return m_Id;
 	}
 
-	void Component::OnMessage(const MessageContainer& msg)
+	void Component::OnMessage(const MessageContainer<std::string>& msg)
 	{
-		SceneManager::OnMessage(msg);
+		STN_SceneManager.OnMessage(msg);
 	}
 }

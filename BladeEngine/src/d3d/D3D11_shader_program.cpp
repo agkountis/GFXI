@@ -7,20 +7,15 @@
 
 namespace Blade
 {
-	bool D3D11ShaderProgram::Create(unsigned int input_layout_mask,
-	                                const std::wstring& vs,
-	                                const std::wstring& fs,
-	                                const std::wstring& hs,
-	                                const std::wstring& ds,
-	                                const std::wstring& gs) noexcept
+	bool D3D11ShaderProgram::Create(const ShaderProgramDesc& shaderProgramDesc) noexcept
 	{
 		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
 
 		ID3D11Device* device{ GAPI_context->GetDevice() };
 
-		if (!vs.empty())
+		if (!shaderProgramDesc.vertexShader.empty())
 		{
-			SetShader(ResourceManager::Get<D3D11Shader>(SHADER_PATH + vs), VERTEX_SHADER);
+			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.vertexShader), VERTEX_SHADER);
 
 			D3D11Shader* shader{ GetShader(VERTEX_SHADER) };
 			ID3DBlob* blob{ shader->GetBlob() };
@@ -35,27 +30,27 @@ namespace Blade
 
 			std::vector<D3D11_INPUT_ELEMENT_DESC> input;
 
-			if (input_layout_mask & IL_POSITION)
+			if (shaderProgramDesc.inputLayoutMask & IL_POSITION)
 			{
 				input.push_back({ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, offsetof(Vertex, position), D3D11_INPUT_PER_VERTEX_DATA, 0 });
 			}
 
-			if (input_layout_mask & IL_NORMAL)
+			if (shaderProgramDesc.inputLayoutMask & IL_NORMAL)
 			{
 				input.push_back({ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, offsetof(Vertex, normal), D3D11_INPUT_PER_VERTEX_DATA, 0 });
 			}
 
-			if (input_layout_mask & IL_TANGENT)
+			if (shaderProgramDesc.inputLayoutMask & IL_TANGENT)
 			{
 				input.push_back({ "TANGENT", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, offsetof(Vertex, tangent), D3D11_INPUT_PER_VERTEX_DATA, 0 });
 			}
 
-			if (input_layout_mask & IL_TEXCOORD)
+			if (shaderProgramDesc.inputLayoutMask & IL_TEXCOORD)
 			{
 				input.push_back({ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, offsetof(Vertex, texcoord), D3D11_INPUT_PER_VERTEX_DATA, 0 });
 			}
 
-			if (input_layout_mask & IL_COLOR)
+			if (shaderProgramDesc.inputLayoutMask & IL_COLOR)
 			{
 				input.push_back({ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, offsetof(Vertex, color), D3D11_INPUT_PER_VERTEX_DATA, 0 });
 			}
@@ -74,11 +69,11 @@ namespace Blade
 			return false;
 		}
 
-		if (!hs.empty())
+		if (!shaderProgramDesc.hullShader.empty())
 		{
-			SetShader(ResourceManager::Get<D3D11Shader>(SHADER_PATH + hs), HULL_SHADER);
+			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.hullShader), HULL_SHADER);
 
-			D3D11Shader* shader{ GetShader(DOMAIN_SHADER) };
+			D3D11Shader* shader{ GetShader(HULL_SHADER) };
 
 			ID3DBlob* blob{ shader->GetBlob() };
 
@@ -91,9 +86,9 @@ namespace Blade
 			}
 		}
 
-		if (!ds.empty())
+		if (!shaderProgramDesc.domainShader.empty())
 		{
-			SetShader(ResourceManager::Get<D3D11Shader>(SHADER_PATH + ds), DOMAIN_SHADER);
+			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.domainShader), DOMAIN_SHADER);
 
 			D3D11Shader* shader{ GetShader(DOMAIN_SHADER) };
 
@@ -108,9 +103,9 @@ namespace Blade
 			}
 		}
 
-		if (!gs.empty())
+		if (!shaderProgramDesc.geometryShader.empty())
 		{
-			SetShader(ResourceManager::Get<D3D11Shader>(SHADER_PATH + gs), GEOMETRY_SHADER);
+			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.geometryShader), GEOMETRY_SHADER);
 
 			D3D11Shader* shader{ GetShader(GEOMETRY_SHADER) };
 
@@ -125,9 +120,9 @@ namespace Blade
 			}
 		}
 
-		if (!fs.empty())
+		if (!shaderProgramDesc.fragmentShader.empty())
 		{
-			SetShader(ResourceManager::Get<D3D11Shader>(SHADER_PATH + fs), FRAGMENT_SHADER);
+			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.fragmentShader), FRAGMENT_SHADER);
 
 			D3D11Shader* shader{ GetShader(FRAGMENT_SHADER) };
 

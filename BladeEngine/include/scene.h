@@ -42,7 +42,7 @@ namespace Blade
 
 		virtual void Draw() const noexcept = 0;
 
-		virtual void OnMessage(const MessageContainer& msg) const noexcept;
+		virtual void OnMessage(const MessageContainer<std::string>& msg) const noexcept;
 	};
 }
 

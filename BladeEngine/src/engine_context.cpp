@@ -2,11 +2,10 @@
 #include "d3d/D3D11_context.h"
 #include <iostream>
 #include "render_state_manager.h"
+#include "network_manager.h"
 
 namespace Blade
 {
-	std::unique_ptr<ThreadPool> EngineContext::m_ThreadPool{ std::make_unique<ThreadPool>() };
-
 #if defined(BLADE_BUILD_D3D)
 	std::unique_ptr<D3D11Context> EngineContext::m_GAPIContext{ std::make_unique<D3D11Context>() };
 
@@ -24,31 +23,37 @@ namespace Blade
 
 	bool EngineContext::Initialize()
 	{
-		if (!m_ThreadPool->Initialize())
+		if (!STN_ThreadPool.Initialize())
 		{
-			std::cerr << "Failed to initialize the thread pool." << std::endl;
+			BLADE_ERROR("Failed to initialize the thread pool.");
 			return false;
 		}
 
 		if (!m_GAPIContext->Create())
 		{
-			std::cerr << "Failed to initialize the engine's Graphics Context." << std::endl;
+			BLADE_ERROR("Failed to initialize the engine's Graphics Context.");
 			return false;
 		}
 
 		if (!m_RenderSystem->Initialize())
 		{
-			std::cerr << "Failed to initialize the RenderSystem." << std::endl;
+			BLADE_ERROR("Failed to initialize the RenderSystem.");
 			return false;
 		}
 
 		if (!m_SimulationSystem->Initialize())
 		{
-			std::cerr << "Failed to initialize the SimulationSystem." << std::endl;
+			BLADE_ERROR("Failed to initialize the SimulationSystem.");
 			return false;
 		}
 
-		RenderStateManager::Initialize();
+		STN_RenderStateManager.Initialize();
+
+		if (!STN_NetworkManager.Initialize())
+		{
+			BLADE_ERROR("Failed to initialize the NetworkManager.");
+			return false;
+		}
 
 		return true;
 	}
@@ -71,10 +76,5 @@ namespace Blade
 	SimulationSystem * EngineContext::GetSimulationSystem() noexcept
 	{
 		return m_SimulationSystem.get();
-	}
-
-	ThreadPool* EngineContext::GetThreadPool() noexcept
-	{
-		return m_ThreadPool.get();
 	}
 }

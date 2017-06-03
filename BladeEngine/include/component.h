@@ -93,7 +93,7 @@ namespace Blade
 		 * through the SceneManager.
 		 * \param msg The message received.
 		 */
-		void OnMessage(const MessageContainer& msg) override;
+		void OnMessage(const MessageContainer<std::string>& msg) override;
 	};
 }
 

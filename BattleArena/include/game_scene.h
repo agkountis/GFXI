@@ -10,11 +10,11 @@ public:
 	void OnKeyDown(unsigned char key, int x, int y) noexcept override;
 
 	void OnKeyUp(unsigned char key, int x, int y) noexcept override;
-	
+
 	void OnMouseMotion(int x, int y) noexcept override;
-	
+
 	void OnMouseClick(int button, bool state, int x, int y) noexcept override;
-	
+
 	void Update(float deltaTime, long time) noexcept override;
 
 	void Draw() const noexcept override;

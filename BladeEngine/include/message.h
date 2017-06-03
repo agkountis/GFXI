@@ -1,22 +1,22 @@
 #ifndef BLADE_MESSAGE_H_
 #define BLADE_MESSAGE_H_
-#include <string>
 
 namespace Blade
 {
+	template<typename T>
 	class Message
 	{
 	private:
-		std::string m_Type;
+		T m_Type;
 
 	public:
-		explicit Message(const std::string& type) : m_Type{ type }
+		explicit Message(T&& type) : m_Type{ type }
 		{
 		}
 
-		virtual ~Message();
+		virtual ~Message() = default;
 
-		const std::string& get_message_type() const noexcept
+		const T& GetMessageType() const noexcept
 		{
 			return m_Type;
 		}

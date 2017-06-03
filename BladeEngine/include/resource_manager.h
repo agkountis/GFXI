@@ -4,6 +4,7 @@
 #include <map>
 #include <iostream>
 #include "resource.h"
+#include "singleton.h"
 
 namespace Blade
 {
@@ -12,24 +13,18 @@ namespace Blade
 
 	static int s_Id = 0;
 
-	class ResourceManager
+	class ResourceManager : public Singleton<ResourceManager>
 	{
 	private:
-		static std::map<std::wstring, Resource*> m_ResourcesByName;
+		std::map<std::wstring, Resource*> m_ResourcesByName;
 
-		static std::map<unsigned int, Resource*> m_ResourcesById;
+		std::map<unsigned int, Resource*> m_ResourcesById;
 
 	public:
-		ResourceManager() = default;
-
-		ResourceManager(const ResourceManager&) = delete;
-
-		ResourceManager& operator=(const ResourceManager&) = delete;
-
 		~ResourceManager();
 
 		template <typename T>
-		static bool Load(const std::wstring& fileName)
+		bool Load(const std::wstring& fileName)
 		{
 			T* resource{ new T };
 
@@ -45,7 +40,7 @@ namespace Blade
 		}
 
 		template <typename T>
-		static T* Get(const std::wstring& fileName)
+		T* Get(const std::wstring& fileName)
 		{
 			Resource* resource{ m_ResourcesByName[fileName] };
 
@@ -65,7 +60,7 @@ namespace Blade
 			return res;
 		}
 
-		static void RegisterResource(Resource* resource, const std::wstring& name)
+		void RegisterResource(Resource* resource, const std::wstring& name)
 		{
 			if (!resource)
 			{
@@ -83,6 +78,8 @@ namespace Blade
 			m_ResourcesById[s_Id++] = resource;
 		}
 	};
+
+#define STN_ResourceManager ResourceManager::GetInstance()
 }
 
 #endif //BLADE_RESOURCE_MANAGER_H_

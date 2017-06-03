@@ -19,12 +19,7 @@ namespace Blade
 	public:
 		D3D11ShaderProgram() = default;
 
-		bool Create(unsigned int inputLayoutMask,
-		            const std::wstring& vs,
-		            const std::wstring& fs,
-		            const std::wstring& hs,
-		            const std::wstring& ds,
-		            const std::wstring& gs) noexcept override;
+		bool Create(const ShaderProgramDesc& shaderProgramDesc) noexcept override;
 
 		void Bind() const noexcept override;
 	};

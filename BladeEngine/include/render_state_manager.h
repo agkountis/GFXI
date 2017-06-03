@@ -2,27 +2,23 @@
 #define BLADE_RENDER_STATE_MANAGER_H_
 #include <map>
 #include "render_state.h"
+#include "singleton.h"
+#include <memory>
 
 namespace Blade
 {
-	class RenderStateManager
+	class RenderStateManager : public Singleton<RenderStateManager>
 	{
 	private:
-		static std::map<RenderStateType, RenderState*> m_RenderStates;
+		std::map<RenderStateType, std::unique_ptr<RenderState>> m_RenderStates;
 
 	public:
-		RenderStateManager();
+		void Initialize() noexcept;
 
-		~RenderStateManager();
-
-		RenderStateManager(const RenderStateManager&) = delete;
-
-		RenderStateManager& operator=(const RenderStateManager&) = delete;
-
-		static void Initialize() noexcept;
-
-		static void Set(RenderStateType renderState) noexcept;
+		void Set(RenderStateType renderState) noexcept;
 	};
+
+#define STN_RenderStateManager RenderStateManager::GetInstance()
 }
 
 #endif //BLADE_RENDER_STATE_MANAGER_H_

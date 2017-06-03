@@ -4,10 +4,11 @@
 #include <vector>
 #include <queue>
 #include <mutex>
+#include "singleton.h"
 
 namespace Blade
 {
-	class ThreadPool
+	class ThreadPool : public Singleton<ThreadPool>
 	{
 	private:
 		std::vector<std::thread> m_Workers;
@@ -27,7 +28,6 @@ namespace Blade
 		void WaitAndExecude();
 
 	public:
-
 		~ThreadPool();
 
 		bool Initialize();
@@ -46,6 +46,8 @@ namespace Blade
 
 		size_t PendingTaskCount() const;
 	};
+
+#define STN_ThreadPool ThreadPool::GetInstance()
 }
 
 #endif //BLADE_THREAD_POOL_H
