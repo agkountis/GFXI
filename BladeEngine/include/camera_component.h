@@ -172,8 +172,6 @@ namespace Blade
 		*/
 		void UsePerspectiveProjection() noexcept;
 
-		//#improvement maybe we could add a functionality to add a orthographic
-
 	};
 }
 

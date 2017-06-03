@@ -8,7 +8,7 @@ namespace Blade
 {
 	/**
 	* \brief A System responsible to process and manage the BehaviourComponents
-	* by performing the execute Update method on every component
+	* by calling the Update method on every component.
 	*/
 	class BehaviourSystem : public System 
 	{
