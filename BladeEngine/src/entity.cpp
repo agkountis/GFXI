@@ -1,5 +1,5 @@
 #include "entity.h"
-
+#include "behaviour_system.h"
 namespace Blade
 {
 	Entity::~Entity()
@@ -31,7 +31,11 @@ namespace Blade
 
 		for (auto component : m_Components)
 		{
-			component->Update(dt, time);
+			auto behaviourComponent = dynamic_cast<BehaviourComponent*>(component);
+			if (behaviourComponent != nullptr)
+			{
+				behaviourComponent->Update(dt, time);
+			}
 		}
 	}
 
@@ -39,7 +43,11 @@ namespace Blade
 	{
 		for (auto component : m_Components)
 		{
-			component->Setup();
+			auto behaviourComponent = dynamic_cast<BehaviourComponent*>(component);
+			if (behaviourComponent != nullptr)
+			{
+			behaviourComponent->Setup();
+			}
 		}
 	}
 
@@ -47,7 +55,11 @@ namespace Blade
 	{
 		for (auto component : m_Components)
 		{
-			component->Teardown();
+			auto behaviourComponent = dynamic_cast<BehaviourComponent*>(component);
+			if (behaviourComponent != nullptr)
+			{
+				behaviourComponent->Teardown();
+			}
 		}
 	}
 }

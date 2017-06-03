@@ -18,11 +18,6 @@ namespace Blade
 
 		SpotlightDesc* GetLightDescriptionPtr() noexcept;
 
-		void Setup() noexcept override;
-
-		void Update(float dt, long time) noexcept override;
-		
-		void Teardown() noexcept override;
 	};
 }
 

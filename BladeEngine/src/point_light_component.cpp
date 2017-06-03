@@ -25,15 +25,4 @@ namespace Blade
 		return &m_LightDescription;
 	}
 
-	void PointLightComponent::Setup() noexcept
-	{
-	}
-
-	void PointLightComponent::Update(float dt, long time) noexcept
-	{
-	}
-
-	void PointLightComponent::Teardown() noexcept
-	{
-	}
 }

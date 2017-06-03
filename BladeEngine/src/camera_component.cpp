@@ -8,6 +8,7 @@ namespace Blade
 		: Component{ "co_camera", parent }
 	{
 		EngineContext::GetCameraSystem()->RegisterComponent(this);
+
 	}
 
 	CameraComponent::CameraComponent(Entity* parent,
@@ -21,6 +22,7 @@ namespace Blade
 		  m_ClippingPlanes{ Vec2f{ nearPlane, farPlane } }
 	{
 		EngineContext::GetCameraSystem()->RegisterComponent(this);
+
 	}
 
 	CameraComponent::CameraComponent(Entity* parent,
@@ -101,23 +103,22 @@ namespace Blade
 		return m_ViewMatrix;
 	}
 
+	void CameraComponent::SetViewMatrix(const Mat4f & viewMatrix) noexcept
+	{
+		m_ViewMatrix = viewMatrix;
+	}
+
 	const Mat4f& CameraComponent::GetProjectionMatrix() const noexcept
 	{
 		return m_ProjectionMatrix;
 	}
 
-	void CameraComponent::Setup() noexcept
+	void CameraComponent::UsePerspectiveProjection() noexcept
 	{
 		Recti rect{ m_Viewport.GetRect() };
 		m_ProjectionMatrix = MathUtils::PerspectiveLH(m_Fov, rect.z, rect.w, m_ClippingPlanes.x, m_ClippingPlanes.y);
 	}
 
-	void CameraComponent::Update(float dt, long time) noexcept
-	{
-		m_ViewMatrix = MathUtils::Inverse(GetParent()->GetXform());
-	}
 
-	void CameraComponent::Teardown() noexcept
-	{
-	}
+
 }

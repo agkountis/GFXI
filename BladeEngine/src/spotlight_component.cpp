@@ -25,15 +25,4 @@ namespace Blade
 		return &m_LightDescription;
 	}
 
-	void SpotlightComponent::Setup() noexcept
-	{
-	}
-
-	void SpotlightComponent::Update(float dt, long time) noexcept
-	{
-	}
-
-	void SpotlightComponent::Teardown() noexcept
-	{
-	}
 }

@@ -8,6 +8,5 @@ namespace Blade
 	{
 		m_DirectionalLightComponent = new DirectionalLightComponent{ lightDescription, this };
 
-		m_DirectionalLightComponent->Setup();
 	}
 }

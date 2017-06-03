@@ -15,7 +15,7 @@ namespace Blade
 	public:
 		/**
 		* \brief Constructs RigidBodyComponent with mass "mass"
-		* \param Parent enitity pointer - does not take ownership.
+		* \param Parent entity pointer - does not take ownership.
 		* \param Mass of the body - Kilograms assumed
 		*/
 		RigidBodyComponent(Entity* parent, float mass);
@@ -50,26 +50,6 @@ namespace Blade
 		* \return Mass in kilograms.
 		*/
 		float GetMass() const noexcept;
-		/**************** WILL BE REMOVED ONCE COMPONENT DEFINITION STUFF IS SORTED **********/
-
-		/**
-		* \brief Performs setup actions after the Component's creation.
-		*/
-		void Setup() noexcept override;
-
-		/**
-		* \brief Updates the Component on each frame.
-		* \param dt The time elapsed from the previous frame of the Application.
-		* \param time The elapsed time since the start of the Application.
-		*/
-		void Update(float dt, long time = 0) noexcept;
-
-		/**
-		* \brief Performs actions before the Component is destroyed.
-		*/
-		void Teardown() noexcept;
-
-		/******************************************************************************/
 
 	};
 }

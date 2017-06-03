@@ -8,6 +8,5 @@ namespace Blade
 	{
 		m_SpotlightComponent = new SpotlightComponent{ lightDescription, this };
 
-		m_SpotlightComponent->Setup();
 	}
 }

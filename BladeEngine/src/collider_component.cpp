@@ -102,4 +102,5 @@ namespace Blade
 	{
 		return m_ValidFlag;
 	}
+
 }
