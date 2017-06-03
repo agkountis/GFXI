@@ -12,10 +12,10 @@ namespace Blade
 	{
 		InputState();
 		~InputState();
-		InputState(const InputState& src) noexcept;
-		InputState& operator=(const InputState& rhs)noexcept;
-		InputState(InputState&& src) noexcept;
-		InputState& operator=(InputState&& rhs) noexcept;
+		InputState(const InputState& src) noexcept = default;
+		InputState& operator=(const InputState& rhs)noexcept = default;
+		InputState(InputState&& src) noexcept = default;
+		InputState& operator=(InputState&& rhs) noexcept = default;
 
 		//Implement a state comparison or something like that here (...)
 		
