@@ -314,9 +314,6 @@
     <ClInclude Include="src\bounding_cylinder.h">
       <Filter>include\colliders</Filter>
     </ClInclude>
-    <ClInclude Include="include\bounding_plane.h">
-      <Filter>include\colliders</Filter>
-    </ClInclude>
     <ClInclude Include="include\bounding_sphere.h">
       <Filter>include\colliders</Filter>
     </ClInclude>
@@ -331,6 +328,12 @@
     </ClInclude>
     <ClInclude Include="include\simulation_component.h">
       <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\plane_collider.h">
+      <Filter>include\colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\simulation_utils.h">
+      <Filter>include\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -511,9 +514,6 @@
     <ClCompile Include="src\bounding_cylinder.cpp">
       <Filter>src\colliders</Filter>
     </ClCompile>
-    <ClCompile Include="src\bounding_plane.cpp">
-      <Filter>src\colliders</Filter>
-    </ClCompile>
     <ClCompile Include="src\collider_component.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
@@ -521,6 +521,12 @@
       <Filter>src\components</Filter>
     </ClCompile>
     <ClCompile Include="src\math_utils.cpp">
+      <Filter>src\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\plane_collider.cpp">
+      <Filter>src\colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\simulation_utils.cpp">
       <Filter>src\utilities</Filter>
     </ClCompile>
   </ItemGroup>

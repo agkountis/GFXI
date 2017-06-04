@@ -1,20 +1,20 @@
-#include "bounding_plane.h"
+#include "plane_collider.h"
 
 using namespace Blade;
 
-BoundingPlane::BoundingPlane(const Vec3f& planeNormal, const float offset):
+PlaneCollider::PlaneCollider(const Vec3f& planeNormal, const float offset):
 	m_PlaneNormal{planeNormal},
 	m_Offset{offset}
 {
 
 }
 
-bool BoundingPlane::Collide(const Collider* collider, ContactManifold& manifold) const noexcept
+bool PlaneCollider::Collide(const Collider* collider, ContactManifold& manifold) const noexcept
 {
 	return false;
 }
 
-bool BoundingPlane::Collide(const BoundingSphere* bsphere, ContactManifold& manifold) const noexcept
+bool PlaneCollider::Collide(const BoundingSphere* bsphere, ContactManifold& manifold) const noexcept
 {
 	//#needtoimplement
 	/*

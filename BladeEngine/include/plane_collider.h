@@ -8,7 +8,7 @@ namespace Blade
 	/**
 	* \brief Bounding Plane class is a collider
 	*/
-	class BoundingPlane : public Collider
+	class PlaneCollider : public Collider
 	{
 	private:
 		/*
@@ -21,7 +21,7 @@ namespace Blade
 		*/
 		float m_Offset;
 	public:
-		explicit BoundingPlane(const Vec3f& planeNormal, const float offset);
+		explicit PlaneCollider(const Vec3f& planeNormal, const float offset);
 
 		bool Collide(const Collider* collider, ContactManifold& manifold) const noexcept override;
 
