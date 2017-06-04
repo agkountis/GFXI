@@ -1,5 +1,5 @@
 #include "math_utils.h"
-
+#include "types.h"
 using namespace Blade::MathUtils;
 
 Derivative RungeKutta4Integrator::Evaluate(const State& initial, float timeSec, float deltaTime, const Derivative& derivative) noexcept
@@ -37,32 +37,32 @@ State RungeKutta4Integrator::Integrate(const State& state, float timeSec, float 
 	return res;
 }
 
-
-void RungeKutta4Integrator::Integrate(Vec3f& position, Vec3f& velocity, const Vec3f& force, float mass, float timeSec, float deltaTime) noexcept
+void Blade::MathUtils::RungeKutta4Integrator::Integrate(Vec3f & position, Vec3f & velocity, const Vec3f & force, float mass, float timeSec, float deltaTime) noexcept
 {
-	State stateX;
-	stateX.x = position.x;
-	stateX.v = velocity.x;
-	stateX.force = force.x;
-	stateX.mass = mass;
+		State stateX;
+		stateX.x = position.x;
+		stateX.v = velocity.x;
+		stateX.force = force.x;
+		stateX.mass = mass;
 
-	State stateY;
-	stateY.x = position.y;
-	stateY.v = velocity.y;
-	stateY.force = force.y;
-	stateY.mass = mass;
+		State stateY;
+		stateY.x = position.y;
+		stateY.v = velocity.y;
+		stateY.force = force.y;
+		stateY.mass = mass;
 
-	State stateZ;
-	stateZ.x = position.z;
-	stateZ.v = velocity.z;
-	stateZ.force = force.z;
-	stateZ.mass = mass;
+		State stateZ;
+		stateZ.x = position.z;
+		stateZ.v = velocity.z;
+		stateZ.force = force.z;
+		stateZ.mass = mass;
 
-	stateX = Integrate(stateX, timeSec, deltaTime);
-	stateY = Integrate(stateY, timeSec, deltaTime);
-	stateZ = Integrate(stateZ, timeSec, deltaTime);
+		stateX = Integrate(stateX, timeSec, deltaTime);
+		stateY = Integrate(stateY, timeSec, deltaTime);
+		stateZ = Integrate(stateZ, timeSec, deltaTime);
 
-	position = Vec3f{ stateX.x, stateY.x, stateZ.x };
+		position = Vec3f{ stateX.x, stateY.x, stateZ.x };
 
-	velocity = Vec3f{ stateX.v, stateY.v, stateZ.v };
+		velocity = Vec3f{ stateX.v, stateY.v, stateZ.v };
 }
+

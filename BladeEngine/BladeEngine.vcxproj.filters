@@ -251,9 +251,6 @@
     <ClInclude Include="include\trace.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\simulation_system.h">
-      <Filter>include\systems</Filter>
-    </ClInclude>
     <ClInclude Include="include\light_system.h">
       <Filter>include\systems</Filter>
     </ClInclude>
@@ -457,9 +454,6 @@
     <ClCompile Include="src\d3d\D3D11_viewport.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\simulation_system.cpp">
-      <Filter>src\systems</Filter>
-    </ClCompile>
     <ClCompile Include="src\light_system.cpp">
       <Filter>src\systems</Filter>
     </ClCompile>
@@ -529,5 +523,13 @@
     <ClCompile Include="src\math_utils.cpp">
       <Filter>src\utilities</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\simulation_system.h">
+      <Filter>include\systems</Filter>
+    </None>
+    <None Include="src\simulation_system.cpp">
+      <Filter>src\systems</Filter>
+    </None>
   </ItemGroup>
 </Project>

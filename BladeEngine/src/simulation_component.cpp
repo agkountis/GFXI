@@ -67,6 +67,16 @@ const Blade::Vec3f& Blade::SimulationComponent::GetPreviousVelocity() const noex
 	return m_PrevVel;
 }
 
+bool Blade::SimulationComponent::IsActive() const noexcept
+{
+	return m_IsActive;
+}
+
+void Blade::SimulationComponent::SetActive(bool active) noexcept
+{
+	m_IsActive = active;
+}
+
 float SimulationComponent::GetMass() const noexcept
 {
 	return m_Mass;

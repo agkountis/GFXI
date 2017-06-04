@@ -50,6 +50,11 @@ namespace Blade
 		*/
 		Vec3f m_PrevPos;
 
+		/*
+		\brief 
+		*/
+		bool m_IsActive;
+
 	public:
 		
 
@@ -132,6 +137,20 @@ namespace Blade
 		\return The inverse of the mass of the simulation object
 		*/
 		float GetInverseMass() const noexcept;
+
+
+		/*
+		\brief Getter of the active flag
+		\return True if the simulation component is active, otherwise false
+		*/
+		bool IsActive() const noexcept;
+
+
+		/*
+		\brief Setter for the active flag
+		*/
+		void SetActive(bool active) noexcept;
+
 
 	};
 

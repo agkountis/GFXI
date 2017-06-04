@@ -3,7 +3,7 @@
 #include <vector>
 #include "system.h"
 #include "collider_component.h"
-#include "rigid_body_component.h"
+#include "simulation_component.h"
 #include "timer.h"
 #include <thread>
 #include <mutex>

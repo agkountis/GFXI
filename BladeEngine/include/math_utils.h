@@ -253,6 +253,7 @@ namespace Blade
 		public:
 			static void Integrate(Vec3f& position, Vec3f& velocity, const Vec3f& force, float mass, float timeSec, float deltaTime) noexcept;
 		};
+
 	}
 }
 
