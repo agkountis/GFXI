@@ -19,8 +19,5 @@ namespace Blade
 		bool BoxAndPlane(const BoundingBox* box, const PlaneCollider* plane, ContactManifold& manifold) noexcept;
 
 		bool CylinderAndPlane(const BoundingCylinder* cylinder, const PlaneCollider* plane, ContactManifold& manifold) noexcept;
-
-
 	}
-
 }

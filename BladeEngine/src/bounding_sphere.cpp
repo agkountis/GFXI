@@ -23,8 +23,8 @@ const float BoundingSphere::GetRadius() const noexcept
 
 bool BoundingSphere::Collide(const BoundingSphere* bsphere, ContactManifold& manifold) const noexcept
 {
-	Vec3f c1{ bsphere->GetParent()->GetParent()->GetPosition() };
-	Vec3f c2{ GetParent()->GetParent()->GetPosition() };
+	Vec3f c1{ bsphere->GetColliderComponent()->GetParent()->GetPosition() };
+	Vec3f c2{ GetColliderComponent()->GetParent()->GetPosition() };
 
 	Vec3f midline{ c1 - c2 };
 

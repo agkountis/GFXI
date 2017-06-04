@@ -28,7 +28,7 @@ namespace Blade
 
 		virtual bool Collide(const BoundingSphere* bsphere, ContactManifold& manifold) const noexcept = 0;
 
-		ColliderComponent* GetParent() const noexcept { return m_Parent; };
+		ColliderComponent* GetColliderComponent() const noexcept { return m_Parent; };
 
 		void SetParent(ColliderComponent* cc) noexcept { m_Parent = cc; };
 	};

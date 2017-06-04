@@ -186,11 +186,11 @@ namespace Blade
 			Entity* e1{ nullptr };
 			Entity* e2{ nullptr };
 
-			e1 = entry.collider1->GetParent()->GetParent();
+			e1 = entry.collider1->GetColliderComponent()->GetParent();
 
 			if (entry.collider2)
 			{
-				e2 = entry.collider2->GetParent()->GetParent();
+				e2 = entry.collider2->GetColliderComponent()->GetParent();
 			}
 
 			SimulationComponent* rb1{ nullptr };
