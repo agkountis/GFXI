@@ -1,60 +1,86 @@
 #ifndef BLADE_SIMULATION_SYSTEM_H_
 #define BLADE_SIMULATION_SYSTEM_H_
-
 #include <vector>
-
-#include "System.h"
-#include "component.h" // just temporary!
+#include "system.h"
 #include "collider_component.h"
 #include "rigid_body_component.h"
-#include "trace.h"
+#include "timer.h"
+#include <thread>
+#include <mutex>
+#include "contact_manifold.h"
+
 namespace Blade
 {
+	/*
+	\brief The simulation system of the engine
+	\details Performs the simulation routine: update, detection, response using threads. 
+	*/
 	class SimulationSystem : System
 	{
 	private:
-		 // TO DO: Add data members
-		std::vector<RigidBodyComponent*> m_RigidBodyList;
-		std::vector<ColliderComponent*> m_ColliderList;
+		std::vector<RigidBodyComponent*> m_RigidBodyComponents;
+
+		std::vector<ColliderComponent*> m_ColliderComponents;
+
+		ContactManifold m_ContactManifold;
+
+		std::thread m_Thread;
+		std::mutex m_Mutex;
+		std::condition_variable m_StartSimulating;
+
+		std::vector<std::function<void()>> m_IntegrationTasks;
+
+		bool m_Terminating{ false };
+
+		Timer m_Timer;
+
+		static void IntegrationTask(int startIndex, int endIndex, SimulationSystem* simulationSystem) noexcept;
+
+		void GenerateIntegrationTasks() noexcept;
+
+		void CollisionDetection() noexcept;
+
+		void CollisionResponse() const noexcept;
 
 	public:
+
+		static float frequency;
+
+		static float elasticity;
+
+		static float friction;
+
+		static float dt;
+
+		static float dtScale;
+
+		float timeSec;
+
 		SimulationSystem() = default;
+
 		SimulationSystem& operator=(SimulationSystem&) = delete;
+
 		SimulationSystem(SimulationSystem&) = delete;
+
 		~SimulationSystem();
 
-
-		/**
-		* \brief Performs system initialization.
-		* \return TRUE if initialization is successfull, FALSE otherwise.
-		*/
 		bool Initialize() noexcept override;
 
-		/**
-		* \brief Updates physics simulation.
-		* \param deltaTime The time elapsed from the previous frame of the application.
-		*/
 		void Process(float deltaTime) noexcept override;
 
-		//*** SYSTEM SIMULATION SPECIFIC METHODS
-
-		/**
-		* \brief Registers Rigid Body Component with the Simulation System.
-		* \param rbc Pointer to the component - DOES NOT TAKE OWNERSHIP
-		*/
 		void RegisterComponent(RigidBodyComponent* rbc) noexcept;
 
-		/**
-		* \brief Registers Collider Component with the Simulation System.
-		* \param rbc Pointer to the component - DOES NOT TAKE OWNERSHIP
-		*/
-		void RegisterComponent(ColliderComponent* col) noexcept ;
+		void RegisterComponent(ColliderComponent* col) noexcept;
 
-		/**
-		* \brief Unregisters a given Component with the Simulation System(if it is registered).
-		* \param rbc Pointer to the component
-		*/
-		void UnregisterComponent(Component* c) noexcept;
+		void UnregisterComponent(RigidBodyComponent* c) const noexcept;
+
+		void UnregisterComponent(ColliderComponent* c) noexcept;
+
+		const std::vector<RigidBodyComponent*>& GetRigidBodyComponents() const noexcept;
+
+		const Timer& GetTimer() const noexcept;
+
+		void Start() noexcept;
 	};
 }
 #endif //BLADE_SIMULATION_SYSTEM_H_

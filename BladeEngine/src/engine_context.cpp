@@ -1,6 +1,6 @@
 #include "engine_context.h"
 #include <iostream>
-
+#include "trace.h"
 namespace Blade
 {
 #if defined(BLADE_BUILD_D3D)

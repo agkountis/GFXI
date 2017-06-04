@@ -66,6 +66,12 @@
     <Filter Include="src\entities">
       <UniqueIdentifier>{df865eb9-a470-4b08-a484-3443d3938bd9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\colliders">
+      <UniqueIdentifier>{c172b151-5ded-4f9f-9cca-256de0c12840}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\colliders">
+      <UniqueIdentifier>{3731ac30-4e6a-457d-b215-c41dbf412629}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -218,9 +224,6 @@
     <ClInclude Include="include\rigid_body_component.h">
       <Filter>include\components</Filter>
     </ClInclude>
-    <ClInclude Include="include\collider_component.h">
-      <Filter>include\components</Filter>
-    </ClInclude>
     <ClInclude Include="include\GAPI_context.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -228,12 +231,6 @@
       <Filter>include\objects</Filter>
     </ClInclude>
     <ClInclude Include="include\bounding_cylinder.h">
-      <Filter>include\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\bounding_sphere.h">
-      <Filter>include\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\bounding_box.h">
       <Filter>include\objects</Filter>
     </ClInclude>
     <ClInclude Include="include\camera_system.h">
@@ -310,6 +307,30 @@
     </ClInclude>
     <ClInclude Include="include\behaviour_system.h">
       <Filter>include\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\collider.h">
+      <Filter>include\colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\contact_manifold.h">
+      <Filter>include\colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bounding_cylinder.h">
+      <Filter>include\colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bounding_plane.h">
+      <Filter>include\colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bounding_sphere.h">
+      <Filter>include\colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bounding_box.h">
+      <Filter>include\colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\threading_utils.h">
+      <Filter>include\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\collider_component.h">
+      <Filter>include\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -433,21 +454,6 @@
     <ClCompile Include="src\rigid_body_component.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
-    <ClCompile Include="src\collider_component.cpp">
-      <Filter>src\components</Filter>
-    </ClCompile>
-    <ClCompile Include="src\bounding_volume.cpp">
-      <Filter>src\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\bounding_box.cpp">
-      <Filter>src\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\bounding_sphere.cpp">
-      <Filter>src\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\bounding_cylinder.cpp">
-      <Filter>src\objects</Filter>
-    </ClCompile>
     <ClCompile Include="src\d3d\D3D11_viewport.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -498,6 +504,24 @@
     </ClCompile>
     <ClCompile Include="include\behaviour_component.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\contact_manifold.cpp">
+      <Filter>src\colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bouding_box.cpp">
+      <Filter>src\colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bounding_sphere.cpp">
+      <Filter>src\colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bounding_cylinder.cpp">
+      <Filter>src\colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bounding_plane.cpp">
+      <Filter>src\colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collider_component.cpp">
+      <Filter>src\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

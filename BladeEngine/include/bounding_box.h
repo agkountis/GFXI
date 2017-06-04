@@ -1,28 +1,30 @@
 #ifndef BLADE_BOUNDING_BOX_H_
 #define BLADE_BOUNDING_BOX_H_
 
-
-#include "bounding_volume.h"
+#include "collider.h"
 #include "math_utils.h"
+#include "contact_manifold.h"
 
 namespace Blade
 {
 	/**
-	* \brief Bounding Box class
+	* \brief Bounding Box class is a Collider
 	*/
-	class BoundingBox : public BoundingVolume
+	class BoundingBox : public Collider
 	{
 
 	private:
-		Blade::Vec3f m_Size;// unused yet!
-		
-		//TO DO: Add all relevant members
+		Vec3f m_Size;
 	public:
-		BoundingBox(Mesh* mesh);
-		BoundingBox(BoundingBox &) = delete;
-		BoundingBox& operator=(BoundingBox&) = delete;
-		~BoundingBox();
 
+		explicit BoundingBox(const Vec3f& size);
+
+		bool Collide(const Collider* collider, ContactManifold& manifold) const noexcept override;
+
+		bool Collide(const BoundingSphere* bsphere, ContactManifold& manifold) const noexcept override;
 	};
+
+
 }
-#endif // BLADE_BOUNDING_BOX_H_
+
+#endif
