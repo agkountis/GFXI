@@ -8,14 +8,15 @@
 #include <iostream>
 #include <utility>
 // required library files
-//#pragma comment (lib, "Xinput.lib")
-//#pragma comment (lib, "Xinput9_1_0.lib")
+#pragma comment (lib, "Xinput.lib")
+#pragma comment (lib, "Xinput9_1_0.lib")
 
 #else //Otherwise PS4 version
 //PS4 stuffs here
 #endif
 
 #include <vector>
+#include <map>
 
 namespace Blade
 {
@@ -23,6 +24,11 @@ namespace Blade
 	* \brief Describe the type of the device.
 	*/
 	enum class DeviceType { KEYBOARD, JOYPAD };
+
+	/*
+	* \brief Describe players to access devices
+	*/
+	enum class Player { PLAYER1, PLAYER2, PLAYER3, PLAYER4 };
 
 	class InputDevice;
 	/*
@@ -32,23 +38,43 @@ namespace Blade
 	*/
 	class InputManager
 	{
+	private:
+		/**
+		* \brief The device pool stores the devices connected to the machine.
+		*/
+		std::vector<InputDevice*> m_DevicePool;
+
+		/**
+		* \brief The active device map stores devices in use by assigned player
+		*/
+		std::map<Player, InputDevice*> m_ActiveDevices;
+
 	public:
 
 		/**
 		* \brief Initialize the input manager
-		* \return True if the initialization is successfully, false otherwise
+		* \return True if the initialization is successful, false otherwise
 		*/
 		bool Initialize() noexcept;
 
 		/**
 		* \brief Counts and store the number of connected devices to the machine.
+		* \return An integer representing the number of connected input devices
 		*/
 		const int EnumerateDevices() noexcept;
 
 		/**
-		* \brief The device pool stores the devices connected to the machine.
+		* \brief Assigns a player to an input device.
+		* \return True if successful, false otherwise
 		*/
-		std::vector<InputDevice*> m_DevicePool;
+		const bool AssignDeviceToPlayer(Player playerID, int deviceNumber);
+
+		/**
+		* \brief Returns an assigned input device by player
+		* \return Active input device for player id, nullptr otherwise
+		*/
+		InputDevice* GetActiveDevice(Player playerID);
+
 	};
 
 }

@@ -9,17 +9,6 @@ namespace Blade
 	*/
 	class InputDevice
 	{
-	public:
-		/*
-		\brief  Constructors and destructor of the InputDevice. 
-		Copy/Move operator and assignments are deleted.
-		*/
-		InputDevice();/*maybe add something here*/
-		virtual ~InputDevice();
-		InputDevice(const InputDevice&) = delete;
-		InputDevice& operator=(const InputDevice& rhs) = delete;
-		InputDevice(InputDevice&& src) = delete;
-		InputDevice& operator=(InputDevice&& rhs) = delete;
 	private:
 		/*
 		\brief Add doc here
@@ -29,7 +18,7 @@ namespace Blade
 		/*
 		\brief Add doc here
 		*/
-		virtual InputState* Pool() = 0; /*What I'm pulling here the current or the previous?*/
+		virtual InputState* Update(float fDeltaTime) = 0; /*What I'm pulling here the current or the previous?*/
 
 		/*
 		\brief The current state of the device
@@ -45,6 +34,23 @@ namespace Blade
 		\brief True if the device is connected, false otherwise
 		*/
 		bool m_IsConnected{ false };
+	public:
+		/*
+		\brief  Constructors and destructor of the InputDevice.
+		Copy/Move operator and assignments are deleted.
+		*/
+		InputDevice();/*maybe add something here*/
+
+		virtual ~InputDevice();
+
+		InputDevice(const InputDevice&) = delete;
+
+		InputDevice& operator=(const InputDevice& rhs) = delete;
+
+		InputDevice(InputDevice&& src) = delete;
+
+		InputDevice& operator=(InputDevice&& rhs) = delete;
+
 	};
 }
 
