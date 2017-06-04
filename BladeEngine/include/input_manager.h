@@ -32,9 +32,9 @@ namespace Blade
 
 	class InputDevice;
 	/*
-	* \brief InputManager class of the engine. This class holds and deal with all the external inputs.
-	* It supports a polling function to query the current state of a joy pad and others helper functions
-	* to query only the changes.
+	* \brief InputManager class of the engine. This class holds and deals with all the external inputs.
+	* It supports a polling function to query the current state of a joypad and other helper functions
+	* to find the change in states between updates.
 	*/
 	class InputManager
 	{

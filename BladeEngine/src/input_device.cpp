@@ -1,4 +1,4 @@
-#include "..\include\input_device.h"
+#include "input_device.h"
 
 Blade::InputDevice::InputDevice()
 {

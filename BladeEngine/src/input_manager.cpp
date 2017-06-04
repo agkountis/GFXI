@@ -26,7 +26,7 @@ const int InputManager::EnumerateDevices() noexcept
 
 			++dDevCount;
 
-			// add counted device to device pool
+			// Create a device from this and add to device pool
 			// (...)
 
 		}
@@ -35,7 +35,7 @@ const int InputManager::EnumerateDevices() noexcept
 
 	return dDevCount;
 
-#else
+#elif defined(BLADE_BUILD_PS4)
 
 	//PS4 code here
 	

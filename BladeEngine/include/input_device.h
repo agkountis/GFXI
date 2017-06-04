@@ -11,14 +11,10 @@ namespace Blade
 	{
 	private:
 		/*
-		\brief Add doc here
+		\brief Checks device is connected
+		\return True if the device is connected and functioning, false otherwise
 		*/
 		virtual bool IsConnected() = 0;
-
-		/*
-		\brief Updates the active devices to 
-		*/
-		virtual void Update(float fDeltaTime) = 0;
 
 		/*
 		\brief The current state of the device
@@ -39,7 +35,19 @@ namespace Blade
 		\brief  Constructors and destructor of the InputDevice.
 		Copy/Move operator and assignments are deleted.
 		*/
-		InputDevice();/*maybe add something here*/
+		InputDevice();	/*maybe add something here*/
+
+		/*
+		\brief Updates the active devices to the latest input states available and buffers the most recent previous state
+		*/
+		virtual void Update(float fDeltaTime) = 0;
+
+		/*
+		\brief Sets vibration parameters of input device (if supported)
+		\details Left and right motors are set independently from 0.0 (off) to 1.0 (100%)
+		\return True if successful, false otherwise
+		*/
+		virtual bool SetVibration(float leftMotor, float rightMotor) = 0;
 
 		virtual ~InputDevice();
 
