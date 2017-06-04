@@ -40,12 +40,12 @@ namespace Blade
 	{
 	private:
 		/**
-		* \brief The device pool stores the devices connected to the machine.
+		* \brief The device pool stores the devices connected to the machine which can be used
 		*/
 		std::vector<InputDevice*> m_DevicePool;
 
 		/**
-		* \brief The active device map stores devices in use by assigned player
+		* \brief The active device map stores devices in use by assigned player, removed from the device pool
 		*/
 		std::map<Player, InputDevice*> m_ActiveDevices;
 

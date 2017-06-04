@@ -16,9 +16,9 @@ namespace Blade
 		virtual bool IsConnected() = 0;
 
 		/*
-		\brief Add doc here
+		\brief Updates the active devices to 
 		*/
-		virtual InputState* Update(float fDeltaTime) = 0; /*What I'm pulling here the current or the previous?*/
+		virtual void Update(float fDeltaTime) = 0;
 
 		/*
 		\brief The current state of the device
