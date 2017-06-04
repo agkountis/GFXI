@@ -1,6 +1,7 @@
 #include "socket.h"
 #include <cassert>
 #include <iostream>
+#include "trace.h"
 
 namespace Blade
 {
@@ -31,7 +32,7 @@ namespace Blade
 
 		if (!hostAddr)
 		{
-			std::cerr << "Failed to connect. Invalid address." << std::endl;
+			BLADE_ERROR("Failed to connect. Invalid address.");
 			return false;
 		}
 
@@ -42,7 +43,7 @@ namespace Blade
 
 		if (connect(m_Handle, reinterpret_cast<sockaddr*>(&address), sizeof address) == -1)
 		{
-			std::cerr << "Failed to connect." << std::endl;
+			BLADE_ERROR("Failed to connect.");
 			return false;
 		}
 
@@ -61,7 +62,7 @@ namespace Blade
 
 		if (bind(m_Handle, reinterpret_cast<sockaddr*>(&address), sizeof address) == -1)
 		{
-			std::cerr << "Failed to bind socket to port " << port << std::endl;
+			BLADE_ERROR("Failed to bind socket to port " + std::to_string(port));
 			return false;
 		}
 
@@ -86,7 +87,7 @@ namespace Blade
 
 		if (!socket.IsValid())
 		{
-			std::cerr << "Failed to accept connection." << std::endl;
+			BLADE_ERROR("Failed to accept connection.");
 		}
 
 		int flag = 1;

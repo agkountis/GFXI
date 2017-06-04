@@ -16,7 +16,7 @@ namespace Blade
 
 		virtual ~Message() = default;
 
-		const T& GetMessageType() const noexcept
+		const T& GetType() const noexcept
 		{
 			return m_Type;
 		}

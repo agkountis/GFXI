@@ -11,7 +11,7 @@ namespace Blade
 {
 	using OnNewClientCallback = std::function<void()>;
 
-	using OnNewPacketCallback = std::function<void(std::vector<char>)>;
+	using OnNewPacketCallback = std::function<void(std::vector<Byte>)>;
 
 	using OnClientDisconnectCallback = std::function<void()>;
 
