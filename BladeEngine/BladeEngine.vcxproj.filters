@@ -66,6 +66,12 @@
     <Filter Include="src\entities">
       <UniqueIdentifier>{df865eb9-a470-4b08-a484-3443d3938bd9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\configuration">
+      <UniqueIdentifier>{4f3a813a-5531-46ba-bf51-755e4a66de64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\configuration">
+      <UniqueIdentifier>{1492f06c-1845-496d-83ae-8b523a29a5dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -311,6 +317,15 @@
     <ClInclude Include="include\behaviour_system.h">
       <Filter>include\systems</Filter>
     </ClInclude>
+    <ClInclude Include="include\declspec.h">
+      <Filter>include\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ncf.h">
+      <Filter>include\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="include\util.h">
+      <Filter>include\configuration</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -498,6 +513,15 @@
     </ClCompile>
     <ClCompile Include="include\behaviour_component.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dllmain.c">
+      <Filter>src\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ncf.cpp">
+      <Filter>src\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util.cpp">
+      <Filter>src\configuration</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

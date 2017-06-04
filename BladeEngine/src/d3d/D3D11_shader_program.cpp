@@ -8,9 +8,7 @@ namespace Blade
 {
 	bool D3D11ShaderProgram::Create(const ShaderProgramDesc& shaderProgramDesc) noexcept
 	{
-		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
-
-		ID3D11Device* device{ GAPI_context->GetDevice() };
+		ID3D11Device* device{ G_GAPIContext.GetDevice() };
 
 		if (!shaderProgramDesc.vertexShader.empty())
 		{
@@ -141,9 +139,7 @@ namespace Blade
 
 	void D3D11ShaderProgram::Bind() const noexcept
 	{
-		D3D11Context* context{ EngineContext::GetGAPIContext() };
-
-		ID3D11DeviceContext* device_context{ context->GetDeviceContext() };
+		ID3D11DeviceContext* device_context{ G_GAPIContext.GetDeviceContext() };
 
 		device_context->VSSetShader(m_VertexShader.Get(), nullptr, 0);
 		device_context->IASetInputLayout(m_InputLayout.Get());

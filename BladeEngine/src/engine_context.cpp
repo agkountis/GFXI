@@ -4,11 +4,11 @@
 namespace Blade
 {
 #if defined(BLADE_BUILD_D3D)
-	std::unique_ptr<D3D11Context> EngineContext::m_GAPIContext{ std::make_unique<D3D11Context>() };
+	D3D11Context EngineContext::m_GAPIContext;
 
-	D3D11Context* EngineContext::GetGAPIContext() noexcept
+	D3D11Context& EngineContext::GetGAPIContext() noexcept
 	{
-		return m_GAPIContext.get();
+		return m_GAPIContext;
 	}
 #else
 #endif
@@ -37,7 +37,7 @@ namespace Blade
 			return false;
 		}
 
-		if (!m_GAPIContext->Create())
+		if (!m_GAPIContext.Create())
 		{
 			BLADE_ERROR("Failed to initialize the engine's Graphics Context.");
 			return false;

@@ -27,15 +27,15 @@ struct UniformBuffer
 
 void GameSceneColorPassStage::DisplayToScreen() const
 {
-	D3D11Context* ctx{ EngineContext::GetGAPIContext() };
+	D3D11Context& ctx{ G_GAPIContext };
 
-	ComPtr<ID3D11DeviceContext> dev_con{ ctx->GetDeviceContext() };
+	ID3D11DeviceContext* dev_con{ ctx.GetDeviceContext() };
 
-	dev_con->OMSetRenderTargets(1, ctx->GetGetAddressOfDefaultRenderTargetView(), ctx->GetDefaultDepthStencilView());
+	dev_con->OMSetRenderTargets(1, ctx.GetGetAddressOfDefaultRenderTargetView(), ctx.GetDefaultDepthStencilView());
 
 	Vec4f cl_col{ 0.0, 0.0, 0.0, 0.0 };
-	dev_con->ClearRenderTargetView(ctx->GetDefaultRenderTargetView(), &cl_col[0]);
-	dev_con->ClearDepthStencilView(ctx->GetDefaultDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	dev_con->ClearRenderTargetView(ctx.GetDefaultRenderTargetView(), &cl_col[0]);
+	dev_con->ClearDepthStencilView(ctx.GetDefaultDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 	G_ShaderProgramManager.Get("render_texture_sdrprog")->Bind();
 
@@ -74,8 +74,7 @@ bool GameSceneColorPassStage::Initialize()
 	samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
 
 	// Create the texture sampler state.
-	D3D11Context* ctx{ EngineContext::GetGAPIContext() };
-	ComPtr<ID3D11Device> device{ ctx->GetDevice() };
+	ID3D11Device* device{ G_GAPIContext.GetDevice() };
 
 	HRESULT res = device->CreateSamplerState(&samplerDesc, m_SamplerLinearWrap.ReleaseAndGetAddressOf());
 
@@ -199,8 +198,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	Vec2i winSize{ WindowingService::GetWindow(0)->GetSize() };
 
 	//Get the device context.
-	D3D11Context* context{ EngineContext::GetGAPIContext() };
-	ID3D11DeviceContext* deviceContext{ context->GetDeviceContext() };
+	ID3D11DeviceContext* deviceContext{ G_GAPIContext.GetDeviceContext() };
 
 	//Bind the requested shader program.
 	G_ShaderProgramManager.Get("default_sdrprog")->Bind();

@@ -16,11 +16,11 @@ namespace Blade
 		int m_SampleCount{ 4 };
 		unsigned int m_MSAAQuality;
 
-		bool CreateSwapChain(D3D11Context* ctx);
+		bool CreateSwapChain(D3D11Context& ctx);
 
-		bool CreateRenderTargetView(D3D11Context* ctx) const noexcept;
+		bool CreateRenderTargetView(D3D11Context& ctx) const noexcept;
 
-		bool CreateDepthStencilView(D3D11Context* ctx) const noexcept;
+		bool CreateDepthStencilView(D3D11Context& ctx) const noexcept;
 
 		bool Initialize();
 
@@ -71,7 +71,7 @@ namespace Blade
 			return m_MSAAQuality;
 		}
 
-		void SwapBuffers() const noexcept override;
+		void SwapBuffers(unsigned syncInterval) const noexcept override;
 	};
 }
 
