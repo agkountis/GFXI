@@ -29,7 +29,7 @@ namespace Blade
 
 		for (int i = startIndex; i < endIndex; ++i)
 		{
-			RigidBodyComponent* rigidBodyComponent = rigidBodies[i];
+			SimulationComponent* rigidBodyComponent = rigidBodies[i];
 			Entity* parent{ rigidBodyComponent->GetParent() };
 
 			if (parent->IsActive())
@@ -41,13 +41,13 @@ namespace Blade
 				rigidBodyComponent->AddForce(gravityForce);
 
 				Vec3f position{ parent->GetPosition() };
-				rigidBodyComponent->prevPos = position;
+				rigidBodyComponent->m_PrevPos = position;
 
 				Vec3f velocity{ rigidBodyComponent->GetVelocity() };
-				rigidBodyComponent->prevVel = velocity;
+				rigidBodyComponent->m_PrevVel = velocity;
 
 				Vec3f force{ rigidBodyComponent->GetForce() * mass };
-				rigidBodyComponent->prevForce = force;
+				rigidBodyComponent->m_PrevForce = force;
 
 				rigidBodyComponent->SetAcceleration(force / mass);
 
@@ -193,14 +193,14 @@ namespace Blade
 				e2 = entry.collider2->GetParent()->GetParent();
 			}
 
-			RigidBodyComponent* rb1{ nullptr };
-			RigidBodyComponent* rb2{ nullptr };
+			SimulationComponent* rb1{ nullptr };
+			SimulationComponent* rb2{ nullptr };
 
-			rb1 = static_cast<RigidBodyComponent*>(e1->GetComponent("co_rb"));
+			rb1 = static_cast<SimulationComponent*>(e1->GetComponent("co_rb"));
 
 			if (e2)
 			{
-				rb2 = static_cast<RigidBodyComponent*>(e2->GetComponent("co_rb"));
+				rb2 = static_cast<SimulationComponent*>(e2->GetComponent("co_rb"));
 			}
 
 			Vec3f relativeVelocity{ rb1->GetVelocity() };
@@ -407,7 +407,7 @@ namespace Blade
 		CollisionResponse();
 	}
 
-	void SimulationSystem::RegisterComponent(RigidBodyComponent* rbc) noexcept
+	void SimulationSystem::RegisterComponent(SimulationComponent* rbc) noexcept
 	{
 		std::lock_guard<std::mutex> lock{ m_Mutex };
 		m_RigidBodyComponents.push_back(rbc);
@@ -419,7 +419,7 @@ namespace Blade
 		m_ColliderComponents.push_back(col);
 	}
 
-	void SimulationSystem::UnregisterComponent(RigidBodyComponent* c) const noexcept
+	void SimulationSystem::UnregisterComponent(SimulationComponent* c) const noexcept
 	{
 	}
 
@@ -432,7 +432,7 @@ namespace Blade
 		//               });
 	}
 
-	const std::vector<RigidBodyComponent*>& SimulationSystem::GetRigidBodyComponents() const noexcept
+	const std::vector<SimulationComponent*>& SimulationSystem::GetRigidBodyComponents() const noexcept
 	{
 		return m_RigidBodyComponents;
 	}

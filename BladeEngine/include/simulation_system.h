@@ -18,7 +18,7 @@ namespace Blade
 	class SimulationSystem : System
 	{
 	private:
-		std::vector<RigidBodyComponent*> m_RigidBodyComponents;
+		std::vector<SimulationComponent*> m_RigidBodyComponents;
 
 		std::vector<ColliderComponent*> m_ColliderComponents;
 
@@ -68,15 +68,15 @@ namespace Blade
 
 		void Process(float deltaTime) noexcept override;
 
-		void RegisterComponent(RigidBodyComponent* rbc) noexcept;
+		void RegisterComponent(SimulationComponent* rbc) noexcept;
 
 		void RegisterComponent(ColliderComponent* col) noexcept;
 
-		void UnregisterComponent(RigidBodyComponent* c) const noexcept;
+		void UnregisterComponent(SimulationComponent* c) const noexcept;
 
 		void UnregisterComponent(ColliderComponent* c) noexcept;
 
-		const std::vector<RigidBodyComponent*>& GetRigidBodyComponents() const noexcept;
+		const std::vector<SimulationComponent*>& GetRigidBodyComponents() const noexcept;
 
 		const Timer& GetTimer() const noexcept;
 

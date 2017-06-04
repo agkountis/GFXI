@@ -199,6 +199,7 @@
     <ClInclude Include="include\point_light.h" />
     <ClInclude Include="include\point_light_component.h" />
     <ClInclude Include="include\ref_counted_container.h" />
+    <ClInclude Include="include\simulation_component.h" />
     <ClInclude Include="include\serializable.h" />
     <ClInclude Include="include\serialization_utils.h" />
     <ClInclude Include="include\socket.h" />
@@ -226,7 +227,6 @@
     <ClInclude Include="include\render_target.h" />
     <ClInclude Include="include\resource.h" />
     <ClInclude Include="include\resource_manager.h" />
-    <ClInclude Include="include\rigid_body_component.h" />
     <ClInclude Include="include\scene.h" />
     <ClInclude Include="include\scene_manager.h" />
     <ClInclude Include="include\shader.h" />
@@ -297,7 +297,7 @@
     <ClCompile Include="src\render_target.cpp" />
     <ClCompile Include="src\resource.cpp" />
     <ClCompile Include="src\resource_manager.cpp" />
-    <ClCompile Include="src\rigid_body_component.cpp" />
+    <ClCompile Include="src\simulation_component.cpp" />
     <ClCompile Include="src\scene.cpp" />
     <ClCompile Include="src\scene_manager.cpp" />
     <ClCompile Include="src\shader_program.cpp" />

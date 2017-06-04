@@ -221,9 +221,6 @@
     <ClInclude Include="include\pipeline_stage.h">
       <Filter>include\rendering</Filter>
     </ClInclude>
-    <ClInclude Include="include\rigid_body_component.h">
-      <Filter>include\components</Filter>
-    </ClInclude>
     <ClInclude Include="include\GAPI_context.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -330,6 +327,9 @@
       <Filter>include\utilities</Filter>
     </ClInclude>
     <ClInclude Include="include\collider_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\simulation_component.h">
       <Filter>include\components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -451,9 +451,6 @@
     <ClCompile Include="src\abstract_viewport.cpp">
       <Filter>src\rendering</Filter>
     </ClCompile>
-    <ClCompile Include="src\rigid_body_component.cpp">
-      <Filter>src\components</Filter>
-    </ClCompile>
     <ClCompile Include="src\d3d\D3D11_viewport.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -521,6 +518,9 @@
       <Filter>src\colliders</Filter>
     </ClCompile>
     <ClCompile Include="src\collider_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\simulation_component.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
   </ItemGroup>
