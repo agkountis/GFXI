@@ -72,6 +72,9 @@
     <Filter Include="src\colliders">
       <UniqueIdentifier>{3731ac30-4e6a-457d-b215-c41dbf412629}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\utilities">
+      <UniqueIdentifier>{a25c3074-6ba9-476d-966c-b1ba98e66599}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -522,6 +525,9 @@
     </ClCompile>
     <ClCompile Include="src\simulation_component.cpp">
       <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\math_utils.cpp">
+      <Filter>src\utilities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

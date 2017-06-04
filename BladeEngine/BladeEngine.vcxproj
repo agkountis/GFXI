@@ -281,6 +281,7 @@
     <ClCompile Include="src\IBO.cpp" />
     <ClCompile Include="src\light_system.cpp" />
     <ClCompile Include="src\material.cpp" />
+    <ClCompile Include="src\math_utils.cpp" />
     <ClCompile Include="src\mesh.cpp" />
     <ClCompile Include="src\mesh_utils.cpp" />
     <ClCompile Include="src\entity.cpp" />

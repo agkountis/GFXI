@@ -225,6 +225,34 @@ namespace Blade
 		{
 			return glm::degrees(radians);
 		}
+
+		struct State
+		{
+			float x{ 0.0f };
+			float v{ 0.0f };
+			float force{ 0.0f };
+			float mass{ 0.0f };
+		};
+
+		struct Derivative
+		{
+			float dx{ 0.0f };
+			float dv{ 0.0f };
+		};
+
+		/*
+		\brief RungKutta4Integrator is an helper class to integrate simulation states.
+		*/
+		class RungeKutta4Integrator
+		{
+		private:
+			static Derivative Evaluate(const State& initial, float timeSec, float deltaTime, const Derivative& derivative) noexcept;
+
+			static State Integrate(const State& state, float timeSec, float deltaTime) noexcept;
+
+		public:
+			static void Integrate(Vec3f& position, Vec3f& velocity, const Vec3f& force, float mass, float timeSec, float deltaTime) noexcept;
+		};
 	}
 }
 
