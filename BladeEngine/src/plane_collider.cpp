@@ -63,3 +63,23 @@ bool PlaneCollider::Collide(const BoundingSphere* bsphere, ContactManifold& mani
 	*/
 	return true;
 }
+
+const Vec3f& PlaneCollider::GetPlaneNormal() const noexcept 
+{
+	return m_PlaneNormal;
+}
+
+void PlaneCollider::SetPlaneNormal(const Vec3f& normal) noexcept
+{
+	m_PlaneNormal = normal;
+}
+
+float PlaneCollider::GetOffeset() const noexcept
+{
+	return m_Offset;
+}
+
+void Blade::PlaneCollider::SetOffset(const float offset) noexcept
+{
+	m_Offset = offset;
+}
