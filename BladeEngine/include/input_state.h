@@ -1,6 +1,24 @@
 #ifndef BLADE_INPUT_STATE_H_
 #define BLADE_INPUT_STATE_H_
 
+//If we are building for d3d -> pc version
+#if defined(BLADE_BUILD_D3D)
+
+#include <Windows.h>
+#include <Xinput.h>
+#include <iostream>
+#include <utility>
+
+// required library files
+#pragma comment (lib, "Xinput.lib")
+#pragma comment (lib, "Xinput9_1_0.lib")
+
+#elif defined (BLADE_BUILD_PS4)
+
+#include <pad.h>
+
+#endif
+
 // Joypad digital face buttons (ABXY/Shapes)
 #define JOYBTN_FACE1		0x0001
 #define JOYBTN_FACE2		0x0002
@@ -17,7 +35,7 @@
 #define JOYBTN_SHOULDER1	0x0100
 #define JOYBTN_SHOULDER2	0x0200
 
-// Joypad stick buttons (click sticks)
+// Joypad stick buttons (click down sticks)
 #define JOYBTN_STICKL		0x0400
 #define JOYBTN_STICKR		0x0800
 
@@ -59,8 +77,23 @@ namespace Blade
 	struct InputState
 	{
 		InputState();
+
+#if defined(BLADE_BUILD_D3D)
+
+		InputState(XINPUT_STATE& state);
+
+#elif defined (BLADE_BUILD_PS4)
+
+		//InputState(PS4_DATA_TYPE_WHATEVER& state);
+
+#else
+
+		//InputState(OTHER_DATA TYPE& state);
+
+#endif
+
 		~InputState();
-		
+
 		InputState(const InputState& src) noexcept = default;
 		InputState& operator=(const InputState& rhs)noexcept = default;
 		InputState(InputState&& src) noexcept = default;

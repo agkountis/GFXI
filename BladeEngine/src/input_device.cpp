@@ -1,10 +1,18 @@
 #include "input_device.h"
 
-Blade::InputDevice::InputDevice()
+using namespace Blade;
+
+void InputDevice::SetInputState(const InputState & state)
+{
+	m_PreviousState = m_CurrentState;
+	m_CurrentState = state;
+}
+
+InputDevice::InputDevice()
 {
 }
 
-void Blade::InputDevice::SetDeadzone(Analog_Deadzone flag, float value)
+void InputDevice::SetDeadzone(Analog_Deadzone flag, float value)
 {
 
 	if (flag == Analog_Deadzone::AnalogStickLeft)
@@ -25,7 +33,7 @@ void Blade::InputDevice::SetDeadzone(Analog_Deadzone flag, float value)
 
 }
 
-float Blade::InputDevice::GetDeadzone(Analog_Deadzone flag)
+float InputDevice::GetDeadzone(Analog_Deadzone flag)
 {
 
 	if (flag == Analog_Deadzone::AnalogStickLeft)
@@ -43,9 +51,9 @@ float Blade::InputDevice::GetDeadzone(Analog_Deadzone flag)
 		// Return the analog trigger dead zone
 		return m_DeadZoneTriggers;
 	}
-
+	return 0.0f;
 }
 
-Blade::InputDevice::~InputDevice()
+InputDevice::~InputDevice()
 {
 }

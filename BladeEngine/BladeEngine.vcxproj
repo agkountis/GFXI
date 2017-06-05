@@ -246,6 +246,7 @@
     <ClInclude Include="include\window.h" />
     <ClInclude Include="include\windowing_service.h" />
     <ClInclude Include="include\windowing_types.h" />
+    <ClInclude Include="include\xinput_device.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\behaviour_component.cpp" />
@@ -313,6 +314,7 @@
     <ClCompile Include="src\win32_window.cpp" />
     <ClCompile Include="src\window.cpp" />
     <ClCompile Include="src\windowing_service.cpp" />
+    <ClCompile Include="src\xinput_device.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

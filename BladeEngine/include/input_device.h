@@ -2,6 +2,23 @@
 #define BLADE_INPUT_DEVICE_H_
 #include "input_state.h"
 
+#if defined(BLADE_BUILD_D3D)
+
+#include <Windows.h>
+#include <Xinput.h>
+#include <iostream>
+#include <utility>
+
+// required library files
+#pragma comment (lib, "Xinput.lib")
+#pragma comment (lib, "Xinput9_1_0.lib")
+
+#elif defined (BLADE_BUILD_PS4)
+
+#include <pad.h>
+
+#endif
+
 /*
 \brief The delta tolerance between states of an analog sensor before a change is recognized. Normalized to [0.0...1.0]
 */
@@ -12,6 +29,7 @@
 #define DEADZONE_ASTICK_L	XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE
 #define DEADZONE_ASTICK_R	XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE
 #define DEADZONE_ATRIGGERS	XINPUT_GAMEPAD_TRIGGER_THRESHOLD
+#define VIBRATION_THRESHOLD	65535
 
 #elif defined(BLADE_BUILD_PS4)
 
@@ -23,6 +41,7 @@ values are for leagacy use only.
 #define DEADZONE_ASTICK_L	0x0d
 #define DEADZONE_ASTICK_R	0x0d
 #define DEADZONE_ATRIGGERS	0x0d
+#define VIBRATION_THRESHOLD	255
 
 #else
 
@@ -48,11 +67,8 @@ namespace Blade
 	class InputDevice
 	{
 	private:
-		/*
-		\brief Checks device is connected
-		\return True if the device is connected and functioning, false otherwise
-		*/
-		virtual bool IsConnected() = 0;
+
+		int m_deviceID{ -1 };
 
 		/*
 		\brief The current state of the device
@@ -83,7 +99,31 @@ namespace Blade
 		\brief True if the device is connected, false otherwise
 		*/
 		bool m_IsConnected{ false };
+
+	protected:
+
+		/*
+		\brief Gets the device ID (input API handle)
+		*/
+		int GetDeviceID() { return m_deviceID; }
+
+		/*
+		\brief Gets the last (newest) buffered input state to read
+		*/
+		const InputState& GetCurrentState() { return m_CurrentState; }
+
+		/*
+		\brief Gets the previous buffered previous input state to read
+		*/
+		const InputState& GetPreviousState() {	return m_PreviousState;	}
+
+		/*
+		\brief Moves the newest input state to the previous state and stores the provided state as newest
+		*/
+		void SetInputState(const InputState& state);
+
 	public:
+
 		/*
 		\brief  Constructors and destructor of the InputDevice.
 		Copy/Move operator and assignments are deleted.
@@ -120,6 +160,13 @@ namespace Blade
 		\remarks Individual trigger dead zone values are not supported
 		*/
 		float GetDeadzone(Analog_Deadzone flag);
+
+		/*
+		\brief Checks device is connected
+		\return True if the device is connected and functioning, false otherwise
+		*/
+		virtual bool IsConnected() = 0;
+
 
 		virtual ~InputDevice();
 

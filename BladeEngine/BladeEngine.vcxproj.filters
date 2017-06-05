@@ -329,6 +329,9 @@
     <ClInclude Include="include\input_manager.h">
       <Filter>include\input</Filter>
     </ClInclude>
+    <ClInclude Include="include\xinput_device.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -525,6 +528,9 @@
     </ClCompile>
     <ClCompile Include="src\input_state.cpp">
       <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\xinput_device.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
