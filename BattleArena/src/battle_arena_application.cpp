@@ -6,6 +6,7 @@
 #include "game_scene.h"
 #include "multiplayer.h"
 #include "ncf.h"
+#include "trace.h"
 
 using namespace Blade;
 

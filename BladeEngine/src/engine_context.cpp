@@ -1,6 +1,6 @@
 #include "engine_context.h"
 #include <iostream>
-
+#include "trace.h"
 namespace Blade
 {
 #if defined(BLADE_BUILD_D3D)
@@ -21,8 +21,8 @@ namespace Blade
 	RenderSystem EngineContext::m_RenderSystem;
 	CameraSystem EngineContext::m_CameraSystem;
 	LightSystem EngineContext::m_LightSystem;
-	SimulationSystem EngineContext::m_SimulationSystem;
 	BehaviourSystem EngineContext::m_BehaviourSystem;
+	SimulationSystem EngineContext::m_SimulationSystem;
 
 	// Managers
 	NetworkManager EngineContext::m_NetworkManager;
@@ -30,6 +30,13 @@ namespace Blade
 	ResourceManager EngineContext::m_ResourceManager;
 	SceneManager EngineContext::m_SceneManager;
 	ShaderProgramManager EngineContext::m_ShaderProgramManager;
+	
+
+	
+
+	
+
+	
 
 	bool EngineContext::Initialize()
 	{

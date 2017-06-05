@@ -1,64 +1,62 @@
 #ifndef BLADE_COLLIDER_COMPONENT_H_
 #define BLADE_COLLIDER_COMPONENT_H_
-
 #include "component.h"
-#include "bounding_volume.h"
-enum class BVolumeType
-{
-	Sphere, 
-	Box, 
-	Cylinder
-};
+#include "collider.h"
+#include <memory>
+
 namespace Blade
 {
+	//Forward declaration
 	class Entity;
-	class ColliderComponent: public Component
+
+	/*
+	\brief ColliderComponent class of the engine is a component without behaviour
+	*/
+	class ColliderComponent : public Component
 	{
-
 	private:
-		bool m_CollisionResponse;
-		BoundingVolume* m_pBVolume;
-		bool m_ValidFlag;
+		/*
+		\brief Flag value to enable or disable collision response
+		*/
+		bool m_activeFlag{ true };
 
-	protected:
-		void BVolume(BoundingVolume* bv) { m_pBVolume = bv; }
-		BoundingVolume* BVolume() { return m_pBVolume; }
+
+		/*
+		\brief Unique pointer to the correspondent collider.
+		*/
+		std::unique_ptr<Collider> m_Collider;
 
 	public:
-		/**
-		* \brief Creates collider component without bounding shape.
-		* \brief Bounding shape can be created latter with a Create() method.
-		* \param Pointer to parent enitity.
-		*/
-		ColliderComponent(Entity* parent);
 
-		/**
-		* \brief Creates collider component with choosen bounding shape.
-		* \brief If parent entity has no render component, bounding shape will not be created at construction time.
-		* \brief It can be created latter with a Create() method.
-		* \param Pointer to parent enitity.
-		* \param Bounding volume type to create.
-		*/
-		ColliderComponent(Entity* parent, BVolumeType type);
+		ColliderComponent(Entity* parent, std::unique_ptr<Collider> collider);
 
 		ColliderComponent(ColliderComponent&) = delete;
+
 		ColliderComponent& operator=(ColliderComponent&) = delete;
+
 		~ColliderComponent();
 
-
-		/**
-		* \brief Creates actual component internals(bounding volume) and registers it with SimulationSystem.
-		* \param Bounding volume type(Sphere,Box or Cylinder).
-		* \return true if successfull.
+		/*
+		\brief Setter to the collider
+		\param collider the collider to set.
 		*/
-		bool CreateBShape(BVolumeType bVolumeType);
+		void SetCollider(std::unique_ptr<Collider> collider) noexcept;
 
-		/**
-		* \brief Checks if collider is valid - It is if has a bounding volume.
-		* \return true if valid.
+		/*
+		\brief Getter to the collider
+		\return Pointer to the correspondent collider
 		*/
-		bool isValid();
+		Collider* GetCollider() const noexcept;
+
+
+		/*
+		\brief Getter of the collision response flag
+		\return true if the collider component is active, false otherwise
+		*/
+		bool IsActive() const noexcept;
+
+		void SetCollisionResponseFlag(bool flag) noexcept;
 
 	};
 }
-#endif //BLADE_COLLIDER_COMPONENT_H_
+#endif 

@@ -11,6 +11,9 @@
 #include "directional_light_component.h"
 #include "camera.h"
 #include "directional_light.h"
+#include "simulation_component.h"
+#include "collider_component.h"
+#include "bounding_sphere.h"
 
 using namespace Blade;
 
@@ -39,15 +42,21 @@ void GameScene::Initialize()
 	Texture* normalmapTexture{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelNorm5.png") };
 	normalmapTexture->SetTextureType(TEX_NORMAL);
 	material.textures[TEX_NORMAL] = normalmapTexture;
-
+	//////////////////////////////////////////////////////////////////////////
 	//Create an Entity and a RenderComponent.
 	Entity* entity{ new Entity{"TestEntity"} };
+	entity->SetPosition(Vec3f{ 0.0f,30.0f,0.0f });
 	RenderComponent* rc{ new RenderComponent{entity} };
 	rc->SetMesh(cube);
 	rc->SetMaterial(material);
 
+	SimulationComponent* simC{ new SimulationComponent{entity,1.0f} };
+
+	ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(0.5f)} };
+	auto cache_entity = entity;
 	//Add the entity to the scene so it will get updated.
 	AddEntity(entity);
+	
 	// -------------------------------------------------------------------------------------------------------------------
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
@@ -68,7 +77,7 @@ void GameScene::Initialize()
 
 	Camera* cam{ new Camera{ "Camera1", cd } };
 	//Set the position of the camera.
-	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -10.0f });
+	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -50.0f });
 
 	//Add it to the scene.
 	AddEntity(cam);
@@ -79,7 +88,7 @@ void GameScene::Initialize()
 	cam = new Camera{ "Camera2", cd };
 
 	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -4.0f });
-
+	cam->SetParent(cache_entity);
 	AddEntity(cam);
 	// --------------------------------------------------------------------------------------------------------------------
 
@@ -119,6 +128,7 @@ void GameScene::Initialize()
 
 	//Set the pipeline to the render system.
 	G_RenderSystem.SetRenderPassPipeline(pipeline);
+
 	// --------------------------------------------------------------------------------------------------------------------
 }
 
@@ -155,9 +165,11 @@ void GameScene::Update(float deltaTime, long time) noexcept
 	Entity* cam{ G_CameraSystem.GetActiveCamera()->GetParent() };
 
 	Vec3f currentPos{ cam->GetPosition() };
-	cam->SetPosition(Vec3f{ sin(time / 1000.0f) * 2.0f, currentPos.yz });
+	//cam->SetPosition(Vec3f{ sin(time / 1000.0f) * 2.0f, currentPos.yz });
 
 	Scene::Update(deltaTime, time);
+
+	G_SimulationSystem.Process(deltaTime);
 
 	G_LightSystem.Process();
 

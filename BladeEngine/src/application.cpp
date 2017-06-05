@@ -1,6 +1,7 @@
 #include "application.h"
 #include "engine_context.h"
 #include <iostream>
+#include "trace.h"
 
 namespace Blade
 {
@@ -27,6 +28,23 @@ namespace Blade
 	double Application::GetSec() const noexcept
 	{
 		return m_Timer.GetSec();
+	}
+
+	void Application::Pause() noexcept
+	{
+		m_Paused = true;
+		m_Timer.Stop();
+	}
+
+	void Application::UnPause() noexcept
+	{
+		m_Paused = false;
+		m_Timer.Start();
+	}
+
+	bool Application::IsPaused() const noexcept
+	{
+		return m_Paused;
 	}
 
 	bool Application::Initialize(int* argc, char* argv[])
