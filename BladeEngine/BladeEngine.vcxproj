@@ -170,7 +170,6 @@
     <ClInclude Include="include\bounding_box.h" />
     <ClInclude Include="include\bounding_cylinder.h" />
     <ClInclude Include="include\bounding_sphere.h" />
-    <ClInclude Include="include\bounding_volume.h" />
     <ClInclude Include="include\collider_component.h" />
     <ClInclude Include="include\component.h" />
     <ClInclude Include="include\d3d\D3D11_blend_state.h" />

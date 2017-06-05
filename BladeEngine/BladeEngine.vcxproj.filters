@@ -45,9 +45,6 @@
     <Filter Include="src\windowing">
       <UniqueIdentifier>{071d4431-3edb-427e-9b13-33b20f4a704f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\objects">
-      <UniqueIdentifier>{705bfbe3-d0a9-47bd-a706-c18a3277a989}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\objects">
       <UniqueIdentifier>{c2308fe3-4034-4f67-b72a-621b1da28fd4}</UniqueIdentifier>
     </Filter>
@@ -71,6 +68,9 @@
     </Filter>
     <Filter Include="src\configuration">
       <UniqueIdentifier>{1492f06c-1845-496d-83ae-8b523a29a5dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\colliders">
+      <UniqueIdentifier>{8d8db510-7ea7-41ad-8db3-5b3dd0b4a6f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -230,18 +230,6 @@
     <ClInclude Include="include\GAPI_context.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\bounding_volume.h">
-      <Filter>include\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\bounding_cylinder.h">
-      <Filter>include\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\bounding_sphere.h">
-      <Filter>include\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="include\bounding_box.h">
-      <Filter>include\objects</Filter>
-    </ClInclude>
     <ClInclude Include="include\camera_system.h">
       <Filter>include\systems</Filter>
     </ClInclude>
@@ -325,6 +313,15 @@
     </ClInclude>
     <ClInclude Include="include\util.h">
       <Filter>include\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bounding_box.h">
+      <Filter>include\colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bounding_cylinder.h">
+      <Filter>include\colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bounding_sphere.h">
+      <Filter>include\colliders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
