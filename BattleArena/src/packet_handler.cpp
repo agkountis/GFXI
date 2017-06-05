@@ -4,7 +4,7 @@
 #include "network_message_types.h"
 #include "engine_context.h"
 #include "test_message.h"
-
+#include "trace.h"
 using namespace Blade;
 using namespace SerializationUtils;
 

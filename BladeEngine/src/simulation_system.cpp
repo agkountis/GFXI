@@ -61,13 +61,10 @@ namespace Blade
 				float angleX = velocity.z * simulationComponent->GetInverseMass() * friction * dtScale;
 				float angleZ = velocity.x * simulationComponent->GetInverseMass() * friction * dtScale;
 
-				/*
-				//#needtoimplement Once we add an application pointer to the engine context, use it here
-				if (EngineContext::GetApplication()->IsPaused())
+				if (G_Application.IsPaused())
 				{
 					angleX = angleZ = 0.0f;
 				}
-				*/
 				Quatf q;
 				Quatf xrot = Rotate(q, ToRadians(angleX), Vec3f{ 1.0f, 0.0f, 0.0f });
 				Quatf yrot = Rotate(q, ToRadians(-angleZ), Vec3f{ 0.0f, 0.0f, 1.0f });
@@ -369,17 +366,14 @@ namespace Blade
 				std::chrono::duration<float, std::ratio<1, 1>> dur{ 1.0f / frequency };
 				std::this_thread::sleep_for(dur);
 
-				/*
-				#needtoimplement Once we add an application pointer to the engine context, use it here
-				if (EngineContext::GetApplication()->IsPaused())
+				if (G_Application.IsPaused())
 				{
 					m_Timer.Stop();
 				}
 				else
 				{
-				*/
 					m_Timer.Start();
-				//}
+				}
 					this->timeSec = static_cast<float>( m_Timer.GetSec());
 					Process(static_cast<float>(m_Timer.GetDelta() )* dtScale);
 			}
