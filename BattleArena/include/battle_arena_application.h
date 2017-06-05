@@ -5,10 +5,6 @@
 class BattleArenaApplication : public Blade::Application
 {
 public:
-	BattleArenaApplication() = default;
-
-	~BattleArenaApplication();
-
 	bool Initialize(int* argc, char* argv[]) override;
 
 	void Update() noexcept override;

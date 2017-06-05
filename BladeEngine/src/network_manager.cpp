@@ -4,15 +4,12 @@
 #include "socket.h"
 #include <vector>
 #include "serialization_utils.h"
-#include <atomic>
 
 namespace Blade
 {
 	using namespace SerializationUtils;
 
-	static int s_ClientId{ 0 };
-
-	void NetworkManager::ConnectionAcceptorThreadMain(unsigned short port)
+	void NetworkManager::ConnectionAcceptorThreadMain(const unsigned short port)
 	{
 		Socket socket;
 
@@ -24,7 +21,8 @@ namespace Blade
 
 		while (!m_Terminating)
 		{
-			Socket clientSocket{ socket.Accept() };
+			ConnectionInfo connectionInfo;
+			Socket clientSocket{ socket.Accept(&connectionInfo) };
 
 			if (clientSocket.IsValid())
 			{
@@ -32,27 +30,27 @@ namespace Blade
 				{
 					std::lock_guard<std::mutex> lock{ m_Mutex };
 
-					m_Connections[++s_ClientId] = std::make_unique<Socket>(std::move(clientSocket));
+					m_Connections[std::get<long>(connectionInfo.ip)] = std::make_unique<Socket>(std::move(clientSocket));
 
 					BLADE_TRACE("Connection count: " + std::to_string(m_Connections.size()));
 				}
 
-				int tmp{ s_ClientId };
-				std::thread clientThread{ [tmp, this]() { ReceiveThreadMain(tmp); } };
+				long id{ std::get<long>(connectionInfo.ip) };
+				std::thread clientThread{ [id, this]() { ReceiveThreadMain(id); } };
 
 				clientThread.detach();
 
 				if (m_OnNewClient)
 				{
-					m_OnNewClient();
+					m_OnNewClient(connectionInfo);
 				}
 			}
 		}
 	}
 
-	void NetworkManager::ConnectThreadMain(const std::string& host, unsigned short port)
+	void NetworkManager::ConnectThreadMain(const std::string& host, const unsigned short port)
 	{
-		int reconnectionAttempts{ 5 };
+		int reconnectionAttempts{ 30 };
 
 		Socket connectionSocket;
 
@@ -60,33 +58,35 @@ namespace Blade
 
 		while (reconnectionAttempts && !m_Terminating)
 		{
-			if (connectionSocket.Connect(host, port))
+			ConnectionInfo connectionInfo;
+
+			if (connectionSocket.Connect(host, port, &connectionInfo))
 			{
 				BLADE_TRACE("Connection successful!");
 
 				{
 					std::lock_guard<std::mutex> lock{ m_Mutex };
 
-					m_Connections[++s_ClientId] = std::make_unique<Socket>(std::move(connectionSocket));
+					m_Connections[std::get<long>(connectionInfo.ip)] = std::make_unique<Socket>(std::move(connectionSocket));
 
 					BLADE_TRACE("Connection count: " + std::to_string(m_Connections.size()));
 				}
 
-				int tmp{ s_ClientId };
-				std::thread clientThread{ [tmp, this]() { ReceiveThreadMain(tmp); } };
+				long id{ std::get<long>(connectionInfo.ip) };
+				std::thread clientThread{ [id, this]() { ReceiveThreadMain(id); } };
 
 				m_Threads.push_back(std::move(clientThread));
 
 				if (m_OnNewClient)
 				{
-					m_OnNewClient();
+					m_OnNewClient(connectionInfo);
 				}
 
 				return;
 			}
 
 			using namespace std::chrono_literals;
-			std::this_thread::sleep_for(5s);
+			std::this_thread::sleep_for(10s);
 
 			--reconnectionAttempts;
 		}
@@ -95,7 +95,7 @@ namespace Blade
 		BLADE_ERROR("Failed to connect! Host: " + host + " Port: " + std::to_string(port));
 	}
 
-	void NetworkManager::ReceiveThreadMain(const int idx)
+	void NetworkManager::ReceiveThreadMain(const long idx)
 	{
 		int receivedBytes{ 0 };
 		Byte buffer[1024];
@@ -223,7 +223,7 @@ namespace Blade
 		return true;
 	}
 
-	void NetworkManager::Listen(unsigned short port) noexcept
+	void NetworkManager::Listen(const unsigned short port) noexcept
 	{
 		BLADE_TRACE("Starting connection listening thread.");
 
@@ -232,7 +232,7 @@ namespace Blade
 		listeningThread.detach();
 	}
 
-	void NetworkManager::Connect(const std::string& host, unsigned short port) noexcept
+	void NetworkManager::Connect(const std::string& host, const unsigned short port) noexcept
 	{
 		std::thread connectionThread{ [this, host, port]() { ConnectThreadMain(host, port); } };
 
@@ -250,9 +250,25 @@ namespace Blade
 	{
 		auto data = object->Serialize();
 
-		for (const auto& entry : m_Connections)
+		if (object->GetRecipientId() == RECIPIENT_ID_BROADCAST)
 		{
-			entry.second->Send(data.data(), data.size());
+			for (const auto& entry : m_Connections)
+			{
+				entry.second->Send(data.data(), data.size());
+			}
+		}
+		else
+		{
+			auto& socket = m_Connections[object->GetRecipientId()];
+
+			if (socket)
+			{
+				socket->Send(data.data(), data.size());
+			}
+			else
+			{
+				BLADE_ERROR("Recipient with id" + std::to_string(object->GetRecipientId()) + " is not a valid connection.");
+			}
 		}
 	}
 

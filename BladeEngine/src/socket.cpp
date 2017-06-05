@@ -2,6 +2,7 @@
 #include <cassert>
 #include <iostream>
 #include "trace.h"
+#include <sstream>
 
 namespace Blade
 {
@@ -26,7 +27,7 @@ namespace Blade
 		other.SetHandle(INVALID_SOCKET);
 	}
 
-	bool Socket::Connect(const std::string& host, unsigned short port) const noexcept
+	bool Socket::Connect(const std::string& host, unsigned short port, ConnectionInfo* connectionInfo) const noexcept
 	{
 		hostent* hostAddr{ gethostbyname(host.c_str()) };
 
@@ -45,6 +46,12 @@ namespace Blade
 		{
 			BLADE_ERROR("Failed to connect.");
 			return false;
+		}
+
+		if (connectionInfo)
+		{
+			connectionInfo->ip = std::make_tuple(host, ntohl(address.sin_addr.s_addr));
+			connectionInfo->port = port;
 		}
 
 		int flag = 1;
@@ -81,9 +88,23 @@ namespace Blade
 		}
 	}
 
-	Socket Socket::Accept() const noexcept
+	Socket Socket::Accept(ConnectionInfo* connectionInfo) const noexcept
 	{
-		Socket socket{ accept(m_Handle, nullptr, nullptr) };
+		Socket socket;
+
+		if (!connectionInfo)
+		{
+			socket.SetHandle(accept(m_Handle, nullptr, nullptr));
+		}
+		else
+		{
+			sockaddr_in conInfo{};
+			int size{ sizeof conInfo };
+			socket.SetHandle(accept(m_Handle, reinterpret_cast<sockaddr*>(&conInfo), &size));
+
+			connectionInfo->ip = std::make_tuple(inet_ntoa(conInfo.sin_addr), ntohl(conInfo.sin_addr.s_addr));
+			connectionInfo->port = ntohs(conInfo.sin_port);
+		}
 
 		if (!socket.IsValid())
 		{

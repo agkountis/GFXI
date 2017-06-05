@@ -8,7 +8,7 @@ private:
 	int m_Test;
 
 public:
-	explicit TestMessage(int value);
+	explicit TestMessage(int value, long recipientId);
 
 	std::vector<Blade::Byte> Serialize() noexcept override;
 };

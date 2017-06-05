@@ -5,8 +5,8 @@
 using namespace Blade;
 using namespace SerializationUtils;
 
-TestMessage::TestMessage(int value) :
-	NetworkMessage{ BA_TEST_MESSAGE },
+TestMessage::TestMessage(int value, long recipientId) :
+	NetworkMessage{ BA_TEST_MESSAGE,  recipientId },
 	m_Test{ value }
 {
 }

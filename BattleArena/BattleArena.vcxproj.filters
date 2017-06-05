@@ -44,7 +44,7 @@
     <ClCompile Include="src\test_message.cpp">
       <Filter>src\networking\messages</Filter>
     </ClCompile>
-    <ClCompile Include="src\packet_handler.cpp">
+    <ClCompile Include="src\multiplayer.cpp">
       <Filter>src\networking</Filter>
     </ClCompile>
   </ItemGroup>
@@ -64,7 +64,7 @@
     <ClInclude Include="include\network_message_types.h">
       <Filter>include\networking</Filter>
     </ClInclude>
-    <ClInclude Include="include\packet_handler.h">
+    <ClInclude Include="include\multiplayer.h">
       <Filter>include\networking</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,7 +4,7 @@
 #include "windowing_service.h"
 #include "shader_program_manager.h"
 #include "game_scene.h"
-#include "packet_handler.h"
+#include "multiplayer.h"
 #include "ncf.h"
 
 using namespace Blade;
@@ -51,10 +51,6 @@ static void PassiveMouseMotion(int x, int y)
 
 // --------------------------------------------------------------------------------------
 
-BattleArenaApplication::~BattleArenaApplication()
-{
-}
-
 bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 {
 	if (!Application::Initialize(argc, argv))
@@ -64,42 +60,7 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 
 	BLADE_TRACE("BattleArenaApplication Initialization Starts!");
 
-	G_NetworkManager.SetOnNewClientCallback(OnNewClient);
-	G_NetworkManager.SetOnNewPacketCallback(OnNewPacket);
-	G_NetworkManager.SetOnClientDisconnectCallback(OnClientDisconnect);
-
-	NCF ncf;
-	ncf.SetSource("config\\test.cfg");
-	
-	if (ncf.Parse())
-	{
-		BLADE_ERROR("Failed to parse the configuration file.");
-	}
-
-	NCF* group{ ncf.GetGroupByName("attributes") };
-
-	if (group->QueryGroup("listenTo"))
-	{
-		group = group->GetGroupByName("listenTo");
-		unsigned short port = atoi(group->GetPropertyByName("port"));
-		G_NetworkManager.Listen(port);
-	}
-	else if (group->QueryGroup("connectTo"))
-	{
-		group = group->GetGroupByName("connectTo");
-
-		if (group)
-		{
-			std::string ip{ group->GetPropertyByName("ip") };
-			unsigned short port = atoi(group->GetPropertyByName("port"));
-
-			G_NetworkManager.Connect(ip, port);
-		}
-	}
-	else
-	{
-		BLADE_ERROR("Network configuration failed. Missing 'connectTo' or 'listenTo' configuration groups.");
-	}
+	Multiplayer::Initialize("config\\test.cfg");
 
 	WindowFunctionCallbacks callbacks;
 	callbacks.passive_motion_func = PassiveMouseMotion;
