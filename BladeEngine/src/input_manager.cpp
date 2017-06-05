@@ -5,6 +5,20 @@ using namespace Blade;
 
 bool InputManager::Initialize() noexcept
 {
+#if defined(BLADE_BUILD_D3D)
+
+	// XInput is already initialized
+
+#elif defined(BLADE_BUILD_PS4)
+
+	// init PS4 pad library
+	if (scePadInit() != SCE_OK) {
+		std::cerr << "PS4 Pad library failed to initialize" << std::endl;
+		return false;
+	}
+
+#endif
+
 	return true;
 }
 

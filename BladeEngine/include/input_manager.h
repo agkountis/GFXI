@@ -3,16 +3,20 @@
 
 //If we are building for d3d -> pc version
 #if defined(BLADE_BUILD_D3D)
+
 #include <Windows.h>
 #include <Xinput.h>
 #include <iostream>
 #include <utility>
+
 // required library files
 #pragma comment (lib, "Xinput.lib")
 #pragma comment (lib, "Xinput9_1_0.lib")
 
-#else //Otherwise PS4 version
-//PS4 stuffs here
+#elif defined (BLADE_BUILD_PS4)
+
+#include <pad.h>
+
 #endif
 
 #include <vector>

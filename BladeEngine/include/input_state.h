@@ -54,7 +54,7 @@ namespace Blade
 
 	/**
 	* \brief InputState describes the current state of a device.
-	* \details Only joy pad support for the moment. A function to compare two state has to be provided
+	* \details Only joy pad support for the moment. A function to compare two states has to be provided
 	*/
 	struct InputState
 	{
@@ -71,9 +71,7 @@ namespace Blade
 		ThumbStick stickRight{ 0 };
 		float triggerLeft{ 0.0f };
 		float triggerRight{ 0.0f };
-
-		//Implement a state comparison or something like that here (...)
-		
+	
 	};
 	
 }
