@@ -40,10 +40,11 @@ const int InputManager::EnumerateDevices() noexcept
 	//PS4 code here
 	
 	return dDevCount;
-
+#else
+	// catch-all
+	return 0;
 #endif
 }
-
 
 const bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber)
 {

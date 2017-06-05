@@ -25,17 +25,18 @@
 #define JOYBTN_OPTION1		0x1000
 #define JOYBTN_OPTION2		0x2000
 
-// Normalizing value for analog triggers
-#define TRIGGER_THRESHOLD	255
-
 // Thumbstick axis normalizing value (platform-based)
 #if defined(BLADE_BUILD_D3D)
 
-#define STICK_THRESHOLD		32768	// xInput value -32768 - 32768
+// Analog threshold normalizing values
+#define STICK_THRESHOLD		32768	// xInput value [-32768..32768]
+#define TRIGGER_THRESHOLD	255		// xInput value [0..255]
 
 #elif defined(BLADE_BUILD_PS4)
 
-#define STICK_THRESHOLD		255		// PS4 value 0-255
+// Analog threshold normalizing values
+#define STICK_THRESHOLD		255		// PS4 value [0..255]
+#define TRIGGER_THRESHOLD	255		// PS4 value [0..255]
 
 #endif
 
@@ -43,8 +44,8 @@ namespace Blade
 {
 
 	/**
-	* \brief InputState describes the current state of a device.
-	* \details Only joy pad support for the moment. A function to compare two state has to be provided
+	* \brief Thumbstick structure to hold X/Y axis information
+	* \details Uses STICK_THRESHOLD to normalize to floating point values in [0..1] range
 	*/
 	struct ThumbStick {
 		float axisX;
@@ -74,8 +75,7 @@ namespace Blade
 		//Implement a state comparison or something like that here (...)
 		
 	};
-
-
+	
 }
 
 #endif
