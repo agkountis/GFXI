@@ -85,7 +85,7 @@ namespace Blade
 
 	void SimulationSystem::GenerateIntegrationTasks() noexcept
 	{
-		int size = sqrt(m_SimulationComponents.size());
+		int size = static_cast<int>(sqrt(m_SimulationComponents.size()));
 
 		int endIndex{ 0 };
 
@@ -116,7 +116,7 @@ namespace Blade
 		m_ContactManifold.Clear();
 
 		int offs = 1;
-		for (int i = 0; i < m_ColliderComponents.size(); ++i)
+		for (size_t i = 0; i < m_ColliderComponents.size(); ++i)
 		{
 			auto c1 = m_ColliderComponents[i];
 
@@ -124,7 +124,7 @@ namespace Blade
 			{
 				auto collider = c1->GetCollider();
 
-				for (int j = offs; j < m_ColliderComponents.size(); ++j)
+				for (size_t j = offs; j < m_ColliderComponents.size(); ++j)
 				{
 					auto c2 = m_ColliderComponents[j];
 
@@ -180,7 +180,7 @@ namespace Blade
 
 	void SimulationSystem::CollisionResponse() const noexcept
 	{
-		for (int i = 0; i < m_ContactManifold.Size(); ++i)
+		for (size_t i = 0; i < m_ContactManifold.Size(); ++i)
 		{
 			auto entry = m_ContactManifold[i];
 
@@ -380,8 +380,8 @@ namespace Blade
 				*/
 					m_Timer.Start();
 				//}
-					this->timeSec = m_Timer.GetSec();
-					Process(m_Timer.GetDelta() * dtScale);
+					this->timeSec = static_cast<float>( m_Timer.GetSec());
+					Process(static_cast<float>(m_Timer.GetDelta() )* dtScale);
 			}
 
 			std::cout << "Terminating Physics" << std::endl;
