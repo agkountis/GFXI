@@ -10,6 +10,8 @@ namespace Blade
 	private:
 		bool m_Terminate{ false };
 
+		bool m_Paused{ false };
+
 		Timer m_Timer;
 
 	public:
@@ -30,6 +32,12 @@ namespace Blade
 		long GetMsec() const noexcept;
 
 		double GetSec() const noexcept;
+
+		void Pause() noexcept;
+
+		void UnPause() noexcept;
+
+		bool IsPaused() const noexcept;
 
 		virtual bool Initialize(int* argc, char* argv[]);
 

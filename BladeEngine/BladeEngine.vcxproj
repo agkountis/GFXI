@@ -161,18 +161,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="bounding_volume.h" />
     <ClInclude Include="include\application.h" />
     <ClInclude Include="include\behaviour_component.h" />
     <ClInclude Include="include\behaviour_system.h" />
+    <ClInclude Include="include\plane_collider.h" />
+    <ClInclude Include="include\bounding_sphere.h" />
     <ClInclude Include="include\camera.h" />
     <ClInclude Include="include\camera_component.h" />
     <ClInclude Include="include\camera_system.h" />
-    <ClInclude Include="include\bounding_box.h" />
-    <ClInclude Include="include\bounding_cylinder.h" />
-    <ClInclude Include="include\bounding_sphere.h" />
+    <ClInclude Include="include\collider.h" />
     <ClInclude Include="include\collider_component.h" />
     <ClInclude Include="include\component.h" />
+    <ClInclude Include="include\contact_manifold.h" />
     <ClInclude Include="include\d3d\D3D11_blend_state.h" />
     <ClInclude Include="include\d3d\D3D11_context.h" />
     <ClInclude Include="include\d3d\D3D11_depth_stencil_state.h" />
@@ -198,11 +198,14 @@
     <ClInclude Include="include\point_light.h" />
     <ClInclude Include="include\point_light_component.h" />
     <ClInclude Include="include\ref_counted_container.h" />
+    <ClInclude Include="include\simulation_component.h" />
     <ClInclude Include="include\serializable.h" />
     <ClInclude Include="include\serialization_utils.h" />
+    <ClInclude Include="include\simulation_utils.h" />
     <ClInclude Include="include\socket.h" />
     <ClInclude Include="include\spotlight.h" />
     <ClInclude Include="include\spotlight_component.h" />
+    <ClInclude Include="include\threading_utils.h" />
     <ClInclude Include="include\thread_pool.h" />
     <ClInclude Include="include\trace.h" />
     <ClInclude Include="include\IBO.h" />
@@ -224,7 +227,6 @@
     <ClInclude Include="include\render_target.h" />
     <ClInclude Include="include\resource.h" />
     <ClInclude Include="include\resource_manager.h" />
-    <ClInclude Include="include\rigid_body_component.h" />
     <ClInclude Include="include\scene.h" />
     <ClInclude Include="include\scene_manager.h" />
     <ClInclude Include="include\shader.h" />
@@ -251,15 +253,14 @@
     <ClCompile Include="src\abstract_viewport.cpp" />
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\behaviour_sytem.cpp" />
+    <ClCompile Include="src\plane_collider.cpp" />
+    <ClCompile Include="src\bounding_sphere.cpp" />
     <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="src\camera_component.cpp" />
     <ClCompile Include="src\camera_system.cpp" />
-    <ClCompile Include="src\bounding_box.cpp" />
-    <ClCompile Include="src\bounding_cylinder.cpp" />
-    <ClCompile Include="src\bounding_sphere.cpp" />
-    <ClCompile Include="src\bounding_volume.cpp" />
     <ClCompile Include="src\collider_component.cpp" />
     <ClCompile Include="src\component.cpp" />
+    <ClCompile Include="src\contact_manifold.cpp" />
     <ClCompile Include="src\d3d\D3D11_blend_state.cpp" />
     <ClCompile Include="src\d3d\D3D11_context.cpp" />
     <ClCompile Include="src\d3d\D3D11_depth_stencil_state.cpp" />
@@ -279,6 +280,7 @@
     <ClCompile Include="src\IBO.cpp" />
     <ClCompile Include="src\light_system.cpp" />
     <ClCompile Include="src\material.cpp" />
+    <ClCompile Include="src\math_utils.cpp" />
     <ClCompile Include="src\mesh.cpp" />
     <ClCompile Include="src\mesh_utils.cpp" />
     <ClCompile Include="src\entity.cpp" />
@@ -296,11 +298,12 @@
     <ClCompile Include="src\render_target.cpp" />
     <ClCompile Include="src\resource.cpp" />
     <ClCompile Include="src\resource_manager.cpp" />
-    <ClCompile Include="src\rigid_body_component.cpp" />
+    <ClCompile Include="src\simulation_component.cpp" />
     <ClCompile Include="src\scene.cpp" />
     <ClCompile Include="src\scene_manager.cpp" />
     <ClCompile Include="src\shader_program.cpp" />
     <ClCompile Include="src\shader_program_manager.cpp" />
+    <ClCompile Include="src\simulation_utils.cpp" />
     <ClCompile Include="src\socket.cpp" />
     <ClCompile Include="src\spotlight.cpp" />
     <ClCompile Include="src\spotlight_component.cpp" />

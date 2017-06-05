@@ -1,60 +1,112 @@
 #ifndef BLADE_SIMULATION_SYSTEM_H_
 #define BLADE_SIMULATION_SYSTEM_H_
-
 #include <vector>
-
-#include "System.h"
-#include "component.h" // just temporary!
+#include "system.h"
 #include "collider_component.h"
-#include "rigid_body_component.h"
-#include "trace.h"
+#include "simulation_component.h"
+#include "timer.h"
+#include <thread>
+#include <mutex>
+#include "contact_manifold.h"
+
 namespace Blade
 {
+	/**
+	\brief The simulation system of the engine
+	\details Performs the simulation routine: update, detection, response using threads. 
+	*/
 	class SimulationSystem : System
 	{
 	private:
-		 // TO DO: Add data members
-		std::vector<RigidBodyComponent*> m_RigidBodyList;
-		std::vector<ColliderComponent*> m_ColliderList;
+		/*
+		\brief Stores the simulation components registered to the system. 
+		*/
+		std::vector<SimulationComponent*> m_SimulationComponents;
+
+		/*
+		\brief Stores the collider components registered to the system
+		*/
+		std::vector<ColliderComponent*> m_ColliderComponents;
+
+		/*
+		\brief Contact manifold of the simulation
+		\details One manifold is sufficient to cover the entire simulation 
+		*/
+		ContactManifold m_ContactManifold;
+		//////////////////////////////////////////////////////////////////////////
+
+		/*
+		\brief Perform the integration of the rigid bodies
+		*/
+		void UpdateObjects() noexcept;
+		/*
+		\brief Collision detection routine of the simulation
+		\details Check exhaustive collision between every active collision component. 
+		It populates the manifold.
+		*/
+		void CollisionDetection() noexcept;
+
+		/*
+		\brief Collision response routine of the simulation
+		\details Calculate the new position, velocity and orientation of two colliding objects.
+		The collision response process is not iterative. 
+		*/
+		void CollisionResponse() const noexcept;
 
 	public:
+		/*
+		\brief The frequency of the simulation thread
+		*/
+		static float frequency;
+
+		/*
+		\brief The elasticity factor of the entire simulation.
+		\details The elasticity can be changed at runtime.
+		*/
+		static float elasticity;
+
+		/*
+		\brief The friction factor of the simulation.
+		\details The friction scalar can be changed at runtime.
+		*/
+		static float friction;
+
+		/*
+		\brief Simulation system delta time
+		*/
+		static float dt;
+
+		/*
+		\brief Simulation system delta time scale 
+		\details Can be used to tweak the delta time of the simulation.
+		*/
+		static float dtScale;
+
+		float timeSec;
+
 		SimulationSystem() = default;
+
 		SimulationSystem& operator=(SimulationSystem&) = delete;
+
 		SimulationSystem(SimulationSystem&) = delete;
+
 		~SimulationSystem();
 
 
-		/**
-		* \brief Performs system initialization.
-		* \return TRUE if initialization is successfull, FALSE otherwise.
-		*/
 		bool Initialize() noexcept override;
 
-		/**
-		* \brief Updates physics simulation.
-		* \param deltaTime The time elapsed from the previous frame of the application.
-		*/
 		void Process(float deltaTime) noexcept override;
 
-		//*** SYSTEM SIMULATION SPECIFIC METHODS
+		void RegisterComponent(SimulationComponent* rbc) noexcept;
 
-		/**
-		* \brief Registers Rigid Body Component with the Simulation System.
-		* \param rbc Pointer to the component - DOES NOT TAKE OWNERSHIP
-		*/
-		void RegisterComponent(RigidBodyComponent* rbc) noexcept;
+		void RegisterComponent(ColliderComponent* col) noexcept;
 
-		/**
-		* \brief Registers Collider Component with the Simulation System.
-		* \param rbc Pointer to the component - DOES NOT TAKE OWNERSHIP
-		*/
-		void RegisterComponent(ColliderComponent* col) noexcept ;
+		void UnregisterComponent(SimulationComponent* c) const noexcept;
 
-		/**
-		* \brief Unregisters a given Component with the Simulation System(if it is registered).
-		* \param rbc Pointer to the component
-		*/
-		void UnregisterComponent(Component* c) noexcept;
+		void UnregisterComponent(ColliderComponent* c) noexcept;
+
+		const std::vector<SimulationComponent*>& GetRigidBodyComponents() const noexcept;
+
 	};
 }
 #endif //BLADE_SIMULATION_SYSTEM_H_

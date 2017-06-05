@@ -45,9 +45,6 @@
     <Filter Include="src\windowing">
       <UniqueIdentifier>{071d4431-3edb-427e-9b13-33b20f4a704f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\objects">
-      <UniqueIdentifier>{c2308fe3-4034-4f67-b72a-621b1da28fd4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\d3d">
       <UniqueIdentifier>{32ad73cd-e900-4810-ae12-31b65fc33fb8}</UniqueIdentifier>
     </Filter>
@@ -70,7 +67,13 @@
       <UniqueIdentifier>{1492f06c-1845-496d-83ae-8b523a29a5dc}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\colliders">
-      <UniqueIdentifier>{8d8db510-7ea7-41ad-8db3-5b3dd0b4a6f0}</UniqueIdentifier>
+      <UniqueIdentifier>{705bfbe3-d0a9-47bd-a706-c18a3277a989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\colliders">
+      <UniqueIdentifier>{c2308fe3-4034-4f67-b72a-621b1da28fd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{5cdb4913-df34-4934-8fb4-aa765d827e21}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -221,14 +224,14 @@
     <ClInclude Include="include\pipeline_stage.h">
       <Filter>include\rendering</Filter>
     </ClInclude>
-    <ClInclude Include="include\rigid_body_component.h">
-      <Filter>include\components</Filter>
-    </ClInclude>
     <ClInclude Include="include\collider_component.h">
       <Filter>include\components</Filter>
     </ClInclude>
     <ClInclude Include="include\GAPI_context.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bounding_sphere.h">
+      <Filter>include\colliders</Filter>
     </ClInclude>
     <ClInclude Include="include\camera_system.h">
       <Filter>include\systems</Filter>
@@ -314,17 +317,23 @@
     <ClInclude Include="include\util.h">
       <Filter>include\configuration</Filter>
     </ClInclude>
-    <ClInclude Include="include\bounding_box.h">
+    <ClInclude Include="include\threading_utils.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\simulation_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\collider.h">
       <Filter>include\colliders</Filter>
     </ClInclude>
-    <ClInclude Include="include\bounding_cylinder.h">
+    <ClInclude Include="include\contact_manifold.h">
       <Filter>include\colliders</Filter>
     </ClInclude>
-    <ClInclude Include="include\bounding_sphere.h">
+    <ClInclude Include="include\plane_collider.h">
       <Filter>include\colliders</Filter>
     </ClInclude>
-    <ClInclude Include="bounding_volume.h">
-      <Filter>include\colliders</Filter>
+    <ClInclude Include="include\simulation_utils.h">
+      <Filter>include\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -445,23 +454,11 @@
     <ClCompile Include="src\abstract_viewport.cpp">
       <Filter>src\rendering</Filter>
     </ClCompile>
-    <ClCompile Include="src\rigid_body_component.cpp">
-      <Filter>src\components</Filter>
-    </ClCompile>
     <ClCompile Include="src\collider_component.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
-    <ClCompile Include="src\bounding_volume.cpp">
-      <Filter>src\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\bounding_box.cpp">
-      <Filter>src\objects</Filter>
-    </ClCompile>
     <ClCompile Include="src\bounding_sphere.cpp">
-      <Filter>src\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\bounding_cylinder.cpp">
-      <Filter>src\objects</Filter>
+      <Filter>src\colliders</Filter>
     </ClCompile>
     <ClCompile Include="src\d3d\D3D11_viewport.cpp">
       <Filter>src</Filter>
@@ -511,9 +508,6 @@
     <ClCompile Include="src\behaviour_sytem.cpp">
       <Filter>src\systems</Filter>
     </ClCompile>
-    <ClCompile Include="include\behaviour_component.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\dllmain.c">
       <Filter>src\configuration</Filter>
     </ClCompile>
@@ -522,6 +516,24 @@
     </ClCompile>
     <ClCompile Include="src\util.cpp">
       <Filter>src\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="src\math_utils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\plane_collider.cpp">
+      <Filter>src\colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\contact_manifold.cpp">
+      <Filter>src\colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="include\behaviour_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\simulation_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\simulation_utils.cpp">
+      <Filter>src\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
