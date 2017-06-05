@@ -53,7 +53,7 @@ namespace Blade
 		/*
 		\brief 
 		*/
-		bool m_IsActive;
+		bool m_IsActive{ true };
 
 	public:
 		

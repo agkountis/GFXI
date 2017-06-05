@@ -1,3 +1,4 @@
+#include <vector>
 #include "simulation_system.h"
 #include "entity.h"
 #include "threading_utils.h"
@@ -194,11 +195,11 @@ namespace Blade
 			SimulationComponent* rb1{ nullptr };
 			SimulationComponent* rb2{ nullptr };
 
-			rb1 = static_cast<SimulationComponent*>(e1->GetComponent("co_rb"));
+			rb1 = static_cast<SimulationComponent*>(e1->GetComponent("co_sim"));
 
 			if (e2)
 			{
-				rb2 = static_cast<SimulationComponent*>(e2->GetComponent("co_rb"));
+				rb2 = static_cast<SimulationComponent*>(e2->GetComponent("co_sim"));
 			}
 
 			Vec3f relativeVelocity{ rb1->GetVelocity() };
@@ -418,15 +419,20 @@ namespace Blade
 
 	void SimulationSystem::UnregisterComponent(SimulationComponent* c) const noexcept
 	{
+		/*std::remove_if(m_SimulationComponents.begin(),
+			m_SimulationComponents.end(),
+			[c](SimulationComponent* element) {
+			return c->GetId() == element->GetId();
+		});*/
 	}
 
 	void SimulationSystem::UnregisterComponent(ColliderComponent* c) noexcept
 	{
-		//		std::remove_if(m_ColliderComponents.begin(),
-		//		               m_ColliderComponents.end(),
-		//		               [c](ColliderComponent* element) {
-		//	               return c->GetId() == element->GetId();
-		//               });
+		std::remove_if(m_ColliderComponents.begin(),
+			m_ColliderComponents.end(),
+			[c](ColliderComponent* element) {
+			return c->GetId() == element->GetId();
+		});
 	}
 
 	const std::vector<SimulationComponent*>& SimulationSystem::GetRigidBodyComponents() const noexcept

@@ -11,12 +11,12 @@ ColliderComponent::ColliderComponent(Entity* parent, std::unique_ptr<Collider> c
 	m_Collider{ std::move(collider) }
 {
 	m_Collider->SetParent(this);
-	//#needtoimplement registration to the simulation system passing by the engine context
+	G_SimulationSystem.RegisterComponent(this);
 }
 
 ColliderComponent::~ColliderComponent()
 {
-	//#needtoimplement un registration to the simulation system passing by the engine context
+	G_SimulationSystem.UnregisterComponent(this);
 }
 
 void ColliderComponent::SetCollider(std::unique_ptr<Collider> collider) noexcept

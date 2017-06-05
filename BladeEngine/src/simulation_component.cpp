@@ -9,12 +9,12 @@ SimulationComponent::SimulationComponent(Entity* parent, float mass):
 	m_Mass{mass},
 	m_InverseMass{1.0f/m_Mass}
 {
-	EngineContext::GetSimulationSystem().RegisterComponent(this);
+	G_SimulationSystem.RegisterComponent(this);
 }
 
 SimulationComponent::~SimulationComponent()
 {
-	EngineContext::GetSimulationSystem().UnregisterComponent(this);
+	G_SimulationSystem.UnregisterComponent(this);
 }
 
 void SimulationComponent::AddForce(const Vec3f& force) noexcept
