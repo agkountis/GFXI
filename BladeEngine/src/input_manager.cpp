@@ -2,7 +2,6 @@
 
 using namespace Blade;
 
-
 bool InputManager::Initialize() noexcept
 {
 #if defined(BLADE_BUILD_D3D)

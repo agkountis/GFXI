@@ -18,7 +18,6 @@ void xinput_device::Update(float deltaTime)
 
 	// Get the state
 	DWORD result = XInputGetState(GetDeviceID(), &tmpState);
-		
 
 }
 
@@ -27,9 +26,8 @@ bool xinput_device::SetVibration(float leftMotor, float rightMotor)
 	XINPUT_VIBRATION vibParams;
 	ZeroMemory(&vibParams, sizeof(XINPUT_VIBRATION));
 
-	// multiply up from normalised value to xinput thresholds
+	// scale to xinput range [0..1]-->[0..65536]
 	vibParams.wLeftMotorSpeed = static_cast<int>(leftMotor * VIBRATION_THRESHOLD);
-	
 	vibParams.wRightMotorSpeed = static_cast<int>(leftMotor * VIBRATION_THRESHOLD);
 
 	DWORD result = XInputSetState(GetDeviceID(), &vibParams);

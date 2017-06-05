@@ -8,7 +8,7 @@ InputState::InputState() : digitalButtonData(0), triggerLeft(0.0f), triggerRight
 
 #if defined(BLADE_BUILD_D3D)
 
-Blade::InputState::InputState(XINPUT_STATE & state)
+InputState::InputState(XINPUT_STATE & state)
 {
 	// copy analog triggers (normalize to [0..1]
 	triggerLeft = static_cast<float>(state.Gamepad.bLeftTrigger / TRIGGER_THRESHOLD);
