@@ -38,7 +38,7 @@ namespace Blade
 				long id{ std::get<long>(connectionInfo.ip) };
 				std::thread clientThread{ [id, this]() { ReceiveThreadMain(id); } };
 
-				clientThread.detach();
+				m_Threads.push_back(std::move(clientThread));
 
 				if (m_OnNewClient)
 				{
@@ -103,7 +103,7 @@ namespace Blade
 		std::vector<Byte> accumulationBuffer;
 
 		// Start receiving bytes untill we get an invalid value.
-		while ((receivedBytes = m_Connections[idx]->Receive(buffer, sizeof buffer)) > 0 && !m_Terminating)
+		while ((receivedBytes = m_Connections[idx]->Receive(buffer, sizeof buffer)) > 0)
 		{
 			accumulationBuffer.insert(accumulationBuffer.end(), buffer, buffer + receivedBytes);
 
@@ -126,23 +126,31 @@ namespace Blade
 
 		BLADE_ERROR("Closing connection socket.");
 
-		if (m_OnClientDisconnect)
+		if (!m_Terminating)
 		{
-			m_OnClientDisconnect();
-		}
+			BLADE_ERROR("Connection terminated by client.");
+			if (m_OnClientDisconnect)
+			{
+				m_OnClientDisconnect();
+			}
 
-		auto it = m_Connections.cbegin();
-		while (it != m_Connections.cend())
+			auto it = m_Connections.cbegin();
+			while (it != m_Connections.cend())
+			{
+				const auto& entry = *it;
+				if (entry.first == idx)
+				{
+					it = m_Connections.erase(it);
+				}
+				else
+				{
+					++it;
+				}
+			}
+		}
+		else
 		{
-			const auto& entry = *it;
-			if (entry.first == idx)
-			{
-				it = m_Connections.erase(it);
-			}
-			else
-			{
-				++it;
-			}
+			BLADE_TRACE("Application terminating. Closing connections.");
 		}
 
 		BLADE_TRACE("Connection count: " + std::to_string(m_Connections.size()));
@@ -177,6 +185,11 @@ namespace Blade
 	NetworkManager::~NetworkManager()
 	{
 		m_Terminating = true;
+
+		for (auto& entry : m_Connections)
+		{
+			entry.second->Close();
+		}
 
 		for (auto& thread : m_Threads)
 		{
