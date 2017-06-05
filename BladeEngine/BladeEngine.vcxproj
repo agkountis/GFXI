@@ -170,7 +170,6 @@
     <ClInclude Include="include\camera.h" />
     <ClInclude Include="include\camera_component.h" />
     <ClInclude Include="include\camera_system.h" />
-    <ClInclude Include="include\bounding_cylinder.h" />
     <ClInclude Include="include\collider.h" />
     <ClInclude Include="include\collider_component.h" />
     <ClInclude Include="include\component.h" />

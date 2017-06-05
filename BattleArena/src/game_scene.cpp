@@ -42,9 +42,10 @@ void GameScene::Initialize()
 	Texture* normalmapTexture{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelNorm5.png") };
 	normalmapTexture->SetTextureType(TEX_NORMAL);
 	material.textures[TEX_NORMAL] = normalmapTexture;
-
+	//////////////////////////////////////////////////////////////////////////
 	//Create an Entity and a RenderComponent.
 	Entity* entity{ new Entity{"TestEntity"} };
+	entity->SetPosition(Vec3f{ 0.0f,10.0f,0.0f });
 	RenderComponent* rc{ new RenderComponent{entity} };
 	rc->SetMesh(cube);
 	rc->SetMaterial(material);
@@ -52,10 +53,10 @@ void GameScene::Initialize()
 	SimulationComponent* simC{ new SimulationComponent{entity,1.0f} };
 
 	ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(0.5f)} };
-
 	auto cache_entity = entity;
 	//Add the entity to the scene so it will get updated.
 	AddEntity(entity);
+	
 	// -------------------------------------------------------------------------------------------------------------------
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
@@ -76,7 +77,7 @@ void GameScene::Initialize()
 
 	Camera* cam{ new Camera{ "Camera1", cd } };
 	//Set the position of the camera.
-	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -200.0f });
+	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -50.0f });
 
 	//Add it to the scene.
 	AddEntity(cam);
