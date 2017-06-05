@@ -23,6 +23,8 @@ namespace Blade
 
 		BehaviourComponent& operator=(const BehaviourComponent& other) = delete;
 
+		virtual ~BehaviourComponent();
+
 		/**
 		* \brief Updates the Component on each frame.
 		* \param dt The time elapsed from the previous frame of the Application.
