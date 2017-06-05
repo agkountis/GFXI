@@ -13,6 +13,8 @@ namespace Blade
 #else
 #endif
 
+	Application* EngineContext::m_pApplication{ nullptr };
+
 	ThreadPool EngineContext::m_ThreadPool;
 
 	// Systems
@@ -125,5 +127,15 @@ namespace Blade
 	ShaderProgramManager& EngineContext::GetShaderProgramManager() noexcept
 	{
 		return m_ShaderProgramManager;
+	}
+
+	void EngineContext::RegisterApplication(Application* application) noexcept
+	{
+		m_pApplication = application;
+	}
+
+	Application& EngineContext::GetApplication() noexcept
+	{
+		return *m_pApplication;
 	}
 }

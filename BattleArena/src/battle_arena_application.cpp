@@ -17,9 +17,13 @@ static void Reshape(int x, int y)
 
 static void KeyDown(unsigned char key, int x, int y)
 {
-	if (key == 27)
+	switch (key)
 	{
-		exit(0);
+	case 27: //esc
+		G_Application.SetTermination(true);
+		break;
+	default:
+		break;
 	}
 
 	G_SceneManager.OnKeyDown(key, x, y);
