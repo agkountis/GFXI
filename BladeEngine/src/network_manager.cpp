@@ -34,7 +34,7 @@ namespace Blade
 
 					m_Connections[++s_ClientId] = std::make_unique<Socket>(std::move(clientSocket));
 
-					std::cout << "Connection count: " << m_Connections.size() << std::endl;
+					BLADE_TRACE("Connection count: " + std::to_string(m_Connections.size()));
 				}
 
 				int tmp{ s_ClientId };

@@ -11,6 +11,7 @@
 #include "directional_light_component.h"
 #include "camera.h"
 #include "directional_light.h"
+
 using namespace Blade;
 
 void GameScene::Initialize()

@@ -150,7 +150,7 @@ namespace Blade
 			return m_Callbacks;
 		}
 
-		virtual void SwapBuffers() const noexcept = 0;
+		virtual void SwapBuffers(unsigned syncInterval = 0) const noexcept = 0;
 	};
 }
 

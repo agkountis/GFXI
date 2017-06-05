@@ -15,13 +15,17 @@
 
 namespace Blade
 {
+	class Application;
+
 	class EngineContext
 	{
 	private:
 #if defined(BLADE_BUILD_D3D)
-		static std::unique_ptr<D3D11Context> m_GAPIContext;
+		static D3D11Context m_GAPIContext;
 #else
 #endif
+		static Application* m_pApplication;
+
 		static ThreadPool m_ThreadPool;
 
 		// Systems
@@ -48,7 +52,7 @@ namespace Blade
 		static bool Initialize();
 
 #if defined(BLADE_BUILD_D3D)
-		static D3D11Context* GetGAPIContext() noexcept;
+		static D3D11Context& GetGAPIContext() noexcept;
 #else
 #endif
 		static ThreadPool& GetThreadPool() noexcept;
@@ -72,7 +76,13 @@ namespace Blade
 		static SceneManager& GetSceneManager() noexcept;
 
 		static ShaderProgramManager& GetShaderProgramManager() noexcept;
+
+		static void RegisterApplication(Application* application) noexcept;
+
+		static Application& GetApplication() noexcept;
 	};
+
+#define G_GAPIContext EngineContext::GetGAPIContext()
 
 #define G_ThreadPool EngineContext::GetThreadPool()
 
@@ -87,6 +97,8 @@ namespace Blade
 #define G_ResourceManager EngineContext::GetResourceManager()
 #define G_SceneManager EngineContext::GetSceneManager()
 #define G_ShaderProgramManager EngineContext::GetShaderProgramManager()
+
+#define G_Application EngineContext::GetApplication()
 }
 
 #endif //BLADE_CONTEXT_H_

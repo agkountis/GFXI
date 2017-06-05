@@ -8,7 +8,7 @@
 namespace Blade
 {
 	// Private Methods -----------------------------------------------------------------------------------------------------------------------------
-	bool D3D11Window::CreateSwapChain(D3D11Context* ctx)
+	bool D3D11Window::CreateSwapChain(D3D11Context& ctx)
 	{
 		//Describe the swapchain
 		DXGI_SWAP_CHAIN_DESC swap_chain_desc;
@@ -22,7 +22,7 @@ namespace Blade
 
 		if (m_EnableMSAA) {
 			swap_chain_desc.SampleDesc.Count = m_SampleCount;
-			swap_chain_desc.SampleDesc.Quality = ctx->GetMSAAQuality(m_SampleCount) - 1;
+			swap_chain_desc.SampleDesc.Quality = ctx.GetMSAAQuality(m_SampleCount) - 1;
 		}
 		else { //No MSAA
 			swap_chain_desc.SampleDesc.Count = 0;
@@ -38,7 +38,7 @@ namespace Blade
 
 		HRESULT h_result{ 0 };
 
-		ComPtr<ID3D11Device> device{ ctx->GetDevice() };
+		ComPtr<ID3D11Device> device{ ctx.GetDevice() };
 
 		ComPtr<IDXGIDevice> dxgi_device{ nullptr };
 		h_result = device.As(&dxgi_device);
@@ -61,7 +61,7 @@ namespace Blade
 		return true;
 	}
 
-	bool D3D11Window::CreateRenderTargetView(D3D11Context* ctx) const noexcept
+	bool D3D11Window::CreateRenderTargetView(D3D11Context& ctx) const noexcept
 	{
 		// get the address of the back buffer
 		ComPtr<ID3D11Texture2D> backbuffer;
@@ -73,8 +73,8 @@ namespace Blade
 		}
 		
 		// use the back buffer address to create the render target
-		ID3D11Device* device{ ctx->GetDevice() };
-		res = device->CreateRenderTargetView(backbuffer.Get(), nullptr, ctx->GetGetAddressOfDefaultRenderTargetView());
+		ID3D11Device* device{ ctx.GetDevice() };
+		res = device->CreateRenderTargetView(backbuffer.Get(), nullptr, ctx.GetGetAddressOfDefaultRenderTargetView());
 
 		if (FAILED(res)) {
 			std::cerr << "Window render target view creation failed." << std::endl;
@@ -84,7 +84,7 @@ namespace Blade
 		return true;
 	}
 
-	bool D3D11Window::CreateDepthStencilView(D3D11Context* ctx) const noexcept
+	bool D3D11Window::CreateDepthStencilView(D3D11Context& ctx) const noexcept
 	{
 		D3D11_TEXTURE2D_DESC depth_attachment_desc;
 		ZeroMemory(&depth_attachment_desc, sizeof(depth_attachment_desc));
@@ -97,7 +97,7 @@ namespace Blade
 		depth_attachment_desc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 
 		ComPtr<ID3D11Texture2D> depth;
-		ID3D11Device* device{ ctx->GetDevice() };
+		ID3D11Device* device{ ctx.GetDevice() };
 		HRESULT res = device->CreateTexture2D(&depth_attachment_desc, nullptr, depth.GetAddressOf());
 
 		if (FAILED(res)) {
@@ -110,7 +110,7 @@ namespace Blade
 		dsvd.Format = DXGI_FORMAT_D32_FLOAT;
 		dsvd.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DMS;
 
-		res = device->CreateDepthStencilView(depth.Get(), &dsvd, ctx->GetAddressOfDefaultDepthStencilView());
+		res = device->CreateDepthStencilView(depth.Get(), &dsvd, ctx.GetAddressOfDefaultDepthStencilView());
 
 		if (FAILED(res)) {
 			std::cerr << "Window depth stencil view creation failed." << std::endl;
@@ -122,7 +122,7 @@ namespace Blade
 
 	bool D3D11Window::Initialize()
 	{
-		D3D11Context* ctx{ EngineContext::GetGAPIContext() };
+		D3D11Context& ctx{ G_GAPIContext };
 
 		if (!CreateSwapChain(ctx)) {
 			return false;
@@ -144,15 +144,15 @@ namespace Blade
 		viewport.MinDepth = 0.0f;
 		viewport.MaxDepth = 1.0f;
 
-		ID3D11DeviceContext* context{ ctx->GetDeviceContext() };
+		ID3D11DeviceContext* context{ ctx.GetDeviceContext() };
 		context->RSSetViewports(1, &viewport);
 
 		return true;
 	}
 
-	void D3D11Window::SwapBuffers() const noexcept
+	void D3D11Window::SwapBuffers(unsigned syncInterval) const noexcept
 	{
-		m_SwapChain->Present(0, 0);
+		m_SwapChain->Present(syncInterval, 0);
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------------------------------

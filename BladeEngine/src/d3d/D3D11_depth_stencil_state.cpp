@@ -27,9 +27,7 @@ namespace Blade
 			desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 			desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
-
-			ID3D11Device* device{ GAPI_context->GetDevice() };
+			ID3D11Device* device{ G_GAPIContext.GetDevice() };
 
 			HRESULT res{ device->CreateDepthStencilState(&desc, m_DepthStencilState.ReleaseAndGetAddressOf()) };
 		}
@@ -53,9 +51,7 @@ namespace Blade
 			desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 			desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
-
-			ID3D11Device* device{ GAPI_context->GetDevice() };
+			ID3D11Device* device{ G_GAPIContext.GetDevice() };
 
 			HRESULT res{ device->CreateDepthStencilState(&desc, m_DepthStencilState.ReleaseAndGetAddressOf()) };
 		}
@@ -79,9 +75,7 @@ namespace Blade
 			desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 			desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
-
-			ID3D11Device* device{ GAPI_context->GetDevice() };
+			ID3D11Device* device{ G_GAPIContext.GetDevice() };
 
 			HRESULT res{ device->CreateDepthStencilState(&desc, m_DepthStencilState.ReleaseAndGetAddressOf()) };
 		}
@@ -105,9 +99,7 @@ namespace Blade
 			desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 			desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
-
-			ID3D11Device* device{ GAPI_context->GetDevice() };
+			ID3D11Device* device{ G_GAPIContext.GetDevice() };
 
 			HRESULT res{ device->CreateDepthStencilState(&desc, m_DepthStencilState.ReleaseAndGetAddressOf()) };
 		}
@@ -119,9 +111,7 @@ namespace Blade
 
 	void D3D11DepthStencilState::Set() const noexcept
 	{
-		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
-
-		ID3D11DeviceContext* device_context{ GAPI_context->GetDeviceContext() };
+		ID3D11DeviceContext* device_context{ G_GAPIContext.GetDeviceContext() };
 
 		device_context->OMSetDepthStencilState(m_DepthStencilState.Get(), 0);
 	}

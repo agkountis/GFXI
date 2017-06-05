@@ -4,14 +4,16 @@
 namespace Blade
 {
 #if defined(BLADE_BUILD_D3D)
-	std::unique_ptr<D3D11Context> EngineContext::m_GAPIContext{ std::make_unique<D3D11Context>() };
+	D3D11Context EngineContext::m_GAPIContext;
 
-	D3D11Context* EngineContext::GetGAPIContext() noexcept
+	D3D11Context& EngineContext::GetGAPIContext() noexcept
 	{
-		return m_GAPIContext.get();
+		return m_GAPIContext;
 	}
 #else
 #endif
+
+	Application* EngineContext::m_pApplication{ nullptr };
 
 	ThreadPool EngineContext::m_ThreadPool;
 
@@ -37,7 +39,7 @@ namespace Blade
 			return false;
 		}
 
-		if (!m_GAPIContext->Create())
+		if (!m_GAPIContext.Create())
 		{
 			BLADE_ERROR("Failed to initialize the engine's Graphics Context.");
 			return false;
@@ -125,5 +127,15 @@ namespace Blade
 	ShaderProgramManager& EngineContext::GetShaderProgramManager() noexcept
 	{
 		return m_ShaderProgramManager;
+	}
+
+	void EngineContext::RegisterApplication(Application* application) noexcept
+	{
+		m_pApplication = application;
+	}
+
+	Application& EngineContext::GetApplication() noexcept
+	{
+		return *m_pApplication;
 	}
 }

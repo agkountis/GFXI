@@ -8,9 +8,7 @@ namespace Blade
 {
 	bool D3D11Texture::Load(const std::wstring& file_name) noexcept
 	{
-		D3D11Context* context{ EngineContext::GetGAPIContext() };
-
-		ID3D11Device* device{ context->GetDevice() };
+		ID3D11Device* device{ G_GAPIContext.GetDevice() };
 
 		HRESULT res{ D3DX11CreateShaderResourceViewFromFile(device,
 		                                                    file_name.c_str(),
@@ -30,9 +28,7 @@ namespace Blade
 
 	void D3D11Texture::Bind() const noexcept
 	{
-		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
-
-		ID3D11DeviceContext* device_context{ GAPI_context->GetDeviceContext() };
+		ID3D11DeviceContext* device_context{ G_GAPIContext.GetDeviceContext() };
 
 		device_context->PSSetShaderResources(GetTextureType(), 1, m_ShaderResourceView.GetAddressOf());
 	}
