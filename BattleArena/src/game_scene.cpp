@@ -45,7 +45,7 @@ void GameScene::Initialize()
 	//////////////////////////////////////////////////////////////////////////
 	//Create an Entity and a RenderComponent.
 	Entity* entity{ new Entity{"TestEntity"} };
-	entity->SetPosition(Vec3f{ 0.0f,10.0f,0.0f });
+	entity->SetPosition(Vec3f{ 0.0f,30.0f,0.0f });
 	RenderComponent* rc{ new RenderComponent{entity} };
 	rc->SetMesh(cube);
 	rc->SetMaterial(material);

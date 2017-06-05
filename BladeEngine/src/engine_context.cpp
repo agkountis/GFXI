@@ -22,6 +22,7 @@ namespace Blade
 	CameraSystem EngineContext::m_CameraSystem;
 	LightSystem EngineContext::m_LightSystem;
 	BehaviourSystem EngineContext::m_BehaviourSystem;
+	SimulationSystem EngineContext::m_SimulationSystem;
 
 	// Managers
 	NetworkManager EngineContext::m_NetworkManager;
@@ -31,7 +32,7 @@ namespace Blade
 	ShaderProgramManager EngineContext::m_ShaderProgramManager;
 	
 
-	SimulationSystem EngineContext::m_SimulationSystem;
+	
 
 	
 

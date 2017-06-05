@@ -34,55 +34,6 @@ namespace Blade
 		*/
 		ContactManifold m_ContactManifold;
 		//////////////////////////////////////////////////////////////////////////
-		
-		///*
-		//\brief Simulation thread
-		//*/
-		//std::thread m_Thread;
-
-		///*
-		//\brief Mutex that is used by the simulation thread
-		//*/
-		//std::mutex m_Mutex;
-
-		///*
-		//\brief Condition variable where the simulation thread wait until 
-		//it's free to start running the simulation
-		//*/
-		//std::condition_variable m_StartSimulating;
-
-		///*
-		//\brief IDK
-		//*/
-		//std::vector<std::function<void()>> m_IntegrationTasks;
-
-		///*
-		//\brief Used to terminate the thread 
-		//*/
-		//bool m_Terminating{ false };
-
-		///*
-		//\brief The simulation system timer
-		//\details Since the simulation system runs on its own thread, it 
-		//holds a timer to calculate the delta time. 
-		//*/
-		//Timer m_Timer;
-
-		/*
-		\brief Performs integration of the rigid bodies 
-		\details This function is provided in order of being able to split the integration process
-		of the entire rigid body vector.
-		\param startIndex the index of the first rigid body that needs to be integrated
-		\param endIndex the index of the last rigid body that we need to integrate
-		\param simulationSystem the simulation system
-		*/
-		//static void IntegrationTask(int startIndex, int endIndex, SimulationSystem* simulationSystem) noexcept;
-
-		/*
-		\brief Performs the splitting of the integration process in different tasks
-		*/
-		//void GenerateIntegrationTasks() noexcept;
-
 
 		/*
 		\brief Perform the integration of the rigid bodies

@@ -7,6 +7,8 @@
 #include "engine_context.h"
 #include "application.h"
 
+#include "trace.h"	//#needtoremove
+
 #undef max
 #undef min
 
@@ -59,6 +61,8 @@ namespace Blade
 				if (G_Application.IsPaused())
 				{
 					angleX = angleZ = 0.0f;
+					BLADE_TRACE("paused sim");
+
 				}
 				Quatf q;
 				Quatf xrot = Rotate(q, ToRadians(angleX), Vec3f{ 1.0f, 0.0f, 0.0f });
