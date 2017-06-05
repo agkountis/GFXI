@@ -67,6 +67,16 @@ const Blade::Vec3f& Blade::SimulationComponent::GetPreviousVelocity() const noex
 	return m_PrevVel;
 }
 
+void Blade::SimulationComponent::SetPreviousPosition(const Vec3f & position) noexcept
+{
+	m_PrevPos = position;
+}
+
+const Vec3f & Blade::SimulationComponent::GetPreviousPosition() const noexcept
+{
+	return m_PrevPos;
+}
+
 bool Blade::SimulationComponent::IsActive() const noexcept
 {
 	return m_IsActive;

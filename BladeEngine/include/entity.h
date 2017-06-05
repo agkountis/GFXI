@@ -18,7 +18,7 @@ namespace Blade
 		bool m_alive;
 
 		Vec3f m_Position;
-		Vec3f m_EulerAngles;
+		Quatf m_Orientation;
 		Vec3f m_Scale{ 1.0f, 1.0f, 1.0f };
 
 		Mat4f m_Xform;
@@ -42,7 +42,7 @@ namespace Blade
 			  m_Name{ other.m_Name },
 			  m_alive{ other.m_alive },
 			  m_Position{ other.m_Position },
-			  m_EulerAngles{ other.m_EulerAngles },
+			  m_Orientation{ other.m_Orientation },
 			  m_Scale{ other.m_Scale },
 			  m_Xform{ other.m_Xform },
 			  p_Parent{ other.p_Parent }
@@ -58,7 +58,7 @@ namespace Blade
 			m_Name = other.m_Name;
 			m_alive = other.m_alive;
 			m_Position = other.m_Position;
-			m_EulerAngles = other.m_EulerAngles;
+			m_Orientation = other.m_Orientation;
 			m_Scale = other.m_Scale;
 			m_Xform = other.m_Xform;
 			p_Parent = other.p_Parent;
@@ -80,14 +80,20 @@ namespace Blade
 			m_Position = position;
 		}
 
-		const Vec3f& GetEulerAngles() const noexcept
+		const Quatf& Entity::GetOrientation() const noexcept
 		{
-			return m_EulerAngles;
+			return m_Orientation;
 		}
 
-		void SetEulerAngles(const Vec3f& eulerAngles) noexcept
+		void SetOrientation(const Quatf& orientation) noexcept
 		{
-			m_EulerAngles = eulerAngles;
+			m_Orientation = orientation;
+		}
+
+		void SetOrientation(const Vec3f& axis, float angle) noexcept
+		{
+			Quatf q;
+			m_Orientation = MathUtils::Rotate(q, angle, axis);
 		}
 
 		const Vec3f& GetScale() const noexcept
@@ -125,13 +131,10 @@ namespace Blade
 			m_Xform = MathUtils::identityMatrix;
 
 			m_Xform = MathUtils::Translate(m_Xform, m_Position);
-			m_Xform = MathUtils::Rotate(m_Xform, MathUtils::ToRadians(m_EulerAngles.y), Vec3f{ 0.0f, 1.0f, 0.0f });
-			m_Xform = MathUtils::Rotate(m_Xform, MathUtils::ToRadians(m_EulerAngles.z), Vec3f{ 0.0f, 0.0f, 1.0f });
-			m_Xform = MathUtils::Rotate(m_Xform, MathUtils::ToRadians(m_EulerAngles.x), Vec3f{ 1.0f, 0.0f, 0.0f });
+			m_Xform = MathUtils::Rotate(m_Xform, m_Orientation);
 			m_Xform = MathUtils::Scale(m_Xform, m_Scale);
 
-			if (p_Parent)
-			{
+			if (p_Parent) {
 				m_Xform = p_Parent->GetXform() * m_Xform;
 			}
 		}

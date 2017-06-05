@@ -127,6 +127,17 @@ namespace Blade
 		const Vec3f& GetPreviousVelocity() const noexcept;
 
 		/*
+		\brief Set the last frame position for the simulation component
+		\param position  position (last frame)
+		*/
+		void SetPreviousPosition(const Vec3f& position) noexcept;
+		/*
+		\brief Getter of the last frame position
+		\return The position of the simulation object (last frame)
+		*/
+		const Vec3f& GetPreviousPosition() const noexcept;
+
+		/*
 		\brief Getter of the mass
 		\return The mass of the simulation object
 		*/

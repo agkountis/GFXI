@@ -23,48 +23,51 @@ namespace Blade
 		int endIndex,
 		SimulationSystem* simulationSystem) noexcept
 	{
-		AttachCurrentThreadToCore(CPU_4 | CPU_5 | CPU_6 | CPU_7);
+		//AttachCurrentThreadToCore(CPU_4 | CPU_5 | CPU_6 | CPU_7);
 
 		auto& rigidBodies = simulationSystem->GetRigidBodyComponents();
 
 		for (int i = startIndex; i < endIndex; ++i)
 		{
-			SimulationComponent* rigidBodyComponent = rigidBodies[i];
-			Entity* parent{ rigidBodyComponent->GetParent() };
+			SimulationComponent* simulationComponent = rigidBodies[i];
+			Entity* parent{ simulationComponent->GetParent() };
 
-			if (parent->IsActive())
+			if (simulationComponent->IsActive())
 			{
-				float mass = rigidBodyComponent->GetMass();
+				
+				float mass{ simulationComponent->GetMass() };
 
 				Vec3f gravityForce{ 0.0f, -9.81f, 0.0f };
 
-				rigidBodyComponent->AddForce(gravityForce);
+				simulationComponent->AddForce(gravityForce);
 
 				Vec3f position{ parent->GetPosition() };
-				rigidBodyComponent->m_PrevPos = position;
+				simulationComponent->SetPreviousPosition(position);
 
-				Vec3f velocity{ rigidBodyComponent->GetVelocity() };
-				rigidBodyComponent->m_PrevVel = velocity;
+				Vec3f velocity{ simulationComponent->GetVelocity() };
+				simulationComponent->SetPreviousVelocity(velocity);
 
-				Vec3f force{ rigidBodyComponent->GetForce() * mass };
-				rigidBodyComponent->m_PrevForce = force;
+				Vec3f force{ simulationComponent->GetForce() * mass };
+				simulationComponent->SetPreviousForce(force);
 
-				rigidBodyComponent->SetAcceleration(force / mass);
+				simulationComponent->SetAcceleration(force / mass);
 
 				RungeKutta4Integrator::Integrate(position, velocity, force, mass, simulationSystem->timeSec, dt);
 
 				parent->SetPosition(position);
 
-				rigidBodyComponent->SetVelocity(velocity);
+				simulationComponent->SetVelocity(velocity);
 
-				float angleX = velocity.z * rigidBodyComponent->GetInverseMass() * friction * dtScale;
-				float angleZ = velocity.x * rigidBodyComponent->GetInverseMass() * friction * dtScale;
+				float angleX = velocity.z * simulationComponent->GetInverseMass() * friction * dtScale;
+				float angleZ = velocity.x * simulationComponent->GetInverseMass() * friction * dtScale;
 
+				/*
+				//#needtoimplement Once we add an application pointer to the engine context, use it here
 				if (EngineContext::GetApplication()->IsPaused())
 				{
 					angleX = angleZ = 0.0f;
 				}
-
+				*/
 				Quatf q;
 				Quatf xrot = Rotate(q, ToRadians(angleX), Vec3f{ 1.0f, 0.0f, 0.0f });
 				Quatf yrot = Rotate(q, ToRadians(-angleZ), Vec3f{ 0.0f, 0.0f, 1.0f });
@@ -75,14 +78,14 @@ namespace Blade
 
 				parent->SetOrientation(parent->GetOrientation() * q);
 
-				rigidBodyComponent->ResetForce();
+				simulationComponent->ResetForce();
 			}
 		}
 	}
 
 	void SimulationSystem::GenerateIntegrationTasks() noexcept
 	{
-		int size = sqrt(m_RigidBodyComponents.size());
+		int size = sqrt(m_SimulationComponents.size());
 
 		int endIndex{ 0 };
 
@@ -97,7 +100,7 @@ namespace Blade
 				this));
 		}
 
-		int remainingComponents = m_RigidBodyComponents.size() - size * size;
+		int remainingComponents = m_SimulationComponents.size() - size * size;
 
 		if (remainingComponents)
 		{
@@ -117,7 +120,7 @@ namespace Blade
 		{
 			auto c1 = m_ColliderComponents[i];
 
-			if (c1->GetParent()->IsActive())
+			if (c1->IsActive())
 			{
 				auto collider = c1->GetCollider();
 
@@ -125,7 +128,7 @@ namespace Blade
 				{
 					auto c2 = m_ColliderComponents[j];
 
-					if (!c2->GetParent()->IsActive())
+					if (!c2->IsActive())
 					{
 						continue;
 					}
@@ -150,9 +153,7 @@ namespace Blade
 					m_ContactManifold.AddEntry(entry);
 				}
 
-
 				// --------------------------------------------------------------------------
-
 				// Cylinder collision detection------------------------------------------------
 				float radius{ 20.0f };
 
@@ -368,39 +369,41 @@ namespace Blade
 				std::chrono::duration<float, std::ratio<1, 1>> dur{ 1.0f / frequency };
 				std::this_thread::sleep_for(dur);
 
+				/*
+				#needtoimplement Once we add an application pointer to the engine context, use it here
 				if (EngineContext::GetApplication()->IsPaused())
 				{
 					m_Timer.Stop();
 				}
 				else
 				{
+				*/
 					m_Timer.Start();
-				}
-
-				Process(m_Timer.GetDelta() * dtScale, m_Timer.GetMsec(), m_Timer.GetSec());
+				//}
+					this->timeSec = m_Timer.GetSec();
+					Process(m_Timer.GetDelta() * dtScale);
 			}
 
 			std::cout << "Terminating Physics" << std::endl;
 		} };
-
+		/*
 		auto nativeHandle = m_Thread.native_handle();
 
 #ifdef WIN32
 		SetThreadAffinityMask(nativeHandle, CPU_3);
 #endif
-
+		*/
 		return true;
 	}
 
-	void SimulationSystem::Process(float deltaTime, long timeMsec, float timeSec) noexcept
+	void SimulationSystem::Process(float deltaTime) noexcept
 	{
 		dt = deltaTime;
-		this->timeSec = timeSec;
 
 		std::cout << dt << std::endl;
 
 		auto& threadPool = EngineContext::GetThreadPool();
-		threadPool->AddTasks(m_IntegrationTasks);
+		threadPool.AddTasks(m_IntegrationTasks);
 
 		CollisionDetection();
 
@@ -410,7 +413,7 @@ namespace Blade
 	void SimulationSystem::RegisterComponent(SimulationComponent* rbc) noexcept
 	{
 		std::lock_guard<std::mutex> lock{ m_Mutex };
-		m_RigidBodyComponents.push_back(rbc);
+		m_SimulationComponents.push_back(rbc);
 	}
 
 	void SimulationSystem::RegisterComponent(ColliderComponent* col) noexcept
@@ -434,7 +437,7 @@ namespace Blade
 
 	const std::vector<SimulationComponent*>& SimulationSystem::GetRigidBodyComponents() const noexcept
 	{
-		return m_RigidBodyComponents;
+		return m_SimulationComponents;
 	}
 
 	const Timer& SimulationSystem::GetTimer() const noexcept

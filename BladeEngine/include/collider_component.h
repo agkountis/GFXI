@@ -18,7 +18,7 @@ namespace Blade
 		/*
 		\brief Flag value to enable or disable collision response
 		*/
-		bool m_CollisionResponse{ true };
+		bool m_activeFlag{ true };
 
 
 		/*
@@ -47,6 +47,15 @@ namespace Blade
 		\return Pointer to the correspondent collider
 		*/
 		Collider* GetCollider() const noexcept;
+
+
+		/*
+		\brief Getter of the collision response flag
+		\return true if the collider component is active, false otherwise
+		*/
+		bool IsActive() const noexcept;
+
+		void SetCollisionResponseFlag(bool flag) noexcept;
 
 	};
 }

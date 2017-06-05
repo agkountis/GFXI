@@ -28,3 +28,13 @@ Collider* ColliderComponent::GetCollider() const noexcept
 {
 	return m_Collider.get();
 }
+
+bool Blade::ColliderComponent::IsActive() const noexcept
+{
+	return m_activeFlag;
+}
+
+void Blade::ColliderComponent::SetCollisionResponseFlag(bool flag) noexcept
+{
+	m_activeFlag = flag;
+}

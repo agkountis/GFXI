@@ -335,6 +335,9 @@
     <ClInclude Include="include\simulation_utils.h">
       <Filter>include\utilities</Filter>
     </ClInclude>
+    <ClInclude Include="include\simulation_system.h">
+      <Filter>include\systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -529,13 +532,8 @@
     <ClCompile Include="src\simulation_utils.cpp">
       <Filter>src\utilities</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="include\simulation_system.h">
-      <Filter>include\systems</Filter>
-    </None>
-    <None Include="src\simulation_system.cpp">
+    <ClCompile Include="src\simulation_system.cpp">
       <Filter>src\systems</Filter>
-    </None>
+    </ClCompile>
   </ItemGroup>
 </Project>

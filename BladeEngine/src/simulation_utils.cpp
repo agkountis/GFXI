@@ -8,7 +8,7 @@ using namespace Blade;
 bool SimulationUtils::SphereAndSphereCollision(const BoundingSphere * sphere1, const BoundingSphere * sphere2, ContactManifold & manifold) noexcept
 {
 
-	sphere1->GetColliderComponent();
+	/*sphere1->GetColliderComponent();
 	Vec3f c1{ sphere1->GetColliderComponent()->GetParent()->GetPosition() };
 	Vec3f c2{ sphere2->GetColliderComponent()->GetParent()->GetPosition() };
 
@@ -33,7 +33,7 @@ bool SimulationUtils::SphereAndSphereCollision(const BoundingSphere * sphere1, c
 	entry.penetration = radSum - size;
 
 	manifold.AddEntry(entry);
-
+	*/
 	return true;
 }
 
