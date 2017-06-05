@@ -5,6 +5,7 @@
 #include "engine_context.h"
 #include "test_message.h"
 #include "ncf.h"
+#include "trace.h"
 
 using namespace Blade;
 using namespace SerializationUtils;
