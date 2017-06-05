@@ -164,7 +164,6 @@
     <ClInclude Include="include\application.h" />
     <ClInclude Include="include\behaviour_component.h" />
     <ClInclude Include="include\behaviour_system.h" />
-    <ClInclude Include="include\bounding_box.h" />
     <ClInclude Include="include\plane_collider.h" />
     <ClInclude Include="include\bounding_sphere.h" />
     <ClInclude Include="include\camera.h" />
@@ -248,15 +247,12 @@
     <ClInclude Include="include\window.h" />
     <ClInclude Include="include\windowing_service.h" />
     <ClInclude Include="include\windowing_types.h" />
-    <ClInclude Include="src\bounding_cylinder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\behaviour_component.cpp" />
     <ClCompile Include="src\abstract_viewport.cpp" />
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\behaviour_sytem.cpp" />
-    <ClCompile Include="src\bouding_box.cpp" />
-    <ClCompile Include="src\bounding_cylinder.cpp" />
     <ClCompile Include="src\plane_collider.cpp" />
     <ClCompile Include="src\bounding_sphere.cpp" />
     <ClCompile Include="src\camera.cpp" />

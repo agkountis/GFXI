@@ -72,6 +72,9 @@
     <Filter Include="src\colliders">
       <UniqueIdentifier>{c2308fe3-4034-4f67-b72a-621b1da28fd4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{5cdb4913-df34-4934-8fb4-aa765d827e21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -230,9 +233,6 @@
     <ClInclude Include="include\bounding_sphere.h">
       <Filter>include\colliders</Filter>
     </ClInclude>
-    <ClInclude Include="include\bounding_box.h">
-      <Filter>include\colliders</Filter>
-    </ClInclude>
     <ClInclude Include="include\camera_system.h">
       <Filter>include\systems</Filter>
     </ClInclude>
@@ -322,9 +322,6 @@
     </ClInclude>
     <ClInclude Include="include\simulation_component.h">
       <Filter>include\components</Filter>
-    </ClInclude>
-    <ClInclude Include="src\bounding_cylinder.h">
-      <Filter>include\colliders</Filter>
     </ClInclude>
     <ClInclude Include="include\collider.h">
       <Filter>include\colliders</Filter>
@@ -463,9 +460,6 @@
     <ClCompile Include="src\bounding_sphere.cpp">
       <Filter>src\colliders</Filter>
     </ClCompile>
-    <ClCompile Include="src\bounding_cylinder.cpp">
-      <Filter>src\colliders</Filter>
-    </ClCompile>
     <ClCompile Include="src\d3d\D3D11_viewport.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -526,12 +520,6 @@
     <ClCompile Include="src\math_utils.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\simulation_utils.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\bouding_box.cpp">
-      <Filter>src\colliders</Filter>
-    </ClCompile>
     <ClCompile Include="src\plane_collider.cpp">
       <Filter>src\colliders</Filter>
     </ClCompile>
@@ -543,6 +531,9 @@
     </ClCompile>
     <ClCompile Include="src\simulation_component.cpp">
       <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\simulation_utils.cpp">
+      <Filter>src\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
