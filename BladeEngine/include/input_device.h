@@ -32,7 +32,8 @@ namespace Blade
 {
 
 	enum class Analog_Deadzone {
-		AnalogStick,
+		AnalogStickLeft,
+		AnalogStickRight,
 		AnalogTrigger
 	};
 
@@ -61,17 +62,17 @@ namespace Blade
 		/*
 		\brief Deadzone value for left analog stick
 		*/
-		float m_DeadZoneLeft{ DEADZONE_ASTICK_L };
+		float m_DeadZoneLeftStick{ DEADZONE_ASTICK_L };
 
 		/*
 		\brief Deadzone value for left analog stick
 		*/
-		float m_DeadZoneLeft{ DEADZONE_ASTICK_R };
+		float m_DeadZoneRightStick{ DEADZONE_ASTICK_R };
 
 		/*
 		\brief Deadzone value for analog triggers
 		*/
-		float m_DeadZoneATrigger{ DEADZONE_ATRIGGERS };
+		float m_DeadZoneTriggers{ DEADZONE_ATRIGGERS };
 
 		/*
 		\brief True if the device is connected, false otherwise
@@ -95,6 +96,25 @@ namespace Blade
 		\return True if successful, false otherwise
 		*/
 		virtual bool SetVibration(float leftMotor, float rightMotor) = 0;
+
+		/*
+		\brief Set dead zone information for an analog sensor on the the device (stick, trigger, etc)
+		\details Overrides the pre-defined DEADZONE_ASTICKL/DEADZONE_ASTICKR/DEADZONE_ATRIGGERS values
+		\remarks The flag enum is of type Analog_Deadzone, and represents which value to update.
+		Use AnalogStickL to set the left analog stick dead zone, AnalogStickR to set the right 
+		analog stick dead zone,	and AnalogTrigger to set the dead zone for both analog triggers.
+		\remarks Individual trigger dead zone values are not supported
+		*/
+		void SetDeadzone(Analog_Deadzone flag, float value);
+
+		/*
+		\brief Get dead zone information for an analog sensor on the the device (stick, trigger, etc)
+		\remarks The flag enum is of type Analog_Deadzone, and represents which value to update.
+		Use AnalogStickL to set the left analog stick dead zone, AnalogStickR to set the right
+		analog stick dead zone,	and AnalogTrigger to set the dead zone for both analog triggers.
+		\remarks Individual trigger dead zone values are not supported
+		*/
+		float GetDeadzone(Analog_Deadzone flag);
 
 		virtual ~InputDevice();
 
