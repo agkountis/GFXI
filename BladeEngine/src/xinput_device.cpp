@@ -19,6 +19,11 @@ void xinput_device::Update(float deltaTime)
 	// Get the state
 	DWORD result = XInputGetState(GetDeviceID(), &tmpState);
 
+	// Create an input state
+	InputState newState(tmpState);
+
+	// Store state (move current newest to previous, store newState as current)
+	SetInputState(newState);
 }
 
 bool xinput_device::SetVibration(float leftMotor, float rightMotor)

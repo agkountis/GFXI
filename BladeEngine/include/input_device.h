@@ -54,7 +54,6 @@ values are for leagacy use only.
 
 namespace Blade
 {
-
 	enum class Analog_Deadzone {
 		AnalogStickLeft,
 		AnalogStickRight,
@@ -122,13 +121,21 @@ namespace Blade
 		*/
 		void SetInputState(const InputState& state);
 
+		/*
+		\brief Initialize the selected InputDevice
+		\details Allocates any needed resources and handles to use the device, and prepares it to a ready state
+		\remarks Any pre-initialization and resource allocation to be able to immediately use the device is performed here
+		\return True if successful, false otherwise
+		*/
+		virtual bool Initialize() = 0;
+
 	public:
 
 		/*
 		\brief  Constructors and destructor of the InputDevice.
 		Copy/Move operator and assignments are deleted.
 		*/
-		InputDevice();	/*maybe add something here*/
+		InputDevice(int device_id);
 
 		/*
 		\brief Updates the active devices to the latest input states available and buffers the most recent previous state
@@ -155,8 +162,8 @@ namespace Blade
 		/*
 		\brief Get dead zone information for an analog sensor on the the device (stick, trigger, etc)
 		\remarks The flag enum is of type Analog_Deadzone, and represents which value to update.
-		Use AnalogStickL to set the left analog stick dead zone, AnalogStickR to set the right
-		analog stick dead zone,	and AnalogTrigger to set the dead zone for both analog triggers.
+		Use AnalogStickL to get the left analog stick dead zone, AnalogStickR to get the right
+		analog stick dead zone,	and AnalogTrigger to get the dead zone for both analog triggers.
 		\remarks Individual trigger dead zone values are not supported
 		*/
 		float GetDeadzone(Analog_Deadzone flag);
@@ -166,7 +173,6 @@ namespace Blade
 		\return True if the device is connected and functioning, false otherwise
 		*/
 		virtual bool IsConnected() = 0;
-
 
 		virtual ~InputDevice();
 

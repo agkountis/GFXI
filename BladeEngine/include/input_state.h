@@ -78,6 +78,7 @@ namespace Blade
 	{
 		InputState();
 
+		// constructor to read state data according to platform
 #if defined(BLADE_BUILD_D3D)
 
 		InputState(XINPUT_STATE& state);

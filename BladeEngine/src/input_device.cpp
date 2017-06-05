@@ -8,7 +8,7 @@ void InputDevice::SetInputState(const InputState & state)
 	m_CurrentState = state;
 }
 
-InputDevice::InputDevice()
+Blade::InputDevice::InputDevice(int device_id) : m_deviceID(device_id)
 {
 }
 
