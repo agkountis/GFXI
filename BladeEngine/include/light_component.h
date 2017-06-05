@@ -104,7 +104,6 @@ namespace Blade
 		{
 			m_LightDescCacheIndex = index;
 		}
-
 	};
 }
 

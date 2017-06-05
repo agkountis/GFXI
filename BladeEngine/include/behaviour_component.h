@@ -41,8 +41,6 @@ namespace Blade
 		* \brief Performs actions before the BehaviourComponent is destroyed.
 		*/
 		virtual void Teardown() noexcept = 0;
-
-		
 	};
 }
 

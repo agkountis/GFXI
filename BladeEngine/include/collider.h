@@ -9,7 +9,7 @@ namespace Blade
 	class BoundingSphere;
 
 	/*
-	\brief This class represents a general collider. 
+	\brief This class represents a general collider.
 	*/
 	class Collider
 	{

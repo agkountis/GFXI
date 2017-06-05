@@ -24,13 +24,14 @@ namespace Blade
 				/**
 				* The thread waits until jobs exists in the queue.
 				*/
-				m_HasTasks.wait(lock, [this] {
-					return !m_Tasks.empty() || m_Stop;
-				});
+				m_HasTasks.wait(lock, [this]
+		                {
+			                return !m_Tasks.empty() || m_Stop;
+		                });
 
 				if (m_Stop)
 				{
-					std::cout << "Thread terminating." << std::endl;
+					BLADE_TRACE("Thread terminating.");
 					return;
 				}
 
@@ -60,7 +61,6 @@ namespace Blade
 				}
 			}
 		}
-
 	}
 
 	bool ThreadPool::Initialize()
@@ -72,7 +72,8 @@ namespace Blade
 		*/
 		int thread_count = std::thread::hardware_concurrency();
 
-		if (!thread_count) {
+		if (!thread_count)
+		{
 			BLADE_ERROR("Not able to detect the system's available thread count!");
 			return false;
 		}
@@ -84,8 +85,8 @@ namespace Blade
 		/**
 		* Spawn the worker threads.
 		*/
-		for (int i = 0; i < thread_count; i++) {
-
+		for (int i = 0; i < thread_count; i++)
+		{
 			/**
 			* The workers will execute an infinite loop function
 			* and will wait for a job to enter the job queue. Once a job is in the the queue
@@ -102,9 +103,10 @@ namespace Blade
 	{
 		std::unique_lock<std::mutex> lock(m_TaskMutex);
 
-		m_TasksDone.wait(lock, [this] {
-			return m_Tasks.empty() && m_ActiveTasks == 0;
-		});
+		m_TasksDone.wait(lock, [this]
+                 {
+	                 return m_Tasks.empty() && m_ActiveTasks == 0;
+                 });
 	}
 
 	void ThreadPool::Terminate()
@@ -124,7 +126,8 @@ namespace Blade
 				m_HasTasks.notify_all();
 			}
 
-			for (auto &worker : m_Workers) {
+			for (auto& worker : m_Workers)
+			{
 				worker.join();
 			}
 		}
@@ -140,11 +143,12 @@ namespace Blade
 	}
 
 
-	void ThreadPool::AddTasks(const std::vector<std::function<void()>> &jobs)
+	void ThreadPool::AddTasks(const std::vector<std::function<void()>>& jobs)
 	{
 		std::lock_guard<std::mutex> lock(m_TaskMutex);
 
-		for (auto &job : jobs) {
+		for (auto& job : jobs)
+		{
 			this->m_Tasks.push(std::move(job));
 		}
 

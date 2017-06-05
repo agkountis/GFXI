@@ -25,10 +25,7 @@ namespace Blade
 
 		void AddEntity(Entity* object) noexcept;
 
-		const std::vector<Entity*>& GetEntities() const noexcept
-		{
-			return m_Entities;
-		}
+		const std::vector<Entity*>& GetEntities() const noexcept;
 
 		virtual void OnKeyDown(unsigned char key, int x, int y) noexcept = 0;
 
