@@ -128,8 +128,7 @@ void GameScene::Initialize()
 
 	//Set the pipeline to the render system.
 	G_RenderSystem.SetRenderPassPipeline(pipeline);
-	//Start the simulation system
-	G_SimulationSystem.Start();
+
 	// --------------------------------------------------------------------------------------------------------------------
 }
 
@@ -170,6 +169,7 @@ void GameScene::Update(float deltaTime, long time) noexcept
 
 	Scene::Update(deltaTime, time);
 
+	G_SimulationSystem.Process(deltaTime);
 
 	G_LightSystem.Process();
 

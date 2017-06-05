@@ -35,38 +35,38 @@ namespace Blade
 		ContactManifold m_ContactManifold;
 		//////////////////////////////////////////////////////////////////////////
 		
-		/*
-		\brief Simulation thread
-		*/
-		std::thread m_Thread;
+		///*
+		//\brief Simulation thread
+		//*/
+		//std::thread m_Thread;
 
-		/*
-		\brief Mutex that is used by the simulation thread
-		*/
-		std::mutex m_Mutex;
+		///*
+		//\brief Mutex that is used by the simulation thread
+		//*/
+		//std::mutex m_Mutex;
 
-		/*
-		\brief Condition variable where the simulation thread wait until 
-		it's free to start running the simulation
-		*/
-		std::condition_variable m_StartSimulating;
+		///*
+		//\brief Condition variable where the simulation thread wait until 
+		//it's free to start running the simulation
+		//*/
+		//std::condition_variable m_StartSimulating;
 
-		/*
-		\brief IDK
-		*/
-		std::vector<std::function<void()>> m_IntegrationTasks;
+		///*
+		//\brief IDK
+		//*/
+		//std::vector<std::function<void()>> m_IntegrationTasks;
 
-		/*
-		\brief Used to terminate the thread 
-		*/
-		bool m_Terminating{ false };
+		///*
+		//\brief Used to terminate the thread 
+		//*/
+		//bool m_Terminating{ false };
 
-		/*
-		\brief The simulation system timer
-		\details Since the simulation system runs on its own thread, it 
-		holds a timer to calculate the delta time. 
-		*/
-		Timer m_Timer;
+		///*
+		//\brief The simulation system timer
+		//\details Since the simulation system runs on its own thread, it 
+		//holds a timer to calculate the delta time. 
+		//*/
+		//Timer m_Timer;
 
 		/*
 		\brief Performs integration of the rigid bodies 
@@ -76,13 +76,18 @@ namespace Blade
 		\param endIndex the index of the last rigid body that we need to integrate
 		\param simulationSystem the simulation system
 		*/
-		static void IntegrationTask(int startIndex, int endIndex, SimulationSystem* simulationSystem) noexcept;
+		//static void IntegrationTask(int startIndex, int endIndex, SimulationSystem* simulationSystem) noexcept;
 
 		/*
 		\brief Performs the splitting of the integration process in different tasks
 		*/
-		void GenerateIntegrationTasks() noexcept;
+		//void GenerateIntegrationTasks() noexcept;
 
+
+		/*
+		\brief Perform the integration of the rigid bodies
+		*/
+		void UpdateObjects() noexcept;
 		/*
 		\brief Collision detection routine of the simulation
 		\details Check exhaustive collision between every active collision component. 
@@ -151,9 +156,6 @@ namespace Blade
 
 		const std::vector<SimulationComponent*>& GetRigidBodyComponents() const noexcept;
 
-		const Timer& GetTimer() const noexcept;
-
-		void Start() noexcept;
 	};
 }
 #endif //BLADE_SIMULATION_SYSTEM_H_

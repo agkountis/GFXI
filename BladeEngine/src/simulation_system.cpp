@@ -20,22 +20,16 @@ namespace Blade
 	float SimulationSystem::dt = 0.0f;
 	float SimulationSystem::dtScale = 1.0f;
 
-	void SimulationSystem::IntegrationTask(int startIndex,
-		int endIndex,
-		SimulationSystem* simulationSystem) noexcept
+
+	void SimulationSystem::UpdateObjects() noexcept
 	{
-		//AttachCurrentThreadToCore(CPU_4 | CPU_5 | CPU_6 | CPU_7);
-
-		auto& rigidBodies = simulationSystem->GetRigidBodyComponents();
-
-		for (int i = startIndex; i < endIndex; ++i)
+		for (auto simulationComponent : m_SimulationComponents)
 		{
-			SimulationComponent* simulationComponent = rigidBodies[i];
 			Entity* parent{ simulationComponent->GetParent() };
 
 			if (simulationComponent->IsActive())
 			{
-				
+
 				float mass{ simulationComponent->GetMass() };
 
 				Vec3f gravityForce{ 0.0f, -9.81f, 0.0f };
@@ -53,7 +47,7 @@ namespace Blade
 
 				simulationComponent->SetAcceleration(force / mass);
 
-				RungeKutta4Integrator::Integrate(position, velocity, force, mass, simulationSystem->timeSec, dt);
+				RungeKutta4Integrator::Integrate(position, velocity, force, mass, timeSec, dt);
 
 				parent->SetPosition(position);
 
@@ -78,34 +72,6 @@ namespace Blade
 
 				simulationComponent->ResetForce();
 			}
-		}
-	}
-
-	void SimulationSystem::GenerateIntegrationTasks() noexcept
-	{
-		int size = static_cast<int>(sqrt(m_SimulationComponents.size()));
-
-		int endIndex{ 0 };
-
-		for (int i = 0; i < size; ++i)
-		{
-			int startIndex = size * i;
-			endIndex = size * (i + 1);
-
-			m_IntegrationTasks.push_back(std::bind(IntegrationTask,
-				startIndex,
-				endIndex,
-				this));
-		}
-
-		int remainingComponents = m_SimulationComponents.size() - size * size;
-
-		if (remainingComponents)
-		{
-			m_IntegrationTasks.push_back(std::bind(IntegrationTask,
-				endIndex,
-				endIndex + remainingComponents,
-				this));
 		}
 	}
 
@@ -339,66 +305,27 @@ namespace Blade
 
 	SimulationSystem::~SimulationSystem()
 	{
-		m_Terminating = true;
+		/*m_Terminating = true;
 
 		m_IntegrationTasks.clear();
 
 		if (m_Thread.joinable())
 		{
 			m_Thread.join();
-		}
+		}*/
 	}
 
 	bool SimulationSystem::Initialize() noexcept
 	{
-		m_Timer.Start();
-
-		m_Thread = std::thread{ [this]() -> void
-		{
-			{
-				std::unique_lock<std::mutex> uniqueLock{ m_Mutex };
-				m_StartSimulating.wait(uniqueLock);
-			}
-
-			GenerateIntegrationTasks();
-
-			while (!m_Terminating)
-			{
-				std::chrono::duration<float, std::ratio<1, 1>> dur{ 1.0f / frequency };
-				std::this_thread::sleep_for(dur);
-
-				if (G_Application.IsPaused())
-				{
-					m_Timer.Stop();
-				}
-				else
-				{
-					m_Timer.Start();
-				}
-					this->timeSec = static_cast<float>( m_Timer.GetSec());
-					Process(static_cast<float>(m_Timer.GetDelta() )* dtScale);
-			}
-
-			std::cout << "Terminating Physics" << std::endl;
-		} };
-		/*
-		auto nativeHandle = m_Thread.native_handle();
-
-#ifdef WIN32
-		SetThreadAffinityMask(nativeHandle, CPU_3);
-#endif
-		*/
 		return true;
 	}
 
 	void SimulationSystem::Process(float deltaTime) noexcept
 	{
 		dt = deltaTime;
+		timeSec = static_cast<float>(G_Application.GetSec());
 
-		std::cout << dt << std::endl;
-
-		auto& threadPool = EngineContext::GetThreadPool();
-		threadPool.AddTasks(m_IntegrationTasks);
+		UpdateObjects();
 
 		CollisionDetection();
 
@@ -407,13 +334,11 @@ namespace Blade
 
 	void SimulationSystem::RegisterComponent(SimulationComponent* rbc) noexcept
 	{
-		std::lock_guard<std::mutex> lock{ m_Mutex };
 		m_SimulationComponents.push_back(rbc);
 	}
 
 	void SimulationSystem::RegisterComponent(ColliderComponent* col) noexcept
 	{
-		std::lock_guard<std::mutex> lock{ m_Mutex };
 		m_ColliderComponents.push_back(col);
 	}
 
@@ -440,13 +365,4 @@ namespace Blade
 		return m_SimulationComponents;
 	}
 
-	const Timer& SimulationSystem::GetTimer() const noexcept
-	{
-		return m_Timer;
-	}
-
-	void SimulationSystem::Start() noexcept
-	{
-		m_StartSimulating.notify_one();
-	}
 }
