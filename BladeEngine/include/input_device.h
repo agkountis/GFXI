@@ -105,11 +105,6 @@ namespace Blade
 		float m_DeadZoneTriggers{ DEADZONE_ATRIGGERS };
 
 		/*
-		\brief True if the device is connected, false otherwise
-		*/
-		bool m_IsConnected{ false };
-
-		/*
 		\brief Enumeration of device type
 		*/
 		DeviceType m_DeviceType{ DeviceType::DEVTYPE_ERROR };

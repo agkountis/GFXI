@@ -24,6 +24,7 @@ bool InputManager::Initialize() noexcept
 	return true;
 }
 
+
 const int InputManager::EnumerateDevices() noexcept
 {
 
@@ -35,6 +36,7 @@ const int InputManager::EnumerateDevices() noexcept
 
 	for (int i = 0; i < XUSER_MAX_COUNT; ++i)
 	{
+
 		ZeroMemory(&xiState, sizeof(XINPUT_STATE));
 
 		if (XInputGetState(i, &xiState) == ERROR_SUCCESS)
@@ -67,6 +69,7 @@ const int InputManager::EnumerateDevices() noexcept
 #endif
 }
 
+
 DeviceType Blade::InputManager::DevicePoolQueryType(int deviceId)
 {
 
@@ -89,6 +92,7 @@ DeviceType Blade::InputManager::DevicePoolQueryType(int deviceId)
 	return DeviceType::DEVTYPE_ERROR;
 }
 
+
 const bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber)
 {
 
@@ -103,7 +107,7 @@ const bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int device
 	// Add device to active device map
 	m_ActiveDevices[playerID] = m_DevicePool[deviceNumber];
 
-	// Remove from device pool - this device is in use
+	// Remove from device pool - this device is now in use
 	std::vector<InputDevice*>::iterator itr = m_DevicePool.begin();
 	
 	std::advance(itr, deviceNumber);
@@ -112,6 +116,7 @@ const bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int device
 	
 	return true;
 }
+
 
 InputDevice * Blade::InputManager::GetActiveDevice(Player playerID)
 {
