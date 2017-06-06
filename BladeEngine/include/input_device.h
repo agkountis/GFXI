@@ -57,7 +57,12 @@ namespace Blade
 	/*
 	* \brief Describe the type of the device.
 	*/
-	enum class DeviceType { KEYBOARD, JOYPAD, OTHER, DEVTYPE_ERROR };
+	enum class DeviceType {
+		Keyboard,
+		Joypad,
+		Other,
+		DEVTYPE_ERROR
+	};
 
 	enum class Analog_Deadzone {
 		AnalogStickLeft,
@@ -114,11 +119,6 @@ namespace Blade
 		/*
 		\brief Gets the device ID (input API handle)
 		*/
-		int GetDeviceID() { return m_deviceID; }
-
-		/*
-		\brief Gets the device ID (input API handle)
-		*/
 		void SetDeviceID(int id) { m_deviceID = id; }
 
 		/*
@@ -160,6 +160,11 @@ namespace Blade
 		InputDevice(int device_id, DeviceType devType);
 
 		/*
+		\brief Gets the device ID (input API handle)
+		*/
+		int GetDeviceID() { return m_deviceID; }
+
+		/*
 		\brief Updates the active devices to the latest input states available and buffers the most recent previous state
 		*/
 		virtual void Update(float fDeltaTime) = 0;
@@ -196,6 +201,10 @@ namespace Blade
 		*/
 		virtual bool IsConnected() = 0;
 
+		/*
+		\brief Get the type of device
+		\return Enum of DeviceType of the device if successful, DeviceType enum DEVTYPE_ERROR otherwise
+		*/
 		DeviceType GetDeviceType() { return m_DeviceType; }
 
 		virtual ~InputDevice();

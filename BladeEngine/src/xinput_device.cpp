@@ -2,7 +2,7 @@
 
 using namespace Blade;
 
-xinput_device::xinput_device(int device_id, DeviceType devType)
+XInputDevice::XInputDevice(int device_id, DeviceType devType)
 {
 
 	// Set the device id
@@ -10,13 +10,14 @@ xinput_device::xinput_device(int device_id, DeviceType devType)
 
 	// Set the device type
 	SetDeviceType(devType);
+
 }
 
-xinput_device::~xinput_device()
+XInputDevice::~XInputDevice()
 {
 }
 
-void xinput_device::Update(float deltaTime)
+void XInputDevice::Update(float deltaTime)
 {
 	// Update the input states
 	XINPUT_STATE tmpState;
@@ -32,7 +33,7 @@ void xinput_device::Update(float deltaTime)
 	SetInputState(newState);
 }
 
-bool xinput_device::SetVibration(float leftMotor, float rightMotor)
+bool XInputDevice::SetVibration(float leftMotor, float rightMotor)
 {
 	XINPUT_VIBRATION vibParams;
 	ZeroMemory(&vibParams, sizeof(XINPUT_VIBRATION));

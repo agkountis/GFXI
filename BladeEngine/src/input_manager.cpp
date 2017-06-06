@@ -40,8 +40,7 @@ const int InputManager::EnumerateDevices() noexcept
 			++dDevCount;
 
 			// Create a device from this and add to device pool
-			// (...)
-
+			
 		}
 
 	}
@@ -62,9 +61,22 @@ const int InputManager::EnumerateDevices() noexcept
 DeviceType Blade::InputManager::DevicePoolQueryType(int deviceId)
 {
 
+	InputDevice* tmpDev{ nullptr };
 
+	// Search fod device_id
+	for (unsigned int i = 0; (i < m_DevicePool.size()); i++) {
 
-	return DeviceType();
+		tmpDev = m_DevicePool[i];
+
+		if (tmpDev->GetDeviceID() == deviceId) {
+
+			return tmpDev->GetDeviceType();
+
+		}
+
+	}
+
+	return DeviceType::DEVTYPE_ERROR;
 }
 
 const bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber)
@@ -73,7 +85,9 @@ const bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int device
 	// Exceeded bounds
 	if (deviceNumber > m_DevicePool.size() || deviceNumber < 0)
 	{
+
 		return false;
+
 	}
 
 	// Add device to active device map

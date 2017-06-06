@@ -9,7 +9,7 @@
 #include <iostream>
 #include <utility>
 
-#include "input_device.h"
+#include "xinput_device.h"
 
 // required library files
 #pragma comment (lib, "Xinput.lib")
@@ -17,6 +17,7 @@
 
 #elif defined (BLADE_BUILD_PS4)
 
+// include ps4 type inputdevice header here
 #include <pad.h>
 
 #endif
@@ -79,7 +80,7 @@ namespace Blade
 		const bool AssignDeviceToPlayer(Player playerID, int deviceNumber);
 
 		/**
-		* \brief Returns an assigned input device by player
+		* \brief Returns an active (not in the pool) assigned input device, searched by player
 		* \return Active input device for player id, nullptr otherwise
 		*/
 		InputDevice* GetActiveDevice(Player playerID);

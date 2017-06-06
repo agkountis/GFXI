@@ -3,15 +3,17 @@
 
 namespace Blade {
 
-	class xinput_device : public InputDevice
+	class XInputDevice : public InputDevice
 	{
 		public:
-			xinput_device(int device_id, DeviceType devType);
-
+			XInputDevice(int device_id, DeviceType devType);
+			
+			~XInputDevice();
+			
 			virtual void Update(float deltaTime);
 			
 			virtual bool SetVibration(float leftMotor, float rightMotor);
-
+			
 	};
 
 }
