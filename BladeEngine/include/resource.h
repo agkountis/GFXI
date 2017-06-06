@@ -30,7 +30,7 @@ namespace Blade
 			m_Id = id;
 		}
 
-		virtual bool Load(const std::wstring& file_name) noexcept = 0;
+		virtual bool Load(const std::wstring& fileName) noexcept = 0;
 	};
 }
 

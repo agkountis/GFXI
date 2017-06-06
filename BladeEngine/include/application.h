@@ -5,6 +5,8 @@
 
 namespace Blade
 {
+	using LoadEntityCallback = std::function<bool(const std::wstring& fileName, Entity* thisObject)>;
+
 	class Application
 	{
 	private:
@@ -13,6 +15,8 @@ namespace Blade
 		bool m_Paused{ false };
 
 		Timer m_Timer;
+
+		LoadEntityCallback m_LoadEntityCallback;
 
 	public:
 		Application() = default;
@@ -38,6 +42,10 @@ namespace Blade
 		void UnPause() noexcept;
 
 		bool IsPaused() const noexcept;
+
+		void SetLoadEntityCallback(const LoadEntityCallback& callback) noexcept;
+
+		const LoadEntityCallback& GetLoadEntityCallback() const noexcept;
 
 		virtual bool Initialize(int* argc, char* argv[]);
 

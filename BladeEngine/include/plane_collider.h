@@ -17,9 +17,10 @@ namespace Blade
 		Vec3f m_PlaneNormal;
 
 		/*
-		\brief The distance of the plane from the origin
+		* \brief The distance of the plane from the origin
 		*/
 		float m_Offset;
+
 	public:
 		explicit PlaneCollider(const Vec3f& planeNormal, const float offset);
 

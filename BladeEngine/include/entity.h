@@ -5,17 +5,19 @@
 #include "types.h"
 #include "math_utils.h"
 #include "observer_subject.h"
+#include "resource.h"
+#include <functional>
 
 namespace Blade
 {
-	class Entity : public ObserverSubject
+	class Entity : public ObserverSubject, public Resource
 	{
 	private:
 		std::vector<Component*> m_Components;
 
 		std::string m_Name;
 
-		bool m_alive;
+		bool m_Alive;
 
 		Vec3f m_Position;
 		Quatf m_Orientation;
@@ -56,6 +58,12 @@ namespace Blade
 
 		void SetParent(Entity* entity) noexcept;
 
+		const std::vector<Entity*>& GetChildren() const noexcept;
+
+		Entity* GetChild(int index) const noexcept;
+
+		size_t GetChildrenCount() const noexcept;
+
 		const Mat4f& GetXform() const noexcept;
 
 		void SetXform(const Mat4f& xform) noexcept;
@@ -71,6 +79,8 @@ namespace Blade
 		void SetAlive(bool state) noexcept;
 
 		virtual void Update(float dt, long time = 0) noexcept;
+
+		bool Load(const std::wstring& fileName) noexcept override;
 	};
 }
 

@@ -29,7 +29,6 @@ namespace Blade
 	public:
 		Mesh();
 
-
 		Mesh(const Mesh& other) = default;
 
 		Mesh& operator=(const Mesh& other) = default;

@@ -92,7 +92,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;BLADE_BUILD_D3D;GLM_FORCE_SWIZZLE;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <DisableSpecificWarnings>4005;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -102,7 +102,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
-      <AdditionalDependencies>BladeEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>BladeEngine.lib;zlibstaticd.lib;assimp-vc140-mt-static-deb.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DirectX|x64'">
@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="assimp_utils.cpp" />
     <ClCompile Include="src\battle_arena_application.cpp" />
     <ClCompile Include="src\game_scene.cpp" />
     <ClCompile Include="src\game_scene_color_pass.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="src\test_message.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="assimp_utils.h" />
     <ClInclude Include="include\battle_arena_application.h" />
     <ClInclude Include="include\game_scene.h" />
     <ClInclude Include="include\game_scene_color_pass.h" />

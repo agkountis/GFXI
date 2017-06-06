@@ -1,11 +1,15 @@
 #include "entity.h"
 #include "behaviour_system.h"
+#include "trace.h"
+#include "engine_context.h"
+#include "application.h"
+
 namespace Blade
 {
 	Entity::Entity(const std::string& name)
 		: m_Name{ name },
-		m_alive{ true },
-		p_Parent{ nullptr }
+		  m_Alive{ true },
+		  p_Parent{ nullptr }
 	{
 	}
 
@@ -21,14 +25,14 @@ namespace Blade
 
 	Entity::Entity(const Entity& other)
 		: ObserverSubject{ other },
-		m_Components{ other.m_Components },
-		m_Name{ other.m_Name },
-		m_alive{ other.m_alive },
-		m_Position{ other.m_Position },
-		m_Orientation{ other.m_Orientation },
-		m_Scale{ other.m_Scale },
-		m_Xform{ other.m_Xform },
-		p_Parent{ other.p_Parent }
+		  m_Components{ other.m_Components },
+		  m_Name{ other.m_Name },
+		  m_Alive{ other.m_Alive },
+		  m_Position{ other.m_Position },
+		  m_Orientation{ other.m_Orientation },
+		  m_Scale{ other.m_Scale },
+		  m_Xform{ other.m_Xform },
+		  p_Parent{ other.p_Parent }
 	{
 	}
 
@@ -39,7 +43,7 @@ namespace Blade
 		ObserverSubject::operator =(other);
 		m_Components = other.m_Components;
 		m_Name = other.m_Name;
-		m_alive = other.m_alive;
+		m_Alive = other.m_Alive;
 		m_Position = other.m_Position;
 		m_Orientation = other.m_Orientation;
 		m_Scale = other.m_Scale;
@@ -99,6 +103,21 @@ namespace Blade
 		p_Parent = entity;
 	}
 
+	const std::vector<Entity*>& Entity::GetChildren() const noexcept
+	{
+		return m_Children;
+	}
+
+	Entity* Entity::GetChild(int index) const noexcept
+	{
+		return m_Children[index];
+	}
+
+	size_t Entity::GetChildrenCount() const noexcept
+	{
+		return m_Children.size();
+	}
+
 	const Mat4f& Entity::GetXform() const noexcept
 	{
 		return m_Xform;
@@ -117,7 +136,8 @@ namespace Blade
 		m_Xform = MathUtils::Rotate(m_Xform, m_Orientation);
 		m_Xform = MathUtils::Scale(m_Xform, m_Scale);
 
-		if (p_Parent) {
+		if (p_Parent)
+		{
 			m_Xform = p_Parent->GetXform() * m_Xform;
 		}
 	}
@@ -142,16 +162,28 @@ namespace Blade
 
 	bool Entity::IsAlive() const noexcept
 	{
-		return m_alive;
+		return m_Alive;
 	}
 
 	void Entity::SetAlive(bool state) noexcept
 	{
-		m_alive = state;
+		m_Alive = state;
 	}
 
 	void Entity::Update(float dt, long time) noexcept
 	{
 		CalculateXform();
+	}
+
+	bool Entity::Load(const std::wstring& fileName) noexcept
+	{
+		auto& callback = G_Application.GetLoadEntityCallback();
+		if (callback)
+		{
+			return callback(fileName, this);
+		}
+
+		BLADE_ERROR("Call to Load but no load callback provided");
+		return false;
 	}
 }
