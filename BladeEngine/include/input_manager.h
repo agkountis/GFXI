@@ -56,6 +56,11 @@ namespace Blade
 	public:
 
 		/**
+		* \brief Update the states of managed input devices, and re-enumerate input devices
+		*/
+		void Update(float deltaTime);
+
+		/**
 		* \brief Initialize the input manager
 		* \return True if the initialization is successful, false otherwise
 		*/

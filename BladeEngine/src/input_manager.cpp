@@ -2,6 +2,39 @@
 
 using namespace Blade;
 
+void Blade::InputManager::Update(float deltaTime)
+{
+
+	// re-enumerate input API for any newly connected devices since the last check
+	int result = EnumerateDevices();
+
+	InputDevice* tempDev{ nullptr };
+
+	std::map<Player, InputDevice*>::iterator itr = m_ActiveDevices.begin();
+
+	// Update the state of active input devices (in the active map, with player assignments)
+	for (itr = m_ActiveDevices.begin(); itr != m_ActiveDevices.end(); ++itr)
+	{
+
+		tempDev = itr->second;
+
+		// If the device is connected
+		if (tempDev->IsConnected())
+		{
+
+			tempDev->Update(deltaTime);
+
+		}
+		else {
+
+			// act on disconnection
+			
+		}
+
+	}
+
+}
+
 bool InputManager::Initialize() noexcept
 {
 #if defined(BLADE_BUILD_D3D)
@@ -69,9 +102,12 @@ int InputManager::EnumerateDevices() noexcept
 	//PS4 code here
 	
 	return dDevCount;
+
 #else
+
 	// catch-all
 	return 0;
+
 #endif
 }
 
@@ -82,7 +118,7 @@ DeviceType Blade::InputManager::DevicePoolQueryType(int deviceId)
 	InputDevice* tmpDev{ nullptr };
 
 	// Search for device_id
-	for (unsigned int i = 0; (i < m_DevicePool.size()); i++) {
+	for (unsigned int i = 0; (i < m_DevicePool.size()); ++i) {
 
 		tmpDev = m_DevicePool[i];
 
@@ -172,6 +208,37 @@ bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber
 
 bool Blade::InputManager::UnassignDevice(Player playerID)
 {
+
+	// Find device
+	std::map<Player, InputDevice*>::iterator itr = m_ActiveDevices.find(playerID);
+
+	// Fail if not found
+	if (itr == m_ActiveDevices.end())
+	{
+
+		return false;
+
+	}
+
+	// Remove from the active devices map
+	InputDevice* tempDev = itr->second;
+
+	m_ActiveDevices.erase(itr);
+
+	// If the device is still connected, add it to the device pool
+	if (tempDev->IsConnected())
+	{
+
+		m_DevicePool.push_back(tempDev);
+
+	}
+	else {
+
+		// Otherwise, delete the device, it is not connected
+		delete tempDev;
+
+	}
+
 	return false;
 }
 
@@ -218,7 +285,6 @@ Blade::InputManager::~InputManager()
 		delete tempDevice;
 
 	}
-		
 
 	// invalidate and release inactive devices in the device pool
 
