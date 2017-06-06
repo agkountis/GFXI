@@ -12,8 +12,11 @@ bool InputManager::Initialize() noexcept
 
 	// init PS4 pad library
 	if (scePadInit() != SCE_OK) {
+
 		std::cerr << "PS4 Pad library failed to initialize" << std::endl;
+		
 		return false;
+
 	}
 
 #endif
@@ -39,8 +42,14 @@ const int InputManager::EnumerateDevices() noexcept
 
 			++dDevCount;
 
-			// Create a device from this and add to device pool
+			// Device shows as connected/active - create a new xinputdevice
 			
+			XInputDevice* xDev = new XInputDevice(i, DeviceType::Joypad);
+
+			// Add the new device to the pool
+
+			m_DevicePool.push_back(xDev);
+
 		}
 
 	}
@@ -63,7 +72,7 @@ DeviceType Blade::InputManager::DevicePoolQueryType(int deviceId)
 
 	InputDevice* tmpDev{ nullptr };
 
-	// Search fod device_id
+	// Search for device_id
 	for (unsigned int i = 0; (i < m_DevicePool.size()); i++) {
 
 		tmpDev = m_DevicePool[i];
@@ -76,6 +85,7 @@ DeviceType Blade::InputManager::DevicePoolQueryType(int deviceId)
 
 	}
 
+	// Not found
 	return DeviceType::DEVTYPE_ERROR;
 }
 

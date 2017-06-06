@@ -13,6 +13,10 @@ namespace Blade {
 			virtual void Update(float deltaTime);
 			
 			virtual bool SetVibration(float leftMotor, float rightMotor);
+
+			bool Initialize();
+
+			virtual bool IsConnected();
 			
 	};
 

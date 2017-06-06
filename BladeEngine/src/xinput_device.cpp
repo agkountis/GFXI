@@ -46,3 +46,24 @@ bool XInputDevice::SetVibration(float leftMotor, float rightMotor)
 
 	return (result == ERROR_SUCCESS);
 }
+
+bool Blade::XInputDevice::Initialize()
+{
+	// XInput devices are already initialised
+
+	return true;
+}
+
+bool Blade::XInputDevice::IsConnected()
+{
+
+	// Prepare a state
+	XINPUT_STATE tmpState;
+	ZeroMemory(&tmpState, sizeof(XINPUT_STATE));
+
+	// Query the state
+	DWORD result = XInputGetState(GetDeviceID(), &tmpState);
+
+	return (result != ERROR_DEVICE_NOT_CONNECTED);
+
+}
