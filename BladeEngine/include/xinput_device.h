@@ -1,23 +1,28 @@
-#pragma once
+#ifndef BLADE_XINPUTDEVICE_H_
+#define BLADE_XINPUTDEVICE_H_
+
 #include "input_device.h"
 
 namespace Blade {
 
 	class XInputDevice : public InputDevice
 	{
+		protected:
+			bool Initialize() override;
+	
 		public:
 			XInputDevice(int device_id, DeviceType devType);
 			
 			~XInputDevice();
 			
-			virtual void Update(float deltaTime);
+			void Update(float deltaTime) override;
 			
-			virtual bool SetVibration(float leftMotor, float rightMotor);
+			bool SetVibration(float leftMotor, float rightMotor) const override;
 
-			bool Initialize();
-
-			virtual bool IsConnected();
+			bool IsConnected() const override;
 			
 	};
 
 }
+
+#endif //BLADE_XINPUTDEVICE_H_

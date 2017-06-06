@@ -39,7 +39,7 @@ void XInputDevice::Update(float deltaTime)
 
 }
 
-bool XInputDevice::SetVibration(float leftMotor, float rightMotor)
+bool XInputDevice::SetVibration(float leftMotor, float rightMotor) const
 {
 	XINPUT_VIBRATION vibParams;
 	ZeroMemory(&vibParams, sizeof(XINPUT_VIBRATION));
@@ -60,7 +60,7 @@ bool Blade::XInputDevice::Initialize()
 	return true;
 }
 
-bool Blade::XInputDevice::IsConnected()
+bool Blade::XInputDevice::IsConnected() const
 {
 
 	// Prepare a state

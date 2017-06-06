@@ -1,5 +1,6 @@
 #ifndef BLADE_INPUT_DEVICE_H_
 #define BLADE_INPUT_DEVICE_H_
+
 #include "input_state.h"
 
 #if defined(BLADE_BUILD_D3D)
@@ -124,12 +125,12 @@ namespace Blade
 		/*
 		\brief Gets the last (newest) buffered input state to read
 		*/
-		const InputState& GetCurrentState() { return m_CurrentState; }
+		const InputState& GetCurrentState() const { return m_CurrentState; }
 
 		/*
 		\brief Gets the previous buffered previous input state to read
 		*/
-		const InputState& GetPreviousState() {	return m_PreviousState;	}
+		const InputState& GetPreviousState() const {	return m_PreviousState;	}
 
 		/*
 		\brief Moves the newest input state to the previous state and stores the provided state as newest
@@ -157,7 +158,7 @@ namespace Blade
 		/*
 		\brief Gets the device ID (input API handle)
 		*/
-		int GetDeviceID() { return m_deviceID; }
+		int GetDeviceID() const { return m_deviceID; }
 
 		/*
 		\brief Updates the active devices to the latest input states available and buffers the most recent previous state
@@ -169,7 +170,7 @@ namespace Blade
 		\details Left and right motors are set independently from 0.0 (off) to 1.0 (100%)
 		\return True if successful, false otherwise
 		*/
-		virtual bool SetVibration(float leftMotor, float rightMotor) = 0;
+		virtual bool SetVibration(float leftMotor, float rightMotor) const = 0;
 
 		/*
 		\brief Set dead zone information for an analog sensor on the the device (stick, trigger, etc)
@@ -194,7 +195,7 @@ namespace Blade
 		\brief Checks device is connected
 		\return True if the device is connected and functioning, false otherwise
 		*/
-		virtual bool IsConnected() = 0;
+		virtual bool IsConnected() const = 0;
 
 		/*
 		\brief Get the type of device
@@ -214,6 +215,5 @@ namespace Blade
 
 	};
 }
-
 
 #endif
