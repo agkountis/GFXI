@@ -54,6 +54,8 @@ namespace Blade
 		*/
 		void CollisionResponse() const noexcept;
 
+		void PreResponse(Entity* &e1, ManifoldEntry &entry, Entity* &e2, SimulationComponent* &simCo1, SimulationComponent* &simCo2) const ;
+
 
 	public:
 		/*
@@ -116,12 +118,12 @@ namespace Blade
 
 
 		void ApplyPositionChanges(const Vec3f& contactNormal, const float penetration,
-			SimulationComponent* rb1, Entity* e1, SimulationComponent* rb2, Entity* e2) const;
+			SimulationComponent* simcom1,Entity* e1, SimulationComponent* simcom2, Entity* e2) const;
 
 
-		void ApplyVelocityChanges(SimulationComponent* rb1, SimulationComponent* rb2, ManifoldEntry &entry, Entity* e1) const;
+		void ApplyVelocityChanges(SimulationComponent* rb1, SimulationComponent* rb2, ManifoldEntry &entry) const;
 
-		void SetVelocity(float newSeparatingVelocity, float separatingVelocity, SimulationComponent* rb1, SimulationComponent* rb2, ManifoldEntry &entry) const;
+		void SetVelocity(SimulationComponent* sc1, SimulationComponent* sc2, float newSeparatingVelocity, float separatingVelocity, Vec3f& contactNormal) const;
 
 	};
 }
