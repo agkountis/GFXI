@@ -21,67 +21,108 @@ namespace Blade
 	float SimulationSystem::dtScale = 1.0f;
 
 
-	void SimulationSystem::UpdateObjects() noexcept
-	{
+	void SimulationSystem::UpdateSimComponents() noexcept
+{
 		for (auto simulationComponent : m_SimulationComponents)
 		{
-			Entity* parent{ simulationComponent->GetParent() };
+			Integrate(simulationComponent);
+		}
+	}
 
-			if (simulationComponent->IsActive())
-			{
+	void SimulationSystem::Integrate(SimulationComponent * simulationComponent) noexcept
+	{
+		Entity* parent{ simulationComponent->GetParent() };
+		if (simulationComponent->IsActive())
+		{
 
-				float mass{ simulationComponent->GetMass() };
+			float mass{ simulationComponent->GetMass() };
 
-				Vec3f gravityForce{ 0.0f, -9.81f, 0.0f };
+			Vec3f gravityForce{ 0.0f, -9.81f, 0.0f };
 
-				simulationComponent->AddForce(gravityForce);
+			simulationComponent->AddForce(gravityForce);
 
-				Vec3f position{ parent->GetPosition() };
-				simulationComponent->SetPreviousPosition(position);
+			Vec3f position{ parent->GetPosition() };
+			simulationComponent->SetPreviousPosition(position);
 
-				Vec3f velocity{ simulationComponent->GetVelocity() };
-				simulationComponent->SetPreviousVelocity(velocity);
+			Vec3f velocity{ simulationComponent->GetVelocity() };
+			simulationComponent->SetPreviousVelocity(velocity);
 
-				Vec3f force{ simulationComponent->GetForce() * mass };
-				simulationComponent->SetPreviousForce(force);
+			Vec3f force{ simulationComponent->GetForce() * mass };
+			simulationComponent->SetPreviousForce(force);
 
-				simulationComponent->SetAcceleration(force / mass);
+			simulationComponent->SetAcceleration(force / mass);
 
-				RungeKutta4Integrator::Integrate(position, velocity, force, mass, timeSec, dt);
+			RungeKutta4Integrator::Integrate(position, velocity, force, mass, timeSec, dt);
 
-				parent->SetPosition(position);
+			parent->SetPosition(position);
 
-				simulationComponent->SetVelocity(velocity);
+			simulationComponent->SetVelocity(velocity);
 
-				float angleX = velocity.z * simulationComponent->GetInverseMass() * friction * dtScale;
-				float angleZ = velocity.x * simulationComponent->GetInverseMass() * friction * dtScale;
+			simulationComponent->ResetForce();
+		}
+	}
 
-				if (G_Application.IsPaused())
-				{
-					angleX = angleZ = 0.0f;
+	void SimulationSystem::ApplyPositionChanges(const Vec3f& contactNormal, const float penetration,
+		SimulationComponent* simcom1, Entity* e1, SimulationComponent* simcom2, Entity* e2) const noexcept
+	{
+		float totalInverseMass{ simcom1->GetInverseMass() };
 
-				}
-				Quatf q;
-				Quatf xrot = Rotate(q, ToRadians(angleX), Vec3f{ 1.0f, 0.0f, 0.0f });
-				Quatf yrot = Rotate(q, ToRadians(-angleZ), Vec3f{ 0.0f, 0.0f, 1.0f });
+		if (simcom2)
+		{
+			totalInverseMass += simcom2->GetInverseMass();
+		}
 
-				q = xrot * yrot;
+		if (totalInverseMass <= 0)
+		{
+			return;
+		}
 
-				q = Normalize(q);
+		Vec3f movePerInverseMass{ contactNormal * (penetration / totalInverseMass) };
 
-				parent->SetOrientation(parent->GetOrientation() * q);
+		Vec3f move1{ movePerInverseMass * simcom1->GetInverseMass() };
+		Vec3f move2;
 
-				simulationComponent->ResetForce();
-			}
+		if (simcom2)
+		{
+			move2 = movePerInverseMass * -simcom2->GetInverseMass();
+		}
+
+		e1->SetPosition(e1->GetPosition() + move1);
+
+		if (e2)
+		{
+			e2->SetPosition(e2->GetPosition() + move2);
+		}
+	}
+
+	void SimulationSystem::SetVelocity(SimulationComponent* sc1, SimulationComponent* sc2,
+		float newSeparatingVelocity, float separatingVelocity, Vec3f& contactNormal) const noexcept
+	{
+		float deltaVelocity{ newSeparatingVelocity - separatingVelocity };
+		float totalInverseMass{ sc1->GetInverseMass() };
+		if (sc2)
+		{
+			totalInverseMass += sc2->GetInverseMass();
+		}
+		if (totalInverseMass <= 0)
+		{
+			return;
+		}
+		float impulse{ deltaVelocity / totalInverseMass };
+		Vec3f impulsePerInverseMass{ contactNormal * impulse };
+		sc1->SetVelocity(sc1->GetVelocity() + impulsePerInverseMass * sc1->GetInverseMass());
+		sc1->SetVelocity(sc1->GetVelocity() - sc1->GetVelocity() * sc1->GetMass() * friction * dt);
+		if (sc2)
+		{
+			sc2->SetVelocity(sc2->GetVelocity() + impulsePerInverseMass * -sc2->GetInverseMass());
+			sc2->SetVelocity(sc2->GetVelocity() - sc2->GetVelocity() * sc2->GetMass() * friction * dt);
 		}
 	}
 
 
-
-	void SimulationSystem::GenerateContacts() noexcept
-{
+	void SimulationSystem::CollisionDetection() noexcept
+	{
 		m_ContactManifold.Clear();
-
 		int offs = 1;
 		for (size_t i = 0; i < m_ColliderComponents.size(); ++i)
 		{
@@ -90,11 +131,9 @@ namespace Blade
 			if (c1->IsActive())
 			{
 				auto collider = c1->GetCollider();
-
 				for (size_t j = offs; j < m_ColliderComponents.size(); ++j)
 				{
 					auto c2 = m_ColliderComponents[j];
-
 					if (!c2->IsActive())
 					{
 						continue;
@@ -102,45 +141,7 @@ namespace Blade
 
 					collider->Collide(c2->GetCollider(), m_ContactManifold);
 				}
-
-				// Plane collision detection -----------------------------------------
-				Vec3f planeDir{ 0.0f, 1.0f, 0.0f };
-				float planeOffset{ 0.0f };
-
-				float sphereDistance{ Dotf(planeDir, c1->GetParent()->GetPosition()) - 0.5f - planeOffset };
-
-				if (sphereDistance <= 0.0f)
-				{
-					ManifoldEntry entry;
-					entry.collider1 = collider;
-					entry.collider2 = nullptr;
-					entry.contactNormal = planeDir;
-					entry.penetration = -sphereDistance;
-
-					m_ContactManifold.AddEntry(entry);
-				}
-
-				// --------------------------------------------------------------------------
-				// Cylinder collision detection------------------------------------------------
-				float radius{ 20.0f };
-
-				Vec3f p{ c1->GetParent()->GetPosition() };
-
-				float len = Lengthf(p.xz);
-				if (len > radius - 0.5f)
-				{
-					ManifoldEntry entry;
-					entry.collider1 = collider;
-					entry.collider2 = nullptr;
-					entry.contactNormal = Normalize(-Vec3f{ p.x, 0.0, p.z });
-					entry.penetration = Lengthf(p.xz) - radius;
-
-					m_ContactManifold.AddEntry(entry);
-				}
-				//-----------------------------------------------------------------------------
 			}
-
-
 			++offs;
 		}
 	}
@@ -153,169 +154,74 @@ namespace Blade
 
 			Entity* e1{ nullptr };
 			Entity* e2{ nullptr };
+			SimulationComponent* simCo1{ nullptr };
+			SimulationComponent* simCo2{ nullptr };
 
-			e1 = entry.collider1->GetColliderComponent()->GetParent();
+			PreResponse(e1, entry, e2, simCo1, simCo2);
 
-			if (entry.collider2)
-			{
-				e2 = entry.collider2->GetColliderComponent()->GetParent();
-			}
-
-			SimulationComponent* rb1{ nullptr };
-			SimulationComponent* rb2{ nullptr };
-
-			rb1 = static_cast<SimulationComponent*>(e1->GetComponent("co_sim"));
-
-			if (e2)
-			{
-				rb2 = static_cast<SimulationComponent*>(e2->GetComponent("co_sim"));
-			}
-
-			Vec3f relativeVelocity{ rb1->GetVelocity() };
-
-			if (rb2)
-			{
-				relativeVelocity -= rb2->GetVelocity();
-			}
-
-			float separatingVelocity{ Dotf(relativeVelocity, entry.contactNormal) };
-
-			// Resolve velocities
-			if (separatingVelocity < 0.0f)
-			{
-				float newSeparatingVelocity{ -separatingVelocity * elasticity };
-
-				Vec3f accCausedVelocity{ rb1->GetAcceleration() };
-
-				if (rb2)
-				{
-					accCausedVelocity -= rb2->GetAcceleration();
-				}
-
-				float accCausedSepVelocity{ Dotf(accCausedVelocity, entry.contactNormal) * dt };
-
-				if (accCausedSepVelocity < 0.0f)
-				{
-					newSeparatingVelocity += elasticity * accCausedSepVelocity;
-
-					if (newSeparatingVelocity < 0.0f)
-					{
-						newSeparatingVelocity = 0.0f;
-					}
-
-					float deltaVelocity{ newSeparatingVelocity - separatingVelocity };
-
-					float totalInverseMass{ rb1->GetInverseMass() };
-
-					if (rb2)
-					{
-						totalInverseMass += rb2->GetInverseMass();
-					}
-
-					if (totalInverseMass <= 0)
-					{
-						continue;
-					}
-
-					float impulse{ deltaVelocity / totalInverseMass };
-
-					Vec3f impulsePerInverseMass{ entry.contactNormal * impulse };
-
-					rb1->SetVelocity(rb1->GetVelocity() + impulsePerInverseMass * rb1->GetInverseMass());
-
-					rb1->SetVelocity(rb1->GetVelocity() - rb1->GetVelocity() * rb1->GetMass() * friction * dt);
-					if (rb2)
-					{
-						rb2->SetVelocity(rb2->GetVelocity() + impulsePerInverseMass * -rb2->GetInverseMass());
-						rb2->SetVelocity(rb2->GetVelocity() - rb2->GetVelocity() * rb2->GetMass() * friction * dt);
-					}
-				}
-				else
-				{
-					float deltaVelocity{ newSeparatingVelocity - separatingVelocity };
-
-					float totalInverseMass{ rb1->GetInverseMass() };
-
-					if (rb2)
-					{
-						totalInverseMass += rb2->GetInverseMass();
-					}
-
-					if (totalInverseMass <= 0)
-					{
-						continue;
-					}
-
-					float impulse{ deltaVelocity / totalInverseMass };
-
-					Vec3f impulsePerInverseMass{ entry.contactNormal * impulse };
-
-					rb1->SetVelocity(rb1->GetVelocity() + impulsePerInverseMass * rb1->GetInverseMass());
-					rb1->SetVelocity(rb1->GetVelocity() - rb1->GetVelocity() * rb1->GetMass() * friction * dt);
-					if (rb2)
-					{
-						rb2->SetVelocity(rb2->GetVelocity() + impulsePerInverseMass * -rb2->GetInverseMass());
-						rb2->SetVelocity(rb2->GetVelocity() - rb2->GetVelocity() * rb2->GetMass() * friction * dt);
-					}
-
-					float angleX = rb1->GetVelocity().z * rb1->GetInverseMass();
-					float angleZ = rb1->GetVelocity().x * rb1->GetInverseMass();
-
-					Quatf q = e1->GetOrientation();
-					q = Rotate(q, ToRadians(angleZ), Vec3f{ 0.0f, 0.0f, 1.0f });
-					q = Rotate(q, ToRadians(angleX), Vec3f{ 1.0f, 0.0f, 0.0f });
-
-					q = Normalize(q);
-
-					e1->SetOrientation(q);
-				}
-			}
-
-			// Resolve penetration.
+			ApplyVelocityChanges(simCo1, simCo2, entry);
 			if (entry.penetration > 0.0f)
 			{
-				float totalInverseMass{ rb1->GetInverseMass() };
+				ApplyPositionChanges(entry.contactNormal, entry.penetration, simCo1, e1, simCo2, e2);
+			}
+		}
+	}
 
-				if (rb2)
+	void SimulationSystem::PreResponse(Entity *& e1, ManifoldEntry & entry, Entity *& e2, 
+		SimulationComponent *& simCo1, SimulationComponent *& simCo2) const noexcept
+	{
+		e1 = entry.collider1->GetColliderComponent()->GetParent();
+		if (entry.collider2)
+		{
+			e2 = entry.collider2->GetColliderComponent()->GetParent();
+		}
+		simCo1 = static_cast<SimulationComponent*>(e1->GetComponent("co_sim"));
+		if (e2)
+		{
+			simCo2 = static_cast<SimulationComponent*>(e2->GetComponent("co_sim"));
+		}
+	}
+
+	void SimulationSystem::ApplyVelocityChanges(SimulationComponent* simCom1, SimulationComponent* simCom2,
+		ManifoldEntry &entry) const noexcept
+	{
+		Vec3f relativeVelocity{ simCom1->GetVelocity() };
+		if (simCom2)
+		{
+			relativeVelocity -= simCom2->GetVelocity();
+		}
+		float separatingVelocity{ Dotf(relativeVelocity, entry.contactNormal) };
+		if (separatingVelocity < 0.0f)
+		{
+			float newSeparatingVelocity{ -separatingVelocity * elasticity };
+			Vec3f accCausedVelocity{ simCom1->GetAcceleration() };
+			if (simCom2)
+			{
+				accCausedVelocity -= simCom2->GetAcceleration();
+			}
+			float accCausedSepVelocity{ Dotf(accCausedVelocity, entry.contactNormal) * dt };
+			if (accCausedSepVelocity < 0.0f)
+			{
+				newSeparatingVelocity += elasticity * accCausedSepVelocity;
+				if (newSeparatingVelocity < 0.0f)
 				{
-					totalInverseMass += rb2->GetInverseMass();
+					newSeparatingVelocity = 0.0f;
 				}
 
-				if (totalInverseMass <= 0)
-				{
-					continue;
-				}
+				SetVelocity(simCom1, simCom2, newSeparatingVelocity, separatingVelocity, entry.contactNormal);
+				return;
+			}
+			else
+			{
+				SetVelocity(simCom1, simCom2, newSeparatingVelocity, separatingVelocity,  entry.contactNormal);
 
-				Vec3f movePerInverseMass{ entry.contactNormal * (entry.penetration / totalInverseMass) };
-
-				Vec3f move1{ movePerInverseMass * rb1->GetInverseMass() };
-				Vec3f move2;
-
-				if (rb2)
-				{
-					move2 = movePerInverseMass * -rb2->GetInverseMass();
-				}
-
-				e1->SetPosition(e1->GetPosition() + move1);
-
-				if (e2)
-				{
-					e2->SetPosition(e2->GetPosition() + move2);
-				}
 			}
 		}
 	}
 
 	SimulationSystem::~SimulationSystem()
 	{
-		/*m_Terminating = true;
-
-		m_IntegrationTasks.clear();
-
-		if (m_Thread.joinable())
-		{
-			m_Thread.join();
-		}*/
+		
 	}
 
 	bool SimulationSystem::Initialize() noexcept
@@ -327,11 +233,12 @@ namespace Blade
 	{
 		dt = deltaTime;
 		timeSec = static_cast<float>(G_Application.GetSec());
-
-		UpdateObjects();
-
-		GenerateContacts();
-
+		
+		//Integrate all the component stored in the m_SimulationComponets
+		UpdateSimComponents();
+		//Populate the manifold
+		CollisionDetection();
+		//Resolve the contact stored in the manifold = change velocity & change position.
 		CollisionResponse();
 	}
 
@@ -345,13 +252,13 @@ namespace Blade
 		m_ColliderComponents.push_back(col);
 	}
 
-	void SimulationSystem::UnregisterComponent(SimulationComponent* c) const noexcept
+	void SimulationSystem::UnregisterComponent(SimulationComponent* c)  noexcept
 	{
-		/*std::remove_if(m_SimulationComponents.begin(),
+		std::remove_if(m_SimulationComponents.begin(),
 			m_SimulationComponents.end(),
 			[c](SimulationComponent* element) {
 			return c->GetId() == element->GetId();
-		});*/
+		});
 	}
 
 	void SimulationSystem::UnregisterComponent(ColliderComponent* c) noexcept
@@ -363,7 +270,7 @@ namespace Blade
 		});
 	}
 
-	const std::vector<SimulationComponent*>& SimulationSystem::GetRigidBodyComponents() const noexcept
+	const std::vector<SimulationComponent*>& SimulationSystem::GetSimulationComponents() const noexcept
 	{
 		return m_SimulationComponents;
 	}

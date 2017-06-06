@@ -5,8 +5,6 @@
 
 namespace Blade
 {
-	class PlaneCollider;
-
 	/*
 	\brief BoundingSphere class of the engine is a Collider
 	*/
@@ -26,7 +24,7 @@ namespace Blade
 		bool Collide(const BoundingSphere* bsphere, ContactManifold& manifold) const noexcept override;
 
 		bool Collide(const PlaneCollider* plane, ContactManifold& manifold) const noexcept override;
-		
+
 		const float GetRadius() const noexcept;
 	};
 }
