@@ -335,6 +335,9 @@
     <ClInclude Include="include\threading_utils.h">
       <Filter>include\utilities</Filter>
     </ClInclude>
+    <ClInclude Include="emitter_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">

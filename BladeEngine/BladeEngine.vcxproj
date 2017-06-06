@@ -161,6 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="emitter_component.h" />
     <ClInclude Include="include\application.h" />
     <ClInclude Include="include\behaviour_component.h" />
     <ClInclude Include="include\behaviour_system.h" />
