@@ -3,7 +3,7 @@
 #include "bounding_sphere.h"
 #include "collider_component.h"
 #include "entity.h"
-
+#include <iostream>
 namespace Blade
 {
 
@@ -23,7 +23,6 @@ namespace Blade
 		{
 			return false;
 		}
-
 		Vec3f normal{ midline * (1.0f / size) };
 
 		ManifoldEntry entry;
@@ -39,7 +38,7 @@ namespace Blade
 	}
 
 
-	bool Blade::SimulationUtils::SphereAndPlane(const BoundingSphere * sphere, const PlaneCollider * plane, ContactManifold & manifold) noexcept
+	bool Blade::SimulationUtils::SphereAndPlaneCollision(const BoundingSphere * sphere, const PlaneCollider * plane, ContactManifold & manifold) noexcept
 	{
 		Vec3f planeDir{ plane->GetPlaneNormal() };
 		float planeOffset{ plane->GetOffeset() };

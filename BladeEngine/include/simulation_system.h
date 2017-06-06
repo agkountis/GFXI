@@ -33,12 +33,12 @@ namespace Blade
 		\details One manifold is sufficient to cover the entire simulation 
 		*/
 		ContactManifold m_ContactManifold;
-		//////////////////////////////////////////////////////////////////////////
 
 		/*
-		\brief Perform the integration of the rigid bodies
+		\brief Perform the integration of simulation components
 		*/
-		void UpdateObjects() noexcept;
+		void UpdateSimComponents() noexcept;
+
 		/*
 		\brief Collision detection routine of the simulation
 		\details Check exhaustive collision between every active collision component. 
@@ -52,6 +52,34 @@ namespace Blade
 		The collision response process is not iterative. 
 		*/
 		void CollisionResponse() const noexcept;
+
+		/*
+		\brief Prepare the contact before the response. Stores pointer used by the other subroutines.
+		*/
+		void PreResponse(Entity* &e1, ManifoldEntry &entry, Entity* &e2,
+			SimulationComponent* &simCo1, SimulationComponent* &simCo2) const noexcept;
+
+		/*
+		\brief Integrate the current simulation component position.
+		*/
+		void Integrate(SimulationComponent * simulationComponent) noexcept;
+
+		/*
+		\brief Changes the position of the entities colliding.
+		\details If one entity does not hold a rigid body, the position won't change. 
+		*/
+		void ApplyPositionChanges(const Vec3f& contactNormal, const float penetration,
+			SimulationComponent* simcom1, Entity* e1, SimulationComponent* simcom2, Entity* e2) const noexcept;
+
+		/*
+		\brief Changes the velocity of the entities colliding. This method is used inside the collision response pass.
+		*/
+		void ApplyVelocityChanges(SimulationComponent* simCom1, SimulationComponent* simCom2, ManifoldEntry &entry) const noexcept;
+
+		/*
+		\brief Set the velocity of the two simulation components that are colliding.
+		*/
+		void SetVelocity(SimulationComponent* sc1, SimulationComponent* sc2, float newSeparatingVelocity, float separatingVelocity, Vec3f& contactNormal) const noexcept;
 
 	public:
 		/*
@@ -82,6 +110,9 @@ namespace Blade
 		*/
 		static float dtScale;
 
+		/*
+		\brief Time in second of the application
+		*/
 		float timeSec;
 
 		SimulationSystem() = default;
@@ -92,21 +123,47 @@ namespace Blade
 
 		~SimulationSystem();
 
-
+		/*
+		\brief Initialize the simulation system.
+		*/
 		bool Initialize() noexcept override;
 
+		/*
+		\brief Perform the simulation loop: update the simulation, calculate the contacts 
+		and store them inside the manifold and then resolve the contacts.
+		*/
 		void Process(float deltaTime) noexcept override;
 
-		void RegisterComponent(SimulationComponent* rbc) noexcept;
+		/*
+		\brief Register a simulation component to the system
+		\param simComp the new component that needs to be registered to the system.
+		*/
+		void RegisterComponent(SimulationComponent* simComp) noexcept;
 
-		void RegisterComponent(ColliderComponent* col) noexcept;
+		/*
+		\brief Register a collider component to the system
+		\param colComp the new component that needs to be registered to the system.
+		*/
+		void RegisterComponent(ColliderComponent* colComp) noexcept;
 
-		void UnregisterComponent(SimulationComponent* c) const noexcept;
+		/*
+		\brief Unregister a simulation component to the system, that component won't be update 
+		anymore.
+		\param simComp the pointer to the SimulationComponent that we need to remove.
+		*/
+		void UnregisterComponent(SimulationComponent* simComp) noexcept;
 
-		void UnregisterComponent(ColliderComponent* c) noexcept;
+		/*
+		\brief Unregister a collider component to the system, that component won't be taken 
+		in consideration for further collision detection and therefore response.
+		\param simComp the pointer to the ColliderComponent that we need to remove.
+		*/
+		void UnregisterComponent(ColliderComponent* colComp) noexcept;
 
-		const std::vector<SimulationComponent*>& GetRigidBodyComponents() const noexcept;
-
+		/*
+		\brief Returns a vector of the simulation components that the system holds.
+		*/
+		const std::vector<SimulationComponent*>& GetSimulationComponents() const noexcept;
 	};
 }
 #endif //BLADE_SIMULATION_SYSTEM_H_

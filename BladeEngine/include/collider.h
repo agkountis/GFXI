@@ -7,6 +7,7 @@ namespace Blade
 	//Forward declarations
 	class ColliderComponent;
 	class BoundingSphere;
+	class PlaneCollider;
 
 	/*
 	\brief This class represents a general collider.
@@ -27,6 +28,8 @@ namespace Blade
 		virtual bool Collide(const Collider* collider, ContactManifold& manifold) const noexcept = 0;
 
 		virtual bool Collide(const BoundingSphere* bsphere, ContactManifold& manifold) const noexcept = 0;
+
+		virtual bool Collide(const PlaneCollider* plane, ContactManifold& manifold) const noexcept = 0;
 
 		ColliderComponent* GetColliderComponent() const noexcept { return m_Parent; };
 

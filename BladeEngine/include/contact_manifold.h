@@ -14,11 +14,11 @@ namespace Blade
 	*/
 	struct ManifoldEntry
 	{
-		const Collider* collider1;
-		const Collider* collider2;
-		Vec3f			contactNormal;
-		float t{ 0.0f };
-		float penetration{ 0.0f };
+		const Collider*		collider1;
+		const Collider*		collider2;
+		Vec3f				contactNormal;
+		float t				{ 0.0f };
+		float penetration	{ 0.0f };
 	};
 
 	/*
