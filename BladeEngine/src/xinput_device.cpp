@@ -2,8 +2,14 @@
 
 using namespace Blade;
 
-xinput_device::xinput_device(int device_id)
+xinput_device::xinput_device(int device_id, DeviceType devType)
 {
+
+	// Set the device id
+	SetDeviceID(device_id);
+
+	// Set the device type
+	SetDeviceType(devType);
 }
 
 xinput_device::~xinput_device()

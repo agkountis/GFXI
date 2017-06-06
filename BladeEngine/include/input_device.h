@@ -54,6 +54,11 @@ values are for leagacy use only.
 
 namespace Blade
 {
+	/*
+	* \brief Describe the type of the device.
+	*/
+	enum class DeviceType { KEYBOARD, JOYPAD, OTHER, DEVTYPE_ERROR };
+
 	enum class Analog_Deadzone {
 		AnalogStickLeft,
 		AnalogStickRight,
@@ -99,12 +104,27 @@ namespace Blade
 		*/
 		bool m_IsConnected{ false };
 
+		/*
+		\brief Enumeration of device type
+		*/
+		DeviceType m_DeviceType{ DeviceType::DEVTYPE_ERROR };
+
 	protected:
 
 		/*
 		\brief Gets the device ID (input API handle)
 		*/
 		int GetDeviceID() { return m_deviceID; }
+
+		/*
+		\brief Gets the device ID (input API handle)
+		*/
+		void SetDeviceID(int id) { m_deviceID = id; }
+
+		/*
+		\brief Sets the type of the device
+		*/
+		void SetDeviceType(DeviceType devType) { m_DeviceType = devType; }
 
 		/*
 		\brief Gets the last (newest) buffered input state to read
@@ -137,7 +157,7 @@ namespace Blade
 		\brief  Constructors and destructor of the InputDevice.
 		Copy/Move operator and assignments are deleted.
 		*/
-		InputDevice(int device_id);
+		InputDevice(int device_id, DeviceType devType);
 
 		/*
 		\brief Updates the active devices to the latest input states available and buffers the most recent previous state
@@ -175,6 +195,8 @@ namespace Blade
 		\return True if the device is connected and functioning, false otherwise
 		*/
 		virtual bool IsConnected() = 0;
+
+		DeviceType GetDeviceType() { return m_DeviceType; }
 
 		virtual ~InputDevice();
 

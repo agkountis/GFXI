@@ -9,6 +9,8 @@
 #include <iostream>
 #include <utility>
 
+#include "input_device.h"
+
 // required library files
 #pragma comment (lib, "Xinput.lib")
 #pragma comment (lib, "Xinput9_1_0.lib")
@@ -24,10 +26,6 @@
 
 namespace Blade
 {
-	/*
-	* \brief Describe the type of the device.
-	*/
-	enum class DeviceType { KEYBOARD, JOYPAD };
 
 	/*
 	* \brief Describe players to access devices
@@ -66,6 +64,13 @@ namespace Blade
 		* \return An integer representing the number of connected input devices
 		*/
 		const int EnumerateDevices() noexcept;
+
+		/**
+		* \brief Query a device pool for its type
+		* \return DeviceType enum of the device in the pool denoted by devIndex
+		* \remarks If the device is not found, or an error has occurred, DEVTYPE_ERROR is returned
+		*/
+		DeviceType DevicePoolQueryType(int deviceId);
 
 		/**
 		* \brief Assigns a player to an input device.

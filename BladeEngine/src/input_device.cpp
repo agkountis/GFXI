@@ -12,7 +12,7 @@ Blade::InputDevice::InputDevice()
 {
 }
 
-Blade::InputDevice::InputDevice(int device_id) : m_deviceID(device_id)
+Blade::InputDevice::InputDevice(int device_id, DeviceType devType) : m_deviceID(device_id), m_DeviceType(devType)
 {
 }
 

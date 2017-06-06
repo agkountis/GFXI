@@ -59,6 +59,14 @@ const int InputManager::EnumerateDevices() noexcept
 #endif
 }
 
+DeviceType Blade::InputManager::DevicePoolQueryType(int deviceId)
+{
+
+
+
+	return DeviceType();
+}
+
 const bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber)
 {
 

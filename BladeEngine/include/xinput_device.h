@@ -6,8 +6,7 @@ namespace Blade {
 	class xinput_device : public InputDevice
 	{
 		public:
-			xinput_device(int device_id);
-			~xinput_device();
+			xinput_device(int device_id, DeviceType devType);
 
 			virtual void Update(float deltaTime);
 			
