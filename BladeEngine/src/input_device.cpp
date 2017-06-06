@@ -71,6 +71,7 @@ float InputDevice::GetDeadzone(Analog_Deadzone flag)
 	}
 
 	return 0.0f;
+
 }
 
 InputDevice::~InputDevice()

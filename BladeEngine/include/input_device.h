@@ -80,12 +80,12 @@ namespace Blade
 		int m_deviceID{ -1 };
 
 		/*
-		\brief The current state of the device
+		\brief The most recent recorded state of the device
 		*/
 		InputState m_CurrentState;
 
 		/*
-		\brief The previous state of the device
+		\brief The state of the device one polling event before the current recorded state
 		*/
 		InputState m_PreviousState;
 

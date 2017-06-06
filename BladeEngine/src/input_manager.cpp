@@ -138,3 +138,47 @@ InputDevice * Blade::InputManager::GetActiveDevice(Player playerID)
 	}
 
 }
+
+Blade::InputManager::~InputManager()
+{
+
+	// invalidate and release active input devices
+
+	std::map<Player, InputDevice*>::iterator itrActive = m_ActiveDevices.begin();
+
+	InputDevice* tempDevice{ nullptr };
+
+	for (itrActive = m_ActiveDevices.begin(); itrActive != m_ActiveDevices.end(); ++itrActive)
+	{
+
+		tempDevice = itrActive->second;
+
+		// remove from map
+		m_ActiveDevices.erase(itrActive);
+
+		// delete object
+		delete tempDevice;
+
+	}
+		
+
+	// invalidate and release inactive devices in the device pool
+
+	std::vector<InputDevice*>::iterator itrPool = m_DevicePool.begin();
+
+	tempDevice = nullptr;
+
+	for (itrPool = m_DevicePool.begin(); itrPool != m_DevicePool.end(); ++itrPool)
+	{
+
+		tempDevice = *itrPool;
+
+		// remove from pool
+		m_DevicePool.erase(itrPool);
+
+		// delete object
+		delete tempDevice;
+
+	}
+
+}

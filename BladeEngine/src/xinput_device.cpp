@@ -15,6 +15,9 @@ XInputDevice::XInputDevice(int device_id, DeviceType devType)
 
 XInputDevice::~XInputDevice()
 {
+
+	// XInput does not require any shutdown procedure
+
 }
 
 void XInputDevice::Update(float deltaTime)
@@ -31,6 +34,9 @@ void XInputDevice::Update(float deltaTime)
 
 	// Store state (move current newest to previous, store newState as current)
 	SetInputState(newState);
+
+	// Broadcast states
+
 }
 
 bool XInputDevice::SetVibration(float leftMotor, float rightMotor)

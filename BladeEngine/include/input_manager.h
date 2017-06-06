@@ -85,6 +85,8 @@ namespace Blade
 		*/
 		InputDevice* GetActiveDevice(Player playerID);
 
+		~InputManager();
+
 	};
 
 }
