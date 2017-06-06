@@ -330,7 +330,7 @@
       <Filter>include\input</Filter>
     </ClInclude>
     <ClInclude Include="include\xinput_device.h">
-      <Filter>include</Filter>
+      <Filter>include\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -530,7 +530,7 @@
       <Filter>src\input</Filter>
     </ClCompile>
     <ClCompile Include="src\xinput_device.cpp">
-      <Filter>src</Filter>
+      <Filter>src\input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

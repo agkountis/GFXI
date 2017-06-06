@@ -2,7 +2,7 @@
 
 using namespace Blade;
 
-xinput_device::xinput_device()
+xinput_device::xinput_device(int device_id)
 {
 }
 

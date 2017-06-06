@@ -131,6 +131,8 @@ namespace Blade
 
 	public:
 
+		InputDevice();
+		
 		/*
 		\brief  Constructors and destructor of the InputDevice.
 		Copy/Move operator and assignments are deleted.
