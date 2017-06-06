@@ -29,8 +29,6 @@ namespace Blade
 		
 		bool Collide(const PlaneCollider* plane, ContactManifold& manifold) const noexcept override;
 
-		bool Collide(const PlaneCollider* plane, ContactManifold& manifold) const noexcept override;
-
 		const Vec3f& GetPlaneNormal() const noexcept;
 
 		void SetPlaneNormal(const Vec3f& normal) noexcept;

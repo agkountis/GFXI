@@ -44,7 +44,7 @@ namespace Blade
 		\details Check exhaustive collision between every active collision component. 
 		It populates the manifold.
 		*/
-		void GenerateContacts() noexcept;
+		void CollisionDetection() noexcept;
 
 		/*
 		\brief Collision response routine of the simulation
