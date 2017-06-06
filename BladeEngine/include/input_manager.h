@@ -9,6 +9,7 @@
 #include <iostream>
 #include <utility>
 
+#include "trace.h"
 #include "xinput_device.h"
 
 // required library files
@@ -64,7 +65,7 @@ namespace Blade
 		* \brief Counts and store the number of connected devices to the machine.
 		* \return An integer representing the number of connected input devices
 		*/
-		const int EnumerateDevices() noexcept;
+		int EnumerateDevices() noexcept;
 
 		/**
 		* \brief Query a device pool for its type
@@ -74,10 +75,28 @@ namespace Blade
 		DeviceType DevicePoolQueryType(int deviceId);
 
 		/**
+		* \brief Search the device pool for a device with id equal to deviceId
+		* \return True if the device is found, otherwise false
+		*/		
+		bool PooledDeviceExists(int deviceId);
+
+		/**
+		* \brief Search the active device map for a device with id equal to deviceId
+		* \return True if the device is found, otherwise false
+		*/		
+		bool ActiveDeviceExists(int deviceId);
+
+		/**
 		* \brief Assigns a player to an input device.
 		* \return True if successful, false otherwise
 		*/
-		const bool AssignDeviceToPlayer(Player playerID, int deviceNumber);
+		bool AssignDeviceToPlayer(Player playerID, int deviceNumber);
+
+		/**
+		* \brief Unassigns an input device from a player.
+		* \return Destroy the association between player and device, and mark device as inactive
+		*/
+		bool UnassignDevice(Player playerID);
 
 		/**
 		* \brief Returns an active (not in the pool) assigned input device, searched by player

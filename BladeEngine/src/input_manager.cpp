@@ -7,6 +7,7 @@ bool InputManager::Initialize() noexcept
 #if defined(BLADE_BUILD_D3D)
 
 	// XInput is already initialized
+	BLADE_TRACE("InputManager (XInput) Initialized successfully");
 
 #elif defined(BLADE_BUILD_PS4)
 
@@ -25,7 +26,7 @@ bool InputManager::Initialize() noexcept
 }
 
 
-const int InputManager::EnumerateDevices() noexcept
+int InputManager::EnumerateDevices() noexcept
 {
 
 	int dDevCount{ 0 };
@@ -42,15 +43,20 @@ const int InputManager::EnumerateDevices() noexcept
 		if (XInputGetState(i, &xiState) == ERROR_SUCCESS)
 		{
 
+			// Device shows as connected
 			++dDevCount;
 
-			// Device shows as connected/active - create a new xinputdevice
-			
-			XInputDevice* xDev = new XInputDevice(i, DeviceType::Joypad);
+			// Check the device doesn't already exist in the pool or active device list
+			if (!PooledDeviceExists(i) && !ActiveDeviceExists(i))
+			{
 
-			// Add the new device to the pool
+				XInputDevice* xDev = new XInputDevice(i, DeviceType::Joypad);
 
-			m_DevicePool.push_back(xDev);
+				// Add the new device to the pool
+
+				m_DevicePool.push_back(xDev);
+
+			}
 
 		}
 
@@ -92,8 +98,55 @@ DeviceType Blade::InputManager::DevicePoolQueryType(int deviceId)
 	return DeviceType::DEVTYPE_ERROR;
 }
 
+bool Blade::InputManager::PooledDeviceExists(int deviceId)
+{
 
-const bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber)
+	std::vector<InputDevice*>::iterator itr{ m_DevicePool.begin() };
+
+	InputDevice* tempDev{ nullptr };
+
+	for (itr = m_DevicePool.begin(); itr != m_DevicePool.end(); ++itr)
+	{
+
+		tempDev = *itr;
+
+		if (tempDev->GetDeviceID() == deviceId)
+		{
+
+			return true;
+
+		}
+
+	}
+
+	return false;
+}
+
+bool Blade::InputManager::ActiveDeviceExists(int deviceId)
+{
+	std::map<Player, InputDevice*>::iterator itr = m_ActiveDevices.begin();
+
+	InputDevice* tempDev{ nullptr };
+
+	for (itr = m_ActiveDevices.begin(); itr != m_ActiveDevices.end(); ++itr)
+	{
+
+		tempDev = itr->second;
+
+		if (tempDev->GetDeviceID() == deviceId)
+		{
+
+			return true;
+
+		}
+
+	}
+
+	return false;
+}
+
+
+bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber)
 {
 
 	// Exceeded bounds
@@ -115,6 +168,11 @@ const bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int device
 	m_DevicePool.erase(itr);
 	
 	return true;
+}
+
+bool Blade::InputManager::UnassignDevice(Player playerID)
+{
+	return false;
 }
 
 
