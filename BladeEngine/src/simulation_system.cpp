@@ -76,8 +76,10 @@ namespace Blade
 		}
 	}
 
-	void SimulationSystem::CollisionDetection() noexcept
-	{
+
+
+	void SimulationSystem::GenerateContacts() noexcept
+{
 		m_ContactManifold.Clear();
 
 		int offs = 1;
@@ -328,7 +330,7 @@ namespace Blade
 
 		UpdateObjects();
 
-		CollisionDetection();
+		GenerateContacts();
 
 		CollisionResponse();
 	}
