@@ -36,9 +36,10 @@ namespace Blade
 		//////////////////////////////////////////////////////////////////////////
 
 		/*
-		\brief Perform the integration of the rigid bodies
+		\brief Perform the integration of simulation components
 		*/
-		void UpdateObjects() noexcept;
+		void UpdateSimComponents() noexcept;
+
 		/*
 		\brief Collision detection routine of the simulation
 		\details Check exhaustive collision between every active collision component. 
@@ -52,6 +53,7 @@ namespace Blade
 		The collision response process is not iterative. 
 		*/
 		void CollisionResponse() const noexcept;
+
 
 	public:
 		/*
@@ -106,6 +108,20 @@ namespace Blade
 		void UnregisterComponent(ColliderComponent* c) noexcept;
 
 		const std::vector<SimulationComponent*>& GetRigidBodyComponents() const noexcept;
+
+		/*
+		\brief Integrate the current simulation component position.
+		*/
+		void Integrate(SimulationComponent * simulationComponent);
+
+
+		void ApplyPositionChanges(const Vec3f& contactNormal, const float penetration,
+			SimulationComponent* rb1, Entity* e1, SimulationComponent* rb2, Entity* e2) const;
+
+
+		void ApplyVelocityChanges(SimulationComponent* rb1, SimulationComponent* rb2, ManifoldEntry &entry, Entity* e1) const;
+
+		void SetVelocity(float newSeparatingVelocity, float separatingVelocity, SimulationComponent* rb1, SimulationComponent* rb2, ManifoldEntry &entry) const;
 
 	};
 }

@@ -14,6 +14,7 @@
 #include "simulation_component.h"
 #include "collider_component.h"
 #include "bounding_sphere.h"
+#include "plane_collider.h"
 
 using namespace Blade;
 
@@ -56,7 +57,10 @@ void GameScene::Initialize()
 	auto cache_entity = entity;
 	//Add the entity to the scene so it will get updated.
 	AddEntity(entity);
-	
+
+	entity = new Entity{ "Floor" };
+	ColliderComponent* colC2{ new ColliderComponent{entity,std::make_unique<PlaneCollider>(Vec3f{0.0f,1.0f,0.0f},0.0f)} };
+	AddEntity(entity);
 	// -------------------------------------------------------------------------------------------------------------------
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
