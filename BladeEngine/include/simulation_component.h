@@ -8,7 +8,7 @@ namespace Blade
 	class Entity;
 
 	/*
-	\brief SimulationComponent is the component used to perform linear motion + fake rotations
+	\brief SimulationComponent is the component used to perform linear motion
 	*/
 	class SimulationComponent : public Component
 	{

@@ -19,14 +19,10 @@ namespace Blade
 
 		float radSum{ sphere1->GetRadius() + sphere2->GetRadius()};
 
-		std::cout << size <<" - "<<radSum<< std::endl;
-
-
 		if (size <= 0.0f || size >= radSum)
 		{
 			return false;
 		}
-		std::cout << "collision" << std::endl;
 		Vec3f normal{ midline * (1.0f / size) };
 
 		ManifoldEntry entry;
@@ -42,7 +38,7 @@ namespace Blade
 	}
 
 
-	bool Blade::SimulationUtils::SphereAndPlane(const BoundingSphere * sphere, const PlaneCollider * plane, ContactManifold & manifold) noexcept
+	bool Blade::SimulationUtils::SphereAndPlaneCollision(const BoundingSphere * sphere, const PlaneCollider * plane, ContactManifold & manifold) noexcept
 	{
 		Vec3f planeDir{ plane->GetPlaneNormal() };
 		float planeOffset{ plane->GetOffeset() };

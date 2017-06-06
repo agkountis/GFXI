@@ -29,7 +29,7 @@ namespace Blade
 		}
 	}
 
-	void SimulationSystem::Integrate(SimulationComponent * simulationComponent)
+	void SimulationSystem::Integrate(SimulationComponent * simulationComponent) noexcept
 	{
 		Entity* parent{ simulationComponent->GetParent() };
 		if (simulationComponent->IsActive())
@@ -63,7 +63,7 @@ namespace Blade
 	}
 
 	void SimulationSystem::ApplyPositionChanges(const Vec3f& contactNormal, const float penetration,
-		SimulationComponent* simcom1, Entity* e1, SimulationComponent* simcom2, Entity* e2) const
+		SimulationComponent* simcom1, Entity* e1, SimulationComponent* simcom2, Entity* e2) const noexcept
 	{
 		float totalInverseMass{ simcom1->GetInverseMass() };
 
@@ -95,7 +95,8 @@ namespace Blade
 		}
 	}
 
-	void SimulationSystem::SetVelocity(SimulationComponent* sc1, SimulationComponent* sc2, float newSeparatingVelocity, float separatingVelocity, Vec3f& contactNormal) const
+	void SimulationSystem::SetVelocity(SimulationComponent* sc1, SimulationComponent* sc2,
+		float newSeparatingVelocity, float separatingVelocity, Vec3f& contactNormal) const noexcept
 	{
 		float deltaVelocity{ newSeparatingVelocity - separatingVelocity };
 		float totalInverseMass{ sc1->GetInverseMass() };
@@ -122,7 +123,6 @@ namespace Blade
 	void SimulationSystem::CollisionDetection() noexcept
 	{
 		m_ContactManifold.Clear();
-
 		int offs = 1;
 		for (size_t i = 0; i < m_ColliderComponents.size(); ++i)
 		{
@@ -159,7 +159,6 @@ namespace Blade
 
 			PreResponse(e1, entry, e2, simCo1, simCo2);
 
-		
 			ApplyVelocityChanges(simCo1, simCo2, entry);
 			if (entry.penetration > 0.0f)
 			{
@@ -168,38 +167,37 @@ namespace Blade
 		}
 	}
 
-	void SimulationSystem::PreResponse(Entity *& e1, ManifoldEntry & entry, Entity *& e2, SimulationComponent *& simCo1, SimulationComponent *& simCo2) const
+	void SimulationSystem::PreResponse(Entity *& e1, ManifoldEntry & entry, Entity *& e2, 
+		SimulationComponent *& simCo1, SimulationComponent *& simCo2) const noexcept
 	{
 		e1 = entry.collider1->GetColliderComponent()->GetParent();
-
 		if (entry.collider2)
 		{
 			e2 = entry.collider2->GetColliderComponent()->GetParent();
 		}
-
 		simCo1 = static_cast<SimulationComponent*>(e1->GetComponent("co_sim"));
-
 		if (e2)
 		{
 			simCo2 = static_cast<SimulationComponent*>(e2->GetComponent("co_sim"));
 		}
 	}
 
-	void SimulationSystem::ApplyVelocityChanges(SimulationComponent * rb1, SimulationComponent * rb2, ManifoldEntry & entry) const
+	void SimulationSystem::ApplyVelocityChanges(SimulationComponent* simCom1, SimulationComponent* simCom2,
+		ManifoldEntry &entry) const noexcept
 	{
-		Vec3f relativeVelocity{ rb1->GetVelocity() };
-		if (rb2)
+		Vec3f relativeVelocity{ simCom1->GetVelocity() };
+		if (simCom2)
 		{
-			relativeVelocity -= rb2->GetVelocity();
+			relativeVelocity -= simCom2->GetVelocity();
 		}
 		float separatingVelocity{ Dotf(relativeVelocity, entry.contactNormal) };
 		if (separatingVelocity < 0.0f)
 		{
 			float newSeparatingVelocity{ -separatingVelocity * elasticity };
-			Vec3f accCausedVelocity{ rb1->GetAcceleration() };
-			if (rb2)
+			Vec3f accCausedVelocity{ simCom1->GetAcceleration() };
+			if (simCom2)
 			{
-				accCausedVelocity -= rb2->GetAcceleration();
+				accCausedVelocity -= simCom2->GetAcceleration();
 			}
 			float accCausedSepVelocity{ Dotf(accCausedVelocity, entry.contactNormal) * dt };
 			if (accCausedSepVelocity < 0.0f)
@@ -210,12 +208,12 @@ namespace Blade
 					newSeparatingVelocity = 0.0f;
 				}
 
-				SetVelocity(rb1, rb2, newSeparatingVelocity, separatingVelocity, entry.contactNormal);
+				SetVelocity(simCom1, simCom2, newSeparatingVelocity, separatingVelocity, entry.contactNormal);
 				return;
 			}
 			else
 			{
-				SetVelocity(rb1, rb2, newSeparatingVelocity, separatingVelocity,  entry.contactNormal);
+				SetVelocity(simCom1, simCom2, newSeparatingVelocity, separatingVelocity,  entry.contactNormal);
 
 			}
 		}
@@ -223,14 +221,7 @@ namespace Blade
 
 	SimulationSystem::~SimulationSystem()
 	{
-		/*m_Terminating = true;
-
-		m_IntegrationTasks.clear();
-
-		if (m_Thread.joinable())
-		{
-			m_Thread.join();
-		}*/
+		
 	}
 
 	bool SimulationSystem::Initialize() noexcept
@@ -242,11 +233,12 @@ namespace Blade
 	{
 		dt = deltaTime;
 		timeSec = static_cast<float>(G_Application.GetSec());
-
+		
+		//Integrate all the component stored in the m_SimulationComponets
 		UpdateSimComponents();
-
+		//Populate the manifold
 		CollisionDetection();
-
+		//Resolve the contact stored in the manifold = change velocity & change position.
 		CollisionResponse();
 	}
 
@@ -260,13 +252,13 @@ namespace Blade
 		m_ColliderComponents.push_back(col);
 	}
 
-	void SimulationSystem::UnregisterComponent(SimulationComponent* c) const noexcept
+	void SimulationSystem::UnregisterComponent(SimulationComponent* c)  noexcept
 	{
-		/*std::remove_if(m_SimulationComponents.begin(),
+		std::remove_if(m_SimulationComponents.begin(),
 			m_SimulationComponents.end(),
 			[c](SimulationComponent* element) {
 			return c->GetId() == element->GetId();
-		});*/
+		});
 	}
 
 	void SimulationSystem::UnregisterComponent(ColliderComponent* c) noexcept
@@ -278,7 +270,7 @@ namespace Blade
 		});
 	}
 
-	const std::vector<SimulationComponent*>& SimulationSystem::GetRigidBodyComponents() const noexcept
+	const std::vector<SimulationComponent*>& SimulationSystem::GetSimulationComponents() const noexcept
 	{
 		return m_SimulationComponents;
 	}

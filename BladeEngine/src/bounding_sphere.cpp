@@ -29,6 +29,6 @@ bool BoundingSphere::Collide(const BoundingSphere* bsphere, ContactManifold& man
 
 bool BoundingSphere::Collide(const PlaneCollider* plane, ContactManifold& manifold) const noexcept
 {
-	return SimulationUtils::SphereAndPlane(this, plane, manifold);
+	return SimulationUtils::SphereAndPlaneCollision(this, plane, manifold);
 }
 

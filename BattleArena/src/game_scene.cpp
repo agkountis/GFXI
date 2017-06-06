@@ -44,17 +44,18 @@ void GameScene::Initialize()
 	normalmapTexture->SetTextureType(TEX_NORMAL);
 	material.textures[TEX_NORMAL] = normalmapTexture;
 	//////////////////////////////////////////////////////////////////////////
-
-	//Floor
 	Entity* entity;
-	entity = new Entity{ "Floor" };
-	ColliderComponent* colC2{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,1.0f,0.0f },0.0f) } };
+	entity = new Entity{ "Environment" };
+	ColliderComponent* floor{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,1.0f,0.0f },0.0f) } };
+	ColliderComponent* wall1{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ -1.0f,0.0f,0.0f },-10.0f) } };
+	ColliderComponent* wall2{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 1.0f,0.0f,0.0f },-10.0f) } };
+	ColliderComponent* wall3{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,1.0f },-10.0f) } };
+	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-10.0f) } };
 	AddEntity(entity);
 
-
 	//First ball
-	entity = new Entity{"Ball1"};
-	entity->SetPosition(Vec3f{ 0.0f,30.0f,0.0f });
+	entity = new Entity{"Ball"};
+	entity->SetPosition(Vec3f{ 0.0f,30.0f,-1.0f });
 	RenderComponent* rc{ new RenderComponent{entity} };
 	rc->SetMesh(cube);
 	rc->SetMaterial(material);
@@ -91,7 +92,7 @@ void GameScene::Initialize()
 
 	Camera* cam{ new Camera{ "Camera1", cd } };
 	//Set the position of the camera.
-	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -50.0f });
+	cam->SetPosition(Vec3f{ 0.0f, 10.0f, -50.0f });
 
 	//Add it to the scene.
 	AddEntity(cam);

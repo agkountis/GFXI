@@ -17,7 +17,7 @@ bool PlaneCollider::Collide(const Collider* collider, ContactManifold& manifold)
 
 bool PlaneCollider::Collide(const BoundingSphere* bsphere, ContactManifold& manifold) const noexcept
 {
-	return SimulationUtils::SphereAndPlane(bsphere, this, manifold);
+	return SimulationUtils::SphereAndPlaneCollision(bsphere, this, manifold);
 }
 
 const Vec3f& PlaneCollider::GetPlaneNormal() const noexcept 
