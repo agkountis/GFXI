@@ -44,24 +44,34 @@ void GameScene::Initialize()
 	normalmapTexture->SetTextureType(TEX_NORMAL);
 	material.textures[TEX_NORMAL] = normalmapTexture;
 	//////////////////////////////////////////////////////////////////////////
-	//Create an Entity and a RenderComponent.
-	Entity* entity{ new Entity{"TestEntity"} };
+
+	//Floor
+	Entity* entity;
+	entity = new Entity{ "Floor" };
+	ColliderComponent* colC2{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,1.0f,0.0f },0.0f) } };
+	AddEntity(entity);
+
+
+	//First ball
+	entity = new Entity{"Ball1"};
 	entity->SetPosition(Vec3f{ 0.0f,30.0f,0.0f });
 	RenderComponent* rc{ new RenderComponent{entity} };
 	rc->SetMesh(cube);
 	rc->SetMaterial(material);
-
 	SimulationComponent* simC{ new SimulationComponent{entity,1.0f} };
-
-	ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(0.5f)} };
+	ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(1.0f)} };
 	auto cache_entity = entity;
-	//Add the entity to the scene so it will get updated.
 	AddEntity(entity);
 
-	entity = new Entity{ "Floor" };
-	ColliderComponent* colC2{ new ColliderComponent{entity,std::make_unique<PlaneCollider>(Vec3f{0.0f,1.0f,0.0f},0.0f)} };
+	//Second ball
+	entity = new Entity{ "Ball2" };
+	entity->SetPosition(Vec3f{ 1.0f,35.0f,0.0f });
+	RenderComponent* rc3 {new RenderComponent{ entity } };
+	rc3->SetMesh(cube);
+	rc3->SetMaterial(material);
+	SimulationComponent* simC3{ new SimulationComponent{ entity,1.0f } };
+	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
 	AddEntity(entity);
-	// -------------------------------------------------------------------------------------------------------------------
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Create an entity and name it Camera1.

@@ -3,7 +3,7 @@
 #include "bounding_sphere.h"
 #include "collider_component.h"
 #include "entity.h"
-
+#include <iostream>
 namespace Blade
 {
 
@@ -19,11 +19,14 @@ namespace Blade
 
 		float radSum{ sphere1->GetRadius() + sphere2->GetRadius()};
 
+		std::cout << size <<" - "<<radSum<< std::endl;
+
+
 		if (size <= 0.0f || size >= radSum)
 		{
 			return false;
 		}
-
+		std::cout << "collision" << std::endl;
 		Vec3f normal{ midline * (1.0f / size) };
 
 		ManifoldEntry entry;

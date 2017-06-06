@@ -33,7 +33,6 @@ namespace Blade
 		\details One manifold is sufficient to cover the entire simulation 
 		*/
 		ContactManifold m_ContactManifold;
-		//////////////////////////////////////////////////////////////////////////
 
 		/*
 		\brief Perform the integration of simulation components
@@ -54,8 +53,32 @@ namespace Blade
 		*/
 		void CollisionResponse() const noexcept;
 
+		/*
+		\brief Prepare the contact before the response. Stores pointer used by the other subroutines.
+		*/
 		void PreResponse(Entity* &e1, ManifoldEntry &entry, Entity* &e2, SimulationComponent* &simCo1, SimulationComponent* &simCo2) const ;
 
+		/*
+		\brief Integrate the current simulation component position.
+		*/
+		void Integrate(SimulationComponent * simulationComponent);
+
+		/*
+		\brief Changes the position of the entities colliding.
+		\details If one entity does not hold a rigid body, the position won't change. 
+		*/
+		void ApplyPositionChanges(const Vec3f& contactNormal, const float penetration,
+			SimulationComponent* simcom1, Entity* e1, SimulationComponent* simcom2, Entity* e2) const;
+
+		/*
+		\brief Changes the velocity of the entities colliding. This method is used inside the collision response pass.
+		*/
+		void ApplyVelocityChanges(SimulationComponent* rb1, SimulationComponent* rb2, ManifoldEntry &entry) const;
+
+		/*
+		\brief Set the velocity of the two simulation components that are colliding.
+		*/
+		void SetVelocity(SimulationComponent* sc1, SimulationComponent* sc2, float newSeparatingVelocity, float separatingVelocity, Vec3f& contactNormal) const;
 
 	public:
 		/*
@@ -110,21 +133,6 @@ namespace Blade
 		void UnregisterComponent(ColliderComponent* c) noexcept;
 
 		const std::vector<SimulationComponent*>& GetRigidBodyComponents() const noexcept;
-
-		/*
-		\brief Integrate the current simulation component position.
-		*/
-		void Integrate(SimulationComponent * simulationComponent);
-
-
-		void ApplyPositionChanges(const Vec3f& contactNormal, const float penetration,
-			SimulationComponent* simcom1,Entity* e1, SimulationComponent* simcom2, Entity* e2) const;
-
-
-		void ApplyVelocityChanges(SimulationComponent* rb1, SimulationComponent* rb2, ManifoldEntry &entry) const;
-
-		void SetVelocity(SimulationComponent* sc1, SimulationComponent* sc2, float newSeparatingVelocity, float separatingVelocity, Vec3f& contactNormal) const;
-
 	};
 }
 #endif //BLADE_SIMULATION_SYSTEM_H_
