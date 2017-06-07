@@ -25,6 +25,15 @@ struct UniformBuffer
 	int pad;
 };
 
+
+struct ParticleUniformBuffer
+{
+	Mat4f MVP;
+	Vec4f diffuse;
+};
+
+
+
 void GameSceneColorPassStage::DisplayToScreen() const
 {
 	D3D11Context& ctx{ G_GAPIContext };
@@ -337,6 +346,9 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		// Disable any blend states activated.
 		G_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
 	}
+
+	//////////////////////////////////////////////////////////////////////////
+	//Draw particles
 
 	//Unbind the render target.
 	m_ColorRenderTarget.Unbind();
