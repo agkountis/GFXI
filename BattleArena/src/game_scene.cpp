@@ -11,6 +11,11 @@
 #include "directional_light_component.h"
 #include "camera.h"
 #include "directional_light.h"
+#include "simulation_component.h"
+#include "collider_component.h"
+#include "bounding_sphere.h"
+#include "plane_collider.h"
+
 using namespace Blade;
 
 void GameScene::Initialize()
@@ -20,34 +25,54 @@ void GameScene::Initialize()
 	Mesh* cube{ MeshUtils::GenerateUvSphere(1.0f, 30, 30, 1.0f, 1.0f) };
 
 	//Register the resource to the manager, so it manages it's lifetime(memory).
-	STN_ResourceManager.RegisterResource(cube, L"cube");
+	G_ResourceManager.RegisterResource(cube, L"cube");
 
 	//Define a material.
 	Material material;
 	material.diffuse = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
 	material.specular = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f }; //the w value is the shininess.
 
-	Texture* diffuseTexture{ STN_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelDiff5.png") };
+	Texture* diffuseTexture{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelDiff5.png") };
 	diffuseTexture->SetTextureType(TEX_DIFFUSE);
 	material.textures[TEX_DIFFUSE] = diffuseTexture;
 
-	Texture* specularTexture{ STN_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelSpec5.png") };
+	Texture* specularTexture{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelSpec5.png") };
 	specularTexture->SetTextureType(TEX_SPECULAR);
 	material.textures[TEX_SPECULAR] = specularTexture;
 
-	Texture* normalmapTexture{ STN_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelNorm5.png") };
+	Texture* normalmapTexture{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelNorm5.png") };
 	normalmapTexture->SetTextureType(TEX_NORMAL);
 	material.textures[TEX_NORMAL] = normalmapTexture;
+	//////////////////////////////////////////////////////////////////////////
+	Entity* entity;
+	entity = new Entity{ "Environment" };
+	ColliderComponent* floor{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,1.0f,0.0f },0.0f) } };
+	ColliderComponent* wall1{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ -1.0f,0.0f,0.0f },-10.0f) } };
+	ColliderComponent* wall2{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 1.0f,0.0f,0.0f },-10.0f) } };
+	ColliderComponent* wall3{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,1.0f },-10.0f) } };
+	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-10.0f) } };
+	AddEntity(entity);
 
-	//Create an Entity and a RenderComponent.
-	Entity* entity{ new Entity{"TestEntity"} };
+	//First ball
+	entity = new Entity{"Ball"};
+	entity->SetPosition(Vec3f{ 0.0f,30.0f,-1.0f });
 	RenderComponent* rc{ new RenderComponent{entity} };
 	rc->SetMesh(cube);
 	rc->SetMaterial(material);
-
-	//Add the entity to the scene so it will get updated.
+	SimulationComponent* simC{ new SimulationComponent{entity,1.0f} };
+	ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(1.0f)} };
+	auto cache_entity = entity;
 	AddEntity(entity);
-	// -------------------------------------------------------------------------------------------------------------------
+
+	//Second ball
+	entity = new Entity{ "Ball2" };
+	entity->SetPosition(Vec3f{ 1.0f,35.0f,0.0f });
+	RenderComponent* rc3 {new RenderComponent{ entity } };
+	rc3->SetMesh(cube);
+	rc3->SetMaterial(material);
+	SimulationComponent* simC3{ new SimulationComponent{ entity,1.0f } };
+	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
+	AddEntity(entity);
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Create an entity and name it Camera1.
@@ -67,18 +92,18 @@ void GameScene::Initialize()
 
 	Camera* cam{ new Camera{ "Camera1", cd } };
 	//Set the position of the camera.
-	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -10.0f });
+	cam->SetPosition(Vec3f{ 0.0f, 10.0f, -50.0f });
 
 	//Add it to the scene.
 	AddEntity(cam);
 
 	//Instruct the Camera system to set this camera as the active one.
-	EngineContext::GetCameraSystem()->SetActiveCamera("Camera1");
+	G_CameraSystem.SetActiveCamera("Camera1");
 
 	cam = new Camera{ "Camera2", cd };
 
 	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -4.0f });
-
+	cam->SetParent(cache_entity);
 	AddEntity(cam);
 	// --------------------------------------------------------------------------------------------------------------------
 
@@ -117,7 +142,8 @@ void GameScene::Initialize()
 	pipeline->AddStage(colorPassStage);
 
 	//Set the pipeline to the render system.
-	EngineContext::GetRenderSystem()->SetRenderPassPipeline(pipeline);
+	G_RenderSystem.SetRenderPassPipeline(pipeline);
+
 	// --------------------------------------------------------------------------------------------------------------------
 }
 
@@ -126,10 +152,10 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	switch (key)
 	{
 	case '1':
-		EngineContext::GetCameraSystem()->SetActiveCamera("Camera1");
+		G_CameraSystem.SetActiveCamera("Camera1");
 		break;
 	case '2':
-		EngineContext::GetCameraSystem()->SetActiveCamera("Camera2");
+		G_CameraSystem.SetActiveCamera("Camera2");
 		break;
 	default:
 		break;
@@ -151,19 +177,21 @@ void GameScene::OnMouseClick(int button, bool state, int x, int y) noexcept
 void GameScene::Update(float deltaTime, long time) noexcept
 {
 	//Animate the active camera for fun!
-	Entity* cam{ EngineContext::GetCameraSystem()->GetActiveCamera()->GetParent() };
+	Entity* cam{ G_CameraSystem.GetActiveCamera()->GetParent() };
 
 	Vec3f currentPos{ cam->GetPosition() };
-	cam->SetPosition(Vec3f{ sin(time / 1000.0f) * 2.0f, currentPos.yz });
+	//cam->SetPosition(Vec3f{ sin(time / 1000.0f) * 2.0f, currentPos.yz });
 
 	Scene::Update(deltaTime, time);
 
-	EngineContext::GetLightSystem()->Process();
+	G_SimulationSystem.Process(deltaTime);
 
-	EngineContext::GetBehaviourSystem()->Process(deltaTime);
+	G_LightSystem.Process();
+
+	G_BehaviourSystem.Process(deltaTime);
 }
 
 void GameScene::Draw() const noexcept
 {
-	EngineContext::GetRenderSystem()->Process();
+	G_RenderSystem.Process();
 }

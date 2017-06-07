@@ -1,6 +1,6 @@
 #include "component.h"
-#include "scene_manager.h"
 #include "entity.h"
+#include "engine_context.h"
 
 namespace Blade
 {
@@ -35,6 +35,6 @@ namespace Blade
 
 	void Component::OnMessage(const MessageContainer<std::string>& msg)
 	{
-		STN_SceneManager.OnMessage(msg);
+		G_SceneManager.OnMessage(msg);
 	}
 }

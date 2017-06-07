@@ -1,24 +1,31 @@
 #ifndef BLADE_BOUNDING_SPHERE
 #define BLADE_BOUNDING_SPHERE
+#include "collider.h"
+#include "contact_manifold.h"
 
-#include "bounding_volume.h"
 namespace Blade
 {
-	/**
-	* \brief Bounding Sphere class
+	/*
+	\brief BoundingSphere class of the engine is a Collider
 	*/
-	class BoundingSphere : public BoundingVolume
+	class BoundingSphere : public Collider
 	{
-
 	private:
-		float m_Radius;//unused yet
-		//TO DO: Add all relevant members
-	public:
-		BoundingSphere(Mesh* mesh);
-		BoundingSphere(BoundingSphere&) = delete;
-		BoundingSphere& operator=(BoundingSphere&) = delete;
-		~BoundingSphere();
+		/*
+		\brief The radius of the bounding sphere collider
+		*/
+		float m_Radius;
 
+	public:
+		explicit BoundingSphere(float radius);
+
+		bool Collide(const Collider* collider, ContactManifold& manifold) const noexcept override;
+
+		bool Collide(const BoundingSphere* bsphere, ContactManifold& manifold) const noexcept override;
+
+		bool Collide(const PlaneCollider* plane, ContactManifold& manifold) const noexcept override;
+
+		const float GetRadius() const noexcept;
 	};
 }
-#endif //BLADE_BOUNDING_SPHERE
+#endif

@@ -6,32 +6,35 @@
 #include <queue>
 #include "network_message.h"
 #include "socket.h"
-#include "singleton.h"
 
 namespace Blade
 {
-	using OnNewClientCallback = std::function<void()>;
+	using OnNewClientCallback = std::function<void(ConnectionInfo connectionInfo)>;
 
-	using OnNewPacketCallback = std::function<void(std::vector<char>)>;
+	using OnNewPacketCallback = std::function<void(std::vector<Byte>)>;
 
 	using OnClientDisconnectCallback = std::function<void()>;
 
-	class NetworkManager : public Singleton<NetworkManager>
+	using ConnectionMap = std::map<long, std::unique_ptr<Socket>>;
+
+	using MessageQueue = std::queue<std::shared_ptr<NetworkMessage>>;
+
+	class NetworkManager
 	{
 	private:
-		std::map<int, std::unique_ptr<Socket>> m_Connections;
+		ConnectionMap m_Connections;
 
-		std::mutex m_Mutex;
-
-		std::queue<std::shared_ptr<NetworkMessage>> m_MessageQueue;
+		MessageQueue m_MessageQueue;
 
 		std::vector<std::thread> m_Threads;
 
-		void ConnectionAcceptorThreadMain(unsigned short port);
+		std::mutex m_Mutex;
 
-		void ConnectThreadMain(const std::string& host, unsigned short port);
+		void ConnectionAcceptorThreadMain(const unsigned short port);
 
-		void ReceiveThreadMain(const int clientId);
+		void ConnectThreadMain(const std::string& host, const unsigned short port);
+
+		void ReceiveThreadMain(const long clientId);
 
 		void SendThreadMain();
 
@@ -50,9 +53,9 @@ namespace Blade
 
 		bool Initialize() noexcept;
 
-		void Listen(unsigned short port) noexcept;
+		void Listen(const unsigned short port) noexcept;
 
-		void Connect(const std::string& host, unsigned short port) noexcept;
+		void Connect(const std::string& host, const unsigned short port) noexcept;
 
 		void QueueMessage(const std::shared_ptr<NetworkMessage>& message) noexcept;
 
@@ -64,8 +67,6 @@ namespace Blade
 
 		void SetOnClientDisconnectCallback(const OnClientDisconnectCallback& callback) noexcept;
 	};
-
-#define STN_NetworkManager NetworkManager::GetInstance()
 }
 
 #endif //BLADE_NETWORK_MANAGER_H_

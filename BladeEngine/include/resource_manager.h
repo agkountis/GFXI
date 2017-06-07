@@ -1,10 +1,8 @@
 #ifndef BLADE_RESOURCE_MANAGER_H_
 #define BLADE_RESOURCE_MANAGER_H_
-
 #include <map>
 #include <iostream>
 #include "resource.h"
-#include "singleton.h"
 
 namespace Blade
 {
@@ -13,7 +11,7 @@ namespace Blade
 
 	static int s_Id = 0;
 
-	class ResourceManager : public Singleton<ResourceManager>
+	class ResourceManager
 	{
 	private:
 		std::map<std::wstring, Resource*> m_ResourcesByName;
@@ -78,8 +76,6 @@ namespace Blade
 			m_ResourcesById[s_Id++] = resource;
 		}
 	};
-
-#define STN_ResourceManager ResourceManager::GetInstance()
 }
 
 #endif //BLADE_RESOURCE_MANAGER_H_

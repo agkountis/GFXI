@@ -4,12 +4,24 @@
 
 namespace Blade
 {
+	static constexpr long RECIPIENT_ID_BROADCAST{ -1 };
 
 	class NetworkMessage : public Message<int>, public Serializable
 	{
+	private:
+		long m_RecipientId;
+
 	public:
-		explicit NetworkMessage(int&& type) : Message<int>{ std::move(type) }
-		{}
+		explicit NetworkMessage(int&& type, long recipientId) :
+			Message<int>{ std::move(type) },
+			m_RecipientId{ recipientId }
+		{
+		}
+
+		int GetRecipientId() const noexcept
+		{
+			return m_RecipientId;
+		}
 	};
 }
 

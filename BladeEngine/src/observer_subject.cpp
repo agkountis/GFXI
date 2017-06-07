@@ -40,7 +40,7 @@ namespace Blade
 	void ObserverSubject::BroadcastMessage(const MessageContainer<std::string>& msg) const noexcept
 	{
 		// Dispatch message to all registered listeners
-		auto map_it{ m_MessageListeners.find(msg.Get()->GetMessageType()) };
+		auto map_it{ m_MessageListeners.find(msg.Get()->GetType()) };
 
 		// If we have registered listeners for this message
 		if (map_it != m_MessageListeners.end())

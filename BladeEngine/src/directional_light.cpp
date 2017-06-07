@@ -7,6 +7,5 @@ namespace Blade
 		: Entity{ name }
 	{
 		m_DirectionalLightComponent = new DirectionalLightComponent{ lightDescription, this };
-
 	}
 }

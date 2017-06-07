@@ -1,7 +1,6 @@
 #include "d3d/D3D11_shader_program.h"
 #include "d3d/D3D11_context.h"
 #include "d3d/D3D11_shader.h"
-#include "resource_manager.h"
 #include "vertex.h"
 #include "engine_context.h"
 
@@ -9,13 +8,11 @@ namespace Blade
 {
 	bool D3D11ShaderProgram::Create(const ShaderProgramDesc& shaderProgramDesc) noexcept
 	{
-		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
-
-		ID3D11Device* device{ GAPI_context->GetDevice() };
+		ID3D11Device* device{ G_GAPIContext.GetDevice() };
 
 		if (!shaderProgramDesc.vertexShader.empty())
 		{
-			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.vertexShader), VERTEX_SHADER);
+			SetShader(G_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.vertexShader), VERTEX_SHADER);
 
 			D3D11Shader* shader{ GetShader(VERTEX_SHADER) };
 			ID3DBlob* blob{ shader->GetBlob() };
@@ -71,7 +68,7 @@ namespace Blade
 
 		if (!shaderProgramDesc.hullShader.empty())
 		{
-			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.hullShader), HULL_SHADER);
+			SetShader(G_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.hullShader), HULL_SHADER);
 
 			D3D11Shader* shader{ GetShader(HULL_SHADER) };
 
@@ -88,7 +85,7 @@ namespace Blade
 
 		if (!shaderProgramDesc.domainShader.empty())
 		{
-			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.domainShader), DOMAIN_SHADER);
+			SetShader(G_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.domainShader), DOMAIN_SHADER);
 
 			D3D11Shader* shader{ GetShader(DOMAIN_SHADER) };
 
@@ -105,7 +102,7 @@ namespace Blade
 
 		if (!shaderProgramDesc.geometryShader.empty())
 		{
-			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.geometryShader), GEOMETRY_SHADER);
+			SetShader(G_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.geometryShader), GEOMETRY_SHADER);
 
 			D3D11Shader* shader{ GetShader(GEOMETRY_SHADER) };
 
@@ -122,7 +119,7 @@ namespace Blade
 
 		if (!shaderProgramDesc.fragmentShader.empty())
 		{
-			SetShader(STN_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.fragmentShader), FRAGMENT_SHADER);
+			SetShader(G_ResourceManager.Get<D3D11Shader>(SHADER_PATH + shaderProgramDesc.fragmentShader), FRAGMENT_SHADER);
 
 			D3D11Shader* shader{ GetShader(FRAGMENT_SHADER) };
 
@@ -142,9 +139,7 @@ namespace Blade
 
 	void D3D11ShaderProgram::Bind() const noexcept
 	{
-		D3D11Context* context{ EngineContext::GetGAPIContext() };
-
-		ID3D11DeviceContext* device_context{ context->GetDeviceContext() };
+		ID3D11DeviceContext* device_context{ G_GAPIContext.GetDeviceContext() };
 
 		device_context->VSSetShader(m_VertexShader.Get(), nullptr, 0);
 		device_context->IASetInputLayout(m_InputLayout.Get());

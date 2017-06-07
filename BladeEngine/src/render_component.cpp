@@ -6,12 +6,12 @@ namespace Blade
 	RenderComponent::RenderComponent(Entity* parent)
 		: Component{ "co_render", parent }
 	{
-		EngineContext::GetRenderSystem()->RegisterComponent(this);
+		G_RenderSystem.RegisterComponent(this);
 	}
 
 	RenderComponent::~RenderComponent()
 	{
-		EngineContext::GetRenderSystem()->UnregisterComponent(GetId());
+		G_RenderSystem.UnregisterComponent(GetId());
 	}
 
 	Mesh* RenderComponent::GetMesh() const noexcept

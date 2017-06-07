@@ -10,39 +10,34 @@ namespace Blade
 	private:
 		bool m_Terminate{ false };
 
+		bool m_Paused{ false };
+
 		Timer m_Timer;
 
 	public:
 		Application() = default;
+		
 		Application(const Application& application) = delete;
+		
 		Application& operator=(const Application& application) = delete;
 
-		virtual ~Application();
+		virtual ~Application() = default;
 
-		void SetTermination(bool state) noexcept
-		{
-			m_Terminate = state;
-		}
+		void SetTermination(bool state) noexcept;
 
-		bool ShouldTerminate() const noexcept
-		{
-			return m_Terminate;
-		}
+		bool ShouldTerminate() const noexcept;
+		
+		double GetDelta() const noexcept;
 
-		double GetDelta() const noexcept
-		{
-			return m_Timer.GetDelta();
-		}
+		long GetMsec() const noexcept;
 
-		long GetMsec() const noexcept
-		{
-			return m_Timer.GetMsec();
-		}
+		double GetSec() const noexcept;
 
-		double GetSec() const noexcept
-		{
-			return m_Timer.GetSec();
-		}
+		void Pause() noexcept;
+
+		void UnPause() noexcept;
+
+		bool IsPaused() const noexcept;
 
 		virtual bool Initialize(int* argc, char* argv[]);
 

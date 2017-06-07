@@ -1,0 +1,9 @@
+#ifndef NETWORK_MESSAGE_TYPES_H_
+#define NETWORK_MESSAGE_TYPES_H_
+
+enum NetworkMessageType
+{
+	BA_TEST_MESSAGE
+};
+
+#endif //NETWORK_MESSAGE_TYPES_H_

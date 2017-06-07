@@ -6,6 +6,7 @@
 #endif
 
 #include <string>
+#include <tuple>
 
 namespace Blade
 {
@@ -15,6 +16,12 @@ namespace Blade
 	using SocketHandle = int;
 #define INVALID_SOCKET -1
 #endif
+
+	struct ConnectionInfo
+	{
+		std::tuple<std::string, long> ip;
+		unsigned short port;
+	};
 
 	class Socket
 	{
@@ -32,13 +39,13 @@ namespace Blade
 
 		Socket(Socket&& other) noexcept;
 
-		bool Connect(const std::string& host, unsigned short port) const noexcept;
+		bool Connect(const std::string& host, unsigned short port, ConnectionInfo* connection_info = nullptr) const noexcept;
 
 		bool Listen(unsigned short port, int maxQueueSize = 8) const noexcept;
 
 		void Close() noexcept;
 
-		Socket Accept() const noexcept;
+		Socket Accept(ConnectionInfo* connectionInfo = nullptr) const noexcept;
 
 		bool IsValid() const noexcept;
 

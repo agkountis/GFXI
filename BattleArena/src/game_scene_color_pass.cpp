@@ -27,23 +27,23 @@ struct UniformBuffer
 
 void GameSceneColorPassStage::DisplayToScreen() const
 {
-	D3D11Context* ctx{ EngineContext::GetGAPIContext() };
+	D3D11Context& ctx{ G_GAPIContext };
 
-	ComPtr<ID3D11DeviceContext> dev_con{ ctx->GetDeviceContext() };
+	ID3D11DeviceContext* dev_con{ ctx.GetDeviceContext() };
 
-	dev_con->OMSetRenderTargets(1, ctx->GetGetAddressOfDefaultRenderTargetView(), ctx->GetDefaultDepthStencilView());
+	dev_con->OMSetRenderTargets(1, ctx.GetGetAddressOfDefaultRenderTargetView(), ctx.GetDefaultDepthStencilView());
 
 	Vec4f cl_col{ 0.0, 0.0, 0.0, 0.0 };
-	dev_con->ClearRenderTargetView(ctx->GetDefaultRenderTargetView(), &cl_col[0]);
-	dev_con->ClearDepthStencilView(ctx->GetDefaultDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	dev_con->ClearRenderTargetView(ctx.GetDefaultRenderTargetView(), &cl_col[0]);
+	dev_con->ClearDepthStencilView(ctx.GetDefaultDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	STN_ShaderProgramManager.Get("render_texture_sdrprog")->Bind();
+	G_ShaderProgramManager.Get("render_texture_sdrprog")->Bind();
 
 	ID3D11ShaderResourceView* srv{ m_ColorRenderTarget.GetColorAttachment() };
 	dev_con->PSSetShaderResources(0, 1, &srv);
 	dev_con->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
 
-	STN_RenderStateManager.Set(RenderStateType::RS_DRAW_SOLID);
+	G_RenderStateManager.Set(RenderStateType::RS_DRAW_SOLID);
 	dev_con->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
 	dev_con->Draw(4, 0);
@@ -74,8 +74,7 @@ bool GameSceneColorPassStage::Initialize()
 	samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
 
 	// Create the texture sampler state.
-	D3D11Context* ctx{ EngineContext::GetGAPIContext() };
-	ComPtr<ID3D11Device> device{ ctx->GetDevice() };
+	ID3D11Device* device{ G_GAPIContext.GetDevice() };
 
 	HRESULT res = device->CreateSamplerState(&samplerDesc, m_SamplerLinearWrap.ReleaseAndGetAddressOf());
 
@@ -199,11 +198,10 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	Vec2i winSize{ WindowingService::GetWindow(0)->GetSize() };
 
 	//Get the device context.
-	D3D11Context* context{ EngineContext::GetGAPIContext() };
-	ID3D11DeviceContext* deviceContext{ context->GetDeviceContext() };
+	ID3D11DeviceContext* deviceContext{ G_GAPIContext.GetDeviceContext() };
 
 	//Bind the requested shader program.
-	STN_ShaderProgramManager.Get("default_sdrprog")->Bind();
+	G_ShaderProgramManager.Get("default_sdrprog")->Bind();
 
 	//Set the linear wrap texture sampler.
 	deviceContext->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
@@ -215,10 +213,10 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		Mat4f m{ renderComponent->GetParent()->GetXform() };
 
 		//Get the active camera projection matrix.
-		Mat4f p{ EngineContext::GetCameraSystem()->GetActiveCameraProjectionMatrtix() };
+		Mat4f p{ G_CameraSystem.GetActiveCameraProjectionMatrtix() };
 
 		//Get the active camera view matrix.
-		Mat4f v{ EngineContext::GetCameraSystem()->GetActiveCameraViewMatrix() };
+		Mat4f v{ G_CameraSystem.GetActiveCameraViewMatrix() };
 
 		//Calculate the ModelViewProjection matrix.
 		Mat4f mvp{ p * v * m };
@@ -228,9 +226,9 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 		Mat4f textureMatrix{ MathUtils::Scale(Mat4f{ 1.0f }, Vec3f{ 4.0f, 4.0f, 0.0f }) };
 
-		LightSystem* lightSystem{ EngineContext::GetLightSystem() };
+		auto& lightSystem{ G_LightSystem };
 
-		auto pointLights{ lightSystem->GetPointLightDescriptions() };
+		auto pointLights{ lightSystem.GetPointLightDescriptions() };
 
 		if (!pointLights.empty())
 		{
@@ -240,7 +238,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 			deviceContext->Unmap(m_PointLightStructuredBuffer.Get(), 0);
 		}
 
-		auto directionalLights{ lightSystem->GetDirectionalLightDescriptions() };
+		auto directionalLights{ lightSystem.GetDirectionalLightDescriptions() };
 
 		if (!directionalLights.empty())
 		{
@@ -250,7 +248,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 			deviceContext->Unmap(m_DirectionalLightStructuredBuffer.Get(), 0);
 		}
 
-		auto spotlights{ lightSystem->GetSpotlightDescriptions() };
+		auto spotlights{ lightSystem.GetSpotlightDescriptions() };
 
 		if (!spotlights.empty())
 		{
@@ -317,10 +315,10 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		Mesh* mesh{ renderComponent->GetMesh() };
 
 		//Set the blend state of the RenderComponent's material
-		STN_RenderStateManager.Set(material.blendState);
+		G_RenderStateManager.Set(material.blendState);
 
 		//Set the viewport of the active camera.
-		EngineContext::GetCameraSystem()->GetActiveCameraViewport().Set();
+		G_CameraSystem.GetActiveCameraViewport().Set();
 
 		//Bind the VBO
 		mesh->GetVbo()->Bind();
@@ -337,7 +335,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		}
 
 		// Disable any blend states activated.
-		STN_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
+		G_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
 	}
 
 	//Unbind the render target.

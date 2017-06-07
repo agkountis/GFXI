@@ -4,6 +4,9 @@
 #include "windowing_service.h"
 #include "shader_program_manager.h"
 #include "game_scene.h"
+#include "multiplayer.h"
+#include "ncf.h"
+#include "trace.h"
 
 using namespace Blade;
 
@@ -15,27 +18,31 @@ static void Reshape(int x, int y)
 
 static void KeyDown(unsigned char key, int x, int y)
 {
-	if (key == 27)
+	switch (key)
 	{
-		exit(0);
+	case 27: //esc
+		G_Application.SetTermination(true);
+		break;
+	default:
+		break;
 	}
 
-	STN_SceneManager.OnKeyDown(key, x, y);
+	G_SceneManager.OnKeyDown(key, x, y);
 }
 
 static void KeyUp(unsigned char key, int x, int y)
 {
-	STN_SceneManager.OnKeyUp(key, x, y);
+	G_SceneManager.OnKeyUp(key, x, y);
 }
 
 static void MouseClick(int button, bool state, int x, int y)
 {
-	STN_SceneManager.OnMouseClick(button, state, x, y);
+	G_SceneManager.OnMouseClick(button, state, x, y);
 }
 
 static void MouseMotion(int x, int y)
 {
-	STN_SceneManager.OnMouseMotion(x, y);
+	G_SceneManager.OnMouseMotion(x, y);
 }
 
 static void PassiveMouseMotion(int x, int y)
@@ -45,10 +52,6 @@ static void PassiveMouseMotion(int x, int y)
 
 // --------------------------------------------------------------------------------------
 
-BattleArenaApplication::~BattleArenaApplication()
-{
-}
-
 bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 {
 	if (!Application::Initialize(argc, argv))
@@ -57,6 +60,8 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 	}
 
 	BLADE_TRACE("BattleArenaApplication Initialization Starts!");
+
+	Multiplayer::Initialize("config\\test.cfg");
 
 	WindowFunctionCallbacks callbacks;
 	callbacks.passive_motion_func = PassiveMouseMotion;
@@ -88,7 +93,7 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 	sdrProgDesc.vertexShader = L"render_texture.vs.hlsl";
 	sdrProgDesc.fragmentShader = L"render_texture.ps.hlsl";
 
-	if (!STN_ShaderProgramManager.Create(sdrProgDesc))
+	if (!G_ShaderProgramManager.Create(sdrProgDesc))
 	{
 		return false;
 	}
@@ -98,13 +103,13 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 	sdrProgDesc.vertexShader = L"default.vs.hlsl";
 	sdrProgDesc.fragmentShader = L"default.ps.hlsl";
 
-	if (!STN_ShaderProgramManager.Create(sdrProgDesc))
+	if (!G_ShaderProgramManager.Create(sdrProgDesc))
 	{
 		return false;
 	}
 
 	BLADE_TRACE("Allocating and pusing the GameScreen into the ScreenManager!");
-	STN_SceneManager.PushScene(std::make_unique<GameScene>());
+	G_SceneManager.PushScene(std::make_unique<GameScene>());
 
 	BLADE_TRACE("BattleArenaApplication Initialization Successfull!");
 	return true;
@@ -112,12 +117,12 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 
 void BattleArenaApplication::Update() noexcept
 {
-	STN_SceneManager.Update(GetDelta(), GetMsec());
+	G_SceneManager.Update(GetDelta(), GetMsec());
 }
 
 void BattleArenaApplication::Draw() const noexcept
 {
-	STN_SceneManager.Draw();
+	G_SceneManager.Draw();
 
 	WindowingService::SwapBuffers();
 }

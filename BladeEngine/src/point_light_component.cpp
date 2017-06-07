@@ -7,12 +7,12 @@ namespace Blade
 		: LightComponent{ LightType::POINT, parent },
 		m_LightDescription{ lightDesc }
 	{
-		EngineContext::GetLightSystem()->RegisterComponent(this);
+		G_LightSystem.RegisterComponent(this);
 	}
 
 	PointLightComponent::~PointLightComponent()
 	{
-		EngineContext::GetLightSystem()->UnregisterComponent(GetId());
+		G_LightSystem.UnregisterComponent(GetId());
 	}
 
 	const PointLightDesc& PointLightComponent::GetLightDescription() const noexcept

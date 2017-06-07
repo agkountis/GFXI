@@ -15,9 +15,7 @@ namespace Blade
 			blend_desc.RenderTarget[0].BlendEnable = false;
 			blend_desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
-			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
-
-			ComPtr<ID3D11Device> device{ GAPI_context->GetDevice() };
+			ID3D11Device* device{ G_GAPIContext.GetDevice() };
 
 			device->CreateBlendState(&blend_desc, m_BlendState.ReleaseAndGetAddressOf());
 		}
@@ -35,9 +33,7 @@ namespace Blade
 			blend_desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
 			blend_desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
-			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
-
-			ComPtr<ID3D11Device> device{ GAPI_context->GetDevice() };
+			ID3D11Device* device{ G_GAPIContext.GetDevice() };
 
 			device->CreateBlendState(&blend_desc, m_BlendState.ReleaseAndGetAddressOf());
 		}
@@ -55,9 +51,7 @@ namespace Blade
 			blend_desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
 			blend_desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
-			D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
-
-			ComPtr<ID3D11Device> device{ GAPI_context->GetDevice() };
+			ID3D11Device* device{ G_GAPIContext.GetDevice() };
 
 			device->CreateBlendState(&blend_desc, m_BlendState.ReleaseAndGetAddressOf());
 		}
@@ -69,9 +63,7 @@ namespace Blade
 
 	void D3D11BlendState::Set() const noexcept
 	{
-		D3D11Context* GAPI_context{ EngineContext::GetGAPIContext() };
-
-		ComPtr<ID3D11DeviceContext> device_context{ GAPI_context->GetDeviceContext() };
+		ID3D11DeviceContext* device_context{ G_GAPIContext.GetDeviceContext() };
 
 		device_context->OMSetBlendState(m_BlendState.Get(), nullptr, 0xffffffff);
 	}

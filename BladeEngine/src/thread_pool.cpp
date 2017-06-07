@@ -1,5 +1,6 @@
-#include <iostream>
 #include "thread_pool.h"
+#include "trace.h"
+#include <string>
 
 namespace Blade
 {
@@ -64,7 +65,7 @@ namespace Blade
 
 	bool ThreadPool::Initialize()
 	{
-		std::cout << "Initializing thread pool..." << std::endl;
+		BLADE_TRACE("Initializing thread pool...");
 
 		/**
 		* Get the system's supported thread count.
@@ -72,13 +73,13 @@ namespace Blade
 		int thread_count = std::thread::hardware_concurrency();
 
 		if (!thread_count) {
-			std::cerr << "Not able to detect the system's available thread count!" << std::endl;
+			BLADE_ERROR("Not able to detect the system's available thread count!");
 			return false;
 		}
 
-		std::cout << "Available system threads: " << thread_count << std::endl;
+		BLADE_TRACE("Available system threads: " + std::to_string(thread_count));
 
-		std::cout << "Creating workers..." << std::endl;
+		BLADE_TRACE("Creating workers...");
 
 		/**
 		* Spawn the worker threads.
