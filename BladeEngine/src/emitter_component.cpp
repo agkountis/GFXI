@@ -9,6 +9,7 @@ namespace Blade
 		BehaviourComponent("co_emitter", parent),
 		m_pMesh{nullptr}
 	{
+
 		m_Descriptor.spawnRate = 1.0f;
 		m_Descriptor.lifespan = 1.0f;
 		m_Descriptor.maxParticles = 1;
