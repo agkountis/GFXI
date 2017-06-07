@@ -3,7 +3,7 @@
 #include "system.h"
 #include <map>
 #include "behaviour_component.h"
-
+#include <vector>
 namespace Blade
 {
 	/**
@@ -50,6 +50,13 @@ namespace Blade
 		* \brief Teardown all the BehaviourComponent that are currently registered with the BehaviourSystem.
 		*/
 		virtual void Teardown() noexcept;
+
+		/*
+		\brief Function that returns a vector of all the behaviour component of a selected type
+		\param the type of the component that you want to obtain
+		\return the vector of components of the type requested.
+		*/
+		std::vector<BehaviourComponent*>& GetBehaviourByType(const std::string type);
 	};
 }
 #endif

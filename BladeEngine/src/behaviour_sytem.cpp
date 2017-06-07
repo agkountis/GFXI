@@ -59,4 +59,17 @@ namespace Blade
 			behaviour->Teardown();
 		}
 	}
+	std::vector<BehaviourComponent*>& BehaviourSystem::GetBehaviourByType(const std::string type)
+	{
+		std::vector<BehaviourComponent*>  result;
+
+		for (auto entry : m_BehaviourComponents)
+		{
+			if (entry.first == type)
+			{
+				result.push_back(entry.second);
+			}
+		}
+		return std::move(result);
+	}
 }

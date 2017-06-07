@@ -2,7 +2,8 @@
 #include "math_utils.h"
 #include "entity.h"
 #include <algorithm>
-
+#include "engine_context.h"
+#include "component.h"
 namespace Blade
 {
 	EmitterComponent::EmitterComponent(Entity * parent):
@@ -18,11 +19,14 @@ namespace Blade
 		m_Descriptor.particlesToSpawn = 0;
 		m_Descriptor.active = true;
 		m_Descriptor.velocityRange = 0.0f;
+
+		G_ParticleSystem.RegisterComponent(this);
 	}
 	EmitterComponent::EmitterComponent(Entity * entity, const EmitterComponent::EmitterDescriptor& descriptor):
 		BehaviourComponent("co_emitter",entity),
 		m_Descriptor(descriptor)
 	{
+		G_ParticleSystem.UnregisterComponent(GetId());
 	}
 
 

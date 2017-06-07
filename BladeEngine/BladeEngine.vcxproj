@@ -248,9 +248,11 @@
     <ClInclude Include="include\window.h" />
     <ClInclude Include="include\windowing_service.h" />
     <ClInclude Include="include\windowing_types.h" />
+    <ClInclude Include="include\particle_system.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\behaviour_component.cpp" />
+    <ClCompile Include="src\particle_system.cpp" />
     <ClCompile Include="src\abstract_viewport.cpp" />
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\behaviour_sytem.cpp" />

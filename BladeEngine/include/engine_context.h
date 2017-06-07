@@ -12,6 +12,7 @@
 #include "resource_manager.h"
 #include "scene_manager.h"
 #include "shader_program_manager.h"
+#include "particle_system.h"
 
 namespace Blade
 {
@@ -34,6 +35,7 @@ namespace Blade
 		static LightSystem m_LightSystem;
 		static SimulationSystem m_SimulationSystem;
 		static BehaviourSystem m_BehaviourSystem;
+		static ParticleSystem m_ParticleSystem;
 
 		// Managers
 		static NetworkManager m_NetworkManager;
@@ -67,6 +69,8 @@ namespace Blade
 
 		static BehaviourSystem& GetBehaviourSystem() noexcept;
 
+		static ParticleSystem& GetParticleSystem() noexcept;
+
 		static NetworkManager& GetNetworkManager() noexcept;
 
 		static RenderStateManager& GetRenderStateManager() noexcept;
@@ -91,6 +95,7 @@ namespace Blade
 #define G_LightSystem EngineContext::GetLightSystem()
 #define G_SimulationSystem EngineContext::GetSimulationSystem()
 #define G_BehaviourSystem EngineContext::GetBehaviourSystem()
+#define G_ParticleSystem  EngineContext::GetParticleSystem()
 
 #define G_NetworkManager EngineContext::GetNetworkManager()
 #define G_RenderStateManager EngineContext::GetRenderStateManager()
