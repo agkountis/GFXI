@@ -88,4 +88,8 @@
       <Filter>configuration</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="sdr\particles.vs.hlsl" />
+    <FxCompile Include="sdr\particles.ps.hlsl" />
+  </ItemGroup>
 </Project>

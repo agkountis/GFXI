@@ -195,6 +195,10 @@
       <FileType>Document</FileType>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="sdr\particles.ps.hlsl" />
+    <FxCompile Include="sdr\particles.vs.hlsl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
