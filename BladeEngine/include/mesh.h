@@ -9,21 +9,44 @@
 
 namespace Blade
 {
+	/*
+	\brief Defines vertex winding order
+	*/
 	enum class VertexWinding
 	{
 		CLOCKWISE,
 		ANTICLOCKWISE
 	};
 
+	/*
+	\brief Mesh class of the engine is a resource.
+	*/
 	class Mesh : public Resource
 	{
 	private:
+		/*
+		\brief Vector of indices of the mesh
+		*/
 		std::vector<Vertex> m_Vertices;
+		/*
+		\brief Vector of indices of the mesh
+		*/
 		std::vector<unsigned int> m_Indices;
 
+		/*
+		\brief VBO of the mesh
+		*/
 		std::unique_ptr<VBO> m_Vbo;
+
+		/*
+		\brief IBO of the mesh
+		*/
 		std::unique_ptr<IBO> m_Ibo;
 
+		/*
+		\brief Name of the mesh
+		\details This can be used to ask to the resource manager a particular mesh.
+		*/
 		std::string m_Name;
 
 	public:
@@ -61,6 +84,9 @@ namespace Blade
 
 		bool Load(const std::wstring& fileName) noexcept override;
 
+		/*
+		\brief Generates indices of the mesh
+		*/
 		void GenerateIndices(VertexWinding winding) noexcept;
 	};
 }

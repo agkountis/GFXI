@@ -5,6 +5,9 @@
 
 namespace Blade
 {
+	/*
+	\brief Vertex struct of the engine.
+	*/
 	struct Vertex
 	{
 		Vec3f position;

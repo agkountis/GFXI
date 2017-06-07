@@ -11,17 +11,31 @@ namespace Blade
 
 	static int s_Id = 0;
 
+	/*
+	\brief Resource manager class of the engine.
+	*/
 	class ResourceManager
 	{
 	private:
+		/*
+		\brief Correlate resource by names.
+		*/
 		std::map<std::wstring, Resource*> m_ResourcesByName;
 
+		/*
+		\brief Correlate resources by indices.
+		*/
 		std::map<unsigned int, Resource*> m_ResourcesById;
 
 	public:
 		~ResourceManager();
 
 		template <typename T>
+		/*
+		\brief Load a new resource by file name
+		\return true if the resource is loaded correctly,
+		false otherwise.
+		*/
 		bool Load(const std::wstring& fileName)
 		{
 			T* resource{ new T };
@@ -37,6 +51,10 @@ namespace Blade
 			return false;
 		}
 
+		/*
+		\brief Get a resource by name
+		\return the resource
+		*/
 		template <typename T>
 		T* Get(const std::wstring& fileName)
 		{
@@ -58,6 +76,11 @@ namespace Blade
 			return res;
 		}
 
+		/*
+		\brief Register a new resource by name
+		\param resource the resource to register
+		\name the name of the resource.
+		*/
 		void RegisterResource(Resource* resource, const std::wstring& name)
 		{
 			if (!resource)

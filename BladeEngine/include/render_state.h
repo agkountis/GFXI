@@ -18,6 +18,9 @@ namespace Blade
 		DSS_DEPTH_TEST_ENABLE
 	};
 
+	/*
+	\brief Render state of the engine.
+	*/
 	class RenderState
 	{
 	public:

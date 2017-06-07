@@ -3,10 +3,17 @@
 
 namespace Blade
 {
+	/*
+	\brief Message structure used by the engine.
+	\details The Message class is generic. 
+	*/
 	template<typename T>
 	class Message
 	{
 	private:
+		/*
+		\brief Message type
+		*/
 		T m_Type;
 
 	public:
@@ -15,7 +22,10 @@ namespace Blade
 		}
 
 		virtual ~Message() = default;
-
+		/*
+		\brief Return the type of the message
+		\return The message type
+		*/
 		const T& GetType() const noexcept
 		{
 			return m_Type;

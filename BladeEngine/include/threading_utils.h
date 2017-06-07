@@ -21,7 +21,10 @@ namespace Blade
 		CPU_6 = 64,
 		CPU_7 = 128
 	};
-
+	/*
+	\brief Attach a thread to a current core to implement processor affinity.
+	\param coreNumber the thread to attach.
+	*/
 	bool AttachCurrentThreadToCore(unsigned int coreNumber)
 	{
 	#if defined(BLADE_BUILD_D3D)

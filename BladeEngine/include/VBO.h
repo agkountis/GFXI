@@ -11,11 +11,20 @@ namespace Blade
 		TRIANGLE_STRIP
 	};
 
+	/*
+	\brief Vertex buffer object of the engine.
+	*/
 	class VBO
 	{
 	private:
+		/*
+		\brief Number of vertex of the VBO
+		*/
 		unsigned int m_VertexCount = 0;
 
+		/*
+		\brief Primitive topology of the vertex buffer object
+		*/
 		PrimitiveTopology m_PrimitiveTopology{ PrimitiveTopology::TRIANGLE_LIST };
 
 	public:

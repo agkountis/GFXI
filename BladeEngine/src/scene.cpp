@@ -18,6 +18,11 @@ namespace Blade
 		m_Entities.push_back(object);
 	}
 
+	const std::vector<Entity*>& Scene::GetEntities() const noexcept
+	{
+		return m_Entities;
+	}
+
 	void Scene::Update(float delta_time, long time) noexcept
 	{
 		auto it{ m_Entities.begin() };

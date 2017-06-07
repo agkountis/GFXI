@@ -4,6 +4,9 @@
 
 namespace Blade
 {
+	/*
+	\brief Shader type enum of the engine.
+	*/
 	enum ShaderType
 	{
 		VERTEX_SHADER,
@@ -14,6 +17,9 @@ namespace Blade
 		SHADER_COUNT
 	};
 
+	/*
+	\brief Shader class of the engine.
+	*/
 	class Shader : public Resource
 	{
 	public:
