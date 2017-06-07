@@ -21,7 +21,7 @@ namespace Blade
 
 		/*
 		\brief Create a new shader program
-		\detail If the shader program is already created do not re-create it.
+		\details If the shader program is already created do not re-create it.
 		*/
 		bool Create(const ShaderProgramDesc& shaderProgramDesc) noexcept;
 

@@ -21,7 +21,7 @@ namespace Blade
 	public:
 		/*
 		\brief Push a new scene in the manager.
-		\detail The scene in the back is the active one.
+		\details The scene in the back is the active one.
 		*/
 		void PushScene(std::unique_ptr<Scene> scene) noexcept;
 
