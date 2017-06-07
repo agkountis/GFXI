@@ -8,29 +8,22 @@ void Blade::InputManager::Update(float deltaTime)
 	// re-enumerate input API for any newly connected devices since the last check
 	int result = EnumerateDevices();
 
-	InputDevice* tempDev{ nullptr };
-
-	std::map<Player, InputDevice*>::iterator itr = m_ActiveDevices.begin();
-
 	// Update the state of active input devices (in the active map, with player assignments)
-	for (itr = m_ActiveDevices.begin(); itr != m_ActiveDevices.end(); ++itr)
+	for (auto& entry : m_ActiveDevices) 
 	{
-
-		tempDev = itr->second;
+		InputDevice* tempDev{ entry.second };
 
 		// If the device is connected
 		if (tempDev->IsConnected())
 		{
-
 			tempDev->Update(deltaTime);
-
 		}
-		else {
+		else 
+		{
 
 			// act on disconnection
-			
-		}
 
+		}
 	}
 
 }
@@ -266,43 +259,19 @@ InputDevice * Blade::InputManager::GetActiveDevice(Player playerID)
 
 Blade::InputManager::~InputManager()
 {
-
 	// invalidate and release active input devices
-
-	std::map<Player, InputDevice*>::iterator itrActive = m_ActiveDevices.begin();
-
-	InputDevice* tempDevice{ nullptr };
-
-	for (itrActive = m_ActiveDevices.begin(); itrActive != m_ActiveDevices.end(); ++itrActive)
+	for (auto& entry : m_ActiveDevices)
 	{
-
-		tempDevice = itrActive->second;
-
-		// remove from map
-		m_ActiveDevices.erase(itrActive);
-
-		// delete object
-		delete tempDevice;
-
+		delete entry.second;
 	}
+
+	m_ActiveDevices.clear();
 
 	// invalidate and release inactive devices in the device pool
-
-	std::vector<InputDevice*>::iterator itrPool = m_DevicePool.begin();
-
-	tempDevice = nullptr;
-
-	for (itrPool = m_DevicePool.begin(); itrPool != m_DevicePool.end(); ++itrPool)
+	for (auto inputDevice : m_DevicePool)
 	{
-
-		tempDevice = *itrPool;
-
-		// remove from pool
-		m_DevicePool.erase(itrPool);
-
-		// delete object
-		delete tempDevice;
-
+		delete inputDevice;
 	}
 
+	m_DevicePool.clear();
 }

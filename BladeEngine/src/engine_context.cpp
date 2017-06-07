@@ -24,19 +24,14 @@ namespace Blade
 	BehaviourSystem EngineContext::m_BehaviourSystem;
 	SimulationSystem EngineContext::m_SimulationSystem;
 
+
 	// Managers
 	NetworkManager EngineContext::m_NetworkManager;
 	RenderStateManager EngineContext::m_RenderStateManager;
 	ResourceManager EngineContext::m_ResourceManager;
 	SceneManager EngineContext::m_SceneManager;
 	ShaderProgramManager EngineContext::m_ShaderProgramManager;
-	
-
-	
-
-	
-
-	
+	InputManager EngineContext::m_InputManager;
 
 	bool EngineContext::Initialize()
 	{
@@ -134,6 +129,11 @@ namespace Blade
 	ShaderProgramManager& EngineContext::GetShaderProgramManager() noexcept
 	{
 		return m_ShaderProgramManager;
+	}
+
+	InputManager& EngineContext::GetInputManager() noexcept
+	{
+		return m_InputManager;
 	}
 
 	void EngineContext::RegisterApplication(Application* application) noexcept

@@ -1,4 +1,5 @@
 #include "win32_window.h"
+#include "engine_context.h"
 #include <sstream>
 #include <iostream>
 #include "win32_utils.h"
@@ -226,7 +227,7 @@ namespace Blade
 			//int delta = GET_WHEEL_DELTA_WPARAM(wparam);
 			break;
 		case WM_INPUT_DEVICE_CHANGE:
-			
+			G_InputManager.EnumerateDevices();
 			break;
 		case WM_DESTROY:
 			PostQuitMessage(WM_QUIT);
@@ -255,8 +256,17 @@ namespace Blade
 			{
 				BLADE_TRACE("Failed to register for Input devices. Devices may not be enumerated on connecion/disconnection");
 			}
+
+			Win32Window* win{ nullptr };
+
+			//extract the Win32Window we stored in the window creation from the lparam.
+			win = static_cast<Win32Window*>(reinterpret_cast<CREATESTRUCT*>(lparam)->lpCreateParams);
+
+			//map the window with it's handle. 
+			SetWindowLongPointer(handle, GWL_USERDATA, win);
+
+			return DefWindowProc(handle, msg, wparam, lparam);
 		}
-		break;
 		case WM_NCDESTROY:
 		{
 
@@ -270,15 +280,7 @@ namespace Blade
 			RegisterRawInputDevices(&ridSpec, 1, sizeof(RAWINPUTDEVICE));
 
 			Win32Window* win{ nullptr };
-			if (msg == WM_NCCREATE)
-			{
-
-				//extract the Win32Window we stored in the window creation from the lparam.
-				win = static_cast<Win32Window*>(reinterpret_cast<CREATESTRUCT*>(lparam)->lpCreateParams);
-
-			}
-
-			//map the window with it's handle.
+			//map the window with it's handle. 
 			SetWindowLongPointer(handle, GWL_USERDATA, win);
 
 			return DefWindowProc(handle, msg, wparam, lparam);
@@ -292,6 +294,11 @@ namespace Blade
 		win = GetWindowLongPointer<Win32Window>(handle, GWL_USERDATA);
 		if (win)
 		{
+			if (msg == WM_INPUT_DEVICE_CHANGE)
+			{
+				std::cerr << "input device change message:" << ((wparam == GIDC_ARRIVAL) ? "Added" : "Removed") << std::endl;
+			}
+			
 			//execute the window specific win_proc.
 			return win->WinProc(handle, msg, wparam, lparam);
 		}

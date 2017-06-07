@@ -12,6 +12,7 @@
 #include "resource_manager.h"
 #include "scene_manager.h"
 #include "shader_program_manager.h"
+#include "input_manager.h"
 
 namespace Blade
 {
@@ -46,6 +47,7 @@ namespace Blade
 		static ResourceManager m_ResourceManager;
 		static SceneManager m_SceneManager;
 		static ShaderProgramManager m_ShaderProgramManager;
+		static InputManager m_InputManager;
 
 	public:
 		EngineContext() = default;
@@ -82,6 +84,8 @@ namespace Blade
 
 		static ShaderProgramManager& GetShaderProgramManager() noexcept;
 
+		static InputManager& GetInputManager() noexcept;
+
 		static void RegisterApplication(Application* application) noexcept;
 
 		static Application& GetApplication() noexcept;
@@ -102,6 +106,7 @@ namespace Blade
 #define G_ResourceManager EngineContext::GetResourceManager()
 #define G_SceneManager EngineContext::GetSceneManager()
 #define G_ShaderProgramManager EngineContext::GetShaderProgramManager()
+#define G_InputManager EngineContext::GetInputManager()
 
 #define G_Application EngineContext::GetApplication()
 }
