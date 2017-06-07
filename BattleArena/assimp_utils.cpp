@@ -8,8 +8,12 @@
 #include "render_component.h"
 #include "engine_context.h"
 #include "d3d/D3D11_texture.h"
+#include <sstream>
+#include "bounding_sphere.h"
 
 using namespace Blade;
+
+static unsigned int s_MeshCount{ 0 };
 
 namespace AssimpUtils
 {
@@ -87,6 +91,11 @@ namespace AssimpUtils
 
 		m->SetName(aiMesh->mName.data);
 
+		if (m->GetName().empty())
+		{
+			m->SetName("Mesh" + std::to_string(s_MeshCount++));
+		}
+
 		if (aiMesh->HasPositions())
 		{
 			std::vector<Vertex> vertices;
@@ -142,16 +151,36 @@ namespace AssimpUtils
 	{
 		Material mat;
 
-		mat.diffuse = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
-		mat.specular = Vec4f{1.0f, 1.0f, 1.0f, 60.0f};
+		aiColor4D col;
+
+		aiGetMaterialColor(aiMaterial, AI_MATKEY_COLOR_DIFFUSE, &col);
+
+		mat.diffuse = AssToBlade(col);
+
+		float alpha{ 1.0f };
+		aiGetMaterialFloat(aiMaterial, AI_MATKEY_OPACITY, &alpha);
+
+		mat.diffuse.a = alpha;
+
+		if (alpha < 1.0f)
+		{
+			mat.blendState = RenderStateType::BS_BLEND_ALPHA;
+		}
+
+		float glossiness{ 60 };
+		aiGetMaterialFloat(aiMaterial, AI_MATKEY_SHININESS, &glossiness);
+
+		float t = log2(glossiness) / 10.0f;
+
+		float shininess = MathUtils::Lerp(1.0f, 128.0f, t);
+
+		mat.specular = Vec4f{1.0f, 1.0f, 1.0f, shininess};
 
 		aiUVTransform uvTransform;
 		aiGetMaterialUVTransform(aiMaterial, AI_MATKEY_UVTRANSFORM_DIFFUSE(0), &uvTransform);
 
 		mat.textureMatrix = MathUtils::Translate(mat.textureMatrix, Vec3f{ AssToBlade(uvTransform.mTranslation), 0.0f });
 		mat.textureMatrix = MathUtils::Scale(mat.textureMatrix, Vec3f{ AssToBlade(uvTransform.mScaling), 1.0f });
-
-		//TODO: try to load blending information.
 
 		aiString str;
 
@@ -209,9 +238,36 @@ namespace AssimpUtils
 		return mat;
 	}
 
+	static void Split(const std::string& s, char delim, std::vector<std::string>& elems)
+	{
+		std::stringstream ss{ s };
+
+		std::string item;
+
+		while (std::getline(ss, item, delim)) {
+			elems.push_back(item);
+		}
+	}
+
 	Entity* LoadAssNode(const aiScene* aiScene, const aiNode* aiNode) noexcept
 	{
-		Entity* entity{ new Entity{ aiNode->mName.C_Str() } };
+		std::string name{ aiNode->mName.C_Str() };
+		Entity* entity{ new Entity{ name } };
+
+		std::vector<std::string> splitString;
+		Split(name, '_', splitString);
+
+		if (splitString[0] == "COL")
+		{
+			if (splitString[1] == "SPHERE")
+			{
+				std::stringstream s{ splitString[2] };
+
+				float radius;
+				s >> radius;
+				//ColliderComponent* cc{ new ColliderComponent{entity, std::make_unique<BoundingSphere>(radius)} };
+			}
+		}
 
 		// Mesh and Material loading
 		unsigned int meshCount{ aiNode->mNumMeshes };

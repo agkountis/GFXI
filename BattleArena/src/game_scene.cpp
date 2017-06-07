@@ -77,7 +77,7 @@ void GameScene::Initialize()
 	AddEntity(entity);
 
 	Entity* arena{ new Entity{"arena"} };
-	arena->Load(L"data\\models\\arena2.fbx");
+	arena->Load(L"data\\models\\arena3.fbx");
 	AddEntity(arena);
 
 	test = new Entity{ "wow" };
