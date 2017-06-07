@@ -28,31 +28,36 @@ void InputDevice::FilterStateData(const InputState& stateIn, InputState& stateOu
 	int iDefaultStickY = (THUMBSTICK_LIMIT_Y_MIN + THUMBSTICK_LIMIT_Y_MAX) * 0.5f;
 
 	// Distance from device neutral to LEFT stick position
-	float fDistance = glm::distance(glm::vec2(iDefaultStickX, iDefaultStickY), glm::vec2(stateIn.stickLeft.axisX, stateIn.stickLeft.axisY));
+	float fDistance = glm::distance(
+		glm::vec2(iDefaultStickX, iDefaultStickY),
+		glm::vec2(stateIn.stickLeft.axisX, stateIn.stickLeft.axisY)
+	);
 
 	// Check left stick against deadzone radius
 	if (fDistance > DEADZONE_ASTICK_L)
 	{
-		// The distance exceeds deadzone radius, it is valid
-		
+		// Calculate new working zone for analog sticks (range minus dead zone)
 	}
 	else {
-		// The position is invalid, set to zero (no movement)
+		// The position is inside the dead zone, set to zero (no input)
 		stateOut.stickLeft.axisX = 0;
 		stateOut.stickLeft.axisY = 0;
 	}
 
 	// Distance from device neutral to RIGHT stick position
-	fDistance = glm::distance(glm::vec2(iDefaultStickX, iDefaultStickY), glm::vec2(stateIn.stickRight.axisX, stateIn.stickRight.axisY));
+	fDistance = glm::distance(
+		glm::vec2(iDefaultStickX, iDefaultStickY),
+		glm::vec2(stateIn.stickRight.axisX, stateIn.stickRight.axisY)
+	);
 
 	// Check right stick against deadzone radius
 	if (fDistance > DEADZONE_ASTICK_R)
 	{
-		// The distance exceeds deadzone radius, it is valid
+		// Calculate new working zone for analog sticks (range minus dead zone)
 
 	}
 	else {
-		// The position is invalid, set to zero (no movement)
+		// The position is inside the dead zone, set to zero (no input)
 		stateOut.stickRight.axisX = 0;
 		stateOut.stickRight.axisY = 0;
 	}

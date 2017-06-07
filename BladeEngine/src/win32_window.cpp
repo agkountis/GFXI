@@ -226,10 +226,7 @@ namespace Blade
 			//int delta = GET_WHEEL_DELTA_WPARAM(wparam);
 			break;
 		case WM_INPUT_DEVICE_CHANGE:
-			if (callbacks.device_change_func)
-			{
-				callbacks.device_change_func();
-			}
+			
 			break;
 		case WM_DESTROY:
 			PostQuitMessage(WM_QUIT);
