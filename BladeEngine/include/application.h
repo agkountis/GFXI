@@ -5,13 +5,26 @@
 
 namespace Blade
 {
+	/*
+	\brief Application class of the engine
+	*/
 	class Application
 	{
 	private:
+		/*
+		\brief Terminate flag 
+		*/
 		bool m_Terminate{ false };
 
+		/*
+		\brief Paused flag
+		*/
 		bool m_Paused{ false };
 
+		/*
+		\brief Timer of the application used to propagate delta times and
+		other time information to the systems.
+		*/
 		Timer m_Timer;
 
 	public:

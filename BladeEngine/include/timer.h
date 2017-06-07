@@ -11,7 +11,10 @@ namespace Blade
 
 	using HighResolutionTimePoint = std::chrono::time_point<std::chrono::high_resolution_clock>;
 
-
+	/*
+	\brief Timer class of the engine
+	\details Provides chronometer functionalities.
+	*/
 	class Timer
 	{
 	private:
@@ -23,16 +26,23 @@ namespace Blade
 		bool m_Running;
 
 	public:
+		
 		Timer() : m_Prev{ HighResolutionClock::now() }, m_Running{ false }
 		{
 		}
 
+		/*
+		\brief Reset the timer.
+		*/
 		void Reset() noexcept
 		{
 			m_Pause = {};
 			m_Start = HighResolutionClock::now();
 		}
 
+		/*
+		\brief Start the timer
+		*/
 		void Start() noexcept
 		{
 			if (!IsRunning())
@@ -44,6 +54,9 @@ namespace Blade
 			}
 		}
 
+		/*
+		\brief Stop the timer.
+		*/
 		void Stop() noexcept
 		{
 			if (IsRunning())
@@ -54,11 +67,18 @@ namespace Blade
 			}
 		}
 
+		/*
+		\brief Getter for the timer running-flag
+		\return TRUE if the timer is running, flase otherwise
+		*/
 		bool IsRunning() const noexcept
 		{
 			return m_Running;
 		}
 
+		/*
+		\brief Return the elapsed time in milliseconds.
+		*/
 		long long GetMsec() const noexcept
 		{
 			using namespace std::chrono;
@@ -70,7 +90,9 @@ namespace Blade
 
 			return duration_cast<milliseconds>(HighResolutionClock::now() - m_Start).count();
 		}
-
+		/*
+		\brief Return the elapsed time in seconds.
+		*/
 		double GetSec() const noexcept
 		{
 			using namespace std::chrono;
@@ -83,6 +105,10 @@ namespace Blade
 			return duration<double>{ HighResolutionClock::now() - m_Start }.count();
 		}
 
+		/*
+		\brief Returns delta time
+		\return delta time.
+		*/
 		double GetDelta() const noexcept
 		{
 			using namespace std::chrono;

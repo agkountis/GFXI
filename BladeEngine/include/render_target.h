@@ -10,6 +10,9 @@ namespace Blade
 		DEPTH
 	};
 
+	/*
+	\brief Render target of the engine.
+	*/
 	class RenderTarget
 	{
 	private:

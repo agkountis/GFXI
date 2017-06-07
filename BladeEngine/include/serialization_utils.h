@@ -7,6 +7,9 @@ namespace Blade
 {
 	namespace SerializationUtils
 	{
+		/*
+		\brief The pack function is used to serialize data.
+		*/
 		template<typename T>
 		void Pack(std::vector<Byte>& destination, T& data)
 		{
@@ -14,6 +17,9 @@ namespace Blade
 			destination.insert(destination.end(), src, src + sizeof(T));
 		}
 
+		/*
+		\brief The unpack function is used to deserialize data.
+		*/
 		template <typename T>
 		void Unpack(std::vector<Byte>& source, int index, T& data) {
 			Byte* buffer{ source.data() };
