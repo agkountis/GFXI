@@ -335,7 +335,7 @@
     <ClInclude Include="include\threading_utils.h">
       <Filter>include\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="emitter_component.h">
+    <ClInclude Include="include\emitter_component.h">
       <Filter>include\components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -537,6 +537,9 @@
     </ClCompile>
     <ClCompile Include="src\bounding_sphere.cpp">
       <Filter>src\colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emitter_component.cpp">
+      <Filter>src\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
