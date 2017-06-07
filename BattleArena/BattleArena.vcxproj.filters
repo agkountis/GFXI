@@ -47,6 +47,9 @@
     <ClCompile Include="src\multiplayer.cpp">
       <Filter>src\networking</Filter>
     </ClCompile>
+    <ClCompile Include="src\particles_render_pass.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
@@ -66,6 +69,9 @@
     </ClInclude>
     <ClInclude Include="include\multiplayer.h">
       <Filter>include\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="include\particles_render_pass.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
