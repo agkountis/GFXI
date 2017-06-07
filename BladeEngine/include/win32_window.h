@@ -2,6 +2,9 @@
 #define BLADE_WIN32_WINDOW_H_
 
 #include "window.h"
+#include "trace.h"
+
+#include <hidusage.h>
 #include <map>
 
 namespace Blade

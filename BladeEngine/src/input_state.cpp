@@ -10,17 +10,17 @@ InputState::InputState() : digitalButtonData(0), triggerLeft(0.0f), triggerRight
 
 InputState::InputState(XINPUT_STATE & state)
 {
-	// copy analog triggers (normalize to [0..1]
-	triggerLeft = static_cast<float>(state.Gamepad.bLeftTrigger / TRIGGER_THRESHOLD);
-	triggerRight = static_cast<float>(state.Gamepad.bRightTrigger / TRIGGER_THRESHOLD);
+	// copy analog triggers
+	triggerLeft = state.Gamepad.bLeftTrigger;
+	triggerRight = state.Gamepad.bRightTrigger;
 
-	// copy left thumbstick (normalize to [0..1]
-	stickLeft.axisX = static_cast<float>(state.Gamepad.sThumbLX / STICK_THRESHOLD);
-	stickLeft.axisY = static_cast<float>(state.Gamepad.sThumbLY / STICK_THRESHOLD);
+	// copy left thumbstick
+	stickLeft.axisX = state.Gamepad.sThumbLX;
+	stickLeft.axisY = state.Gamepad.sThumbLY;
 
-	// copy right thumbstick (normalize to [0..1]
-	stickRight.axisX = static_cast<float>(state.Gamepad.sThumbRX / STICK_THRESHOLD);
-	stickRight.axisY = static_cast<float>(state.Gamepad.sThumbRY / STICK_THRESHOLD);
+	// copy right thumbstick
+	stickRight.axisX = state.Gamepad.sThumbRX;
+	stickRight.axisY = state.Gamepad.sThumbRY;
 
 	// read buttons and set values
 	WORD buttonData = state.Gamepad.wButtons;

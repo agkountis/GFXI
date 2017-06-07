@@ -10,6 +10,8 @@
 #include <iostream>
 #include <utility>
 
+#include "GLM/glm.hpp"
+
 // required library files
 #pragma comment (lib, "Xinput.lib")
 #pragma comment (lib, "Xinput9_1_0.lib")
@@ -23,7 +25,6 @@
 /*
 \brief The delta tolerance between states of an analog sensor before a change is recognized. Normalized to [0.0...1.0]
 */
-#define ANALOG_DELTA		0.05f
 
 #if defined(BLADE_BUILD_D3D)
 
@@ -31,6 +32,11 @@
 #define DEADZONE_ASTICK_R	XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE
 #define DEADZONE_ATRIGGERS	XINPUT_GAMEPAD_TRIGGER_THRESHOLD
 #define VIBRATION_THRESHOLD	65535
+
+#define THUMBSTICK_LIMIT_X_MIN	-32768
+#define THUMBSTICK_LIMIT_X_MAX	32768
+#define THUMBSTICK_LIMIT_Y_MIN	-32768
+#define THUMBSTICK_LIMIT_Y_MAX	32768
 
 #elif defined(BLADE_BUILD_PS4)
 
@@ -44,12 +50,22 @@ values are for leagacy use only.
 #define DEADZONE_ATRIGGERS	0x0d
 #define VIBRATION_THRESHOLD	255
 
+#define THUMBSTICK_LIMIT_X_MIN	0
+#define THUMBSTICK_LIMIT_X_MAX	255
+#define THUMBSTICK_LIMIT_Y_MIN	0
+#define THUMBSTICK_LIMIT_Y_MAX	255
+
 #else
 
 // ignore values?
 #define DEADZONE_ASTICK_L	0x00
 #define DEADZONE_ASTICK_R	0x00
 #define DEADZONE_ATRIGGERS	0x00
+
+#define THUMBSTICK_LIMIT_X_MIN	0
+#define THUMBSTICK_LIMIT_X_MAX	0
+#define THUMBSTICK_LIMIT_Y_MIN	0
+#define THUMBSTICK_LIMIT_Y_MAX	0
 
 #endif
 
@@ -159,6 +175,12 @@ namespace Blade
 		\brief Gets the device ID (input API handle)
 		*/
 		int GetDeviceID() const { return m_deviceID; }
+
+		/*
+		\brief Filters input state data
+		\details Applies limits, scales and clamps for the device (such as deadzones and tolerances) to the specified input data
+		*/
+		void FilterStateData(const InputState& stateIn, InputState& stateOut) const;
 
 		/*
 		\brief Updates the active devices to the latest input states available and buffers the most recent previous state

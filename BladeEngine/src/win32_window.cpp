@@ -3,6 +3,7 @@
 #include <iostream>
 #include "win32_utils.h"
 
+
 namespace Blade
 {
 	const std::wstring Win32Window::WindowClass::m_WinClassName{ L"BladeWindowClass" };
@@ -224,6 +225,12 @@ namespace Blade
 		case WM_MOUSEWHEEL:
 			//int delta = GET_WHEEL_DELTA_WPARAM(wparam);
 			break;
+		case WM_INPUT_DEVICE_CHANGE:
+			if (callbacks.device_change_func)
+			{
+				callbacks.device_change_func();
+			}
+			break;
 		case WM_DESTROY:
 			PostQuitMessage(WM_QUIT);
 			break;
@@ -240,13 +247,38 @@ namespace Blade
 		switch (msg)
 		{
 		case WM_NCCREATE:
+		{
+			RAWINPUTDEVICE ridSpec;
+			ridSpec.usUsagePage = HID_USAGE_PAGE_GENERIC;
+			ridSpec.usUsage = HID_USAGE_GENERIC_GAMEPAD;
+			ridSpec.dwFlags = RIDEV_DEVNOTIFY | RIDEV_INPUTSINK;	// Recieve messages | Receive messages even if not in focus
+			ridSpec.hwndTarget = handle;
+
+			if (RegisterRawInputDevices(&ridSpec, 1, sizeof(ridSpec)) == FALSE)
+			{
+				BLADE_TRACE("Failed to register for Input devices. Devices may not be enumerated on connecion/disconnection");
+			}
+		}
+		break;
 		case WM_NCDESTROY:
 		{
+
+			RAWINPUTDEVICE ridSpec;
+			ridSpec.usUsagePage = HID_USAGE_PAGE_GENERIC;
+			ridSpec.usUsage = HID_USAGE_GENERIC_GAMEPAD;
+			ridSpec.dwFlags = RIDEV_REMOVE;
+			ridSpec.hwndTarget = 0;
+
+			// Unregister for raw input device messages
+			RegisterRawInputDevices(&ridSpec, 1, sizeof(RAWINPUTDEVICE));
+
 			Win32Window* win{ nullptr };
 			if (msg == WM_NCCREATE)
 			{
+
 				//extract the Win32Window we stored in the window creation from the lparam.
 				win = static_cast<Win32Window*>(reinterpret_cast<CREATESTRUCT*>(lparam)->lpCreateParams);
+
 			}
 
 			//map the window with it's handle.
