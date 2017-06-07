@@ -7,6 +7,7 @@
 #include "multiplayer.h"
 #include "ncf.h"
 #include "trace.h"
+#include "../assimp_utils.h"
 
 using namespace Blade;
 
@@ -60,6 +61,8 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 	}
 
 	BLADE_TRACE("BattleArenaApplication Initialization Starts!");
+
+	Application::SetLoadEntityCallback(AssimpUtils::LoadEntity);
 
 	Multiplayer::Initialize("config\\test.cfg");
 

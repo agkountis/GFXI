@@ -1,10 +1,9 @@
 #ifndef ASSIMP_UTILS_H_
 #define ASSIMP_UTILS_H_
 #include "types.h"
-#include "assimp/cimport.h"
 #include "assimp/scene.h"
-#include "assimp/postprocess.h"
 #include "mesh.h"
+#include "material.h"
 
 namespace Blade {
 	class Entity;
@@ -12,7 +11,11 @@ namespace Blade {
 
 namespace AssimpUtils
 {
-	Blade::Vec3f AssToBlade(const aiVector3D &v) noexcept;
+	Blade::Vec2f AssToBlade(const aiVector2D& v) noexcept;
+
+	Blade::Vec3f AssToBlade(const aiVector3D& v) noexcept;
+
+	Blade::Vec4f AssToBlade(const aiColor4D& c) noexcept;
 
 	Blade::Quatf AssToBlade(const aiQuaternion& q) noexcept;
 
@@ -20,11 +23,20 @@ namespace AssimpUtils
 
 	long AssToBlade(const aiAnimation* aiAnim, double aiTime) noexcept;
 
-	Blade::Entity* LoadAssNode(const aiScene* scene, const aiNode* node) noexcept;
+	std::wstring GetTextureFileName(const std::wstring& path) noexcept;
 
-	Blade::Mesh* LoadAssMesh(const aiMesh* mesh) noexcept;
+	Blade::Entity* LoadAssNode(const aiScene* aiScene, const aiNode* aiNode) noexcept;
+
+	Blade::Mesh* LoadAssMesh(const aiMesh* aiMesh) noexcept;
+
+	Blade::Material LoadAssMaterial(const aiMaterial* aiMaterial) noexcept;
 
 	bool LoadEntity(const std::wstring& fileName, Blade::Entity* thisObject) noexcept;
+
+	//TODO: Remember to clean up assimp.
+	//TODO: Figure out who cleans up the entities.
+	//TODO: Figure out how to load correct material values.
+	//TODO: Implement animation loading and animation engine structure.
 }
 
 #endif //ASSIMP_UTILS_H_

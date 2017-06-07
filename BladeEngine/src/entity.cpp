@@ -9,7 +9,7 @@ namespace Blade
 	Entity::Entity(const std::string& name)
 		: m_Name{ name },
 		  m_Alive{ true },
-		  p_Parent{ nullptr }
+		  m_pParent{ nullptr }
 	{
 	}
 
@@ -32,7 +32,7 @@ namespace Blade
 		  m_Orientation{ other.m_Orientation },
 		  m_Scale{ other.m_Scale },
 		  m_Xform{ other.m_Xform },
-		  p_Parent{ other.p_Parent }
+		  m_pParent{ other.m_pParent }
 	{
 	}
 
@@ -48,7 +48,7 @@ namespace Blade
 		m_Orientation = other.m_Orientation;
 		m_Scale = other.m_Scale;
 		m_Xform = other.m_Xform;
-		p_Parent = other.p_Parent;
+		m_pParent = other.m_pParent;
 		return *this;
 	}
 
@@ -95,12 +95,12 @@ namespace Blade
 
 	Entity* Entity::GetParent() const noexcept
 	{
-		return p_Parent;
+		return m_pParent;
 	}
 
 	void Entity::SetParent(Entity* entity) noexcept
 	{
-		p_Parent = entity;
+		m_pParent = entity;
 	}
 
 	const std::vector<Entity*>& Entity::GetChildren() const noexcept
@@ -111,6 +111,13 @@ namespace Blade
 	Entity* Entity::GetChild(int index) const noexcept
 	{
 		return m_Children[index];
+	}
+
+	void Entity::AddChild(Entity* entity) noexcept
+	{
+		entity->SetParent(this);
+
+		m_Children.push_back(entity);
 	}
 
 	size_t Entity::GetChildrenCount() const noexcept
@@ -136,9 +143,9 @@ namespace Blade
 		m_Xform = MathUtils::Rotate(m_Xform, m_Orientation);
 		m_Xform = MathUtils::Scale(m_Xform, m_Scale);
 
-		if (p_Parent)
+		if (m_pParent)
 		{
-			m_Xform = p_Parent->GetXform() * m_Xform;
+			m_Xform = m_pParent->GetXform() * m_Xform;
 		}
 	}
 
@@ -173,6 +180,11 @@ namespace Blade
 	void Entity::Update(float dt, long time) noexcept
 	{
 		CalculateXform();
+
+		for (auto child : m_Children)
+		{
+			child->Update(dt, time);
+		}
 	}
 
 	bool Entity::Load(const std::wstring& fileName) noexcept

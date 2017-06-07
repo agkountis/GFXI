@@ -2,6 +2,7 @@
 #define BATTLE_ARENA_GAME_SCENE_COLOR_PASS_STAGE_H_
 #include "render_pass.h"
 #include "d3d/D3D11_render_target.h"
+#include "texture.h"
 
 class GameSceneColorPassStage : public Blade::RenderPassStage
 {
@@ -20,6 +21,10 @@ private:
 
 	Blade::ComPtr<ID3D11Buffer> m_SpotlightStructuredBuffer;
 	Blade::ComPtr<ID3D11ShaderResourceView> m_SpotlightSrv;
+
+	Blade::Texture* m_DummyDiff{ nullptr };
+	Blade::Texture* m_DummySpec{ nullptr };
+	Blade::Texture* m_DummyNorm{ nullptr };
 
 	void DisplayToScreen() const;
 

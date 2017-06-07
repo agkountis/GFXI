@@ -18,6 +18,8 @@
 
 using namespace Blade;
 
+static Entity* test{ nullptr };
+
 void GameScene::Initialize()
 {
 	// Renderable Entity creation ----------------------------------------------------------------------------------------
@@ -74,13 +76,17 @@ void GameScene::Initialize()
 	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
 	AddEntity(entity);
 
+	Entity* arena{ new Entity{"arena"} };
+	arena->Load(L"data\\models\\arena2.fbx");
+	AddEntity(arena);
+
+	test = new Entity{ "wow" };
+	test->SetScale(Vec3f{ 4.0f, 4.0f, 4.0f });
+	test->Load(L"data\\models\\spacecraft.fbx");
+
+	AddEntity(test);
+
 	// Camera creation ---------------------------------------------------------------------------------------------------
-	//Create an entity and name it Camera1.
-	entity = new Entity{ "Camera1" };
-
-	//Since it's going to act as a camera, add a camera component.
-	CameraComponent* cc{ new CameraComponent{entity} };
-
 	//Get the window size.
 	Vec2i windowSize{ WindowingService::GetWindow(0)->GetSize() };
 
@@ -180,6 +186,7 @@ void GameScene::Update(float deltaTime, long time) noexcept
 	Entity* cam{ G_CameraSystem.GetActiveCamera()->GetParent() };
 
 	Vec3f currentPos{ cam->GetPosition() };
+	test->SetOrientation(Vec3f{ 0.0f, 1.0f, 0.0f }, time / 3000.0);
 	//cam->SetPosition(Vec3f{ sin(time / 1000.0f) * 2.0f, currentPos.yz });
 
 	Scene::Update(deltaTime, time);

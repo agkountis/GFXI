@@ -25,7 +25,7 @@ namespace Blade
 
 		Mat4f m_Xform;
 
-		Entity* p_Parent;
+		Entity* m_pParent;
 
 		std::vector<Entity*> m_Children;
 
@@ -61,6 +61,8 @@ namespace Blade
 		const std::vector<Entity*>& GetChildren() const noexcept;
 
 		Entity* GetChild(int index) const noexcept;
+
+		void AddChild(Entity* entity) noexcept;
 
 		size_t GetChildrenCount() const noexcept;
 
