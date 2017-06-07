@@ -9,6 +9,10 @@
 
 namespace Blade
 {
+	/*
+	\brief Win32Window class of the engine is a specified version of 
+	the Window class that works under Win32.
+	*/
 	class Win32Window : public Window
 	{
 	private:

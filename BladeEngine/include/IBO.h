@@ -4,9 +4,15 @@
 
 namespace Blade
 {
+	/*
+	\brief The index buffer object class of the engine
+	*/
 	class IBO
 	{
 	private:
+		/*
+		\brief the index counter of the IBO
+		*/
 		unsigned int m_IndexCount{ 0 };
 
 	public:
@@ -24,10 +30,20 @@ namespace Blade
 			return m_IndexCount;
 		}
 
+		/*
+		\brief Create a new IBO from a vector of indices
+		\param indices The indices vector to store inside the IBO
+		*/
 		virtual bool Create(const std::vector<unsigned int>& indices) noexcept = 0;
 
+		/*
+		\brief Bind the current IBO
+		*/
 		virtual void Bind() const noexcept = 0;
 
+		/*
+		\brief Draw the IBO
+		*/
 		virtual void Draw() const noexcept = 0;
 	};
 }
