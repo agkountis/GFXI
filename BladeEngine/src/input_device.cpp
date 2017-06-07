@@ -43,7 +43,7 @@ void InputDevice::FilterStateData(const InputState& stateIn, InputState& stateOu
 	}
 
 	// Distance from device neutral to RIGHT stick position
-	float fDistance = glm::distance(glm::vec2(iDefaultStickX, iDefaultStickY), glm::vec2(stateIn.stickRight.axisX, stateIn.stickRight.axisY));
+	fDistance = glm::distance(glm::vec2(iDefaultStickX, iDefaultStickY), glm::vec2(stateIn.stickRight.axisX, stateIn.stickRight.axisY));
 
 	// Check right stick against deadzone radius
 	if (fDistance > DEADZONE_ASTICK_R)
