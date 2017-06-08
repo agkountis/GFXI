@@ -205,8 +205,8 @@ void GameScene::Update(float deltaTime, long time) noexcept
 	{
 		InputState p1State{};
 		p1State = G_InputManager.GetActiveDevice(Player::PLAYER1)->GetInputState();
-
-		bool buttons[8];
+/*
+		bool buttons[10];
 		buttons[0] = (p1State.digitalButtonData & JOYBTN_FACE1);
 		buttons[1] = (p1State.digitalButtonData & JOYBTN_FACE2);
 		buttons[2] = (p1State.digitalButtonData & JOYBTN_FACE3);
@@ -215,17 +215,27 @@ void GameScene::Update(float deltaTime, long time) noexcept
 		buttons[5] = (p1State.digitalButtonData & JOYBTN_SHOULDER2);
 		buttons[6] = (p1State.digitalButtonData & JOYBTN_OPTION1);
 		buttons[7] = (p1State.digitalButtonData & JOYBTN_OPTION2);
+		buttons[8] = (p1State.digitalButtonData & JOYBTN_STICKL);
+		buttons[9] = (p1State.digitalButtonData & JOYBTN_STICKR);
 
 		BLADE_TRACE(
-			"A=[" << (int)((buttons[0])? 1 : 0) << "] " <<
-			"B=[" << (int)((buttons[1]) ? 1 : 0) << "] " <<
-			"X=[" << (int)((buttons[2]) ? 1 : 0) << "] " <<
-			"Y=[" << (int)((buttons[3]) ? 1 : 0) << "] " <<
+			" A=[" << (int)((buttons[0])? 1 : 0) << "] " <<
+			" B=[" << (int)((buttons[1]) ? 1 : 0) << "] " <<
+			" X=[" << (int)((buttons[2]) ? 1 : 0) << "] " <<
+			" Y=[" << (int)((buttons[3]) ? 1 : 0) << "] " <<
+			"LS=[" << (int)((buttons[8]) ? 1 : 0) << "] " <<
+			"RS=[" << (int)((buttons[9]) ? 1 : 0) << "] " <<
 			"LB=[" << (int)((buttons[4]) ? 1 : 0) << "] " <<
 			"RB=[" << (int)((buttons[5]) ? 1 : 0) << "] " <<
 			"ST=[" << (int)((buttons[6]) ? 1 : 0) << "] " <<
-			"BK=[" << (int)((buttons[7]) ? 1 : 0) << "] "
+			"BK=[" << (int)((buttons[7]) ? 1 : 0) << "] " <<
+			"LT=[" << p1State.triggerLeft << "]" << 
+			"LR=[" << p1State.triggerRight << "]"
 		);
+*/
+		BLADE_TRACE(" Left Stick = [" << p1State.stickLeft.axisX << "] [" << p1State.stickLeft.axisY << "]");
+
+		G_InputManager.GetActiveDevice(Player::PLAYER1)->SetVibration(p1State.triggerLeft, p1State.triggerRight);
 
 	}
 

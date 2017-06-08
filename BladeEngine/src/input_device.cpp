@@ -23,20 +23,25 @@ void InputDevice::FilterStateData(const InputState& stateIn, InputState& stateOu
 	// Zero the outgoing state
 	ZeroMemory(&stateOut, sizeof(InputState));
 
-	// Calculate ideal neutral state for both thumbsticks (assumption that both use same values)
-	int iDefaultStickX = (THUMBSTICK_LIMIT_X_MIN + THUMBSTICK_LIMIT_X_MAX) * 0.5f;
-	int iDefaultStickY = (THUMBSTICK_LIMIT_Y_MIN + THUMBSTICK_LIMIT_Y_MAX) * 0.5f;
+	// Buttons - no processing; direct copy of flags
+	stateOut.digitalButtonData = stateIn.digitalButtonData;
+	
+	// Calculate ideal neutral state for both thumbsticks
+	float xShift = 0.5 * (THUMBSTICK_LIMIT_X_MAX - THUMBSTICK_LIMIT_X_MIN);
+	float yShift = 0.5 * (THUMBSTICK_LIMIT_Y_MAX - THUMBSTICK_LIMIT_Y_MIN);
 
-	// Distance from device neutral to LEFT stick position
-	float fDistance = glm::distance(
-		glm::vec2(iDefaultStickX, iDefaultStickY),
-		glm::vec2(stateIn.stickLeft.axisX, stateIn.stickLeft.axisY)
+	// Left stick - from neutral position
+	float fMagnitudeL = glm::distance(
+		glm::vec2(0.0f , 0.0f),
+		glm::vec2(stateIn.stickLeft.axisX - xShift, stateIn.stickLeft.axisY - yShift)
 	);
 
-	// Check left stick against deadzone radius
-	if (fDistance > DEADZONE_ASTICK_L)
+	// Check against deadzone radius
+	if (fMagnitudeL > DEADZONE_ASTICK_L)
 	{
-		// Calculate new working zone for analog sticks (range minus dead zone)
+		// Calculate normalized position in active (not in deadzone, inside outer limit) range
+		stateOut.stickLeft.axisX = (stateIn.stickLeft.axisX) / THUMBSTICK_LIMIT_X_MAX;
+		stateOut.stickLeft.axisY = (stateIn.stickLeft.axisY) / THUMBSTICK_LIMIT_Y_MAX;
 	}
 	else {
 		// The position is inside the dead zone, set to zero (no input)
@@ -45,22 +50,31 @@ void InputDevice::FilterStateData(const InputState& stateIn, InputState& stateOu
 	}
 
 	// Distance from device neutral to RIGHT stick position
-	fDistance = glm::distance(
-		glm::vec2(iDefaultStickX, iDefaultStickY),
+	float fMagnitudeR = glm::distance(
+		glm::vec2(xShift, yShift),
 		glm::vec2(stateIn.stickRight.axisX, stateIn.stickRight.axisY)
 	);
 
 	// Check right stick against deadzone radius
-	if (fDistance > DEADZONE_ASTICK_R)
+	if (fMagnitudeR > DEADZONE_ASTICK_R)
 	{
 		// Calculate new working zone for analog sticks (range minus dead zone)
 
+		// Calculate normalized position in active (not in deadzone, inside outer limit) range
+		fMagnitudeR -= DEADZONE_ASTICK_R;
+
+		stateOut.stickRight.axisX = (stateIn.stickRight.axisX / STICK_THRESHOLD);
+		stateOut.stickRight.axisY = (stateIn.stickRight.axisY / STICK_THRESHOLD);
 	}
 	else {
 		// The position is inside the dead zone, set to zero (no input)
 		stateOut.stickRight.axisX = 0;
 		stateOut.stickRight.axisY = 0;
 	}
+
+	// Triggers - Normalize to [0.0 .. 1.0] float
+	stateOut.triggerLeft = stateIn.triggerLeft / TRIGGER_THRESHOLD;
+	stateOut.triggerRight = stateIn.triggerRight / TRIGGER_THRESHOLD;
 
 }
 

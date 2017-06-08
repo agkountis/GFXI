@@ -47,7 +47,7 @@
 #if defined(BLADE_BUILD_D3D)
 
 // Analog threshold normalizing values
-#define STICK_THRESHOLD		32768	// xInput value [-32768..32768]
+#define STICK_THRESHOLD		32767	// xInput value [-32767..32767] per axis
 #define TRIGGER_THRESHOLD	255		// xInput value [0..255]
 
 #elif defined(BLADE_BUILD_PS4)

@@ -77,6 +77,15 @@ InputState::InputState(XINPUT_STATE & state)
 		digitalButtonData |= JOYBTN_SHOULDER2;
 	}
 
+	// Check for analog stuc buttons ("click stick down)
+	if (buttonData & XINPUT_GAMEPAD_LEFT_THUMB) {
+		digitalButtonData |= JOYBTN_STICKL;
+	}
+
+	if (buttonData & XINPUT_GAMEPAD_RIGHT_THUMB) {
+		digitalButtonData |= JOYBTN_STICKR;
+	}
+
 }
 
 #elif defined(BLADE_BUILD_PS4)

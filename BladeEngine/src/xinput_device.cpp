@@ -29,13 +29,15 @@ void XInputDevice::Update(float deltaTime)
 	// Get the state
 	DWORD result = XInputGetState(GetDeviceID(), &tmpState);
 
-	// Create an input state
-	InputState newState(tmpState);
+	// Create an input state from the raw XINPUT data
+	InputState rawState(tmpState);
 
-	// Store state (move current newest to previous, store newState as current)
-	SetInputState(newState);
-
-	// Broadcast states
+	// filter the state into another
+	InputState filteredState;
+	FilterStateData(rawState, filteredState);
+	
+	// Store the filtered state (move current newest to previous, store newState as current)
+	SetInputState(filteredState);
 
 }
 
@@ -46,7 +48,7 @@ bool XInputDevice::SetVibration(float leftMotor, float rightMotor) const
 
 	// scale to xinput range [0..1]-->[0..65536]
 	vibParams.wLeftMotorSpeed = static_cast<int>(leftMotor * VIBRATION_THRESHOLD);
-	vibParams.wRightMotorSpeed = static_cast<int>(leftMotor * VIBRATION_THRESHOLD);
+	vibParams.wRightMotorSpeed = static_cast<int>(rightMotor * VIBRATION_THRESHOLD);
 
 	DWORD result = XInputSetState(GetDeviceID(), &vibParams);
 

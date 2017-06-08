@@ -38,6 +38,8 @@
 #define THUMBSTICK_LIMIT_Y_MIN	-32768
 #define THUMBSTICK_LIMIT_Y_MAX	32768
 
+#define AXIS_SHIFT 0
+
 #elif defined(BLADE_BUILD_PS4)
 
 /*
@@ -55,6 +57,8 @@ values are for leagacy use only.
 #define THUMBSTICK_LIMIT_Y_MIN	0
 #define THUMBSTICK_LIMIT_Y_MAX	255
 
+#define AXIS_SHIFT -128
+
 #else
 
 // ignore values?
@@ -66,6 +70,8 @@ values are for leagacy use only.
 #define THUMBSTICK_LIMIT_X_MAX	0
 #define THUMBSTICK_LIMIT_Y_MIN	0
 #define THUMBSTICK_LIMIT_Y_MAX	0
+
+#define AXIS_SHIFT 0
 
 #endif
 
