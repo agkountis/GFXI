@@ -5,20 +5,38 @@
 
 namespace Blade
 {
+
+	using LoadEntityCallback = std::function<bool(const std::wstring& fileName, Entity* thisObject)>;
+
+	/*
+	\brief Application class of the engine
+	*/
 	class Application
 	{
 	private:
+		/*
+		\brief Terminate flag
+		*/
 		bool m_Terminate{ false };
 
+		/*
+		\brief Paused flag
+		*/
 		bool m_Paused{ false };
 
+		/*
+		\brief Timer of the application used to propagate delta time and
+		other time information to the systems.
+		*/
 		Timer m_Timer;
+
+		LoadEntityCallback m_LoadEntityCallback;
 
 	public:
 		Application() = default;
-		
+
 		Application(const Application& application) = delete;
-		
+
 		Application& operator=(const Application& application) = delete;
 
 		virtual ~Application() = default;
@@ -26,7 +44,7 @@ namespace Blade
 		void SetTermination(bool state) noexcept;
 
 		bool ShouldTerminate() const noexcept;
-		
+
 		double GetDelta() const noexcept;
 
 		long GetMsec() const noexcept;
@@ -38,6 +56,10 @@ namespace Blade
 		void UnPause() noexcept;
 
 		bool IsPaused() const noexcept;
+
+		void SetLoadEntityCallback(const LoadEntityCallback& callback) noexcept;
+
+		const LoadEntityCallback& GetLoadEntityCallback() const noexcept;
 
 		virtual bool Initialize(int* argc, char* argv[]);
 

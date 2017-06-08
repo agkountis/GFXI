@@ -6,12 +6,31 @@
 
 namespace Blade
 {
+	/*
+	\brief Window class of the engine. It represents a platform independent window.
+	*/
 	class Window
 	{
 	private:
+		/*
+		\brief Window title
+		*/
 		std::wstring m_Title;
+
+		/*
+		\brief Window size
+		*/
 		Vec2i m_Size;
+
+		/*
+		\brief Window position
+		*/
 		Vec2i m_Position;
+
+		/*
+		\brief Window unique ID
+		\details Multiple windows are fully supported.
+		*/
 		unsigned int m_WinId{ 0 };
 
 		Vec2i m_MousePos;

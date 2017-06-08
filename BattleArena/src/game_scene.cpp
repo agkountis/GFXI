@@ -44,8 +44,8 @@ void GameScene::Initialize()
 	normalmapTexture->SetTextureType(TEX_NORMAL);
 	material.textures[TEX_NORMAL] = normalmapTexture;
 	//////////////////////////////////////////////////////////////////////////
-	Entity* entity;
-	entity = new Entity{ "Environment" };
+
+	Entity* entity{ new Entity{ "Environment" } };
 	ColliderComponent* floor{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,1.0f,0.0f },0.0f) } };
 	ColliderComponent* wall1{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ -1.0f,0.0f,0.0f },-10.0f) } };
 	ColliderComponent* wall2{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 1.0f,0.0f,0.0f },-10.0f) } };
@@ -56,7 +56,7 @@ void GameScene::Initialize()
 
 	//First ball
 	entity = new Entity{"Ball"};
-	entity->SetPosition(Vec3f{ 0.0f,30.0f,-1.0f });
+	entity->SetPosition(Vec3f{ 0.0f,50.0f,-1.0f });
 	RenderComponent* rc{ new RenderComponent{entity} };
 	rc->SetMesh(cube);
 	rc->SetMaterial(material);
@@ -67,7 +67,7 @@ void GameScene::Initialize()
 
 	//Second ball
 	entity = new Entity{ "Ball2" };
-	entity->SetPosition(Vec3f{ 1.0f,35.0f,0.0f });
+	entity->SetPosition(Vec3f{ 1.0f,55.0f,0.0f });
 	RenderComponent* rc3 {new RenderComponent{ entity } };
 	rc3->SetMesh(cube);
 	rc3->SetMaterial(material);
@@ -75,13 +75,11 @@ void GameScene::Initialize()
 	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
 	AddEntity(entity);
 
+	Entity* arena{ new Entity{"arena"} };
+	arena->Load(L"data\\models\\arena3.fbx");
+	AddEntity(arena);
+
 	// Camera creation ---------------------------------------------------------------------------------------------------
-	//Create an entity and name it Camera1.
-	entity = new Entity{ "Camera1" };
-
-	//Since it's going to act as a camera, add a camera component.
-	CameraComponent* cc{ new CameraComponent{entity} };
-
 	//Get the window size.
 	Vec2i windowSize{ WindowingService::GetWindow(0)->GetSize() };
 
@@ -93,19 +91,32 @@ void GameScene::Initialize()
 
 	Camera* cam{ new Camera{ "Camera1", cd } };
 	//Set the position of the camera.
-	cam->SetPosition(Vec3f{ 0.0f, 10.0f, -50.0f });
+	cam->SetPosition(Vec3f{ -5.0f, 1.0f, -8.0f });
+	cam->SetOrientation(Vec3f{ 0.0f, 1.0f, 0.0f }, MathUtils::ToRadians(-20.0f));
 
 	//Add it to the scene.
 	AddEntity(cam);
 
-	//Instruct the Camera system to set this camera as the active one.
-	G_CameraSystem.SetActiveCamera("Camera1");
-
 	cam = new Camera{ "Camera2", cd };
+
+	cam->SetPosition(Vec3f{ 0.0f, 14.0f, -11.0f });
+	cam->SetOrientation(Vec3f{ 1.0, 0.0, 0.0 }, MathUtils::ToRadians(32.0f));
+	AddEntity(cam);
+
+	cam = new Camera{ "Camera3", cd };
+
+	cam->SetPosition(Vec3f{ 0.0f, 10.0f, -50.0f });
+	AddEntity(cam);
+
+	cam = new Camera{ "Camera4", cd };
 
 	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -4.0f });
 	cam->SetParent(cache_entity);
 	AddEntity(cam);
+
+	//Instruct the Camera system to set this camera as the active one.
+	G_CameraSystem.SetActiveCamera("Camera3");
+
 	// --------------------------------------------------------------------------------------------------------------------
 
 	//Light Creation ------------------------------------------------------------------------------------------------------
@@ -113,18 +124,18 @@ void GameScene::Initialize()
 	DirectionalLightDesc dlDesc;
 	dlDesc.ambientIntensity = Vec4f{ 0.0f, 0.0f, 0.0f, 0.0f };
 	dlDesc.diffuseIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
-	dlDesc.specularIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f };
+	dlDesc.specularIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
 
 	DirectionalLight* dl{ new DirectionalLight{"DirectionalLight1", dlDesc} };
 
-	dl->SetPosition(Vec3f{ 0.0f, 10.0f, 0.0f });
+	dl->SetPosition(Vec3f{ 0.0f, 10.0f, -3.0f });
 
 	AddEntity(dl);
 
 	DirectionalLightDesc dlDesc2;
 	dlDesc2.ambientIntensity = Vec4f{ 0.0f, 0.0f, 0.0f, 0.0f };
 	dlDesc2.diffuseIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 0.0f };
-	dlDesc2.specularIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f };
+	dlDesc2.specularIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
 
 	dl = new DirectionalLight{ "DirectionalLight2", dlDesc2 };
 
@@ -158,6 +169,12 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	case '2':
 		G_CameraSystem.SetActiveCamera("Camera2");
 		break;
+	case '3':
+		G_CameraSystem.SetActiveCamera("Camera3");
+		break;
+	case '4':
+		G_CameraSystem.SetActiveCamera("Camera4");
+		break;
 	default:
 		break;
 	}
@@ -177,12 +194,6 @@ void GameScene::OnMouseClick(int button, bool state, int x, int y) noexcept
 
 void GameScene::Update(float deltaTime, long time) noexcept
 {
-	//Animate the active camera for fun!
-	Entity* cam{ G_CameraSystem.GetActiveCamera()->GetParent() };
-
-	Vec3f currentPos{ cam->GetPosition() };
-	//cam->SetPosition(Vec3f{ sin(time / 1000.0f) * 2.0f, currentPos.yz });
-
 	Scene::Update(deltaTime, time);
 
 	G_SimulationSystem.Process(deltaTime);

@@ -14,6 +14,36 @@ namespace Blade
 #endif
 	}
 
+	VBO* Mesh::GetVbo() const noexcept
+	{
+		return m_Vbo.get();
+	}
+
+	IBO* Mesh::GetIbo() const noexcept
+	{
+		return m_Ibo.get();
+	}
+
+	size_t Mesh::GetVertexCount() const noexcept
+	{
+		return m_Vertices.size();
+	}
+
+	size_t Mesh::GetIndexCount() const noexcept
+	{
+		return m_Indices.size();
+	}
+
+	void Mesh::SetName(const std::string& name) noexcept
+	{
+		m_Name = name;
+	}
+
+	const std::string& Mesh::GetName() const noexcept
+	{
+		return m_Name;
+	}
+
 	void Mesh::InitiazeBufferObjects(PrimitiveTopology primitive_topology) const noexcept
 	{
 		if (m_Vertices.size())

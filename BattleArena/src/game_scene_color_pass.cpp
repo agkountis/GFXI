@@ -6,6 +6,7 @@
 #include <iostream>
 #include "math_utils.h"
 #include "entity.h"
+#include "d3d/D3D11_texture.h"
 
 using namespace Blade;
 
@@ -190,6 +191,15 @@ bool GameSceneColorPassStage::Initialize()
 		return false;
 	}
 
+	m_DummyDiff = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"dummyDiff.jpg");
+	m_DummyDiff->SetTextureType(TEX_DIFFUSE);
+
+	m_DummySpec = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"dummySpec.jpg");
+	m_DummySpec->SetTextureType(TEX_SPECULAR);
+
+	m_DummyNorm = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"dummyNorm.png");
+	m_DummyNorm->SetTextureType(TEX_NORMAL);
+
 	return true;
 }
 
@@ -200,7 +210,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	m_ColorRenderTarget.Bind(RenderTargetBindType::COLOR_AND_DEPTH);
 
 	//Define a clear color and clear the color buffer and depth stencil.
-	Vec4f clearColor{ 0.2f, 0.2f, 0.2f, 0.0f };
+	Vec4f clearColor{ 0.0f, 0.0f, 0.0f, 1.0f };
 	m_ColorRenderTarget.Clear(&clearColor[0]);
 
 	//Get the window size.
@@ -232,8 +242,6 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 		//Calculate the ModelView matrix.
 		Mat4f mv{ v * m };
-
-		Mat4f textureMatrix{ MathUtils::Scale(Mat4f{ 1.0f }, Vec3f{ 4.0f, 4.0f, 0.0f }) };
 
 		auto& lightSystem{ G_LightSystem };
 
@@ -281,7 +289,6 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		uniforms.ITMV = MathUtils::Inverse(v);
 		uniforms.MV = MathUtils::Transpose(mv);
 		uniforms.V = MathUtils::Transpose(v);
-		uniforms.textureMatrix = MathUtils::Transpose(textureMatrix);
 		uniforms.pointLightCount = pointLights.size();
 		uniforms.directionalLightCount = directionalLights.size();
 		uniforms.spotlightCount = spotlights.size();
@@ -291,11 +298,16 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 		uniforms.diffuse = material.diffuse;
 		uniforms.specular = material.specular;
+		uniforms.textureMatrix = material.textureMatrix;
 
 		// If the material has a diffuse texture bind it.
 		if (material.textures[TEX_DIFFUSE])
 		{
 			material.textures[TEX_DIFFUSE]->Bind();
+		}
+		else
+		{
+			m_DummyDiff->Bind();
 		}
 
 		// If the material has a specular texture bind it.
@@ -303,11 +315,19 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		{
 			material.textures[TEX_SPECULAR]->Bind();
 		}
+		else
+		{
+			m_DummySpec->Bind();
+		}
 
 		// If the material has a normal map texture bind it.
 		if (material.textures[TEX_NORMAL])
 		{
 			material.textures[TEX_NORMAL]->Bind();
+		}
+		else
+		{
+			m_DummyNorm->Bind();
 		}
 
 		//Copy the data into the D3D11 constant buffer.

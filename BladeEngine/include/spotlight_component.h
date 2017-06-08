@@ -17,7 +17,6 @@ namespace Blade
 		const SpotlightDesc& GetLightDescription() const noexcept;
 
 		SpotlightDesc* GetLightDescriptionPtr() noexcept;
-
 	};
 }
 

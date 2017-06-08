@@ -7,9 +7,9 @@
 #include "message.h"
 #include "ref_counted_container.h"
 
-#ifdef _DEBUG
-#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
-#endif
+//#ifdef _DEBUG
+//#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
+//#endif
 
 namespace Blade
 {

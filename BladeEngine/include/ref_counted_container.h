@@ -3,6 +3,9 @@
 
 namespace Blade
 {
+	/*
+	\brief RefCounterContainer of the engine. 
+	*/
 	template <typename T>
 	class RefCountedContainer
 	{

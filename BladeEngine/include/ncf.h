@@ -11,13 +11,13 @@ namespace Blade
 	{
 	private:
 		std::string m_Name; // Node name.
-		
+
 		mutable std::map<std::string, NCF*> m_Groups; // Sub-node map.
-		
+
 		mutable std::map<std::string, std::string> m_Symbols; // Symbol map.
-		
+
 		std::string m_Filepath; // Source path.
-		
+
 		unsigned int m_Level; // Node level.
 
 		void Release();

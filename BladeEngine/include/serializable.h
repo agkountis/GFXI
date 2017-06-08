@@ -5,6 +5,9 @@
 
 namespace Blade
 {
+	/*
+	\brief Serializable Interface of the engine
+	*/
 	class Serializable
 	{
 	public:

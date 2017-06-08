@@ -23,6 +23,9 @@ namespace Blade
 		unsigned short port;
 	};
 
+	/*
+	\brief TCP Socket abstraction of the engine.
+	*/
 	class Socket
 	{
 	private:

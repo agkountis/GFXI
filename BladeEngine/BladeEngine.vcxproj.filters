@@ -75,6 +75,12 @@
     <Filter Include="src\utils">
       <UniqueIdentifier>{7d8831cf-a1f0-4c1e-a861-eb426551684a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\input">
+      <UniqueIdentifier>{297051a7-bf3e-4074-81b3-44d0f3856ccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\input">
+      <UniqueIdentifier>{4c6bd46d-1072-4935-ba11-e064860de990}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -335,11 +341,17 @@
     <ClInclude Include="include\threading_utils.h">
       <Filter>include\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="include\emitter_component.h">
-      <Filter>include\components</Filter>
+    <ClInclude Include="include\input_state.h">
+      <Filter>include\input</Filter>
     </ClInclude>
-    <ClInclude Include="include\particle_system.h">
-      <Filter>include\systems</Filter>
+    <ClInclude Include="include\input_manager.h">
+      <Filter>include\input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input_device.h">
+      <Filter>include\input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xinput_device.h">
+      <Filter>include\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -541,11 +553,17 @@
     <ClCompile Include="src\bounding_sphere.cpp">
       <Filter>src\colliders</Filter>
     </ClCompile>
-    <ClCompile Include="src\emitter_component.cpp">
-      <Filter>src\components</Filter>
+    <ClCompile Include="src\xinput_device.cpp">
+      <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="src\particle_system.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\input_manager.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input_state.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input_device.cpp">
+      <Filter>src\input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

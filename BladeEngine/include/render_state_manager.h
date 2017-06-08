@@ -6,9 +6,15 @@
 
 namespace Blade
 {
+	/*
+	\brief Render state manager of the engine.
+	*/
 	class RenderStateManager
 	{
 	private:
+		/*
+		\brief Map that associate the render type to an unique render state.
+		*/
 		std::map<RenderStateType, std::unique_ptr<RenderState>> m_RenderStates;
 
 	public:

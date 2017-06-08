@@ -4,6 +4,9 @@
 
 namespace Blade
 {
+	/*
+	\brief Specified the type of a texture.
+	*/
 	enum TextureType
 	{
 		TEX_DIFFUSE,
@@ -14,9 +17,15 @@ namespace Blade
 		SUPPORTED_TEX_COUNT
 	};
 
+	/*
+	\brief Texture class of the engine
+	*/
 	class Texture : public Resource
 	{
 	private:
+		/*
+		\brief Texture type of the engine.
+		*/
 		TextureType m_TextureType;
 
 	public:

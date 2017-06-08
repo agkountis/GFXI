@@ -47,6 +47,16 @@ namespace Blade
 		return m_Paused;
 	}
 
+	void Application::SetLoadEntityCallback(const LoadEntityCallback& callback) noexcept
+	{
+		m_LoadEntityCallback = callback;
+	}
+
+	const LoadEntityCallback& Application::GetLoadEntityCallback() const noexcept
+	{
+		return m_LoadEntityCallback;
+	}
+
 	bool Application::Initialize(int* argc, char* argv[])
 	{
 		if (!EngineContext::Initialize())

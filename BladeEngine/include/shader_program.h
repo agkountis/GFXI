@@ -28,6 +28,9 @@ namespace Blade
 		std::wstring geometryShader;
 	};
 
+	/*
+	\brief Shader program class of the engine.
+	*/
 	class ShaderProgram
 	{
 	private:

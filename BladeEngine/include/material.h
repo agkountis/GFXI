@@ -7,13 +7,35 @@
 
 namespace Blade
 {
+	/*
+	\brief Material struct of the engine
+	*/
 	struct Material
 	{
+		/*
+		\brief The array of textures of the material
+		*/
 		std::array<Texture*, SUPPORTED_TEX_COUNT> textures;
+		/*
+		\brief Diffuse component of the material.
+		*/
 		Vec4f diffuse;
+		/*
+		\brief Specular component of the material.
+		*/
 		Vec4f specular;
+		/*
+		\brief The texture matrix transformation.
+		*/
 		Mat4f textureMatrix;
+		/*
+		\brief The shader program name that need to used to render this material
+		*/
 		std::string shaderProgramName{ "sdrprog_default" };
+
+		/*
+		\brief Blend state of the material
+		*/
 		RenderStateType blendState;
 
 		Material();
