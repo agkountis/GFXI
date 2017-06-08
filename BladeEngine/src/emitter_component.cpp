@@ -4,12 +4,89 @@
 #include <algorithm>
 #include "engine_context.h"
 #include "component.h"
+#include "string_utils.h"
+#include "trace.h"
+#include "cfg.h"
+
+#ifdef BLADE_BUILD_D3D
+#include "d3d/D3D11_texture.h"
+#endif
 
 #undef min
 #undef max
 
 namespace Blade
 {
+	// EmitterDescriptor functions ------------------------------------------------------------------
+	bool EmitterDescriptor::Load(const std::wstring& file_name) noexcept
+	{
+		std::string fileName{ StringUtils::ToString(file_name) };
+
+		ConfigFile cfg;
+
+		cfg.Open(fileName.c_str());
+
+		if (!cfg.IsOpen())
+		{
+			BLADE_ERROR("Failed to parse configuration file: " + fileName);
+			return false;
+		}
+
+		velocity = cfg.GetVec4f("emitter.initialVelocity").xyz;
+		externalForce = cfg.GetVec4f("emitter.externalForce").xyz;
+		spawnRate = cfg.GetFloat("emitter.spawnRate");
+		lifespan = cfg.GetFloat("emitter.lifespan");
+		maxParticles = cfg.GetFloat("emitter.maxParticles");
+		spawnRadius = cfg.GetFloat("emitter.spawnRadius");
+		particleSize = cfg.GetFloat("emitter.particleSize");
+		startColor = cfg.GetVec4f("emitter.startColor");
+		endColor = cfg.GetVec4f("emitter.endColor");
+
+		std::string texFileName{ cfg.GetString("emitter.textureFileName") };
+
+#ifdef BLADE_BUILD_D3D
+		texture = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + StringUtils::ToWstring(texFileName));
+#else
+#endif
+
+		std::string blendState{ cfg.GetString("emitter.blendState") };
+
+		if (blendState == "additive")
+		{
+			blendStateType = RenderStateType::BS_BLEND_ADDITIVE;
+		}
+		else if (blendState == "alpha")
+		{
+			blendStateType = RenderStateType::BS_BLEND_ALPHA;
+		}
+		else
+		{
+			BLADE_ERROR("Emitter configuration loading failed! Blend state can only be 'additive' or 'alpha'.");
+			return false;
+		}
+
+		velocityRange = cfg.GetFloat("emitter.velocityRange");
+
+		std::string activeStr{ cfg.GetString("emitter.active") };
+
+		if (activeStr == "true")
+		{
+			active = true;
+		}
+		else if (activeStr == "false")
+		{
+			active = false;
+		}
+		else
+		{
+			BLADE_ERROR("Emmiter configuration loading failed! Active can only be 'true' or 'false'");
+			return false;
+		}
+
+		return true;
+	}
+	// ----------------------------------------------------------------------------------------------
+
 	EmitterComponent::EmitterComponent(Entity * parent):
 		BehaviourComponent("co_emitter", parent),
 		m_pMesh{nullptr}
@@ -26,28 +103,18 @@ namespace Blade
 
 		G_ParticleSystem.RegisterComponent(this);
 	}
-	EmitterComponent::EmitterComponent(Entity * entity, const EmitterComponent::EmitterDescriptor& descriptor):
+
+	EmitterComponent::EmitterComponent(Entity * entity, const EmitterDescriptor& descriptor):
 		BehaviourComponent("co_emitter",entity),
 		m_Descriptor(descriptor)
 	{
 		G_ParticleSystem.RegisterComponent(this);
 	}
 
-
 	EmitterComponent::~EmitterComponent()
 	{
 		G_ParticleSystem.UnregisterComponent(GetId());
 	}
-
-	void EmitterComponent::Update(const float dt, const long time /* =0*/) noexcept
-	{
-		double tsec{ time / 1000.0 };
-
-		KillAndUpdateParticles(tsec, dt);
-
-		EmitParticles(dt, tsec);
-	}
-
 
 	void EmitterComponent::KillAndUpdateParticles(double tsec, const float dt) noexcept
 	{
@@ -155,6 +222,169 @@ namespace Blade
 		}
 	}
 
+	const std::vector<Particle>& EmitterComponent::GetParticles() const noexcept
+	{
+		return m_Particles;
+	}
+
+	const EmitterDescriptor& EmitterComponent::GetEmitterDescriptor() const noexcept
+	{
+		return m_Descriptor;
+	}
+
+	void EmitterComponent::SetDescriptor(const EmitterDescriptor& descriptor) noexcept
+	{
+		m_Descriptor = descriptor;
+	}
+
+	float EmitterComponent::GetSpawnRate() const noexcept
+	{
+		return m_Descriptor.spawnRate;
+	}
+
+	void EmitterComponent::SetSpawnRate(const float spawnRate) noexcept
+	{
+		m_Descriptor.spawnRate = spawnRate;
+	}
+
+	float EmitterComponent::GetLifeSpan() const noexcept
+	{
+		return m_Descriptor.lifespan;
+	}
+
+	void EmitterComponent::SetLifeSpan(const float lifespan) noexcept
+	{
+		m_Descriptor.lifespan = lifespan;
+	}
+
+	float EmitterComponent::GetMaxParticles() const noexcept
+	{
+		return m_Descriptor.maxParticles;
+	}
+
+	void EmitterComponent::SetMaxParticles(const float maxParticles) noexcept
+	{
+		m_Descriptor.maxParticles = maxParticles;
+	}
+
+	float EmitterComponent::GetSpawnRadius() const noexcept
+	{
+		return m_Descriptor.spawnRadius;
+	}
+
+	void EmitterComponent::SetSpawnRadius(const float spawnRadius) noexcept
+	{
+		m_Descriptor.spawnRadius = spawnRadius;
+	}
+
+	float EmitterComponent::GetParticleSize() const noexcept
+	{
+		return m_Descriptor.particleSize;
+	}
+
+	void EmitterComponent::SetParticleSize(const float particleSize) noexcept
+	{
+		m_Descriptor.particleSize = particleSize;
+	}
+
+	const Vec4f& EmitterComponent::GetStartColor() const noexcept
+	{
+		return m_Descriptor.startColor;
+	}
+
+	void EmitterComponent::SetStartColor(const Vec4f& startColor)  noexcept
+	{
+		m_Descriptor.startColor = startColor;
+	}
+
+	const Vec4f& EmitterComponent::GetEndColor() const noexcept
+	{
+		return m_Descriptor.endColor;
+	}
+
+	void EmitterComponent::SetEndColor(const Vec4f& endColor)  noexcept
+	{
+		m_Descriptor.endColor = endColor;
+	}
+
+	bool EmitterComponent::IsActive() const noexcept
+	{
+		return m_Descriptor.active;
+	}
+
+	void EmitterComponent::SetActive(const bool active) noexcept
+	{
+		m_Descriptor.active = active;
+	}
+
+	const Vec3f& EmitterComponent::GetVelocity() const noexcept
+	{
+		return m_Descriptor.velocity;
+	}
+
+	void EmitterComponent::SetVelocity(const Vec3f& velocity) noexcept
+	{
+		m_Descriptor.velocity = velocity;
+	}
+
+	float EmitterComponent::GetVelocityRange() const noexcept
+	{
+		return m_Descriptor.velocityRange;
+	}
+
+	void EmitterComponent::SetVelocityRange(const float velocityRange) noexcept
+	{
+		m_Descriptor.velocityRange = velocityRange;
+	}
+
+	const Vec3f& EmitterComponent::GetExternalForce() const noexcept
+	{
+		return m_Descriptor.externalForce;
+	}
+
+	void EmitterComponent::SetExternalForce(const Vec3f& externalFroce) noexcept
+	{
+		m_Descriptor.externalForce = externalFroce;
+	}
+
+	Mesh* EmitterComponent::GetMesh() const noexcept
+	{
+		return m_pMesh;
+	}
+
+	void EmitterComponent::SetMesh(Mesh* mesh) noexcept
+	{
+		m_pMesh = mesh;
+	}
+
+	Texture* EmitterComponent::GetTexture() const noexcept
+	{
+		return m_Descriptor.texture;
+	}
+
+	void EmitterComponent::SetTexture(Texture* texture) noexcept
+	{
+		m_Descriptor.texture = texture;
+	}
+
+	RenderStateType EmitterComponent::GetBlendStateType() const noexcept
+	{
+		return m_Descriptor.blendStateType;
+	}
+
+	void EmitterComponent::SetBlendStateType(RenderStateType blendStateType) noexcept
+	{
+		m_Descriptor.blendStateType = blendStateType;
+	}
+
+	void EmitterComponent::Update(const float dt, const long time /* =0*/) noexcept
+	{
+		double tsec{ time / 1000.0 };
+
+		KillAndUpdateParticles(tsec, dt);
+
+		EmitParticles(dt, tsec);
+	}
 
 	void EmitterComponent::Setup() noexcept
 	{

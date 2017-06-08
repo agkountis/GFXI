@@ -386,7 +386,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_0);
 	G_ShaderProgramManager.Get("particles_sdrprog")->Bind();
 
@@ -394,12 +394,12 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 	for (auto emitter : emitters)
 	{
-		Material mat{ emitter->GetMaterial() };
+		Texture* tex{ emitter->GetTexture() };
 
-		mat.textures[TEX_DIFFUSE]->Bind();
+		tex->Bind();
 		deviceContext->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
-	
-		G_RenderStateManager.Set(mat.blendState);
+
+		G_RenderStateManager.Set(emitter->GetBlendStateType());
 
 		auto particles = emitter->GetParticles();
 
@@ -452,7 +452,6 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 				mesh->GetVbo()->Draw();
 			}
 		}
-		
 	}
 	G_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
 	G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_1);

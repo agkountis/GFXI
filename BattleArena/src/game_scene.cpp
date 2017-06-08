@@ -49,7 +49,7 @@ void GameScene::Initialize()
 	//////////////////////////////////////////////////////////////////////////
 
 	Entity* arena{ new Entity{ "arena" } };
-	arena->Load(L"data\\models\\arena3.fbx");
+	arena->Load(L"data/models/arena4.fbx");
 	AddEntity(arena);
 
 
@@ -63,7 +63,7 @@ void GameScene::Initialize()
 
 	//First ball
 	entity = new Entity{ "Ball" };
-	entity->SetPosition(Vec3f{ 0.0f,580.0f,-1.0f });
+	entity->SetPosition(Vec3f{ 0.0f, 80.0f,-1.0f });
 	RenderComponent* rc{ new RenderComponent{entity} };
 	rc->SetMesh(cube);
 	rc->SetMaterial(material);
@@ -77,7 +77,7 @@ void GameScene::Initialize()
 	ec->SetMaxParticles(1000);
 	ec->SetSpawnRate(200);
 	ec->SetActive(true);
-	ec->SetParticleSize(2.f);
+	ec->SetParticleSize(3.f);
 	ec->SetSpawnRadius(1.5f);
 	ec->SetVelocity(Vec3f{ 0.0f, 1.0f, 0.0f });
 	ec->SetVelocityRange(1.3f);
@@ -85,18 +85,18 @@ void GameScene::Initialize()
 	ec->SetMesh(G_ResourceManager.Get<Mesh>(L"plane"));
 	ec->SetStartColor(Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f });
 	ec->SetEndColor(Vec4f{ 1.0f, 1.0f, 1.0f, 0.1f });
-	Material p_mat;
-	p_mat.blendState = RenderStateType::BS_BLEND_ADDITIVE;
-	p_mat.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"star.jpg");
-	p_mat.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
-	ec->SetMaterial(p_mat);
+	ec->SetBlendStateType(RenderStateType::BS_BLEND_ADDITIVE);
+
+	Texture* tex{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"expl02.png") };
+	tex->SetTextureType(TEX_DIFFUSE);
+	ec->SetTexture(tex);
 
 
 	AddEntity(entity);
 
 	//Second ball
 	entity = new Entity{ "Ball2" };
-	entity->SetPosition(Vec3f{ 1.0f,585.0f,0.0f });
+	entity->SetPosition(Vec3f{ 1.0f, 85.0f,0.0f });
 	RenderComponent* rc3 {new RenderComponent{ entity } };
 	rc3->SetMesh(cube);
 	rc3->SetMaterial(material);
