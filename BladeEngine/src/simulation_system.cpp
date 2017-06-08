@@ -65,8 +65,6 @@ namespace Blade
 	void SimulationSystem::ApplyPositionChanges(const Vec3f& contactNormal, const float penetration,
 		SimulationComponent* simcom1, Entity* e1, SimulationComponent* simcom2, Entity* e2) const noexcept
 	{
-		if (simcom1)
-		{
 			float totalInverseMass{ simcom1->GetInverseMass() };
 
 			if (simcom2)
@@ -95,7 +93,6 @@ namespace Blade
 			{
 				e2->SetPosition(e2->GetPosition() + move2);
 			}
-		}
 	}
 
 	void SimulationSystem::SetVelocity(SimulationComponent* sc1, SimulationComponent* sc2,
@@ -162,11 +159,13 @@ namespace Blade
 
 			PreResponse(e1, entry, e2, simCo1, simCo2);
 
-			ApplyVelocityChanges(simCo1, simCo2, entry);
-
-			if (entry.penetration > 0.0f)
+			if(simCo1)
 			{
-				ApplyPositionChanges(entry.contactNormal, entry.penetration, simCo1, e1, simCo2, e2);
+				ApplyVelocityChanges(simCo1, simCo2, entry);
+				if (entry.penetration > 0.0f)
+				{
+					ApplyPositionChanges(entry.contactNormal, entry.penetration, simCo1, e1, simCo2, e2);
+				}
 			}
 		}
 	}
@@ -195,8 +194,6 @@ namespace Blade
 	void SimulationSystem::ApplyVelocityChanges(SimulationComponent* simCom1, SimulationComponent* simCom2,
 		ManifoldEntry &entry) const noexcept
 	{
-		if(simCom1)
-		{
 			Vec3f relativeVelocity{ simCom1->GetVelocity() };
 			if (simCom2)
 			{
@@ -229,7 +226,6 @@ namespace Blade
 
 				}
 			}
-		}
 	}
 
 	SimulationSystem::~SimulationSystem()
