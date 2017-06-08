@@ -10,8 +10,8 @@ namespace Blade
 	bool SimulationUtils::SphereAndSphereCollision(const BoundingSphere * sphere1, const BoundingSphere * sphere2, ContactManifold & manifold) noexcept
 	{
 	
-		Vec3f c1{ sphere1->GetColliderComponent()->GetParent()->GetPosition() };
-		Vec3f c2{ sphere2->GetColliderComponent()->GetParent()->GetPosition() };
+		Vec3f c1{ sphere1->GetColliderComponent()->GetParent()->GetXform()*Vec4f {1.0f} };
+		Vec3f c2{ sphere2->GetColliderComponent()->GetParent()->GetXform()*Vec4f { 1.0f }};
 
 		Vec3f midline{ c1 - c2 };
 

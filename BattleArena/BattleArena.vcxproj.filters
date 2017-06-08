@@ -99,5 +99,7 @@
     <None Include="config\test.cfg">
       <Filter>configuration</Filter>
     </None>
+    <None Include="sdr\particles.ps.hlsl" />
+    <None Include="sdr\particles.vs.hlsl" />
   </ItemGroup>
 </Project>

@@ -111,6 +111,16 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 		return false;
 	}
 
+	sdrProgDesc.name = "particles_sdrprog";
+	sdrProgDesc.inputLayoutMask = IL_POSITION | IL_TEXCOORD;
+	sdrProgDesc.vertexShader = L"particles.vs.hlsl";
+	sdrProgDesc.fragmentShader = L"particles.ps.hlsl";
+
+	if (!G_ShaderProgramManager.Create(sdrProgDesc))
+	{
+		return false;
+	}
+
 	BLADE_TRACE("Allocating and pusing the GameScreen into the ScreenManager!");
 	G_SceneManager.PushScene(std::make_unique<GameScene>());
 

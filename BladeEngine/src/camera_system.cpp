@@ -76,7 +76,7 @@ namespace Blade
 		return true;
 	}
 
-	void CameraSystem::Process(float deltaTime) noexcept
+	void CameraSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
 	{
 	}
 }

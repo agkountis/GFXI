@@ -34,7 +34,7 @@ namespace Blade
 		* \brief Processes the CameraComponents.
 		* \param deltaTime The time elapsed from the previous frame of the application.
 		*/
-		void Process(float deltaTime) noexcept override;
+		void Process(float deltaTime=.0f, long time=0) noexcept override;
 
 	public:
 		/**

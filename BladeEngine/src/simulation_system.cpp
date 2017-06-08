@@ -65,34 +65,34 @@ namespace Blade
 	void SimulationSystem::ApplyPositionChanges(const Vec3f& contactNormal, const float penetration,
 		SimulationComponent* simcom1, Entity* e1, SimulationComponent* simcom2, Entity* e2) const noexcept
 	{
-		float totalInverseMass{ simcom1->GetInverseMass() };
+			float totalInverseMass{ simcom1->GetInverseMass() };
 
-		if (simcom2)
-		{
-			totalInverseMass += simcom2->GetInverseMass();
-		}
+			if (simcom2)
+			{
+				totalInverseMass += simcom2->GetInverseMass();
+			}
 
-		if (totalInverseMass <= 0)
-		{
-			return;
-		}
+			if (totalInverseMass <= 0)
+			{
+				return;
+			}
 
-		Vec3f movePerInverseMass{ contactNormal * (penetration / totalInverseMass) };
+			Vec3f movePerInverseMass{ contactNormal * (penetration / totalInverseMass) };
 
-		Vec3f move1{ movePerInverseMass * simcom1->GetInverseMass() };
-		Vec3f move2;
+			Vec3f move1{ movePerInverseMass * simcom1->GetInverseMass() };
+			Vec3f move2;
 
-		if (simcom2)
-		{
-			move2 = movePerInverseMass * -simcom2->GetInverseMass();
-		}
+			if (simcom2)
+			{
+				move2 = movePerInverseMass * -simcom2->GetInverseMass();
+			}
 
-		e1->SetPosition(e1->GetPosition() + move1);
+			e1->SetPosition(e1->GetPosition() + move1);
 
-		if (e2)
-		{
-			e2->SetPosition(e2->GetPosition() + move2);
-		}
+			if (e2)
+			{
+				e2->SetPosition(e2->GetPosition() + move2);
+			}
 	}
 
 	void SimulationSystem::SetVelocity(SimulationComponent* sc1, SimulationComponent* sc2,
@@ -159,10 +159,13 @@ namespace Blade
 
 			PreResponse(e1, entry, e2, simCo1, simCo2);
 
-			ApplyVelocityChanges(simCo1, simCo2, entry);
-			if (entry.penetration > 0.0f)
+			if(simCo1)
 			{
-				ApplyPositionChanges(entry.contactNormal, entry.penetration, simCo1, e1, simCo2, e2);
+				ApplyVelocityChanges(simCo1, simCo2, entry);
+				if (entry.penetration > 0.0f)
+				{
+					ApplyPositionChanges(entry.contactNormal, entry.penetration, simCo1, e1, simCo2, e2);
+				}
 			}
 		}
 	}
@@ -175,48 +178,54 @@ namespace Blade
 		{
 			e2 = entry.collider2->GetColliderComponent()->GetParent();
 		}
+		if(e1->GetComponent("co_sim"))
+		{
 		simCo1 = static_cast<SimulationComponent*>(e1->GetComponent("co_sim"));
+		}
 		if (e2)
 		{
+			if(e1->GetComponent("co_sim"))
+			{
 			simCo2 = static_cast<SimulationComponent*>(e2->GetComponent("co_sim"));
+			}
 		}
 	}
 
 	void SimulationSystem::ApplyVelocityChanges(SimulationComponent* simCom1, SimulationComponent* simCom2,
 		ManifoldEntry &entry) const noexcept
 	{
-		Vec3f relativeVelocity{ simCom1->GetVelocity() };
-		if (simCom2)
-		{
-			relativeVelocity -= simCom2->GetVelocity();
-		}
-		float separatingVelocity{ Dotf(relativeVelocity, entry.contactNormal) };
-		if (separatingVelocity < 0.0f)
-		{
-			float newSeparatingVelocity{ -separatingVelocity * elasticity };
-			Vec3f accCausedVelocity{ simCom1->GetAcceleration() };
+			Vec3f relativeVelocity{ simCom1->GetVelocity() };
 			if (simCom2)
 			{
-				accCausedVelocity -= simCom2->GetAcceleration();
+				relativeVelocity -= simCom2->GetVelocity();
 			}
-			float accCausedSepVelocity{ Dotf(accCausedVelocity, entry.contactNormal) * dt };
-			if (accCausedSepVelocity < 0.0f)
+			float separatingVelocity{ Dotf(relativeVelocity, entry.contactNormal) };
+			if (separatingVelocity < 0.0f)
 			{
-				newSeparatingVelocity += elasticity * accCausedSepVelocity;
-				if (newSeparatingVelocity < 0.0f)
+				float newSeparatingVelocity{ -separatingVelocity * elasticity };
+				Vec3f accCausedVelocity{ simCom1->GetAcceleration() };
+				if (simCom2)
 				{
-					newSeparatingVelocity = 0.0f;
+					accCausedVelocity -= simCom2->GetAcceleration();
 				}
+				float accCausedSepVelocity{ Dotf(accCausedVelocity, entry.contactNormal) * dt };
+				if (accCausedSepVelocity < 0.0f)
+				{
+					newSeparatingVelocity += elasticity * accCausedSepVelocity;
+					if (newSeparatingVelocity < 0.0f)
+					{
+						newSeparatingVelocity = 0.0f;
+					}
 
-				SetVelocity(simCom1, simCom2, newSeparatingVelocity, separatingVelocity, entry.contactNormal);
-				return;
-			}
-			else
-			{
-				SetVelocity(simCom1, simCom2, newSeparatingVelocity, separatingVelocity,  entry.contactNormal);
+					SetVelocity(simCom1, simCom2, newSeparatingVelocity, separatingVelocity, entry.contactNormal);
+					return;
+				}
+				else
+				{
+					SetVelocity(simCom1, simCom2, newSeparatingVelocity, separatingVelocity, entry.contactNormal);
 
+				}
 			}
-		}
 	}
 
 	SimulationSystem::~SimulationSystem()
@@ -229,7 +238,7 @@ namespace Blade
 		return true;
 	}
 
-	void SimulationSystem::Process(float deltaTime) noexcept
+	void SimulationSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
 	{
 		dt = deltaTime;
 		timeSec = static_cast<float>(G_Application.GetSec());

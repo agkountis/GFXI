@@ -9,12 +9,12 @@ namespace Blade
 		return true;
 	}
 
-	void BehaviourSystem::Process(float deltaTime) noexcept
-	{
+	void BehaviourSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
+{
 		for (auto pair : m_BehaviourComponents)
 		{
 			auto component{ pair.second };
-			component->Update(deltaTime);
+			component->Update(deltaTime,time);
 		}
 	}
 
@@ -58,5 +58,18 @@ namespace Blade
 			auto behaviour{ pair.second };
 			behaviour->Teardown();
 		}
+	}
+	std::vector<BehaviourComponent*>& BehaviourSystem::GetBehaviourByType(const std::string type)
+	{
+		std::vector<BehaviourComponent*>  result;
+
+		for (auto entry : m_BehaviourComponents)
+		{
+			if (entry.first == type)
+			{
+				result.push_back(entry.second);
+			}
+		}
+		return std::move(result);
 	}
 }

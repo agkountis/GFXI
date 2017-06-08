@@ -23,6 +23,7 @@ namespace Blade
 	LightSystem EngineContext::m_LightSystem;
 	BehaviourSystem EngineContext::m_BehaviourSystem;
 	SimulationSystem EngineContext::m_SimulationSystem;
+	ParticleSystem EngineContext::m_ParticleSystem;
 
 	// Managers
 	NetworkManager EngineContext::m_NetworkManager;
@@ -70,6 +71,12 @@ namespace Blade
 			return false;
 		}
 
+		if (!m_ParticleSystem.Initialize())
+		{
+			BLADE_ERROR("Failed to initialize the ParticleSytem.");
+			return false;
+		}
+
 		m_RenderStateManager.Initialize();
 
 		if (!m_NetworkManager.Initialize())
@@ -109,6 +116,11 @@ namespace Blade
 	BehaviourSystem& EngineContext::GetBehaviourSystem() noexcept
 	{
 		return m_BehaviourSystem;
+	}
+
+	ParticleSystem & EngineContext::GetParticleSystem() noexcept
+	{
+		return m_ParticleSystem;
 	}
 
 	NetworkManager& EngineContext::GetNetworkManager() noexcept

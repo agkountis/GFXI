@@ -50,7 +50,7 @@ namespace Blade
 		return true;
 	}
 
-	void RenderSystem::Process(float deltaTime) noexcept
+	void RenderSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
 	{
 		m_RenderPassPipeline->Execute(m_RenderComponents);
 	}

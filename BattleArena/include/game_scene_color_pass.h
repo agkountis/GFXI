@@ -13,6 +13,8 @@ private:
 
 	Blade::ComPtr<ID3D11Buffer> m_ConstantBuffer;
 
+	Blade::ComPtr<ID3D11Buffer> m_ParticleBuffer;
+
 	Blade::ComPtr<ID3D11Buffer> m_PointLightStructuredBuffer;
 	Blade::ComPtr<ID3D11ShaderResourceView> m_PointLightSrv;
 

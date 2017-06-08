@@ -353,8 +353,11 @@
     <ClInclude Include="include\xinput_device.h">
       <Filter>include\input</Filter>
     </ClInclude>
-    <ClInclude Include="include\animation.h">
-      <Filter>include</Filter>
+    <ClInclude Include="include\particle_system.h">
+      <Filter>include\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\emitter_component.h">
+      <Filter>include\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -532,9 +535,6 @@
     <ClCompile Include="src\util.cpp">
       <Filter>src\configuration</Filter>
     </ClCompile>
-    <ClCompile Include="include\behaviour_component.cpp">
-      <Filter>src\components</Filter>
-    </ClCompile>
     <ClCompile Include="src\contact_manifold.cpp">
       <Filter>src\colliders</Filter>
     </ClCompile>
@@ -568,8 +568,14 @@
     <ClCompile Include="src\input_device.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
-    <ClCompile Include="src\animation.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\particle_system.cpp">
+      <Filter>src\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emitter_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviour_component.cpp">
+      <Filter>src\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
