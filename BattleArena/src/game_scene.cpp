@@ -30,11 +30,6 @@ void GameScene::Initialize()
 	Mesh* plane{ MeshUtils::GeneratePlaneXy(1.0f) };
 	G_ResourceManager.RegisterResource(plane, L"plane");
 
-
-	
-
-
-
 	//Define a material.
 	Material material;
 	material.diffuse = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
@@ -64,13 +59,11 @@ void GameScene::Initialize()
 	ColliderComponent* wall2{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 1.0f,0.0f,0.0f },-20.0f) } };
 	ColliderComponent* wall3{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,1.0f },-20.0f) } };
 	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-20.0f) } };
-	//ColliderComponent* ball{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(20.0f) } };
-	//ball->SetCollisionResponseFlag(false);
 	AddEntity(entity);
 
 	//First ball
 	entity = new Entity{ "Ball" };
-	entity->SetPosition(Vec3f{ 0.0f,50.0f,-1.0f });
+	entity->SetPosition(Vec3f{ 0.0f,580.0f,-1.0f });
 	RenderComponent* rc{ new RenderComponent{entity} };
 	rc->SetMesh(cube);
 	rc->SetMaterial(material);
@@ -78,17 +71,14 @@ void GameScene::Initialize()
 	ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(1.0f)} };
 
 	auto cache_entity = entity;
-	//AddEntity(entity);
 
-	//entity = new Entity{ "test" };
-	//entity->SetPosition(Vec3f{ 0.0f,10.0f,0.0f });
 	EmitterComponent* ec = new EmitterComponent{ entity };
 	ec->SetLifeSpan(1.0f);
 	ec->SetMaxParticles(1000);
 	ec->SetSpawnRate(200);
 	ec->SetActive(true);
-	ec->SetParticleSize(1.f);
-	ec->SetSpawnRadius(2.0f);
+	ec->SetParticleSize(2.f);
+	ec->SetSpawnRadius(1.5f);
 	ec->SetVelocity(Vec3f{ 0.0f, 1.0f, 0.0f });
 	ec->SetVelocityRange(1.3f);
 	ec->SetExternalForce(Vec3f{ 0.0f, -1.3f, 0.0f });
@@ -97,7 +87,7 @@ void GameScene::Initialize()
 	ec->SetEndColor(Vec4f{ 1.0f, 1.0f, 1.0f, 0.1f });
 	Material p_mat;
 	p_mat.blendState = RenderStateType::BS_BLEND_ADDITIVE;
-	p_mat.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelDiff5.png");
+	p_mat.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"star.jpg");
 	p_mat.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
 	ec->SetMaterial(p_mat);
 
@@ -106,15 +96,13 @@ void GameScene::Initialize()
 
 	//Second ball
 	entity = new Entity{ "Ball2" };
-	entity->SetPosition(Vec3f{ 1.0f,55.0f,0.0f });
+	entity->SetPosition(Vec3f{ 1.0f,585.0f,0.0f });
 	RenderComponent* rc3 {new RenderComponent{ entity } };
 	rc3->SetMesh(cube);
 	rc3->SetMaterial(material);
 	SimulationComponent* simC3{ new SimulationComponent{ entity,1.0f } };
 	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
 	AddEntity(entity);
-
-	
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Get the window size.
@@ -237,8 +225,7 @@ void GameScene::Update(float deltaTime, long time) noexcept
 
 	G_LightSystem.Process();
 
-	G_BehaviourSystem.Process(deltaTime,time);
-
+	G_BehaviourSystem.Process(deltaTime, time);
 }
 
 void GameScene::Draw() const noexcept

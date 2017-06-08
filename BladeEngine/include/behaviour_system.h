@@ -56,7 +56,7 @@ namespace Blade
 		\param the type of the component that you want to obtain
 		\return the vector of components of the type requested.
 		*/
-		std::vector<BehaviourComponent*>& GetBehaviourByType(const std::string type);
+		std::vector<BehaviourComponent*> GetBehaviourByType(const std::string type) const;
 	};
 }
 #endif

@@ -61,7 +61,7 @@ namespace Blade
 			Vec4f startColor;
 			Vec4f endColor;
 
-			int particlesToSpawn;
+			float particlesToSpawn;
 			float velocityRange;
 
 			bool active;

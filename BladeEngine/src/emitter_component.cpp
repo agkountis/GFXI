@@ -41,7 +41,6 @@ namespace Blade
 
 	void EmitterComponent::Update(const float dt, const long time /* =0*/) noexcept
 	{
-		std::cout << time << std::endl;
 		double tsec{ time / 1000.0 };
 
 		KillAndUpdateParticles(tsec, dt);
@@ -67,7 +66,7 @@ namespace Blade
 
 			UpdateParticleColor(t, p.color);
 
-			UpdatePhysics(dt,p);
+			UpdatePhysics(dt, p);
 
 			if (p.life < 0.0f)
 			{
@@ -112,39 +111,37 @@ namespace Blade
 		p.position += p.velocity * dt;
 		p.velocity += m_Descriptor.externalForce * dt;
 		p.life -= dt;
-
-
 	}
 
 	void EmitterComponent::EmitParticles(const float dt, double tsec) noexcept
 	{
-		m_Descriptor.particlesToSpawn += static_cast<int>( m_Descriptor.spawnRate * dt);
-		int num_spawn = m_Descriptor.particlesToSpawn;
-		m_Descriptor.particlesToSpawn -= num_spawn;
+		m_Descriptor.particlesToSpawn += m_Descriptor.spawnRate * dt;
+		int numSpawn = m_Descriptor.particlesToSpawn;
+		m_Descriptor.particlesToSpawn -= numSpawn;
 
 		int i{ 0 };
 
 		if (m_Descriptor.active)
 		{
-			while (i < num_spawn && m_Particles.size() < m_Descriptor.maxParticles) {
+			while (i < numSpawn && m_Particles.size() < m_Descriptor.maxParticles) {
 
-				float rand_pos_x = static_cast<float>(rand()) /
+				float randPosX = static_cast<float>(rand()) /
 					static_cast<float>(RAND_MAX) * m_Descriptor.spawnRadius * 2.0f - m_Descriptor.spawnRadius;
-				float rand_pos_y = static_cast<float>(rand()) /
+				float randPosY = static_cast<float>(rand()) /
 					static_cast<float>(RAND_MAX) * m_Descriptor.spawnRadius * 2.0f - m_Descriptor.spawnRadius;
-				float rand_pos_z = static_cast<float>(rand()) /
+				float randPosZ = static_cast<float>(rand()) /
 					static_cast<float>(RAND_MAX) * m_Descriptor.spawnRadius * 2.0f - m_Descriptor.spawnRadius;
 
-				float rand_vel_x = static_cast<float>(rand()) /
+				float randVelX = static_cast<float>(rand()) /
 					static_cast<float>(RAND_MAX) * m_Descriptor.velocityRange * 2.0f - m_Descriptor.velocityRange;
-				float rand_vel_y = static_cast<float>(rand()) /
+				float randVelY = static_cast<float>(rand()) /
 					static_cast<float>(RAND_MAX) * m_Descriptor.velocityRange * 2.0f - m_Descriptor.velocityRange;
-				float rand_vel_z = static_cast<float>(rand()) /
+				float randVelZ = static_cast<float>(rand()) /
 					static_cast<float>(RAND_MAX) * m_Descriptor.velocityRange * 2.0f - m_Descriptor.velocityRange;
 
 				Particle p;
-				p.position = (GetParent()->GetXform() * Vec4f { 0.0f, 0.0f, 0.0f, 1.0f }).xyz + Vec3f{ rand_pos_x, rand_pos_y, rand_pos_z };
-				p.velocity = m_Descriptor.velocity + Vec3f{ rand_vel_x, rand_vel_y, rand_vel_z };
+				p.position = (GetParent()->GetXform() * Vec4f { 0.0f, 0.0f, 0.0f, 1.0f }).xyz + Vec3f{ randPosX, randPosY, randPosZ };
+				p.velocity = m_Descriptor.velocity + Vec3f{ randVelX, randVelY, randVelZ };
 				p.life = m_Descriptor.lifespan;
 				p.color = m_Descriptor.startColor;
 				p.spawn_time = tsec;

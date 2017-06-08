@@ -59,7 +59,8 @@ namespace Blade
 			behaviour->Teardown();
 		}
 	}
-	std::vector<BehaviourComponent*>& BehaviourSystem::GetBehaviourByType(const std::string type)
+
+	std::vector<BehaviourComponent*> BehaviourSystem::GetBehaviourByType(const std::string type) const
 	{
 		std::vector<BehaviourComponent*>  result;
 
@@ -70,6 +71,7 @@ namespace Blade
 				result.push_back(entry.second);
 			}
 		}
+
 		return std::move(result);
 	}
 }
