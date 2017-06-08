@@ -46,9 +46,7 @@ namespace Blade
 
 		KillAndUpdateParticles(tsec, dt);
 
-		//std::cout << m_Particles.size() << std::endl;
 		EmitParticles(dt, tsec);
-
 	}
 
 
@@ -80,7 +78,7 @@ namespace Blade
 		}
 	}
 
-	void EmitterComponent::UpdateParticleColor(double t, Vec4f & color) noexcept
+	void EmitterComponent::UpdateParticleColor(double t, Vec4f & color) const noexcept
 	{
 		float min_x{ std::min(m_Descriptor.startColor.x, m_Descriptor.endColor.x) };
 		float max_x{ std::max(m_Descriptor.startColor.x, m_Descriptor.endColor.x) };
@@ -105,11 +103,11 @@ namespace Blade
 		col.y = std::max<float>(min_y, std::min<float>(col.y, max_y));
 		col.z = std::max<float>(min_z, std::min<float>(col.z, max_z));
 		col.w = std::max<float>(min_w, std::min<float>(col.w, max_w));
-		//std::cout << col.w << std::endl;
+
 		color = col;
 	}
 
-	void EmitterComponent::UpdatePhysics(float dt, Particle & p) noexcept
+	void EmitterComponent::UpdatePhysics(float dt, Particle & p) const noexcept
 	{
 		p.position += p.velocity * dt;
 		p.velocity += m_Descriptor.externalForce * dt;
@@ -130,18 +128,18 @@ namespace Blade
 		{
 			while (i < num_spawn && m_Particles.size() < m_Descriptor.maxParticles) {
 
-				float rand_pos_x = static_cast<float>(rand()) / 
+				float rand_pos_x = static_cast<float>(rand()) /
 					static_cast<float>(RAND_MAX) * m_Descriptor.spawnRadius * 2.0f - m_Descriptor.spawnRadius;
-				float rand_pos_y = static_cast<float>(rand()) / 
+				float rand_pos_y = static_cast<float>(rand()) /
 					static_cast<float>(RAND_MAX) * m_Descriptor.spawnRadius * 2.0f - m_Descriptor.spawnRadius;
-				float rand_pos_z = static_cast<float>(rand()) / 
+				float rand_pos_z = static_cast<float>(rand()) /
 					static_cast<float>(RAND_MAX) * m_Descriptor.spawnRadius * 2.0f - m_Descriptor.spawnRadius;
 
-				float rand_vel_x = static_cast<float>(rand()) / 
+				float rand_vel_x = static_cast<float>(rand()) /
 					static_cast<float>(RAND_MAX) * m_Descriptor.velocityRange * 2.0f - m_Descriptor.velocityRange;
-				float rand_vel_y = static_cast<float>(rand()) / 
+				float rand_vel_y = static_cast<float>(rand()) /
 					static_cast<float>(RAND_MAX) * m_Descriptor.velocityRange * 2.0f - m_Descriptor.velocityRange;
-				float rand_vel_z = static_cast<float>(rand()) / 
+				float rand_vel_z = static_cast<float>(rand()) /
 					static_cast<float>(RAND_MAX) * m_Descriptor.velocityRange * 2.0f - m_Descriptor.velocityRange;
 
 				Particle p;
@@ -159,7 +157,6 @@ namespace Blade
 			}
 		}
 	}
-
 
 
 	void EmitterComponent::Setup() noexcept

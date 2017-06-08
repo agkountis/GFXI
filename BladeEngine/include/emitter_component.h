@@ -256,9 +256,9 @@ namespace Blade
 
 		void KillAndUpdateParticles(double tsec, const float dt) noexcept;
 
-		void UpdateParticleColor(double t, Vec4f& color) noexcept;
+		void UpdateParticleColor(double t, Vec4f& color) const noexcept;
 		
-		void UpdatePhysics(float  dt, Particle& p) noexcept;
+		void UpdatePhysics(float  dt, Particle& p) const noexcept;
 
 	};
 
