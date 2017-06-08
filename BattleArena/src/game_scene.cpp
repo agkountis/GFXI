@@ -51,6 +51,8 @@ void GameScene::Initialize()
 	ColliderComponent* wall2{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 1.0f,0.0f,0.0f },-10.0f) } };
 	ColliderComponent* wall3{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,1.0f },-10.0f) } };
 	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-10.0f) } };
+	ColliderComponent* ball{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(20.0f) } };
+	//ball->SetCollisionResponseFlag(false);
 	AddEntity(entity);
 
 	//First ball
