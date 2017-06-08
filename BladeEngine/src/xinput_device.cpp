@@ -70,6 +70,8 @@ bool Blade::XInputDevice::IsConnected() const
 	// Query the state
 	DWORD result = XInputGetState(GetDeviceID(), &tmpState);
 
+	// The input manager will poll this function and act accordingly if the device is disconnected
+
 	return (result != ERROR_DEVICE_NOT_CONNECTED);
 
 }

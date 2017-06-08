@@ -2,7 +2,7 @@
 
 using namespace Blade;
 
-void Blade::InputManager::Update(float deltaTime)
+void InputManager::Update(float deltaTime)
 {
 
 	// re-enumerate input API for any newly connected devices since the last check
@@ -16,13 +16,16 @@ void Blade::InputManager::Update(float deltaTime)
 		// If the device is connected
 		if (tempDev->IsConnected())
 		{
+
 			tempDev->Update(deltaTime);
+
 		}
 		else 
 		{
 
-			// act on disconnection
-
+			// Unassign the device from player, and delete if disconnected
+			UnassignDevice(entry.first);
+	
 		}
 	}
 
@@ -235,8 +238,7 @@ bool Blade::InputManager::UnassignDevice(Player playerID)
 	return false;
 }
 
-
-InputDevice * Blade::InputManager::GetActiveDevice(Player playerID)
+InputDevice * InputManager::GetActiveDevice(Player playerID)
 {
 
 	// Find by iterator
