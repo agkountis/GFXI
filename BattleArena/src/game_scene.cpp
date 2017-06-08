@@ -101,6 +101,7 @@ void GameScene::Initialize()
 	p_mat.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
 	ec->SetMaterial(p_mat);
 
+
 	AddEntity(entity);
 
 	//Second ball
