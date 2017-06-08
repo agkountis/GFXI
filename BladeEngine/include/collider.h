@@ -10,7 +10,7 @@ namespace Blade
 	class PlaneCollider;
 
 	/*
-	\brief This class represents a general collider. 
+	\brief This class represents a general collider.
 	*/
 	class Collider
 	{

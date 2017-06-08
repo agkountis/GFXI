@@ -44,16 +44,16 @@ VOutput main(VInput input)
 
 	//Move the vertex to the clipspace.
 	output.position = mul(float4(input.position, 1.0), MVP);
-	
+
 	//Calculate the texture tilling
 	output.texcoord = mul(float4(input.texcoord, 1.0, 1.0), textureMatrix).xy;
 
 	//Transform the normal.
 	float3 normal = mul(input.normal, (float3x3)ITMV);
-	
+
 	//Transform the tangent.
 	float3 tangent = normalize(mul(input.tangent, (float3x3)ITMV));
-	
+
 	//Compute the binormal.
 	float3 binormal = normalize(cross(normal, tangent));
 
@@ -64,10 +64,10 @@ VOutput main(VInput input)
 
 	//Move the vertex to view space.
 	float4 v_vertexPosition = mul(float4(input.position, 1.0), V);
-	
+
 	//Move the view direction to tangent space.
 	output.t_viewDirection = mul(-v_vertexPosition.xyz, TBN);
-	
+
 	PopulateDirectionalLightDirections(directionalLights, 
 									   V, 
 									   TBN, 

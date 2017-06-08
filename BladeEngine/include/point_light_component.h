@@ -17,7 +17,6 @@ namespace Blade
 		const PointLightDesc& GetLightDescription() const noexcept;
 
 		PointLightDesc* GetLightDescriptionPtr() noexcept;
-
 	};
 }
 

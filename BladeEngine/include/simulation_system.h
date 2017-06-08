@@ -4,22 +4,20 @@
 #include "system.h"
 #include "collider_component.h"
 #include "simulation_component.h"
-#include "timer.h"
 #include <thread>
-#include <mutex>
 #include "contact_manifold.h"
 
 namespace Blade
 {
 	/**
 	\brief The simulation system of the engine
-	\details Performs the simulation routine: update, detection, response using threads. 
+	\details Performs the simulation routine: update, detection, response using threads.
 	*/
 	class SimulationSystem : System
 	{
 	private:
 		/*
-		\brief Stores the simulation components registered to the system. 
+		\brief Stores the simulation components registered to the system.
 		*/
 		std::vector<SimulationComponent*> m_SimulationComponents;
 
@@ -30,7 +28,7 @@ namespace Blade
 
 		/*
 		\brief Contact manifold of the simulation
-		\details One manifold is sufficient to cover the entire simulation 
+		\details One manifold is sufficient to cover the entire simulation
 		*/
 		ContactManifold m_ContactManifold;
 
@@ -41,7 +39,7 @@ namespace Blade
 
 		/*
 		\brief Collision detection routine of the simulation
-		\details Check exhaustive collision between every active collision component. 
+		\details Check exhaustive collision between every active collision component.
 		It populates the manifold.
 		*/
 		void CollisionDetection() noexcept;
@@ -49,7 +47,7 @@ namespace Blade
 		/*
 		\brief Collision response routine of the simulation
 		\details Calculate the new position, velocity and orientation of two colliding objects.
-		The collision response process is not iterative. 
+		The collision response process is not iterative.
 		*/
 		void CollisionResponse() const noexcept;
 
@@ -66,7 +64,7 @@ namespace Blade
 
 		/*
 		\brief Changes the position of the entities colliding.
-		\details If one entity does not hold a rigid body, the position won't change. 
+		\details If one entity does not hold a rigid body, the position won't change.
 		*/
 		void ApplyPositionChanges(const Vec3f& contactNormal, const float penetration,
 			SimulationComponent* simcom1, Entity* e1, SimulationComponent* simcom2, Entity* e2) const noexcept;
@@ -105,7 +103,7 @@ namespace Blade
 		static float dt;
 
 		/*
-		\brief Simulation system delta time scale 
+		\brief Simulation system delta time scale
 		\details Can be used to tweak the delta time of the simulation.
 		*/
 		static float dtScale;
@@ -129,7 +127,7 @@ namespace Blade
 		bool Initialize() noexcept override;
 
 		/*
-		\brief Perform the simulation loop: update the simulation, calculate the contacts 
+		\brief Perform the simulation loop: update the simulation, calculate the contacts
 		and store them inside the manifold and then resolve the contacts.
 		*/
 		void Process(float deltaTime) noexcept override;
@@ -147,14 +145,14 @@ namespace Blade
 		void RegisterComponent(ColliderComponent* colComp) noexcept;
 
 		/*
-		\brief Unregister a simulation component to the system, that component won't be update 
+		\brief Unregister a simulation component to the system, that component won't be update
 		anymore.
 		\param simComp the pointer to the SimulationComponent that we need to remove.
 		*/
 		void UnregisterComponent(SimulationComponent* simComp) noexcept;
 
 		/*
-		\brief Unregister a collider component to the system, that component won't be taken 
+		\brief Unregister a collider component to the system, that component won't be taken
 		in consideration for further collision detection and therefore response.
 		\param simComp the pointer to the ColliderComponent that we need to remove.
 		*/

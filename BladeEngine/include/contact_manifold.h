@@ -9,8 +9,8 @@ namespace Blade
 
 	/*
 	\brief ManifoldEntry stores the information about a contact
-	\details Stores of the two colliders that are in contact, the contact normal 
-	the time of the contact and the penetration. 
+	\details Stores of the two colliders that are in contact, the contact normal
+	the time of the contact and the penetration.
 	*/
 	struct ManifoldEntry
 	{
@@ -38,7 +38,7 @@ namespace Blade
 		\param manifoldEntry the new entry to add to the manifold
 		*/
 		void AddEntry(const ManifoldEntry& manifoldEntry) noexcept;
-		
+
 		/*
 		\brief Getters of the ContactManifold
 		*/
@@ -52,7 +52,7 @@ namespace Blade
 		const size_t Size() const noexcept;
 
 		/*
-		\brief Clear the manifold 
+		\brief Clear the manifold
 		*/
 		void Clear() noexcept;
 	};

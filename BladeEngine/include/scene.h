@@ -38,12 +38,9 @@ namespace Blade
 		void AddEntity(Entity* object) noexcept;
 
 		/*
-		\brief Getters of the collections of entities that are currently in the scene.
+		* \brief Getters of the collections of entities that are currently in the scene.
 		*/
-		const std::vector<Entity*>& GetEntities() const noexcept
-		{
-			return m_Entities;
-		}
+		const std::vector<Entity*>& GetEntities() const noexcept;
 
 		/*
 		\brief Defines how the scene should response when a key is pressed

@@ -19,8 +19,8 @@ namespace Blade
 	class Application;
 
 	/*
-	\brief The engine context class stores all the system of the engines and 
-	the application. It defines an unique and reliable access to all the sub-models 
+	\brief The engine context class stores all the system of the engines and
+	the application. It defines an unique and reliable access to all the sub-models
 	of the engine.
 	*/
 	class EngineContext

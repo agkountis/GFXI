@@ -47,35 +47,26 @@ namespace Blade
 		\brief Name of the mesh
 		\details This can be used to ask to the resource manager a particular mesh.
 		*/
-		const std::string m_Name;
+		std::string m_Name;
 
 	public:
 		Mesh();
-
 
 		Mesh(const Mesh& other) = default;
 
 		Mesh& operator=(const Mesh& other) = default;
 
-		VBO* GetVbo() const noexcept
-		{
-			return m_Vbo.get();
-		}
+		VBO* GetVbo() const noexcept;
 
-		IBO* GetIbo() const noexcept
-		{
-			return m_Ibo.get();
-		}
+		IBO* GetIbo() const noexcept;
 
-		size_t GetVertexCount() const noexcept
-		{
-			return m_Vertices.size();
-		}
+		size_t GetVertexCount() const noexcept;
 
-		size_t GetIndexCount() const noexcept
-		{
-			return m_Indices.size();
-		}
+		size_t GetIndexCount() const noexcept;
+
+		void SetName(const std::string& name) noexcept;
+
+		const std::string& GetName() const noexcept;
 
 		void InitiazeBufferObjects(PrimitiveTopology primitiveTopology = PrimitiveTopology::TRIANGLE_LIST) const noexcept;
 

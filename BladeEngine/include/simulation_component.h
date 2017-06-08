@@ -13,7 +13,7 @@ namespace Blade
 	class SimulationComponent : public Component
 	{
 	private:
-		//#needtorefactor change the alignment here 
+		//#needtorefactor change the alignment here
 
 		/*
 		\brief Force accumulator of the object
@@ -30,7 +30,7 @@ namespace Blade
 		float m_Mass;
 
 		/*
-		\brief Inverse mass of the simulation component, used 
+		\brief Inverse mass of the simulation component, used
 		in the integration process.
 		*/
 		float m_InverseMass;
@@ -51,13 +51,11 @@ namespace Blade
 		Vec3f m_PrevPos;
 
 		/*
-		\brief 
+		\brief
 		*/
 		bool m_IsActive{ true };
 
 	public:
-		
-
 		SimulationComponent(Entity* parent, float mass);
 
 		~SimulationComponent();
@@ -144,7 +142,7 @@ namespace Blade
 		float GetMass() const noexcept;
 
 		/*
-		\brief Getter of the inverse mass 
+		\brief Getter of the inverse mass
 		\return The inverse of the mass of the simulation object
 		*/
 		float GetInverseMass() const noexcept;
@@ -166,7 +164,7 @@ namespace Blade
 	};
 
 	/*
-	\brief SimulationComponent state holds the information of a 
+	\brief SimulationComponent state holds the information of a
 	simulation component and it is used in RK4 integration.
 	*/
 	struct SimulationComponentState
