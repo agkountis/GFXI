@@ -353,6 +353,9 @@
     <ClInclude Include="include\xinput_device.h">
       <Filter>include\input</Filter>
     </ClInclude>
+    <ClInclude Include="include\particle_system.h">
+      <Filter>include\systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -564,6 +567,9 @@
     </ClCompile>
     <ClCompile Include="src\input_device.cpp">
       <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\particle_system.cpp">
+      <Filter>src\systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
