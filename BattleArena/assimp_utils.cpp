@@ -265,7 +265,7 @@ namespace AssimpUtils
 
 				float radius;
 				s >> radius;
-				//ColliderComponent* cc{ new ColliderComponent{entity, std::make_unique<BoundingSphere>(radius)} };
+				ColliderComponent* cc{ new ColliderComponent{entity, std::make_unique<BoundingSphere>(radius)} };
 			}
 		}
 
