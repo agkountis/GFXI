@@ -535,9 +535,6 @@
     <ClCompile Include="src\util.cpp">
       <Filter>src\configuration</Filter>
     </ClCompile>
-    <ClCompile Include="include\behaviour_component.cpp">
-      <Filter>src\components</Filter>
-    </ClCompile>
     <ClCompile Include="src\contact_manifold.cpp">
       <Filter>src\colliders</Filter>
     </ClCompile>
@@ -575,6 +572,9 @@
       <Filter>src\systems</Filter>
     </ClCompile>
     <ClCompile Include="src\emitter_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviour_component.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
   </ItemGroup>
