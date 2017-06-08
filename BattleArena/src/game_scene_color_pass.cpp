@@ -191,6 +191,33 @@ bool GameSceneColorPassStage::Initialize()
 		return false;
 	}
 
+	D3D11_BUFFER_DESC particleBufferDesc{};
+	particleBufferDesc.ByteWidth = sizeof(ParticleUniformBuffer);
+	particleBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+	particleBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	particleBufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
+	particleBufferDesc.StructureByteStride = sizeof(ParticleUniformBuffer);
+
+	res = device->CreateBuffer(&particleBufferDesc, nullptr, m_ParticleBuffer.ReleaseAndGetAddressOf());
+
+	if (FAILED(res))
+	{
+		std::cerr << "GameSceneColorPass: Particle buffer creation failed!" << std::endl;
+
+		return false;
+	}
+
+	res = device->CreateShaderResourceView(m_ParticleBuffer.Get(), nullptr, m_ParticleSrv.ReleaseAndGetAddressOf());
+
+	if (FAILED(res))
+	{
+		std::cerr << "GameSceneColorPass: Particle shader resource view creation failed!" << std::endl;
+
+		return false;
+	}
+
+
+
 	m_DummyDiff = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"dummyDiff.jpg");
 	m_DummyDiff->SetTextureType(TEX_DIFFUSE);
 
@@ -225,17 +252,17 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	//Set the linear wrap texture sampler.
 	deviceContext->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
 
+	//Get the active camera projection matrix.
+	Mat4f p{ G_CameraSystem.GetActiveCameraProjectionMatrtix() };
+
+	//Get the active camera view matrix.
+	Mat4f v{ G_CameraSystem.GetActiveCameraViewMatrix() };
+
 	//Iterate through the render components.
 	for (auto renderComponent : data)
 	{
 		//Get the model matrix from the Entity.
 		Mat4f m{ renderComponent->GetParent()->GetXform() };
-
-		//Get the active camera projection matrix.
-		Mat4f p{ G_CameraSystem.GetActiveCameraProjectionMatrtix() };
-
-		//Get the active camera view matrix.
-		Mat4f v{ G_CameraSystem.GetActiveCameraViewMatrix() };
 
 		//Calculate the ModelViewProjection matrix.
 		Mat4f mvp{ p * v * m };
@@ -368,12 +395,80 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	//Draw particles
+	
+	//G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_0);
+	G_ShaderProgramManager.Get("particles_sdrprog")->Bind();
+
+	auto emitters = G_ParticleSystem.GetEmitterComponents();
+
+	for (auto emitter : emitters)
+	{
+		Material mat{ emitter->GetMaterial() };
+
+		mat.textures[TEX_DIFFUSE]->Bind();
+		deviceContext->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
+
+		G_RenderStateManager.Set(mat.blendState);
+		auto particles = emitter->GetParticles();
+
+		for (auto particle : particles)
+		{
+			Mat4f model;
+			model = MathUtils::Translate(model, particle.position);
+			Mat4f MV{ v * model };
+
+			MV[0][0] = 1.0f;
+			MV[0][1] = 0.0f;
+			MV[0][2] = 0.0f;
+
+			MV[1][0] = 0.0f;
+			MV[1][1] = 1.0f;
+			MV[1][2] = 0.0f;
+
+			MV[2][0] = 0.0f;
+			MV[2][1] = 0.0f;
+			MV[2][2] = 1.0f;
+
+			MV = MathUtils::Scale(MV, Vec3f{ particle.size });
+
+			Mat4f MVP{ p * MV };
+
+			ParticleUniformBuffer uniforms;
+			uniforms.MVP = MathUtils::Transpose(MVP);
+			uniforms.diffuse = particle.color;
+
+			D3D11_MAPPED_SUBRESOURCE ms;
+
+			deviceContext->Map(m_ParticleBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &ms);
+			memcpy(ms.pData, &uniforms, sizeof(ParticleUniformBuffer));
+			deviceContext->Unmap(m_ParticleBuffer.Get(), 0);
+
+			deviceContext->VSSetConstantBuffers(0, 1, m_ParticleBuffer.GetAddressOf());
+			deviceContext->PSSetConstantBuffers(0, 1, m_ParticleBuffer.GetAddressOf());
+
+			Mesh* mesh = emitter->GetMesh();
+
+			mesh->GetVbo()->Bind();
+
+			if (mesh->GetIndexCount())
+			{
+				mesh->GetIbo()->Bind();
+				mesh->GetIbo()->Draw();
+			}
+			else
+			{
+				mesh->GetVbo()->Draw();
+			}
+		}
+		G_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
+		G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_1);
+	}
+	
 
 	//Unbind the render target.
 	m_ColorRenderTarget.Unbind();
 
-	//Disaply to the fullscreen quad.
+	//Display to the full screen quad.
 	DisplayToScreen();
 
 	// Return the render target so that the next stage of the pipeline can process it if needed.
