@@ -44,6 +44,7 @@ void GameScene::Initialize()
 	normalmapTexture->SetTextureType(TEX_NORMAL);
 	material.textures[TEX_NORMAL] = normalmapTexture;
 	//////////////////////////////////////////////////////////////////////////
+
 	Entity* arena{ new Entity{ "arena" } };
 	arena->Load(L"data\\models\\arena3.fbx");
 	AddEntity(arena);
