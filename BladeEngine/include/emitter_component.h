@@ -37,6 +37,20 @@ namespace Blade
 		*/
 		struct EmitterDescriptor
 		{
+			/*
+			\details Material of the particle that this emitter will spawn.
+			*/
+			Material material;
+			/*
+			\details Cache of the current velocity of the emitter
+			*/
+			Vec3f velocity;
+
+			/*
+			\details Cache external velocity of the emitter
+			*/
+			Vec3f externalForce;
+
 			float spawnRate;
 			float lifespan;
 			float maxParticles;
@@ -65,30 +79,19 @@ namespace Blade
 		EmitterDescriptor m_Descriptor;
 
 		/*
-		\details Cache of the current velocity of the emitter
-		*/
-		Vec3f m_Velocity;
-
-		/*
-		\details Cache external velocity of the emitter 
-		*/
-		Vec3f m_ExternalForce;
-
-		/*
 		\details Mesh of the particle that this emitter will spawn.
 		*/
 		Mesh* m_pMesh;
 
-		/*
-		\details Material of the particle that this emitter will spawn.
-		*/
-		Material m_Material;
+
 
 	public:
 		explicit EmitterComponent(Entity* parent);
 		explicit EmitterComponent(Entity* entity, const EmitterDescriptor& descriptor);
 		EmitterComponent(const EmitterComponent& other) = default;
 		EmitterComponent& operator=(const EmitterComponent& other) = default;
+
+		~EmitterComponent();
 
 		/*
 		\brief Update the particles owned by this emitter.
@@ -201,12 +204,12 @@ namespace Blade
 
 		const Vec3f& GetVelocity() const noexcept
 		{
-			return m_Velocity;
+			return m_Descriptor.velocity;
 		}
 
 		void SetVelocity(const Vec3f& velocity) noexcept
 		{
-			m_Velocity = velocity;
+			m_Descriptor.velocity = velocity;
 		}
 
 		float GetVelocityRange() const noexcept
@@ -221,12 +224,12 @@ namespace Blade
 
 		const Vec3f& GetExternalForce() const noexcept
 		{
-			return m_ExternalForce;
+			return m_Descriptor.externalForce;
 		}
 
 		void SetExternalForce(const Vec3f& externalFroce) noexcept
 		{
-			m_ExternalForce = externalFroce;
+			m_Descriptor.externalForce = externalFroce;
 		}
 
 		Mesh* GetMesh() const noexcept
@@ -241,12 +244,12 @@ namespace Blade
 
 		const Material& GetMaterial() const noexcept
 		{
-			return m_Material;
+			return m_Descriptor.material;
 		}
 
 		void SetMaterial(const Material& material) noexcept
 		{
-			m_Material = material;
+			m_Descriptor.material = material;
 		}	
 	private:
 		void EmitParticles(const float dt, double tsec) noexcept;

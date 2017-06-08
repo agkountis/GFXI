@@ -31,7 +31,7 @@ namespace Blade
 		 * registered components.
 		 * \param deltaTime The time elapsed from the previous frame of the application.
 		 */
-		virtual void Process(float deltaTime) noexcept = 0;
+		virtual void Process(float deltaTime=.0f, long time=0) noexcept = 0;
 	};
 }
 

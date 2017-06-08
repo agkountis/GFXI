@@ -4,6 +4,10 @@
 #include <algorithm>
 #include "engine_context.h"
 #include "component.h"
+
+#undef min
+#undef max
+
 namespace Blade
 {
 	EmitterComponent::EmitterComponent(Entity * parent):
@@ -26,17 +30,23 @@ namespace Blade
 		BehaviourComponent("co_emitter",entity),
 		m_Descriptor(descriptor)
 	{
-		G_ParticleSystem.UnregisterComponent(GetId());
+		G_ParticleSystem.RegisterComponent(this);
 	}
 
 
+	EmitterComponent::~EmitterComponent()
+	{
+		G_ParticleSystem.UnregisterComponent(GetId());
+	}
+
 	void EmitterComponent::Update(const float dt, const long time /* =0*/) noexcept
 	{
+		std::cout << time << std::endl;
 		double tsec{ time / 1000.0 };
 
 		KillAndUpdateParticles(tsec, dt);
 
-
+		//std::cout << m_Particles.size() << std::endl;
 		EmitParticles(dt, tsec);
 
 	}
@@ -72,17 +82,17 @@ namespace Blade
 
 	void EmitterComponent::UpdateParticleColor(double t, Vec4f & color) noexcept
 	{
-		float min_x{ std::min<float>(m_Descriptor.startColor.x, m_Descriptor.endColor.x) };
-		float max_x{ std::max<float>(m_Descriptor.startColor.x, m_Descriptor.endColor.x) };
+		float min_x{ std::min(m_Descriptor.startColor.x, m_Descriptor.endColor.x) };
+		float max_x{ std::max(m_Descriptor.startColor.x, m_Descriptor.endColor.x) };
 
-		float min_y{ std::min<float>(m_Descriptor.startColor.y, m_Descriptor.endColor.y) };
-		float max_y{ std::max<float>(m_Descriptor.startColor.y, m_Descriptor.endColor.y) };
+		float min_y{ std::min(m_Descriptor.startColor.y, m_Descriptor.endColor.y) };
+		float max_y{ std::max(m_Descriptor.startColor.y, m_Descriptor.endColor.y) };
 
-		float min_z{ std::min<float>(m_Descriptor.startColor.z, m_Descriptor.endColor.z) };
-		float max_z{ std::max<float>(m_Descriptor.startColor.z, m_Descriptor.endColor.z) };
+		float min_z{ std::min(m_Descriptor.startColor.z, m_Descriptor.endColor.z) };
+		float max_z{ std::max(m_Descriptor.startColor.z, m_Descriptor.endColor.z) };
 
-		float min_w{ std::min<float>(m_Descriptor.startColor.w, m_Descriptor.endColor.w) };
-		float max_w{ std::max<float>(m_Descriptor.startColor.w, m_Descriptor.endColor.w) };
+		float min_w{ std::min(m_Descriptor.startColor.w, m_Descriptor.endColor.w) };
+		float max_w{ std::max(m_Descriptor.startColor.w, m_Descriptor.endColor.w) };
 
 		Vec4f col;
 
@@ -95,14 +105,14 @@ namespace Blade
 		col.y = std::max<float>(min_y, std::min<float>(col.y, max_y));
 		col.z = std::max<float>(min_z, std::min<float>(col.z, max_z));
 		col.w = std::max<float>(min_w, std::min<float>(col.w, max_w));
-
+		//std::cout << col.w << std::endl;
 		color = col;
 	}
 
 	void EmitterComponent::UpdatePhysics(float dt, Particle & p) noexcept
 	{
 		p.position += p.velocity * dt;
-		p.velocity += m_ExternalForce * dt;
+		p.velocity += m_Descriptor.externalForce * dt;
 		p.life -= dt;
 
 
@@ -136,7 +146,7 @@ namespace Blade
 
 				Particle p;
 				p.position = (GetParent()->GetXform() * Vec4f { 0.0f, 0.0f, 0.0f, 1.0f }).xyz + Vec3f{ rand_pos_x, rand_pos_y, rand_pos_z };
-				p.velocity = m_Velocity + Vec3f{ rand_vel_x, rand_vel_y, rand_vel_z };
+				p.velocity = m_Descriptor.velocity + Vec3f{ rand_vel_x, rand_vel_y, rand_vel_z };
 				p.life = m_Descriptor.lifespan;
 				p.color = m_Descriptor.startColor;
 				p.spawn_time = tsec;

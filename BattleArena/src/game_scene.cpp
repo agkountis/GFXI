@@ -15,6 +15,7 @@
 #include "collider_component.h"
 #include "bounding_sphere.h"
 #include "plane_collider.h"
+#include "emitter_component.h"
 
 using namespace Blade;
 
@@ -23,9 +24,16 @@ void GameScene::Initialize()
 	// Renderable Entity creation ----------------------------------------------------------------------------------------
 	//Generate a Sphere.
 	Mesh* cube{ MeshUtils::GenerateUvSphere(1.0f, 30, 30, 1.0f, 1.0f) };
-
 	//Register the resource to the manager, so it manages it's lifetime(memory).
 	G_ResourceManager.RegisterResource(cube, L"cube");
+
+	Mesh* plane{ MeshUtils::GeneratePlaneXy(1.0f) };
+	G_ResourceManager.RegisterResource(plane, L"plane");
+
+
+	
+
+
 
 	//Define a material.
 	Material material;
@@ -61,14 +69,38 @@ void GameScene::Initialize()
 	AddEntity(entity);
 
 	//First ball
-	entity = new Entity{"Ball"};
+	entity = new Entity{ "Ball" };
 	entity->SetPosition(Vec3f{ 0.0f,50.0f,-1.0f });
 	RenderComponent* rc{ new RenderComponent{entity} };
 	rc->SetMesh(cube);
 	rc->SetMaterial(material);
 	SimulationComponent* simC{ new SimulationComponent{entity,1.0f} };
 	ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(1.0f)} };
+
 	auto cache_entity = entity;
+	//AddEntity(entity);
+
+	//entity = new Entity{ "test" };
+	//entity->SetPosition(Vec3f{ 0.0f,10.0f,0.0f });
+	EmitterComponent* ec = new EmitterComponent{ entity };
+	ec->SetLifeSpan(1.0f);
+	ec->SetMaxParticles(1000);
+	ec->SetSpawnRate(200);
+	ec->SetActive(true);
+	ec->SetParticleSize(1.f);
+	ec->SetSpawnRadius(2.0f);
+	ec->SetVelocity(Vec3f{ 0.0f, 1.0f, 0.0f });
+	ec->SetVelocityRange(1.3f);
+	ec->SetExternalForce(Vec3f{ 0.0f, -1.3f, 0.0f });
+	ec->SetMesh(G_ResourceManager.Get<Mesh>(L"plane"));
+	ec->SetStartColor(Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f });
+	ec->SetEndColor(Vec4f{ 1.0f, 1.0f, 1.0f, 0.1f });
+	Material p_mat;
+	p_mat.blendState = RenderStateType::BS_BLEND_ADDITIVE;
+	p_mat.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelDiff5.png");
+	p_mat.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
+	ec->SetMaterial(p_mat);
+
 	AddEntity(entity);
 
 	//Second ball
@@ -204,7 +236,8 @@ void GameScene::Update(float deltaTime, long time) noexcept
 
 	G_LightSystem.Process();
 
-	G_BehaviourSystem.Process(deltaTime);
+	G_BehaviourSystem.Process(deltaTime,time);
+
 }
 
 void GameScene::Draw() const noexcept

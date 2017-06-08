@@ -44,7 +44,7 @@ namespace Blade
 		/*
 		\brief The particle system do no need to process anything.
 		*/
-		void Process(float deltaTime) noexcept override;
+		void Process(float deltaTime=.0f, long time=0) noexcept override;
 
 	};
 }

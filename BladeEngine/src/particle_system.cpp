@@ -20,7 +20,7 @@ bool Blade::ParticleSystem::Initialize() noexcept
 	return true;
 }
 
-void Blade::ParticleSystem::Process(float deltaTime) noexcept
+void Blade::ParticleSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
 {
 	//Particle system do not process anything
 }

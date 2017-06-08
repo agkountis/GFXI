@@ -130,7 +130,7 @@ namespace Blade
 		\brief Perform the simulation loop: update the simulation, calculate the contacts
 		and store them inside the manifold and then resolve the contacts.
 		*/
-		void Process(float deltaTime) noexcept override;
+		void Process(float deltaTime=.0f, long time=0) noexcept override;
 
 		/*
 		\brief Register a simulation component to the system

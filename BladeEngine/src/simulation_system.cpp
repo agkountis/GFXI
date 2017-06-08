@@ -238,7 +238,7 @@ namespace Blade
 		return true;
 	}
 
-	void SimulationSystem::Process(float deltaTime) noexcept
+	void SimulationSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
 	{
 		dt = deltaTime;
 		timeSec = static_cast<float>(G_Application.GetSec());

@@ -63,7 +63,7 @@ namespace Blade
 		 * \brief Processes the RenderComponents by passing them through the RenderPassPipeline.
 		 * \param deltaTime The time elapsed from the previous frame of the application.
 		 */
-		void Process(float deltaTime = 0) noexcept override;
+		void Process(float deltaTime=.0f, long time=0) noexcept override;
 	};
 }
 

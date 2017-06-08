@@ -101,8 +101,7 @@ bool GameSceneColorPassStage::Initialize()
 	cbDesc.Usage = D3D11_USAGE_DYNAMIC;
 	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	cbDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-	cbDesc.MiscFlags = 0;
-	cbDesc.StructureByteStride = 0;
+
 
 	res = device->CreateBuffer(&cbDesc, nullptr, m_ConstantBuffer.ReleaseAndGetAddressOf());
 
@@ -193,10 +192,9 @@ bool GameSceneColorPassStage::Initialize()
 
 	D3D11_BUFFER_DESC particleBufferDesc{};
 	particleBufferDesc.ByteWidth = sizeof(ParticleUniformBuffer);
-	particleBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+	particleBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+	particleBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	particleBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-	particleBufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
-	particleBufferDesc.StructureByteStride = sizeof(ParticleUniformBuffer);
 
 	res = device->CreateBuffer(&particleBufferDesc, nullptr, m_ParticleBuffer.ReleaseAndGetAddressOf());
 
@@ -207,14 +205,7 @@ bool GameSceneColorPassStage::Initialize()
 		return false;
 	}
 
-	res = device->CreateShaderResourceView(m_ParticleBuffer.Get(), nullptr, m_ParticleSrv.ReleaseAndGetAddressOf());
 
-	if (FAILED(res))
-	{
-		std::cerr << "GameSceneColorPass: Particle shader resource view creation failed!" << std::endl;
-
-		return false;
-	}
 
 
 
@@ -396,7 +387,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 	//////////////////////////////////////////////////////////////////////////
 	
-	//G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_0);
+	G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_0);
 	G_ShaderProgramManager.Get("particles_sdrprog")->Bind();
 
 	auto emitters = G_ParticleSystem.GetEmitterComponents();
@@ -407,8 +398,9 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 		mat.textures[TEX_DIFFUSE]->Bind();
 		deviceContext->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
-
+	
 		G_RenderStateManager.Set(mat.blendState);
+
 		auto particles = emitter->GetParticles();
 
 		for (auto particle : particles)
@@ -460,10 +452,10 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 				mesh->GetVbo()->Draw();
 			}
 		}
-		G_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
-		G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_1);
+		
 	}
-	
+	G_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
+	G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_1);
 
 	//Unbind the render target.
 	m_ColorRenderTarget.Unbind();

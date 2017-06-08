@@ -356,6 +356,9 @@
     <ClInclude Include="include\particle_system.h">
       <Filter>include\systems</Filter>
     </ClInclude>
+    <ClInclude Include="include\emitter_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -570,6 +573,9 @@
     </ClCompile>
     <ClCompile Include="src\particle_system.cpp">
       <Filter>src\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emitter_component.cpp">
+      <Filter>src\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

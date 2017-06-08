@@ -179,7 +179,7 @@ namespace Blade
 		return true;
 	}
 
-	void LightSystem::Process(float deltaTime) noexcept
+	void LightSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
 	{
 		G_ThreadPool.AddTask([this]() {
 

@@ -15,10 +15,11 @@ SamplerState texture_sampler_linear_wrap : register(s0);
 
 float4 main(VOut input) : SV_TARGET
 {
+	
 	float4 texel = diffuse_tex.Sample(texture_sampler_linear_wrap, input.texcoord.xy);
 
 	float4 final_color = diffuse * texel;
 	final_color.a = diffuse.a;
-
+	
 	return final_color;
 }

@@ -9,12 +9,12 @@ namespace Blade
 		return true;
 	}
 
-	void BehaviourSystem::Process(float deltaTime) noexcept
-	{
+	void BehaviourSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
+{
 		for (auto pair : m_BehaviourComponents)
 		{
 			auto component{ pair.second };
-			component->Update(deltaTime);
+			component->Update(deltaTime,time);
 		}
 	}
 
