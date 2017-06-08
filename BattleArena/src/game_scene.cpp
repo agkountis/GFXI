@@ -45,13 +45,19 @@ void GameScene::Initialize()
 	material.textures[TEX_NORMAL] = normalmapTexture;
 	//////////////////////////////////////////////////////////////////////////
 
+	Entity* arena{ new Entity{ "arena" } };
+	arena->Load(L"data\\models\\arena3.fbx");
+	AddEntity(arena);
+
+
 	Entity* entity{ new Entity{ "Environment" } };
 	ColliderComponent* floor{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,1.0f,0.0f },0.0f) } };
-	ColliderComponent* wall1{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ -1.0f,0.0f,0.0f },-10.0f) } };
-	ColliderComponent* wall2{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 1.0f,0.0f,0.0f },-10.0f) } };
-	ColliderComponent* wall3{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,1.0f },-10.0f) } };
-	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-10.0f) } };
-
+	ColliderComponent* wall1{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ -1.0f,0.0f,0.0f },-20.0f) } };
+	ColliderComponent* wall2{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 1.0f,0.0f,0.0f },-20.0f) } };
+	ColliderComponent* wall3{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,1.0f },-20.0f) } };
+	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-20.0f) } };
+	//ColliderComponent* ball{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(20.0f) } };
+	//ball->SetCollisionResponseFlag(false);
 	AddEntity(entity);
 
 	//First ball
@@ -75,9 +81,7 @@ void GameScene::Initialize()
 	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
 	AddEntity(entity);
 
-	Entity* arena{ new Entity{"arena"} };
-	arena->Load(L"data\\models\\arena3.fbx");
-	AddEntity(arena);
+	
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Get the window size.
