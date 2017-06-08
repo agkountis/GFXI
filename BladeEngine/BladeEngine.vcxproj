@@ -161,6 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\animation.h" />
     <ClInclude Include="include\application.h" />
     <ClInclude Include="include\behaviour_component.h" />
     <ClInclude Include="include\behaviour_system.h" />
@@ -255,6 +256,7 @@
   <ItemGroup>
     <ClCompile Include="include\behaviour_component.cpp" />
     <ClCompile Include="src\abstract_viewport.cpp" />
+    <ClCompile Include="src\animation.cpp" />
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\behaviour_sytem.cpp" />
     <ClCompile Include="src\plane_collider.cpp" />

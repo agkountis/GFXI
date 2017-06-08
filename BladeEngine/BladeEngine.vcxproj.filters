@@ -353,6 +353,9 @@
     <ClInclude Include="include\xinput_device.h">
       <Filter>include\input</Filter>
     </ClInclude>
+    <ClInclude Include="include\animation.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -564,6 +567,9 @@
     </ClCompile>
     <ClCompile Include="src\input_device.cpp">
       <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
