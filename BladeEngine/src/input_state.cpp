@@ -27,54 +27,54 @@ InputState::InputState(XINPUT_STATE & state)
 
 	// Check Dstate for directional pad (d-pad)
 	if (buttonData & XINPUT_GAMEPAD_DPAD_UP) {
-		digitalButtonData &= JOYDPAD_UP;
+		digitalButtonData |= JOYDPAD_UP;
 	}
 
 	if (buttonData & XINPUT_GAMEPAD_DPAD_DOWN) {
-		digitalButtonData &= JOYDPAD_DOWN;
+		digitalButtonData |= JOYDPAD_DOWN;
 	}
 
 	if (buttonData & XINPUT_GAMEPAD_DPAD_LEFT) {
-		digitalButtonData &= JOYDPAD_LEFT;
+		digitalButtonData |= JOYDPAD_LEFT;
 	}
 
 	if (buttonData & XINPUT_GAMEPAD_DPAD_RIGHT) {
-		digitalButtonData &= JOYDPAD_RIGHT;
+		digitalButtonData |= JOYDPAD_RIGHT;
 	}
 
 	// Check for face buttons
 	if (buttonData & XINPUT_GAMEPAD_A) {
-		digitalButtonData &= JOYBTN_FACE1;
+		digitalButtonData |= JOYBTN_FACE1;
 	}
 
 	if (buttonData & XINPUT_GAMEPAD_B) {
-		digitalButtonData &= JOYBTN_FACE2;
+		digitalButtonData |= JOYBTN_FACE2;
 	}
 
 	if (buttonData & XINPUT_GAMEPAD_X) {
-		digitalButtonData &= JOYBTN_FACE3;
+		digitalButtonData |= JOYBTN_FACE3;
 	}
 
 	if (buttonData & XINPUT_GAMEPAD_Y) {
-		digitalButtonData &= JOYBTN_FACE4;
+		digitalButtonData |= JOYBTN_FACE4;
 	}
 
 	// check for option buttons
 	if (buttonData & XINPUT_GAMEPAD_START) {
-		digitalButtonData &= JOYBTN_OPTION1;
+		digitalButtonData |= JOYBTN_OPTION1;
 	}
 
 	if (buttonData & XINPUT_GAMEPAD_BACK) {
-		digitalButtonData &= JOYBTN_OPTION2;
+		digitalButtonData |= JOYBTN_OPTION2;
 	}
 
 	// check for shoulder buttons ("bumper" or "L1/L2)
 	if (buttonData & XINPUT_GAMEPAD_LEFT_SHOULDER) {
-		digitalButtonData &= JOYBTN_SHOULDER1;
+		digitalButtonData |= JOYBTN_SHOULDER1;
 	}
 
 	if (buttonData & XINPUT_GAMEPAD_RIGHT_SHOULDER) {
-		digitalButtonData &= JOYBTN_SHOULDER2;
+		digitalButtonData |= JOYBTN_SHOULDER2;
 	}
 
 }

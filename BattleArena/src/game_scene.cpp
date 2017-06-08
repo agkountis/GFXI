@@ -156,6 +156,10 @@ void GameScene::Initialize()
 	G_RenderSystem.SetRenderPassPipeline(pipeline);
 
 	// --------------------------------------------------------------------------------------------------------------------
+
+	if (!G_InputManager.AssignDeviceToPlayer(Player::PLAYER1, 0)) {
+		BLADE_TRACE("Could not assign device 0 to player 1");
+	}
 }
 
 void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
@@ -194,6 +198,37 @@ void GameScene::OnMouseClick(int button, bool state, int x, int y) noexcept
 void GameScene::Update(float deltaTime, long time) noexcept
 {
 	Scene::Update(deltaTime, time);
+
+	G_InputManager.Update(deltaTime);
+
+	if (G_InputManager.GetActiveDevice(Player::PLAYER1) != nullptr)
+	{
+		InputState p1State{};
+		p1State = G_InputManager.GetActiveDevice(Player::PLAYER1)->GetInputState();
+
+		bool buttons[8];
+		buttons[0] = (p1State.digitalButtonData & JOYBTN_FACE1);
+		buttons[1] = (p1State.digitalButtonData & JOYBTN_FACE2);
+		buttons[2] = (p1State.digitalButtonData & JOYBTN_FACE3);
+		buttons[3] = (p1State.digitalButtonData & JOYBTN_FACE4);
+		buttons[4] = (p1State.digitalButtonData & JOYBTN_SHOULDER1);
+		buttons[5] = (p1State.digitalButtonData & JOYBTN_SHOULDER2);
+		buttons[6] = (p1State.digitalButtonData & JOYBTN_OPTION1);
+		buttons[7] = (p1State.digitalButtonData & JOYBTN_OPTION2);
+
+		BLADE_TRACE(
+			"A=[" << (int)((buttons[0])? 1 : 0) << "] " <<
+			"B=[" << (int)((buttons[1]) ? 1 : 0) << "] " <<
+			"X=[" << (int)((buttons[2]) ? 1 : 0) << "] " <<
+			"Y=[" << (int)((buttons[3]) ? 1 : 0) << "] " <<
+			"LB=[" << (int)((buttons[4]) ? 1 : 0) << "] " <<
+			"RB=[" << (int)((buttons[5]) ? 1 : 0) << "] " <<
+			"ST=[" << (int)((buttons[6]) ? 1 : 0) << "] " <<
+			"BK=[" << (int)((buttons[7]) ? 1 : 0) << "] "
+		);
+
+	}
+
 
 	G_SimulationSystem.Process(deltaTime);
 

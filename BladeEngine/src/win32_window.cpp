@@ -227,6 +227,7 @@ namespace Blade
 			//int delta = GET_WHEEL_DELTA_WPARAM(wparam);
 			break;
 		case WM_INPUT_DEVICE_CHANGE:
+			BLADE_TRACE("Input device " << ((wparam == GIDC_ARRIVAL) ? "inserted" : "removed"));
 			G_InputManager.EnumerateDevices();
 			break;
 		case WM_DESTROY:
@@ -294,10 +295,12 @@ namespace Blade
 		win = GetWindowLongPointer<Win32Window>(handle, GWL_USERDATA);
 		if (win)
 		{
+			/*
 			if (msg == WM_INPUT_DEVICE_CHANGE)
 			{
 				std::cerr << "input device change message:" << ((wparam == GIDC_ARRIVAL) ? "Added" : "Removed") << std::endl;
 			}
+			*/
 			
 			//execute the window specific win_proc.
 			return win->WinProc(handle, msg, wparam, lparam);

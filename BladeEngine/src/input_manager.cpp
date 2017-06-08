@@ -29,6 +29,27 @@ void InputManager::Update(float deltaTime)
 		}
 	}
 
+	// Check the device pool for device removals (connected=false)
+	auto it = m_DevicePool.begin();
+
+	while (it != m_DevicePool.end())
+	{
+		InputDevice* tempDev{ *it };
+
+		if (!tempDev->IsConnected())
+		{
+
+			it = m_DevicePool.erase(it);
+
+			delete tempDev;
+
+		}
+		else
+		{
+			++it;
+		}
+	}
+
 }
 
 bool InputManager::Initialize() noexcept
@@ -50,6 +71,9 @@ bool InputManager::Initialize() noexcept
 	}
 
 #endif
+
+	// Enumerate the devices
+	EnumerateDevices();
 
 	return true;
 }
@@ -82,7 +106,7 @@ int InputManager::EnumerateDevices() noexcept
 				XInputDevice* xDev = new XInputDevice(i, DeviceType::Joypad);
 
 				// Add the new device to the pool
-
+				BLADE_TRACE("Adding new device to device pool");
 				m_DevicePool.push_back(xDev);
 
 			}
@@ -219,6 +243,7 @@ bool Blade::InputManager::UnassignDevice(Player playerID)
 	// Remove from the active devices map
 	InputDevice* tempDev = itr->second;
 
+	BLADE_TRACE("Removing input device from active device map");
 	m_ActiveDevices.erase(itr);
 
 	// If the device is still connected, add it to the device pool

@@ -171,6 +171,8 @@ namespace Blade
 		*/
 		InputDevice(int device_id, DeviceType devType);
 
+		const InputState& GetInputState() const { return GetCurrentState(); }
+
 		/*
 		\brief Gets the device ID (input API handle)
 		*/

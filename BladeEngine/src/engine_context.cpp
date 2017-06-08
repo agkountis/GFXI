@@ -73,6 +73,13 @@ namespace Blade
 			return false;
 		}
 
+		if (!m_InputManager.Initialize())
+		{
+			BLADE_ERROR("Failed to initialize the Input system.");
+			return false;
+		}
+
+
 		return true;
 	}
 
