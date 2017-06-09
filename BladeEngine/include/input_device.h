@@ -135,6 +135,12 @@ namespace Blade
 	protected:
 
 		/*
+		\brief Filters input state data
+		\details Applies limits, scales and clamps for the device (such as deadzones and tolerances) to the specified input data
+		*/
+		void FilterStateData(const InputState& stateIn, InputState& stateOut) const;
+
+		/*
 		\brief Gets the device ID (input API handle)
 		*/
 		void SetDeviceID(int id) { m_deviceID = id; }
@@ -183,12 +189,6 @@ namespace Blade
 		\brief Gets the device ID (input API handle)
 		*/
 		int GetDeviceID() const { return m_deviceID; }
-
-		/*
-		\brief Filters input state data
-		\details Applies limits, scales and clamps for the device (such as deadzones and tolerances) to the specified input data
-		*/
-		void FilterStateData(const InputState& stateIn, InputState& stateOut) const;
 
 		/*
 		\brief Updates the active devices to the latest input states available and buffers the most recent previous state
