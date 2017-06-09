@@ -24,7 +24,7 @@ namespace Blade
 
 
 	public:
-		JoypadInputComponent(const std::string& type, Entity* parent, Player player_number);
+		JoypadInputComponent(const std::string& type, Entity* parent, Player joypad_number);
 
 		JoypadInputComponent(const JoypadInputComponent&other) = delete;
 
@@ -45,7 +45,7 @@ namespace Blade
 
 		const JoypadCommandMap& GetCommandMap() const noexcept
 		{
-			return m_JoypadCommandMap
+			return m_JoypadCommandMap;
 		}
 	
 	protected:

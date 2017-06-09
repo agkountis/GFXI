@@ -27,5 +27,6 @@ namespace Blade
 	bool KeyboardInputComponent::LoadConfiguration(const KeyboardCommandMap & map)
 	{
 		m_KeyboardCommandMap = map;
+		return true;
 	}
 }

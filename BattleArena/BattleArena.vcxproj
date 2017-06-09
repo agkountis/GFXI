@@ -163,6 +163,7 @@
     <ClCompile Include="src\game_scene_color_pass.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\multiplayer.cpp" />
+    <ClCompile Include="src\test_joypad_component.cpp" />
     <ClCompile Include="src\test_message.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +173,9 @@
     <ClInclude Include="include\game_scene_color_pass.h" />
     <ClInclude Include="include\network_message_types.h" />
     <ClInclude Include="include\multiplayer.h" />
+    <ClInclude Include="include\test_joypad_component.h" />
     <ClInclude Include="include\test_message.h" />
+    <ClInclude Include="src\commands_battle_arena.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\arcane_fountain.cfg" />

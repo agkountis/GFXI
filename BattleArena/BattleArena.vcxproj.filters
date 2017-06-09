@@ -56,6 +56,9 @@
     <ClCompile Include="src\assimp_utils.cpp">
       <Filter>src\utilities</Filter>
     </ClCompile>
+    <ClCompile Include="src\test_joypad_component.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
@@ -78,6 +81,12 @@
     </ClInclude>
     <ClInclude Include="include\assimp_utils.h">
       <Filter>include\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\test_joypad_component.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\commands_battle_arena.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

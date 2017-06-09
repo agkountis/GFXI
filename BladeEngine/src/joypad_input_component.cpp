@@ -29,5 +29,6 @@ namespace Blade
 	bool JoypadInputComponent::LoadConfiguration(const JoypadCommandMap & map)
 	{
 		m_JoypadCommandMap = map;
+		return true;
 	}
 }
