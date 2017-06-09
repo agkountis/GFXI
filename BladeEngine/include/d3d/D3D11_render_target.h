@@ -40,6 +40,11 @@ namespace Blade
 
 		void Clear(float* color) const noexcept;
 
+		void SetColorAttachment(ID3D11Texture2D* colorAttachment) noexcept
+		{
+			m_ColorAttachment.Attach(colorAttachment);
+		}
+
 		ID3D11ShaderResourceView* GetColorAttachment() const noexcept
 		{
 			return m_ColorAttachmentSrv.Get();

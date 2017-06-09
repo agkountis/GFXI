@@ -7,33 +7,9 @@
 #include "math_utils.h"
 #include "entity.h"
 #include "d3d/D3D11_texture.h"
+#include "uniform_buffers.h"
 
 using namespace Blade;
-
-//Temporary test
-struct UniformBuffer
-{
-	Mat4f MVP;
-	Mat4f ITMV;
-	Mat4f MV;
-	Mat4f V;
-	Mat4f textureMatrix;
-	Vec4f diffuse;
-	Vec4f specular;
-	int pointLightCount;
-	int directionalLightCount;
-	int spotlightCount;
-	int pad;
-};
-
-
-struct ParticleUniformBuffer
-{
-	Mat4f MVP;
-	Vec4f diffuse;
-};
-
-
 
 void GameSceneColorPassStage::DisplayToScreen() const
 {
@@ -204,10 +180,6 @@ bool GameSceneColorPassStage::Initialize()
 
 		return false;
 	}
-
-
-
-
 
 	m_DummyDiff = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"dummyDiff.jpg");
 	m_DummyDiff->SetTextureType(TEX_DIFFUSE);

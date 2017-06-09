@@ -16,6 +16,7 @@
 #include "bounding_sphere.h"
 #include "plane_collider.h"
 #include "emitter_component.h"
+#include "game_scene_color_pass_ovr.h"
 
 using namespace Blade;
 
@@ -174,6 +175,9 @@ void GameScene::Initialize()
 	//Allocate and initialize the a render pass pipeline stage.
 	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
 	colorPassStage->Initialize();
+
+//	GameSceneColorPassStageOvr* ovrPassStage{ new GameSceneColorPassStageOvr{ "Ovr pass" } };
+//	ovrPassStage->Initialize();
 
 	//Allocate a render pass pipeline and add the pass to it.
 	RenderPassPipeline* pipeline{ new RenderPassPipeline };

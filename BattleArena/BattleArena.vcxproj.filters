@@ -56,6 +56,9 @@
     <ClCompile Include="src\assimp_utils.cpp">
       <Filter>src\utilities</Filter>
     </ClCompile>
+    <ClCompile Include="src\game_scene_color_pass_ovr.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
@@ -79,6 +82,12 @@
     <ClInclude Include="include\assimp_utils.h">
       <Filter>include\utilities</Filter>
     </ClInclude>
+    <ClInclude Include="include\game_scene_color_pass_ovr.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\uniform_buffers.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="sdr\render_texture.ps.hlsl">
@@ -99,10 +108,14 @@
     <None Include="config\test.cfg">
       <Filter>configuration</Filter>
     </None>
-    <None Include="sdr\particles.ps.hlsl" />
-    <None Include="sdr\particles.vs.hlsl" />
     <None Include="config\arcane_fountain.cfg">
       <Filter>configuration</Filter>
+    </None>
+    <None Include="sdr\particles.ps.hlsl">
+      <Filter>sdr</Filter>
+    </None>
+    <None Include="sdr\particles.vs.hlsl">
+      <Filter>sdr</Filter>
     </None>
   </ItemGroup>
 </Project>

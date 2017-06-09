@@ -102,7 +102,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
-      <AdditionalDependencies>BladeEngine.lib;zlibstaticd.lib;assimp-vc140-mt-static-deb.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>BladeEngine.lib;zlibstaticd.lib;assimp-vc140-mt-static-deb.lib;LibOVR.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DirectX|x64'">
@@ -161,6 +161,7 @@
     <ClCompile Include="src\battle_arena_application.cpp" />
     <ClCompile Include="src\game_scene.cpp" />
     <ClCompile Include="src\game_scene_color_pass.cpp" />
+    <ClCompile Include="src\game_scene_color_pass_ovr.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\multiplayer.cpp" />
     <ClCompile Include="src\test_message.cpp" />
@@ -170,9 +171,11 @@
     <ClInclude Include="include\battle_arena_application.h" />
     <ClInclude Include="include\game_scene.h" />
     <ClInclude Include="include\game_scene_color_pass.h" />
+    <ClInclude Include="include\game_scene_color_pass_ovr.h" />
     <ClInclude Include="include\network_message_types.h" />
     <ClInclude Include="include\multiplayer.h" />
     <ClInclude Include="include\test_message.h" />
+    <ClInclude Include="include\uniform_buffers.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\arcane_fountain.cfg" />

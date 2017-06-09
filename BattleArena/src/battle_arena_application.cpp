@@ -61,7 +61,7 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 
 	BLADE_TRACE("BattleArenaApplication Initialization Starts!");
 
-	Application::SetLoadEntityCallback(AssimpUtils::LoadEntity);
+	SetLoadEntityCallback(AssimpUtils::LoadEntity);
 
 	Multiplayer::Initialize("config\\test.cfg");
 
