@@ -20,28 +20,39 @@ Blade::InputDevice::InputDevice(int device_id, DeviceType devType) : m_deviceID(
 
 void InputDevice::FilterStateData(const InputState& stateIn, InputState& stateOut) const
 {
+
 	// Zero the outgoing state
 	ZeroMemory(&stateOut, sizeof(InputState));
 
 	// Buttons - no processing; direct copy of flags
 	stateOut.digitalButtonData = stateIn.digitalButtonData;
-	
+
 	// Calculate ideal neutral state for both thumbsticks
 	float xShift = 0.5 * (THUMBSTICK_LIMIT_X_MAX - THUMBSTICK_LIMIT_X_MIN);
 	float yShift = 0.5 * (THUMBSTICK_LIMIT_Y_MAX - THUMBSTICK_LIMIT_Y_MIN);
 
-	// Left stick - from neutral position
-	float fMagnitudeL = glm::distance(
-		glm::vec2(0.0f , 0.0f),
-		glm::vec2(stateIn.stickLeft.axisX - xShift, stateIn.stickLeft.axisY - yShift)
-	);
+	float LX = stateIn.stickLeft.axisX;
+	float LY = stateIn.stickLeft.axisY;
+
+	//determine how far the controller is pushed
+	float magnitude = sqrt(LX*LX + LY*LY);
 
 	// Check against deadzone radius
-	if (fMagnitudeL > DEADZONE_ASTICK_L)
+	if (magnitude > DEADZONE_ASTICK_L)
 	{
-		// Calculate normalized position in active (not in deadzone, inside outer limit) range
-		stateOut.stickLeft.axisX = (stateIn.stickLeft.axisX) / THUMBSTICK_LIMIT_X_MAX;
-		stateOut.stickLeft.axisY = (stateIn.stickLeft.axisY) / THUMBSTICK_LIMIT_Y_MAX;
+
+		if (magnitude > THUMBSTICK_LIMIT_X_MAX) {
+
+			magnitude = THUMBSTICK_LIMIT_X_MAX;
+
+		}
+
+		magnitude -= DEADZONE_ASTICK_L;
+
+		float normalizedMagnitude = magnitude / (THUMBSTICK_LIMIT_X_MAX - DEADZONE_ASTICK_L);
+
+		stateOut.stickLeft.axisX = normalizedMagnitude * (stateIn.stickLeft.axisX / THUMBSTICK_LIMIT_X_MAX);
+		stateOut.stickLeft.axisY = normalizedMagnitude * (stateIn.stickLeft.axisY / THUMBSTICK_LIMIT_Y_MAX);
 	}
 	else {
 		// The position is inside the dead zone, set to zero (no input)
@@ -49,22 +60,26 @@ void InputDevice::FilterStateData(const InputState& stateIn, InputState& stateOu
 		stateOut.stickLeft.axisY = 0;
 	}
 
-	// Distance from device neutral to RIGHT stick position
-	float fMagnitudeR = glm::distance(
-		glm::vec2(xShift, yShift),
-		glm::vec2(stateIn.stickRight.axisX, stateIn.stickRight.axisY)
-	);
+	float RX = stateIn.stickRight.axisX;
+	float RY = stateIn.stickRight.axisY;
+
+	magnitude = sqrt(RX * RX + RY * RY);
 
 	// Check right stick against deadzone radius
-	if (fMagnitudeR > DEADZONE_ASTICK_R)
+	if (magnitude > DEADZONE_ASTICK_R)
 	{
-		// Calculate new working zone for analog sticks (range minus dead zone)
+		if (magnitude > THUMBSTICK_LIMIT_X_MAX) {
 
-		// Calculate normalized position in active (not in deadzone, inside outer limit) range
-		fMagnitudeR -= DEADZONE_ASTICK_R;
+			magnitude = THUMBSTICK_LIMIT_X_MAX;
 
-		stateOut.stickRight.axisX = (stateIn.stickRight.axisX / STICK_THRESHOLD);
-		stateOut.stickRight.axisY = (stateIn.stickRight.axisY / STICK_THRESHOLD);
+		}
+
+		magnitude -= DEADZONE_ASTICK_R;
+
+		float normalizedMagnitude = magnitude / (THUMBSTICK_LIMIT_X_MAX - DEADZONE_ASTICK_R);
+
+		stateOut.stickRight.axisX = normalizedMagnitude * (stateIn.stickRight.axisX / STICK_THRESHOLD);
+		stateOut.stickRight.axisY = normalizedMagnitude * (stateIn.stickRight.axisY / STICK_THRESHOLD);
 	}
 	else {
 		// The position is inside the dead zone, set to zero (no input)
