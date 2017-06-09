@@ -13,7 +13,7 @@ namespace Blade
 
 		using KeyboardCommandMap = std::map<int, std::shared_ptr<Command>>;
 
-		KeyboardInputComponent(const std::string& type, Entity* parent);
+		explicit KeyboardInputComponent(Entity* parent);
 
 		KeyboardInputComponent(const KeyboardInputComponent& other) = delete;
 
@@ -23,7 +23,7 @@ namespace Blade
 
 		virtual void Update(const float dt, const long time = 0) noexcept =0;
 
-		virtual void SetUp() noexcept = 0;
+		virtual void Setup() noexcept = 0;
 		
 		virtual void Teardown() noexcept = 0;
 

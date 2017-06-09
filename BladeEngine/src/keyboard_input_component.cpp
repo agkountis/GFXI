@@ -2,8 +2,8 @@
 
 namespace Blade
 {
-	KeyboardInputComponent::KeyboardInputComponent(const std::string & type, Entity * parent)
-		:InputComponent(type,parent)
+	KeyboardInputComponent::KeyboardInputComponent( Entity * parent)
+		:InputComponent("co_kic",parent)
 	{
 	}
 	KeyboardInputComponent::~KeyboardInputComponent()

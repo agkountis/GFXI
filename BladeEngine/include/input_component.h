@@ -16,7 +16,7 @@ namespace Blade
 		\param type The type of the InputComponent as a string
 		\param parent The entity the InputComponent will be attached to.
 		*/
-		InputComponent(const std::string& type, Entity* parent);
+		explicit InputComponent(const std::string& type, Entity* parent);
 
 		InputComponent(const InputComponent& other) = delete;
 
@@ -29,7 +29,7 @@ namespace Blade
 		*/
 		virtual void Update(const float dt, const long time = 0) noexcept = 0;
 
-		virtual void SetUp() noexcept = 0;
+		virtual void Setup() noexcept = 0;
 
 		virtual void Teardown() noexcept = 0;
 			

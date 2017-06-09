@@ -16,6 +16,8 @@
 #include "bounding_sphere.h"
 #include "plane_collider.h"
 #include "emitter_component.h"
+#include "test_joypad_component.h"
+#include "input_manager.h"
 
 using namespace Blade;
 
@@ -69,6 +71,7 @@ void GameScene::Initialize()
 	rc->SetMaterial(material);
 	SimulationComponent* simC{ new SimulationComponent{entity,1.0f} };
 	ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(1.0f)} };
+	
 
 	auto cache_entity = entity;
 
@@ -86,6 +89,9 @@ void GameScene::Initialize()
 	ec->SetStartColor(Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f });
 	ec->SetEndColor(Vec4f{ 1.0f, 1.0f, 1.0f, 0.1f });
 	ec->SetBlendStateType(RenderStateType::BS_BLEND_ADDITIVE);
+
+	TestJoypadComponent* tjc{ new TestJoypadComponent{ entity,Blade::Player::PLAYER1 } };
+	tjc->Setup();
 
 	Texture* tex{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"expl02.png") };
 	tex->SetTextureType(TEX_DIFFUSE);
