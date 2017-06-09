@@ -206,7 +206,7 @@ bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber
 {
 
 	// Exceeded bounds
-	if (deviceNumber > m_DevicePool.size() || deviceNumber < 0)
+	if (deviceNumber > m_DevicePool.size() || deviceNumber < 0 || m_DevicePool.size()==0)
 	{
 
 		return false;
