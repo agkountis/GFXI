@@ -2,6 +2,96 @@
 
 using namespace Blade;
 
+bool Blade::InputManager::QueryDeviceState(Player player, Input_Sensor btn)
+{
+
+	InputDevice* dev = GetActiveDevice(player);
+
+	if (dev == nullptr) {
+
+		return false;
+
+	}
+
+	// if the caller is requesting one of the analog sticks
+	if (btn == Input_Sensor::STICK_LEFT)
+	{
+		// left stick
+		return (dev->GetInputState().stickLeft.axisX != 0.0f || dev->GetInputState().stickLeft.axisY != 0.0f);
+	} 
+	else if (btn == Input_Sensor::STICK_RIGHT)
+	{
+		// right stick
+		return (dev->GetInputState().stickRight.axisX != 0.0f || dev->GetInputState().stickRight.axisY != 0.0f);
+	}
+	else if (btn == Input_Sensor::TRIGGER_LEFT)
+	{
+		// left trigger
+		return (dev->GetInputState().triggerLeft != 0.0f);
+	}
+	else if (btn == Input_Sensor::TRIGGER_RIGHT)
+	{
+		// right trigger
+		return (dev->GetInputState().triggerRight != 0.0f);
+	}
+	else
+	{
+		// Digital button bit mask
+		return ((dev->GetInputState().digitalButtonData & btn) != 0);
+	}
+
+	// catch-all
+	return false;
+}
+
+bool InputManager::QueryDeviceAllStates(Player player, std::map<Input_Sensor, bool>& stateMap)
+{
+
+	InputDevice* dev = GetActiveDevice(player);
+
+	if (dev == nullptr) {
+
+		return false;
+
+	}
+
+	InputState inState = dev->GetInputState();
+
+	// Digital sensors to iterate
+	Input_Sensor digitalSensors[]{
+		BTN_FACE_1,
+		BTN_FACE_2,
+		BTN_FACE_3,
+		BTN_FACE_4,
+		BTN_OPTION_1,
+		BTN_OPTION_2,
+		BTN_SHOULDER_L,
+		BTN_SHOULDER_R,
+		BTN_STICK_L,
+		BTN_STICK_R,
+		DPAD_UP,
+		DPAD_DOWN,
+		DPAD_LEFT,
+		DPAD_RIGHT
+	};
+
+	for (auto sensor : digitalSensors) {
+		// check bit flag
+		stateMap[sensor] = ((inState.digitalButtonData & sensor) != 0);
+	}
+
+	// Analog Sticks
+	stateMap[STICK_LEFT] = (inState.stickLeft.axisX != 0.0f || inState.stickLeft.axisY != 0.0f);
+	stateMap[STICK_RIGHT] = (inState.stickRight.axisX != 0.0f || inState.stickRight.axisY != 0.0f);
+
+	// Analog Triggers
+	stateMap[TRIGGER_LEFT] = (inState.triggerLeft > 0.0f);
+	stateMap[TRIGGER_RIGHT] = (inState.triggerRight > 0.0f);
+
+
+	return true;
+}
+
 void InputManager::Update(float deltaTime)
 {
 
@@ -77,7 +167,6 @@ bool InputManager::Initialize() noexcept
 
 	return true;
 }
-
 
 int InputManager::EnumerateDevices() noexcept
 {

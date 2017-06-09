@@ -11,6 +11,7 @@
 
 #include "trace.h"
 #include "xinput_device.h"
+#include "input_state.h"
 
 // required library files
 #pragma comment (lib, "Xinput.lib")
@@ -54,6 +55,15 @@ namespace Blade
 		std::map<Player, InputDevice*> m_ActiveDevices;
 
 	public:
+		/**
+		* \brief Query the state of a sensor on an active pad linked to player
+		*/
+		bool QueryDeviceState(Player player, Input_Sensor sensor);
+
+		/**
+		* \brief Query the input states of sensors on an active device linked to player, return in supplied map
+		*/
+		bool QueryDeviceAllStates(Player player, std::map<Input_Sensor, bool>& map);
 
 		/**
 		* \brief Update the states of managed input devices, and re-enumerate input devices

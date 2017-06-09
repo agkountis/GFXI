@@ -60,6 +60,30 @@
 
 namespace Blade
 {
+	/*
+	* \brief Enumeration for input device buttons (digital values)
+	* \details Uses bit flags defined in the device to for mappings where available
+	*/
+	enum Input_Sensor {
+		BTN_FACE_1 = JOYBTN_FACE1,
+		BTN_FACE_2 = JOYBTN_FACE2,
+		BTN_FACE_3 = JOYBTN_FACE3,
+		BTN_FACE_4 = JOYBTN_FACE4,
+		BTN_STICK_L = JOYBTN_STICKL,
+		BTN_STICK_R = JOYBTN_STICKR,
+		BTN_SHOULDER_L = JOYBTN_SHOULDER1,
+		BTN_SHOULDER_R = JOYBTN_SHOULDER2,
+		BTN_OPTION_1 = JOYBTN_OPTION1,
+		BTN_OPTION_2 = JOYBTN_OPTION2,
+		DPAD_UP = JOYDPAD_UP,
+		DPAD_DOWN = JOYDPAD_DOWN,
+		DPAD_LEFT = JOYDPAD_LEFT,
+		DPAD_RIGHT = JOYDPAD_RIGHT,
+		TRIGGER_LEFT,
+		TRIGGER_RIGHT,
+		STICK_LEFT,
+		STICK_RIGHT,
+	};
 
 	/**
 	* \brief Thumbstick structure to hold X/Y axis information
