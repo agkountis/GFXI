@@ -1,8 +1,8 @@
 #include "command.h"
 #include "entity.h"
 #include <iostream>
-#include "engine_context.h"
 #include "test_joypad_component.h"
+#include "engine_context.h"
 
 
 
@@ -28,9 +28,13 @@ public:
 
 class PrintStick : public Blade::Command
 {
+	
 public:
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
-		std::cout << "AAA" << std::endl;
+	using namespace Blade;
+	auto vec = G_InputManager.GetAnalogStickVector(Player::PLAYER1, Input_Sensor::STICK_LEFT);
+	
+	std::cout << vec.x <<", "<<vec.y << std::endl;
 	}
 };
