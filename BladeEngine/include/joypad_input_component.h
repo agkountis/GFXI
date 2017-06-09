@@ -15,7 +15,6 @@ namespace Blade
 	{
 		using JoypadCommandMap = std::map<Input_Sensor, std::shared_ptr<Command>>;
 
-
 	public:
 		explicit JoypadInputComponent(Entity* parent, Player joypad_number);
 
@@ -51,7 +50,8 @@ namespace Blade
 		use a pre-defined key bindings and control scheme
 		*/
 		JoypadCommandMap m_JoypadCommandMap;
-		Player m_Player;
+	public:
+		Player m_Player; //#debug
 	};
 }
 

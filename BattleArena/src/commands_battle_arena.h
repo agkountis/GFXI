@@ -2,6 +2,9 @@
 #include "entity.h"
 #include <iostream>
 #include "engine_context.h"
+#include "test_joypad_component.h"
+
+
 
 class PrintA : public Blade::Command
 {
