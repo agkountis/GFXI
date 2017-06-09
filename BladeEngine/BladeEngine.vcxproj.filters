@@ -81,6 +81,12 @@
     <Filter Include="src\input">
       <UniqueIdentifier>{4c6bd46d-1072-4935-ba11-e064860de990}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\components\input_components">
+      <UniqueIdentifier>{647b8622-8ae8-469e-8be6-c31550b3c2fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\components\input_components">
+      <UniqueIdentifier>{84d444f5-ca44-4b8e-a77c-cb586be87a43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -368,6 +374,18 @@
     <ClInclude Include="include\cfg.h">
       <Filter>include\configuration</Filter>
     </ClInclude>
+    <ClInclude Include="include\input_component.h">
+      <Filter>include\components\input_components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\keyboard_input_component.h">
+      <Filter>include\components\input_components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\command.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\joypad_input_component.h">
+      <Filter>include\components\input_components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -594,6 +612,15 @@
     </ClCompile>
     <ClCompile Include="src\cfg.cpp">
       <Filter>src\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input_component.cpp">
+      <Filter>src\components\input_components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\keyboard_input_component.cpp">
+      <Filter>src\components\input_components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\joypad_input_component.cpp">
+      <Filter>src\components\input_components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
