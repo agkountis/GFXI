@@ -6,8 +6,9 @@
 
 namespace Blade
 {
-	static const std::wstring MODELS_PATH{ L"data\\models\\" };
-	static const std::wstring TEXTURE_PATH{ L"data\\textures\\" };
+	static const std::wstring MODELS_PATH{ L"data/models/" };
+	static const std::wstring TEXTURE_PATH{ L"data/textures/" };
+	static const std::wstring CONFIGURATION_PATH{ L"config/" };
 
 	static int s_Id = 0;
 

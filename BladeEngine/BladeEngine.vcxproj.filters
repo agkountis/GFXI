@@ -359,6 +359,15 @@
     <ClInclude Include="include\emitter_component.h">
       <Filter>include\components</Filter>
     </ClInclude>
+    <ClInclude Include="include\animation.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\string_utils.h">
+      <Filter>include\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cfg.h">
+      <Filter>include\configuration</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -576,6 +585,15 @@
     </ClCompile>
     <ClCompile Include="src\behaviour_component.cpp">
       <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\string_utils.cpp">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cfg.cpp">
+      <Filter>src\configuration</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

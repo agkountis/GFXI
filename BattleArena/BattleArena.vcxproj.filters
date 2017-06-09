@@ -53,7 +53,7 @@
     <ClCompile Include="src\multiplayer.cpp">
       <Filter>src\networking</Filter>
     </ClCompile>
-    <ClCompile Include="assimp_utils.cpp">
+    <ClCompile Include="src\assimp_utils.cpp">
       <Filter>src\utilities</Filter>
     </ClCompile>
   </ItemGroup>
@@ -76,7 +76,7 @@
     <ClInclude Include="include\multiplayer.h">
       <Filter>include\networking</Filter>
     </ClInclude>
-    <ClInclude Include="assimp_utils.h">
+    <ClInclude Include="include\assimp_utils.h">
       <Filter>include\utilities</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,5 +101,8 @@
     </None>
     <None Include="sdr\particles.ps.hlsl" />
     <None Include="sdr\particles.vs.hlsl" />
+    <None Include="config\arcane_fountain.cfg">
+      <Filter>configuration</Filter>
+    </None>
   </ItemGroup>
 </Project>

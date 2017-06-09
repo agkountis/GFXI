@@ -5,9 +5,8 @@
 #include "shader_program_manager.h"
 #include "game_scene.h"
 #include "multiplayer.h"
-#include "ncf.h"
 #include "trace.h"
-#include "../assimp_utils.h"
+#include "assimp_utils.h"
 
 using namespace Blade;
 

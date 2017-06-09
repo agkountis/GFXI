@@ -10,27 +10,15 @@
 #include "d3d/D3D11_texture.h"
 #include <sstream>
 #include "bounding_sphere.h"
+#include "string_utils.h"
 
 using namespace Blade;
+using namespace StringUtils;
 
 static unsigned int s_MeshCount{ 0 };
 
 namespace AssimpUtils
 {
-	static std::string ToString(const std::wstring& wstring)
-	{
-		std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
-
-		return converter.to_bytes(wstring);
-	}
-
-	static std::wstring ToWstring(const std::string& string)
-	{
-		std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
-
-		return converter.from_bytes(string);
-	}
-
 	Vec2f AssToBlade(const aiVector2D& v) noexcept
 	{
 		return Vec2f{ v.x, v.y };
@@ -138,13 +126,6 @@ namespace AssimpUtils
 		G_ResourceManager.RegisterResource(m, ToWstring(m->GetName()));
 
 		return m;
-	}
-
-	std::wstring GetTextureFileName(const std::wstring& path) noexcept
-	{
-		std::wcout << path << std::endl;
-
-		return L"";
 	}
 
 	Material LoadAssMaterial(const aiMaterial* aiMaterial) noexcept
@@ -255,7 +236,7 @@ namespace AssimpUtils
 		Entity* entity{ new Entity{ name } };
 
 		std::vector<std::string> splitString;
-		Split(name, '_', splitString);
+		Split(name, ',', splitString);
 
 		if (splitString[0] == "COL")
 		{
@@ -267,6 +248,14 @@ namespace AssimpUtils
 				s >> radius;
 				ColliderComponent* cc{ new ColliderComponent{entity, std::make_unique<BoundingSphere>(radius)} };
 			}
+		}
+
+		if (splitString[0] == "EM")
+		{
+			EmitterDescriptor* ed{ G_ResourceManager.Get<EmitterDescriptor>(CONFIGURATION_PATH + ToWstring(splitString[1])) };
+
+			EmitterComponent* em{ new EmitterComponent{entity, *ed} };
+			em->SetMesh(G_ResourceManager.Get<Mesh>(L"plane"));
 		}
 
 		// Mesh and Material loading

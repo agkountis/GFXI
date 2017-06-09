@@ -23,8 +23,6 @@ namespace AssimpUtils
 
 	long AssToBlade(const aiAnimation* aiAnim, double aiTime) noexcept;
 
-	std::wstring GetTextureFileName(const std::wstring& path) noexcept;
-
 	Blade::Entity* LoadAssNode(const aiScene* aiScene, const aiNode* aiNode) noexcept;
 
 	Blade::Mesh* LoadAssMesh(const aiMesh* aiMesh) noexcept;
@@ -33,9 +31,6 @@ namespace AssimpUtils
 
 	bool LoadEntity(const std::wstring& fileName, Blade::Entity* thisObject) noexcept;
 
-	//TODO: Remember to clean up assimp.
-	//TODO: Figure out who cleans up the entities.
-	//TODO: Figure out how to load correct material values.
 	//TODO: Implement animation loading and animation engine structure.
 }
 

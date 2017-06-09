@@ -20,7 +20,15 @@ namespace Blade
 			delete component;
 		}
 
+
 		m_Components.clear();
+
+		for (auto child : m_Children)
+		{
+			delete child;
+		}
+
+		m_Children.clear();
 	}
 
 	Entity::Entity(const Entity& other)
