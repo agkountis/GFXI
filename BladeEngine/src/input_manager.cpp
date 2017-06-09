@@ -1,8 +1,34 @@
 #include "input_manager.h"
-
 using namespace Blade;
 
-bool Blade::InputManager::QueryDeviceState(Player player, Input_Sensor btn)
+Vec2f InputManager::GetAnalogStickVector(Player player, Input_Sensor sensor)
+{
+
+	InputDevice* dev = GetActiveDevice(player);
+
+	if (dev == nullptr) {
+
+		// return a zero vector (equivalent to no input)
+		return Vec2f(0.0f, 0.0f);
+
+	}
+
+	InputState inState = dev->GetInputState();
+	
+	if (sensor == STICK_LEFT)
+	{
+		return Vec2f(inState.stickLeft.axisX, inState.stickLeft.axisY);
+	}
+	else if (sensor == STICK_RIGHT)
+	{
+		return Vec2f(inState.stickRight.axisX, inState.stickRight.axisY);
+	}
+
+	// Catch-All
+	return Vec2f(0.0f, 0.0f);
+}
+
+bool InputManager::QueryDeviceState(Player player, Input_Sensor btn)
 {
 
 	InputDevice* dev = GetActiveDevice(player);

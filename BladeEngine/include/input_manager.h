@@ -12,6 +12,7 @@
 #include "trace.h"
 #include "xinput_device.h"
 #include "input_state.h"
+#include "types.h"
 
 // required library files
 #pragma comment (lib, "Xinput.lib")
@@ -55,6 +56,9 @@ namespace Blade
 		std::map<Player, InputDevice*> m_ActiveDevices;
 
 	public:
+
+		Vec2f GetAnalogStickVector(Player player, Input_Sensor sensor);
+
 		/**
 		* \brief Query the state of a sensor on an active pad linked to player
 		*/
