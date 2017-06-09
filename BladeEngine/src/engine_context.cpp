@@ -25,19 +25,14 @@ namespace Blade
 	SimulationSystem EngineContext::m_SimulationSystem;
 	ParticleSystem EngineContext::m_ParticleSystem;
 
+
 	// Managers
 	NetworkManager EngineContext::m_NetworkManager;
 	RenderStateManager EngineContext::m_RenderStateManager;
 	ResourceManager EngineContext::m_ResourceManager;
 	SceneManager EngineContext::m_SceneManager;
 	ShaderProgramManager EngineContext::m_ShaderProgramManager;
-	
-
-	
-
-	
-
-	
+	InputManager EngineContext::m_InputManager;
 
 	bool EngineContext::Initialize()
 	{
@@ -84,6 +79,13 @@ namespace Blade
 			BLADE_ERROR("Failed to initialize the NetworkManager.");
 			return false;
 		}
+
+		if (!m_InputManager.Initialize())
+		{
+			BLADE_ERROR("Failed to initialize the Input system.");
+			return false;
+		}
+
 
 		return true;
 	}
@@ -146,6 +148,11 @@ namespace Blade
 	ShaderProgramManager& EngineContext::GetShaderProgramManager() noexcept
 	{
 		return m_ShaderProgramManager;
+	}
+
+	InputManager& EngineContext::GetInputManager() noexcept
+	{
+		return m_InputManager;
 	}
 
 	void EngineContext::RegisterApplication(Application* application) noexcept

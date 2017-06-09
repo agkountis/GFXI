@@ -11,9 +11,11 @@ namespace Blade
 	using MouseFunc = void(*)(int, bool, int, int);
 	using MotionFunc = void(*)(int, int);
 	using PassiveMotionFunc = void(*)(int, int);
+	using AddRemoveInputDeviceFunc = void(*)();
 
 	struct WindowFunctionCallbacks
 	{
+		AddRemoveInputDeviceFunc device_change_func{ nullptr };
 		ReshapeFunc reshape_func{ nullptr };
 		KeyboardFunc keyboard_func{ nullptr };
 		KeyboardUpFunc keyboard_up_func{ nullptr };

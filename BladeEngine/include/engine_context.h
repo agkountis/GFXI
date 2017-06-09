@@ -12,7 +12,7 @@
 #include "resource_manager.h"
 #include "scene_manager.h"
 #include "shader_program_manager.h"
-#include "particle_system.h"
+#include "input_manager.h"
 
 namespace Blade
 {
@@ -40,7 +40,6 @@ namespace Blade
 		static LightSystem m_LightSystem;
 		static SimulationSystem m_SimulationSystem;
 		static BehaviourSystem m_BehaviourSystem;
-		static ParticleSystem m_ParticleSystem;
 
 		// Managers
 		static NetworkManager m_NetworkManager;
@@ -48,6 +47,7 @@ namespace Blade
 		static ResourceManager m_ResourceManager;
 		static SceneManager m_SceneManager;
 		static ShaderProgramManager m_ShaderProgramManager;
+		static InputManager m_InputManager;
 
 	public:
 		EngineContext() = default;
@@ -74,8 +74,6 @@ namespace Blade
 
 		static BehaviourSystem& GetBehaviourSystem() noexcept;
 
-		static ParticleSystem& GetParticleSystem() noexcept;
-
 		static NetworkManager& GetNetworkManager() noexcept;
 
 		static RenderStateManager& GetRenderStateManager() noexcept;
@@ -85,6 +83,8 @@ namespace Blade
 		static SceneManager& GetSceneManager() noexcept;
 
 		static ShaderProgramManager& GetShaderProgramManager() noexcept;
+
+		static InputManager& GetInputManager() noexcept;
 
 		static void RegisterApplication(Application* application) noexcept;
 
@@ -100,13 +100,13 @@ namespace Blade
 #define G_LightSystem EngineContext::GetLightSystem()
 #define G_SimulationSystem EngineContext::GetSimulationSystem()
 #define G_BehaviourSystem EngineContext::GetBehaviourSystem()
-#define G_ParticleSystem  EngineContext::GetParticleSystem()
 
 #define G_NetworkManager EngineContext::GetNetworkManager()
 #define G_RenderStateManager EngineContext::GetRenderStateManager()
 #define G_ResourceManager EngineContext::GetResourceManager()
 #define G_SceneManager EngineContext::GetSceneManager()
 #define G_ShaderProgramManager EngineContext::GetShaderProgramManager()
+#define G_InputManager EngineContext::GetInputManager()
 
 #define G_Application EngineContext::GetApplication()
 }

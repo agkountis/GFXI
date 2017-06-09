@@ -2,21 +2,16 @@
 
 using namespace Blade;
 
-void Blade::InputManager::Update(float deltaTime)
+void InputManager::Update(float deltaTime)
 {
 
 	// re-enumerate input API for any newly connected devices since the last check
 	int result = EnumerateDevices();
 
-	InputDevice* tempDev{ nullptr };
-
-	std::map<Player, InputDevice*>::iterator itr = m_ActiveDevices.begin();
-
 	// Update the state of active input devices (in the active map, with player assignments)
-	for (itr = m_ActiveDevices.begin(); itr != m_ActiveDevices.end(); ++itr)
+	for (auto& entry : m_ActiveDevices) 
 	{
-
-		tempDev = itr->second;
+		InputDevice* tempDev{ entry.second };
 
 		// If the device is connected
 		if (tempDev->IsConnected())
@@ -25,12 +20,34 @@ void Blade::InputManager::Update(float deltaTime)
 			tempDev->Update(deltaTime);
 
 		}
-		else {
+		else 
+		{
 
-			// act on disconnection
-			
+			// Unassign the device from player, and delete if disconnected
+			UnassignDevice(entry.first);
+	
 		}
+	}
 
+	// Check the device pool for device removals (connected=false)
+	auto it = m_DevicePool.begin();
+
+	while (it != m_DevicePool.end())
+	{
+		InputDevice* tempDev{ *it };
+
+		if (!tempDev->IsConnected())
+		{
+
+			it = m_DevicePool.erase(it);
+
+			delete tempDev;
+
+		}
+		else
+		{
+			++it;
+		}
 	}
 
 }
@@ -54,6 +71,9 @@ bool InputManager::Initialize() noexcept
 	}
 
 #endif
+
+	// Enumerate the devices
+	EnumerateDevices();
 
 	return true;
 }
@@ -86,7 +106,7 @@ int InputManager::EnumerateDevices() noexcept
 				XInputDevice* xDev = new XInputDevice(i, DeviceType::Joypad);
 
 				// Add the new device to the pool
-
+				BLADE_TRACE("Adding new device to device pool");
 				m_DevicePool.push_back(xDev);
 
 			}
@@ -186,7 +206,7 @@ bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber
 {
 
 	// Exceeded bounds
-	if (deviceNumber > m_DevicePool.size() || deviceNumber < 0)
+	if (deviceNumber > m_DevicePool.size() || deviceNumber < 0 || m_DevicePool.size()==0)
 	{
 
 		return false;
@@ -223,6 +243,7 @@ bool Blade::InputManager::UnassignDevice(Player playerID)
 	// Remove from the active devices map
 	InputDevice* tempDev = itr->second;
 
+	BLADE_TRACE("Removing input device from active device map");
 	m_ActiveDevices.erase(itr);
 
 	// If the device is still connected, add it to the device pool
@@ -242,8 +263,7 @@ bool Blade::InputManager::UnassignDevice(Player playerID)
 	return false;
 }
 
-
-InputDevice * Blade::InputManager::GetActiveDevice(Player playerID)
+InputDevice * InputManager::GetActiveDevice(Player playerID)
 {
 
 	// Find by iterator
@@ -266,43 +286,19 @@ InputDevice * Blade::InputManager::GetActiveDevice(Player playerID)
 
 Blade::InputManager::~InputManager()
 {
-
 	// invalidate and release active input devices
-
-	std::map<Player, InputDevice*>::iterator itrActive = m_ActiveDevices.begin();
-
-	InputDevice* tempDevice{ nullptr };
-
-	for (itrActive = m_ActiveDevices.begin(); itrActive != m_ActiveDevices.end(); ++itrActive)
+	for (auto& entry : m_ActiveDevices)
 	{
-
-		tempDevice = itrActive->second;
-
-		// remove from map
-		m_ActiveDevices.erase(itrActive);
-
-		// delete object
-		delete tempDevice;
-
+		delete entry.second;
 	}
+
+	m_ActiveDevices.clear();
 
 	// invalidate and release inactive devices in the device pool
-
-	std::vector<InputDevice*>::iterator itrPool = m_DevicePool.begin();
-
-	tempDevice = nullptr;
-
-	for (itrPool = m_DevicePool.begin(); itrPool != m_DevicePool.end(); ++itrPool)
+	for (auto inputDevice : m_DevicePool)
 	{
-
-		tempDevice = *itrPool;
-
-		// remove from pool
-		m_DevicePool.erase(itrPool);
-
-		// delete object
-		delete tempDevice;
-
+		delete inputDevice;
 	}
 
+	m_DevicePool.clear();
 }

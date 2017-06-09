@@ -183,6 +183,10 @@ void GameScene::Initialize()
 	G_RenderSystem.SetRenderPassPipeline(pipeline);
 
 	// --------------------------------------------------------------------------------------------------------------------
+
+	if (!G_InputManager.AssignDeviceToPlayer(Player::PLAYER1, 0)) {
+		BLADE_TRACE("Could not assign device 0 to player 1");
+	}
 }
 
 void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
@@ -220,7 +224,21 @@ void GameScene::OnMouseClick(int button, bool state, int x, int y) noexcept
 
 void GameScene::Update(float deltaTime, long time) noexcept
 {
+	G_InputManager.Update(deltaTime);
+
 	Scene::Update(deltaTime, time);
+
+	
+
+	if (G_InputManager.GetActiveDevice(Player::PLAYER1) != nullptr)
+	{
+		InputState p1State{};
+		p1State = G_InputManager.GetActiveDevice(Player::PLAYER1)->GetInputState();
+
+		G_InputManager.GetActiveDevice(Player::PLAYER1)->SetVibration(p1State.triggerLeft, p1State.triggerRight);
+
+	}
+
 
 	G_SimulationSystem.Process(deltaTime);
 

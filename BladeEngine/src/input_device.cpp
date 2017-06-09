@@ -18,6 +18,81 @@ Blade::InputDevice::InputDevice(int device_id, DeviceType devType) : m_deviceID(
 {
 }
 
+void InputDevice::FilterStateData(const InputState& stateIn, InputState& stateOut) const
+{
+
+	// Zero the outgoing state
+	ZeroMemory(&stateOut, sizeof(InputState));
+
+	// Buttons - no processing; direct copy of flags
+	stateOut.digitalButtonData = stateIn.digitalButtonData;
+
+	// Calculate ideal neutral state for both thumbsticks
+	float xShift = 0.5 * (THUMBSTICK_LIMIT_X_MAX - THUMBSTICK_LIMIT_X_MIN);
+	float yShift = 0.5 * (THUMBSTICK_LIMIT_Y_MAX - THUMBSTICK_LIMIT_Y_MIN);
+
+	float LX = stateIn.stickLeft.axisX;
+	float LY = stateIn.stickLeft.axisY;
+
+	//determine how far the controller is pushed
+	float magnitude = sqrt(LX*LX + LY*LY);
+
+	// Check against deadzone radius
+	if (magnitude > DEADZONE_ASTICK_L)
+	{
+
+		if (magnitude > THUMBSTICK_LIMIT_X_MAX) {
+
+			magnitude = THUMBSTICK_LIMIT_X_MAX;
+
+		}
+
+		magnitude -= DEADZONE_ASTICK_L;
+
+		float normalizedMagnitude = magnitude / (THUMBSTICK_LIMIT_X_MAX - DEADZONE_ASTICK_L);
+
+		stateOut.stickLeft.axisX = normalizedMagnitude * (stateIn.stickLeft.axisX / THUMBSTICK_LIMIT_X_MAX);
+		stateOut.stickLeft.axisY = normalizedMagnitude * (stateIn.stickLeft.axisY / THUMBSTICK_LIMIT_Y_MAX);
+	}
+	else {
+		// The position is inside the dead zone, set to zero (no input)
+		stateOut.stickLeft.axisX = 0;
+		stateOut.stickLeft.axisY = 0;
+	}
+
+	float RX = stateIn.stickRight.axisX;
+	float RY = stateIn.stickRight.axisY;
+
+	magnitude = sqrt(RX * RX + RY * RY);
+
+	// Check right stick against deadzone radius
+	if (magnitude > DEADZONE_ASTICK_R)
+	{
+		if (magnitude > THUMBSTICK_LIMIT_X_MAX) {
+
+			magnitude = THUMBSTICK_LIMIT_X_MAX;
+
+		}
+
+		magnitude -= DEADZONE_ASTICK_R;
+
+		float normalizedMagnitude = magnitude / (THUMBSTICK_LIMIT_X_MAX - DEADZONE_ASTICK_R);
+
+		stateOut.stickRight.axisX = normalizedMagnitude * (stateIn.stickRight.axisX / STICK_THRESHOLD);
+		stateOut.stickRight.axisY = normalizedMagnitude * (stateIn.stickRight.axisY / STICK_THRESHOLD);
+	}
+	else {
+		// The position is inside the dead zone, set to zero (no input)
+		stateOut.stickRight.axisX = 0;
+		stateOut.stickRight.axisY = 0;
+	}
+
+	// Triggers - Normalize to [0.0 .. 1.0] float
+	stateOut.triggerLeft = stateIn.triggerLeft / TRIGGER_THRESHOLD;
+	stateOut.triggerRight = stateIn.triggerRight / TRIGGER_THRESHOLD;
+
+}
+
 void InputDevice::SetDeadzone(Analog_Deadzone flag, float value)
 {
 

@@ -98,10 +98,11 @@ namespace Blade
 		bool AssignDeviceToPlayer(Player playerID, int deviceNumber);
 
 		/**
-		* \brief Unassigns an input device from a player.
+		* \brief Unassigns an input device from a player (by player ID).
 		* \return Destroy the association between player and device, and mark device as inactive
 		*/
 		bool UnassignDevice(Player playerID);
+
 
 		/**
 		* \brief Returns an active (not in the pool) assigned input device, searched by player
