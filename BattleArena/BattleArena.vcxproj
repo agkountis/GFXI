@@ -169,6 +169,7 @@
     <ClCompile Include="src\game_scene_color_pass.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\multiplayer.cpp" />
+    <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\player_joypad_component.cpp" />
     <ClCompile Include="src\weapon_component.cpp" />
     <None Include="src\test_joypad_component.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="include\game_scene_color_pass.h" />
     <ClInclude Include="include\network_message_types.h" />
     <ClInclude Include="include\multiplayer.h" />
+    <ClInclude Include="include\player.h" />
     <ClInclude Include="include\player_joypad_component.h" />
     <ClInclude Include="include\other_weapon_component.h" />
     <ClInclude Include="include\weapon_component.h" />

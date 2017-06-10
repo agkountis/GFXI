@@ -95,6 +95,9 @@
     <ClCompile Include="src\test_behaviour.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
+    <ClCompile Include="src\player.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
@@ -141,6 +144,9 @@
     </ClInclude>
     <ClInclude Include="include\test_behaviour.h">
       <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\player.h">
+      <Filter>include\entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

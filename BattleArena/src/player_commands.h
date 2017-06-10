@@ -9,11 +9,24 @@ public:
 		using namespace Blade;
 		auto joypadNumber{ GetJoypadNumberByEntity(entity) };
 		auto vec{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_LEFT) };
+		auto vec2{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_RIGHT) };
+
 		if (entity->GetComponent("co_sim"))
 		{
 			//auto rt_value{ G_InputManager.GetActiveDevice(joypadNumber)->GetCurrentState().triggerRight};
 			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
-			simComp->AddForce(Vec3f(vec.x, 0.0f, vec.y)*dt*(10000.0f));
+			
+			  
+		
+
+			Quatf q = entity->GetOrientation();
+			q=glm::rotate(q, vec2.x*dt, glm::vec3(0, 1, 0));
+			entity->SetOrientation(q);
+
+			Mat4f m = Mat4f(q);
+			//m=glm::rotate(m, 45.0f, glm::vec3(0, 1, 0));
+			
+			simComp->AddForce(Vec3f(m*Vec4f(0.0f, 0.0f, vec.y,0))*dt*(10000.0f));
 		}
 	}
 };

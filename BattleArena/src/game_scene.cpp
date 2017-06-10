@@ -20,7 +20,7 @@
 #include "test_behaviour.h"
 #include "cannon_weapon_component.h"
 #include "other_weapon_component.h"
-
+#include "player.h"
 
 using namespace Blade;
 
@@ -39,7 +39,7 @@ void GameScene::Initialize()
 	Material material;
 	material.diffuse = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
 	material.specular = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f }; //the w value is the shininess.
-
+	
 	Texture* diffuseTexture{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelDiff5.png") };
 	diffuseTexture->SetTextureType(TEX_DIFFUSE);
 	material.textures[TEX_DIFFUSE] = diffuseTexture;
@@ -118,6 +118,10 @@ void GameScene::Initialize()
 	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
 	AddEntity(entity);
 
+
+	Player* p = new Player("playerxxx", true);
+	AddEntity(p);
+
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Get the window size.
 	Vec2i windowSize{ WindowingService::GetWindow(0)->GetSize() };
@@ -138,14 +142,16 @@ void GameScene::Initialize()
 
 	cam = new Camera{ "Camera2", cd };
 
-	cam->SetPosition(Vec3f{ 0.0f, 14.0f, -11.0f });
-	cam->SetOrientation(Vec3f{ 1.0, 0.0, 0.0 }, MathUtils::ToRadians(32.0f));
+	//cam->SetPosition(Vec3f{ 0.0f, 14.0f, -11.0f });
+	//cam->SetOrientation(Vec3f{ 1.0, 0.0, 0.0 }, MathUtils::ToRadians(32.0f));
+	cam->SetPosition(Vec3f{ 0.0f, 5.0f, -20.0f });
 	AddEntity(cam);
+	cam->SetParent(p);
 
 	cam = new Camera{ "Camera3", cd };
-
 	cam->SetPosition(Vec3f{ 0.0f, 10.0f, -50.0f });
 	AddEntity(cam);
+
 
 	cam = new Camera{ "Camera4", cd };
 
