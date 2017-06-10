@@ -5,7 +5,7 @@
 class TestJoypadComponent : public Blade::JoypadInputComponent
 {
 public:
-	TestJoypadComponent(Blade::Entity* parent, Blade::Player joypad_number);
+	TestJoypadComponent(Blade::Entity* parent, Blade::JoypadNumber joypad_number);
 	
 	~TestJoypadComponent();
 

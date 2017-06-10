@@ -1,7 +1,7 @@
 #include "input_manager.h"
 using namespace Blade;
 
-Vec2f InputManager::GetAnalogStickVector(Player player, Input_Sensor sensor)
+Vec2f InputManager::GetAnalogStickVector(JoypadNumber player, Input_Sensor sensor)
 {
 
 	InputDevice* dev = GetActiveDevice(player);
@@ -28,7 +28,7 @@ Vec2f InputManager::GetAnalogStickVector(Player player, Input_Sensor sensor)
 	return Vec2f(0.0f, 0.0f);
 }
 
-bool InputManager::QueryDeviceState(Player player, Input_Sensor btn)
+bool InputManager::QueryDeviceState(JoypadNumber player, Input_Sensor btn)
 {
 
 	InputDevice* dev = GetActiveDevice(player);
@@ -70,7 +70,7 @@ bool InputManager::QueryDeviceState(Player player, Input_Sensor btn)
 	return false;
 }
 
-bool InputManager::QueryDeviceAllStates(Player player, std::map<Input_Sensor, bool>& stateMap)
+bool InputManager::QueryDeviceAllStates(JoypadNumber player, std::map<Input_Sensor, bool>& stateMap)
 {
 
 	InputDevice* dev = GetActiveDevice(player);
@@ -295,7 +295,7 @@ bool Blade::InputManager::PooledDeviceExists(int deviceId)
 
 bool Blade::InputManager::ActiveDeviceExists(int deviceId)
 {
-	std::map<Player, InputDevice*>::iterator itr = m_ActiveDevices.begin();
+	std::map<JoypadNumber, InputDevice*>::iterator itr = m_ActiveDevices.begin();
 
 	InputDevice* tempDev{ nullptr };
 
@@ -317,7 +317,7 @@ bool Blade::InputManager::ActiveDeviceExists(int deviceId)
 }
 
 
-bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber)
+bool Blade::InputManager::AssignDeviceToPlayer(JoypadNumber playerID, int deviceNumber)
 {
 
 	// Exceeded bounds
@@ -341,11 +341,11 @@ bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber
 	return true;
 }
 
-bool Blade::InputManager::UnassignDevice(Player playerID)
+bool Blade::InputManager::UnassignDevice(JoypadNumber playerID)
 {
 
 	// Find device
-	std::map<Player, InputDevice*>::iterator itr = m_ActiveDevices.find(playerID);
+	std::map<JoypadNumber, InputDevice*>::iterator itr = m_ActiveDevices.find(playerID);
 
 	// Fail if not found
 	if (itr == m_ActiveDevices.end())
@@ -378,11 +378,11 @@ bool Blade::InputManager::UnassignDevice(Player playerID)
 	return false;
 }
 
-InputDevice * InputManager::GetActiveDevice(Player playerID)
+InputDevice * InputManager::GetActiveDevice(JoypadNumber playerID)
 {
 
 	// Find by iterator
-	std::map<Player, InputDevice*>::iterator itr = m_ActiveDevices.find(playerID);
+	std::map<JoypadNumber, InputDevice*>::iterator itr = m_ActiveDevices.find(playerID);
 
 	// return result or nullptr
 	if (itr != m_ActiveDevices.end())

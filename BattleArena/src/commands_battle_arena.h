@@ -32,9 +32,9 @@ class PrintStick : public Blade::Command
 public:
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
-	using namespace Blade;
-	auto vec = G_InputManager.GetAnalogStickVector(Player::PLAYER1, Input_Sensor::STICK_LEFT);
+		using namespace Blade;
+		auto vec{ G_InputManager.GetAnalogStickVector(GetJoypadNumberByEntity(entity),Input_Sensor::STICK_LEFT)} ;
 	
-	std::cout << vec.x <<", "<<vec.y << std::endl;
+		std::cout << vec.x <<", "<<vec.y << std::endl;
 	}
 };

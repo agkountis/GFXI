@@ -17,7 +17,6 @@
 #include "plane_collider.h"
 #include "emitter_component.h"
 #include "test_joypad_component.h"
-#include "input_manager.h"
 
 using namespace Blade;
 
@@ -90,7 +89,7 @@ void GameScene::Initialize()
 	ec->SetEndColor(Vec4f{ 1.0f, 1.0f, 1.0f, 0.1f });
 	ec->SetBlendStateType(RenderStateType::BS_BLEND_ADDITIVE);
 
-	TestJoypadComponent* tjc{ new TestJoypadComponent{ entity,Blade::Player::PLAYER1 } };
+	TestJoypadComponent* tjc{ new TestJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
 	tjc->Setup();
 
 	Texture* tex{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"expl02.png") };
@@ -190,7 +189,7 @@ void GameScene::Initialize()
 
 	// --------------------------------------------------------------------------------------------------------------------
 
-	if (!G_InputManager.AssignDeviceToPlayer(Player::PLAYER1, 0)) {
+	if (!G_InputManager.AssignDeviceToPlayer(JoypadNumber::JOYPAD1, 0)) {
 		BLADE_TRACE("Could not assign device 0 to player 1");
 	}
 }
@@ -236,12 +235,12 @@ void GameScene::Update(float deltaTime, long time) noexcept
 
 	
 
-	if (G_InputManager.GetActiveDevice(Player::PLAYER1) != nullptr)
+	if (G_InputManager.GetActiveDevice(JoypadNumber::JOYPAD1) != nullptr)
 	{
 		InputState p1State{};
-		p1State = G_InputManager.GetActiveDevice(Player::PLAYER1)->GetInputState();
+		p1State = G_InputManager.GetActiveDevice(JoypadNumber::JOYPAD1)->GetInputState();
 
-		G_InputManager.GetActiveDevice(Player::PLAYER1)->SetVibration(p1State.triggerLeft, p1State.triggerRight);
+		G_InputManager.GetActiveDevice(JoypadNumber::JOYPAD1)->SetVibration(p1State.triggerLeft, p1State.triggerRight);
 
 	}
 

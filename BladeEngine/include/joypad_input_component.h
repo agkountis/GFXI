@@ -1,22 +1,23 @@
 #ifndef BLADE_JOYPAD_INPUT_COMPONENT_H_
 #define BLADE_JOYPAD_INPUT_COMPOENT_H_
 #include "input_component.h"
+#include "input_manager.h"
 #include <map>
 #include "command.h"
 #include <memory>
-#include "input_manager.h"
 namespace Blade
 {
-
 	/*
 	\brief Joypad abstract class of the engine.
 	*/
 	class JoypadInputComponent : public InputComponent
 	{
+		
+
 		using JoypadCommandMap = std::map<Input_Sensor, std::shared_ptr<Command>>;
 
 	public:
-		explicit JoypadInputComponent(Entity* parent, Player joypad_number);
+		explicit JoypadInputComponent(Entity* parent, JoypadNumber joypad_number);
 
 		JoypadInputComponent(const JoypadInputComponent&other) = delete;
 
@@ -51,8 +52,18 @@ namespace Blade
 		*/
 		JoypadCommandMap m_JoypadCommandMap;
 	public:
-		Player m_Player; //#debug
+		JoypadNumber m_JoypadNum; 
 	};
+
+	/*
+	\brief Return the joy pad number associated with the entity. 
+	\description It assumes that the check has been done before calling this function
+	*/
+	JoypadNumber GetJoypadNumberByEntity(Entity* entity)
+	{
+		auto  comp   = static_cast<JoypadInputComponent*>(entity->GetComponent("co_jpic"));
+		return comp->m_JoypadNum;
+	}
 }
 
 #endif

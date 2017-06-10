@@ -5,7 +5,7 @@
 using namespace Blade;
 
 
-TestJoypadComponent::TestJoypadComponent(Entity* parent, Player joypad_number):
+TestJoypadComponent::TestJoypadComponent(Entity* parent, JoypadNumber joypad_number):
 	JoypadInputComponent(parent,joypad_number)
 {
 }
@@ -19,7 +19,7 @@ void TestJoypadComponent::Update(const float dt, const long time) noexcept
 {
 	for (auto pair : m_JoypadCommandMap)
 	{
-		if (G_InputManager.QueryDeviceState(m_Player,pair.first))
+		if (G_InputManager.QueryDeviceState(m_JoypadNum,pair.first))
 		{
 			pair.second->Execute(GetParent(), dt);
 		}

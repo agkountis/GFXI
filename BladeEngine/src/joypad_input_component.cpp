@@ -2,8 +2,8 @@
 
 namespace Blade
 {
-	JoypadInputComponent::JoypadInputComponent( Entity * parent, Player player):
-		InputComponent("co_jpic", parent),m_Player(player)
+	JoypadInputComponent::JoypadInputComponent( Entity * parent, JoypadNumber player):
+		InputComponent("co_jpic", parent),m_JoypadNum(player)
 	{
 	}
 
