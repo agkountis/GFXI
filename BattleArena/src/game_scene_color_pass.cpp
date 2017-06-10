@@ -11,6 +11,8 @@
 
 using namespace Blade;
 
+#define DIPLAY_PARTICLES false
+
 //Temporary test
 struct UniformBuffer
 {
@@ -388,10 +390,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 	//////////////////////////////////////////////////////////////////////////
 
-#if _DEBUG
-
-
-
+#if DIPLAY_PARTICLES
 
 	G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_0);
 	G_ShaderProgramManager.Get("particles_sdrprog")->Bind();
