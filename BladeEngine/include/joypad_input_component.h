@@ -54,16 +54,6 @@ namespace Blade
 	public:
 		JoypadNumber m_JoypadNum; 
 	};
-
-	/*
-	\brief Return the joy pad number associated with the entity. 
-	\description It assumes that the check has been done before calling this function
-	*/
-	JoypadNumber GetJoypadNumberByEntity(Entity* entity)
-	{
-		auto  comp   = static_cast<JoypadInputComponent*>(entity->GetComponent("co_jpic"));
-		return comp->m_JoypadNum;
-	}
 }
 
 #endif
