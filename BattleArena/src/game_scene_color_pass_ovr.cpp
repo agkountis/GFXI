@@ -1,5 +1,4 @@
 #include "game_scene_color_pass_ovr.h"
-#include "trace.h"
 #include "resource_manager.h"
 #include "d3d/D3D11_texture.h"
 #include "engine_context.h"
@@ -20,7 +19,6 @@ long long frameIndex{ 0 };
 
 // -------------------------------------------------------------------------------------
 
-
 GameSceneColorPassStageOvr::GameSceneColorPassStageOvr(const std::string& name)
 	: Blade::RenderPassStage{ name },
 	  m_CurrentRenderTargetIndex{ 0 }
@@ -33,7 +31,7 @@ bool GameSceneColorPassStageOvr::Initialize()
 
 	for (int eye = 0; eye < 2; ++eye)
 	{
-		ovrSizei idealSize = ovr_GetFovTextureSize(EngineContext::session, (ovrEyeType)eye, hmdDesc.DefaultEyeFov[eye], 1.0f);
+		ovrSizei idealSize = ovr_GetFovTextureSize(EngineContext::session, static_cast<ovrEyeType>(eye), hmdDesc.DefaultEyeFov[eye], 1.0f);
 		pEyeRenderTexture[eye] = new OculusTexture();
 		if (!pEyeRenderTexture[eye]->Init(EngineContext::session, idealSize.w, idealSize.h))
 		{
@@ -217,7 +215,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::
 			eyeRenderDesc[1].HmdToEyeOffset };
 
 		double sensorSampleTime;    // sensorSampleTime is fed into the layer later
-		ovr_GetEyePoses(EngineContext::session, frameIndex, ovrTrue, HmdToEyeOffset, EyeRenderPose, &sensorSampleTime);
+		ovr_GetEyePoses(EngineContext::session, 0, ovrTrue, HmdToEyeOffset, EyeRenderPose, &sensorSampleTime);
 
 		for (int eye = 0; eye < 2; ++eye)
 		{
@@ -248,7 +246,6 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::
 			Quatf eyeQuat{ EyeRenderPose[eye].Orientation.w, EyeRenderPose[eye].Orientation.x,
 				EyeRenderPose[eye].Orientation.y, -EyeRenderPose[eye].Orientation.z };
 
-			//eyeQuat = MathUtils::Inverse(eyeQuat);
 			eyeQuat = MathUtils::Normalize(eyeQuat);
 
 			Vec3f eyePos{ -EyeRenderPose[eye].Position.x * 10.0f, -EyeRenderPose[eye].Position.y * 10.0f, EyeRenderPose[eye].Position.z * 10.0f };
@@ -490,7 +487,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::
 		}
 
 		ovrLayerHeader* layers = &ld.Header;
-		ovrResult result = ovr_SubmitFrame(EngineContext::session, frameIndex, nullptr, &layers, 1);
+		ovrResult result = ovr_SubmitFrame(EngineContext::session, 0, nullptr, &layers, 1);
 		// exit the rendering loop if submit returns an error, will retry on ovrError_DisplayLost
 		
 		frameIndex++;
