@@ -93,6 +93,7 @@ void GameScene::Initialize()
 	ec->SetTexture(tex);
 	*/
 
+
 	PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
 	tjc->Setup();
 
