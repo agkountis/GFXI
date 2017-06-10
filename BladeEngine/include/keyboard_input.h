@@ -29,7 +29,7 @@ namespace Blade {
 			* \brief Query all virtual key states for attached keyboard
 			* \return True if successful, false otherwise
 			*/
-			bool QueryAllKeyStates(std::map<Virtual_Key, bool>& srcMap) const;
+			bool QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) const;
 	};
 
 }

@@ -6,14 +6,13 @@ KeyboardInput::KeyboardInput()
 {
 }
 
-
 KeyboardInput::~KeyboardInput()
 {
 }
 
 void Blade::KeyboardInput::Initialize()
 {
-
+	// already initialised
 }
 
 bool Blade::KeyboardInput::QueryKeyState(Virtual_Key value) const
@@ -23,7 +22,7 @@ bool Blade::KeyboardInput::QueryKeyState(Virtual_Key value) const
 
 }
 
-bool Blade::KeyboardInput::QueryAllKeyStates(std::map<Virtual_Key, bool>& srcMap) const
+bool Blade::KeyboardInput::QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) const
 {
 	BYTE keyState[256] = { 0 };
 	GetKeyboardState(keyState);
@@ -34,7 +33,7 @@ bool Blade::KeyboardInput::QueryAllKeyStates(std::map<Virtual_Key, bool>& srcMap
 		Virtual_Key vk = static_cast<Virtual_Key>(entry);
 
 		// get high order bit to check if pressed
-		srcMap[vk] = ((entry & 0x8000) != 0);
+		destMap[vk] = ((entry & 0x8000) != 0);
 
 	}
 

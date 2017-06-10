@@ -12,6 +12,8 @@
 #include "trace.h"
 #include "xinput_device.h"
 #include "input_state.h"
+#include "virtual_keys.h"
+#include "keyboard_input.h"
 #include "types.h"
 
 // required library files
@@ -55,9 +57,33 @@ namespace Blade
 		*/
 		std::map<Player, InputDevice*> m_ActiveDevices;
 
+		KeyboardInput	m_Keyboard;
+
 	public:
 
+		/**
+		* \brief Return the vector of a simulated analog stick from keyboard
+		* \return 2 part float vector of state, otherwise a 2-part vector of [0,0], meaning no input
+		*/
+		//Vec2f GetKeyboardInputVector(std::vector<Virtual_Key>& keys);
+
+		/**
+		* \brief Return the vector of an analog stick from the active device linked to [player]
+		* \return 2 part float vector of stick state, otherwise a 2-part vector of [0,0], meaning no input
+		*/
 		Vec2f GetAnalogStickVector(Player player, Input_Sensor sensor);
+
+		/**
+		* \brief Query the keyboard device for the state of a key
+		* \return True if the key is a PRESSED state (down), false otherwise
+		*/
+		bool QueryKeyState(Virtual_Key key) { return m_Keyboard.QueryKeyState(key); }
+
+		/**
+		* \brief Query the Keyboard device for the state of ALL keys associated to the device
+		* \return True if successful, false otherwise
+		*/
+		bool QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) { return m_Keyboard.QueryAllKeyStates(destMap); }
 
 		/**
 		* \brief Query the state of a sensor on an active pad linked to player
