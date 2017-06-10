@@ -96,8 +96,6 @@ void GameScene::Initialize()
 	tex->SetTextureType(TEX_DIFFUSE);
 	ec->SetTexture(tex);
 
-
-
 	AddEntity(entity);
 
 	//Second ball
@@ -232,18 +230,6 @@ void GameScene::Update(float deltaTime, long time) noexcept
 	G_InputManager.Update(deltaTime);
 
 	Scene::Update(deltaTime, time);
-
-	
-
-	if (G_InputManager.GetActiveDevice(JoypadNumber::JOYPAD1) != nullptr)
-	{
-		InputState p1State{};
-		p1State = G_InputManager.GetActiveDevice(JoypadNumber::JOYPAD1)->GetInputState();
-
-		G_InputManager.GetActiveDevice(JoypadNumber::JOYPAD1)->SetVibration(p1State.triggerLeft, p1State.triggerRight);
-
-	}
-
 
 	G_SimulationSystem.Process(deltaTime);
 
