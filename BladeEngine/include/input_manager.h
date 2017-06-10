@@ -12,7 +12,6 @@
 #include "trace.h"
 #include "xinput_device.h"
 #include "input_state.h"
-#include "virtual_keys.h"
 #include "keyboard_input.h"
 #include "types.h"
 

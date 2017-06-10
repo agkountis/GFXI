@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BLADE_KEYBOARD_INPUT_H_
+#define BLADE_KEYBOARD_INPUT_H_
 
 #include <Windows.h>
 #include <map>
@@ -33,3 +34,5 @@ namespace Blade {
 	};
 
 }
+
+#endif

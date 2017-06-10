@@ -1,22 +1,6 @@
 #include "input_manager.h"
 using namespace Blade;
 
-Vec2f Blade::InputManager::GetKeyboardInputVector(std::vector<Virtual_Key>& keys)
-{
-	// unit vectors of movement
-	Vec2f v2Up(0.0f, 1.0f), v2Down(0.0f, -1.0f), v2Left(-1.0f, 0.0f), v2Right(1.0f, 0.0f);
-
-	Vec2f out(0.f, 0.0f);
-
-	for (Virtual_Key vKey : keys)
-	{
-
-		if(m_Keyboard.QueryKeyState(vKey))
-
-	}
-
-	return Vec2f();
-}
 
 Vec2f InputManager::GetAnalogStickVector(Player player, Input_Sensor sensor)
 {
