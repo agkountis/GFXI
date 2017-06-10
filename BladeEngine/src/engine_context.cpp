@@ -35,34 +35,31 @@ namespace Blade
 	ShaderProgramManager EngineContext::m_ShaderProgramManager;
 	InputManager EngineContext::m_InputManager;
 
-	ovrSession EngineContext::session;
-	ovrGraphicsLuid EngineContext::graphicsLuid;
+#ifdef BLADE_BUILD_OVR
+	OvrManager EngineContext::m_OvrManager;
+#endif
 
 	bool EngineContext::Initialize()
 	{
-		if (OVR_FAILURE(ovr_Initialize(nullptr)))
-		{
-			BLADE_ERROR("Failed to initialize Oculus Rift.");
-			return false;
-		}
-
-		if (OVR_FAILURE(ovr_Create(&session, &graphicsLuid)))
-		{
-			BLADE_ERROR("Failed to create OVR session.");
-			return false;
-		}
-
 		if (!m_ThreadPool.Initialize())
 		{
 			BLADE_ERROR("Failed to initialize the thread pool.");
 			return false;
 		}
 
-		if (!m_GAPIContext.Create(reinterpret_cast<LUID*>(&graphicsLuid)))
+#ifdef BLADE_BUILD_OVR
+		if (!m_OvrManager.Initialize())
+		{
+			BLADE_ERROR("Failed to initialize the OculusVR manager.");
+			return false;
+		}
+#else
+		if (!m_GAPIContext.Create(nullptr))
 		{
 			BLADE_ERROR("Failed to initialize the engine's Graphics Context.");
 			return false;
 		}
+#endif
 
 		if (!m_RenderSystem.Initialize())
 		{
@@ -180,4 +177,12 @@ namespace Blade
 	{
 		return *m_pApplication;
 	}
+
+#ifdef BLADE_BUILD_OVR
+	OvrManager& EngineContext::GetOvrManager() noexcept
+	{
+		return m_OvrManager;
+	}
+#endif
+
 }

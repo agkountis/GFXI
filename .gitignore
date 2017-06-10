@@ -435,3 +435,7 @@ BattleArena/data/
 PredictedInputCache_Debug - DirectX_x86.dat
 BladeEngine/Release - DirectX/
 Release - DirectX/
+BladeEngine/Release - DirectX - OVR/
+Release - DirectX - OVR/
+BattleArena/Debug - DirectX - OVR/
+BladeEngine/Debug - DirectX - OVR/

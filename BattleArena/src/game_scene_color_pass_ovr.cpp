@@ -1,3 +1,5 @@
+#ifdef BLADE_BUILD_OVR
+
 #include "game_scene_color_pass_ovr.h"
 #include "resource_manager.h"
 #include "d3d/D3D11_texture.h"
@@ -9,48 +11,13 @@
 
 using namespace Blade;
 
-// Private Functions -------------------------------------------------------------------
-ovrMirrorTexture mirrorTexture = nullptr;
-OculusTexture  * pEyeRenderTexture[2] = { nullptr, nullptr };
-DepthBuffer    * pEyeDepthBuffer[2] = { nullptr, nullptr };
-ovrHmdDesc hmdDesc;
-ovrRecti         eyeRenderViewport[2];
-long long frameIndex{ 0 };
-
-// -------------------------------------------------------------------------------------
-
 GameSceneColorPassStageOvr::GameSceneColorPassStageOvr(const std::string& name)
-	: Blade::RenderPassStage{ name },
-	  m_CurrentRenderTargetIndex{ 0 }
+	: Blade::RenderPassStage{ name }
 {
 }
 
 bool GameSceneColorPassStageOvr::Initialize()
 {
-	hmdDesc = ovr_GetHmdDesc(EngineContext::session);
-
-	for (int eye = 0; eye < 2; ++eye)
-	{
-		ovrSizei idealSize = ovr_GetFovTextureSize(EngineContext::session, static_cast<ovrEyeType>(eye), hmdDesc.DefaultEyeFov[eye], 1.0f);
-		pEyeRenderTexture[eye] = new OculusTexture();
-		if (!pEyeRenderTexture[eye]->Init(EngineContext::session, idealSize.w, idealSize.h))
-		{
-			return false;
-		}
-
-		pEyeDepthBuffer[eye] = new DepthBuffer(G_GAPIContext.GetDevice(), idealSize.w, idealSize.h);
-		eyeRenderViewport[eye].Pos.x = 0;
-		eyeRenderViewport[eye].Pos.y = 0;
-		eyeRenderViewport[eye].Size = idealSize;
-		if (!pEyeRenderTexture[eye]->TextureChain)
-		{
-			return false;
-		}
-	}
-
-	// FloorLevel will give tracking poses where the floor height is 0
-	ovr_SetTrackingOriginType(EngineContext::session, ovrTrackingOrigin_FloorLevel);
-
 	D3D11_SAMPLER_DESC samplerDesc;
 	ZeroMemory(&samplerDesc, sizeof(D3D11_SAMPLER_DESC));
 	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
@@ -200,38 +167,24 @@ bool GameSceneColorPassStageOvr::Initialize()
 PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::vector<RenderComponent*>& data,
                                                                      const PipelineData<D3D11RenderTarget*>& tdata) noexcept
 {
-	ovrSessionStatus sessionStatus;
-	ovr_GetSessionStatus(EngineContext::session, &sessionStatus);
-
-	if (sessionStatus.IsVisible)
+	if (G_OvrManager.GetOvrSessionStatus().IsVisible)
 	{
-		ovrEyeRenderDesc eyeRenderDesc[2];
-		eyeRenderDesc[0] = ovr_GetRenderDesc(EngineContext::session, ovrEye_Left, hmdDesc.DefaultEyeFov[0]);
-		eyeRenderDesc[1] = ovr_GetRenderDesc(EngineContext::session, ovrEye_Right, hmdDesc.DefaultEyeFov[1]);
+		G_OvrManager.CalculateEyePoses();
 
-		// Get both eye poses simultaneously, with IPD offset already included. 
-		ovrPosef         EyeRenderPose[2];
-		ovrVector3f      HmdToEyeOffset[2] = { eyeRenderDesc[0].HmdToEyeOffset,
-			eyeRenderDesc[1].HmdToEyeOffset };
-
-		double sensorSampleTime;    // sensorSampleTime is fed into the layer later
-		ovr_GetEyePoses(EngineContext::session, 0, ovrTrue, HmdToEyeOffset, EyeRenderPose, &sensorSampleTime);
+		float nearPlane{ G_CameraSystem.GetActiveCamera()->GetNearPlane() };
+		float farPlane{ G_CameraSystem.GetActiveCamera()->GetFarPlane() };
 
 		for (int eye = 0; eye < 2; ++eye)
 		{
-			ID3D11RenderTargetView* rtv = pEyeRenderTexture[eye]->GetRTV();
-			G_GAPIContext.GetDeviceContext()->OMSetRenderTargets(1, &rtv, pEyeDepthBuffer[eye]->TexDsv);
+			G_OvrManager.BindRenderTarget(eye);
+			G_OvrManager.ClearRenderTarget(eye, Vec4f{ 0.1f, 0.1f, 0.1f, 0.0f });
 
-			Vec4f clearCol{ 1.0, 0.0, 0.0, 1.0f };
+			OvrXformData ovrData{ G_OvrManager.GetOvrXformDataPerEye(eye, nearPlane, farPlane, 50.0f) };
 
-			G_GAPIContext.GetDeviceContext()->ClearRenderTargetView(rtv, &clearCol[0]);
-			G_GAPIContext.GetDeviceContext()->ClearDepthStencilView(pEyeDepthBuffer[eye]->TexDsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
+			ovrData.viewport.Set();
 
-			Recti rect{ eyeRenderViewport[eye].Pos.x, eyeRenderViewport[eye].Pos.y, eyeRenderViewport[eye].Size.w, eyeRenderViewport[eye].Size.h };
-
-			Viewport viewport{ rect, 0.0, 1.0 };
-			viewport.Set();
-
+			//Get the active camera view matrix.
+			Mat4f v{ ovrData.view * G_CameraSystem.GetActiveCameraViewMatrix() };
 
 			//RENDERING STARTS
 			//Get the device context.
@@ -243,26 +196,6 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::
 			//Set the linear wrap texture sampler.
 			deviceContext->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
 
-			Quatf eyeQuat{ EyeRenderPose[eye].Orientation.w, EyeRenderPose[eye].Orientation.x,
-				EyeRenderPose[eye].Orientation.y, -EyeRenderPose[eye].Orientation.z };
-
-			eyeQuat = MathUtils::Normalize(eyeQuat);
-
-			Vec3f eyePos{ -EyeRenderPose[eye].Position.x * 10.0f, -EyeRenderPose[eye].Position.y * 10.0f, EyeRenderPose[eye].Position.z * 10.0f };
-
-			Mat4f eyeMat;
-			eyeMat = MathUtils::Rotate(eyeMat, eyeQuat);
-			eyeMat = MathUtils::Translate(eyeMat, eyePos);
-
-			ovrMatrix4f proj = ovrMatrix4f_Projection(eyeRenderDesc[eye].Fov, 0.2f, 1000.0f, ovrProjection_LeftHanded);
-			Mat4f p;
-			memcpy(&p[0], proj.M, 16 * sizeof(float));
-
-			p = MathUtils::Transpose(p);
-
-			//Get the active camera view matrix.
-			Mat4f v{ eyeMat * G_CameraSystem.GetActiveCameraViewMatrix() };
-
 			//Iterate through the render components.
 			for (auto renderComponent : data)
 			{
@@ -270,7 +203,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::
 				Mat4f m{ renderComponent->GetParent()->GetXform() };
 
 				//Calculate the ModelViewProjection matrix.
-				Mat4f mvp{ p * v * m };
+				Mat4f mvp{ ovrData.projection * v * m };
 
 				//Calculate the ModelView matrix.
 				Mat4f mv{ v * m };
@@ -434,7 +367,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::
 
 					MV = MathUtils::Scale(MV, Vec3f{ particle.size });
 
-					Mat4f MVP{ p * MV };
+					Mat4f MVP{ ovrData.projection * MV };
 
 					ParticleUniformBuffer uniforms;
 					uniforms.MVP = MathUtils::Transpose(MVP);
@@ -468,31 +401,14 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::
 			G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_1);
 			//RENDERING ENDS
 
-			// Commit rendering to the swap chain
-			pEyeRenderTexture[eye]->Commit();
+			G_OvrManager.CommitOvrTexture(eye);
 		}
 
-		// Initialize our single full screen Fov layer.
-		ovrLayerEyeFov ld = {};
-		ld.Header.Type = ovrLayerType_EyeFov;
-		ld.Header.Flags = 0;
-
-		for (int eye = 0; eye < 2; ++eye)
-		{
-			ld.ColorTexture[eye] = pEyeRenderTexture[eye]->TextureChain;
-			ld.Viewport[eye] = eyeRenderViewport[eye];
-			ld.Fov[eye] = hmdDesc.DefaultEyeFov[eye];
-			ld.RenderPose[eye] = EyeRenderPose[eye];
-			ld.SensorSampleTime = sensorSampleTime;
-		}
-
-		ovrLayerHeader* layers = &ld.Header;
-		ovrResult result = ovr_SubmitFrame(EngineContext::session, 0, nullptr, &layers, 1);
-		// exit the rendering loop if submit returns an error, will retry on ovrError_DisplayLost
-		
-		frameIndex++;
+		G_OvrManager.SubmitOvrFrame();
 	}
 
 	// Return the render target so that the next stage of the pipeline can process it if needed.
 	return PipelineData<D3D11RenderTarget*>{ nullptr };
 }
+
+#endif //BLADE_BUILD_OVR

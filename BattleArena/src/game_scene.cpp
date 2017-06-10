@@ -106,7 +106,6 @@ void GameScene::Initialize()
 	CannonWeaponComponent* cwc{ new CannonWeaponComponent{entity,WeaponPosition::LEFT} };
 	OtherWeaponComponent* owc{ new OtherWeaponComponent{entity,WeaponPosition::RIGHT} };
 
-	
 	AddEntity(entity);
 
 	//Second ball
@@ -185,16 +184,19 @@ void GameScene::Initialize()
 	// --------------------------------------------------------------------------------------------------------------------
 
 	// Pipeline Creation --------------------------------------------------------------------------------------------------
+	//Allocate a render pass pipeline.
+	RenderPassPipeline* pipeline{ new RenderPassPipeline };
+
+#ifdef BLADE_BUILD_OVR
+	GameSceneColorPassStageOvr* ovrStage{ new GameSceneColorPassStageOvr{ " ovrPass " } };
+	ovrStage->Initialize();
+	pipeline->AddStage(ovrStage);
+#else
 	//Allocate and initialize the a render pass pipeline stage.
 	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
 	colorPassStage->Initialize();
-
-	GameSceneColorPassStageOvr* ovrStage{ new GameSceneColorPassStageOvr{" ovrPass "} };
-	ovrStage->Initialize();
-
-	//Allocate a render pass pipeline and add the pass to it.
-	RenderPassPipeline* pipeline{ new RenderPassPipeline };
-	pipeline->AddStage(ovrStage);
+	pipeline->AddStage(colorPassStage);
+#endif
 
 	//Set the pipeline to the render system.
 	G_RenderSystem.SetRenderPassPipeline(pipeline);

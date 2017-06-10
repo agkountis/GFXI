@@ -14,7 +14,10 @@
 #include "shader_program_manager.h"
 #include "particle_system.h"
 #include "input_manager.h"
-#include <OVR/OVR_CAPI.h>
+
+#ifdef BLADE_BUILD_OVR
+#include "ovr_manager.h"
+#endif
 
 namespace Blade
 {
@@ -52,10 +55,11 @@ namespace Blade
 		static ShaderProgramManager m_ShaderProgramManager;
 		static InputManager m_InputManager;
 
-	public:
-		static ovrSession session;
-		static ovrGraphicsLuid graphicsLuid;
+#ifdef BLADE_BUILD_OVR
+		static OvrManager m_OvrManager;
+#endif
 
+	public:
 		EngineContext() = default;
 
 		EngineContext(const EngineContext& context) = delete;
@@ -97,26 +101,34 @@ namespace Blade
 		static void RegisterApplication(Application* application) noexcept;
 
 		static Application& GetApplication() noexcept;
+
+#ifdef BLADE_BUILD_OVR
+		static OvrManager& GetOvrManager() noexcept;
+#endif
 	};
 
-#define G_GAPIContext EngineContext::GetGAPIContext()
+#define G_GAPIContext Blade::EngineContext::GetGAPIContext()
 
-#define G_ThreadPool EngineContext::GetThreadPool()
+#define G_ThreadPool Blade::EngineContext::GetThreadPool()
 
-#define G_RenderSystem EngineContext::GetRenderSystem()
-#define G_CameraSystem EngineContext::GetCameraSystem()
-#define G_LightSystem EngineContext::GetLightSystem()
-#define G_SimulationSystem EngineContext::GetSimulationSystem()
-#define G_BehaviourSystem EngineContext::GetBehaviourSystem()
+#define G_RenderSystem Blade::EngineContext::GetRenderSystem()
+#define G_CameraSystem Blade::EngineContext::GetCameraSystem()
+#define G_LightSystem Blade::EngineContext::GetLightSystem()
+#define G_SimulationSystem Blade::EngineContext::GetSimulationSystem()
+#define G_BehaviourSystem Blade::EngineContext::GetBehaviourSystem()
 
-#define G_NetworkManager EngineContext::GetNetworkManager()
-#define G_RenderStateManager EngineContext::GetRenderStateManager()
-#define G_ResourceManager EngineContext::GetResourceManager()
-#define G_SceneManager EngineContext::GetSceneManager()
-#define G_ShaderProgramManager EngineContext::GetShaderProgramManager()
-#define G_InputManager EngineContext::GetInputManager()
-#define G_ParticleSystem EngineContext::GetParticleSystem()
-#define G_Application EngineContext::GetApplication()
+#define G_NetworkManager Blade::EngineContext::GetNetworkManager()
+#define G_RenderStateManager Blade::EngineContext::GetRenderStateManager()
+#define G_ResourceManager Blade::EngineContext::GetResourceManager()
+#define G_SceneManager Blade::EngineContext::GetSceneManager()
+#define G_ShaderProgramManager Blade::EngineContext::GetShaderProgramManager()
+#define G_InputManager Blade::EngineContext::GetInputManager()
+#define G_ParticleSystem Blade::EngineContext::GetParticleSystem()
+#define G_Application Blade::EngineContext::GetApplication()
+
+#ifdef BLADE_BUILD_OVR
+#define G_OvrManager Blade::EngineContext::GetOvrManager()
+#endif
 }
 
 #endif //BLADE_CONTEXT_H_
