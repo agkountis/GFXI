@@ -368,6 +368,12 @@
     <ClInclude Include="include\cfg.h">
       <Filter>include\configuration</Filter>
     </ClInclude>
+    <ClInclude Include="include\virtual_keys.h">
+      <Filter>include\input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\keyboard_input.h">
+      <Filter>include\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -594,6 +600,9 @@
     </ClCompile>
     <ClCompile Include="src\cfg.cpp">
       <Filter>src\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="src\keyboard_input.cpp">
+      <Filter>src\input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
