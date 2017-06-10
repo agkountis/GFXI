@@ -8,25 +8,20 @@ public:
 	{
 		using namespace Blade;
 		auto joypadNumber{ GetJoypadNumberByEntity(entity) };
-		auto vec{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_LEFT) };
-		auto vec2{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_RIGHT) };
+		auto movementVec{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_LEFT) };
+		auto rotationVec{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_RIGHT) };
 
 		if (entity->GetComponent("co_sim"))
 		{
 			//auto rt_value{ G_InputManager.GetActiveDevice(joypadNumber)->GetCurrentState().triggerRight};
 			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
-			
-			  
-		
 
+			//change orientation
 			Quatf q = entity->GetOrientation();
-			q=glm::rotate(q, vec2.x*dt, glm::vec3(0, 1, 0));
-			entity->SetOrientation(q);
+			entity->SetOrientation(glm::rotate(q, rotationVec.x*dt, glm::vec3(0, 1, 0)));
 
-			Mat4f m = Mat4f(q);
-			//m=glm::rotate(m, 45.0f, glm::vec3(0, 1, 0));
-			
-			simComp->AddForce(Vec3f(m*Vec4f(0.0f, 0.0f, vec.y,0))*dt*(10000.0f));
+			//use orientation to influence the force that is being added to the simulation component
+			simComp->AddForce(Vec3f(Mat4f(q)*Vec4f(0.0f, 0.0f, movementVec.y,0))*dt*(10000.0f));
 		}
 	}
 };
