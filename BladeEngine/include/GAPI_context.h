@@ -1,6 +1,8 @@
 #ifndef BLADE_GAPI_CONTEXT_H_
 #define BLADE_GAPI_CONTEXT_H_
 
+#include <Windows.h>
+
 namespace Blade
 {
 	/*
@@ -13,7 +15,7 @@ namespace Blade
 
 		virtual ~GAPIContext() = default;
 
-		virtual bool Create() = 0;
+		virtual bool Create(LUID* luid) = 0;
 	};
 }
 

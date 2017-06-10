@@ -15,9 +15,7 @@ struct OvrData
 	ovrPosef eyePoses[2];
 	ovrLayerEyeFov layer;
 	ovrTextureSwapChain textureSwapChain;
-	ovrTextureSwapChainDesc textureSwapChainDesc;
 	ovrMirrorTexture mirrorTexture;
-	ovrMirrorTextureDesc mirrorTextureDesc;
 	ovrViewScaleDesc viewScaleDesc;
 };
 
@@ -31,10 +29,15 @@ struct OvrXformData
 class GameSceneColorPassStageOvr : public Blade::RenderPassStage
 {
 private:
-	Blade::D3D11RenderTarget m_ColorRenderTarget;
+	std::vector<ID3D11RenderTargetView*> m_ColorRenderTargets;
+	ID3D11DepthStencilView* m_DepthStencilView;
+
+	int m_CurrentRenderTargetIndex;
 
 	OvrData m_OvrData;
 	OvrXformData m_OvrXformData;
+
+	Blade::ComPtr<ID3D11Texture2D> m_MirrorTexture;
 
 	Blade::ComPtr<ID3D11SamplerState> m_SamplerLinearWrap;
 
@@ -55,11 +58,21 @@ private:
 	Blade::Texture* m_DummySpec{ nullptr };
 	Blade::Texture* m_DummyNorm{ nullptr };
 
-	bool InitializeOvr() noexcept;
-	void ShutdownOvr() noexcept;
+	static bool InitializeOvr() noexcept;
+
+	void ShutdownOvr() const noexcept;
+
 	bool InitializeOvrData() noexcept;
+
 	void CalculateEyePoses() noexcept;
-	const OvrXformData& GetOvrXformDataPerEye(ovrEyeType eye) noexcept;
+
+	const OvrXformData& GetOvrXformDataPerEye(int eye) noexcept;
+
+	void BeginOvrFrame() noexcept;
+
+	void EndOvrFrame() noexcept;
+
+	bool SubmitOvrFrame() noexcept;
 
 public:
 	GameSceneColorPassStageOvr(const std::string& name);

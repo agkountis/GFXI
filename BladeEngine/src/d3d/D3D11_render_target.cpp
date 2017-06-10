@@ -15,7 +15,6 @@ namespace Blade
 
 		HRESULT res{ 0 };
 
-		
 		if (!m_ColorAttachment)
 		{
 			D3D11_TEXTURE2D_DESC color_attachment_desc;
@@ -23,7 +22,7 @@ namespace Blade
 			color_attachment_desc.Height = GetSize().y;
 			color_attachment_desc.MipLevels = 1;
 			color_attachment_desc.ArraySize = 1;
-			color_attachment_desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+			color_attachment_desc.Format = m_ColorAttachmentFormat;
 
 			if (m_MSAA)
 			{
@@ -48,23 +47,22 @@ namespace Blade
 				std::cerr << "Failed to Create the D3D11RenderTarget color attachment!" << std::endl;
 				return false;
 			}
-
-			D3D11_RENDER_TARGET_VIEW_DESC rtv_desc;
-			rtv_desc.Format = color_attachment_desc.Format;
-			rtv_desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
-			rtv_desc.Texture2D.MipSlice = 0;
-
-			res = device->CreateRenderTargetView(m_ColorAttachment.Get(), &rtv_desc, m_RenderTargetView.ReleaseAndGetAddressOf());
-			if (FAILED(res))
-			{
-				std::cerr << "Failed to create the D3D11RenderTarget render target view!" << std::endl;
-				return false;
-			}
 		}
-		
+
+		D3D11_RENDER_TARGET_VIEW_DESC rtv_desc;
+		rtv_desc.Format = m_ColorAttachmentFormat;
+		rtv_desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+		rtv_desc.Texture2D.MipSlice = 0;
+
+		res = device->CreateRenderTargetView(m_ColorAttachment.Get(), &rtv_desc, m_RenderTargetView.ReleaseAndGetAddressOf());
+		if (FAILED(res))
+		{
+			std::cerr << "Failed to create the D3D11RenderTarget render target view!" << std::endl;
+			return false;
+		}
 
 		D3D11_SHADER_RESOURCE_VIEW_DESC color_srv_desc;
-		color_srv_desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+		color_srv_desc.Format = m_ColorAttachmentFormat;
 		color_srv_desc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 		color_srv_desc.Texture2D.MostDetailedMip = 0;
 		color_srv_desc.Texture2D.MipLevels = 1;

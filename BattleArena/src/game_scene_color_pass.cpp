@@ -203,9 +203,6 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	Vec4f clearColor{ 0.0f, 0.0f, 0.0f, 1.0f };
 	m_ColorRenderTarget.Clear(&clearColor[0]);
 
-	//Get the window size.
-	Vec2i winSize{ WindowingService::GetWindow(0)->GetSize() };
-
 	//Get the device context.
 	ID3D11DeviceContext* deviceContext{ G_GAPIContext.GetDeviceContext() };
 

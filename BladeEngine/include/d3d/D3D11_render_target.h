@@ -13,6 +13,8 @@ namespace Blade
 		ComPtr<ID3D11DepthStencilView> m_DepthStencilView;
 
 		ComPtr<ID3D11Texture2D> m_ColorAttachment;
+		DXGI_FORMAT m_ColorAttachmentFormat{ DXGI_FORMAT_R32G32B32A32_FLOAT };
+
 		ComPtr<ID3D11Texture2D> m_DepthAttachment;
 
 		ComPtr<ID3D11ShaderResourceView> m_ColorAttachmentSrv;
@@ -40,9 +42,10 @@ namespace Blade
 
 		void Clear(float* color) const noexcept;
 
-		void SetColorAttachment(ID3D11Texture2D* colorAttachment) noexcept
+		void SetColorAttachment(ID3D11Texture2D* colorAttachment, DXGI_FORMAT format) noexcept
 		{
-			m_ColorAttachment.Attach(colorAttachment);
+			m_ColorAttachmentFormat = format;
+			m_ColorAttachment = colorAttachment;
 		}
 
 		ID3D11ShaderResourceView* GetColorAttachment() const noexcept

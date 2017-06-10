@@ -42,7 +42,7 @@ namespace Blade
 			return false;
 		}
 
-		if (!m_GAPIContext.Create())
+		if (!m_GAPIContext.Create(nullptr))
 		{
 			BLADE_ERROR("Failed to initialize the engine's Graphics Context.");
 			return false;

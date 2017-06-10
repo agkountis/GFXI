@@ -176,8 +176,8 @@ void GameScene::Initialize()
 	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
 	colorPassStage->Initialize();
 
-//	GameSceneColorPassStageOvr* ovrPassStage{ new GameSceneColorPassStageOvr{ "Ovr pass" } };
-//	ovrPassStage->Initialize();
+	GameSceneColorPassStageOvr* ovrPassStage{ new GameSceneColorPassStageOvr{ "Ovr pass" } };
+	ovrPassStage->Initialize();
 
 	//Allocate a render pass pipeline and add the pass to it.
 	RenderPassPipeline* pipeline{ new RenderPassPipeline };
@@ -232,8 +232,6 @@ void GameScene::Update(float deltaTime, long time) noexcept
 
 	Scene::Update(deltaTime, time);
 
-	
-
 	if (G_InputManager.GetActiveDevice(Player::PLAYER1) != nullptr)
 	{
 		InputState p1State{};
@@ -242,7 +240,6 @@ void GameScene::Update(float deltaTime, long time) noexcept
 		G_InputManager.GetActiveDevice(Player::PLAYER1)->SetVibration(p1State.triggerLeft, p1State.triggerRight);
 
 	}
-
 
 	G_SimulationSystem.Process(deltaTime);
 
