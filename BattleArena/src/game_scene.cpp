@@ -16,7 +16,7 @@
 #include "bounding_sphere.h"
 #include "plane_collider.h"
 #include "emitter_component.h"
-#include "test_joypad_component.h"
+#include "player_joypad_component.h"
 
 using namespace Blade;
 
@@ -73,7 +73,7 @@ void GameScene::Initialize()
 	
 
 	auto cache_entity = entity;
-
+	/*
 	EmitterComponent* ec = new EmitterComponent{ entity };
 	ec->SetLifeSpan(1.0f);
 	ec->SetMaxParticles(1000);
@@ -88,14 +88,16 @@ void GameScene::Initialize()
 	ec->SetStartColor(Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f });
 	ec->SetEndColor(Vec4f{ 1.0f, 1.0f, 1.0f, 0.1f });
 	ec->SetBlendStateType(RenderStateType::BS_BLEND_ADDITIVE);
-
-	TestJoypadComponent* tjc{ new TestJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
-	tjc->Setup();
-
 	Texture* tex{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"expl02.png") };
 	tex->SetTextureType(TEX_DIFFUSE);
 	ec->SetTexture(tex);
 
+	*/
+
+	PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
+	tjc->Setup();
+
+	
 	AddEntity(entity);
 
 	//Second ball

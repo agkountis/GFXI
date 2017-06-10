@@ -8,6 +8,9 @@
 #include "entity.h"
 #include "d3d/D3D11_texture.h"
 
+//#debug
+#define DRAW_PARTICLES false
+
 using namespace Blade;
 
 //Temporary test
@@ -387,6 +390,11 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 	//////////////////////////////////////////////////////////////////////////
 
+#if DRAW_PARTICLES
+
+
+
+
 	G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_0);
 	G_ShaderProgramManager.Get("particles_sdrprog")->Bind();
 
@@ -455,7 +463,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	}
 	G_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
 	G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_1);
-
+#endif // 
 	//Unbind the render target.
 	m_ColorRenderTarget.Unbind();
 

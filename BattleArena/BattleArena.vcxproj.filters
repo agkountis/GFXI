@@ -33,6 +33,12 @@
     <Filter Include="src\utilities">
       <UniqueIdentifier>{59137cd1-cff6-4b76-810c-dd2397cf7ebb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\input">
+      <UniqueIdentifier>{61ef3fcf-3c40-4a91-9b70-aa906196fd61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\input">
+      <UniqueIdentifier>{696e6d1a-34b0-4469-955a-03a08d569ec8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -56,8 +62,8 @@
     <ClCompile Include="src\assimp_utils.cpp">
       <Filter>src\utilities</Filter>
     </ClCompile>
-    <ClCompile Include="src\test_joypad_component.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\player_joypad_component.cpp">
+      <Filter>src\input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,10 +88,13 @@
     <ClInclude Include="include\assimp_utils.h">
       <Filter>include\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="include\test_joypad_component.h">
+    <ClInclude Include="include\player_joypad_component.h">
+      <Filter>include\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\test_commands_battle_arena.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="src\commands_battle_arena.h">
+    <ClInclude Include="src\player_commands.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -116,6 +125,12 @@
     </None>
     <None Include="sdr\particles.vs.hlsl">
       <Filter>sdr</Filter>
+    </None>
+    <None Include="include\test_joypad_component.h">
+      <Filter>include\input</Filter>
+    </None>
+    <None Include="src\test_joypad_component.cpp">
+      <Filter>src\input</Filter>
     </None>
   </ItemGroup>
 </Project>

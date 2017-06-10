@@ -1,7 +1,8 @@
 #include "test_joypad_component.h"
-#include "commands_battle_arena.h"
 #include "engine_context.h"
 #include <iostream>
+#include "test_commands_battle_arena.h"
+
 using namespace Blade;
 
 
