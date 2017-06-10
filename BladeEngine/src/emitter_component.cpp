@@ -389,6 +389,8 @@ namespace Blade
 	void EmitterComponent::Setup() noexcept
 	{
 		//Nothing to setup
+		int a{ 3 };
+		a++;
 	}
 
 	void EmitterComponent::Teardown() noexcept

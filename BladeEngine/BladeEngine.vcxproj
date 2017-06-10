@@ -130,7 +130,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;BLADE_BUILD_D3D;GLM_FORCE_SWIZZLE;WIN32_LEAN_AND_MEAN;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <DisableSpecificWarnings>4005</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -140,7 +140,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;d3dx11.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dx11.lib;DXGI.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release - DirectX|x64'">
@@ -166,7 +166,11 @@
     <ClInclude Include="include\behaviour_component.h" />
     <ClInclude Include="include\behaviour_system.h" />
     <ClInclude Include="include\cfg.h" />
+    <ClInclude Include="include\command.h" />
     <ClInclude Include="include\emitter_component.h" />
+    <ClInclude Include="include\input_component.h" />
+    <ClInclude Include="include\joypad_input_component.h" />
+    <ClInclude Include="include\keyboard_input_component.h" />
     <ClInclude Include="include\particle_system.h" />
     <ClInclude Include="include\plane_collider.h" />
     <ClInclude Include="include\bounding_sphere.h" />
@@ -265,6 +269,9 @@
     <ClCompile Include="src\behaviour_sytem.cpp" />
     <ClCompile Include="src\cfg.cpp" />
     <ClCompile Include="src\emitter_component.cpp" />
+    <ClCompile Include="src\input_component.cpp" />
+    <ClCompile Include="src\joypad_input_component.cpp" />
+    <ClCompile Include="src\keyboard_input_component.cpp" />
     <ClCompile Include="src\particle_system.cpp" />
     <ClCompile Include="src\plane_collider.cpp" />
     <ClCompile Include="src\bounding_sphere.cpp" />

@@ -68,4 +68,8 @@ namespace Blade
 			m_Scenes.back()->Draw();
 		}
 	}
+	Scene * SceneManager::GetCurrentScene() const noexcept
+	{
+		return m_Scenes.back().get();
+	}
 }

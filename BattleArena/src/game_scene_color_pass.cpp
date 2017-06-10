@@ -11,6 +11,8 @@
 
 using namespace Blade;
 
+#define DIPLAY_PARTICLES false
+
 void GameSceneColorPassStage::DisplayToScreen() const
 {
 	D3D11Context& ctx{ G_GAPIContext };
@@ -181,6 +183,10 @@ bool GameSceneColorPassStage::Initialize()
 		return false;
 	}
 
+
+
+
+
 	m_DummyDiff = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"dummyDiff.jpg");
 	m_DummyDiff->SetTextureType(TEX_DIFFUSE);
 
@@ -202,6 +208,9 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	//Define a clear color and clear the color buffer and depth stencil.
 	Vec4f clearColor{ 0.0f, 0.0f, 0.0f, 1.0f };
 	m_ColorRenderTarget.Clear(&clearColor[0]);
+
+	//Get the window size.
+	Vec2i winSize{ WindowingService::GetWindow(0)->GetSize() };
 
 	//Get the device context.
 	ID3D11DeviceContext* deviceContext{ G_GAPIContext.GetDeviceContext() };
@@ -356,6 +365,8 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 	//////////////////////////////////////////////////////////////////////////
 
+#if DIPLAY_PARTICLES
+
 	G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_0);
 	G_ShaderProgramManager.Get("particles_sdrprog")->Bind();
 
@@ -424,7 +435,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	}
 	G_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
 	G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_1);
-
+#endif // 
 	//Unbind the render target.
 	m_ColorRenderTarget.Unbind();
 

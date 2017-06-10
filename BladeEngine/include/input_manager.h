@@ -11,6 +11,8 @@
 
 #include "trace.h"
 #include "xinput_device.h"
+#include "input_state.h"
+#include "types.h"
 
 // required library files
 #pragma comment (lib, "Xinput.lib")
@@ -32,7 +34,7 @@ namespace Blade
 	/*
 	* \brief Describe players to access devices
 	*/
-	enum class Player { PLAYER1, PLAYER2, PLAYER3, PLAYER4 };
+	enum class JoypadNumber { JOYPAD1, JOYPAD2, JOYPAD3, JOYPAD4 };
 
 	class InputDevice;
 	/*
@@ -51,9 +53,21 @@ namespace Blade
 		/**
 		* \brief The active device map stores devices in use by assigned player, removed from the device pool
 		*/
-		std::map<Player, InputDevice*> m_ActiveDevices;
+		std::map<JoypadNumber, InputDevice*> m_ActiveDevices;
 
 	public:
+
+		Vec2f GetAnalogStickVector(JoypadNumber player, Input_Sensor sensor);
+
+		/**
+		* \brief Query the state of a sensor on an active pad linked to player
+		*/
+		bool QueryDeviceState(JoypadNumber player, Input_Sensor sensor);
+
+		/**
+		* \brief Query the input states of sensors on an active device linked to player, return in supplied map
+		*/
+		bool QueryDeviceAllStates(JoypadNumber player, std::map<Input_Sensor, bool>& map);
 
 		/**
 		* \brief Update the states of managed input devices, and re-enumerate input devices
@@ -95,20 +109,21 @@ namespace Blade
 		* \brief Assigns a player to an input device.
 		* \return True if successful, false otherwise
 		*/
-		bool AssignDeviceToPlayer(Player playerID, int deviceNumber);
+		bool AssignDeviceToPlayer(JoypadNumber playerID, int deviceNumber);
 
 		/**
 		* \brief Unassigns an input device from a player (by player ID).
 		* \return Destroy the association between player and device, and mark device as inactive
 		*/
-		bool UnassignDevice(Player playerID);
+		bool UnassignDevice(JoypadNumber playerID);
 
 
 		/**
 		* \brief Returns an active (not in the pool) assigned input device, searched by player
 		* \return Active input device for player id, nullptr otherwise
 		*/
-		InputDevice* GetActiveDevice(Player playerID);
+		InputDevice* GetActiveDevice(JoypadNumber playerID);
+
 
 		~InputManager();
 

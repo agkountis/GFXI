@@ -1,6 +1,122 @@
 #include "input_manager.h"
-
 using namespace Blade;
+
+Vec2f InputManager::GetAnalogStickVector(JoypadNumber player, Input_Sensor sensor)
+{
+
+	InputDevice* dev = GetActiveDevice(player);
+
+	if (dev == nullptr) {
+
+		// return a zero vector (equivalent to no input)
+		return Vec2f(0.0f, 0.0f);
+
+	}
+
+	InputState inState = dev->GetInputState();
+	
+	if (sensor == STICK_LEFT)
+	{
+		return Vec2f(inState.stickLeft.axisX, inState.stickLeft.axisY);
+	}
+	else if (sensor == STICK_RIGHT)
+	{
+		return Vec2f(inState.stickRight.axisX, inState.stickRight.axisY);
+	}
+
+	// Catch-All
+	return Vec2f(0.0f, 0.0f);
+}
+
+bool InputManager::QueryDeviceState(JoypadNumber player, Input_Sensor btn)
+{
+
+	InputDevice* dev = GetActiveDevice(player);
+
+	if (dev == nullptr) {
+
+		return false;
+
+	}
+
+	// if the caller is requesting one of the analog sticks
+	if (btn == Input_Sensor::STICK_LEFT)
+	{
+		// left stick
+		return (dev->GetInputState().stickLeft.axisX != 0.0f || dev->GetInputState().stickLeft.axisY != 0.0f);
+	} 
+	else if (btn == Input_Sensor::STICK_RIGHT)
+	{
+		// right stick
+		return (dev->GetInputState().stickRight.axisX != 0.0f || dev->GetInputState().stickRight.axisY != 0.0f);
+	}
+	else if (btn == Input_Sensor::TRIGGER_LEFT)
+	{
+		// left trigger
+		return (dev->GetInputState().triggerLeft != 0.0f);
+	}
+	else if (btn == Input_Sensor::TRIGGER_RIGHT)
+	{
+		// right trigger
+		return (dev->GetInputState().triggerRight != 0.0f);
+	}
+	else
+	{
+		// Digital button bit mask
+		return ((dev->GetInputState().digitalButtonData & btn) != 0);
+	}
+
+	// catch-all
+	return false;
+}
+
+bool InputManager::QueryDeviceAllStates(JoypadNumber player, std::map<Input_Sensor, bool>& stateMap)
+{
+
+	InputDevice* dev = GetActiveDevice(player);
+
+	if (dev == nullptr) {
+
+		return false;
+
+	}
+
+	InputState inState = dev->GetInputState();
+
+	// Digital sensors to iterate
+	Input_Sensor digitalSensors[]{
+		BTN_FACE_1,
+		BTN_FACE_2,
+		BTN_FACE_3,
+		BTN_FACE_4,
+		BTN_OPTION_1,
+		BTN_OPTION_2,
+		BTN_SHOULDER_L,
+		BTN_SHOULDER_R,
+		BTN_STICK_L,
+		BTN_STICK_R,
+		DPAD_UP,
+		DPAD_DOWN,
+		DPAD_LEFT,
+		DPAD_RIGHT
+	};
+
+	for (auto sensor : digitalSensors) {
+		// check bit flag
+		stateMap[sensor] = ((inState.digitalButtonData & sensor) != 0);
+	}
+
+	// Analog Sticks
+	stateMap[STICK_LEFT] = (inState.stickLeft.axisX != 0.0f || inState.stickLeft.axisY != 0.0f);
+	stateMap[STICK_RIGHT] = (inState.stickRight.axisX != 0.0f || inState.stickRight.axisY != 0.0f);
+
+	// Analog Triggers
+	stateMap[TRIGGER_LEFT] = (inState.triggerLeft > 0.0f);
+	stateMap[TRIGGER_RIGHT] = (inState.triggerRight > 0.0f);
+
+
+	return true;
+}
 
 void InputManager::Update(float deltaTime)
 {
@@ -77,7 +193,6 @@ bool InputManager::Initialize() noexcept
 
 	return true;
 }
-
 
 int InputManager::EnumerateDevices() noexcept
 {
@@ -180,7 +295,7 @@ bool Blade::InputManager::PooledDeviceExists(int deviceId)
 
 bool Blade::InputManager::ActiveDeviceExists(int deviceId)
 {
-	std::map<Player, InputDevice*>::iterator itr = m_ActiveDevices.begin();
+	std::map<JoypadNumber, InputDevice*>::iterator itr = m_ActiveDevices.begin();
 
 	InputDevice* tempDev{ nullptr };
 
@@ -202,7 +317,7 @@ bool Blade::InputManager::ActiveDeviceExists(int deviceId)
 }
 
 
-bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber)
+bool Blade::InputManager::AssignDeviceToPlayer(JoypadNumber playerID, int deviceNumber)
 {
 
 	// Exceeded bounds
@@ -226,11 +341,11 @@ bool Blade::InputManager::AssignDeviceToPlayer(Player playerID, int deviceNumber
 	return true;
 }
 
-bool Blade::InputManager::UnassignDevice(Player playerID)
+bool Blade::InputManager::UnassignDevice(JoypadNumber playerID)
 {
 
 	// Find device
-	std::map<Player, InputDevice*>::iterator itr = m_ActiveDevices.find(playerID);
+	std::map<JoypadNumber, InputDevice*>::iterator itr = m_ActiveDevices.find(playerID);
 
 	// Fail if not found
 	if (itr == m_ActiveDevices.end())
@@ -263,11 +378,11 @@ bool Blade::InputManager::UnassignDevice(Player playerID)
 	return false;
 }
 
-InputDevice * InputManager::GetActiveDevice(Player playerID)
+InputDevice * InputManager::GetActiveDevice(JoypadNumber playerID)
 {
 
 	// Find by iterator
-	std::map<Player, InputDevice*>::iterator itr = m_ActiveDevices.find(playerID);
+	std::map<JoypadNumber, InputDevice*>::iterator itr = m_ActiveDevices.find(playerID);
 
 	// return result or nullptr
 	if (itr != m_ActiveDevices.end())

@@ -11,17 +11,16 @@ namespace Blade
 
 	void BehaviourSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
 {
-		for (auto pair : m_BehaviourComponents)
+		for (auto i{ 0 };i<m_BehaviourComponents.size();++i)
 		{
-			auto component{ pair.second };
-			component->Update(deltaTime,time);
+			m_BehaviourComponents[i]->Update(deltaTime,time);
 		}
 	}
 
 
 	void BehaviourSystem::RegisterComponent(BehaviourComponent* behaviourComponent) noexcept
 	{
-		m_BehaviourComponents[behaviourComponent->GetParent()->GetName()] = behaviourComponent;
+		m_BehaviourComponents.push_back(behaviourComponent);
 	}
 
 	void BehaviourSystem::UnregisterComponent(int id) noexcept
@@ -31,7 +30,7 @@ namespace Blade
 		while (it != m_BehaviourComponents.end())
 		{
 			auto entry{ *it };
-			if (entry.second->GetId() == id)
+			if (entry->GetId() == id)
 			{
 				it = m_BehaviourComponents.erase(it);
 			}
@@ -44,34 +43,18 @@ namespace Blade
 
 	void BehaviourSystem::Setup() noexcept
 	{
-		for (auto pair : m_BehaviourComponents)
+		for (auto behaviour : m_BehaviourComponents)
 		{
-			auto behaviour{ pair.second };
 			behaviour->Setup();
 		}
 	}
 
 	void BehaviourSystem::Teardown() noexcept
 	{
-		for (auto pair : m_BehaviourComponents)
+		for (auto behaviour : m_BehaviourComponents)
 		{
-			auto behaviour{ pair.second };
 			behaviour->Teardown();
 		}
 	}
 
-	std::vector<BehaviourComponent*> BehaviourSystem::GetBehaviourByType(const std::string type) const
-	{
-		std::vector<BehaviourComponent*>  result;
-
-		for (auto entry : m_BehaviourComponents)
-		{
-			if (entry.first == type)
-			{
-				result.push_back(entry.second);
-			}
-		}
-
-		return std::move(result);
-	}
 }

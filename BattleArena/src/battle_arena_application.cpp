@@ -14,6 +14,7 @@ using namespace Blade;
 static void Reshape(int x, int y)
 {
 	//TODO: Called when window size changes.
+
 }
 
 static void KeyDown(unsigned char key, int x, int y)

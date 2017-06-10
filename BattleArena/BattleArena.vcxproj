@@ -78,8 +78,8 @@
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - DirectX|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)deps\include;$(SolutionDir)BladeEngine\include;$(SolutionDir)BattleArena\include;$(IncludePath)</IncludePath>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)deps\include;$(solutionDir)BattleArena\include;$(SolutionDir)BladeEngine\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)deps\lib;$(SolutionDir)$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - DirectX|x64'">
@@ -128,15 +128,18 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;BLADE_BUILD_D3D;GLM_FORCE_SWIZZLE;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <DisableSpecificWarnings>4005;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>BladeEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EnableCOMDATFolding>
+      </EnableCOMDATFolding>
+      <OptimizeReferences>
+      </OptimizeReferences>
+      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
+      <AdditionalDependencies>BladeEngine.lib;zlibstaticd.lib;assimp-vc140-mt-static-rel.lib;LibOVR.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers />
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release - DirectX|x64'">
@@ -157,16 +160,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\bullet.cpp" />
+    <ClCompile Include="src\cannon_weapon_component.cpp" />
+    <ClCompile Include="src\game_scene_color_pass_ovr.cpp" />
+    <ClCompile Include="src\other_weapon_component.cpp" />
     <ClCompile Include="src\assimp_utils.cpp" />
     <ClCompile Include="src\battle_arena_application.cpp" />
     <ClCompile Include="src\game_scene.cpp" />
     <ClCompile Include="src\game_scene_color_pass.cpp" />
-    <ClCompile Include="src\game_scene_color_pass_ovr.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\multiplayer.cpp" />
+    <ClCompile Include="src\player_joypad_component.cpp" />
+    <ClCompile Include="src\weapon_component.cpp" />
+    <None Include="src\test_joypad_component.cpp" />
+    <ClCompile Include="src\test_behaviour.cpp" />
     <ClCompile Include="src\test_message.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\bullet.h" />
+    <ClInclude Include="include\cannon_weapon_component.h" />
     <ClInclude Include="include\assimp_utils.h" />
     <ClInclude Include="include\battle_arena_application.h" />
     <ClInclude Include="include\game_scene.h" />
@@ -174,8 +186,15 @@
     <ClInclude Include="include\game_scene_color_pass_ovr.h" />
     <ClInclude Include="include\network_message_types.h" />
     <ClInclude Include="include\multiplayer.h" />
-    <ClInclude Include="include\test_message.h" />
+    <ClInclude Include="include\player_joypad_component.h" />
+    <ClInclude Include="include\other_weapon_component.h" />
     <ClInclude Include="include\uniform_buffers.h" />
+    <ClInclude Include="include\weapon_component.h" />
+    <None Include="include\test_joypad_component.h" />
+    <ClInclude Include="include\test_behaviour.h" />
+    <ClInclude Include="include\test_message.h" />
+    <ClInclude Include="src\player_commands.h" />
+    <ClInclude Include="src\test_commands_battle_arena.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\arcane_fountain.cfg" />

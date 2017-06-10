@@ -16,7 +16,7 @@ namespace Blade
 		/**
 		* \brief The registered BehaviourComponents.
 		*/
-		std::map<std::string, BehaviourComponent*> m_BehaviourComponents;	
+		std::vector<BehaviourComponent*> m_BehaviourComponents;	
 
 	public:
 		/**
@@ -51,12 +51,6 @@ namespace Blade
 		*/
 		virtual void Teardown() noexcept;
 
-		/*
-		\brief Function that returns a vector of all the behaviour component of a selected type
-		\param the type of the component that you want to obtain
-		\return the vector of components of the type requested.
-		*/
-		std::vector<BehaviourComponent*> GetBehaviourByType(const std::string type) const;
 	};
 }
 #endif
