@@ -150,15 +150,7 @@ namespace Blade
 		*/
 		void SetDeviceType(DeviceType devType) { m_DeviceType = devType; }
 
-		/*
-		\brief Gets the last (newest) buffered input state to read
-		*/
-		const InputState& GetCurrentState() const { return m_CurrentState; }
 
-		/*
-		\brief Gets the previous buffered previous input state to read
-		*/
-		const InputState& GetPreviousState() const {	return m_PreviousState;	}
 
 		/*
 		\brief Moves the newest input state to the previous state and stores the provided state as newest
@@ -232,6 +224,16 @@ namespace Blade
 		\return Enum of DeviceType of the device if successful, DeviceType enum DEVTYPE_ERROR otherwise
 		*/
 		DeviceType GetDeviceType() { return m_DeviceType; }
+
+		/*
+		\brief Gets the last (newest) buffered input state to read
+		*/
+		const InputState& GetCurrentState() const { return m_CurrentState; }
+
+		/*
+		\brief Gets the previous buffered previous input state to read
+		*/
+		const InputState& GetPreviousState() const { return m_PreviousState; }
 
 		virtual ~InputDevice();
 
