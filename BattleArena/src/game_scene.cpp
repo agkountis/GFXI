@@ -18,6 +18,10 @@
 #include "emitter_component.h"
 #include "player_joypad_component.h"
 #include "test_behaviour.h"
+#include "cannon_weapon_component.h"
+#include "other_weapon_component.h"
+
+
 using namespace Blade;
 
 void GameScene::Initialize()
@@ -97,6 +101,9 @@ void GameScene::Initialize()
 
 	PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
 	tjc->Setup();
+
+	CannonWeaponComponent* cwc{ new CannonWeaponComponent{entity,WeaponPosition::LEFT} };
+	OtherWeaponComponent* owc{ new OtherWeaponComponent{entity,WeaponPosition::RIGHT} };
 
 	
 	AddEntity(entity);

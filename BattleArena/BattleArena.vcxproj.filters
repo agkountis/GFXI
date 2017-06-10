@@ -93,7 +93,7 @@
       <Filter>src\entities</Filter>
     </ClCompile>
     <ClCompile Include="src\test_behaviour.cpp">
-      <Filter>src</Filter>
+      <Filter>src\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,7 +140,7 @@
       <Filter>include\entities</Filter>
     </ClInclude>
     <ClInclude Include="include\test_behaviour.h">
-      <Filter>include</Filter>
+      <Filter>include\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

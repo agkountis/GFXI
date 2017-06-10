@@ -7,6 +7,7 @@
 #include "engine_context.h"
 #include "emitter_component.h"
 #include "d3d/D3D11_texture.h"
+#include "test_behaviour.h"
 
 using namespace Blade;
 
@@ -36,6 +37,9 @@ Bullet::Bullet(const std::string & name, const std::wstring & mesh, const Blade:
 	Texture* tex{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"expl02.png") };
 	tex->SetTextureType(TEX_DIFFUSE);
 	ec->SetTexture(tex);
+
+	TestBehaviour* tb{ new TestBehaviour{this} };
+	colC->SetListener(tb);
 
 	simC->SetVelocity(velocity);
 }
