@@ -91,7 +91,6 @@ void GameScene::Initialize()
 	Texture* tex{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"expl02.png") };
 	tex->SetTextureType(TEX_DIFFUSE);
 	ec->SetTexture(tex);
-
 	*/
 
 	PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
