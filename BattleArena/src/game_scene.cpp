@@ -17,7 +17,7 @@
 #include "plane_collider.h"
 #include "emitter_component.h"
 #include "player_joypad_component.h"
-
+#include "test_behaviour.h"
 using namespace Blade;
 
 void GameScene::Initialize()
@@ -70,7 +70,8 @@ void GameScene::Initialize()
 	rc->SetMaterial(material);
 	SimulationComponent* simC{ new SimulationComponent{entity,1.0f} };
 	ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(1.0f)} };
-	
+	TestBehaviour* tb{ new TestBehaviour(entity) };
+	colC->SetListener(tb);
 
 	auto cache_entity = entity;
 	/*

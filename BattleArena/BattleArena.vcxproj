@@ -165,6 +165,7 @@
     <ClCompile Include="src\multiplayer.cpp" />
     <ClCompile Include="src\player_joypad_component.cpp" />
     <None Include="src\test_joypad_component.cpp" />
+    <ClCompile Include="src\test_behaviour.cpp" />
     <ClCompile Include="src\test_message.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="include\multiplayer.h" />
     <ClInclude Include="include\player_joypad_component.h" />
     <None Include="include\test_joypad_component.h" />
+    <ClInclude Include="include\test_behaviour.h" />
     <ClInclude Include="include\test_message.h" />
     <ClInclude Include="src\player_commands.h" />
     <ClInclude Include="src\test_commands_battle_arena.h" />

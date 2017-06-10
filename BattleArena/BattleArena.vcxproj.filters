@@ -65,6 +65,9 @@
     <ClCompile Include="src\player_joypad_component.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
+    <ClCompile Include="src\test_behaviour.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
@@ -95,6 +98,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="src\player_commands.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\test_behaviour.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
