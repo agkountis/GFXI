@@ -170,6 +170,20 @@ namespace Blade
 		return nullptr;
 	}
 
+	std::vector<Component*> Entity::GetComponents(const std::string & type) const noexcept
+	{
+		std::vector<Component*> result;
+		for (const auto component : m_Components)
+		{
+			if (component->GetType() == type)
+			{
+				result.push_back(component);
+			}
+		}
+
+		return result;
+	}
+
 	void Entity::AddComponent(Component* component) noexcept
 	{
 		m_Components.push_back(component);

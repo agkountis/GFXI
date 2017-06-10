@@ -157,6 +157,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\bullet.cpp" />
+    <ClCompile Include="src\cannon_weapon_component.cpp" />
+    <ClCompile Include="src\other_weapon_component.cpp" />
     <ClCompile Include="src\assimp_utils.cpp" />
     <ClCompile Include="src\battle_arena_application.cpp" />
     <ClCompile Include="src\game_scene.cpp" />
@@ -164,10 +167,13 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\multiplayer.cpp" />
     <ClCompile Include="src\player_joypad_component.cpp" />
+    <ClCompile Include="src\weapon_component.cpp" />
     <None Include="src\test_joypad_component.cpp" />
     <ClCompile Include="src\test_message.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\bullet.h" />
+    <ClInclude Include="include\cannon_weapon_component.h" />
     <ClInclude Include="include\assimp_utils.h" />
     <ClInclude Include="include\battle_arena_application.h" />
     <ClInclude Include="include\game_scene.h" />
@@ -175,6 +181,8 @@
     <ClInclude Include="include\network_message_types.h" />
     <ClInclude Include="include\multiplayer.h" />
     <ClInclude Include="include\player_joypad_component.h" />
+    <ClInclude Include="include\other_weapon_component.h" />
+    <ClInclude Include="include\weapon_component.h" />
     <None Include="include\test_joypad_component.h" />
     <ClInclude Include="include\test_message.h" />
     <ClInclude Include="src\player_commands.h" />

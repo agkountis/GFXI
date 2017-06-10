@@ -29,8 +29,13 @@ void PlayerJoypadComponent::Update(const float dt, const long time) noexcept
 void PlayerJoypadComponent::Setup() noexcept
 {
 	auto move_command = std::make_shared<MoveCommand>();
+	auto shoot_left_command = std::make_shared<ShootLeftWeapon>();
+	auto shoot_right_command = std::make_shared<ShootRightWeapon>();
 
 	m_JoypadCommandMap[Input_Sensor::STICK_LEFT] = move_command;
+
+	m_JoypadCommandMap[Input_Sensor::BTN_FACE_1] = shoot_left_command;
+	m_JoypadCommandMap[Input_Sensor::TRIGGER_RIGHT] = shoot_right_command;
 }
 
 void PlayerJoypadComponent::Teardown() noexcept

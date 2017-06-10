@@ -121,6 +121,11 @@ namespace Blade
 		Component* GetComponent(const std::string& type) const noexcept;
 
 		/*
+		\brief Return a list of components of the same type attached to the entity
+		*/
+		std::vector<Component*> GetComponents(const std::string& type) const noexcept;
+
+		/*
 		*\brief Attach a new component to the entity.
 		*/
 		void AddComponent(Component* component) noexcept;

@@ -33,11 +33,26 @@
     <Filter Include="src\utilities">
       <UniqueIdentifier>{59137cd1-cff6-4b76-810c-dd2397cf7ebb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\input">
+    <Filter Include="include\commands">
+      <UniqueIdentifier>{617f7fa8-6ac1-4f53-9a23-7032cfe71810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\components">
+      <UniqueIdentifier>{ff224baa-ae6b-4b69-a09b-e52ab2e8bd28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\components\input">
       <UniqueIdentifier>{61ef3fcf-3c40-4a91-9b70-aa906196fd61}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\input">
+    <Filter Include="src\components">
+      <UniqueIdentifier>{b0d347a6-ed46-49ad-87d4-e7c1a4cb9a75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\components\input">
       <UniqueIdentifier>{696e6d1a-34b0-4469-955a-03a08d569ec8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\entities">
+      <UniqueIdentifier>{050c7bd1-55ee-456c-9f53-562c278841cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities">
+      <UniqueIdentifier>{2af32505-cb38-472f-91ce-3c5147050033}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,7 +78,19 @@
       <Filter>src\utilities</Filter>
     </ClCompile>
     <ClCompile Include="src\player_joypad_component.cpp">
-      <Filter>src\input</Filter>
+      <Filter>src\components\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cannon_weapon_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\other_weapon_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\weapon_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bullet.cpp">
+      <Filter>src\entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,13 +116,25 @@
       <Filter>include\utilities</Filter>
     </ClInclude>
     <ClInclude Include="include\player_joypad_component.h">
-      <Filter>include\input</Filter>
-    </ClInclude>
-    <ClInclude Include="src\test_commands_battle_arena.h">
-      <Filter>include</Filter>
+      <Filter>include\components\input</Filter>
     </ClInclude>
     <ClInclude Include="src\player_commands.h">
-      <Filter>include</Filter>
+      <Filter>include\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="src\test_commands_battle_arena.h">
+      <Filter>include\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="include\weapon_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\other_weapon_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cannon_weapon_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bullet.h">
+      <Filter>include\entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -127,10 +166,10 @@
       <Filter>sdr</Filter>
     </None>
     <None Include="include\test_joypad_component.h">
-      <Filter>include\input</Filter>
+      <Filter>include\components\input</Filter>
     </None>
     <None Include="src\test_joypad_component.cpp">
-      <Filter>src\input</Filter>
+      <Filter>src\components\input</Filter>
     </None>
   </ItemGroup>
 </Project>

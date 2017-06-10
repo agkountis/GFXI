@@ -17,6 +17,8 @@
 #include "plane_collider.h"
 #include "emitter_component.h"
 #include "player_joypad_component.h"
+#include "cannon_weapon_component.h"
+#include "other_weapon_component.h"
 
 using namespace Blade;
 
@@ -97,6 +99,9 @@ void GameScene::Initialize()
 	PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
 	tjc->Setup();
 
+	CannonWeaponComponent* cwc{ new CannonWeaponComponent{entity,WeaponPosition::LEFT} };
+	OtherWeaponComponent* owc{ new OtherWeaponComponent{entity,WeaponPosition::RIGHT} };
+
 	
 	AddEntity(entity);
 
@@ -130,7 +135,7 @@ void GameScene::Initialize()
 
 	cam = new Camera{ "Camera2", cd };
 
-	cam->SetPosition(Vec3f{ 0.0f, 14.0f, -11.0f });
+	cam->SetPosition(Vec3f{ 0.0f, 70.0f, -70.0f });
 	cam->SetOrientation(Vec3f{ 1.0, 0.0, 0.0 }, MathUtils::ToRadians(32.0f));
 	AddEntity(cam);
 
