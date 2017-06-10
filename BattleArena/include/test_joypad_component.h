@@ -2,6 +2,8 @@
 #define BLADE_TEST_JOYPAD_COMPONENT_H_
 #include "joypad_input_component.h"
 
+//#donotpartecipateatthebuild
+
 class TestJoypadComponent : public Blade::JoypadInputComponent
 {
 public:

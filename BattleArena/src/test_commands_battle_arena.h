@@ -4,6 +4,8 @@
 #include <iostream>
 
 
+//#donotpartecipateatthebuild
+
 //Helper
 /*
 \brief Return the joy pad number associated with the entity.
