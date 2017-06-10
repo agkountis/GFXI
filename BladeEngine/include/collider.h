@@ -20,6 +20,8 @@ namespace Blade
 		*/
 		ColliderComponent* m_Parent{ nullptr };
 
+
+
 	public:
 		Collider() = default;
 

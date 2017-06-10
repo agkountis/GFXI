@@ -1,7 +1,7 @@
 #ifndef BLADE_BEHAVIOUR_COMPONENT_H_
 #define BLADE_BEHAVIOUR_COMPONENT_H_
 #include "component.h"
-
+#include "trace.h"
 namespace Blade
 {
 	/*
@@ -41,6 +41,8 @@ namespace Blade
 		* \brief Performs actions before the BehaviourComponent is destroyed.
 		*/
 		virtual void Teardown() noexcept = 0;
+
+		virtual void OnCollision(Entity* other) noexcept { }
 	};
 }
 

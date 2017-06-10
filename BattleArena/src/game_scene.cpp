@@ -17,9 +17,7 @@
 #include "plane_collider.h"
 #include "emitter_component.h"
 #include "player_joypad_component.h"
-#include "cannon_weapon_component.h"
-#include "other_weapon_component.h"
-
+#include "test_behaviour.h"
 using namespace Blade;
 
 void GameScene::Initialize()
@@ -72,7 +70,8 @@ void GameScene::Initialize()
 	rc->SetMaterial(material);
 	SimulationComponent* simC{ new SimulationComponent{entity,1.0f} };
 	ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(1.0f)} };
-	
+	TestBehaviour* tb{ new TestBehaviour(entity) };
+	colC->SetListener(tb);
 
 	auto cache_entity = entity;
 	/*
@@ -98,9 +97,6 @@ void GameScene::Initialize()
 
 	PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
 	tjc->Setup();
-
-	CannonWeaponComponent* cwc{ new CannonWeaponComponent{entity,WeaponPosition::LEFT} };
-	OtherWeaponComponent* owc{ new OtherWeaponComponent{entity,WeaponPosition::RIGHT} };
 
 	
 	AddEntity(entity);
@@ -135,7 +131,7 @@ void GameScene::Initialize()
 
 	cam = new Camera{ "Camera2", cd };
 
-	cam->SetPosition(Vec3f{ 0.0f, 70.0f, -70.0f });
+	cam->SetPosition(Vec3f{ 0.0f, 14.0f, -11.0f });
 	cam->SetOrientation(Vec3f{ 1.0, 0.0, 0.0 }, MathUtils::ToRadians(32.0f));
 	AddEntity(cam);
 
@@ -234,17 +230,15 @@ void GameScene::OnMouseClick(int button, bool state, int x, int y) noexcept
 
 void GameScene::Update(float deltaTime, long time) noexcept
 {
-	Scene::Update(deltaTime, time);
-	
 	G_InputManager.Update(deltaTime);
+
+	Scene::Update(deltaTime, time);
 
 	G_SimulationSystem.Process(deltaTime);
 
 	G_LightSystem.Process();
 
 	G_BehaviourSystem.Process(deltaTime, time);
-
-	
 }
 
 void GameScene::Draw() const noexcept

@@ -2,9 +2,15 @@
 #include "entity.h"
 #include "simulation_system.h"
 #include "engine_context.h"
-
+#include "behaviour_component.h"
 
 using namespace Blade;
+
+void Blade::ColliderComponent::NotifyCollisionListener(Entity* entity) noexcept
+{
+	//BLADE_TRACE("COLLIDER COMPONENT NOTIFIED");
+	if (m_pListenerBehaviour) m_pListenerBehaviour->OnCollision(entity);// TODO: pass entity that you're colliding with
+}
 
 ColliderComponent::ColliderComponent(Entity* parent, std::unique_ptr<Collider> collider):
 	Component{ "co_col", parent },
@@ -37,4 +43,10 @@ bool Blade::ColliderComponent::IsActive() const noexcept
 void Blade::ColliderComponent::SetCollisionResponseFlag(bool flag) noexcept
 {
 	m_activeFlag = flag;
+}
+
+void Blade::ColliderComponent::SetListener(BehaviourComponent * listener) noexcept
+{
+
+	m_pListenerBehaviour = listener;
 }

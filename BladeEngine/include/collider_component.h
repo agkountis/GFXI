@@ -4,11 +4,12 @@
 #include "collider.h"
 #include <memory>
 
+#include "trace.h"
 namespace Blade
 {
 	//Forward declaration
 	class Entity;
-
+	class BehaviourComponent;
 	/*
 	\brief ColliderComponent class of the engine is a component without behaviour
 	*/
@@ -26,6 +27,13 @@ namespace Blade
 		\brief Unique pointer to the correspondent collider.
 		*/
 		std::unique_ptr<Collider> m_Collider;
+
+
+		BehaviourComponent* m_pListenerBehaviour{ nullptr };
+
+	//protected:
+	
+
 
 	public:
 
@@ -60,6 +68,16 @@ namespace Blade
 		*/
 		void SetCollisionResponseFlag(bool flag) noexcept;
 
+		/*
+		\brief Setter for collision listener behaviour
+		*/
+		void SetListener(BehaviourComponent* listener) noexcept;
+
+		/*
+		\brief Method used to notify BehaviourComponent listener about the collision
+		\param entity that the collider collided with
+		*/
+		void NotifyCollisionListener(Entity* entity) noexcept;
 	};
 }
 #endif 
