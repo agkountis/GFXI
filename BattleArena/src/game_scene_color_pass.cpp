@@ -8,8 +8,6 @@
 #include "entity.h"
 #include "d3d/D3D11_texture.h"
 
-//#debug
-#define DRAW_PARTICLES false
 
 using namespace Blade;
 
@@ -390,7 +388,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 	//////////////////////////////////////////////////////////////////////////
 
-#if DRAW_PARTICLES
+#if _DEBUG
 
 
 

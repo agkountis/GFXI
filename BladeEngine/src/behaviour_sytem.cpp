@@ -11,9 +11,9 @@ namespace Blade
 
 	void BehaviourSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
 {
-		for (auto component : m_BehaviourComponents)
+		for (auto i{ 0 };i<m_BehaviourComponents.size();++i)
 		{
-			component->Update(deltaTime,time);
+			m_BehaviourComponents[i]->Update(deltaTime,time);
 		}
 	}
 

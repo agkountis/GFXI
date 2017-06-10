@@ -8,7 +8,6 @@ namespace Blade
 		Component(type, parent)
 	{
 		G_BehaviourSystem.RegisterComponent(this);
-		std::cout << "Behaviour component constructor" << std::endl;
 	}
 
 	BehaviourComponent::~BehaviourComponent()
