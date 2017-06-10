@@ -24,7 +24,11 @@ namespace Blade
 
 		IDXGIFactory * DXGIFactory = nullptr;
 		HRESULT hr = CreateDXGIFactory(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&DXGIFactory));
-		//VALIDATE((hr == ERROR_SUCCESS), "CreateDXGIFactory1 failed");
+
+		if (FAILED(hr))
+		{
+			return false;
+		}
 
 		IDXGIAdapter * Adapter = nullptr;
 		for (UINT iAdapter = 0; DXGIFactory->EnumAdapters(iAdapter, &Adapter) != DXGI_ERROR_NOT_FOUND; ++iAdapter)

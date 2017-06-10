@@ -11,245 +11,12 @@
 using namespace Blade;
 
 // Private Functions -------------------------------------------------------------------
-bool GameSceneColorPassStageOvr::InitializeOvr() noexcept
-{
-	if (OVR_FAILURE(ovr_Initialize(nullptr)))
-	{
-		BLADE_ERROR("Failed to initialize Oculus Rift.");
-		return false;
-	}
-
-	return true;
-}
-
-void GameSceneColorPassStageOvr::ShutdownOvr() const noexcept
-{
-	ovr_DestroyTextureSwapChain(m_OvrData.session, m_OvrData.textureSwapChain);
-	ovr_DestroyMirrorTexture(m_OvrData.session, m_OvrData.mirrorTexture);
-	ovr_Shutdown();
-}
-
-bool GameSceneColorPassStageOvr::InitializeOvrData() noexcept
-{
-	if (OVR_FAILURE(ovr_Create(&m_OvrData.session, &m_OvrData.graphicsLuid)))
-	{
-		BLADE_ERROR("Failed to create OVR session.");
-		return false;
-	}
-
-	m_OvrData.hmdDesc = ovr_GetHmdDesc(m_OvrData.session);
-	BLADE_TRACE("Initialized HMD: " + std::string{ m_OvrData.hmdDesc.Manufacturer } + " - " + std::string{ m_OvrData.hmdDesc.ProductName });
-
-	m_OvrData.eyeRenderDesc[ovrEye_Left] = ovr_GetRenderDesc(m_OvrData.session, ovrEye_Left, m_OvrData.hmdDesc.DefaultEyeFov[ovrEye_Left]);
-	m_OvrData.eyeRenderDesc[ovrEye_Right] = ovr_GetRenderDesc(m_OvrData.session, ovrEye_Right, m_OvrData.hmdDesc.DefaultEyeFov[ovrEye_Right]);
-
-	m_OvrData.hmdToEyeViewOffset[ovrEye_Left] = m_OvrData.eyeRenderDesc[ovrEye_Left].HmdToEyeOffset;
-	m_OvrData.hmdToEyeViewOffset[ovrEye_Right] = m_OvrData.eyeRenderDesc[ovrEye_Right].HmdToEyeOffset;
-
-	m_OvrData.viewScaleDesc.HmdSpaceToWorldScaleInMeters = 1.0f;
-	m_OvrData.viewScaleDesc.HmdToEyeOffset[ovrEye_Left] = m_OvrData.hmdToEyeViewOffset[ovrEye_Left];
-	m_OvrData.viewScaleDesc.HmdToEyeOffset[ovrEye_Right] = m_OvrData.hmdToEyeViewOffset[ovrEye_Right];
-
-	m_OvrData.layer.Fov[ovrEye_Left] = m_OvrData.eyeRenderDesc[ovrEye_Left].Fov;
-	m_OvrData.layer.Fov[ovrEye_Right] = m_OvrData.eyeRenderDesc[ovrEye_Right].Fov;
-
-	m_OvrData.eyeResolution[ovrEye_Left] = ovr_GetFovTextureSize(m_OvrData.session, ovrEye_Left, m_OvrData.hmdDesc.DefaultEyeFov[ovrEye_Left], 1.0);
-	m_OvrData.eyeResolution[ovrEye_Right] = ovr_GetFovTextureSize(m_OvrData.session, ovrEye_Right, m_OvrData.hmdDesc.DefaultEyeFov[ovrEye_Right], 1.0);
-
-#undef max
-	int width{ m_OvrData.eyeResolution[ovrEye_Left].w + m_OvrData.eyeResolution[ovrEye_Right].w };
-	int height{ std::max(m_OvrData.eyeResolution[ovrEye_Left].h, m_OvrData.eyeResolution[ovrEye_Right].h) };
-
-	m_OvrData.textureSwapChain = nullptr;
-	ovrTextureSwapChainDesc swapChainDesc{};
-	swapChainDesc.Type = ovrTexture_2D;
-	swapChainDesc.ArraySize = 1;
-	swapChainDesc.Format = OVR_FORMAT_R8G8B8A8_UNORM_SRGB;
-	swapChainDesc.Width = width;
-	swapChainDesc.Height = height;
-	swapChainDesc.MipLevels = 1;
-	swapChainDesc.SampleCount = 1;
-	swapChainDesc.StaticImage = ovrFalse;
-	swapChainDesc.MiscFlags = ovrTextureMisc_None;
-	swapChainDesc.BindFlags = ovrTextureBind_DX_RenderTarget;
-
-	ovrResult res{ ovr_CreateTextureSwapChainDX(m_OvrData.session, G_GAPIContext.GetDevice(), &swapChainDesc, &m_OvrData.textureSwapChain) };
-	if (OVR_FAILURE(res))
-	{
-		BLADE_ERROR("Failed to create the OVR swapchain.");
-		return false;
-	}
-
-	int count{ 0 };
-	ovr_GetTextureSwapChainLength(m_OvrData.session, m_OvrData.textureSwapChain, &count);
-	m_ColorRenderTargets.resize(count);
-
-	for (int i = 0; i < count; ++i)
-	{
-		ID3D11Texture2D* tex{ nullptr };
-		ovr_GetTextureSwapChainBufferDX(m_OvrData.session, m_OvrData.textureSwapChain, i, IID_PPV_ARGS(&tex));
-		G_GAPIContext.GetDevice()->CreateRenderTargetView(tex, nullptr, &m_ColorRenderTargets[i]);
-		tex->Release();
-	}
-
-	D3D11_TEXTURE2D_DESC depth_attachment_desc;
-	depth_attachment_desc.Width = width;
-	depth_attachment_desc.Height = height;
-	depth_attachment_desc.MipLevels = 1;
-	depth_attachment_desc.ArraySize = 1;
-	depth_attachment_desc.Format = DXGI_FORMAT_R24G8_TYPELESS;
-	depth_attachment_desc.SampleDesc.Count = 1;
-	depth_attachment_desc.SampleDesc.Quality = 0;
-
-	depth_attachment_desc.Usage = D3D11_USAGE_DEFAULT;
-	depth_attachment_desc.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE;
-	depth_attachment_desc.CPUAccessFlags = 0;
-	depth_attachment_desc.MiscFlags = 0;
-
-	ID3D11Texture2D* tex = nullptr;
-
-	HRESULT hresult = G_GAPIContext.GetDevice()->CreateTexture2D(&depth_attachment_desc, nullptr, &tex);
-
-	if (FAILED(hresult))
-	{
-		std::cerr << "Failed to create D3D11RenderTarget depth attachment!" << std::endl;
-		return false;
-	}
-
-	D3D11_DEPTH_STENCIL_VIEW_DESC desc_dsv;
-	desc_dsv.Flags = 0;
-	desc_dsv.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-	desc_dsv.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-	desc_dsv.Texture2D.MipSlice = 0;
-
-	hresult = G_GAPIContext.GetDevice()->CreateDepthStencilView(tex, &desc_dsv, &m_DepthStencilView);
-
-	if (FAILED(hresult))
-	{
-		std::cerr << "Failed to create D3D11RenderTarget depth stencil view!" << std::endl;
-		return false;
-	}
-
-	tex->Release();
-
-	m_OvrData.mirrorTexture = nullptr;
-
-	ovrMirrorTextureDesc mirrorTextureDesc{};
-	mirrorTextureDesc.Format = OVR_FORMAT_R8G8B8A8_UNORM;
-	mirrorTextureDesc.Width = width;
-	mirrorTextureDesc.Height = height;
-
-	res = ovr_CreateMirrorTextureDX(m_OvrData.session, G_GAPIContext.GetDevice(), &mirrorTextureDesc, &m_OvrData.mirrorTexture);
-	if (OVR_FAILURE(res))
-	{
-		BLADE_ERROR("Failed to create OVR mirror texture.");
-		return false;
-	}
-
-	m_OvrData.layer.ColorTexture[ovrEye_Left] = m_OvrData.textureSwapChain;
-	m_OvrData.layer.ColorTexture[ovrEye_Right] = m_OvrData.textureSwapChain;
-
-	ovrRecti leftEyeRect = {
-		{ 0, 0 },
-		{ width / 2, height }
-	};
-
-	ovrRecti rightEyeRect = {
-		{ width / 2, 0 },
-		{ width / 2, height }
-	};
-
-	m_OvrData.layer.Viewport[ovrEye_Left] = leftEyeRect;
-	m_OvrData.layer.Viewport[ovrEye_Right] = rightEyeRect;
-
-	return true;
-}
-
-void GameSceneColorPassStageOvr::CalculateEyePoses() noexcept
-{
-	double displayMidpointSeconds{ ovr_GetPredictedDisplayTime(m_OvrData.session, 0) };
-
-	m_OvrData.layer.SensorSampleTime = ovr_GetTimeInSeconds();
-
-	ovrTrackingState hmdState = ovr_GetTrackingState(m_OvrData.session, displayMidpointSeconds, ovrTrue);
-
-	ovr_CalcEyePoses(hmdState.HeadPose.ThePose, m_OvrData.hmdToEyeViewOffset, m_OvrData.eyePoses);
-}
-
-const OvrXformData& GameSceneColorPassStageOvr::GetOvrXformDataPerEye(int eye) noexcept
-{
-	Recti rect{ Vec4f{ m_OvrData.layer.Viewport[eye].Pos.x,
-		m_OvrData.layer.Viewport[eye].Pos.y,
-		m_OvrData.layer.Viewport[eye].Size.w,
-		m_OvrData.layer.Viewport[eye].Size.h } };
-
-	m_OvrXformData.viewport = Viewport{ rect, 0.0f, 1.0f };
-	/*-------------------------------------------------------------------------*/
-
-	/*Calculate the Projection Matrix*/
-	m_OvrXformData.projection = MathUtils::identityMatrix;
-
-	ovrMatrix4f proj = ovrMatrix4f_Projection(m_OvrData.layer.Fov[eye], 0.01f, 1000.0f, ovrProjection_None);
-	memcpy(&m_OvrXformData.projection[0], proj.M, 16 * sizeof(float));
-	/*-------------------------------------------------------------------------*/
-
-	/*Calculate the View Matrix*/
-	m_OvrXformData.view = MathUtils::identityMatrix;
-
-	Quatf q = Quatf{ m_OvrData.eyePoses[eye].Orientation.w, m_OvrData.eyePoses[eye].Orientation.x,
-		m_OvrData.eyePoses[eye].Orientation.y, m_OvrData.eyePoses[eye].Orientation.z };
-
-	q = MathUtils::Inverse(q);
-
-	q = MathUtils::Normalize(q);
-
-	m_OvrXformData.view = MathUtils::Rotate(m_OvrXformData.view, q);
-
-	Vec3f t{ -m_OvrData.eyePoses[eye].Position.x, -m_OvrData.eyePoses[eye].Position.y, -m_OvrData.eyePoses[eye].Position.z };
-	m_OvrXformData.view = MathUtils::Translate(m_OvrXformData.view, t);
-	/*-------------------------------------------------------------------------*/
-	//
-	return m_OvrXformData;
-}
-
-void GameSceneColorPassStageOvr::BeginOvrFrame() noexcept
-{
-	m_CurrentRenderTargetIndex = 0;
-	ovr_GetTextureSwapChainCurrentIndex(m_OvrData.session, m_OvrData.textureSwapChain, &m_CurrentRenderTargetIndex);
-
-	G_GAPIContext.GetDeviceContext()->OMSetRenderTargets(1, &m_ColorRenderTargets[m_CurrentRenderTargetIndex], m_DepthStencilView);
-
-	Vec4f col{ 0.3, 0.3, 0.3, 1.0 };
-	G_GAPIContext.GetDeviceContext()->ClearRenderTargetView(m_ColorRenderTargets[m_CurrentRenderTargetIndex], &col[0]);
-	G_GAPIContext.GetDeviceContext()->ClearDepthStencilView(m_DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
-}
-
-void GameSceneColorPassStageOvr::EndOvrFrame() noexcept
-{
-	D3D11Context& ctx{ G_GAPIContext };
-
-	ID3D11DeviceContext* dev_con{ ctx.GetDeviceContext() };
-
-	ID3D11DepthStencilView* null_dsv{ nullptr };
-	ID3D11RenderTargetView* null_rtvs{ nullptr };
-	dev_con->OMSetRenderTargets(1, &null_rtvs, null_dsv);
-
-	dev_con->OMSetRenderTargets(1, ctx.GetGetAddressOfDefaultRenderTargetView(), ctx.GetDefaultDepthStencilView());
-
-	ovr_CommitTextureSwapChain(m_OvrData.session, m_OvrData.textureSwapChain);
-}
-
-bool GameSceneColorPassStageOvr::SubmitOvrFrame() noexcept
-{
-	m_OvrData.layer.RenderPose[ovrEye_Left] = m_OvrData.eyePoses[ovrEye_Left];
-	m_OvrData.layer.RenderPose[ovrEye_Right] = m_OvrData.eyePoses[ovrEye_Right];
-
-	ovrLayerHeader* layerHeader{ &m_OvrData.layer.Header };
-
-	ovrResult res{ ovr_SubmitFrame(m_OvrData.session, 0, &m_OvrData.viewScaleDesc, &layerHeader, 1) };
-
-	return res == ovrSuccess;
-}
+ovrMirrorTexture mirrorTexture = nullptr;
+OculusTexture  * pEyeRenderTexture[2] = { nullptr, nullptr };
+DepthBuffer    * pEyeDepthBuffer[2] = { nullptr, nullptr };
+ovrHmdDesc hmdDesc;
+ovrRecti         eyeRenderViewport[2];
+long long frameIndex{ 0 };
 
 // -------------------------------------------------------------------------------------
 
@@ -262,15 +29,29 @@ GameSceneColorPassStageOvr::GameSceneColorPassStageOvr(const std::string& name)
 
 bool GameSceneColorPassStageOvr::Initialize()
 {
-	if (!InitializeOvr())
+	hmdDesc = ovr_GetHmdDesc(EngineContext::session);
+
+	for (int eye = 0; eye < 2; ++eye)
 	{
-		return false;
+		ovrSizei idealSize = ovr_GetFovTextureSize(EngineContext::session, (ovrEyeType)eye, hmdDesc.DefaultEyeFov[eye], 1.0f);
+		pEyeRenderTexture[eye] = new OculusTexture();
+		if (!pEyeRenderTexture[eye]->Init(EngineContext::session, idealSize.w, idealSize.h))
+		{
+			return false;
+		}
+
+		pEyeDepthBuffer[eye] = new DepthBuffer(G_GAPIContext.GetDevice(), idealSize.w, idealSize.h);
+		eyeRenderViewport[eye].Pos.x = 0;
+		eyeRenderViewport[eye].Pos.y = 0;
+		eyeRenderViewport[eye].Size = idealSize;
+		if (!pEyeRenderTexture[eye]->TextureChain)
+		{
+			return false;
+		}
 	}
 
-	if (!InitializeOvrData())
-	{
-		return false;
-	}
+	// FloorLevel will give tracking poses where the floor height is 0
+	ovr_SetTrackingOriginType(EngineContext::session, ovrTrackingOrigin_FloorLevel);
 
 	D3D11_SAMPLER_DESC samplerDesc;
 	ZeroMemory(&samplerDesc, sizeof(D3D11_SAMPLER_DESC));
@@ -421,35 +202,69 @@ bool GameSceneColorPassStageOvr::Initialize()
 PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::vector<RenderComponent*>& data,
                                                                      const PipelineData<D3D11RenderTarget*>& tdata) noexcept
 {
-	static bool isVisible{ true };
+	ovrSessionStatus sessionStatus;
+	ovr_GetSessionStatus(EngineContext::session, &sessionStatus);
 
-	if (isVisible)
+	if (sessionStatus.IsVisible)
 	{
-		CalculateEyePoses();
+		ovrEyeRenderDesc eyeRenderDesc[2];
+		eyeRenderDesc[0] = ovr_GetRenderDesc(EngineContext::session, ovrEye_Left, hmdDesc.DefaultEyeFov[0]);
+		eyeRenderDesc[1] = ovr_GetRenderDesc(EngineContext::session, ovrEye_Right, hmdDesc.DefaultEyeFov[1]);
 
-		BeginOvrFrame();
+		// Get both eye poses simultaneously, with IPD offset already included. 
+		ovrPosef         EyeRenderPose[2];
+		ovrVector3f      HmdToEyeOffset[2] = { eyeRenderDesc[0].HmdToEyeOffset,
+			eyeRenderDesc[1].HmdToEyeOffset };
 
-		//Get the device context.
-		ID3D11DeviceContext* deviceContext{ G_GAPIContext.GetDeviceContext() };
-
-		//Bind the requested shader program.
-		G_ShaderProgramManager.Get("default_sdrprog")->Bind();
-
-		//Set the linear wrap texture sampler.
-		deviceContext->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
-
-		//Get the active camera view matrix.
-		Mat4f v{ G_CameraSystem.GetActiveCameraViewMatrix() };
+		double sensorSampleTime;    // sensorSampleTime is fed into the layer later
+		ovr_GetEyePoses(EngineContext::session, frameIndex, ovrTrue, HmdToEyeOffset, EyeRenderPose, &sensorSampleTime);
 
 		for (int eye = 0; eye < 2; ++eye)
 		{
-			OvrXformData xformData{ GetOvrXformDataPerEye(eye) };
+			ID3D11RenderTargetView* rtv = pEyeRenderTexture[eye]->GetRTV();
+			G_GAPIContext.GetDeviceContext()->OMSetRenderTargets(1, &rtv, pEyeDepthBuffer[eye]->TexDsv);
 
-			Mat4f p{ xformData.projection };
+			Vec4f clearCol{ 1.0, 0.0, 0.0, 1.0f };
 
-			v = xformData.view * v;
+			G_GAPIContext.GetDeviceContext()->ClearRenderTargetView(rtv, &clearCol[0]);
+			G_GAPIContext.GetDeviceContext()->ClearDepthStencilView(pEyeDepthBuffer[eye]->TexDsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
 
-			xformData.viewport.Set();
+			Recti rect{ eyeRenderViewport[eye].Pos.x, eyeRenderViewport[eye].Pos.y, eyeRenderViewport[eye].Size.w, eyeRenderViewport[eye].Size.h };
+
+			Viewport viewport{ rect, 0.0, 1.0 };
+			viewport.Set();
+
+
+			//RENDERING STARTS
+			//Get the device context.
+			ID3D11DeviceContext* deviceContext{ G_GAPIContext.GetDeviceContext() };
+
+			//Bind the requested shader program.
+			G_ShaderProgramManager.Get("default_sdrprog")->Bind();
+
+			//Set the linear wrap texture sampler.
+			deviceContext->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
+
+			Quatf eyeQuat{ EyeRenderPose[eye].Orientation.w, EyeRenderPose[eye].Orientation.x,
+				EyeRenderPose[eye].Orientation.y, -EyeRenderPose[eye].Orientation.z };
+
+			//eyeQuat = MathUtils::Inverse(eyeQuat);
+			eyeQuat = MathUtils::Normalize(eyeQuat);
+
+			Vec3f eyePos{ -EyeRenderPose[eye].Position.x * 10.0f, -EyeRenderPose[eye].Position.y * 10.0f, EyeRenderPose[eye].Position.z * 10.0f };
+
+			Mat4f eyeMat;
+			eyeMat = MathUtils::Rotate(eyeMat, eyeQuat);
+			eyeMat = MathUtils::Translate(eyeMat, eyePos);
+
+			ovrMatrix4f proj = ovrMatrix4f_Projection(eyeRenderDesc[eye].Fov, 0.2f, 1000.0f, ovrProjection_LeftHanded);
+			Mat4f p;
+			memcpy(&p[0], proj.M, 16 * sizeof(float));
+
+			p = MathUtils::Transpose(p);
+
+			//Get the active camera view matrix.
+			Mat4f v{ eyeMat * G_CameraSystem.GetActiveCameraViewMatrix() };
 
 			//Iterate through the render components.
 			for (auto renderComponent : data)
@@ -583,18 +398,103 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::
 				// Disable any blend states activated.
 				G_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
 			}
+
+			//////////////////////////////////////////////////////////////////////////
+
+			G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_0);
+			G_ShaderProgramManager.Get("particles_sdrprog")->Bind();
+
+			auto emitters = G_ParticleSystem.GetEmitterComponents();
+
+			for (auto emitter : emitters)
+			{
+				Texture* tex{ emitter->GetTexture() };
+
+				tex->Bind();
+				deviceContext->PSSetSamplers(0, 1, m_SamplerLinearWrap.GetAddressOf());
+
+				G_RenderStateManager.Set(emitter->GetBlendStateType());
+
+				auto particles = emitter->GetParticles();
+
+				for (auto particle : particles)
+				{
+					Mat4f model;
+					model = MathUtils::Translate(model, particle.position);
+					Mat4f MV{ v * model };
+
+					MV[0][0] = 1.0f;
+					MV[0][1] = 0.0f;
+					MV[0][2] = 0.0f;
+
+					MV[1][0] = 0.0f;
+					MV[1][1] = 1.0f;
+					MV[1][2] = 0.0f;
+
+					MV[2][0] = 0.0f;
+					MV[2][1] = 0.0f;
+					MV[2][2] = 1.0f;
+
+					MV = MathUtils::Scale(MV, Vec3f{ particle.size });
+
+					Mat4f MVP{ p * MV };
+
+					ParticleUniformBuffer uniforms;
+					uniforms.MVP = MathUtils::Transpose(MVP);
+					uniforms.diffuse = particle.color;
+
+					D3D11_MAPPED_SUBRESOURCE ms;
+
+					deviceContext->Map(m_ParticleBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &ms);
+					memcpy(ms.pData, &uniforms, sizeof(ParticleUniformBuffer));
+					deviceContext->Unmap(m_ParticleBuffer.Get(), 0);
+
+					deviceContext->VSSetConstantBuffers(0, 1, m_ParticleBuffer.GetAddressOf());
+					deviceContext->PSSetConstantBuffers(0, 1, m_ParticleBuffer.GetAddressOf());
+
+					Mesh* mesh = emitter->GetMesh();
+
+					mesh->GetVbo()->Bind();
+
+					if (mesh->GetIndexCount())
+					{
+						mesh->GetIbo()->Bind();
+						mesh->GetIbo()->Draw();
+					}
+					else
+					{
+						mesh->GetVbo()->Draw();
+					}
+				}
+			}
+			G_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
+			G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_1);
+			//RENDERING ENDS
+
+			// Commit rendering to the swap chain
+			pEyeRenderTexture[eye]->Commit();
 		}
 
-		G_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
-		G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_1);
+		// Initialize our single full screen Fov layer.
+		ovrLayerEyeFov ld = {};
+		ld.Header.Type = ovrLayerType_EyeFov;
+		ld.Header.Flags = 0;
 
-		EndOvrFrame();
+		for (int eye = 0; eye < 2; ++eye)
+		{
+			ld.ColorTexture[eye] = pEyeRenderTexture[eye]->TextureChain;
+			ld.Viewport[eye] = eyeRenderViewport[eye];
+			ld.Fov[eye] = hmdDesc.DefaultEyeFov[eye];
+			ld.RenderPose[eye] = EyeRenderPose[eye];
+			ld.SensorSampleTime = sensorSampleTime;
+		}
+
+		ovrLayerHeader* layers = &ld.Header;
+		ovrResult result = ovr_SubmitFrame(EngineContext::session, frameIndex, nullptr, &layers, 1);
+		// exit the rendering loop if submit returns an error, will retry on ovrError_DisplayLost
+		
+		frameIndex++;
 	}
-
-	isVisible = SubmitOvrFrame();
-
-
-	//TODO: Draw mirror texture here.
 
 	// Return the render target so that the next stage of the pipeline can process it if needed.
 	return PipelineData<D3D11RenderTarget*>{ nullptr };

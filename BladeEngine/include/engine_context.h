@@ -14,6 +14,7 @@
 #include "shader_program_manager.h"
 #include "particle_system.h"
 #include "input_manager.h"
+#include <OVR/OVR_CAPI.h>
 
 namespace Blade
 {
@@ -52,6 +53,9 @@ namespace Blade
 		static InputManager m_InputManager;
 
 	public:
+		static ovrSession session;
+		static ovrGraphicsLuid graphicsLuid;
+
 		EngineContext() = default;
 
 		EngineContext(const EngineContext& context) = delete;

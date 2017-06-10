@@ -1,6 +1,7 @@
 #include "engine_context.h"
 #include <iostream>
 #include "trace.h"
+
 namespace Blade
 {
 #if defined(BLADE_BUILD_D3D)
@@ -34,15 +35,30 @@ namespace Blade
 	ShaderProgramManager EngineContext::m_ShaderProgramManager;
 	InputManager EngineContext::m_InputManager;
 
+	ovrSession EngineContext::session;
+	ovrGraphicsLuid EngineContext::graphicsLuid;
+
 	bool EngineContext::Initialize()
 	{
+		if (OVR_FAILURE(ovr_Initialize(nullptr)))
+		{
+			BLADE_ERROR("Failed to initialize Oculus Rift.");
+			return false;
+		}
+
+		if (OVR_FAILURE(ovr_Create(&session, &graphicsLuid)))
+		{
+			BLADE_ERROR("Failed to create OVR session.");
+			return false;
+		}
+
 		if (!m_ThreadPool.Initialize())
 		{
 			BLADE_ERROR("Failed to initialize the thread pool.");
 			return false;
 		}
 
-		if (!m_GAPIContext.Create(nullptr))
+		if (!m_GAPIContext.Create(reinterpret_cast<LUID*>(&graphicsLuid)))
 		{
 			BLADE_ERROR("Failed to initialize the engine's Graphics Context.");
 			return false;

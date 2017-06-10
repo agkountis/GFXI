@@ -181,7 +181,7 @@ void GameScene::Initialize()
 
 	//Allocate a render pass pipeline and add the pass to it.
 	RenderPassPipeline* pipeline{ new RenderPassPipeline };
-	pipeline->AddStage(colorPassStage);
+	pipeline->AddStage(ovrPassStage);
 
 	//Set the pipeline to the render system.
 	G_RenderSystem.SetRenderPassPipeline(pipeline);
