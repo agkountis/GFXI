@@ -24,9 +24,9 @@ using namespace Blade;
 class Player : public Blade::Entity
 {
 private:
-	bool m_Local{ false };
+	static int m_InstanceCount;
 public:
-	Player(const std::string& name,bool local);
+	Player(const std::string& name, const std::wstring& modelPath,bool local);
 	~Player();
 
 

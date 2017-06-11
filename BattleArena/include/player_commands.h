@@ -80,7 +80,10 @@ public:
 			entity->SetOrientation(glm::rotate(q, rotationVec.x*dt, glm::vec3(0, 1, 0)));
 
 			//use orientation to influence the force that is being added to the simulation component
-			simComp->AddForce(Vec3f(Mat4f(q)*Vec4f(0.0f, 0.0f, movementVec.y,0))*dt*(10000.0f));
+			simComp->AddForce(Vec3f(Mat4f(q)*Vec4f(movementVec.x*0.5f, 0.0f, movementVec.y,0))*dt*(2000.0f));
+
+
+		
 		}
 	}
 };

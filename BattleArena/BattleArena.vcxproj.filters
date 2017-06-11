@@ -207,5 +207,8 @@
     <None Include="sdr\particles.vs.hlsl">
       <Filter>sdr</Filter>
     </None>
+    <None Include="config\engine_fire.cfg">
+      <Filter>configuration</Filter>
+    </None>
   </ItemGroup>
 </Project>

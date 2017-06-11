@@ -350,6 +350,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="config\arcane_fountain.cfg" />
+    <None Include="config\engine_fire.cfg" />
     <None Include="config\test.cfg" />
     <None Include="sdr\render_texture.ps.hlsl">
       <FileType>Document</FileType>

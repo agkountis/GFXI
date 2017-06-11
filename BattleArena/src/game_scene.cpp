@@ -124,8 +124,11 @@ void GameScene::Initialize()
 	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
 	AddEntity(entity);
 
-	Player* p = new Player("playerxxx", true);
+	Player* p = new Player("playerxxx",L"player1.fbx",true);
 	AddEntity(p);
+
+	//p = new Player("playerxxxxxx", L"player1.fbx", true);
+	//AddEntity(p);
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Get the window size.
