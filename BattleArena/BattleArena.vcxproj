@@ -338,8 +338,8 @@
     <None Include="include\test_joypad_component.h" />
     <ClInclude Include="include\test_behaviour.h" />
     <ClInclude Include="include\test_message.h" />
-    <ClInclude Include="src\player_commands.h" />
-    <ClInclude Include="src\test_commands_battle_arena.h" />
+    <ClInclude Include="include\player_commands.h" />
+    <ClInclude Include="include\test_commands_battle_arena.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\arcane_fountain.cfg" />

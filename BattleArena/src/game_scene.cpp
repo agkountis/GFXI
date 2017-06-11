@@ -252,6 +252,7 @@ void GameScene::Update(float deltaTime, long time) noexcept
 	G_LightSystem.Process();
 
 	G_BehaviourSystem.Process(deltaTime, time);
+
 }
 
 void GameScene::Draw() const noexcept

@@ -124,12 +124,6 @@
     <ClInclude Include="include\player_joypad_component.h">
       <Filter>include\components\input</Filter>
     </ClInclude>
-    <ClInclude Include="src\player_commands.h">
-      <Filter>include\commands</Filter>
-    </ClInclude>
-    <ClInclude Include="src\test_commands_battle_arena.h">
-      <Filter>include\commands</Filter>
-    </ClInclude>
     <ClInclude Include="include\weapon_component.h">
       <Filter>include\components</Filter>
     </ClInclude>
@@ -150,6 +144,12 @@
     </ClInclude>
     <ClInclude Include="include\uniform_buffers.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\player_commands.h">
+      <Filter>include\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="include\test_commands_battle_arena.h">
+      <Filter>include\commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
