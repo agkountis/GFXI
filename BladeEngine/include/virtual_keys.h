@@ -1,5 +1,5 @@
 #ifndef BLADE_VIRTUAL_KEYS_H_
-#define BLADE_VIRTUAL_KEYS_H
+#define BLADE_VIRTUAL_KEYS_H_
 
 #include <Windows.h>
 

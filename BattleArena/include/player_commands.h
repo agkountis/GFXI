@@ -1,5 +1,64 @@
+#pragma once
 #include "test_commands_battle_arena.h"
 #include "weapon_component.h"
+
+class MoveForward : public Blade::Command
+{
+public:
+	void Execute(Blade::Entity* entity, const float dt) override
+	{
+		using namespace Blade;
+		if (entity->GetComponent("co_sim"))
+		{
+			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
+			simComp->AddForce(Vec3f(0.0f, 0.0f, 1.0f)*dt*(10000.0f));
+		}
+	}
+};
+
+class MoveBack : public Blade::Command
+{
+public:
+	void Execute(Blade::Entity* entity, const float dt) override
+	{
+		using namespace Blade;
+		if (entity->GetComponent("co_sim"))
+		{
+			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
+			simComp->AddForce(Vec3f(0.0f, 0.0f, -1.0f)*dt*(10000.0f));
+		}
+	}
+};
+
+class MoveLeft : public Blade::Command
+{
+public:
+	void Execute(Blade::Entity* entity, const float dt) override
+	{
+		using namespace Blade;
+		using namespace Blade;
+		if (entity->GetComponent("co_sim"))
+		{
+			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
+			simComp->AddForce(Vec3f(-1.0f, 0.0f, 0.0f)*dt*(10000.0f));
+		}
+	}
+};
+
+class MoveRight : public Blade::Command
+{
+public:
+	void Execute(Blade::Entity* entity, const float dt) override
+	{
+		using namespace Blade;
+		using namespace Blade;
+		if (entity->GetComponent("co_sim"))
+		{
+			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
+			simComp->AddForce(Vec3f(1.0f, 0.0f, 0.0f)*dt*(10000.0f));
+		}
+	}
+};
 
 class MoveCommand : public Blade::Command
 {
@@ -17,6 +76,8 @@ public:
 		}
 	}
 };
+
+
 
 
 class ShootLeftWeapon : public Blade::Command

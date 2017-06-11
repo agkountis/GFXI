@@ -17,6 +17,7 @@
 #include "plane_collider.h"
 #include "emitter_component.h"
 #include "player_joypad_component.h"
+#include "player_keyboard_component.h"
 #include "test_behaviour.h"
 #include "cannon_weapon_component.h"
 #include "other_weapon_component.h"
@@ -102,6 +103,10 @@ void GameScene::Initialize()
 
 	PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
 	tjc->Setup();
+
+	//PlayerKeyboardComponent* pkc{ new PlayerKeyboardComponent{entity} };
+	//pkc->Setup();
+
 
 	CannonWeaponComponent* cwc{ new CannonWeaponComponent{entity,WeaponPosition::LEFT} };
 	OtherWeaponComponent* owc{ new OtherWeaponComponent{entity,WeaponPosition::RIGHT} };
