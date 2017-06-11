@@ -33,6 +33,8 @@ Player::Player(const std::string& name,bool local):
 	if (local)
 	{
 		Blade::SimulationComponent* simC3{ new Blade::SimulationComponent{ this,1.0f } };
+		PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ this,Blade::JoypadNumber::JOYPAD1 } };
+		tjc->Setup();
 	}
 	Blade::ColliderComponent* colC3{ new Blade::ColliderComponent{ this,std::make_unique<Blade::BoundingSphere>(1.0f) } };
 }
