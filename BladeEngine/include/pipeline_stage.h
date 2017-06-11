@@ -65,7 +65,7 @@ namespace Blade
 		 * \brief Default destructor of the PipelineStage.
 		 */
 		virtual ~PipelineStage() = default;
-		
+	
 		/**
 		 * \brief Initializes the PipelineStage
 		 * \return TRUE if initialization succeded, FALSE otherwise.

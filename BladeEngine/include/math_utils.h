@@ -79,6 +79,11 @@ namespace Blade
 			return glm::inverse(mat);
 		}
 
+		inline Quatf Inverse(const Quatf& q) noexcept
+		{
+			return glm::inverse(q);
+		}
+
 		inline Mat4f Translate(const Mat4f& matrix, const Vec3f& vector) noexcept
 		{
 			return glm::translate(matrix, vector);

@@ -87,6 +87,12 @@
     <Filter Include="src\components\input_components">
       <UniqueIdentifier>{84d444f5-ca44-4b8e-a77c-cb586be87a43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\oculus">
+      <UniqueIdentifier>{ca7c0376-f30c-46e6-9445-6e901b809093}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\oculus">
+      <UniqueIdentifier>{b6274c53-48b7-4959-af8f-b9456c459889}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -386,6 +392,21 @@
     <ClInclude Include="include\joypad_input_component.h">
       <Filter>include\components\input_components</Filter>
     </ClInclude>
+    <ClInclude Include="include\ovr_manager.h">
+      <Filter>include\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\oculus_texture_d3d.h">
+      <Filter>include\oculus</Filter>
+    </ClInclude>
+    <ClInclude Include="include\oculus_texture.h">
+      <Filter>include\oculus</Filter>
+    </ClInclude>
+    <ClInclude Include="include\virtual_keys.h">
+      <Filter>include\input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\keyboard_input.h">
+      <Filter>include\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -505,9 +526,6 @@
     <ClCompile Include="src\collider_component.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
-    <ClCompile Include="src\d3d\D3D11_viewport.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\simulation_system.cpp">
       <Filter>src\systems</Filter>
     </ClCompile>
@@ -621,6 +639,18 @@
     </ClCompile>
     <ClCompile Include="src\joypad_input_component.cpp">
       <Filter>src\components\input_components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ovr_manager.cpp">
+      <Filter>src\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\d3d\D3D11_viewport.cpp">
+      <Filter>src\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="src\oculus_texture_d3d.cpp">
+      <Filter>src\oculus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\keyboard_input.cpp">
+      <Filter>src\input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

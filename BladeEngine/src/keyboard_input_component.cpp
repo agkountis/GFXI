@@ -12,7 +12,7 @@ namespace Blade
 		//commands. Need to test the ref-counter of each object
 		m_KeyboardCommandMap.clear();
 	}
-	bool KeyboardInputComponent::LoadConfiguration(std::vector<int>& keys, const std::vector<std::shared_ptr<Command>>& commands) noexcept
+	bool KeyboardInputComponent::LoadConfiguration(std::vector<Virtual_Key>& keys, const std::vector<std::shared_ptr<Command>>& commands) noexcept
 	{
 		if (keys.size() == commands.size())
 		{

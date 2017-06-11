@@ -14,7 +14,7 @@ namespace Blade
 		 * \brief Minimum depth value of the depth buffer.
 		 */
 		float m_MinDepth{ 0.0f };
-		
+
 		/**
 		 * \brief Maximum depth value of the depth buffer.
 		 */

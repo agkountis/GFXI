@@ -9,7 +9,7 @@ namespace Blade
 	class D3D11Context : public GAPIContext
 	{
 	private:
-		bool CreateD3D11DeviceAndContext();
+		bool CreateD3D11DeviceAndContext(LUID* luid);
 
 		ComPtr<ID3D11Device> m_Device;
 		ComPtr<ID3D11DeviceContext> m_DeviceContext;
@@ -21,7 +21,7 @@ namespace Blade
 	public:
 		D3D11Context() = default;
 
-		bool Create() override;
+		bool Create(LUID* luid) override;
 
 		ID3D11Device* GetDevice() const;
 		ID3D11DeviceContext* GetDeviceContext() const;

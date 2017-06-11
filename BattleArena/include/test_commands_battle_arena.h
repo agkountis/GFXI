@@ -1,22 +1,18 @@
+#ifndef TEST_COMMANDS_H_
+#define TEST_COMMANDS_H_
+
 #include "command.h"
 #include "entity.h"
 #include "engine_context.h"
 #include <iostream>
+#include "joypad_input_component.h"
 
 
-//#donotpartecipateatthebuild
-
-//Helper
 /*
 \brief Return the joy pad number associated with the entity.
 \description It assumes that the check has been done before calling this function
 */
-Blade::JoypadNumber GetJoypadNumberByEntity(Blade::Entity* entity)
-{
-	using namespace Blade;
-	auto  comp = static_cast<JoypadInputComponent*>(entity->GetComponent("co_jpic"));
-	return comp->m_JoypadNum;
-}
+Blade::JoypadNumber GetJoypadNumberByEntity(Blade::Entity* entity);
 
 class PrintA : public Blade::Command
 {
@@ -134,3 +130,5 @@ public:
 		std::cout << "STICK_RIGHT" << vec.x << ", " << vec.y << std::endl;
 	}
 };
+
+#endif

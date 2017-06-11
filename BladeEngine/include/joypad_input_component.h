@@ -1,5 +1,5 @@
 #ifndef BLADE_JOYPAD_INPUT_COMPONENT_H_
-#define BLADE_JOYPAD_INPUT_COMPOENT_H_
+#define BLADE_JOYPAD_INPUT_COMPONENT_H_
 #include "input_component.h"
 #include "input_manager.h"
 #include <map>
@@ -13,7 +13,6 @@ namespace Blade
 	class JoypadInputComponent : public InputComponent
 	{
 		
-
 		using JoypadCommandMap = std::map<Input_Sensor, std::shared_ptr<Command>>;
 
 	public:

@@ -1,6 +1,7 @@
 #include "engine_context.h"
 #include <iostream>
 #include "trace.h"
+
 namespace Blade
 {
 #if defined(BLADE_BUILD_D3D)
@@ -34,6 +35,10 @@ namespace Blade
 	ShaderProgramManager EngineContext::m_ShaderProgramManager;
 	InputManager EngineContext::m_InputManager;
 
+#ifdef BLADE_BUILD_OVR
+	OvrManager EngineContext::m_OvrManager;
+#endif
+
 	bool EngineContext::Initialize()
 	{
 		if (!m_ThreadPool.Initialize())
@@ -42,11 +47,19 @@ namespace Blade
 			return false;
 		}
 
-		if (!m_GAPIContext.Create())
+#ifdef BLADE_BUILD_OVR
+		if (!m_OvrManager.Initialize())
+		{
+			BLADE_ERROR("Failed to initialize the OculusVR manager.");
+			return false;
+		}
+#else
+		if (!m_GAPIContext.Create(nullptr))
 		{
 			BLADE_ERROR("Failed to initialize the engine's Graphics Context.");
 			return false;
 		}
+#endif
 
 		if (!m_RenderSystem.Initialize())
 		{
@@ -164,4 +177,12 @@ namespace Blade
 	{
 		return *m_pApplication;
 	}
+
+#ifdef BLADE_BUILD_OVR
+	OvrManager& EngineContext::GetOvrManager() noexcept
+	{
+		return m_OvrManager;
+	}
+#endif
+
 }
