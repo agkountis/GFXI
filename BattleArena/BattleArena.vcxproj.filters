@@ -95,17 +95,23 @@
     <ClCompile Include="src\test_behaviour.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
+    <ClCompile Include="src\player.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
     <ClCompile Include="src\game_scene_color_pass_ovr.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\test_joypad_component.cpp">
-      <Filter>src\components\input</Filter>
-    </ClCompile>
-    <ClCompile Include="src\player_keyboard_component.cpp">
-      <Filter>src\components\input</Filter>
-    </ClCompile>
     <ClCompile Include="src\test_commands_battle_arena.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test_joypad_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\player_keyboard_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\player_behaviour.cpp">
+      <Filter>src\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,23 +154,29 @@
     <ClInclude Include="include\test_behaviour.h">
       <Filter>include\components</Filter>
     </ClInclude>
+    <ClInclude Include="include\player.h">
+      <Filter>include\entities</Filter>
+    </ClInclude>
     <ClInclude Include="include\game_scene_color_pass_ovr.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\uniform_buffers.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\player_commands.h">
-      <Filter>include\commands</Filter>
+    <ClInclude Include="include\test_joypad_component.h">
+      <Filter>include\components</Filter>
     </ClInclude>
     <ClInclude Include="include\test_commands_battle_arena.h">
       <Filter>include\commands</Filter>
     </ClInclude>
-    <ClInclude Include="include\test_joypad_component.h">
-      <Filter>include\components\input</Filter>
+    <ClInclude Include="include\player_commands.h">
+      <Filter>include\commands</Filter>
     </ClInclude>
     <ClInclude Include="include\player_keyboard_component.h">
-      <Filter>include\components\input</Filter>
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\player_behaviour.h">
+      <Filter>include\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

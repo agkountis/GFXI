@@ -50,7 +50,7 @@ class MoveRight : public Blade::Command
 public:
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
-		using namespace Blade;
+
 		using namespace Blade;
 		if (entity->GetComponent("co_sim"))
 		{

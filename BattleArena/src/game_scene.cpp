@@ -22,6 +22,7 @@
 #include "cannon_weapon_component.h"
 #include "other_weapon_component.h"
 #include "game_scene_color_pass_ovr.h"
+#include "player.h"
 
 
 using namespace Blade;
@@ -123,6 +124,9 @@ void GameScene::Initialize()
 	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
 	AddEntity(entity);
 
+	Player* p = new Player("playerxxx", true);
+	AddEntity(p);
+
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Get the window size.
 	Vec2i windowSize{ WindowingService::GetWindow(0)->GetSize() };
@@ -143,20 +147,25 @@ void GameScene::Initialize()
 
 	cam = new Camera{ "Camera2", cd };
 
-	cam->SetPosition(Vec3f{ 0.0f, 14.0f, -11.0f });
-	cam->SetOrientation(Vec3f{ 1.0, 0.0, 0.0 }, MathUtils::ToRadians(32.0f));
+	//cam->SetPosition(Vec3f{ 0.0f, 14.0f, -11.0f });
+	//cam->SetOrientation(Vec3f{ 1.0, 0.0, 0.0 }, MathUtils::ToRadians(32.0f));
+	cam->SetPosition(Vec3f{ 0.0f, 5.0f, -20.0f });
 	AddEntity(cam);
+	cam->SetParent(p);
 
 	cam = new Camera{ "Camera3", cd };
-
 	cam->SetPosition(Vec3f{ 0.0f, 10.0f, -50.0f });
 	AddEntity(cam);
+
 
 	cam = new Camera{ "Camera4", cd };
 
 	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -4.0f });
 	cam->SetParent(cache_entity);
 	AddEntity(cam);
+
+	//Instruct the Camera system to set this camera as the active one.
+	G_CameraSystem.SetActiveCamera("Camera3");
 
 	//Instruct the Camera system to set this camera as the active one.
 	G_CameraSystem.SetActiveCamera("Camera3");

@@ -16,6 +16,9 @@
 #include "cannon_weapon_component.h"
 #include "other_weapon_component.h"
 #include "d3d/D3D11_texture.h"
+
+#include "player_behaviour.h"
+
 using namespace Blade;
 
 class Player : public Blade::Entity
