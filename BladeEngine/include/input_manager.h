@@ -56,6 +56,11 @@ namespace Blade
 		*/
 		std::map<JoypadNumber, InputDevice*> m_ActiveDevices;
 
+		/*
+		\brief Update the m_ActiveDevices per frame
+		*/
+		void UpdateActiveDevices();
+
 		KeyboardInput	m_Keyboard;
 
 	public:
@@ -88,6 +93,8 @@ namespace Blade
 		* \brief Update the states of managed input devices, and re-enumerate input devices
 		*/
 		void Update(float deltaTime);
+
+	
 
 		/**
 		* \brief Initialize the input manager
