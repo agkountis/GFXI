@@ -17,6 +17,7 @@
 #include "plane_collider.h"
 #include "emitter_component.h"
 #include "player_joypad_component.h"
+#include "player_keyboard_component.h"
 #include "test_behaviour.h"
 #include "cannon_weapon_component.h"
 #include "other_weapon_component.h"
@@ -103,6 +104,10 @@ void GameScene::Initialize()
 	PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
 	tjc->Setup();
 
+	//PlayerKeyboardComponent* pkc{ new PlayerKeyboardComponent{entity} };
+	//pkc->Setup();
+
+
 	CannonWeaponComponent* cwc{ new CannonWeaponComponent{entity,WeaponPosition::LEFT} };
 	OtherWeaponComponent* owc{ new OtherWeaponComponent{entity,WeaponPosition::RIGHT} };
 
@@ -116,6 +121,12 @@ void GameScene::Initialize()
 	rc3->SetMaterial(material);
 	SimulationComponent* simC3{ new SimulationComponent{ entity,1.0f } };
 	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
+
+
+	PlayerJoypadComponent* tjc2{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD2 } };
+	tjc2->Setup();
+
+
 	AddEntity(entity);
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
@@ -202,10 +213,6 @@ void GameScene::Initialize()
 	G_RenderSystem.SetRenderPassPipeline(pipeline);
 
 	// --------------------------------------------------------------------------------------------------------------------
-
-	if (!G_InputManager.AssignDeviceToPlayer(JoypadNumber::JOYPAD1, 0)) {
-		BLADE_TRACE("Could not assign device 0 to player 1");
-	}
 }
 
 void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
@@ -252,6 +259,7 @@ void GameScene::Update(float deltaTime, long time) noexcept
 	G_LightSystem.Process();
 
 	G_BehaviourSystem.Process(deltaTime, time);
+
 }
 
 void GameScene::Draw() const noexcept

@@ -1,5 +1,5 @@
-#ifndef BLADE_PLAYER_JOYPAD_COMPONENT_H_
-#define BLADE_PLAYER_JOYPAD_COMPONENT_H_
+#ifndef PLAYER_JOYPAD_COMPONENT_H_
+#define PLAYER_JOYPAD_COMPONENT_H_
 #include "joypad_input_component.h"
 
 class PlayerJoypadComponent : public Blade::JoypadInputComponent
@@ -17,4 +17,4 @@ public:
 
 };
 
-#endif//BLADE_PLAYER_JOYPAD_COMPONENT_H_
+#endif//PLAYER_JOYPAD_COMPONENT_H_

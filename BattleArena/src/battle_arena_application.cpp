@@ -108,11 +108,6 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 		callbacks);
 #endif
 
-	if (!G_InputManager.Initialize())
-	{
-		BLADE_TRACE("Input manager failed to initialise");
-		return false;
-	}
 
 	ShaderProgramDesc sdrProgDesc;
 	sdrProgDesc.name = "render_texture_sdrprog";

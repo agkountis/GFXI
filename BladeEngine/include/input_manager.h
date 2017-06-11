@@ -12,6 +12,7 @@
 #include "trace.h"
 #include "xinput_device.h"
 #include "input_state.h"
+#include "keyboard_input.h"
 #include "types.h"
 
 // required library files
@@ -55,9 +56,29 @@ namespace Blade
 		*/
 		std::map<JoypadNumber, InputDevice*> m_ActiveDevices;
 
+		/*
+		\brief Update the active devices 
+		*/
+		void UpdateActiveDevices();
+
+		
+		KeyboardInput	m_Keyboard;
+
 	public:
 
 		Vec2f GetAnalogStickVector(JoypadNumber player, Input_Sensor sensor);
+
+		/**
+		* \brief Query the keyboard device for the state of a key
+		* \return True if the key is a PRESSED state (down), false otherwise
+		*/
+		bool QueryKeyState(Virtual_Key key) { return m_Keyboard.QueryKeyState(key); }
+
+		/**
+		* \brief Query the Keyboard device for the state of ALL keys associated to the device
+		* \return True if successful, false otherwise
+		*/
+		bool QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) { return m_Keyboard.QueryAllKeyStates(destMap); }
 
 		/**
 		* \brief Query the state of a sensor on an active pad linked to player
@@ -73,6 +94,8 @@ namespace Blade
 		* \brief Update the states of managed input devices, and re-enumerate input devices
 		*/
 		void Update(float deltaTime);
+
+	
 
 		/**
 		* \brief Initialize the input manager

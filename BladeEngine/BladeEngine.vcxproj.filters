@@ -401,6 +401,12 @@
     <ClInclude Include="include\oculus_texture.h">
       <Filter>include\oculus</Filter>
     </ClInclude>
+    <ClInclude Include="include\virtual_keys.h">
+      <Filter>include\input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\keyboard_input.h">
+      <Filter>include\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -642,6 +648,9 @@
     </ClCompile>
     <ClCompile Include="src\oculus_texture_d3d.cpp">
       <Filter>src\oculus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\keyboard_input.cpp">
+      <Filter>src\input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

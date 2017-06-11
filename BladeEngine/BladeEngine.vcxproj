@@ -315,6 +315,7 @@
     <ClInclude Include="include\emitter_component.h" />
     <ClInclude Include="include\input_component.h" />
     <ClInclude Include="include\joypad_input_component.h" />
+    <ClInclude Include="include\keyboard_input.h" />
     <ClInclude Include="include\keyboard_input_component.h" />
     <ClInclude Include="include\oculus_texture.h" />
     <ClInclude Include="include\oculus_texture_d3d.h" />
@@ -402,6 +403,7 @@
     <ClInclude Include="include\vertex.h" />
     <ClInclude Include="include\abstract_viewport.h" />
     <ClInclude Include="include\viewport.h" />
+    <ClInclude Include="include\virtual_keys.h" />
     <ClInclude Include="include\win32_utils.h" />
     <ClInclude Include="include\win32_window.h" />
     <ClInclude Include="include\window.h" />
@@ -419,6 +421,7 @@
     <ClCompile Include="src\emitter_component.cpp" />
     <ClCompile Include="src\input_component.cpp" />
     <ClCompile Include="src\joypad_input_component.cpp" />
+    <ClCompile Include="src\keyboard_input.cpp" />
     <ClCompile Include="src\keyboard_input_component.cpp" />
     <ClCompile Include="src\oculus_texture_d3d.cpp" />
     <ClCompile Include="src\ovr_manager.cpp" />

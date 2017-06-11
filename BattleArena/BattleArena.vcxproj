@@ -305,6 +305,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\player_keyboard_component.cpp" />
     <ClCompile Include="src\bullet.cpp" />
     <ClCompile Include="src\cannon_weapon_component.cpp" />
     <ClCompile Include="src\game_scene_color_pass_ovr.cpp" />
@@ -317,9 +318,10 @@
     <ClCompile Include="src\multiplayer.cpp" />
     <ClCompile Include="src\player_joypad_component.cpp" />
     <ClCompile Include="src\weapon_component.cpp" />
-    <None Include="src\test_joypad_component.cpp" />
+    <ClCompile Include="src\test_joypad_component.cpp" />
     <ClCompile Include="src\test_behaviour.cpp" />
     <ClCompile Include="src\test_message.cpp" />
+    <ClCompile Include="src\test_commands_battle_arena.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\bullet.h" />
@@ -335,11 +337,12 @@
     <ClInclude Include="include\other_weapon_component.h" />
     <ClInclude Include="include\uniform_buffers.h" />
     <ClInclude Include="include\weapon_component.h" />
-    <None Include="include\test_joypad_component.h" />
+    <ClInclude Include="include\player_keyboard_component.h" />
+    <ClInclude Include="include\test_joypad_component.h" />
     <ClInclude Include="include\test_behaviour.h" />
     <ClInclude Include="include\test_message.h" />
-    <ClInclude Include="src\player_commands.h" />
-    <ClInclude Include="src\test_commands_battle_arena.h" />
+    <ClInclude Include="include\player_commands.h" />
+    <ClInclude Include="include\test_commands_battle_arena.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\arcane_fountain.cfg" />

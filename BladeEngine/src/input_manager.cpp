@@ -122,7 +122,10 @@ void InputManager::Update(float deltaTime)
 {
 
 	// re-enumerate input API for any newly connected devices since the last check
-	int result = EnumerateDevices();
+	//int result = EnumerateDevices();
+
+	
+
 
 	// Update the state of active input devices (in the active map, with player assignments)
 	for (auto& entry : m_ActiveDevices) 
@@ -141,7 +144,7 @@ void InputManager::Update(float deltaTime)
 
 			// Unassign the device from player, and delete if disconnected
 			UnassignDevice(entry.first);
-	
+			return;
 		}
 	}
 
@@ -217,13 +220,11 @@ int InputManager::EnumerateDevices() noexcept
 			// Check the device doesn't already exist in the pool or active device list
 			if (!PooledDeviceExists(i) && !ActiveDeviceExists(i))
 			{
-
 				XInputDevice* xDev = new XInputDevice(i, DeviceType::Joypad);
-
 				// Add the new device to the pool
 				BLADE_TRACE("Adding new device to device pool");
 				m_DevicePool.push_back(xDev);
-
+				UpdateActiveDevices();		
 			}
 
 		}
@@ -246,6 +247,34 @@ int InputManager::EnumerateDevices() noexcept
 #endif
 }
 
+
+void InputManager::UpdateActiveDevices()
+{
+	auto active_number{ m_ActiveDevices.size() };
+	switch ( active_number)
+	{
+	case 0:
+		AssignDeviceToPlayer(JoypadNumber::JOYPAD1, 0);
+		break;
+	case 1:
+		AssignDeviceToPlayer(JoypadNumber::JOYPAD2, 0);
+		break;
+
+	case 2:
+		AssignDeviceToPlayer(JoypadNumber::JOYPAD3, 0);
+		break;
+
+	case 3:
+		AssignDeviceToPlayer(JoypadNumber::JOYPAD4, 0);
+		break;
+	}
+
+		
+
+		
+
+		
+}
 
 DeviceType Blade::InputManager::DevicePoolQueryType(int deviceId)
 {

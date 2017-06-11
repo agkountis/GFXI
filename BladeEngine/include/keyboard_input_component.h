@@ -1,6 +1,7 @@
 #ifndef BLADE_KEYBOARD_INPUT_COMPONENT_H_
 #define BLADE_KEYBOARD_INPUT_COMPONENT_H_
 #include "input_component.h"
+#include "virtual_keys.h"
 #include <map>
 #include "command.h"
 #include <memory>
@@ -11,7 +12,7 @@ namespace Blade
 	{
 	public:
 
-		using KeyboardCommandMap = std::map<int, std::shared_ptr<Command>>;
+		using KeyboardCommandMap = std::map<Virtual_Key, std::shared_ptr<Command>>;
 
 		explicit KeyboardInputComponent(Entity* parent);
 
@@ -28,7 +29,7 @@ namespace Blade
 		virtual void Teardown() noexcept = 0;
 
 
-		bool LoadConfiguration(std::vector<int>& keys, const std::vector<std::shared_ptr<Command>> &commands) noexcept;
+		bool LoadConfiguration(std::vector<Virtual_Key>& keys, const std::vector<std::shared_ptr<Command>> &commands) noexcept;
 
 		bool LoadConfiguration(const KeyboardCommandMap& map);
 
