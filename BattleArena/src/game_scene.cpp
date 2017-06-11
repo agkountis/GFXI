@@ -104,8 +104,6 @@ void GameScene::Initialize()
 	PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
 	tjc->Setup();
 
-	
-
 	//PlayerKeyboardComponent* pkc{ new PlayerKeyboardComponent{entity} };
 	//pkc->Setup();
 

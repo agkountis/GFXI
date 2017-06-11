@@ -10,9 +10,7 @@
 
 namespace Blade {
 
-	enum Virtual_Key {
-
-
+	enum Virtual_Key : int{
 		KEY_BACKSPACE = VK_BACK,
 		KEY_TAB = VK_TAB,
 		KEY_RETURN = VK_RETURN,

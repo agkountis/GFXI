@@ -10,10 +10,6 @@ KeyboardInput::~KeyboardInput()
 {
 }
 
-void Blade::KeyboardInput::Initialize()
-{
-	// already initialised
-}
 
 bool Blade::KeyboardInput::QueryKeyState(Virtual_Key value) const
 {

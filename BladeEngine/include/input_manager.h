@@ -57,10 +57,11 @@ namespace Blade
 		std::map<JoypadNumber, InputDevice*> m_ActiveDevices;
 
 		/*
-		\brief Update the m_ActiveDevices per frame
+		\brief Update the active devices 
 		*/
 		void UpdateActiveDevices();
 
+		
 		KeyboardInput	m_Keyboard;
 
 	public:
