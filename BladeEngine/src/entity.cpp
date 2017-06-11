@@ -121,6 +121,26 @@ namespace Blade
 		return m_Children[index];
 	}
 
+	Entity* Entity::GetEntityFromHierarchy(const std::string& name) noexcept
+	{
+		if (m_Name == name)
+		{
+			return this;
+		}
+
+		Entity* res{ nullptr };
+		for (auto child : m_Children)
+		{
+			res = child->GetEntityFromHierarchy(name);
+			if (res)
+			{
+				break;
+			}
+		}
+
+		return res;
+	}
+
 	void Entity::AddChild(Entity* entity) noexcept
 	{
 		entity->SetParent(this);

@@ -100,6 +100,8 @@ namespace Blade
 
 		Entity* GetChild(int index) const noexcept;
 
+		Entity* GetEntityFromHierarchy(const std::string& name) noexcept;
+
 		void AddChild(Entity* entity) noexcept;
 
 		size_t GetChildrenCount() const noexcept;
