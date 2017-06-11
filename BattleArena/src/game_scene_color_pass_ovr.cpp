@@ -407,6 +407,8 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::
 		G_OvrManager.SubmitOvrFrame();
 	}
 
+	G_OvrManager.RenderMirrorTexture();
+
 	// Return the render target so that the next stage of the pipeline can process it if needed.
 	return PipelineData<D3D11RenderTarget*>{ nullptr };
 }

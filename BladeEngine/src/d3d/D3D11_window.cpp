@@ -64,8 +64,7 @@ namespace Blade
 	bool D3D11Window::CreateRenderTargetView(D3D11Context& ctx) const noexcept
 	{
 		// get the address of the back buffer
-		ComPtr<ID3D11Texture2D> backbuffer;
-		HRESULT res = m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(backbuffer.GetAddressOf()));
+		HRESULT res = m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(G_GAPIContext.GetAddressOfBackBuffer()));
 
 		if (FAILED(res)) {
 			std::cerr << "Failed to get the adress of the back buffer." << std::endl;
@@ -74,7 +73,7 @@ namespace Blade
 		
 		// use the back buffer address to create the render target
 		ID3D11Device* device{ ctx.GetDevice() };
-		res = device->CreateRenderTargetView(backbuffer.Get(), nullptr, ctx.GetGetAddressOfDefaultRenderTargetView());
+		res = device->CreateRenderTargetView(G_GAPIContext.GetBackBuffer(), nullptr, ctx.GetGetAddressOfDefaultRenderTargetView());
 
 		if (FAILED(res)) {
 			std::cerr << "Window render target view creation failed." << std::endl;

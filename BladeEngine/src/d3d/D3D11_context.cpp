@@ -36,10 +36,14 @@ namespace Blade
 			DXGI_ADAPTER_DESC adapterDesc;
 			Adapter->GetDesc(&adapterDesc);
 			if ((luid == nullptr) || memcmp(&adapterDesc.AdapterLuid, luid, sizeof(LUID)) == 0)
+			{
 				break;
-
+			}
+				
 			if (Adapter)
+			{
 				Adapter->Release();
+			}	
 		}
 
 		auto DriverType = Adapter ? D3D_DRIVER_TYPE_UNKNOWN : D3D_DRIVER_TYPE_HARDWARE;
@@ -57,6 +61,11 @@ namespace Blade
 			                             m_Device.ReleaseAndGetAddressOf(),
 			                             &feature_level,
 			                             m_DeviceContext.ReleaseAndGetAddressOf());
+			
+			if (Adapter)
+			{
+				Adapter->Release();
+			}
 
 			if (FAILED(h_result))
 			{

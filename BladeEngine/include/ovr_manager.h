@@ -35,6 +35,7 @@ namespace Blade
 		ovrSessionStatus m_SessionStatus;
 
 		OculusTexture* m_EyeTextures[2];
+		ovrMirrorTexture m_MirrorTexture;
 
 #ifdef BLADE_BUILD_D3D
 		ComPtr<ID3D11DepthStencilView> m_EyeDepthStencilViews[2];
@@ -63,6 +64,10 @@ namespace Blade
 		ovrGraphicsLuid* GetOvrGraphicsLuidPtr() noexcept;
 
 		const ovrSessionStatus& GetOvrSessionStatus() noexcept;
+
+		bool CreateMirrorTexture(int windowIndex) noexcept;
+
+		void RenderMirrorTexture() const noexcept;
 	};
 }
 

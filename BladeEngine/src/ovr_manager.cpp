@@ -1,9 +1,11 @@
+#include <OVR/OVR_CAPI_D3D.h>
 #ifdef BLADE_BUILD_OVR
 
 #include "ovr_manager.h"
 #include "trace.h"
 #include "math_utils.h"
 #include "engine_context.h"
+#include "windowing_service.h"
 
 namespace Blade
 {
@@ -166,6 +168,37 @@ namespace Blade
 	{
 		ovr_GetSessionStatus(m_Session, &m_SessionStatus);
 		return m_SessionStatus;
+	}
+
+	bool OvrManager::CreateMirrorTexture(int windowIndex) noexcept
+	{
+		Vec2i winSize{ WindowingService::GetWindow(windowIndex)->GetSize() };
+		ovrMirrorTextureDesc mirrorTextureDesc{};
+		mirrorTextureDesc.Format = OVR_FORMAT_R8G8B8A8_UNORM_SRGB;
+		mirrorTextureDesc.Width = winSize.x;
+		mirrorTextureDesc.Height = winSize.y;
+
+		ovrResult result{ ovr_CreateMirrorTextureDX(m_Session, G_GAPIContext.GetDevice(), &mirrorTextureDesc, &m_MirrorTexture) };
+
+		if (!OVR_SUCCESS(result))
+		{
+			BLADE_ERROR("Failed to create the OVR mirror texture.");
+			return false;
+		}
+
+		return true;
+	}
+
+	void OvrManager::RenderMirrorTexture() const noexcept
+	{
+#ifdef BLADE_BUILD_D3D
+		ID3D11Texture2D* tex = nullptr;
+		ovr_GetMirrorTextureBufferDX(m_Session, m_MirrorTexture, IID_PPV_ARGS(&tex));
+
+		ID3D11Texture2D* backbuffer = G_GAPIContext.GetBackBuffer();
+		G_GAPIContext.GetDeviceContext()->CopyResource(backbuffer, tex);
+		tex->Release();
+#endif
 	}
 }
 

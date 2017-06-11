@@ -15,6 +15,7 @@ namespace Blade
 		ComPtr<ID3D11DeviceContext> m_DeviceContext;
 		ComPtr<ID3D11Debug> m_DebugInterface;
 
+		ComPtr<ID3D11Texture2D> m_BackBuffer;
 		ComPtr<ID3D11RenderTargetView> m_DefaultRtv;
 		ComPtr<ID3D11DepthStencilView> m_DefaultDsv;
 
@@ -26,6 +27,9 @@ namespace Blade
 		ID3D11Device* GetDevice() const;
 		ID3D11DeviceContext* GetDeviceContext() const;
 		ID3D11Debug* GetDebugInterface() const noexcept { return m_DebugInterface.Get(); }
+
+		ID3D11Texture2D* GetBackBuffer()const noexcept { return m_BackBuffer.Get(); }
+		ID3D11Texture2D** GetAddressOfBackBuffer() noexcept { return m_BackBuffer.GetAddressOf(); }
 
 		ID3D11RenderTargetView* GetDefaultRenderTargetView() const noexcept { return m_DefaultRtv.Get(); }
 		ID3D11DepthStencilView* GetDefaultDepthStencilView() const noexcept { return m_DefaultDsv.Get(); }

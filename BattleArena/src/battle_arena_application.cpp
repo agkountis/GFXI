@@ -79,16 +79,34 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 
 	BLADE_TRACE("Creating Window!");
 
+#ifdef BLADE_BUILD_OVR
 	WindowingService::Create(L"BattleArena",
-	                         Vec2i{ 1600, 900 },
-	                         Vec2i{},
-	                         true,
-	                         false,
-	                         true,
-	                         true,
-	                         true,
-	                         4,
-	                         callbacks);
+		Vec2i{ 1600, 900 },
+		Vec2i{},
+		true,
+		false,
+		true,
+		true,
+		true,
+		1,
+		callbacks);
+
+	if (!G_OvrManager.CreateMirrorTexture(0))
+	{
+		return false;
+	}
+#else
+	WindowingService::Create(L"BattleArena",
+		Vec2i{ 1600, 900 },
+		Vec2i{},
+		true,
+		false,
+		true,
+		true,
+		true,
+		4,
+		callbacks);
+#endif
 
 	if (!G_InputManager.Initialize())
 	{
