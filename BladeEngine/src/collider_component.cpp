@@ -13,7 +13,7 @@ void Blade::ColliderComponent::NotifyCollisionListeners(Entity* entity) noexcept
 	//if (m_pListenerBehaviour) 
 	for (int i = 0; i < m_pListeners.size(); ++i)
 	{
-		m_pListeners[i]->OnCollision(entity);// TODO: pass entity that you're colliding with
+		m_pListeners[i]->OnCollision(entity);
 	}
 }
 

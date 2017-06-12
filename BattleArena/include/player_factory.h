@@ -1,3 +1,6 @@
+#ifndef BLADE_PLAYER_FACTORY_H_
+#define BLADE_PLAYER_FACTORY_H_
+
 #include "player.h"
 
 class PlayerFactory
@@ -16,3 +19,4 @@ private:
 
 
 };
+#endif
