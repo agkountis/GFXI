@@ -18,7 +18,7 @@ public:
 			if (pl)
 			{
 				const Vec3f& heading = pl->GetHeading();
-				BLADE_TRACE("HEADING ON MOVE: " << heading.x << ", " << heading.z);
+				//BLADE_TRACE("HEADING ON MOVE: " << heading.x << ", " << heading.z);
 				simComp->AddForce(heading*dt*(10000.0f));
 
 			}
