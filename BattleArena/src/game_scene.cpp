@@ -11,20 +11,19 @@
 #include "directional_light_component.h"
 #include "camera.h"
 #include "directional_light.h"
-#include "simulation_component.h"
 #include "collider_component.h"
-#include "bounding_sphere.h"
 #include "plane_collider.h"
 #include "emitter_component.h"
 #include "player_joypad_component.h"
-#include "player_keyboard_component.h"
 #include "test_behaviour.h"
 #include "cannon_weapon_component.h"
 #include "other_weapon_component.h"
-#include "game_scene_color_pass_ovr.h"
 #include "player.h"
-
 #include <iostream>
+
+#ifdef BLADE_BUILD_OVR
+#include "game_scene_color_pass_ovr.h"
+#endif
 
 using namespace Blade;
 
