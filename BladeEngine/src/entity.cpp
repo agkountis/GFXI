@@ -127,7 +127,6 @@ namespace Blade
 		{
 			return this;
 		}
-
 		Entity* res{ nullptr };
 		for (auto child : m_Children)
 		{
@@ -137,7 +136,6 @@ namespace Blade
 				break;
 			}
 		}
-
 		return res;
 	}
 
@@ -188,6 +186,24 @@ namespace Blade
 		}
 
 		return nullptr;
+	}
+
+	void Entity::RemoveComponent(const int id) noexcept
+	{
+		auto it{ m_Components.begin() };
+
+		while (it != m_Components.end())
+		{
+			auto entry{ *it };
+			if (entry->GetId() == id)
+			{
+				it = m_Components.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
 	}
 
 	std::vector<Component*> Entity::GetComponents(const std::string & type) const noexcept

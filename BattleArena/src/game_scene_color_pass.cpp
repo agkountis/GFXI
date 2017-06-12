@@ -13,7 +13,6 @@
 
 using namespace Blade;
 
-#define DIPLAY_PARTICLES false
 
 void GameSceneColorPassStage::DisplayToScreen() const
 {
@@ -367,7 +366,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 	//////////////////////////////////////////////////////////////////////////
 
-#if DIPLAY_PARTICLES
+#if !_DEBUG
 
 	G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_0);
 	G_ShaderProgramManager.Get("particles_sdrprog")->Bind();

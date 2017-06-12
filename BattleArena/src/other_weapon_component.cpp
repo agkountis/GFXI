@@ -3,6 +3,11 @@
 
 using namespace Blade;
 
+OtherWeaponComponent::OtherWeaponComponent(Blade::Entity * parent):
+	WeaponComponent(parent)
+{
+}
+
 OtherWeaponComponent::OtherWeaponComponent(Blade::Entity* parent, WeaponPosition pos):
 	WeaponComponent( pos, parent)
 {
@@ -16,5 +21,5 @@ OtherWeaponComponent::~OtherWeaponComponent()
 
 void OtherWeaponComponent::Shoot()
 {
-	std::cout << "Other weapon!" << std::endl;
+	std::cout << "Green weapon!" << std::endl;
 }

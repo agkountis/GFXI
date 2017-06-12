@@ -46,6 +46,7 @@ namespace Blade
 
 #ifdef BLADE_BUILD_D3D
 		texture = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + StringUtils::ToWstring(texFileName));
+		texture->SetTextureType(TEX_DIFFUSE);
 #else
 #endif
 

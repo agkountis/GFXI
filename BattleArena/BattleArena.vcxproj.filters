@@ -119,6 +119,12 @@
     <ClCompile Include="src\test_commands_battle_arena.cpp">
       <Filter>src\commands</Filter>
     </ClCompile>
+    <ClCompile Include="src\weapon.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\weapon_factory.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
@@ -185,6 +191,12 @@
       <Filter>include\components\input</Filter>
     </ClInclude>
     <ClInclude Include="include\player_factory.h">
+      <Filter>include\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\weapon.h">
+      <Filter>include\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\weapon_factory.h">
       <Filter>include\entities</Filter>
     </ClInclude>
   </ItemGroup>

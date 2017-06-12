@@ -24,6 +24,7 @@
 #include "game_scene_color_pass_ovr.h"
 #include "player.h"
 
+#include <iostream>
 
 using namespace Blade;
 
@@ -68,62 +69,6 @@ void GameScene::Initialize()
 	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-40.0f) } };
 	AddEntity(entity);
 
-	//First ball
-	entity = new Entity{ "Ball" };
-	entity->SetPosition(Vec3f{ 0.0f, 80.0f,-1.0f });
-	RenderComponent* rc{ new RenderComponent{entity} };
-	rc->SetMesh(cube);
-	rc->SetMaterial(material);
-	SimulationComponent* simC{ new SimulationComponent{entity,1.0f} };
-	ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(1.0f)} };
-	TestBehaviour* tb{ new TestBehaviour(entity) };
-	colC->SetListener(tb);
-
-	auto cache_entity = entity;
-	/*
-	EmitterComponent* ec = new EmitterComponent{ entity };
-	ec->SetLifeSpan(1.0f);
-	ec->SetMaxParticles(1000);
-	ec->SetSpawnRate(200);
-	ec->SetActive(true);
-	ec->SetParticleSize(3.f);
-	ec->SetSpawnRadius(1.5f);
-	ec->SetVelocity(Vec3f{ 0.0f, 1.0f, 0.0f });
-	ec->SetVelocityRange(1.3f);
-	ec->SetExternalForce(Vec3f{ 0.0f, -1.3f, 0.0f });
-	ec->SetMesh(G_ResourceManager.Get<Mesh>(L"plane"));
-	ec->SetStartColor(Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f });
-	ec->SetEndColor(Vec4f{ 1.0f, 1.0f, 1.0f, 0.1f });
-	ec->SetBlendStateType(RenderStateType::BS_BLEND_ADDITIVE);
-	Texture* tex{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"expl02.png") };
-	tex->SetTextureType(TEX_DIFFUSE);
-	ec->SetTexture(tex);
-	*/
-
-
-	//PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
-	//tjc->Setup();
-
-	//PlayerKeyboardComponent* pkc{ new PlayerKeyboardComponent{entity} };
-	//pkc->Setup();
-
-
-	CannonWeaponComponent* cwc{ new CannonWeaponComponent{entity,WeaponPosition::LEFT} };
-	OtherWeaponComponent* owc{ new OtherWeaponComponent{entity,WeaponPosition::RIGHT} };
-
-	AddEntity(entity);
-
-	//Second ball
-	entity = new Entity{ "Ball2" };
-	entity->SetPosition(Vec3f{ 1.0f, 85.0f,0.0f });
-	RenderComponent* rc3 {new RenderComponent{ entity } };
-	rc3->SetMesh(cube);
-	rc3->SetMaterial(material);
-	SimulationComponent* simC3{ new SimulationComponent{ entity,1.0f } };
-	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
-
-	AddEntity(entity);
-
 
 	auto p{ m_PlayerFactory.CreateLocalJoypadPlayer("player1",L"player1.fbx") };
 	AddEntity(p);
@@ -131,8 +76,12 @@ void GameScene::Initialize()
 	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
 	AddEntity(p2);
 
-	//p = new Player("playerxxxxxx", L"player1.fbx", true);
-	//AddEntity(p);
+	auto weapon1{ m_WeaponFactory.CreateWeapon1("weapon1") };
+	AddEntity(weapon1);
+
+	auto weapon2{ m_WeaponFactory.CreateWeapon2("weapon2") };
+	AddEntity(weapon2);
+
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Get the window size.
@@ -168,7 +117,7 @@ void GameScene::Initialize()
 	cam = new Camera{ "Camera4", cd };
 
 	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -4.0f });
-	cam->SetParent(cache_entity);
+	cam->SetParent(p2);
 	AddEntity(cam);
 
 	//Instruct the Camera system to set this camera as the active one.
