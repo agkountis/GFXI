@@ -25,7 +25,7 @@ namespace Blade
 		{
 			if (entity->GetName() == name)
 			{
-				m_NeedToBeDeletedEntities.push_back(entity);
+				m_NeedToBeRemovedEntities.push_back(entity);
 			}
 		}	
 	}
@@ -33,7 +33,8 @@ namespace Blade
 
 	void Scene::RemoveEntities() noexcept
 	{
-		for(auto needToBeRemovedEntity: m_NeedToBeDeletedEntities)
+
+		for(auto needToBeRemovedEntity: m_NeedToBeRemovedEntities)
 		{
 			auto it{ m_Entities.begin() };
 
@@ -42,7 +43,6 @@ namespace Blade
 				auto entry{ *it };
 				if (entry->GetName() == needToBeRemovedEntity->GetName())
 				{
-
 					it = m_Entities.erase(it);
 				}
 				else
@@ -51,6 +51,10 @@ namespace Blade
 				}
 			}
 		}
+		m_NeedToBeRemovedEntities.clear();
+		
+
+
 	}
 
 	const std::vector<Entity*>& Scene::GetEntities() const noexcept

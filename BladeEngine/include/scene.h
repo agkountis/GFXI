@@ -19,6 +19,11 @@ namespace Blade
 		std::vector<Entity*> m_Entities;
 
 		/*
+		\brief The collection of the entities that need be removed the next frame.
+		*/
+		std::vector<Entity*> m_NeedToBeRemovedEntities;
+
+		/*
 		\brief The collection of the entities that need be deleted the next frame.
 		*/
 		std::vector<Entity*> m_NeedToBeDeletedEntities;
@@ -49,7 +54,7 @@ namespace Blade
 		void RemoveEntity(const std::string&  name) noexcept;
 
 		/*
-		\brief RemoveEntities
+		\brief Removes and deletes that entities that need to be removed or deleted
 		*/
 		void RemoveEntities() noexcept;
 

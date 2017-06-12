@@ -58,7 +58,7 @@ void GameScene::Initialize()
 	//////////////////////////////////////////////////////////////////////////
 
 	Entity* arena{ new Entity{ "arena" } };
-	arena->Load(L"data/models/arena4.fbx");
+	arena->Load(L"data/models/arena5.fbx");
 	AddEntity(arena);
 
 	Entity* entity{ new Entity{ "Environment" } };
@@ -81,6 +81,7 @@ void GameScene::Initialize()
 
 	auto weapon2{ m_WeaponFactory.CreateWeapon2("weapon2") };
 	AddEntity(weapon2);
+
 
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
