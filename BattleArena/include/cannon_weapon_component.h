@@ -16,8 +16,6 @@ public:
 
 	void Shoot() override;
 
-private:
-	Blade::Timer m_Timer;
 };
 
 

@@ -21,5 +21,5 @@ OtherWeaponComponent::~OtherWeaponComponent()
 
 void OtherWeaponComponent::Shoot()
 {
-	std::cout << "Other weapon!" << std::endl;
+	std::cout << "Green weapon!" << std::endl;
 }

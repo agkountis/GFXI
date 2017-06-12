@@ -65,6 +65,11 @@ namespace Blade
 		 */
 		Entity* GetParent() const noexcept;
 
+		/*
+		\brief Set the Entity that the component is attached to
+		*/
+		void SetParent(Entity* parent) noexcept;
+
 		/**
 		 * \brief Returns the unique Component ID.
 		 * \return The unique Component ID.

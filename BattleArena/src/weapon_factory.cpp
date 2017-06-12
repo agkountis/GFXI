@@ -39,7 +39,6 @@ WeaponFactory::WeaponFactory()
 Weapon* WeaponFactory::CreateWeapon1(const std::string & name)
 {
 	Weapon* weapon{ new Weapon{name} };
-	weapon->SetPosition(Vec3f(1.0f, 1.0f, 1.0f));
 	auto cwc{ new CannonWeaponComponent{weapon} };
 	auto emc{ new EmitterComponent{weapon, m_DescriptorWeapon1} };
 	emc->SetTexture(G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"star.jpg"));
@@ -57,7 +56,8 @@ Weapon* WeaponFactory::CreateWeapon1(const std::string & name)
 #endif
 
 
-	weapon->SetPosition(Vec3f(1.0f, 1.5f, 0.0f));
+	//#needtorefactor add position logic
+	weapon->SetPosition(Vec3f(15.0f, 1.0f, 1.0f));
 	return weapon;
 
 	
@@ -66,7 +66,6 @@ Weapon* WeaponFactory::CreateWeapon1(const std::string & name)
 Weapon* WeaponFactory::CreateWeapon2(const std::string & name)
 {
 	Weapon* weapon{ new Weapon{ name } };
-	weapon->SetPosition(Vec3f(-1.0f, 1.0f, -3.0f));
 	auto cwc{ new OtherWeaponComponent{ weapon } };
 	auto emc{ new EmitterComponent{ weapon, m_DescriptorWeapon2 } };
 	emc->SetTexture(G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"star.jpg"));
@@ -84,6 +83,6 @@ Weapon* WeaponFactory::CreateWeapon2(const std::string & name)
 #endif
 
 
-	weapon->SetPosition(Vec3f(1.0f, 1.5f, 0.0f));
+	weapon->SetPosition(Vec3f(-4.0f, 1.0f, -3.0f));
 	return weapon;
 }

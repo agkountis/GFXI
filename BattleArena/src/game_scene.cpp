@@ -69,31 +69,6 @@ void GameScene::Initialize()
 	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-40.0f) } };
 	AddEntity(entity);
 
-	////First ball
-	//entity = new Entity{ "Ball" };
-	//entity->SetPosition(Vec3f{ 0.0f, 80.0f,-1.0f });
-	//RenderComponent* rc{ new RenderComponent{entity} };
-	//rc->SetMesh(cube);
-	//rc->SetMaterial(material);
-	//SimulationComponent* simC{ new SimulationComponent{entity,1.0f} };
-	//ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(1.0f)} };
-	//TestBehaviour* tb{ new TestBehaviour(entity) };
-	//colC->SetListener(tb);
-
-	//auto cache_entity = entity;
-
-
-	////Second ball
-	//entity = new Entity{ "Ball2" };
-	//entity->SetPosition(Vec3f{ 1.0f, 85.0f,0.0f });
-	//RenderComponent* rc3 {new RenderComponent{ entity } };
-	//rc3->SetMesh(cube);
-	//rc3->SetMaterial(material);
-	//SimulationComponent* simC3{ new SimulationComponent{ entity,1.0f } };
-	//ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
-
-	//AddEntity(entity);
-
 
 	auto p{ m_PlayerFactory.CreateLocalJoypadPlayer("player1",L"player1.fbx") };
 	AddEntity(p);
@@ -103,6 +78,9 @@ void GameScene::Initialize()
 
 	auto weapon1{ m_WeaponFactory.CreateWeapon1("weapon1") };
 	AddEntity(weapon1);
+
+	auto weapon2{ m_WeaponFactory.CreateWeapon2("weapon2") };
+	AddEntity(weapon2);
 
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
