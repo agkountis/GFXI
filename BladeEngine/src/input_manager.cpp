@@ -1,5 +1,32 @@
 #include "input_manager.h"
+#include "math_utils.h"
+
 using namespace Blade;
+
+void InputManager::SetMouseButtonState(MouseButton button, bool value)
+{
+
+	m_MouseButton[static_cast<int>(button)] = value;
+
+}
+
+bool InputManager::QueryMouseButtonState(MouseButton button)
+{
+
+	return m_MouseButton[static_cast<int>(button)];
+
+}
+
+void InputManager::UpdateMousePos(Vec2i mousepos)
+{
+	//BLADE_TRACE("Mouse = " << mousepos.x << " " << mousepos.y);
+ 	m_MousePosPrevious = m_MousePos;
+	m_MousePos = mousepos;
+
+	BLADE_TRACE("[L]=" << QueryMouseButtonState(MouseButton::LEFT) << "[R]=" << QueryMouseButtonState(MouseButton::RIGHT));
+
+	Vec2f test = QueryMouseMovementNormalized();
+}
 
 Vec2f InputManager::GetAnalogStickVector(JoypadNumber player, Input_Sensor sensor)
 {
@@ -27,6 +54,31 @@ Vec2f InputManager::GetAnalogStickVector(JoypadNumber player, Input_Sensor senso
 	// Catch-All
 	return Vec2f(0.0f, 0.0f);
 }
+
+Vec2f InputManager::QueryMouseMovement()
+{
+	return m_MousePos - m_MousePosPrevious;
+}
+
+Vec2f InputManager::QueryMouseMovementNormalized()
+{
+	return  Blade::MathUtils::Normalize(QueryMouseMovement());
+}
+
+//bool InputManager::QueryMouseButtonState(MouseButton button)
+//{
+//
+//	if (button == MouseButton::LEFT)
+//	{
+//		return ((::GetKeyState(VK_LBUTTON) & 0x80) != 0);
+//	}
+//	else if (button == MouseButton::RIGHT)
+//	{
+//		return ((::GetKeyState(VK_RBUTTON) & 0x80) != 0);
+//	}
+//
+//	return false;
+//}
 
 bool InputManager::QueryDeviceState(JoypadNumber player, Input_Sensor btn)
 {
