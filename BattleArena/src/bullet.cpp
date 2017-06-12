@@ -39,7 +39,7 @@ Bullet::Bullet(const std::string & name, const std::wstring & mesh, const Blade:
 	ec->SetTexture(tex);
 
 	TestBehaviour* tb{ new TestBehaviour{this} };
-	colC->SetListener(tb);
+	colC->AddListener(tb);
 
 	simC->SetVelocity(velocity);
 }

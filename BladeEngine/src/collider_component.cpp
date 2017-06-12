@@ -6,16 +6,22 @@
 
 using namespace Blade;
 
-void Blade::ColliderComponent::NotifyCollisionListener(Entity* entity) noexcept
+void Blade::ColliderComponent::NotifyCollisionListeners(Entity* entity) noexcept
 {
 	//BLADE_TRACE("COLLIDER COMPONENT NOTIFIED");
-	if (m_pListenerBehaviour) m_pListenerBehaviour->OnCollision(entity);// TODO: pass entity that you're colliding with
+
+	//if (m_pListenerBehaviour) 
+	for (int i = 0; i < m_pListeners.size(); ++i)
+	{
+		m_pListeners[i]->OnCollision(entity);// TODO: pass entity that you're colliding with
+	}
 }
 
 ColliderComponent::ColliderComponent(Entity* parent, std::unique_ptr<Collider> collider):
 	Component{ "co_col", parent },
 	m_Collider{ std::move(collider) }
 {
+	
 	m_Collider->SetParent(this);
 	G_SimulationSystem.RegisterComponent(this);
 }
@@ -45,8 +51,9 @@ void Blade::ColliderComponent::SetCollisionResponseFlag(bool flag) noexcept
 	m_activeFlag = flag;
 }
 
-void Blade::ColliderComponent::SetListener(BehaviourComponent * listener) noexcept
+void Blade::ColliderComponent::AddListener(BehaviourComponent * listener) noexcept
 {
 
-	m_pListenerBehaviour = listener;
+	m_pListeners.push_back(listener);
+	//m_pListenerBehaviour = listener;
 }

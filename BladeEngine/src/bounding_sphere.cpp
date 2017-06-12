@@ -29,8 +29,8 @@ bool BoundingSphere::Collide(const BoundingSphere* bsphere, ContactManifold& man
 	bool collided = SimulationUtils::SphereAndSphereCollision(this, bsphere, manifold);
 	if (collided)
 	{
-		this->GetColliderComponent()->NotifyCollisionListener(bsphere->GetColliderComponent()->GetParent());
-		bsphere->GetColliderComponent()->NotifyCollisionListener(this->GetColliderComponent()->GetParent());
+		this->GetColliderComponent()->NotifyCollisionListeners(bsphere->GetColliderComponent()->GetParent());
+		bsphere->GetColliderComponent()->NotifyCollisionListeners(this->GetColliderComponent()->GetParent());
 	}
 	return collided;
 }
