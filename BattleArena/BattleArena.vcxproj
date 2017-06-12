@@ -306,6 +306,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\player_behaviour.cpp" />
+    <ClCompile Include="src\player_factory.cpp" />
     <ClCompile Include="src\player_keyboard_component.cpp" />
     <ClCompile Include="src\bullet.cpp" />
     <ClCompile Include="src\cannon_weapon_component.cpp" />
@@ -337,6 +338,7 @@
     <ClInclude Include="include\multiplayer.h" />
     <ClInclude Include="include\player.h" />
     <ClInclude Include="include\player_behaviour.h" />
+    <ClInclude Include="include\player_factory.h" />
     <ClInclude Include="include\player_joypad_component.h" />
     <ClInclude Include="include\other_weapon_component.h" />
     <ClInclude Include="include\uniform_buffers.h" />

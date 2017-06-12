@@ -113,6 +113,9 @@
     <ClCompile Include="src\player_behaviour.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
+    <ClCompile Include="src\player_factory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
@@ -172,11 +175,14 @@
     <ClInclude Include="include\player_commands.h">
       <Filter>include\commands</Filter>
     </ClInclude>
-    <ClInclude Include="include\player_keyboard_component.h">
-      <Filter>include\components</Filter>
-    </ClInclude>
     <ClInclude Include="include\player_behaviour.h">
       <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\player_factory.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\player_keyboard_component.h">
+      <Filter>include\components\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

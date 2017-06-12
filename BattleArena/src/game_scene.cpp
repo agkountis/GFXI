@@ -102,8 +102,8 @@ void GameScene::Initialize()
 	*/
 
 
-	PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
-	tjc->Setup();
+	//PlayerJoypadComponent* tjc{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD1 } };
+	//tjc->Setup();
 
 	//PlayerKeyboardComponent* pkc{ new PlayerKeyboardComponent{entity} };
 	//pkc->Setup();
@@ -124,8 +124,12 @@ void GameScene::Initialize()
 	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
 	AddEntity(entity);
 
-	Player* p = new Player("playerxxx",L"player1.fbx",true);
+
+	auto p{ m_PlayerFactory.CreateLocalKeyboardPlayer("player1",L"player1.fbx") };
 	AddEntity(p);
+
+	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
+	AddEntity(p2);
 
 	//p = new Player("playerxxxxxx", L"player1.fbx", true);
 	//AddEntity(p);
