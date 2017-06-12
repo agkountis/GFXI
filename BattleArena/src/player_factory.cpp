@@ -6,7 +6,7 @@
 #include "bounding_sphere.h"
 #include "simulation_component.h"
 #include "collider_component.h"
-
+#include "health_component.h"
 using namespace Blade;
 
 Player* PlayerFactory::CreateLocalKeyboardPlayer(const std::string& name, const std::wstring& modelPath)

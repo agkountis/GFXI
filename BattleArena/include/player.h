@@ -12,6 +12,8 @@ public:
 
 	bool AddWeapon(Weapon* weapon);
 
+	Vec3f GetHeading();
+
 private:
 	int m_WeaponCount{ 0 };
 };

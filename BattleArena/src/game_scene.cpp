@@ -69,7 +69,7 @@ void GameScene::Initialize()
 	AddEntity(entity);
 
 
-	auto p{ m_PlayerFactory.CreateLocalJoypadPlayer("player1",L"player1.fbx") };
+	auto p{ m_PlayerFactory.CreateLocalKeyboardPlayer("player1",L"player1.fbx") };
 	AddEntity(p);
 
 	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
