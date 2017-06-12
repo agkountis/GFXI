@@ -56,6 +56,9 @@ namespace Blade
 		*/
 		std::map<Player, InputDevice*> m_ActiveDevices;
 
+		/**
+		* \brief Keyboard input class to read keyt states of the keyboard
+		*/
 		KeyboardInput	m_Keyboard;
 
 	public:
