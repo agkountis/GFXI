@@ -50,7 +50,7 @@ class MoveRight : public Blade::Command
 public:
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
-		using namespace Blade;
+
 		using namespace Blade;
 		if (entity->GetComponent("co_sim"))
 		{
@@ -67,12 +67,23 @@ public:
 	{
 		using namespace Blade;
 		auto joypadNumber{ GetJoypadNumberByEntity(entity) };
-		auto vec{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_LEFT) };
+		auto movementVec{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_LEFT) };
+		auto rotationVec{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_RIGHT) };
+
 		if (entity->GetComponent("co_sim"))
 		{
 			//auto rt_value{ G_InputManager.GetActiveDevice(joypadNumber)->GetCurrentState().triggerRight};
 			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
-			simComp->AddForce(Vec3f(vec.x, 0.0f, vec.y)*dt*(10000.0f));
+
+			//change orientation
+			Quatf q = entity->GetOrientation();
+			entity->SetOrientation(glm::rotate(q, rotationVec.x*dt, glm::vec3(0, 1, 0)));
+
+			//use orientation to influence the force that is being added to the simulation component
+			simComp->AddForce(Vec3f(Mat4f(q)*Vec4f(movementVec.x*0.5f, 0.0f, movementVec.y,0))*dt*(2000.0f));
+
+
+		
 		}
 	}
 };

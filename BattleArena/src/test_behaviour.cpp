@@ -17,6 +17,8 @@ TestBehaviour::~TestBehaviour()
 void TestBehaviour::Update(const float dt, const long time) noexcept
 {
 	//BLADE_TRACE("UPDATE on test behaviour");
+
+
 }
 
 void TestBehaviour::Setup() noexcept
