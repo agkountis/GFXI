@@ -27,11 +27,18 @@ void PlayerKeyboardComponent::Update(const float dt, const long time) noexcept
 		}
 	}
 	//Mouse
+
+	//Movement
 	Entity* parent = GetParent();
 	const Vec2f& mouseMovement{ G_InputManager.QueryMouseMovementNormalized()*5.0f};
 	//change orientation
 	const Quatf& q = parent->GetOrientation();
 	parent->SetOrientation(glm::rotate(q, mouseMovement.x*dt, glm::vec3(0, 1, 0)));
+
+	//Buttons
+	
+	bool left{ G_InputManager.QueryMouseButtonState(MouseButton::LEFT) };
+	bool right{ G_InputManager.QueryMouseButtonState(MouseButton::RIGHT) };
 
 }
 
