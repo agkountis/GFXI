@@ -122,15 +122,10 @@ void GameScene::Initialize()
 	SimulationComponent* simC3{ new SimulationComponent{ entity,1.0f } };
 	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
 
-
-	PlayerJoypadComponent* tjc2{ new PlayerJoypadComponent{ entity,Blade::JoypadNumber::JOYPAD2 } };
-	tjc2->Setup();
-
-
 	AddEntity(entity);
 
 
-	auto p{ m_PlayerFactory.CreateLocalKeyboardPlayer("player1",L"player1.fbx") };
+	auto p{ m_PlayerFactory.CreateLocalJoypadPlayer("player1",L"player1.fbx") };
 	AddEntity(p);
 
 	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };

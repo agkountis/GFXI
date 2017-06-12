@@ -54,6 +54,9 @@
     <Filter Include="src\entities">
       <UniqueIdentifier>{2af32505-cb38-472f-91ce-3c5147050033}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\commands">
+      <UniqueIdentifier>{d13adcb6-67a2-417d-8131-20d571dbbe44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -101,9 +104,6 @@
     <ClCompile Include="src\game_scene_color_pass_ovr.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\test_commands_battle_arena.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\test_joypad_component.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
@@ -114,7 +114,10 @@
       <Filter>src\components</Filter>
     </ClCompile>
     <ClCompile Include="src\player_factory.cpp">
-      <Filter>src</Filter>
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test_commands_battle_arena.cpp">
+      <Filter>src\commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -178,11 +181,11 @@
     <ClInclude Include="include\player_behaviour.h">
       <Filter>include\components</Filter>
     </ClInclude>
-    <ClInclude Include="include\player_factory.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\player_keyboard_component.h">
       <Filter>include\components\input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\player_factory.h">
+      <Filter>include\entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
