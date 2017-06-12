@@ -9,6 +9,11 @@ using namespace Blade;
 
 
 
+CannonWeaponComponent::CannonWeaponComponent(Blade::Entity * parent):
+	WeaponComponent(parent)
+{
+}
+
 CannonWeaponComponent::CannonWeaponComponent(Blade::Entity * parent, WeaponPosition pos):
 	WeaponComponent(pos, parent)
 {

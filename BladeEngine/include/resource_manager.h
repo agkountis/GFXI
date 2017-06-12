@@ -3,6 +3,7 @@
 #include <map>
 #include <iostream>
 #include "resource.h"
+#include "string_utils.h" 
 
 namespace Blade
 {
@@ -45,7 +46,7 @@ namespace Blade
 			{
 				resource->SetId(s_Id);
 				RegisterResource(resource, fileName);
-
+				BLADE_TRACE("loaded  "+StringUtils::ToString(fileName));
 				return true;
 			}
 

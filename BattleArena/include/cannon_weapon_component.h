@@ -8,6 +8,8 @@
 class CannonWeaponComponent : public WeaponComponent
 {
 public:
+	explicit CannonWeaponComponent(Blade::Entity* parent);
+
 	CannonWeaponComponent(Blade::Entity* parent, WeaponPosition pos);
 
 	virtual ~CannonWeaponComponent();

@@ -7,6 +7,11 @@ WeaponComponent::WeaponComponent(WeaponPosition pos, Blade::Entity * parent):
 {
 }
 
+WeaponComponent::WeaponComponent(Blade::Entity * parent):
+	Component("co_weapon",parent)
+{
+}
+
 WeaponComponent::~WeaponComponent()
 {
 

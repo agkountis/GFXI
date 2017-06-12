@@ -117,7 +117,7 @@ public:
 				//Check if we have a left weapon
 				for (auto weapon : weaponsVector)
 				{
-					if (weapon->m_WeaponPos == WeaponPosition::LEFT)
+					if (weapon->GetWeaponPosition() == WeaponPosition::LEFT)
 					{
 						weapon->Shoot();
 						return;
@@ -156,7 +156,7 @@ public:
 				//Check if we have a left weapon
 				for (auto weapon : weaponsVector)
 				{
-					if (weapon->m_WeaponPos == WeaponPosition::RIGHT)
+					if (weapon->GetWeaponPosition() == WeaponPosition::RIGHT)
 					{
 						weapon->Shoot();
 						return;

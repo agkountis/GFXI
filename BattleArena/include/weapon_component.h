@@ -15,9 +15,17 @@ class WeaponComponent : public Blade::Component
 public:
 	WeaponComponent(WeaponPosition pos, Blade::Entity* parent);
 
+	WeaponComponent(Blade::Entity* parent);
+
 	virtual ~WeaponComponent();
 
 	virtual void Shoot() = 0;
+
+	WeaponPosition GetWeaponPosition() const { return m_WeaponPos; };
+
+	void SetWeaponPosition(const WeaponPosition position) { m_WeaponPos = position; };
+
+private:
 
 	WeaponPosition m_WeaponPos;
 };

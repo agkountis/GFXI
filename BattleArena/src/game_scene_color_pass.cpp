@@ -11,7 +11,7 @@
 
 using namespace Blade;
 
-#define DIPLAY_PARTICLES false
+#define DIPLAY_PARTICLES true
 
 void GameSceneColorPassStage::DisplayToScreen() const
 {
