@@ -1,6 +1,7 @@
 #pragma once
 #include "test_commands_battle_arena.h"
 #include "weapon_component.h"
+#include "player.h"
 
 class MoveForward : public Blade::Command
 {
@@ -10,8 +11,16 @@ public:
 		using namespace Blade;
 		if (entity->GetComponent("co_sim"))
 		{
+
 			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
-			simComp->AddForce(Vec3f(0.0f, 0.0f, 1.0f)*dt*(10000.0f));
+
+			Player* pl = dynamic_cast<Player*>(entity);
+			if (pl)
+			{
+				const Vec3f& heading = pl->GetHeading();
+				simComp->AddForce(heading*dt*(10000.0f));
+
+			}
 		}
 	}
 };
@@ -25,7 +34,13 @@ public:
 		if (entity->GetComponent("co_sim"))
 		{
 			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
-			simComp->AddForce(Vec3f(0.0f, 0.0f, -1.0f)*dt*(10000.0f));
+			Player* pl = dynamic_cast<Player*>(entity);
+			if (pl)
+			{
+				const Vec3f& heading = pl->GetHeading();
+				simComp->AddForce(-heading*dt*(10000.0f));
+
+			}
 		}
 	}
 };
@@ -40,10 +55,19 @@ public:
 		if (entity->GetComponent("co_sim"))
 		{
 			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
-			simComp->AddForce(Vec3f(-1.0f, 0.0f, 0.0f)*dt*(10000.0f));
+			//simComp->AddForce(Vec3f(-1.0f, 0.0f, 0.0f)*dt*(10000.0f));
+
+			//change orientation
+			Quatf q = entity->GetOrientation();
+			//use orientation to influence the force that is being added to the simulation component
+			simComp->AddForce(Vec3f(Mat4f(q)*Vec4f(-1.0f, 0.0f, 0.0f, 0))*dt*(1000.0f));
+
+
 		}
 	}
 };
+
+
 
 class MoveRight : public Blade::Command
 {
@@ -55,10 +79,14 @@ public:
 		if (entity->GetComponent("co_sim"))
 		{
 			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
-			simComp->AddForce(Vec3f(1.0f, 0.0f, 0.0f)*dt*(10000.0f));
+			//change orientation
+			Quatf q = entity->GetOrientation();
+			//use orientation to influence the force that is being added to the simulation component
+			simComp->AddForce(Vec3f(Mat4f(q)*Vec4f(1.0f, 0.0f, 0.0f, 0))*dt*(1000.0f));
 		}
 	}
 };
+
 
 class MoveCommand : public Blade::Command
 {
@@ -69,6 +97,8 @@ public:
 		auto joypadNumber{ GetJoypadNumberByEntity(entity) };
 		auto movementVec{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_LEFT) };
 		auto rotationVec{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_RIGHT) };
+
+		
 
 		if (entity->GetComponent("co_sim"))
 		{
@@ -84,6 +114,11 @@ public:
 
 
 		
+		}
+		Player* pl = dynamic_cast<Player*>(entity);
+		if (pl)
+		{
+			pl->GetHeading();
 		}
 	}
 };

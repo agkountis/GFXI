@@ -2,9 +2,10 @@
 #define BLADE_COLLIDER_COMPONENT_H_
 #include "component.h"
 #include "collider.h"
-#include <memory>
-
 #include "trace.h"
+#include <memory>
+#include <vector>
+
 namespace Blade
 {
 	//Forward declaration
@@ -29,7 +30,7 @@ namespace Blade
 		std::unique_ptr<Collider> m_Collider;
 
 
-		BehaviourComponent* m_pListenerBehaviour{ nullptr };
+		std::vector<BehaviourComponent*>  m_pListeners;
 
 	//protected:
 	
@@ -71,13 +72,13 @@ namespace Blade
 		/*
 		\brief Setter for collision listener behaviour
 		*/
-		void SetListener(BehaviourComponent* listener) noexcept;
+		void AddListener(BehaviourComponent* listener) noexcept;
 
 		/*
 		\brief Method used to notify BehaviourComponent listener about the collision
 		\param entity that the collider collided with
 		*/
-		void NotifyCollisionListener(Entity* entity) noexcept;
+		void NotifyCollisionListeners(Entity* entity) noexcept;
 	};
 }
 #endif 

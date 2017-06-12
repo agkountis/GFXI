@@ -149,6 +149,8 @@ namespace Blade
 		virtual void Update(float dt, long time = 0) noexcept;
 
 		bool Load(const std::wstring& fileName) noexcept override;
+
+		
 	};
 }
 

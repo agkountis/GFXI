@@ -26,10 +26,25 @@ void PlayerKeyboardComponent::Update(const float dt, const long time) noexcept
 			key.second->Execute(GetParent(), dt);
 		}
 	}
+	//Mouse
+
+	//Movement
+	Entity* parent = GetParent();
+	const Vec2f& mouseMovement{ G_InputManager.QueryMouseMovementNormalized()*5.0f};
+	//change orientation
+	const Quatf& q = parent->GetOrientation();
+	parent->SetOrientation(glm::rotate(q, mouseMovement.x*dt, glm::vec3(0, 1, 0)));
+
+	//Buttons
+	
+	bool left{ G_InputManager.QueryMouseButtonState(MouseButton::LEFT) };
+	bool right{ G_InputManager.QueryMouseButtonState(MouseButton::RIGHT) };
+
 }
 
 void PlayerKeyboardComponent::Setup() noexcept
 {
+	//Keyboard
 	auto move_up_command = std::make_shared<MoveForward>();
 	auto move_down_command = std::make_shared<MoveBack>();
 	auto move_left_command = std::make_shared<MoveLeft>();

@@ -305,6 +305,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\health_component.cpp" />
     <ClCompile Include="src\player_behaviour.cpp" />
     <ClCompile Include="src\player_factory.cpp" />
     <ClCompile Include="src\player_keyboard_component.cpp" />
@@ -336,6 +337,7 @@
     <ClInclude Include="include\game_scene.h" />
     <ClInclude Include="include\game_scene_color_pass.h" />
     <ClInclude Include="include\game_scene_color_pass_ovr.h" />
+    <ClInclude Include="include\health_component.h" />
     <ClInclude Include="include\network_message_types.h" />
     <ClInclude Include="include\multiplayer.h" />
     <ClInclude Include="include\player.h" />

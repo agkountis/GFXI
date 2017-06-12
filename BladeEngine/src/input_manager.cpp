@@ -1,5 +1,30 @@
 #include "input_manager.h"
+#include "math_utils.h"
+
 using namespace Blade;
+
+void InputManager::SetMouseButtonState(MouseButton button, bool value)
+{
+
+	m_MouseButton[static_cast<int>(button)] = value;
+
+}
+
+bool InputManager::QueryMouseButtonState(MouseButton button)
+{
+
+	return m_MouseButton[static_cast<int>(button)];
+
+}
+
+void InputManager::UpdateMousePos(Vec2i mousepos)
+{
+
+	m_MousePosPrevious = m_MousePos;
+	m_MousePos = mousepos;
+
+	m_MouseMovement = m_MousePos - m_MousePosPrevious;
+}
 
 Vec2f InputManager::GetAnalogStickVector(JoypadNumber player, Input_Sensor sensor)
 {
@@ -27,6 +52,39 @@ Vec2f InputManager::GetAnalogStickVector(JoypadNumber player, Input_Sensor senso
 	// Catch-All
 	return Vec2f(0.0f, 0.0f);
 }
+
+Vec2f InputManager::QueryMouseMovement()
+{
+	Vec2f movement = m_MouseMovement;
+    m_MouseMovement = Vec2f{ 0.0f,0.0f };
+	return movement;
+}
+
+Vec2f InputManager::QueryMouseMovementNormalized()
+{
+	Vec2f movement = QueryMouseMovement();
+	if (MathUtils::Lengthf(movement) > 0.0f)
+	{
+		return  MathUtils::Normalize(movement);
+	}
+	return movement;
+	
+}
+
+//bool InputManager::QueryMouseButtonState(MouseButton button)
+//{
+//
+//	if (button == MouseButton::LEFT)
+//	{
+//		return ((::GetKeyState(VK_LBUTTON) & 0x80) != 0);
+//	}
+//	else if (button == MouseButton::RIGHT)
+//	{
+//		return ((::GetKeyState(VK_RBUTTON) & 0x80) != 0);
+//	}
+//
+//	return false;
+//}
 
 bool InputManager::QueryDeviceState(JoypadNumber player, Input_Sensor btn)
 {
@@ -124,7 +182,6 @@ void InputManager::Update(float deltaTime)
 	// re-enumerate input API for any newly connected devices since the last check
 	//int result = EnumerateDevices();
 
-	
 
 
 	// Update the state of active input devices (in the active map, with player assignments)
