@@ -55,15 +55,12 @@ Weapon* WeaponFactory::CreateWeapon1(const std::string & name)
 
 #endif
 
-
 	//#needtorefactor add position logic
 	weapon->SetPosition(Vec3f(15.0f, 1.0f, 1.0f));
 	return weapon;
-
-	
 }
 
-Weapon* WeaponFactory::CreateWeapon2(const std::string & name)
+Weapon* WeaponFactory::CreateWeapon2(const std::string & name) const
 {
 	Weapon* weapon{ new Weapon{ name } };
 	auto cwc{ new OtherWeaponComponent{ weapon } };
@@ -81,7 +78,6 @@ Weapon* WeaponFactory::CreateWeapon2(const std::string & name)
 	rc->SetMaterial(material);
 
 #endif
-
 
 	weapon->SetPosition(Vec3f(-4.0f, 1.0f, -3.0f));
 	return weapon;

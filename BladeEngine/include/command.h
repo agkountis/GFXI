@@ -11,6 +11,8 @@ namespace Blade
 	class Command
 	{
 	public:
+		virtual ~Command() = default;
+
 		/*
 		\brief Execute method of the command.
 		\param entity the entity that performs the action

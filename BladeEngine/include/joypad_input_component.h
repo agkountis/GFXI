@@ -13,7 +13,7 @@ namespace Blade
 	class JoypadInputComponent : public InputComponent
 	{
 		
-		using JoypadCommandMap = std::map<Input_Sensor, std::shared_ptr<Command>>;
+		using JoypadCommandMap = std::map<InputSensor, std::shared_ptr<Command>>;
 
 	public:
 		explicit JoypadInputComponent(Entity* parent, JoypadNumber joypad_number);
@@ -31,7 +31,7 @@ namespace Blade
 		virtual void Teardown() noexcept = 0;
 
 		//#needtorefactor the first vector should not use the integer but the joy pad enum
-		bool LoadConfiguration(const std::vector<Input_Sensor>& control, const std::vector<std::shared_ptr<Command>>& commands) noexcept;
+		bool LoadConfiguration(const std::vector<InputSensor>& control, const std::vector<std::shared_ptr<Command>>& commands) noexcept;
 
 		bool LoadConfiguration(const JoypadCommandMap& map);
 

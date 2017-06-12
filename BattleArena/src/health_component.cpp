@@ -9,11 +9,6 @@ BehaviourComponent("co_health", parent)
 	m_Timer.Start();
 }
 
-
-HealthComponent::~HealthComponent()
-{
-}
-
 void HealthComponent::Update(const float dt, const long time) noexcept
 {
 }
@@ -39,7 +34,7 @@ void HealthComponent::OnCollision(Entity * other) noexcept
 
 }
 
-int HealthComponent::GetHealthValue()
+int HealthComponent::GetHealthValue() const noexcept
 {
 	return m_HealthValue;
 }

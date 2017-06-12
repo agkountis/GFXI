@@ -13,7 +13,7 @@ namespace Blade
 		//commands. Need to test the ref-counter of each object
 		m_JoypadCommandMap.clear();
 	}
-	bool JoypadInputComponent::LoadConfiguration(const std::vector<Input_Sensor>& control, const std::vector<std::shared_ptr<Command>>& commands) noexcept
+	bool JoypadInputComponent::LoadConfiguration(const std::vector<InputSensor>& control, const std::vector<std::shared_ptr<Command>>& commands) noexcept
 	{
 		if (control.size() == commands.size())
 		{

@@ -5,7 +5,7 @@ namespace Blade
 {
 	DirectionalLightComponent::DirectionalLightComponent(const struct DirectionalLightDesc& lightDesc, Entity* parent)
 		: LightComponent{ LightType::DIRECTIONAL, parent },
-		m_LightDescription{ lightDesc }
+		  m_LightDescription{ lightDesc }
 	{
 		G_LightSystem.RegisterComponent(this);
 	}
@@ -24,5 +24,4 @@ namespace Blade
 	{
 		return &m_LightDescription;
 	}
-
 }

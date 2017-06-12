@@ -7,38 +7,39 @@
 #include "simulation_component.h"
 #include "collider_component.h"
 #include "health_component.h"
+
 using namespace Blade;
 
-Player* PlayerFactory::CreateLocalKeyboardPlayer(const std::string& name, const std::wstring& modelPath)
+Player* PlayerFactory::CreateLocalKeyboardPlayer(const std::string& name, const std::wstring& modelPath) noexcept
 {
-	auto player{ CreateMultiplayerPlayer(name,modelPath) };
-	PlayerKeyboardComponent* pkc{ new PlayerKeyboardComponent{player} };
+	auto player{ CreateMultiplayerPlayer(name, modelPath) };
+	PlayerKeyboardComponent* pkc{ new PlayerKeyboardComponent{ player } };
 	pkc->Setup();
 	m_KeyboardPlayer = true;
 	return player;
 }
 
 
-Player* PlayerFactory::CreateLocalJoypadPlayer(const std::string& name, const std::wstring& modelPath)
+Player* PlayerFactory::CreateLocalJoypadPlayer(const std::string& name, const std::wstring& modelPath) noexcept
 {
-	auto player{ CreateMultiplayerPlayer(name,modelPath) };
+	auto player{ CreateMultiplayerPlayer(name, modelPath) };
 	auto counter{ m_KeyboardPlayer ? m_Counter - 2 : m_Counter - 1 };
 	JoypadNumber joypadNumber{ static_cast<JoypadNumber>(counter) };
-	PlayerJoypadComponent* pjc{ new PlayerJoypadComponent{player,joypadNumber} };
+	PlayerJoypadComponent* pjc{ new PlayerJoypadComponent{ player,joypadNumber } };
 	pjc->Setup();
 	return player;
 }
 
-Player * PlayerFactory::CreateMultiplayerPlayer(const std::string & name, const std::wstring & modelPath)
+Player* PlayerFactory::CreateMultiplayerPlayer(const std::string& name, const std::wstring& modelPath) noexcept
 {
 	Player* player{ new Player{ name } };
 
 	player->Load(MODELS_PATH + modelPath);
-	//#question 
-	Blade::SimulationComponent* simC3{ new Blade::SimulationComponent{ player,1.0f } };
+	//#question
+	SimulationComponent* simC3{ new SimulationComponent{ player,1.0f } };
 
 	PlayerBehaviour* pb = new PlayerBehaviour(player, true);
-	Blade::ColliderComponent* colC3{ new Blade::ColliderComponent{ player,std::make_unique<Blade::BoundingSphere>(1.0f) } };
+	ColliderComponent* colC3{ new ColliderComponent{ player,std::make_unique<BoundingSphere>(1.0f) } };
 	colC3->AddListener(pb);
 
 	HealthComponent* hcom{ new HealthComponent(player) };
@@ -47,6 +48,3 @@ Player * PlayerFactory::CreateMultiplayerPlayer(const std::string & name, const 
 	m_Counter++;
 	return player;
 }
-
-
-

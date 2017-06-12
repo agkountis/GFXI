@@ -125,6 +125,9 @@
     <ClCompile Include="src\weapon_factory.cpp">
       <Filter>src\entities</Filter>
     </ClCompile>
+    <ClCompile Include="src\health_component.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
@@ -198,6 +201,9 @@
     </ClInclude>
     <ClInclude Include="include\weapon_factory.h">
       <Filter>include\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\health_component.h">
+      <Filter>include\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

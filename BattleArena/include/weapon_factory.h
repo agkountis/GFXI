@@ -1,16 +1,10 @@
+#ifndef WEAPON_FACTORY_H_
+#define WEAPON_FACTORY_H_
 #include "weapon.h"
 #include "emitter_component.h"
 
 class WeaponFactory
 {
-public:
-	WeaponFactory();
-
-
-	Weapon* CreateWeapon1(const std::string & name);
-
-	Weapon* CreateWeapon2(const std::string & name);
-
 private:
 	int m_counter{ 0 }; //Maybe we can use this to set up different weapons position inside the creation.
 
@@ -21,4 +15,12 @@ private:
 
 	Blade::EmitterDescriptor m_DescriptorWeapon2;
 
+public:
+	WeaponFactory();
+
+	Weapon* CreateWeapon1(const std::string& name);
+
+	Weapon* CreateWeapon2(const std::string& name) const;
 };
+
+#endif //WEAPON_FACTORY_H_

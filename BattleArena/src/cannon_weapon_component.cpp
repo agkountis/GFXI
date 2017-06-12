@@ -7,26 +7,22 @@
 
 using namespace Blade;
 
-
-
-CannonWeaponComponent::CannonWeaponComponent(Blade::Entity * parent):
+CannonWeaponComponent::CannonWeaponComponent(Blade::Entity* parent):
 	WeaponComponent(parent)
 {
 }
 
-CannonWeaponComponent::CannonWeaponComponent(Blade::Entity * parent, WeaponPosition pos):
+CannonWeaponComponent::CannonWeaponComponent(Blade::Entity* parent, WeaponPosition pos):
 	WeaponComponent(pos, parent)
 {
 }
 
 CannonWeaponComponent::~CannonWeaponComponent()
 {
-
 }
 
 void CannonWeaponComponent::Shoot()
 {
-
 	using namespace Blade;
 	std::cout << "Red weapon!!" << std::endl;
 	Material material;
@@ -37,11 +33,11 @@ void CannonWeaponComponent::Shoot()
 
 	auto velocity = Blade::MathUtils::Normalize(simComp->GetVelocity()) * 50.0f;
 
-	Bullet* cannonBullet{ new Bullet("cannon_bullet",L"cube",material,1.0f,0.5f,
-		GetParent()->GetPosition() + Vec3f(2.5f,2.5f,2.5f),
-		velocity )};
-	cannonBullet->SetScale(Vec3f(0.2f, 0.2f, 0.2f));
-	
-	G_SceneManager.GetCurrentScene()->AddEntity(cannonBullet);
+	Bullet* cannonBullet{ new Bullet("cannon_bullet", L"cube", material, 1.0f, 0.5f,
+	                                 GetParent()->GetPosition() + Vec3f(2.5f, 2.5f, 2.5f),
+	                                 velocity) };
 
+	cannonBullet->SetScale(Vec3f(0.2f, 0.2f, 0.2f));
+
+	G_SceneManager.GetCurrentScene()->AddEntity(cannonBullet);
 }

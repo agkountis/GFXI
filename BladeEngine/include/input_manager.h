@@ -59,36 +59,37 @@ namespace Blade
 		std::map<JoypadNumber, InputDevice*> m_ActiveDevices;
 
 		/*
-		\brief Update the active devices 
+		\brief Update the active devices
 		*/
 		void UpdateActiveDevices();
 
 		Vec2f m_MousePos{ 0.0f }, m_MousePosPrevious{ 0.0f };
 		Vec2f m_MouseMovement{ 0.0f, 0.0f };
-		
+
 		KeyboardInput	m_Keyboard;
 
 		bool m_MouseButton[2]{ false, false };
 
 	public:
+		~InputManager();
 
 		void SetMouseButtonState(MouseButton state, bool value);
 
 		void UpdateMousePos(Vec2i mousepos);
 
-		Vec2f GetAnalogStickVector(JoypadNumber player, Input_Sensor sensor);
+		Vec2f GetAnalogStickVector(JoypadNumber player, InputSensor sensor);
 
 		/**
 		* \brief Query the keyboard device for the state of a key
 		* \return True if the key is a PRESSED state (down), false otherwise
 		*/
-		bool QueryKeyState(Virtual_Key key) { return m_Keyboard.QueryKeyState(key); }
+		bool QueryKeyState(VirtualKey key) const noexcept;
 
 		/**
 		* \brief Query the Keyboard device for the state of ALL keys associated to the device
 		* \return True if successful, false otherwise
 		*/
-		bool QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) { return m_Keyboard.QueryAllKeyStates(destMap); }
+		bool QueryAllKeyStates(std::map<VirtualKey, bool>& destMap) const noexcept;
 
 		/**
 		* \brief Query the Keyboard device for the state of ALL keys associated to the device
@@ -106,7 +107,7 @@ namespace Blade
 		* \brief Query the Keyboard device for the state of ALL keys associated to the device
 		* \return True if successful, false otherwise
 		*/
-		Vec2i QueryMousePosition() { return m_MousePos; }
+		Vec2i QueryMousePosition() const noexcept;
 
 		/**
 		* \brief Query the state of the mouse buttons (providing an enum per button)
@@ -117,12 +118,12 @@ namespace Blade
 		/**
 		* \brief Query the state of a sensor on an active pad linked to player
 		*/
-		bool QueryDeviceState(JoypadNumber player, Input_Sensor sensor);
+		bool QueryDeviceState(JoypadNumber player, InputSensor sensor);
 
 		/**
 		* \brief Query the input states of sensors on an active device linked to player, return in supplied map
 		*/
-		bool QueryDeviceAllStates(JoypadNumber player, std::map<Input_Sensor, bool>& map);
+		bool QueryDeviceAllStates(JoypadNumber player, std::map<InputSensor, bool>& map);
 
 		/**
 		* \brief Update the states of managed input devices, and re-enumerate input devices
@@ -151,13 +152,13 @@ namespace Blade
 		/**
 		* \brief Search the device pool for a device with id equal to deviceId
 		* \return True if the device is found, otherwise false
-		*/		
+		*/
 		bool PooledDeviceExists(int deviceId);
 
 		/**
 		* \brief Search the active device map for a device with id equal to deviceId
 		* \return True if the device is found, otherwise false
-		*/		
+		*/
 		bool ActiveDeviceExists(int deviceId);
 
 		/**
@@ -178,10 +179,6 @@ namespace Blade
 		* \return Active input device for player id, nullptr otherwise
 		*/
 		InputDevice* GetActiveDevice(JoypadNumber playerID);
-
-
-		~InputManager();
-
 	};
 
 }

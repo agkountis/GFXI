@@ -11,7 +11,6 @@ public:
 		using namespace Blade;
 		if (entity->GetComponent("co_sim"))
 		{
-
 			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
 
 			Player* pl = dynamic_cast<Player*>(entity);
@@ -19,8 +18,7 @@ public:
 			{
 				const Vec3f& heading = pl->GetHeading();
 				//BLADE_TRACE("HEADING ON MOVE: " << heading.x << ", " << heading.z);
-				simComp->AddForce(heading*dt*(10000.0f));
-
+				simComp->AddForce(heading * dt * (10000.0f));
 			}
 		}
 	}
@@ -39,8 +37,7 @@ public:
 			if (pl)
 			{
 				const Vec3f& heading = pl->GetHeading();
-				simComp->AddForce(-heading*dt*(10000.0f));
-
+				simComp->AddForce(-heading * dt * (10000.0f));
 			}
 		}
 	}
@@ -61,13 +58,10 @@ public:
 			//change orientation
 			Quatf q = entity->GetOrientation();
 			//use orientation to influence the force that is being added to the simulation component
-			simComp->AddForce(Vec3f(Mat4f(q)*Vec4f(-1.0f, 0.0f, 0.0f, 0))*dt*(1000.0f));
-
-
+			simComp->AddForce(Vec3f(Mat4f(q) * Vec4f(-1.0f, 0.0f, 0.0f, 0)) * dt * (1000.0f));
 		}
 	}
 };
-
 
 
 class MoveRight : public Blade::Command
@@ -75,7 +69,6 @@ class MoveRight : public Blade::Command
 public:
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
-
 		using namespace Blade;
 		if (entity->GetComponent("co_sim"))
 		{
@@ -83,7 +76,7 @@ public:
 			//change orientation
 			Quatf q = entity->GetOrientation();
 			//use orientation to influence the force that is being added to the simulation component
-			simComp->AddForce(Vec3f(Mat4f(q)*Vec4f(1.0f, 0.0f, 0.0f, 0))*dt*(1000.0f));
+			simComp->AddForce(Vec3f(Mat4f(q) * Vec4f(1.0f, 0.0f, 0.0f, 0)) * dt * (1000.0f));
 		}
 	}
 };
@@ -96,10 +89,9 @@ public:
 	{
 		using namespace Blade;
 		auto joypadNumber{ GetJoypadNumberByEntity(entity) };
-		auto movementVec{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_LEFT) };
-		auto rotationVec{ G_InputManager.GetAnalogStickVector(joypadNumber,Input_Sensor::STICK_RIGHT) };
+		auto movementVec{ G_InputManager.GetAnalogStickVector(joypadNumber, InputSensor::STICK_LEFT) };
+		auto rotationVec{ G_InputManager.GetAnalogStickVector(joypadNumber, InputSensor::STICK_RIGHT) };
 
-		
 
 		if (entity->GetComponent("co_sim"))
 		{
@@ -108,13 +100,10 @@ public:
 
 			//change orientation
 			Quatf q = entity->GetOrientation();
-			entity->SetOrientation(glm::rotate(q, rotationVec.x*dt, glm::vec3(0, 1, 0)));
+			entity->SetOrientation(glm::rotate(q, rotationVec.x * dt, glm::vec3(0, 1, 0)));
 
 			//use orientation to influence the force that is being added to the simulation component
-			simComp->AddForce(Vec3f(Mat4f(q)*Vec4f(movementVec.x*0.5f, 0.0f, movementVec.y,0))*dt*(2000.0f));
-
-
-		
+			simComp->AddForce(Vec3f(Mat4f(q) * Vec4f(movementVec.x * 0.5f, 0.0f, movementVec.y, 0)) * dt * (2000.0f));
 		}
 		Player* pl = dynamic_cast<Player*>(entity);
 		if (pl)
@@ -123,8 +112,6 @@ public:
 		}
 	}
 };
-
-
 
 
 class ShootLeftWeapon : public Blade::Command
@@ -137,9 +124,8 @@ public:
 		//#needtorefactor
 
 		//Get the weapons vector
-		if(entity->GetComponents("co_weapon").size()>0)
+		if (entity->GetComponents("co_weapon").size() > 0)
 		{
-
 			auto componentVector = (entity->GetComponents("co_weapon"));
 			std::vector<WeaponComponent*> weaponsVector;
 			for (auto component : componentVector)
@@ -148,7 +134,7 @@ public:
 			}
 
 			//If the we have one weapon
-			if (weaponsVector.size()>0)
+			if (weaponsVector.size() > 0)
 			{
 				//Check if we have a left weapon
 				for (auto weapon : weaponsVector)
@@ -161,7 +147,6 @@ public:
 				}
 			}
 		}
-
 	}
 };
 
@@ -178,7 +163,6 @@ public:
 		//Get the weapons vector
 		if (entity->GetComponents("co_weapon").size() > 0)
 		{
-
 			auto componentVector = (entity->GetComponents("co_weapon"));
 			std::vector<WeaponComponent*> weaponsVector;
 			for (auto component : componentVector)
@@ -200,6 +184,5 @@ public:
 				}
 			}
 		}
-
 	}
 };

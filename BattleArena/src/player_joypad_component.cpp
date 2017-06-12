@@ -4,13 +4,8 @@
 
 using namespace  Blade;
 
-PlayerJoypadComponent::PlayerJoypadComponent(Blade::Entity* parent, Blade::JoypadNumber joypad_number):
-	JoypadInputComponent(parent,joypad_number)
-{
-
-}
-
-PlayerJoypadComponent::~PlayerJoypadComponent()
+PlayerJoypadComponent::PlayerJoypadComponent(Entity* parent, JoypadNumber joypadNumber):
+	JoypadInputComponent(parent, joypadNumber)
 {
 
 }
@@ -32,11 +27,11 @@ void PlayerJoypadComponent::Setup() noexcept
 	auto shoot_left_command = std::make_shared<ShootLeftWeapon>();
 	auto shoot_right_command = std::make_shared<ShootRightWeapon>();
 
-	m_JoypadCommandMap[Input_Sensor::STICK_LEFT] = move_command;
-	m_JoypadCommandMap[Input_Sensor::STICK_RIGHT] = move_command;
+	m_JoypadCommandMap[STICK_LEFT] = move_command;
+	m_JoypadCommandMap[STICK_RIGHT] = move_command;
 
-	m_JoypadCommandMap[Input_Sensor::TRIGGER_LEFT] = shoot_left_command;
-	m_JoypadCommandMap[Input_Sensor::TRIGGER_RIGHT] = shoot_right_command;
+	m_JoypadCommandMap[TRIGGER_LEFT] = shoot_left_command;
+	m_JoypadCommandMap[TRIGGER_RIGHT] = shoot_right_command;
 }
 
 void PlayerJoypadComponent::Teardown() noexcept

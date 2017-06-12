@@ -6,15 +6,9 @@
 using namespace Blade;
 
 
-PlayerKeyboardComponent::PlayerKeyboardComponent(Blade::Entity* parent):
-	KeyboardInputComponent(parent)
+PlayerKeyboardComponent::PlayerKeyboardComponent(Entity* parent)
+	: KeyboardInputComponent(parent)
 {
-
-}
-
-PlayerKeyboardComponent::~PlayerKeyboardComponent()
-{
-
 }
 
 void PlayerKeyboardComponent::Update(const float dt, const long time) noexcept
@@ -30,16 +24,15 @@ void PlayerKeyboardComponent::Update(const float dt, const long time) noexcept
 
 	//Movement
 	Entity* parent = GetParent();
-	const Vec2f& mouseMovement{ G_InputManager.QueryMouseMovementNormalized()*5.0f};
+	const Vec2f& mouseMovement{ G_InputManager.QueryMouseMovementNormalized() * 5.0f };
+
 	//change orientation
 	const Quatf& q = parent->GetOrientation();
-	parent->SetOrientation(glm::rotate(q, mouseMovement.x*dt, glm::vec3(0, 1, 0)));
+	parent->SetOrientation(glm::rotate(q, mouseMovement.x * dt, glm::vec3(0, 1, 0)));
 
 	//Buttons
-	
 	bool left{ G_InputManager.QueryMouseButtonState(MouseButton::LEFT) };
 	bool right{ G_InputManager.QueryMouseButtonState(MouseButton::RIGHT) };
-
 }
 
 void PlayerKeyboardComponent::Setup() noexcept
@@ -52,18 +45,15 @@ void PlayerKeyboardComponent::Setup() noexcept
 	auto shoot_left_command = std::make_shared<ShootLeftWeapon>();
 	auto shoot_right_command = std::make_shared<ShootRightWeapon>();
 
-	m_KeyboardCommandMap[Virtual_Key::KEY_W] = move_up_command;
-	m_KeyboardCommandMap[Virtual_Key::KEY_A] = move_left_command;
-	m_KeyboardCommandMap[Virtual_Key::KEY_S] = move_down_command;
-	m_KeyboardCommandMap[Virtual_Key::KEY_D] = move_right_command;
+	m_KeyboardCommandMap[KEY_W] = move_up_command;
+	m_KeyboardCommandMap[KEY_A] = move_left_command;
+	m_KeyboardCommandMap[KEY_S] = move_down_command;
+	m_KeyboardCommandMap[KEY_D] = move_right_command;
 
-	m_KeyboardCommandMap[Virtual_Key::KEY_J] = shoot_left_command;
-	m_KeyboardCommandMap[Virtual_Key::KEY_K] = shoot_right_command;
-
-
+	m_KeyboardCommandMap[KEY_J] = shoot_left_command;
+	m_KeyboardCommandMap[KEY_K] = shoot_right_command;
 }
 
 void PlayerKeyboardComponent::Teardown() noexcept
 {
-
 }

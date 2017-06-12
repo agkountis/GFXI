@@ -108,13 +108,12 @@ public:
 
 class PrintLeftStick : public Blade::Command
 {
-	
 public:
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		using namespace Blade;
-		auto vec{ G_InputManager.GetAnalogStickVector(GetJoypadNumberByEntity(entity),Input_Sensor::STICK_LEFT)} ;
-	
+		auto vec{ G_InputManager.GetAnalogStickVector(GetJoypadNumberByEntity(entity),InputSensor::STICK_LEFT)} ;
+
 		std::cout <<"STICK_LEFT"<< vec.x <<", "<<vec.y << std::endl;
 	}
 };
@@ -125,7 +124,7 @@ public:
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		using namespace Blade;
-		auto vec{ G_InputManager.GetAnalogStickVector(GetJoypadNumberByEntity(entity),Input_Sensor::STICK_RIGHT) };
+		auto vec{ G_InputManager.GetAnalogStickVector(GetJoypadNumberByEntity(entity),InputSensor::STICK_RIGHT) };
 
 		std::cout << "STICK_RIGHT" << vec.x << ", " << vec.y << std::endl;
 	}

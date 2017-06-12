@@ -2,20 +2,18 @@
 #define BATTLE_ARENA_PLAYER_H_
 #include "entity.h"
 #include "weapon.h"
-using namespace Blade;
 
 class Player : public Blade::Entity
 {
-public:
-	Player(const std::string& name);
-	~Player();
-
-	bool AddWeapon(Weapon* weapon);
-
-	Vec3f GetHeading();
-
 private:
 	int m_WeaponCount{ 0 };
+
+public:
+	explicit Player(const std::string& name);
+
+	bool AddWeapon(Weapon* weapon) noexcept;
+
+	Blade::Vec3f GetHeading() const noexcept;
 };
 
 #endif

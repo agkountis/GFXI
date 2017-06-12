@@ -86,13 +86,13 @@ namespace Blade
 
 		return true;
 	}
+
 	// ----------------------------------------------------------------------------------------------
 
-	EmitterComponent::EmitterComponent(Entity * parent):
+	EmitterComponent::EmitterComponent(Entity* parent):
 		BehaviourComponent("co_emitter", parent),
-		m_pMesh{nullptr}
+		m_pMesh{ nullptr }
 	{
-
 		m_Descriptor.spawnRate = 1.0f;
 		m_Descriptor.lifespan = 1.0f;
 		m_Descriptor.maxParticles = 1;
@@ -105,8 +105,8 @@ namespace Blade
 		G_ParticleSystem.RegisterComponent(this);
 	}
 
-	EmitterComponent::EmitterComponent(Entity * entity, const EmitterDescriptor& descriptor):
-		BehaviourComponent("co_emitter",entity),
+	EmitterComponent::EmitterComponent(Entity* entity, const EmitterDescriptor& descriptor):
+		BehaviourComponent("co_emitter", entity),
 		m_Descriptor(descriptor)
 	{
 		G_ParticleSystem.RegisterComponent(this);
@@ -145,7 +145,7 @@ namespace Blade
 		}
 	}
 
-	void EmitterComponent::UpdateParticleColor(double t, Vec4f & color) const noexcept
+	void EmitterComponent::UpdateParticleColor(double t, Vec4f& color) const noexcept
 	{
 		float min_x{ std::min(m_Descriptor.startColor.x, m_Descriptor.endColor.x) };
 		float max_x{ std::max(m_Descriptor.startColor.x, m_Descriptor.endColor.x) };
@@ -174,7 +174,7 @@ namespace Blade
 		color = col;
 	}
 
-	void EmitterComponent::UpdatePhysics(float dt, Particle & p) const noexcept
+	void EmitterComponent::UpdatePhysics(float dt, Particle& p) const noexcept
 	{
 		p.position += p.velocity * dt;
 		p.velocity += m_Descriptor.externalForce * dt;
@@ -191,24 +191,24 @@ namespace Blade
 
 		if (m_Descriptor.active)
 		{
-			while (i < numSpawn && m_Particles.size() < m_Descriptor.maxParticles) {
-
+			while (i < numSpawn && m_Particles.size() < m_Descriptor.maxParticles)
+			{
 				float randPosX = static_cast<float>(rand()) /
-					static_cast<float>(RAND_MAX) * m_Descriptor.spawnRadius * 2.0f - m_Descriptor.spawnRadius;
+						static_cast<float>(RAND_MAX) * m_Descriptor.spawnRadius * 2.0f - m_Descriptor.spawnRadius;
 				float randPosY = static_cast<float>(rand()) /
-					static_cast<float>(RAND_MAX) * m_Descriptor.spawnRadius * 2.0f - m_Descriptor.spawnRadius;
+						static_cast<float>(RAND_MAX) * m_Descriptor.spawnRadius * 2.0f - m_Descriptor.spawnRadius;
 				float randPosZ = static_cast<float>(rand()) /
-					static_cast<float>(RAND_MAX) * m_Descriptor.spawnRadius * 2.0f - m_Descriptor.spawnRadius;
+						static_cast<float>(RAND_MAX) * m_Descriptor.spawnRadius * 2.0f - m_Descriptor.spawnRadius;
 
 				float randVelX = static_cast<float>(rand()) /
-					static_cast<float>(RAND_MAX) * m_Descriptor.velocityRange * 2.0f - m_Descriptor.velocityRange;
+						static_cast<float>(RAND_MAX) * m_Descriptor.velocityRange * 2.0f - m_Descriptor.velocityRange;
 				float randVelY = static_cast<float>(rand()) /
-					static_cast<float>(RAND_MAX) * m_Descriptor.velocityRange * 2.0f - m_Descriptor.velocityRange;
+						static_cast<float>(RAND_MAX) * m_Descriptor.velocityRange * 2.0f - m_Descriptor.velocityRange;
 				float randVelZ = static_cast<float>(rand()) /
-					static_cast<float>(RAND_MAX) * m_Descriptor.velocityRange * 2.0f - m_Descriptor.velocityRange;
+						static_cast<float>(RAND_MAX) * m_Descriptor.velocityRange * 2.0f - m_Descriptor.velocityRange;
 
 				Particle p;
-				p.position = (GetParent()->GetXform() * Vec4f { 0.0f, 0.0f, 0.0f, 1.0f }).xyz + Vec3f{ randPosX, randPosY, randPosZ };
+				p.position = (GetParent()->GetXform() * Vec4f{ 0.0f, 0.0f, 0.0f, 1.0f }).xyz + Vec3f{ randPosX, randPosY, randPosZ };
 				p.velocity = m_Descriptor.velocity + Vec3f{ randVelX, randVelY, randVelZ };
 				p.life = m_Descriptor.lifespan;
 				p.color = m_Descriptor.startColor;
@@ -293,7 +293,7 @@ namespace Blade
 		return m_Descriptor.startColor;
 	}
 
-	void EmitterComponent::SetStartColor(const Vec4f& startColor)  noexcept
+	void EmitterComponent::SetStartColor(const Vec4f& startColor) noexcept
 	{
 		m_Descriptor.startColor = startColor;
 	}
@@ -303,7 +303,7 @@ namespace Blade
 		return m_Descriptor.endColor;
 	}
 
-	void EmitterComponent::SetEndColor(const Vec4f& endColor)  noexcept
+	void EmitterComponent::SetEndColor(const Vec4f& endColor) noexcept
 	{
 		m_Descriptor.endColor = endColor;
 	}
@@ -398,5 +398,4 @@ namespace Blade
 	{
 		//Nothing to destroy
 	}
-
 }
