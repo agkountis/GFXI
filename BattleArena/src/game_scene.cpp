@@ -24,6 +24,7 @@
 #include "game_scene_color_pass_ovr.h"
 #include "player.h"
 
+#include "health_component.h"
 
 using namespace Blade;
 
@@ -126,10 +127,11 @@ void GameScene::Initialize()
 
 
 	auto p{ m_PlayerFactory.CreateLocalJoypadPlayer("player1",L"player1.fbx") };
+
 	AddEntity(p);
 
-	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
-	AddEntity(p2);
+	//auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
+	//AddEntity(p2);
 
 	//p = new Player("playerxxxxxx", L"player1.fbx", true);
 	//AddEntity(p);

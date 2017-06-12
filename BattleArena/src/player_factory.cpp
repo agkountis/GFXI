@@ -40,6 +40,10 @@ Player * PlayerFactory::CreateMultiplayerPlayer(const std::string & name, const 
 	PlayerBehaviour* pb = new PlayerBehaviour(player, true);
 	Blade::ColliderComponent* colC3{ new Blade::ColliderComponent{ player,std::make_unique<Blade::BoundingSphere>(1.0f) } };
 	colC3->SetListener(pb);
+
+	HealthComponent* hcom{ new HealthComponent(player) };
+	colC3->SetListener(hcom);
+
 	m_Counter++;
 	return player;
 }

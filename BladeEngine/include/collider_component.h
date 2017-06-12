@@ -2,9 +2,10 @@
 #define BLADE_COLLIDER_COMPONENT_H_
 #include "component.h"
 #include "collider.h"
+#include "trace.h"
 #include <memory>
 
-#include "trace.h"
+
 namespace Blade
 {
 	//Forward declaration
@@ -29,7 +30,7 @@ namespace Blade
 		std::unique_ptr<Collider> m_Collider;
 
 
-		BehaviourComponent* m_pListenerBehaviour{ nullptr };
+		BehaviourComponent*  m_pListenerBehaviour{ nullptr };
 
 	//protected:
 	
