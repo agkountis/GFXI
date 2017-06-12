@@ -37,6 +37,8 @@ namespace Blade
 	*/
 	enum class JoypadNumber { JOYPAD1, JOYPAD2, JOYPAD3, JOYPAD4 };
 
+	enum class MouseButton { LEFT = 0, RIGHT = 1 };
+
 	class InputDevice;
 	/*
 	* \brief InputManager class of the engine. This class holds and deals with all the external inputs.
@@ -61,10 +63,17 @@ namespace Blade
 		*/
 		void UpdateActiveDevices();
 
+		Vec2f m_MousePos{ 0.0f }, m_MousePosPrevious{ 0.0f };
 		
 		KeyboardInput	m_Keyboard;
 
+		bool m_MouseButton[2]{ false, false };
+
 	public:
+
+		void SetMouseButtonState(MouseButton state, bool value);
+
+		void UpdateMousePos(Vec2i mousepos);
 
 		Vec2f GetAnalogStickVector(JoypadNumber player, Input_Sensor sensor);
 
@@ -81,6 +90,30 @@ namespace Blade
 		bool QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) { return m_Keyboard.QueryAllKeyStates(destMap); }
 
 		/**
+		* \brief Query the Keyboard device for the state of ALL keys associated to the device
+		* \return True if successful, false otherwise
+		*/
+		Vec2f QueryMouseMovement();
+
+		/**
+		* \brief Query the Keyboard device for the state of ALL keys associated to the device
+		* \return True if successful, false otherwise
+		*/
+		Vec2f QueryMouseMovementNormalized();
+
+		/**
+		* \brief Query the Keyboard device for the state of ALL keys associated to the device
+		* \return True if successful, false otherwise
+		*/
+		Vec2i QueryMousePosition() { return m_MousePos; }
+
+		/**
+		* \brief Query the state of the mouse buttons (providing an enum per button)
+		* \return True if pressed, false otherwise
+		*/
+		bool QueryMouseButtonState(MouseButton button);
+
+		/**
 		* \brief Query the state of a sensor on an active pad linked to player
 		*/
 		bool QueryDeviceState(JoypadNumber player, Input_Sensor sensor);
@@ -94,8 +127,6 @@ namespace Blade
 		* \brief Update the states of managed input devices, and re-enumerate input devices
 		*/
 		void Update(float deltaTime);
-
-	
 
 		/**
 		* \brief Initialize the input manager
