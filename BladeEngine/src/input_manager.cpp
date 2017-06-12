@@ -19,13 +19,11 @@ bool InputManager::QueryMouseButtonState(MouseButton button)
 
 void InputManager::UpdateMousePos(Vec2i mousepos)
 {
-	//BLADE_TRACE("Mouse = " << mousepos.x << " " << mousepos.y);
- 	m_MousePosPrevious = m_MousePos;
+
+	m_MousePosPrevious = m_MousePos;
 	m_MousePos = mousepos;
 
-	BLADE_TRACE("[L]=" << QueryMouseButtonState(MouseButton::LEFT) << "[R]=" << QueryMouseButtonState(MouseButton::RIGHT));
-
-	Vec2f test = QueryMouseMovementNormalized();
+	m_MouseMovement = m_MousePos - m_MousePosPrevious;
 }
 
 Vec2f InputManager::GetAnalogStickVector(JoypadNumber player, Input_Sensor sensor)
@@ -57,12 +55,20 @@ Vec2f InputManager::GetAnalogStickVector(JoypadNumber player, Input_Sensor senso
 
 Vec2f InputManager::QueryMouseMovement()
 {
-	return m_MousePos - m_MousePosPrevious;
+	Vec2f movement = m_MouseMovement;
+    m_MouseMovement = Vec2f{ 0.0f,0.0f };
+	return movement;
 }
 
 Vec2f InputManager::QueryMouseMovementNormalized()
 {
-	return  Blade::MathUtils::Normalize(QueryMouseMovement());
+	Vec2f movement = QueryMouseMovement();
+	if (MathUtils::Lengthf(movement) > 0.0f)
+	{
+		return  MathUtils::Normalize(movement);
+	}
+	return movement;
+	
 }
 
 //bool InputManager::QueryMouseButtonState(MouseButton button)
@@ -176,7 +182,6 @@ void InputManager::Update(float deltaTime)
 	// re-enumerate input API for any newly connected devices since the last check
 	//int result = EnumerateDevices();
 
-	
 
 
 	// Update the state of active input devices (in the active map, with player assignments)

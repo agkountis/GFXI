@@ -47,6 +47,7 @@ namespace Blade
 		use a pre-defined key bindings and control scheme
 		*/
 		KeyboardCommandMap m_KeyboardCommandMap;
+		
 	};
 }
 #endif // !BLADE_KEYBOARD_INPUT_COMPONENT_H_

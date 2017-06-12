@@ -4,13 +4,20 @@
 #include "entity.h"
 #include "health_component.h"
 
-using namespace Blade;
+
 
 class Player : public Blade::Entity
 {
+
 public:
 	Player(const std::string& name);
 	~Player();
+
+	/*
+	\brief Get Players foreward vector
+	\return player's  forward vector
+	*/
+	Blade::Vec3f GetHeading() noexcept;
 };
 
 #endif
