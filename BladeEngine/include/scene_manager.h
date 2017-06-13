@@ -64,6 +64,13 @@ namespace Blade
 		\brief Draw the current scene.
 		*/
 		void Draw() noexcept;
+
+		/*
+		\brief Returns the current scene 
+		*/
+		Scene* GetCurrentScene() const noexcept;
+
+
 	};
 }
 

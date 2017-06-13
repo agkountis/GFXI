@@ -100,6 +100,8 @@ namespace Blade
 
 		Entity* GetChild(int index) const noexcept;
 
+		Entity* GetEntityFromHierarchy(const std::string& name) noexcept;
+
 		void AddChild(Entity* entity) noexcept;
 
 		size_t GetChildrenCount() const noexcept;
@@ -121,6 +123,18 @@ namespace Blade
 		Component* GetComponent(const std::string& type) const noexcept;
 
 		/*
+		\brief Remove one component from the owned vector.
+		\details Do not delete the component, this method is designed to pass ownership the 
+		component to another entity.
+		*/
+		void  Entity::RemoveComponent(const int id) noexcept;
+
+		/*
+		\brief Return a list of components of the same type attached to the entity
+		*/
+		std::vector<Component*> GetComponents(const std::string& type) const noexcept;
+
+		/*
 		*\brief Attach a new component to the entity.
 		*/
 		void AddComponent(Component* component) noexcept;
@@ -135,6 +149,8 @@ namespace Blade
 		virtual void Update(float dt, long time = 0) noexcept;
 
 		bool Load(const std::wstring& fileName) noexcept override;
+
+		
 	};
 }
 

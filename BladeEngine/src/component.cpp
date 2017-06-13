@@ -28,6 +28,11 @@ namespace Blade
 		return p_Parent;
 	}
 
+	void Component::SetParent(Entity * parent) noexcept
+	{
+		p_Parent = parent;
+	}
+
 	int Component::GetId() const noexcept
 	{
 		return m_Id;

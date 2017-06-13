@@ -18,6 +18,16 @@ namespace Blade
 		*/
 		std::vector<Entity*> m_Entities;
 
+		/*
+		\brief The collection of the entities that need be removed the next frame.
+		*/
+		std::vector<Entity*> m_NeedToBeRemovedEntities;
+
+		/*
+		\brief The collection of the entities that need be deleted the next frame.
+		*/
+		std::vector<Entity*> m_NeedToBeDeletedEntities;
+
 	public:
 		Scene() = default;
 
@@ -36,6 +46,18 @@ namespace Blade
 		\brief Adds a new entity to the scene
 		*/
 		void AddEntity(Entity* object) noexcept;
+
+		/*
+		\brief Remove entity
+		\details Do not delete the entity, this is used to change ownership
+		*/
+		void RemoveEntity(const std::string&  name) noexcept;
+
+		/*
+		\brief Removes and deletes that entities that need to be removed or deleted
+		*/
+		void RemoveEntities() noexcept;
+
 
 		/*
 		* \brief Getters of the collections of entities that are currently in the scene.

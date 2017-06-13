@@ -13,7 +13,7 @@
 
 // Warning macros
 #define BLADE_WARNING(warning) std::clog << "WARNING: " << warning << std::endl
-
+////
 #else
 #define BLADE_TRACE(trace)
 #define BLADE_ERROR(trace)

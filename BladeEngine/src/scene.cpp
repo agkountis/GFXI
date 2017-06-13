@@ -18,6 +18,45 @@ namespace Blade
 		m_Entities.push_back(object);
 	}
 
+
+	void Scene::RemoveEntity(const std::string& name) noexcept
+	{
+		for (auto entity : m_Entities)
+		{
+			if (entity->GetName() == name)
+			{
+				m_NeedToBeRemovedEntities.push_back(entity);
+			}
+		}	
+	}
+
+
+	void Scene::RemoveEntities() noexcept
+	{
+
+		for(auto needToBeRemovedEntity: m_NeedToBeRemovedEntities)
+		{
+			auto it{ m_Entities.begin() };
+
+			while (it != m_Entities.end())
+			{
+				auto entry{ *it };
+				if (entry->GetName() == needToBeRemovedEntity->GetName())
+				{
+					it = m_Entities.erase(it);
+				}
+				else
+				{
+					++it;
+				}
+			}
+		}
+		m_NeedToBeRemovedEntities.clear();
+		
+
+
+	}
+
 	const std::vector<Entity*>& Scene::GetEntities() const noexcept
 	{
 		return m_Entities;
@@ -25,6 +64,8 @@ namespace Blade
 
 	void Scene::Update(float delta_time, long time) noexcept
 	{
+		RemoveEntities();
+
 		auto it{ m_Entities.begin() };
 
 		while (it != m_Entities.end())

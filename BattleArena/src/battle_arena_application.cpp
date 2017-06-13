@@ -14,6 +14,7 @@ using namespace Blade;
 static void Reshape(int x, int y)
 {
 	//TODO: Called when window size changes.
+
 }
 
 static void KeyDown(unsigned char key, int x, int y)
@@ -61,7 +62,7 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 
 	BLADE_TRACE("BattleArenaApplication Initialization Starts!");
 
-	Application::SetLoadEntityCallback(AssimpUtils::LoadEntity);
+	SetLoadEntityCallback(AssimpUtils::LoadEntity);
 
 	Multiplayer::Initialize("config\\test.cfg");
 
@@ -78,22 +79,35 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 
 	BLADE_TRACE("Creating Window!");
 
+#ifdef BLADE_BUILD_OVR
 	WindowingService::Create(L"BattleArena",
-	                         Vec2i{ 1600, 900 },
-	                         Vec2i{},
-	                         true,
-	                         false,
-	                         true,
-	                         true,
-	                         true,
-	                         4,
-	                         callbacks);
+		Vec2i{ 1600, 900 },
+		Vec2i{},
+		true,
+		false,
+		true,
+		true,
+		true,
+		1,
+		callbacks);
 
-	if (!G_InputManager.Initialize())
+	if (!G_OvrManager.CreateMirrorTexture(0))
 	{
-		BLADE_TRACE("Input manager failed to initialise");
 		return false;
 	}
+#else
+	WindowingService::Create(L"BattleArena",
+		Vec2i{ 1600, 900 },
+		Vec2i{},
+		true,
+		false,
+		true,
+		true,
+		true,
+		4,
+		callbacks);
+#endif
+
 
 	ShaderProgramDesc sdrProgDesc;
 	sdrProgDesc.name = "render_texture_sdrprog";

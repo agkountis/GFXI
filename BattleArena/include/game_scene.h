@@ -1,6 +1,9 @@
-#ifndef BATTLE_ARENA_GAME_SCENE_H_
-#define BATTLE_ARENA_GAME_SCENE_H_
+#ifndef GAME_SCENE_H_
+#define GAME_SCENE_H_
 #include "scene.h"
+#include "player_factory.h"
+#include "weapon_factory.h"
+
 
 class GameScene : public Blade::Scene
 {
@@ -18,6 +21,9 @@ public:
 	void Update(float deltaTime, long time) noexcept override;
 
 	void Draw() const noexcept override;
+private:
+	PlayerFactory m_PlayerFactory;
+	WeaponFactory m_WeaponFactory;
 };
 
 #endif //BATTLE_ARENA_GAME_SCENE_H_

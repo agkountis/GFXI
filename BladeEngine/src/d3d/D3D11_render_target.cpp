@@ -15,39 +15,42 @@ namespace Blade
 
 		HRESULT res{ 0 };
 
-		D3D11_TEXTURE2D_DESC color_attachment_desc;
-		color_attachment_desc.Width = GetSize().x;
-		color_attachment_desc.Height = GetSize().y;
-		color_attachment_desc.MipLevels = 1;
-		color_attachment_desc.ArraySize = 1;
-		color_attachment_desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-
-		if (m_MSAA)
+		if (!m_ColorAttachment)
 		{
-			color_attachment_desc.SampleDesc.Count = m_SampleCount;
-			color_attachment_desc.SampleDesc.Quality = ctx.GetMSAAQuality(m_SampleCount) - 1;
-		}
-		else
-		{
-			color_attachment_desc.SampleDesc.Count = 1;
-			color_attachment_desc.SampleDesc.Quality = 0;
-		}
+			D3D11_TEXTURE2D_DESC color_attachment_desc;
+			color_attachment_desc.Width = GetSize().x;
+			color_attachment_desc.Height = GetSize().y;
+			color_attachment_desc.MipLevels = 1;
+			color_attachment_desc.ArraySize = 1;
+			color_attachment_desc.Format = m_ColorAttachmentFormat;
 
-		color_attachment_desc.Usage = D3D11_USAGE_DEFAULT;
-		color_attachment_desc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
-		color_attachment_desc.CPUAccessFlags = 0;
-		color_attachment_desc.MiscFlags = 0;
+			if (m_MSAA)
+			{
+				color_attachment_desc.SampleDesc.Count = m_SampleCount;
+				color_attachment_desc.SampleDesc.Quality = ctx.GetMSAAQuality(m_SampleCount) - 1;
+			}
+			else
+			{
+				color_attachment_desc.SampleDesc.Count = 1;
+				color_attachment_desc.SampleDesc.Quality = 0;
+			}
 
-		res = device->CreateTexture2D(&color_attachment_desc, nullptr, m_ColorAttachment.ReleaseAndGetAddressOf());
+			color_attachment_desc.Usage = D3D11_USAGE_DEFAULT;
+			color_attachment_desc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+			color_attachment_desc.CPUAccessFlags = 0;
+			color_attachment_desc.MiscFlags = 0;
 
-		if (FAILED(res))
-		{
-			std::cerr << "Failed to Create the D3D11RenderTarget color attachment!" << std::endl;
-			return false;
+			res = device->CreateTexture2D(&color_attachment_desc, nullptr, m_ColorAttachment.ReleaseAndGetAddressOf());
+
+			if (FAILED(res))
+			{
+				std::cerr << "Failed to Create the D3D11RenderTarget color attachment!" << std::endl;
+				return false;
+			}
 		}
 
 		D3D11_RENDER_TARGET_VIEW_DESC rtv_desc;
-		rtv_desc.Format = color_attachment_desc.Format;
+		rtv_desc.Format = m_ColorAttachmentFormat;
 		rtv_desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
 		rtv_desc.Texture2D.MipSlice = 0;
 
@@ -59,7 +62,7 @@ namespace Blade
 		}
 
 		D3D11_SHADER_RESOURCE_VIEW_DESC color_srv_desc;
-		color_srv_desc.Format = color_attachment_desc.Format;
+		color_srv_desc.Format = m_ColorAttachmentFormat;
 		color_srv_desc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 		color_srv_desc.Texture2D.MostDetailedMip = 0;
 		color_srv_desc.Texture2D.MipLevels = 1;

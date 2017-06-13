@@ -3,9 +3,8 @@
 
 namespace Blade
 {
-
-	BehaviourComponent::BehaviourComponent(const std::string & type, Entity * parent) :
-		Component(type, parent)
+	BehaviourComponent::BehaviourComponent(const std::string& type, Entity* parent) :
+		Component{ type, parent }
 	{
 		G_BehaviourSystem.RegisterComponent(this);
 	}
@@ -14,5 +13,4 @@ namespace Blade
 	{
 		G_BehaviourSystem.UnregisterComponent(GetId());
 	}
-
 }

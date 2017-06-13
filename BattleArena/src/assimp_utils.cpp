@@ -238,6 +238,7 @@ namespace AssimpUtils
 		std::vector<std::string> splitString;
 		Split(name, ',', splitString);
 
+		bool shouldLoadMesh{ true };
 		if (splitString[0] == "COL")
 		{
 			if (splitString[1] == "SPHERE")
@@ -248,6 +249,16 @@ namespace AssimpUtils
 				s >> radius;
 				ColliderComponent* cc{ new ColliderComponent{entity, std::make_unique<BoundingSphere>(radius)} };
 			}
+#ifdef NDEBUG
+			shouldLoadMesh = false;
+#endif
+		}
+
+		if (splitString[0] == "DUM")
+		{
+#ifdef NDEBUG
+			shouldLoadMesh = false;
+#endif
 		}
 
 		if (splitString[0] == "EM")
@@ -260,7 +271,7 @@ namespace AssimpUtils
 
 		// Mesh and Material loading
 		unsigned int meshCount{ aiNode->mNumMeshes };
-		if (meshCount)
+		if (meshCount && shouldLoadMesh)
 		{
 			if (meshCount > 1)
 			{

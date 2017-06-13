@@ -61,10 +61,10 @@
 namespace Blade
 {
 	/*
-	* \brief Enumeration for input device buttons (digital values)
-	* \details Uses bit flags defined in the device to for mappings where available
-	*/
-	enum Input_Sensor {
+	 * \brief Enumeration for input device buttons (digital values)
+	 * \details Uses bit flags defined in the device to for mappings where available
+	 */
+	enum InputSensor {
 		BTN_FACE_1 = JOYBTN_FACE1,
 		BTN_FACE_2 = JOYBTN_FACE2,
 		BTN_FACE_3 = JOYBTN_FACE3,
@@ -86,20 +86,30 @@ namespace Blade
 	};
 
 	/**
-	* \brief Thumbstick structure to hold X/Y axis information
-	* \details Uses STICK_THRESHOLD to normalize to floating point values in [0..1] range
-	*/
+	 * \brief Thumbstick structure to hold X/Y axis information
+	 * \details Uses STICK_THRESHOLD to normalize to floating point values in [0..1] range
+	 */
 	struct ThumbStick {
 		float axisX;
 		float axisY;
 	};
 
 	/**
-	* \brief InputState describes the current state of a device.
-	* \details Targeted toward joypad support.
-	*/
+	 * \brief InputState describes the current state of a device.
+	 * \details Only joy pad support for the moment. A function to compare two states has to be provided
+	 */
 	struct InputState
 	{
+		int digitalButtonData{ 0 };
+
+		ThumbStick stickLeft{ 0 };
+
+		ThumbStick stickRight{ 0 };
+
+		float triggerLeft{ 0.0f };
+
+		float triggerRight{ 0.0f };
+
 		InputState();
 
 		// constructor to read state data according to platform
@@ -117,21 +127,17 @@ namespace Blade
 
 #endif
 
-		~InputState();
+		~InputState() = default;
 
 		InputState(const InputState& src) noexcept = default;
-		InputState& operator=(const InputState& rhs)noexcept = default;
-		InputState(InputState&& src) noexcept = default;
-		InputState& operator=(InputState&& rhs) noexcept = default;
 
-		int digitalButtonData{ 0 };
-		ThumbStick stickLeft{ 0 };
-		ThumbStick stickRight{ 0 };
-		float triggerLeft{ 0.0f };
-		float triggerRight{ 0.0f };
-	
+		InputState& operator=(const InputState& rhs)noexcept = default;
+
+		InputState(InputState&& src) noexcept = default;
+
+		InputState& operator=(InputState&& rhs) noexcept = default;
 	};
-	
+
 }
 
 #endif

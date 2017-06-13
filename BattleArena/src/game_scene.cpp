@@ -11,11 +11,19 @@
 #include "directional_light_component.h"
 #include "camera.h"
 #include "directional_light.h"
-#include "simulation_component.h"
 #include "collider_component.h"
-#include "bounding_sphere.h"
 #include "plane_collider.h"
 #include "emitter_component.h"
+#include "player_joypad_component.h"
+#include "test_behaviour.h"
+#include "cannon_weapon_component.h"
+#include "other_weapon_component.h"
+#include "player.h"
+#include <iostream>
+
+#ifdef BLADE_BUILD_OVR
+#include "game_scene_color_pass_ovr.h"
+#endif
 
 using namespace Blade;
 
@@ -49,61 +57,31 @@ void GameScene::Initialize()
 	//////////////////////////////////////////////////////////////////////////
 
 	Entity* arena{ new Entity{ "arena" } };
-	arena->Load(L"data/models/arena4.fbx");
+	arena->Load(L"data/models/arena5.fbx");
 	AddEntity(arena);
-
 
 	Entity* entity{ new Entity{ "Environment" } };
 	ColliderComponent* floor{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,1.0f,0.0f },0.0f) } };
-	ColliderComponent* wall1{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ -1.0f,0.0f,0.0f },-20.0f) } };
-	ColliderComponent* wall2{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 1.0f,0.0f,0.0f },-20.0f) } };
-	ColliderComponent* wall3{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,1.0f },-20.0f) } };
-	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-20.0f) } };
+	ColliderComponent* wall1{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ -1.0f,0.0f,0.0f },-40.0f) } };
+	ColliderComponent* wall2{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 1.0f,0.0f,0.0f },-40.0f) } };
+	ColliderComponent* wall3{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,1.0f },-40.0f) } };
+	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-40.0f) } };
 	AddEntity(entity);
 
-	//First ball
-	entity = new Entity{ "Ball" };
-	entity->SetPosition(Vec3f{ 0.0f, 80.0f,-1.0f });
-	RenderComponent* rc{ new RenderComponent{entity} };
-	rc->SetMesh(cube);
-	rc->SetMaterial(material);
-	SimulationComponent* simC{ new SimulationComponent{entity,1.0f} };
-	ColliderComponent* colC{ new ColliderComponent{entity,std::make_unique<BoundingSphere>(1.0f)} };
 
-	auto cache_entity = entity;
+	auto p{ m_PlayerFactory.CreateLocalKeyboardPlayer("player1",L"player1.fbx") };
+	AddEntity(p);
 
-	EmitterComponent* ec = new EmitterComponent{ entity };
-	ec->SetLifeSpan(1.0f);
-	ec->SetMaxParticles(1000);
-	ec->SetSpawnRate(200);
-	ec->SetActive(true);
-	ec->SetParticleSize(3.f);
-	ec->SetSpawnRadius(1.5f);
-	ec->SetVelocity(Vec3f{ 0.0f, 1.0f, 0.0f });
-	ec->SetVelocityRange(1.3f);
-	ec->SetExternalForce(Vec3f{ 0.0f, -1.3f, 0.0f });
-	ec->SetMesh(G_ResourceManager.Get<Mesh>(L"plane"));
-	ec->SetStartColor(Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f });
-	ec->SetEndColor(Vec4f{ 1.0f, 1.0f, 1.0f, 0.1f });
-	ec->SetBlendStateType(RenderStateType::BS_BLEND_ADDITIVE);
+	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
+	AddEntity(p2);
 
-	Texture* tex{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"expl02.png") };
-	tex->SetTextureType(TEX_DIFFUSE);
-	ec->SetTexture(tex);
+	auto weapon1{ m_WeaponFactory.CreateWeapon1("weapon1") };
+	AddEntity(weapon1);
+
+	auto weapon2{ m_WeaponFactory.CreateWeapon2("weapon2") };
+	AddEntity(weapon2);
 
 
-
-	AddEntity(entity);
-
-	//Second ball
-	entity = new Entity{ "Ball2" };
-	entity->SetPosition(Vec3f{ 1.0f, 85.0f,0.0f });
-	RenderComponent* rc3 {new RenderComponent{ entity } };
-	rc3->SetMesh(cube);
-	rc3->SetMaterial(material);
-	SimulationComponent* simC3{ new SimulationComponent{ entity,1.0f } };
-	ColliderComponent* colC3{ new ColliderComponent{ entity,std::make_unique<BoundingSphere>(1.0f) } };
-	AddEntity(entity);
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Get the window size.
@@ -124,21 +102,23 @@ void GameScene::Initialize()
 	AddEntity(cam);
 
 	cam = new Camera{ "Camera2", cd };
-
-	cam->SetPosition(Vec3f{ 0.0f, 14.0f, -11.0f });
-	cam->SetOrientation(Vec3f{ 1.0, 0.0, 0.0 }, MathUtils::ToRadians(32.0f));
+	cam->SetPosition(Vec3f{ 0.0f, 5.0f, -20.0f });
 	AddEntity(cam);
+	cam->SetParent(p2);
 
 	cam = new Camera{ "Camera3", cd };
-
 	cam->SetPosition(Vec3f{ 0.0f, 10.0f, -50.0f });
 	AddEntity(cam);
+
 
 	cam = new Camera{ "Camera4", cd };
 
 	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -4.0f });
-	cam->SetParent(cache_entity);
+	cam->SetParent(p2);
 	AddEntity(cam);
+
+	//Instruct the Camera system to set this camera as the active one.
+	G_CameraSystem.SetActiveCamera("Camera3");
 
 	//Instruct the Camera system to set this camera as the active one.
 	G_CameraSystem.SetActiveCamera("Camera3");
@@ -171,22 +151,24 @@ void GameScene::Initialize()
 	// --------------------------------------------------------------------------------------------------------------------
 
 	// Pipeline Creation --------------------------------------------------------------------------------------------------
+	//Allocate a render pass pipeline.
+	RenderPassPipeline* pipeline{ new RenderPassPipeline };
+
+#ifdef BLADE_BUILD_OVR
+	GameSceneColorPassStageOvr* ovrStage{ new GameSceneColorPassStageOvr{ " ovrPass " } };
+	ovrStage->Initialize();
+	pipeline->AddStage(ovrStage);
+#else
 	//Allocate and initialize the a render pass pipeline stage.
 	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
 	colorPassStage->Initialize();
-
-	//Allocate a render pass pipeline and add the pass to it.
-	RenderPassPipeline* pipeline{ new RenderPassPipeline };
 	pipeline->AddStage(colorPassStage);
+#endif
 
 	//Set the pipeline to the render system.
 	G_RenderSystem.SetRenderPassPipeline(pipeline);
 
 	// --------------------------------------------------------------------------------------------------------------------
-
-	if (!G_InputManager.AssignDeviceToPlayer(Player::PLAYER1, 0)) {
-		BLADE_TRACE("Could not assign device 0 to player 1");
-	}
 }
 
 void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
@@ -228,23 +210,12 @@ void GameScene::Update(float deltaTime, long time) noexcept
 
 	Scene::Update(deltaTime, time);
 
-	
-
-	if (G_InputManager.GetActiveDevice(Player::PLAYER1) != nullptr)
-	{
-		InputState p1State{};
-		p1State = G_InputManager.GetActiveDevice(Player::PLAYER1)->GetInputState();
-
-		G_InputManager.GetActiveDevice(Player::PLAYER1)->SetVibration(p1State.triggerLeft, p1State.triggerRight);
-
-	}
-
-
 	G_SimulationSystem.Process(deltaTime);
 
 	G_LightSystem.Process();
 
 	G_BehaviourSystem.Process(deltaTime, time);
+
 }
 
 void GameScene::Draw() const noexcept

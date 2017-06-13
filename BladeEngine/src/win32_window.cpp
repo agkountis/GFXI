@@ -172,6 +172,8 @@ namespace Blade
 			break;
 		case WM_MOUSEMOVE:
 			SetMousePosition(Vec2i{ LOWORD(lparam), HIWORD(lparam) });
+			G_InputManager.UpdateMousePos(Vec2i{ LOWORD(lparam), HIWORD(lparam) });
+
 			if (wparam & (MK_LBUTTON | MK_MBUTTON | MK_RBUTTON))
 			{
 				if (callbacks.motion_func)
@@ -188,12 +190,14 @@ namespace Blade
 			}
 			break;
 		case WM_LBUTTONDOWN:
+			G_InputManager.SetMouseButtonState(MouseButton::LEFT, true);
 			if (callbacks.mouse_func)
 			{
 				callbacks.mouse_func(0, true, LOWORD(lparam), HIWORD(lparam));
 			}
 			break;
 		case WM_RBUTTONDOWN:
+			G_InputManager.SetMouseButtonState(MouseButton::RIGHT, true);
 			if (callbacks.mouse_func)
 			{
 				callbacks.mouse_func(2, true, LOWORD(lparam), HIWORD(lparam));
@@ -206,12 +210,14 @@ namespace Blade
 			}
 			break;
 		case WM_LBUTTONUP:
+			G_InputManager.SetMouseButtonState(MouseButton::LEFT, false);
 			if (callbacks.mouse_func)
 			{
 				callbacks.mouse_func(0, false, LOWORD(lparam), HIWORD(lparam));
 			}
 			break;
 		case WM_RBUTTONUP:
+			G_InputManager.SetMouseButtonState(MouseButton::RIGHT, false);
 			if (callbacks.mouse_func)
 			{
 				callbacks.mouse_func(2, false, LOWORD(lparam), HIWORD(lparam));
@@ -227,6 +233,7 @@ namespace Blade
 			//int delta = GET_WHEEL_DELTA_WPARAM(wparam);
 			break;
 		case WM_INPUT_DEVICE_CHANGE:
+			// A Gamepad/input device has been inserted/unplugged
 			BLADE_TRACE("Input device " << ((wparam == GIDC_ARRIVAL) ? "inserted" : "removed"));
 			G_InputManager.EnumerateDevices();
 			break;

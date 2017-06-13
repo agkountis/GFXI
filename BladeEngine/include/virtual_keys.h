@@ -1,18 +1,16 @@
 #ifndef BLADE_VIRTUAL_KEYS_H_
-#define BLADE_VIRTUAL_KEYS_H
+#define BLADE_VIRTUAL_KEYS_H_
 
 #include <Windows.h>
-
 
 /**
 * \brief Key values for keyboard input
 */
 
-namespace Blade {
-
-	enum Virtual_Key {
-
-
+namespace Blade
+{
+	enum VirtualKey : int
+	{
 		KEY_BACKSPACE = VK_BACK,
 		KEY_TAB = VK_TAB,
 		KEY_RETURN = VK_RETURN,
@@ -132,10 +130,7 @@ namespace Blade {
 		KEY_WIN_L = VK_LWIN,
 		KEY_WIN_R = VK_RWIN,
 		KEY_APPS = VK_APPS
-
-
 	};
-
 };
 
 #endif

@@ -121,6 +121,24 @@ namespace Blade
 		return m_Children[index];
 	}
 
+	Entity* Entity::GetEntityFromHierarchy(const std::string& name) noexcept
+	{
+		if (m_Name == name)
+		{
+			return this;
+		}
+		Entity* res{ nullptr };
+		for (auto child : m_Children)
+		{
+			res = child->GetEntityFromHierarchy(name);
+			if (res)
+			{
+				break;
+			}
+		}
+		return res;
+	}
+
 	void Entity::AddChild(Entity* entity) noexcept
 	{
 		entity->SetParent(this);
@@ -168,6 +186,38 @@ namespace Blade
 		}
 
 		return nullptr;
+	}
+
+	void Entity::RemoveComponent(const int id) noexcept
+	{
+		auto it{ m_Components.begin() };
+
+		while (it != m_Components.end())
+		{
+			auto entry{ *it };
+			if (entry->GetId() == id)
+			{
+				it = m_Components.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+	}
+
+	std::vector<Component*> Entity::GetComponents(const std::string & type) const noexcept
+	{
+		std::vector<Component*> result;
+		for (const auto component : m_Components)
+		{
+			if (component->GetType() == type)
+			{
+				result.push_back(component);
+			}
+		}
+
+		return result;
 	}
 
 	void Entity::AddComponent(Component* component) noexcept

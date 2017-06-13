@@ -5,7 +5,7 @@
 namespace Blade
 {
 	// Private Methods -----------------------------------------------------------------
-	bool D3D11Context::CreateD3D11DeviceAndContext()
+	bool D3D11Context::CreateD3D11DeviceAndContext(LUID* luid)
 	{
 		unsigned int device_flags{ 0 };
 
@@ -22,11 +22,37 @@ namespace Blade
 
 		D3D_FEATURE_LEVEL feature_level;
 
+		IDXGIFactory * DXGIFactory = nullptr;
+		HRESULT hr = CreateDXGIFactory(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&DXGIFactory));
+
+		if (FAILED(hr))
+		{
+			return false;
+		}
+
+		IDXGIAdapter * Adapter = nullptr;
+		for (UINT iAdapter = 0; DXGIFactory->EnumAdapters(iAdapter, &Adapter) != DXGI_ERROR_NOT_FOUND; ++iAdapter)
+		{
+			DXGI_ADAPTER_DESC adapterDesc;
+			Adapter->GetDesc(&adapterDesc);
+			if ((luid == nullptr) || memcmp(&adapterDesc.AdapterLuid, luid, sizeof(LUID)) == 0)
+			{
+				break;
+			}
+				
+			if (Adapter)
+			{
+				Adapter->Release();
+			}	
+		}
+
+		auto DriverType = Adapter ? D3D_DRIVER_TYPE_UNKNOWN : D3D_DRIVER_TYPE_HARDWARE;
+
 		if (!m_Device)
 		{
 			HRESULT h_result{ 0 };
-			h_result = D3D11CreateDevice(nullptr,
-			                             D3D_DRIVER_TYPE_HARDWARE,
+			h_result = D3D11CreateDevice(Adapter,
+			                             DriverType,
 			                             nullptr,
 			                             device_flags,
 			                             &feature_levels[0],
@@ -35,6 +61,11 @@ namespace Blade
 			                             m_Device.ReleaseAndGetAddressOf(),
 			                             &feature_level,
 			                             m_DeviceContext.ReleaseAndGetAddressOf());
+			
+			if (Adapter)
+			{
+				Adapter->Release();
+			}
 
 			if (FAILED(h_result))
 			{
@@ -63,9 +94,9 @@ namespace Blade
 
 	// ---------------------------------------------------------------------------------
 
-	bool D3D11Context::Create()
+	bool D3D11Context::Create(LUID* luid)
 	{
-		return CreateD3D11DeviceAndContext();
+		return CreateD3D11DeviceAndContext(luid);
 	}
 
 	ID3D11Device* D3D11Context::GetDevice() const
