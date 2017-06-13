@@ -128,6 +128,9 @@
     <ClCompile Include="src\health_component.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
+    <ClCompile Include="src\bullet_behaviour.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
@@ -203,6 +206,9 @@
       <Filter>include\entities</Filter>
     </ClInclude>
     <ClInclude Include="include\health_component.h">
+      <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bullet_behaviour.h">
       <Filter>include\components</Filter>
     </ClInclude>
   </ItemGroup>

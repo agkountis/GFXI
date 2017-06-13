@@ -4,12 +4,13 @@
 #include "entity.h"
 #include "bullet.h"
 #include "simulation_component.h"
-
+#include "player.h"
 using namespace Blade;
 
 CannonWeaponComponent::CannonWeaponComponent(Blade::Entity* parent):
 	WeaponComponent(parent)
 {
+	m_Timer.Start();
 }
 
 CannonWeaponComponent::CannonWeaponComponent(Blade::Entity* parent, WeaponPosition pos):
@@ -21,23 +22,26 @@ CannonWeaponComponent::~CannonWeaponComponent()
 {
 }
 
-void CannonWeaponComponent::Shoot()
+void CannonWeaponComponent::Shoot(const Vec3f& position)
 {
 	using namespace Blade;
-	std::cout << "Red weapon!!" << std::endl;
-	Material material;
-	material.diffuse = Vec4f{ 40.0f, 1.0f, 1.0f, 1.0f };
-	material.specular = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f }; //the w value is the shininess.
+	if (m_Timer.GetMsec() > 1000)
+	{
+		static float aux{ 0.0f };
+		aux += 0.5f;
+		using namespace Blade;
+		std::cout << "Red weapon!!" << std::endl;
+		Material material;
+		material.diffuse = Vec4f{ 40.0f, 1.0f, 1.0f, 1.0f };
+		material.specular = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f }; //the w value is the shininess.
 
-	auto simComp = static_cast<SimulationComponent*>(GetParent()->GetComponent("co_sim"));
+		auto simComp = static_cast<SimulationComponent*>(GetParent()->GetComponent("co_sim"));
+		auto p{ static_cast<Player*>(GetParent()) };
+		Bullet* cannonBullet{ new Bullet("cannon_bullet", L"cube", material, 0.3f, 0.5f,
+			position-Vec3f(0.0f,0.25f,0.0f),
+			p->GetHeading()*100.0f) };
 
-	auto velocity = Blade::MathUtils::Normalize(simComp->GetVelocity()) * 50.0f;
-
-	Bullet* cannonBullet{ new Bullet("cannon_bullet", L"cube", material, 1.0f, 0.5f,
-	                                 GetParent()->GetPosition() + Vec3f(2.5f, 2.5f, 2.5f),
-	                                 velocity) };
-
-	cannonBullet->SetScale(Vec3f(0.2f, 0.2f, 0.2f));
-
-	G_SceneManager.GetCurrentScene()->AddEntity(cannonBullet);
+		G_SceneManager.GetCurrentScene()->AddEntity(cannonBullet);
+		m_Timer.Reset();
+	}
 }

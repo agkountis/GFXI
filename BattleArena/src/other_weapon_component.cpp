@@ -19,7 +19,7 @@ OtherWeaponComponent::~OtherWeaponComponent()
 
 }
 
-void OtherWeaponComponent::Shoot()
+void OtherWeaponComponent::Shoot(const Vec3f & position)
 {
 	std::cout << "Green weapon!" << std::endl;
 }

@@ -1,6 +1,7 @@
 #include "player_behaviour.h"
 #include "weapon.h"
 #include "player.h"
+#include "bullet.h"
 
 using namespace Blade;
 
@@ -44,14 +45,9 @@ void PlayerBehaviour::Teardown() noexcept
 
 void PlayerBehaviour::OnCollision(Entity* other) noexcept
 {
-	BLADE_TRACE("Player collided with: " + other->GetName());
 	if (dynamic_cast<Weapon*>(other))
 	{
-		BLADE_TRACE("COLLIDE WITH WEAPON" + other->GetName());
-		//Update parent and child
-		//GetParent()->AddChild(other);
 		Player* me = static_cast<Player*>(GetParent());
-
 		Weapon* wpn = static_cast<Weapon*>(other);
 		me->AddWeapon(wpn);
 	}

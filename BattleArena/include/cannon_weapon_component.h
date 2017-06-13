@@ -1,12 +1,16 @@
 #ifndef PLAYER_CANNON_WEAPON_COMPONENT_H_
 #define PLAYER_CANNON_WEAPON_COMPONENT_H_
 #include "weapon_component.h"
+#include "timer.h"
 
 /*
 \brief Cannon weapon class specifies how a cannon shoot.
 */
 class CannonWeaponComponent : public WeaponComponent
 {
+private:
+	Blade::Timer m_Timer;
+
 public:
 	explicit CannonWeaponComponent(Blade::Entity* parent);
 
@@ -14,7 +18,7 @@ public:
 
 	virtual ~CannonWeaponComponent();
 
-	void Shoot() override;
+	void Shoot(const Blade::Vec3f& position) override;
 };
 
 

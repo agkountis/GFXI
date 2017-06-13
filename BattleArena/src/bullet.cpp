@@ -8,6 +8,7 @@
 #include "emitter_component.h"
 #include "d3d/D3D11_texture.h"
 #include "test_behaviour.h"
+#include "bullet_behaviour.h"
 
 using namespace Blade;
 
@@ -19,12 +20,15 @@ Bullet::Bullet(const std::string& name,
                const Vec3f& position,
                const Vec3f& velocity) : Entity(name)
 {
+
+	SetScale(Vec3f(0.2f, 0.2f, 0.2f));
 	SetPosition(position);
 	RenderComponent* rc{ new RenderComponent{ this } };
 	rc->SetMesh(G_ResourceManager.Get<Mesh>(mesh));
 	rc->SetMaterial(material);
 	SimulationComponent* simC{ new SimulationComponent{ this ,mass } };
 	ColliderComponent* colC{ new ColliderComponent{ this,std::make_unique<BoundingSphere>(radius) } };
+	simC->SetVelocity(velocity);
 #if !_DEBUG
 	EmitterComponent* ec = new EmitterComponent{ this };
 	ec->SetLifeSpan(1.0f);
@@ -44,7 +48,7 @@ Bullet::Bullet(const std::string& name,
 	tex->SetTextureType(TEX_DIFFUSE);
 	ec->SetTexture(tex);
 #endif
-	TestBehaviour* tb{ new TestBehaviour{ this } };
-	colC->AddListener(tb);
-	simC->SetVelocity(velocity);
+
+	auto bv{ new BulletBehaviour{ this } };
+	colC->AddListener(bv);
 }

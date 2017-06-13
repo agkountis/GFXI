@@ -194,19 +194,19 @@ namespace Blade
 				case LightType::POINT:
 				{
 					PointLightComponent* pointLightComponent{ static_cast<PointLightComponent*>(lightComponent) };
-					pointLightComponent->GetLightDescriptionPtr()->position = pointLightComponent->GetParent()->GetPosition();
+					pointLightComponent->GetLightDescriptionPtr()->position = pointLightComponent->GetParent()->GetLocalPosition();
 				}
 				break;
 				case LightType::DIRECTIONAL:
 				{
 					DirectionalLightComponent* directionalLightComponent{ static_cast<DirectionalLightComponent*>(lightComponent) };
-					directionalLightComponent->GetLightDescriptionPtr()->direction = directionalLightComponent->GetParent()->GetPosition();
+					directionalLightComponent->GetLightDescriptionPtr()->direction = directionalLightComponent->GetParent()->GetLocalPosition();
 				}
 				break;
 				case LightType::SPOTLIGHT:
 				{
 					SpotlightComponent* spotlightComponent{ static_cast<SpotlightComponent*>(lightComponent) };
-					spotlightComponent->GetLightDescriptionPtr()->position = spotlightComponent->GetParent()->GetPosition();
+					spotlightComponent->GetLightDescriptionPtr()->position = spotlightComponent->GetParent()->GetLocalPosition();
 				}
 				break;
 				}
