@@ -37,5 +37,10 @@ bool BoundingSphere::Collide(const BoundingSphere* bsphere, ContactManifold& man
 
 bool BoundingSphere::Collide(const PlaneCollider* plane, ContactManifold& manifold) const noexcept
 {
-	return SimulationUtils::SphereAndPlaneCollision(this, plane, manifold);
+	bool collided = SimulationUtils::SphereAndPlaneCollision(this, plane, manifold);
+	if (collided)
+	{
+		this->GetColliderComponent()->NotifyCollisionListeners(this->GetColliderComponent()->GetParent());
+	}
+	return collided;
 }

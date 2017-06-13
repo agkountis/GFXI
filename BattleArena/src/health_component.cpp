@@ -28,9 +28,16 @@ void HealthComponent::OnCollision(Entity * other) noexcept
 	{
 		if (m_Timer.GetMsec() > m_CollisionTimeOffset)
 		{
+			std::cout <<GetParent()->GetName() <<" - "<< m_HealthValue << std::endl;
 			//Collision detected
-			if (m_HealthValue > 0) m_HealthValue -= m_Damage;
-			if (m_HealthValue < 0) m_HealthValue = 0;
+			if (m_HealthValue > 0)
+			{
+				m_HealthValue -= m_Damage;
+			}
+			else if (m_HealthValue <= 0)
+			{
+				GetParent()->SetAlive(false);
+			}
 			m_Timer.Reset();
 		}
 	}

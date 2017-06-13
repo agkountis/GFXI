@@ -37,8 +37,8 @@ void CannonWeaponComponent::Shoot(const Vec3f& position)
 
 		auto simComp = static_cast<SimulationComponent*>(GetParent()->GetComponent("co_sim"));
 		auto p{ static_cast<Player*>(GetParent()) };
-		Bullet* cannonBullet{ new Bullet("cannon_bullet", L"cube", material, 0.2f, 0.5f,
-			position,
+		Bullet* cannonBullet{ new Bullet("cannon_bullet", L"cube", material, 0.3f, 0.5f,
+			position-Vec3f(0.0f,0.25f,0.0f),
 			p->GetHeading()*100.0f) };
 
 		G_SceneManager.GetCurrentScene()->AddEntity(cannonBullet);

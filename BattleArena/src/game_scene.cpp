@@ -69,17 +69,28 @@ void GameScene::Initialize()
 	AddEntity(entity);
 
 
-	auto p{ m_PlayerFactory.CreateLocalKeyboardPlayer("player1",L"player1.fbx") };
+	auto p{ m_PlayerFactory.CreateLocalJoypadPlayer("player1",L"player1.fbx") };
+	p->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
 	AddEntity(p);
 
 	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
+	p2->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
 	AddEntity(p2);
 
 	auto weapon1{ m_WeaponFactory.CreateWeapon1("weapon1") };
 	AddEntity(weapon1);
 
-	auto weapon2{ m_WeaponFactory.CreateWeapon2("weapon2") };
+	auto weapon2{ m_WeaponFactory.CreateWeapon1("weapon1") };
+	weapon2->SetPosition(Vec3f(3.0f, 1.0f, 10.0f));
 	AddEntity(weapon2);
+
+	auto weapon3{ m_WeaponFactory.CreateWeapon1("weapon1") };
+	weapon3->SetPosition(Vec3f(-3.0f, 1.0f, -10.0f));
+	AddEntity(weapon3);
+
+	auto weapon4{ m_WeaponFactory.CreateWeapon2("weapon2") };
+	weapon4->SetPosition(Vec3f(-10.0f, 1.0f, -5.0f));
+	AddEntity(weapon4);
 
 
 
@@ -95,8 +106,8 @@ void GameScene::Initialize()
 
 	Camera* cam{ new Camera{ "Camera1", cd } };
 	//Set the position of the camera.
-	cam->SetPosition(Vec3f{ -5.0f, 1.0f, -8.0f });
-	cam->SetOrientation(Vec3f{ 0.0f, 1.0f, 0.0f }, MathUtils::ToRadians(-20.0f));
+	cam->SetPosition(Vec3f{ 0.0f, 60.0f, -70.0f });
+	cam->SetOrientation(Vec3f{ 1.0f, 0.0f, 0.0f }, MathUtils::ToRadians(40.0f));
 
 	//Add it to the scene.
 	AddEntity(cam);
