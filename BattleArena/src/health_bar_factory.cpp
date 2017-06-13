@@ -37,8 +37,8 @@ HealthBar * HealthBarFactory::CreateHealthBar(Blade::Entity* parent, int maxHeal
 	fullBar->SetPosition(Vec3f(0, 4, 0));
 
 	emptyBar->SetScale(Vec3f(4, 0.95f, 0.95f));
-	fullBar->SetScale(Vec3f(4, 1, 1));
-	HealthBar* hb = new HealthBar(parent, emptyBar, fullBar, 10);
+	fullBar->SetScale(Vec3f(4.01f, 1, 1));
+	HealthBar* hb = new HealthBar(parent, emptyBar, fullBar, maxHealthValue);
 
 
 

@@ -96,6 +96,8 @@ void GameScene::Initialize()
 
 	HealthBar* hb{ m_HealthBarFactory.CreateHealthBar(p,100) };
 
+
+	hb->SetHealthValue(75);
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Get the window size.
 	Vec2i windowSize{ WindowingService::GetWindow(0)->GetSize() };
