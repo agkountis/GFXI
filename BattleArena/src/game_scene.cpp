@@ -115,7 +115,7 @@ void GameScene::Initialize()
 	cam = new Camera{ "Camera2", cd };
 	cam->SetPosition(Vec3f{ 0.0f, 5.0f, -20.0f });
 	AddEntity(cam);
-	cam->SetParent(p2);
+	cam->SetParent(p);
 
 	cam = new Camera{ "Camera3", cd };
 	cam->SetPosition(Vec3f{ 0.0f, 10.0f, -50.0f });
@@ -125,8 +125,8 @@ void GameScene::Initialize()
 	cam = new Camera{ "Camera4", cd };
 
 	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -4.0f });
-	cam->SetParent(p2);
-	AddEntity(cam);
+	cam->SetParent(p);
+	//AddEntity(cam);
 
 	//Instruct the Camera system to set this camera as the active one.
 	G_CameraSystem.SetActiveCamera("Camera3");

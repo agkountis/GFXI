@@ -80,7 +80,7 @@ namespace Blade
 
 		const Vec3f& GetLocalPosition() const noexcept;
 
-		const Vec3f& GetWorldPosition() noexcept;
+		const Vec3f GetWorldPosition() noexcept;
 
 		void SetPosition(const Vec3f& position) noexcept;
 
