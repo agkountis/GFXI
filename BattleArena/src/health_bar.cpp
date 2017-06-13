@@ -28,8 +28,6 @@ void HealthBar::SetHealthValue(int healthValue)
 	float percentage = (float)healthValue / (float)m_MaxHealth;
 	float maxBarScale = 4.0f;
 	
-	BLADE_TRACE("TRACE: " << percentage);
-	
 	Vec3f scale = m_pFullBar->GetScale();
 	scale.x = maxBarScale*percentage;
 
