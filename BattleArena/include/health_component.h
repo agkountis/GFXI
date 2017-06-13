@@ -2,6 +2,7 @@
 #define HEALTH_COMPONENT_H_
 #include "behaviour_component.h"
 #include "timer.h"
+#include "health_bar.h"
 
 class HealthComponent : public Blade::BehaviourComponent
 {
@@ -15,6 +16,8 @@ private:
 	int m_HealthValue{ m_InitialValue };
 
 	Blade::Timer m_Timer;
+
+	HealthBar* m_pListenerBar{ nullptr };
 
 public:
 	HealthComponent(Blade::Entity* parent);
@@ -42,6 +45,9 @@ public:
 	 * \return heatlh value
 	 */
 	int GetHealthValue() const noexcept;
+
+
+	void SetListenerBar(HealthBar* healthBar);
 };
 #endif
 

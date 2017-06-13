@@ -8,6 +8,7 @@
 #include "collider_component.h"
 #include "health_component.h"
 
+
 using namespace Blade;
 
 Player* PlayerFactory::CreateLocalKeyboardPlayer(const std::string& name, const std::wstring& modelPath) noexcept
@@ -45,8 +46,12 @@ Player* PlayerFactory::CreateMultiplayerPlayer(const std::string& name, const st
 	HealthComponent* hcom{ new HealthComponent(player) };
 	colC3->AddListener(hcom);
 
+	
+
 
 	player->SetWeaponPositions(player->GetEntityFromHierarchy("LeftWeaponSocket")->GetLocalPosition(), player->GetEntityFromHierarchy("RightWeaponSocket")->GetLocalPosition());
+
+
 
 	m_Counter++;
 	return player;
