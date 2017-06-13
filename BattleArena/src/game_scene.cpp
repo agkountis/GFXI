@@ -102,9 +102,6 @@ void GameScene::Initialize()
 	AddEntity(cam);
 
 	cam = new Camera{ "Camera2", cd };
-
-	//cam->SetPosition(Vec3f{ 0.0f, 14.0f, -11.0f });
-	//cam->SetOrientation(Vec3f{ 1.0, 0.0, 0.0 }, MathUtils::ToRadians(32.0f));
 	cam->SetPosition(Vec3f{ 0.0f, 5.0f, -20.0f });
 	AddEntity(cam);
 	cam->SetParent(p2);
