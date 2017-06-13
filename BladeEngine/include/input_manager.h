@@ -66,8 +66,6 @@ namespace Blade
 		Vec2f m_MousePos{ 0.0f }, m_MousePosPrevious{ 0.0f };
 		Vec2f m_MouseMovement{ 0.0f, 0.0f };
 
-		KeyboardInput	m_Keyboard;
-
 		bool m_MouseButton[2]{ false, false };
 
 	public:

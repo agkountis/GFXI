@@ -70,12 +70,12 @@ namespace Blade
 
 	bool InputManager::QueryKeyState(VirtualKey key) const noexcept
 	{
-		return m_Keyboard.QueryKeyState(key);
+		return KeyboardInput::QueryKeyState(key);
 	}
 
 	bool InputManager::QueryAllKeyStates(std::map<VirtualKey, bool>& destMap) const noexcept
 	{
-		return m_Keyboard.QueryAllKeyStates(destMap);
+		return KeyboardInput::QueryAllKeyStates(destMap);
 	}
 
 	Vec2f InputManager::QueryMouseMovement()

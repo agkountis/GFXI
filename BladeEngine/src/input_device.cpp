@@ -84,9 +84,10 @@ void InputDevice::FilterStateData(const InputState& stateIn, InputState& stateOu
 		stateOut.stickRight.axisY = 0;
 	}
 
-	// Triggers - Normalize to [0.0 .. 1.0] float
-	stateOut.triggerLeft = stateIn.triggerLeft / TRIGGER_THRESHOLD;
-	stateOut.triggerRight = stateIn.triggerRight / TRIGGER_THRESHOLD;
+	// Triggers - Normalize  working zone (limit minus deadzone) to [0.0 .. 1.0] float
+	stateOut.triggerLeft = (stateIn.triggerLeft > DEADZONE_ATRIGGERS)? stateIn.triggerLeft / (TRIGGER_THRESHOLD - DEADZONE_ATRIGGERS) : 0.0f;
+	stateOut.triggerRight = (stateIn.triggerRight > DEADZONE_ATRIGGERS)? stateIn.triggerRight / (TRIGGER_THRESHOLD - DEADZONE_ATRIGGERS): 0.0f;
+
 }
 
 void InputDevice::SetDeadzone(AnalogDeadzone flag, float value)

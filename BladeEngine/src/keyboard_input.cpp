@@ -2,14 +2,14 @@
 
 namespace Blade
 {
-	bool KeyboardInput::QueryKeyState(VirtualKey value) const
+	bool KeyboardInput::QueryKeyState(VirtualKey value) noexcept
 	{
 
 		return ((GetKeyState(value) & 0x8000) != 0);
 
 	}
 
-	bool KeyboardInput::QueryAllKeyStates(std::map<VirtualKey, bool>& destMap) const
+	bool KeyboardInput::QueryAllKeyStates(std::map<VirtualKey, bool>& destMap) noexcept
 	{
 		BYTE keyState[256] = { 0 };
 		GetKeyboardState(keyState);
