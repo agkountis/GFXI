@@ -307,6 +307,7 @@
   <ItemGroup>
     <ClCompile Include="src\bullet_behaviour.cpp" />
     <ClCompile Include="src\health_bar.cpp" />
+    <ClCompile Include="src\health_bar_factory.cpp" />
     <ClCompile Include="src\health_component.cpp" />
     <ClCompile Include="src\player_behaviour.cpp" />
     <ClCompile Include="src\player_factory.cpp" />
@@ -341,6 +342,7 @@
     <ClInclude Include="include\game_scene_color_pass.h" />
     <ClInclude Include="include\game_scene_color_pass_ovr.h" />
     <ClInclude Include="include\health_bar.h" />
+    <ClInclude Include="include\health_bar_factory.h" />
     <ClInclude Include="include\health_component.h" />
     <ClInclude Include="include\network_message_types.h" />
     <ClInclude Include="include\multiplayer.h" />

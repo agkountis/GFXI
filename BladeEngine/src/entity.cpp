@@ -3,7 +3,6 @@
 #include "trace.h"
 #include "engine_context.h"
 #include "application.h"
-
 namespace Blade
 {
 	Entity::Entity(const std::string& name)
@@ -25,7 +24,10 @@ namespace Blade
 
 		for (auto child : m_Children)
 		{
-			delete child;
+			
+			 delete child;
+			
+
 		}
 
 		m_Children.clear();

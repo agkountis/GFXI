@@ -134,6 +134,9 @@
     <ClCompile Include="src\health_bar.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\health_bar_factory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
@@ -215,6 +218,9 @@
       <Filter>include\components</Filter>
     </ClInclude>
     <ClInclude Include="include\health_bar.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\health_bar_factory.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

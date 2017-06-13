@@ -94,7 +94,7 @@ void GameScene::Initialize()
 	weapon4->SetPosition(Vec3f(-10.0f, 1.0f, -5.0f));
 	AddEntity(weapon4);
 
-
+	HealthBar* hb{ m_HealthBarFactory.CreateHealthBar(p,100) };
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Get the window size.
