@@ -23,13 +23,12 @@ Bullet::Bullet(const std::string& name,
 
 	SetScale(Vec3f(0.2f, 0.2f, 0.2f));
 	SetPosition(position);
-	//CalculateXform();
 	RenderComponent* rc{ new RenderComponent{ this } };
 	rc->SetMesh(G_ResourceManager.Get<Mesh>(mesh));
 	rc->SetMaterial(material);
 	SimulationComponent* simC{ new SimulationComponent{ this ,mass } };
 	ColliderComponent* colC{ new ColliderComponent{ this,std::make_unique<BoundingSphere>(radius) } };
-
+	simC->SetVelocity(velocity);
 #if !_DEBUG
 	EmitterComponent* ec = new EmitterComponent{ this };
 	ec->SetLifeSpan(1.0f);
@@ -52,5 +51,4 @@ Bullet::Bullet(const std::string& name,
 
 	auto bv{ new BulletBehaviour{ this } };
 	colC->AddListener(bv);
-	simC->SetVelocity(velocity);
 }

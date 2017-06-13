@@ -12,15 +12,17 @@ Player::Player(const std::string& name)
 
 bool Player::AddWeapon(Weapon* weapon) noexcept
 {
-	if (m_WeaponCount <2)
+	if (m_WeaponCount < 2)
 	{
 		BLADE_TRACE("Add weapon");
 		++m_WeaponCount;
 		(m_WeaponCount == 1) ? weapon->SetPosition(m_LeftWeaponPos) : weapon->SetPosition(m_RightWeaponPos);
-		
+
 		weapon->OnPickUp();
 		G_SceneManager.GetCurrentScene()->RemoveEntity(weapon->GetName());
+		//GetEntityFromHierarchy("LeftWeaponSocket")->AddChild(weapon);
 		AddChild(weapon);
+
 		auto weaponComp{ static_cast<WeaponComponent*>(weapon->GetComponent("co_weapon")) };
 		weaponComp->SetWeaponPosition(static_cast<WeaponPosition>(m_WeaponCount-1));
 		weapon->RemoveComponent(weaponComp->GetId());
@@ -53,10 +55,11 @@ void Player::SetWeaponPositions(const Vec3f & leftWeaponPos, const Vec3f & right
 
 const Vec3f & Player::GetLeftWeaponPos()  noexcept
 {
-	return m_LeftWeaponPos;
+	
+	return (GetXform() * Vec4f(m_LeftWeaponPos,1.0f)).xyz;
 }
 
 const Blade::Vec3f & Player::GetRightWeaponPos()  noexcept
 {
-	return m_LeftWeaponPos;
+	return (GetXform() * Vec4f(m_RightWeaponPos, 1.0f)).xyz;
 }

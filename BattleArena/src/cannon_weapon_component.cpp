@@ -36,9 +36,15 @@ void CannonWeaponComponent::Shoot(const Vec3f& position)
 		auto simComp = static_cast<SimulationComponent*>(GetParent()->GetComponent("co_sim"));
 
 		auto p{ static_cast<Player*>(GetParent()) };
-		
+		std::cout << p->GetLocalPosition().x << "- "<< p->GetLeftWeaponPos().x << std::endl;
+		std::cout << p->GetLocalPosition().y << "- " << p->GetLeftWeaponPos().y << std::endl;
+		std::cout << p->GetLocalPosition().z << "- " << p->GetLeftWeaponPos().z << std::endl;
+		std::cout << "-------------------------" << std::endl;
+		auto pos{ p->GetLeftWeaponPos() };
+		pos.y = 2.0f;
+	
 		Bullet* cannonBullet{ new Bullet("cannon_bullet", L"cube", material, 1.0f, 0.5f,
-			GetParent()->GetEntityFromHierarchy("LeftWeaponSocket")->GetLocalPosition(),
+			pos,
 			p->GetHeading()*20.0f) };
 
 		cannonBullet->SetScale(Vec3f(0.2f, 0.2f, 0.2f));
