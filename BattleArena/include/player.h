@@ -1,5 +1,5 @@
-#ifndef BATTLE_ARENA_PLAYER_H_
-#define BATTLE_ARENA_PLAYER_H_
+#ifndef PLAYER_H_
+#define PLAYER_H_
 #include "entity.h"
 #include "weapon.h"
 

@@ -1,5 +1,5 @@
-#ifndef BLADE_HEALTH_COMPONENT_H_
-#define BLADE_HEALTH_COMPONENT_H_
+#ifndef HEALTH_COMPONENT_H_
+#define HEALTH_COMPONENT_H_
 #include "behaviour_component.h"
 #include "timer.h"
 

@@ -1,5 +1,5 @@
-#ifndef BLADE_PLAYER_BEHAVIOUR
-#define BLADE_PLAYER_BEHAVIOUR
+#ifndef PLAYER_BEHAVIOUR
+#define PLAYER_BEHAVIOUR
 #include "behaviour_component.h"
 #include "entity.h"
 

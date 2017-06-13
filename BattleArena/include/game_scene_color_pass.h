@@ -1,5 +1,5 @@
-#ifndef BATTLE_ARENA_GAME_SCENE_COLOR_PASS_STAGE_H_
-#define BATTLE_ARENA_GAME_SCENE_COLOR_PASS_STAGE_H_
+#ifndef GAME_SCENE_COLOR_PASS_STAGE_H_
+#define GAME_SCENE_COLOR_PASS_STAGE_H_
 #include "render_pass.h"
 #include "d3d/D3D11_render_target.h"
 #include "texture.h"

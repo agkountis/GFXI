@@ -1,5 +1,5 @@
-#ifndef BLADE_PLAYER_FACTORY_H_
-#define BLADE_PLAYER_FACTORY_H_
+#ifndef PLAYER_FACTORY_H_
+#define PLAYER_FACTORY_H_
 
 #include "player.h"
 

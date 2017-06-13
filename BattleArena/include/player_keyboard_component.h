@@ -1,5 +1,5 @@
-#ifndef BLADE_PLAYER_KEYBOARD_COMPONENT_H_
-#define BLADE_PLAYER_KEYBOARD_COMPONENT_H_
+#ifndef PLAYER_KEYBOARD_COMPONENT_H_
+#define PLAYER_KEYBOARD_COMPONENT_H_
 
 #include "keyboard_input_component.h"
 

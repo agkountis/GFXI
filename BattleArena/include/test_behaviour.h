@@ -1,5 +1,5 @@
-#ifndef BLADE_TEST_BEHAVIOUR
-#define BLADE_TEST_BEHAVIOUR
+#ifndef TEST_BEHAVIOUR
+#define TEST_BEHAVIOUR
 
 #include "behaviour_component.h"
 #include "trace.h"

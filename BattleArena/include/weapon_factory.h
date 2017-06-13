@@ -1,5 +1,5 @@
-#ifndef WEAPON_FACTORY_H_
-#define WEAPON_FACTORY_H_
+#ifndef BLADE_ARENA_WEAPON_FACTORY_H_
+#define BLADE_ARENA_WEAPON_FACTORY_H_
 #include "weapon.h"
 #include "emitter_component.h"
 

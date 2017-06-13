@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLAYER_COMMANDS_H_
+#define PLAYER_COMMANDS_H_
 #include "test_commands_battle_arena.h"
 #include "weapon_component.h"
 #include "player.h"
@@ -186,3 +187,5 @@ public:
 		}
 	}
 };
+
+#endif

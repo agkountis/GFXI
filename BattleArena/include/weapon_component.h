@@ -1,5 +1,5 @@
-#ifndef BLADE_PLAYER_WEAPON_COMPONENT_H_
-#define BLADE_PLAYER_WEAPON_COMPONENT_H_
+#ifndef WEAPON_COMPONENT_H_
+#define WEAPON_COMPONENT_H_
 #include "component.h"
 
 /*

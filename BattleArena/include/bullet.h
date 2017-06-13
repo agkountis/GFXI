@@ -1,5 +1,5 @@
-#ifndef BATTLE_ARENA_BULLET_H_
-#define BATTLE_ARENA_BULLET_H_
+#ifndef BULLET_H_
+#define BULLET_H_
 #include "entity.h"
 #include "material.h"
 
