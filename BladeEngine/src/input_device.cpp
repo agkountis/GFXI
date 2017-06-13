@@ -5,7 +5,9 @@ using namespace Blade;
 void InputDevice::SetInputState(const InputState & state)
 {
 
+	// Store the current stored state as previous
 	m_PreviousState = m_CurrentState;
+	// Store the new state as current
 	m_CurrentState = state;
 
 }
@@ -24,7 +26,7 @@ void InputDevice::FilterStateData(const InputState& stateIn, InputState& stateOu
 	// Zero the outgoing state
 	ZeroMemory(&stateOut, sizeof(InputState));
 
-	// Buttons - no processing; direct copy of flags
+	// Buttons - no processing; Pass through
 	stateOut.digitalButtonData = stateIn.digitalButtonData;
 
 	// Calculate ideal neutral state for both thumbsticks
@@ -34,13 +36,14 @@ void InputDevice::FilterStateData(const InputState& stateIn, InputState& stateOu
 	float LX = stateIn.stickLeft.axisX;
 	float LY = stateIn.stickLeft.axisY;
 
-	//determine how far the controller is pushed
+	//determine the magnitude of the position
 	float magnitude = sqrt(LX*LX + LY*LY);
 
 	// Check against deadzone radius
 	if (magnitude > DEADZONE_ASTICK_L)
 	{
 
+		// Clamp if exceeded maximum range
 		if (magnitude > THUMBSTICK_LIMIT_X_MAX) {
 
 			magnitude = THUMBSTICK_LIMIT_X_MAX;
@@ -87,9 +90,9 @@ void InputDevice::FilterStateData(const InputState& stateIn, InputState& stateOu
 		stateOut.stickRight.axisY = 0;
 	}
 
-	// Triggers - Normalize to [0.0 .. 1.0] float
-	stateOut.triggerLeft = stateIn.triggerLeft / TRIGGER_THRESHOLD;
-	stateOut.triggerRight = stateIn.triggerRight / TRIGGER_THRESHOLD;
+	// Apply deadzones and normalize triggers to working range minus deadzone
+	stateOut.triggerLeft = (stateIn.triggerLeft > DEADZONE_ATRIGGERS) ? static_cast<float>(stateIn.triggerLeft / (TRIGGER_THRESHOLD - DEADZONE_ATRIGGERS)) : 0.0f;
+	stateOut.triggerRight = (stateIn.triggerRight > DEADZONE_ATRIGGERS) ? static_cast<float>(stateIn.triggerRight / (TRIGGER_THRESHOLD - DEADZONE_ATRIGGERS)) : 0.0f;
 
 }
 

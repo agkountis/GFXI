@@ -22,6 +22,7 @@ XInputDevice::~XInputDevice()
 
 void XInputDevice::Update(float deltaTime)
 {
+
 	// Update the input states
 	XINPUT_STATE tmpState;
 	ZeroMemory(&tmpState, sizeof(XINPUT_STATE));
@@ -43,37 +44,46 @@ void XInputDevice::Update(float deltaTime)
 
 bool XInputDevice::SetVibration(float leftMotor, float rightMotor) const
 {
+
+	// Structure to hold vibration information
 	XINPUT_VIBRATION vibParams;
 	ZeroMemory(&vibParams, sizeof(XINPUT_VIBRATION));
 
 	// scale to xinput range [0..1]-->[0..65536]
 	vibParams.wLeftMotorSpeed = static_cast<int>(leftMotor * VIBRATION_THRESHOLD);
 	vibParams.wRightMotorSpeed = static_cast<int>(rightMotor * VIBRATION_THRESHOLD);
-
+	
+	// Perform the Set operation using vibParams
 	DWORD result = XInputSetState(GetDeviceID(), &vibParams);
 
+	// Status of XInputSetState as boolean
 	return (result == ERROR_SUCCESS);
+
 }
 
 bool Blade::XInputDevice::Initialize()
 {
-	// XInput devices are already initialised
 
+	// XInput devices are already initialised. Return true as default
 	return true;
 }
 
 bool Blade::XInputDevice::IsConnected() const
 {
 
-	// Prepare a state
+	/*
+	* XInput requires the API to be polled (using the device index) to return
+	* the operating state of the controller (and if successful, a state of the sensors)
+	*/
+
+	// Prepare a state to hold information
 	XINPUT_STATE tmpState;
 	ZeroMemory(&tmpState, sizeof(XINPUT_STATE));
 
 	// Query the state
 	DWORD result = XInputGetState(GetDeviceID(), &tmpState);
 
-	// The input manager will poll this function and act accordingly if the device is disconnected
-
+	// Return state
 	return (result != ERROR_DEVICE_NOT_CONNECTED);
 
 }

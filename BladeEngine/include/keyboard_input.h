@@ -14,11 +14,6 @@ namespace Blade {
 			std::map<int, bool> m_KeyStates;
 
 		public:
-			KeyboardInput();
-
-			~KeyboardInput();
-
-			void Initialize();
 
 			/**
 			* \brief Query the state of a virtual key

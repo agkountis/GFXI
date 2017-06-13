@@ -2,24 +2,9 @@
 
 using namespace Blade;
 
-KeyboardInput::KeyboardInput()
-{
-}
-
-KeyboardInput::~KeyboardInput()
-{
-}
-
-void KeyboardInput::Initialize()
-{
-	// already initialised
-}
-
 bool KeyboardInput::QueryKeyState(Virtual_Key value) noexcept
 {
-
 	return ( (GetKeyState(value) & 0x8000) != 0 );
-
 }
 
 bool KeyboardInput::QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) noexcept

@@ -10,58 +10,65 @@
 #include <iostream>
 #include <utility>
 
-#include "GLM/glm.hpp"
-
 // required library files
 #pragma comment (lib, "Xinput.lib")
 #pragma comment (lib, "Xinput9_1_0.lib")
 
 #elif defined (BLADE_BUILD_PS4)
 
-#include <pad.h>
+// Need to include PS4 pad library header(s) here. Licensing prohibits public display
 
 #endif
 
-/*
-\brief The delta tolerance between states of an analog sensor before a change is recognized. Normalized to [0.0...1.0]
-*/
-
 #if defined(BLADE_BUILD_D3D)
 
+// XInput pre-defined deazdone values
 #define DEADZONE_ASTICK_L	XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE
 #define DEADZONE_ASTICK_R	XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE
 #define DEADZONE_ATRIGGERS	XINPUT_GAMEPAD_TRIGGER_THRESHOLD
 #define VIBRATION_THRESHOLD	65535
 
+// Under XInput, each stick uses an axis range of -32767..32767 per axis
 #define THUMBSTICK_LIMIT_X_MIN	-32767
 #define THUMBSTICK_LIMIT_X_MAX	32767
 #define THUMBSTICK_LIMIT_Y_MIN	-32767
 #define THUMBSTICK_LIMIT_Y_MAX	32767
 
-#define AXIS_SHIFT 0
+/* 
+ * To translate stick axes which do not centre at (0,0)
+ * XInput devices actually do cente at 0,0 (+/- 1..2% with some noise when no deadzones are aplied),
+ * so this value should reduce to zero (depending upon floating point precision)
+ */
+#define AXIS_SHIFT AXIS_SHIFT (THUMBSTICK_LIMIT_X_MAX - ((THUMBSTICK_LIMIT_X_MAX - THUMBSTICK_LIMIT_X_MIN) * 0.5))
 
 #elif defined(BLADE_BUILD_PS4)
 
 /*
-Updates to PS4 firmware means these values are best not to be predefined, but defined
-by data from a call to scePadGetControllerInformation (returning a pad structure). These
-values are for leagacy use only.
-*/ 
+ * PS4 recommended deadzones
+ * Note: PS4 documentation recommends querying the pad library for newest deadzone information since hardcoded values will deprecate
+ */
 #define DEADZONE_ASTICK_L	0x0d
 #define DEADZONE_ASTICK_R	0x0d
 #define DEADZONE_ATRIGGERS	0x0d
 #define VIBRATION_THRESHOLD	255
 
+ /*
+ * PS4 operating axis range
+ * PS4 pad axis ranges from 0..255 (this requires the AXIS_SHIFT offset below, as the centre is calculated at 128,128);
+ */
 #define THUMBSTICK_LIMIT_X_MIN	0
 #define THUMBSTICK_LIMIT_X_MAX	255
 #define THUMBSTICK_LIMIT_Y_MIN	0
 #define THUMBSTICK_LIMIT_Y_MAX	255
 
-#define AXIS_SHIFT -128
+// Required to translate values to centre at (0,0)
+#define AXIS_SHIFT (THUMBSTICK_LIMIT_X_MAX - ((THUMBSTICK_LIMIT_X_MAX - THUMBSTICK_LIMIT_X_MIN) * 0.5))
 
 #else
 
-// ignore values?
+/*
+* Third-party custom values for joypads can be used here
+*/
 #define DEADZONE_ASTICK_L	0x00
 #define DEADZONE_ASTICK_R	0x00
 #define DEADZONE_ATRIGGERS	0x00
@@ -71,6 +78,10 @@ values are for leagacy use only.
 #define THUMBSTICK_LIMIT_Y_MIN	0
 #define THUMBSTICK_LIMIT_Y_MAX	0
 
+/*
+* For any joypads which do not centre at (0,0) this should be :
+* (THUMBSTICK_LIMIT_X_MAX - ((THUMBSTICK_LIMIT_X_MAX - THUMBSTICK_LIMIT_X_MIN) * 0.5))
+*/
 #define AXIS_SHIFT 0
 
 #endif
@@ -186,7 +197,7 @@ namespace Blade
 		const InputState& GetInputState() const { return GetCurrentState(); }
 
 		/*
-		\brief Gets the device ID (input API handle)
+		\brief Returns the device ID (input API handle)
 		*/
 		int GetDeviceID() const { return m_deviceID; }
 
