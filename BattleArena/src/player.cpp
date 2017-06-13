@@ -10,53 +10,23 @@ Player::Player(const std::string& name)
 {
 }
 
-//LeftWeaponSocket
-//RightWeaponSocket
 bool Player::AddWeapon(Weapon* weapon) noexcept
 {
-	BLADE_TRACE("Add weapon");
-
-	//left
-	if (m_WeaponCount == 0)
+	if (m_WeaponCount <2)
 	{
-		weapon->SetPosition(GetEntityFromHierarchy("LeftWeaponSocket")->GetPosition());
+		BLADE_TRACE("Add weapon");
+		++m_WeaponCount;
+		(m_WeaponCount == 1) ? weapon->SetPosition(m_LeftWeaponPos) : weapon->SetPosition(m_RightWeaponPos);
 		weapon->OnPickUp();
-
 		G_SceneManager.GetCurrentScene()->RemoveEntity(weapon->GetName());
 		AddChild(weapon);
-
 		auto weaponComp{ static_cast<WeaponComponent*>(weapon->GetComponent("co_weapon")) };
-		weaponComp->SetWeaponPosition(WeaponPosition::LEFT);
-
+		weaponComp->SetWeaponPosition(static_cast<WeaponPosition>(m_WeaponCount-1));
 		weapon->RemoveComponent(weaponComp->GetId());
-
 		AddComponent(weaponComp);
 		weaponComp->SetParent(this);
-		++m_WeaponCount;
-
 		return true;
 	}
-
-	if (m_WeaponCount == 1) //right
-	{
-		weapon->SetPosition(GetEntityFromHierarchy("RightWeaponSocket")->GetPosition());
-		weapon->OnPickUp();
-		G_SceneManager.GetCurrentScene()->RemoveEntity(weapon->GetName());
-
-		AddChild(weapon);
-
-		auto weaponComp{ static_cast<WeaponComponent*>(weapon->GetComponent("co_weapon")) };
-		weaponComp->SetWeaponPosition(WeaponPosition::RIGHT);
-
-		weapon->RemoveComponent(weaponComp->GetId());
-		this->AddComponent(weaponComp);
-		weaponComp->SetParent(this);
-
-		++m_WeaponCount;
-
-		return true;
-	}
-
 	return false;
 }
 
@@ -70,4 +40,11 @@ Vec3f Player::GetHeading() const noexcept
 	Vec3f output = Vec3f(Mat4f(q) * Vec4f(0, 0, 1, 0));
 
 	return output;
+}
+
+void Player::SetWeaponPositions(const Vec3f & leftWeaponPos, const Vec3f & rightWeaponPos) noexcept
+{
+	m_LeftWeaponPos = leftWeaponPos;
+
+	m_RightWeaponPos = rightWeaponPos;
 }
