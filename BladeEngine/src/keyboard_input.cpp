@@ -10,19 +10,19 @@ KeyboardInput::~KeyboardInput()
 {
 }
 
-void Blade::KeyboardInput::Initialize()
+void KeyboardInput::Initialize()
 {
 	// already initialised
 }
 
-bool Blade::KeyboardInput::QueryKeyState(Virtual_Key value) const
+bool KeyboardInput::QueryKeyState(Virtual_Key value) noexcept
 {
 
 	return ( (GetKeyState(value) & 0x8000) != 0 );
 
 }
 
-bool Blade::KeyboardInput::QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) const
+bool KeyboardInput::QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) noexcept
 {
 	BYTE keyState[256] = { 0 };
 	GetKeyboardState(keyState);

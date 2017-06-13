@@ -24,13 +24,13 @@ namespace Blade {
 			* \brief Query the state of a virtual key
 			* \return True if the key being queried is PRESSED (down), false otherwise
 			*/
-			bool QueryKeyState(Virtual_Key value) const;
+			static bool QueryKeyState(Virtual_Key value) noexcept;
 
 			/**
 			* \brief Query all virtual key states for attached keyboard
 			* \return True if successful, false otherwise
 			*/
-			bool QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) const;
+			static bool QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) noexcept;
 	};
 
 }

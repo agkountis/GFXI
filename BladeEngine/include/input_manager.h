@@ -56,11 +56,6 @@ namespace Blade
 		*/
 		std::map<Player, InputDevice*> m_ActiveDevices;
 
-		/**
-		* \brief Keyboard input class to read keyt states of the keyboard
-		*/
-		KeyboardInput	m_Keyboard;
-
 	public:
 
 		/**
@@ -79,13 +74,13 @@ namespace Blade
 		* \brief Query the keyboard device for the state of a key
 		* \return True if the key is a PRESSED state (down), false otherwise
 		*/
-		bool QueryKeyState(Virtual_Key key) { return m_Keyboard.QueryKeyState(key); }
+		bool QueryKeyState(Virtual_Key key) { return KeyboardInput::QueryKeyState(key); }
 
 		/**
 		* \brief Query the Keyboard device for the state of ALL keys associated to the device
 		* \return True if successful, false otherwise
 		*/
-		bool QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) { return m_Keyboard.QueryAllKeyStates(destMap); }
+		bool QueryAllKeyStates(std::map<Virtual_Key, bool>& destMap) { return KeyboardInput::QueryAllKeyStates(destMap); }
 
 		/**
 		* \brief Query the state of a sensor on an active pad linked to player

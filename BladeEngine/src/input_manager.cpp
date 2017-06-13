@@ -31,6 +31,7 @@ Vec2f InputManager::GetAnalogStickVector(Player player, Input_Sensor sensor)
 
 bool InputManager::QueryDeviceState(Player player, Input_Sensor btn)
 {
+	float epsilon{ 0.01f };
 
 	InputDevice* dev = GetActiveDevice(player);
 
@@ -44,12 +45,12 @@ bool InputManager::QueryDeviceState(Player player, Input_Sensor btn)
 	if (btn == Input_Sensor::STICK_LEFT)
 	{
 		// left stick
-		return (dev->GetInputState().stickLeft.axisX != 0.0f || dev->GetInputState().stickLeft.axisY != 0.0f);
+		return (dev->GetInputState().stickLeft.axisX < -epsilon || dev->GetInputState().stickLeft.axisY > epsilon);
 	} 
 	else if (btn == Input_Sensor::STICK_RIGHT)
 	{
 		// right stick
-		return (dev->GetInputState().stickRight.axisX != 0.0f || dev->GetInputState().stickRight.axisY != 0.0f);
+		return (dev->GetInputState().stickRight.axisX < -epsilon || dev->GetInputState().stickRight.axisY > epsilon);
 	}
 	else if (btn == Input_Sensor::TRIGGER_LEFT)
 	{
@@ -73,6 +74,7 @@ bool InputManager::QueryDeviceState(Player player, Input_Sensor btn)
 
 bool InputManager::QueryDeviceAllStates(Player player, std::map<Input_Sensor, bool>& stateMap)
 {
+	float epsilon{ 0.01f };
 
 	InputDevice* dev = GetActiveDevice(player);
 
@@ -108,8 +110,8 @@ bool InputManager::QueryDeviceAllStates(Player player, std::map<Input_Sensor, bo
 	}
 
 	// Analog Sticks
-	stateMap[STICK_LEFT] = (inState.stickLeft.axisX != 0.0f || inState.stickLeft.axisY != 0.0f);
-	stateMap[STICK_RIGHT] = (inState.stickRight.axisX != 0.0f || inState.stickRight.axisY != 0.0f);
+	stateMap[STICK_LEFT] = (inState.stickLeft.axisX < -epsilon || inState.stickLeft.axisY > epsilon);
+	stateMap[STICK_RIGHT] = (inState.stickRight.axisX < - epsilon || inState.stickRight.axisY > epsilon);
 
 	// Analog Triggers
 	stateMap[TRIGGER_LEFT] = (inState.triggerLeft > 0.0f);
