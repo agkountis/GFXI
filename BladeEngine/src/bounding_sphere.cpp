@@ -8,8 +8,8 @@
 using namespace Blade;
 
 
-BoundingSphere::BoundingSphere(float radius):
-	m_Radius{radius}
+BoundingSphere::BoundingSphere(float radius) :
+	m_Radius{ radius }
 {
 
 }
@@ -39,4 +39,3 @@ bool BoundingSphere::Collide(const PlaneCollider* plane, ContactManifold& manifo
 {
 	return SimulationUtils::SphereAndPlaneCollision(this, plane, manifold);
 }
-

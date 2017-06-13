@@ -18,9 +18,9 @@ public:
 	void SetWeaponPositions(const Blade::Vec3f& leftWeaponPos, const Blade::Vec3f& rightWeaponPos) noexcept;
 
 
-	const Blade::Vec3f& GetLeftWeaponPos()  noexcept;
+	const Blade::Vec3f GetLeftWeaponPos()  noexcept;
 
-	const Blade::Vec3f& GetRightWeaponPos()  noexcept;
+	const Blade::Vec3f GetRightWeaponPos()  noexcept;
 
 
 };
