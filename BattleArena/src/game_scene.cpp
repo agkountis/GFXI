@@ -206,9 +206,9 @@ void GameScene::OnMouseClick(int button, bool state, int x, int y) noexcept
 
 void GameScene::Update(float deltaTime, long time) noexcept
 {
-	G_InputManager.Update(deltaTime);
-
 	Scene::Update(deltaTime, time);
+
+	G_InputManager.Update(deltaTime);
 
 	G_SimulationSystem.Process(deltaTime);
 

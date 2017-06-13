@@ -17,6 +17,7 @@ bool Player::AddWeapon(Weapon* weapon) noexcept
 		BLADE_TRACE("Add weapon");
 		++m_WeaponCount;
 		(m_WeaponCount == 1) ? weapon->SetPosition(m_LeftWeaponPos) : weapon->SetPosition(m_RightWeaponPos);
+		
 		weapon->OnPickUp();
 		G_SceneManager.GetCurrentScene()->RemoveEntity(weapon->GetName());
 		AddChild(weapon);
@@ -25,6 +26,7 @@ bool Player::AddWeapon(Weapon* weapon) noexcept
 		weapon->RemoveComponent(weaponComp->GetId());
 		AddComponent(weaponComp);
 		weaponComp->SetParent(this);
+
 		return true;
 	}
 	return false;
@@ -47,4 +49,14 @@ void Player::SetWeaponPositions(const Vec3f & leftWeaponPos, const Vec3f & right
 	m_LeftWeaponPos = leftWeaponPos;
 
 	m_RightWeaponPos = rightWeaponPos;
+}
+
+const Vec3f & Player::GetLeftWeaponPos()  noexcept
+{
+	return m_LeftWeaponPos;
+}
+
+const Blade::Vec3f & Player::GetRightWeaponPos()  noexcept
+{
+	return m_LeftWeaponPos;
 }

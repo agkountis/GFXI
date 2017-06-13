@@ -46,8 +46,8 @@ Player* PlayerFactory::CreateMultiplayerPlayer(const std::string& name, const st
 	colC3->AddListener(hcom);
 
 
-	player->SetWeaponPositions(player->GetEntityFromHierarchy("LeftWeaponSocket")->GetPosition(),
-		player->GetEntityFromHierarchy("RightWeaponSocket")->GetPosition());
+	player->SetWeaponPositions(player->GetEntityFromHierarchy("LeftWeaponSocket")->GetLocalPosition(),
+		player->GetEntityFromHierarchy("RightWeaponSocket")->GetLocalPosition());
 
 	m_Counter++;
 	return player;

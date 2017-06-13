@@ -41,7 +41,7 @@ namespace Blade
 
 			simulationComponent->AddForce(gravityForce);
 
-			Vec3f position{ parent->GetPosition() };
+			Vec3f position{ parent->GetLocalPosition() };
 			simulationComponent->SetPreviousPosition(position);
 
 			Vec3f velocity{ simulationComponent->GetVelocity() };
@@ -87,11 +87,11 @@ namespace Blade
 				move2 = movePerInverseMass * -simcom2->GetInverseMass();
 			}
 
-			e1->SetPosition(e1->GetPosition() + move1);
+			e1->SetPosition(e1->GetLocalPosition() + move1);
 
 			if (e2)
 			{
-				e2->SetPosition(e2->GetPosition() + move2);
+				e2->SetPosition(e2->GetLocalPosition() + move2);
 			}
 	}
 
@@ -263,20 +263,38 @@ namespace Blade
 
 	void SimulationSystem::UnregisterComponent(SimulationComponent* c)  noexcept
 	{
-		std::remove_if(m_SimulationComponents.begin(),
-			m_SimulationComponents.end(),
-			[c](SimulationComponent* element) {
-			return c->GetId() == element->GetId();
-		});
+		auto it{ m_SimulationComponents.begin() };
+
+		while (it != m_SimulationComponents.end())
+		{
+			auto entry{ *it };
+			if (entry->GetId() == c->GetId())
+			{
+				it = m_SimulationComponents.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
 	}
 
 	void SimulationSystem::UnregisterComponent(ColliderComponent* c) noexcept
 	{
-		std::remove_if(m_ColliderComponents.begin(),
-			m_ColliderComponents.end(),
-			[c](ColliderComponent* element) {
-			return c->GetId() == element->GetId();
-		});
+		auto it{ m_ColliderComponents.begin() };
+
+		while (it != m_ColliderComponents.end())
+		{
+			auto entry{ *it };
+			if (entry->GetId() == c->GetId())
+			{
+				it = m_ColliderComponents.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
 	}
 
 	const std::vector<SimulationComponent*>& SimulationSystem::GetSimulationComponents() const noexcept

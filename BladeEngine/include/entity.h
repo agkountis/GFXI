@@ -78,7 +78,9 @@ namespace Blade
 
 		const std::string& GetName() const noexcept;
 
-		const Vec3f& GetPosition() const noexcept;
+		const Vec3f& GetLocalPosition() const noexcept;
+
+		const Vec3f& GetWorldPosition() noexcept;
 
 		void SetPosition(const Vec3f& position) noexcept;
 

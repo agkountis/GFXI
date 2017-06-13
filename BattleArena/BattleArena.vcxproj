@@ -305,6 +305,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\bullet_behaviour.cpp" />
     <ClCompile Include="src\health_component.cpp" />
     <ClCompile Include="src\player_behaviour.cpp" />
     <ClCompile Include="src\player_factory.cpp" />
@@ -331,6 +332,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\bullet.h" />
+    <ClInclude Include="include\bullet_behaviour.h" />
     <ClInclude Include="include\cannon_weapon_component.h" />
     <ClInclude Include="include\assimp_utils.h" />
     <ClInclude Include="include\battle_arena_application.h" />

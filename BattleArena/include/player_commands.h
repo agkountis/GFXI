@@ -124,6 +124,8 @@ public:
 
 		//#needtorefactor
 
+		auto p{ static_cast<Player*>(entity) };
+
 		//Get the weapons vector
 		if (entity->GetComponents("co_weapon").size() > 0)
 		{
@@ -142,7 +144,7 @@ public:
 				{
 					if (weapon->GetWeaponPosition() == WeaponPosition::LEFT)
 					{
-						weapon->Shoot();
+						weapon->Shoot(p->GetLeftWeaponPos());
 						return;
 					}
 				}
@@ -159,7 +161,7 @@ public:
 	{
 		using namespace Blade;
 
-		//#needtorefactor
+		auto p{ static_cast<Player*>(entity) };
 
 		//Get the weapons vector
 		if (entity->GetComponents("co_weapon").size() > 0)
@@ -179,7 +181,7 @@ public:
 				{
 					if (weapon->GetWeaponPosition() == WeaponPosition::RIGHT)
 					{
-						weapon->Shoot();
+						weapon->Shoot(p->GetRightWeaponPos());
 						return;
 					}
 				}

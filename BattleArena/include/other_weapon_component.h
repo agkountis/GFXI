@@ -14,7 +14,7 @@ public:
 
 	virtual ~OtherWeaponComponent();
 
-	void Shoot() override;
+	void Shoot(const Blade::Vec3f& position) override;
 };
 
 

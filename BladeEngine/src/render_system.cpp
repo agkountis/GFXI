@@ -14,13 +14,21 @@ namespace Blade
 
 	void RenderSystem::UnregisterComponent(int id) noexcept
 	{
-		std::remove_if(m_RenderComponents.begin(),
-		               m_RenderComponents.end(),
-		               [id](RenderComponent* component)
-		               {
-			               return id == component->GetId();
-		               }
-		);
+		auto it{ m_RenderComponents.begin() };
+
+		while (it != m_RenderComponents.end())
+		{
+			auto entry{ *it };
+			if (entry->GetId() == id)
+			{
+				it = m_RenderComponents.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+
 	}
 
 	void RenderSystem::SetRenderPassPipeline(RenderPassPipeline* renderPass) noexcept

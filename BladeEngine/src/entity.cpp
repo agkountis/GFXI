@@ -65,14 +65,21 @@ namespace Blade
 		return m_Name;
 	}
 
-	const Vec3f& Entity::GetPosition() const noexcept
+	const Vec3f& Entity::GetLocalPosition() const noexcept
 	{
 		return m_Position;
+	}
+
+	const Blade::Vec3f& Entity::GetWorldPosition() noexcept
+	{
+		CalculateXform();
+		return (m_Xform*Vec4f(1.0f)).xyz;
 	}
 
 	void Entity::SetPosition(const Vec3f& position) noexcept
 	{
 		m_Position = position;
+		CalculateXform();
 	}
 
 	const Quatf& Entity::GetOrientation() const noexcept
@@ -83,12 +90,14 @@ namespace Blade
 	void Entity::SetOrientation(const Quatf& orientation) noexcept
 	{
 		m_Orientation = orientation;
+		CalculateXform();
 	}
 
 	void Entity::SetOrientation(const Vec3f& axis, float angle) noexcept
 	{
 		Quatf q;
 		m_Orientation = MathUtils::Rotate(q, angle, axis);
+		CalculateXform();
 	}
 
 	const Vec3f& Entity::GetScale() const noexcept
@@ -98,7 +107,9 @@ namespace Blade
 
 	void Entity::SetScale(const Vec3f& scale) noexcept
 	{
+		
 		m_Scale = scale;
+		CalculateXform();
 	}
 
 	Entity* Entity::GetParent() const noexcept

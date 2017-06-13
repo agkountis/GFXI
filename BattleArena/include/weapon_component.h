@@ -19,13 +19,13 @@ public:
 
 	virtual ~WeaponComponent();
 
-	virtual void Shoot() = 0;
+	virtual void Shoot(const Blade::Vec3f& position) = 0;
 
 	WeaponPosition GetWeaponPosition() const { return m_WeaponPos; };
 
 	void SetWeaponPosition(const WeaponPosition position) { m_WeaponPos = position; };
 
-private:
+protected:
 
 	WeaponPosition m_WeaponPos;
 };

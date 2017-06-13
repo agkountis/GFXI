@@ -43,7 +43,7 @@ namespace Blade
 		Vec3f planeDir{ plane->GetPlaneNormal() };
 		float planeOffset{ plane->GetOffeset() };
 
-		float sphereDistance{ MathUtils::Dotf(planeDir, sphere->GetColliderComponent()->GetParent()->GetPosition()) - sphere->GetRadius() - planeOffset };
+		float sphereDistance{ MathUtils::Dotf(planeDir, sphere->GetColliderComponent()->GetParent()->GetLocalPosition()) - sphere->GetRadius() - planeOffset };
 
 		if (sphereDistance <= 0.0f)
 		{
