@@ -29,7 +29,7 @@ Bullet::Bullet(const std::string& name,
 	SimulationComponent* simC{ new SimulationComponent{ this ,mass } };
 	ColliderComponent* colC{ new ColliderComponent{ this,std::make_unique<BoundingSphere>(radius) } };
 	simC->SetVelocity(velocity);
-#if !_DEBUG
+//#if !_DEBUG
 	EmitterComponent* ec = new EmitterComponent{ this };
 	ec->SetLifeSpan(1.0f);
 	ec->SetMaxParticles(1000);
@@ -47,7 +47,7 @@ Bullet::Bullet(const std::string& name,
 	Texture* tex{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"expl02.png") };
 	tex->SetTextureType(TEX_DIFFUSE);
 	ec->SetTexture(tex);
-#endif
+//#endif
 
 	auto bv{ new BulletBehaviour{ this } };
 	colC->AddListener(bv);

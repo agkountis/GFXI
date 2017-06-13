@@ -105,7 +105,7 @@ namespace Blade
 		G_ParticleSystem.RegisterComponent(this);
 	}
 
-	EmitterComponent::EmitterComponent(Entity* entity, const EmitterDescriptor& descriptor):
+	EmitterComponent::EmitterComponent(Entity* entity, EmitterDescriptor descriptor):
 		BehaviourComponent("co_emitter", entity),
 		m_Descriptor(descriptor)
 	{

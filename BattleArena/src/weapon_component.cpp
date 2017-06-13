@@ -3,7 +3,7 @@
 using namespace Blade;
 
 WeaponComponent::WeaponComponent(WeaponPosition pos, Blade::Entity * parent):
-	Component("co_weapon", parent),m_WeaponPos(pos)
+	Component("co_weapon", parent), m_WeaponPos(pos)
 {
 }
 

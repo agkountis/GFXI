@@ -366,12 +366,12 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 
 	//////////////////////////////////////////////////////////////////////////
 
-#if !_DEBUG
+//#if !_DEBUG
 
 	G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_0);
 	G_ShaderProgramManager.Get("particles_sdrprog")->Bind();
 
-	auto emitters = G_ParticleSystem.GetEmitterComponents();
+	auto& emitters = G_ParticleSystem.GetEmitterComponents();
 
 	for (auto emitter : emitters)
 	{
@@ -436,7 +436,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 	}
 	G_RenderStateManager.Set(RenderStateType::BS_BLEND_DISSABLED);
 	G_RenderStateManager.Set(RenderStateType::DSS_DEPTH_MASK_1);
-#endif // 
+//#endif // 
 	//Unbind the render target.
 	m_ColorRenderTarget.Unbind();
 

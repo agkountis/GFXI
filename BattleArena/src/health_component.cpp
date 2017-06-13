@@ -28,7 +28,8 @@ void HealthComponent::OnCollision(Entity * other) noexcept
 	{
 		if (m_Timer.GetMsec() > m_CollisionTimeOffset)
 		{
-			std::cout <<GetParent()->GetName() <<" - "<< m_HealthValue << std::endl;
+			BLADE_TRACE(GetParent()->GetName() + " - " + std::to_string(m_HealthValue));
+
 			//Collision detected
 			if (m_HealthValue > 0)
 			{

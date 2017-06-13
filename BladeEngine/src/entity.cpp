@@ -70,7 +70,7 @@ namespace Blade
 		return m_Position;
 	}
 
-	const Blade::Vec3f Entity::GetWorldPosition() noexcept
+	Vec3f Entity::GetWorldPosition() noexcept
 	{
 		CalculateXform();
 		return (m_Xform*Vec4f(1.0f)).xyz;
@@ -107,7 +107,7 @@ namespace Blade
 
 	void Entity::SetScale(const Vec3f& scale) noexcept
 	{
-		
+
 		m_Scale = scale;
 		CalculateXform();
 	}
@@ -228,7 +228,7 @@ namespace Blade
 			}
 		}
 
-		return result;
+		return std::move(result);
 	}
 
 	void Entity::AddComponent(Component* component) noexcept

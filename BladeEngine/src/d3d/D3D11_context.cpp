@@ -39,11 +39,11 @@ namespace Blade
 			{
 				break;
 			}
-				
+
 			if (Adapter)
 			{
 				Adapter->Release();
-			}	
+			}
 		}
 
 		auto DriverType = Adapter ? D3D_DRIVER_TYPE_UNKNOWN : D3D_DRIVER_TYPE_HARDWARE;
@@ -61,7 +61,7 @@ namespace Blade
 			                             m_Device.ReleaseAndGetAddressOf(),
 			                             &feature_level,
 			                             m_DeviceContext.ReleaseAndGetAddressOf());
-			
+
 			if (Adapter)
 			{
 				Adapter->Release();

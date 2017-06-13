@@ -27,9 +27,8 @@ namespace Blade
 			{
 				m_NeedToBeRemovedEntities.push_back(entity);
 			}
-		}	
+		}
 	}
-
 
 	void Scene::RemoveEntities() noexcept
 	{
@@ -52,9 +51,6 @@ namespace Blade
 			}
 		}
 		m_NeedToBeRemovedEntities.clear();
-		
-
-
 	}
 
 	const std::vector<Entity*>& Scene::GetEntities() const noexcept

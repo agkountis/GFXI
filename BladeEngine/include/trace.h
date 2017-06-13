@@ -1,7 +1,7 @@
 #ifndef BLADE_TRACE_H_
 #define BLADE_TRACE_H_
 
-#ifdef _DEBUG
+//#ifdef _DEBUG
 
 #include <iostream>
 
@@ -14,11 +14,11 @@
 // Warning macros
 #define BLADE_WARNING(warning) std::clog << "WARNING: " << warning << std::endl
 ////
-#else
-#define BLADE_TRACE(trace)
-#define BLADE_ERROR(trace)
-#define BLADE_WARNING(trace)
-#endif
+//#else
+//#define BLADE_TRACE(trace)
+//#define BLADE_ERROR(trace)
+//#define BLADE_WARNING(trace)
+//#endif
 
 
 #endif //BLADE_TRACE_H_

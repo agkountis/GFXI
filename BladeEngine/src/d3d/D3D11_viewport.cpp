@@ -14,7 +14,7 @@ namespace Blade
 		viewport.MaxDepth = m_MaxDepth;
 
 		ID3D11DeviceContext* context{ G_GAPIContext.GetDeviceContext() };
-		
+
 		context->RSSetViewports(1, &viewport);
 	}
 }

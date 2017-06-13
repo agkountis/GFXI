@@ -38,6 +38,8 @@ void GameScene::Initialize()
 	Mesh* plane{ MeshUtils::GeneratePlaneXy(1.0f) };
 	G_ResourceManager.RegisterResource(plane, L"plane");
 
+	Texture* tex = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"star.jpg");
+
 	//Define a material.
 	Material material;
 	material.diffuse = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
@@ -73,9 +75,9 @@ void GameScene::Initialize()
 	p->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
 	AddEntity(p);
 
-	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
-	p2->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
-	AddEntity(p2);
+	auto p2{ nullptr };
+//	p2->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
+//	AddEntity(p2);
 
 	auto weapon1{ m_WeaponFactory.CreateWeapon1("weapon1") };
 	AddEntity(weapon1);
@@ -131,8 +133,6 @@ void GameScene::Initialize()
 	//Instruct the Camera system to set this camera as the active one.
 	G_CameraSystem.SetActiveCamera("Camera3");
 
-	//Instruct the Camera system to set this camera as the active one.
-	G_CameraSystem.SetActiveCamera("Camera3");
 
 	// --------------------------------------------------------------------------------------------------------------------
 

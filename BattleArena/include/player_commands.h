@@ -129,7 +129,8 @@ public:
 		//Get the weapons vector
 		if (entity->GetComponents("co_weapon").size() > 0)
 		{
-			auto componentVector = (entity->GetComponents("co_weapon"));
+			auto componentVector = entity->GetComponents("co_weapon");
+
 			std::vector<WeaponComponent*> weaponsVector;
 			for (auto component : componentVector)
 			{

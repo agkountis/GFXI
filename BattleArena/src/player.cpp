@@ -54,20 +54,19 @@ Vec3f Player::GetHeading() const noexcept
 	return output;
 }
 
-void Player::SetWeaponPositions(const Vec3f & leftWeaponPos, const Vec3f & rightWeaponPos) noexcept
+void Player::SetWeaponPositions(const Vec3f& leftWeaponPos, const Vec3f& rightWeaponPos) noexcept
 {
 	m_LeftWeaponPos = leftWeaponPos;
 
 	m_RightWeaponPos = rightWeaponPos;
 }
 
-const Vec3f Player::GetLeftWeaponPos()  noexcept
+Vec3f Player::GetLeftWeaponPos() const noexcept
 {
-	
-	return (GetXform() * Vec4f(m_LeftWeaponPos,1.0f)).xyz;
+	return (GetXform() * Vec4f(m_LeftWeaponPos, 1.0f)).xyz;
 }
 
-const Blade::Vec3f Player::GetRightWeaponPos()  noexcept
+Vec3f Player::GetRightWeaponPos() const noexcept
 {
 	return (GetXform() * Vec4f(m_RightWeaponPos, 1.0f)).xyz;
 }

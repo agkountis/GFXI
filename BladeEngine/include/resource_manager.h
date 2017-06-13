@@ -4,6 +4,7 @@
 #include <iostream>
 #include "resource.h"
 #include "string_utils.h" 
+#include "trace.h"
 
 namespace Blade
 {
@@ -46,7 +47,7 @@ namespace Blade
 			{
 				resource->SetId(s_Id);
 				RegisterResource(resource, fileName);
-				BLADE_TRACE("loaded  "+StringUtils::ToString(fileName));
+				BLADE_TRACE("loaded  " + StringUtils::ToString(fileName));
 				return true;
 			}
 
@@ -68,7 +69,7 @@ namespace Blade
 				resource = m_ResourcesByName[fileName];
 			}
 
-			T* res{ dynamic_cast<T*>(resource) };
+			T* res{ static_cast<T*>(resource) };
 			if (!res)
 			{
 				std::cerr << "The file you asked for does not represent the type you are requesting!" << std::endl;
@@ -98,7 +99,8 @@ namespace Blade
 			}
 
 			m_ResourcesByName[name] = resource;
-			m_ResourcesById[s_Id++] = resource;
+			m_ResourcesById[s_Id] = resource;
+			s_Id++;
 		}
 	};
 }

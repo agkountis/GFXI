@@ -4,42 +4,45 @@
 
 using namespace Blade;
 
-ParticleSystem::~ParticleSystem()
+namespace Blade
 {
-}
-
-void ParticleSystem::RegisterComponent(EmitterComponent * emitterComponent) noexcept
-{
-	m_EmitterComponents.push_back(emitterComponent);
-}
-
-
-
-bool Blade::ParticleSystem::Initialize() noexcept
-{
-	return true;
-}
-
-void Blade::ParticleSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
-{
-	//Particle system do not process anything
-}
-
-void ParticleSystem::UnregisterComponent(const int id) noexcept
-{
-	std::remove_if(m_EmitterComponents.begin(),
-		m_EmitterComponents.end(),
-		[id](EmitterComponent* component)
+	void ParticleSystem::RegisterComponent(EmitterComponent * emitterComponent) noexcept
 	{
-		return id == component->GetId();
+		m_EmitterComponents.push_back(emitterComponent);
 	}
-	);
+
+	bool ParticleSystem::Initialize() noexcept
+	{
+		return true;
+	}
+
+	void ParticleSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
+	{
+		//Particle system do not process anything
+	}
+
+	void ParticleSystem::UnregisterComponent(const int id) noexcept
+	{
+		auto it = m_EmitterComponents.begin();
+
+		while (it != m_EmitterComponents.end())
+		{
+			auto entry = *it;
+
+			if (id == entry->GetId())
+			{
+				it = m_EmitterComponents.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+	}
+
+	std::vector<EmitterComponent*>& ParticleSystem::GetEmitterComponents() noexcept
+	{
+		return m_EmitterComponents;
+	}
 }
-
-std::vector<EmitterComponent*>& ParticleSystem::GetEmitterComponents() noexcept
-{
-	return std::move(m_EmitterComponents);
-}
-
-
 

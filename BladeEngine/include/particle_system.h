@@ -15,11 +15,6 @@ namespace Blade
 
 	public:
 		/*
-		\brief Destructor of the particle system
-		*/
-		~ParticleSystem();
-
-		/*
 		\brief Registers a EmitterComponent to the ParticleSystem
 		\param emitterComponent The component to be registered to the Particle system
 		*/

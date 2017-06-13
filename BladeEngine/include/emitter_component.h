@@ -95,7 +95,7 @@ namespace Blade
 	public:
 		explicit EmitterComponent(Entity* parent);
 
-		explicit EmitterComponent(Entity* entity, const EmitterDescriptor& descriptor);
+		explicit EmitterComponent(Entity* entity, EmitterDescriptor descriptor);
 
 		EmitterComponent(const EmitterComponent& other) = default;
 

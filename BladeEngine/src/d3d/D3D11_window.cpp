@@ -70,7 +70,7 @@ namespace Blade
 			std::cerr << "Failed to get the adress of the back buffer." << std::endl;
 			return false;
 		}
-		
+
 		// use the back buffer address to create the render target
 		ID3D11Device* device{ ctx.GetDevice() };
 		res = device->CreateRenderTargetView(G_GAPIContext.GetBackBuffer(), nullptr, ctx.GetGetAddressOfDefaultRenderTargetView());

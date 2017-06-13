@@ -19,7 +19,7 @@ WeaponFactory::WeaponFactory()
 	m_DescriptorWeapon1.spawnRate = 200.0f;
 	m_DescriptorWeapon1.particleSize = 1.0f;
 	m_DescriptorWeapon1.velocity = Vec3f(0.01f, 0.01f, 0.01f);
-	m_DescriptorWeapon1.velocityRange = 1.0f;	
+	m_DescriptorWeapon1.velocityRange = 1.0f;
 	m_DescriptorWeapon1.startColor = Vec4f(1.0f,0.1f,0.0f,1.0f);
 	m_DescriptorWeapon1.endColor = Vec4f(1.0f,0.1f,0.0f,0.1f);
 	m_DescriptorWeapon1.blendStateType = RenderStateType::BS_BLEND_ADDITIVE;
@@ -41,7 +41,9 @@ Weapon* WeaponFactory::CreateWeapon1(const std::string & name)
 	Weapon* weapon{ new Weapon{name} };
 	auto cwc{ new CannonWeaponComponent{weapon} };
 	auto emc{ new EmitterComponent{weapon, m_DescriptorWeapon1} };
-	emc->SetTexture(G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"star.jpg"));
+	Texture* tex{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"star.jpg") };
+	tex->SetTextureType(TEX_DIFFUSE);
+	emc->SetTexture(tex);
 	emc->SetMesh(G_ResourceManager.Get<Mesh>(L"plane"));
 	auto cc{ new ColliderComponent(weapon,std::make_unique<BoundingSphere>(1.0f)) };
 #if _DEBUG
@@ -60,12 +62,14 @@ Weapon* WeaponFactory::CreateWeapon1(const std::string & name)
 	return weapon;
 }
 
-Weapon* WeaponFactory::CreateWeapon2(const std::string & name) const
+Weapon* WeaponFactory::CreateWeapon2(const std::string& name) const
 {
 	Weapon* weapon{ new Weapon{ name } };
 	auto cwc{ new OtherWeaponComponent{ weapon } };
 	auto emc{ new EmitterComponent{ weapon, m_DescriptorWeapon2 } };
-	emc->SetTexture(G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"star.jpg"));
+	Texture* tex{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"star.jpg") };
+	tex->SetTextureType(TEX_DIFFUSE);
+	emc->SetTexture(tex);
 	emc->SetMesh(G_ResourceManager.Get<Mesh>(L"plane"));
 	auto cc{ new ColliderComponent(weapon,std::make_unique<BoundingSphere>(1.0f)) };
 #if _DEBUG

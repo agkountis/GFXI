@@ -70,16 +70,16 @@ namespace Blade
 		virtual int Run() noexcept = 0;
 	};
 
-#if defined(_MSC_VER)
-#  pragma comment(linker, "/ENTRY:mainCRTStartup")
-#  if defined(_DEBUG)
-#    pragma comment(linker, "/SUBSYSTEM:console ")
-#    pragma message(__FILE__ ": /SUBSYSTEM:console /ENTRY:mainCRTStartup")
-#  else
-#    pragma comment(linker, "/SUBSYSTEM:windows")
-#    pragma message(__FILE__ ": /SUBSYSTEM:windows /ENTRY:mainCRTStartup")
-#  endif
-#endif
+//#if defined(_MSC_VER)
+//#  pragma comment(linker, "/ENTRY:mainCRTStartup")
+//#  if defined(_DEBUG)
+//#    pragma comment(linker, "/SUBSYSTEM:console ")
+//#    pragma message(__FILE__ ": /SUBSYSTEM:console /ENTRY:mainCRTStartup")
+//#  else
+//#    pragma comment(linker, "/SUBSYSTEM:windows")
+//#    pragma message(__FILE__ ": /SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+//#  endif
+//#endif
 }
 
 #endif //BLADE_APPLICATION_H_
