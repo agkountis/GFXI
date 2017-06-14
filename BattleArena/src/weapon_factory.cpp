@@ -36,7 +36,36 @@ WeaponFactory::WeaponFactory()
 
 }
 
-Weapon* WeaponFactory::CreateWeapon1(const std::string & name)
+void WeaponFactory::SetArena(Entity * arena) noexcept
+{
+	m_Arena = arena;
+}
+
+void WeaponFactory::GenerateWeapons() const noexcept
+{
+	int aux{ 1 };
+	while (m_Arena->GetEntityFromHierarchy("WS," + std::to_string(aux)))
+	{
+		auto entity{ m_Arena->GetEntityFromHierarchy("WS," + std::to_string(aux)) };
+		if (aux % 2 == 0)
+		{
+			G_SceneManager.GetCurrentScene()->AddEntity( CreateWeapon1("weapon1_" + std::to_string(aux), entity->GetLocalPosition()));
+		}
+		else
+		{
+			G_SceneManager.GetCurrentScene()->AddEntity(CreateWeapon2("weapon2_" + std::to_string(aux), entity->GetLocalPosition()));
+		}
+		++aux;
+
+	}
+
+	
+
+
+
+}
+
+Weapon* WeaponFactory::CreateWeapon1(const std::string & name,const Vec3f& pos) const  noexcept
 {
 	Weapon* weapon{ new Weapon{name} };
 	auto cwc{ new CannonWeaponComponent{weapon} };
@@ -58,11 +87,11 @@ Weapon* WeaponFactory::CreateWeapon1(const std::string & name)
 #endif
 
 	//#needtorefactor add position logic
-	weapon->SetPosition(Vec3f(15.0f, 1.0f, 1.0f));
+	weapon->SetPosition(pos);
 	return weapon;
 }
 
-Weapon* WeaponFactory::CreateWeapon2(const std::string& name) const
+Weapon* WeaponFactory::CreateWeapon2(const std::string& name, const Vec3f& pos) const noexcept
 {
 	Weapon* weapon{ new Weapon{ name } };
 	auto cwc{ new OtherWeaponComponent{ weapon } };
@@ -83,6 +112,6 @@ Weapon* WeaponFactory::CreateWeapon2(const std::string& name) const
 
 #endif
 
-	weapon->SetPosition(Vec3f(-4.0f, 1.0f, -3.0f));
+	weapon->SetPosition(pos);
 	return weapon;
 }

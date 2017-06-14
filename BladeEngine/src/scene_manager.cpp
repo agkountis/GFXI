@@ -4,8 +4,8 @@ namespace Blade
 {
 	void SceneManager::PushScene(std::unique_ptr<Scene> scene) noexcept
 	{
-		scene->Initialize();
 		m_Scenes.push_back(std::move(scene));
+		m_Scenes.back()->Initialize();
 	}
 
 	void SceneManager::PopScene() noexcept

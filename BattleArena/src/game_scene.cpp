@@ -62,7 +62,7 @@ void GameScene::Initialize()
 	Entity* arena{ new Entity{ "arena" } };
 	arena->Load(L"data/models/arena5.fbx");
 	AddEntity(arena);
-
+	m_WeaponFactory.SetArena(arena);
 	Entity* entity{ new Entity{ "Environment" } };
 	ColliderComponent* floor{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,1.0f,0.0f },0.0f) } };
 	ColliderComponent* wall1{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ -1.0f,0.0f,0.0f },-40.0f) } };
@@ -86,20 +86,7 @@ void GameScene::Initialize()
 	p2->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
 	AddEntity(p2);
 
-	auto weapon1{ m_WeaponFactory.CreateWeapon1("weapon1") };
-	AddEntity(weapon1);
-
-	auto weapon2{ m_WeaponFactory.CreateWeapon1("weapon1") };
-	weapon2->SetPosition(Vec3f(3.0f, 1.0f, 10.0f));
-	AddEntity(weapon2);
-
-	auto weapon3{ m_WeaponFactory.CreateWeapon1("weapon1") };
-	weapon3->SetPosition(Vec3f(-3.0f, 1.0f, -10.0f));
-	AddEntity(weapon3);
-
-	auto weapon4{ m_WeaponFactory.CreateWeapon2("weapon2") };
-	weapon4->SetPosition(Vec3f(-10.0f, 1.0f, -5.0f));
-	AddEntity(weapon4);
+	m_WeaponFactory.GenerateWeapons();
 
 
 
