@@ -24,7 +24,7 @@ public:
 private:
 	PlayerFactory m_PlayerFactory;
 	WeaponFactory m_WeaponFactory;
-	HealthBarFactory m_HealthBarFactory{ this };
+	HealthBarFactory m_HealthBarFactory;
 };
 
 #endif //BATTLE_ARENA_GAME_SCENE_H_

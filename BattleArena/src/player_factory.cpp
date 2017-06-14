@@ -9,6 +9,7 @@
 #include "health_component.h"
 
 
+
 using namespace Blade;
 
 Player* PlayerFactory::CreateLocalKeyboardPlayer(const std::string& name, const std::wstring& modelPath) noexcept
@@ -46,12 +47,11 @@ Player* PlayerFactory::CreateMultiplayerPlayer(const std::string& name, const st
 	HealthComponent* hcom{ new HealthComponent(player) };
 	colC3->AddListener(hcom);
 
-	
+	HealthBar* hb{ m_HealthBarFactory.CreateHealthBar(player,100) };
+    hb->SetHealthValue(100);
 
-
+	hcom->SetListenerBar(hb);
 	player->SetWeaponPositions(player->GetEntityFromHierarchy("LeftWeaponSocket")->GetLocalPosition(), player->GetEntityFromHierarchy("RightWeaponSocket")->GetLocalPosition());
-
-
 
 	m_Counter++;
 	return player;

@@ -7,11 +7,11 @@
 class HealthComponent : public Blade::BehaviourComponent
 {
 private:
-	const int m_InitialValue{ 10 };
+	const int m_InitialValue{ 100 };
 
 	const int m_CollisionTimeOffset{ 20 };
 
-	const int m_Damage{ 1 };
+	const int m_Damage{ 10 };
 
 	int m_HealthValue{ m_InitialValue };
 
