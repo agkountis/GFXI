@@ -82,9 +82,9 @@ void GameScene::Initialize()
 	p->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
 	AddEntity(p);
 
-	auto p2{ nullptr };
-//	p2->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
-//	AddEntity(p2);
+	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
+	p2->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
+	AddEntity(p2);
 
 	auto weapon1{ m_WeaponFactory.CreateWeapon1("weapon1") };
 	AddEntity(weapon1);
