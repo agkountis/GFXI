@@ -1,4 +1,4 @@
-#include "bullet.h"
+#include "projectile.h"
 #include "render_component.h"
 #include "simulation_component.h"
 #include "collider_component.h"
@@ -12,22 +12,21 @@
 
 using namespace Blade;
 
-Bullet::Bullet(const std::string& name,
+Projectile::Projectile(const std::string& name,
                const std::wstring& mesh,
                const Material& material,
                const float radius,
                const float mass,
                const Vec3f& position,
-               const Vec3f& velocity) : Entity(name)
+               const Vec3f& velocity) : Entity(name), m_Radius{radius}, m_Active{false}
 {
 
-	SetScale(Vec3f(0.2f, 0.2f, 0.2f));
+	SetScale(Vec3f(radius, radius, radius));
 	SetPosition(position);
 	RenderComponent* rc{ new RenderComponent{ this } };
 	rc->SetMesh(G_ResourceManager.Get<Mesh>(mesh));
 	rc->SetMaterial(material);
 	SimulationComponent* simC{ new SimulationComponent{ this ,mass } };
-	ColliderComponent* colC{ new ColliderComponent{ this,std::make_unique<BoundingSphere>(radius) } };
 	simC->SetVelocity(velocity);
 //#if !_DEBUG
 	EmitterComponent* ec = new EmitterComponent{ this };
@@ -35,8 +34,8 @@ Bullet::Bullet(const std::string& name,
 	ec->SetMaxParticles(1000);
 	ec->SetSpawnRate(200);
 	ec->SetActive(true);
-	ec->SetParticleSize(3.f);
-	ec->SetSpawnRadius(1.5f);
+	ec->SetParticleSize(0.8f);
+	ec->SetSpawnRadius(m_Radius);
 	ec->SetVelocity(Vec3f{ 0.0f, 1.0f, 0.0f });
 	ec->SetVelocityRange(1.3f);
 	ec->SetExternalForce(Vec3f{ 0.0f, -1.3f, 0.0f });
@@ -48,7 +47,21 @@ Bullet::Bullet(const std::string& name,
 	tex->SetTextureType(TEX_DIFFUSE);
 	ec->SetTexture(tex);
 //#endif
+	m_Timer.Start();
+	//auto bv{ new BulletBehaviour{ this } };
+	//colC->AddListener(bv);
+}
 
-	auto bv{ new BulletBehaviour{ this } };
-	colC->AddListener(bv);
+void Projectile::Update(float dt, long time /*= 0*/) noexcept
+{
+	if(!m_Active)
+	{
+		if (m_Timer.GetMsec() > 50)
+		{
+			ColliderComponent* colC{ new ColliderComponent{ this,std::make_unique<BoundingSphere>(m_Radius) } };
+			auto bv{ new BulletBehaviour{ this } };
+			colC->AddListener(bv);
+			m_Active = true;
+		}
+	}
 }

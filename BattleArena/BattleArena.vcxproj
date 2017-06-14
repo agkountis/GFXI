@@ -310,7 +310,7 @@
     <ClCompile Include="src\player_behaviour.cpp" />
     <ClCompile Include="src\player_factory.cpp" />
     <ClCompile Include="src\player_keyboard_component.cpp" />
-    <ClCompile Include="src\bullet.cpp" />
+    <ClCompile Include="src\projectile.cpp" />
     <ClCompile Include="src\cannon_weapon_component.cpp" />
     <ClCompile Include="src\game_scene_color_pass_ovr.cpp" />
     <ClCompile Include="src\other_weapon_component.cpp" />
@@ -331,7 +331,7 @@
     <ClCompile Include="src\weapon_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\bullet.h" />
+    <ClInclude Include="include\projectile.h" />
     <ClInclude Include="include\bullet_behaviour.h" />
     <ClInclude Include="include\cannon_weapon_component.h" />
     <ClInclude Include="include\assimp_utils.h" />

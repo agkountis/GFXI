@@ -1,6 +1,6 @@
 #include "health_component.h"
 #include "trace.h"
-#include "bullet.h"
+#include "projectile.h"
 using namespace Blade;
 
 
@@ -24,7 +24,7 @@ void HealthComponent::Teardown() noexcept
 
 void HealthComponent::OnCollision(Entity * other) noexcept
 {
-	if(dynamic_cast<Bullet*>(other))
+	if(dynamic_cast<Projectile*>(other))
 	{
 		if (m_Timer.GetMsec() > m_CollisionTimeOffset)
 		{

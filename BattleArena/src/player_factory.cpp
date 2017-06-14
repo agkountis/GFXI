@@ -35,19 +35,24 @@ Player* PlayerFactory::CreateMultiplayerPlayer(const std::string& name, const st
 	Player* player{ new Player{ name } };
 
 	player->Load(MODELS_PATH + modelPath);
-	//#question
+
 	SimulationComponent* simC3{ new SimulationComponent{ player,1.0f } };
 
 	PlayerBehaviour* pb = new PlayerBehaviour(player, true);
-	ColliderComponent* colC3{ new ColliderComponent{ player,std::make_unique<BoundingSphere>(0.8f) } };
+	ColliderComponent* colC3{ new ColliderComponent{ player,std::make_unique<BoundingSphere>(1.0f) } };
+#if _DEBUG
+	RenderComponent *rc{ new RenderComponent{player} };
+	Material material;
+	material.diffuse = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
+	material.specular = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f }; //the w value is the shininess.
+	rc->SetMesh(G_ResourceManager.Get<Mesh>(L"cube"));
+	rc->SetMaterial(material);
+#endif
 	colC3->AddListener(pb);
 
 	HealthComponent* hcom{ new HealthComponent(player) };
 	colC3->AddListener(hcom);
-
-
 	player->SetWeaponPositions(player->GetEntityFromHierarchy("LeftWeaponSocket")->GetLocalPosition(), player->GetEntityFromHierarchy("RightWeaponSocket")->GetLocalPosition());
-
 	m_Counter++;
 	return player;
 }

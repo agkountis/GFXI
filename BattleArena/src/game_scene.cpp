@@ -20,6 +20,7 @@
 #include "other_weapon_component.h"
 #include "player.h"
 #include <iostream>
+#include "bounding_sphere.h"
 
 #ifdef BLADE_BUILD_OVR
 #include "game_scene_color_pass_ovr.h"
@@ -69,6 +70,12 @@ void GameScene::Initialize()
 	ColliderComponent* wall3{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,1.0f },-40.0f) } };
 	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-40.0f) } };
 	AddEntity(entity);
+
+
+	
+
+
+	
 
 
 	auto p{ m_PlayerFactory.CreateLocalJoypadPlayer("player1",L"player1.fbx") };

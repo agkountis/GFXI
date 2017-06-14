@@ -46,11 +46,8 @@ Vec3f Player::GetHeading() const noexcept
 {
 	//change orientation
 	Quatf q = this->GetOrientation();
-	//entity->SetOrientation(glm::rotate(q, rotationVec.x*dt, glm::vec3(0, 1, 0)));
-
-	//use orientation to influence the force that is being added to the simulation component
 	Vec3f output = Vec3f(Mat4f(q) * Vec4f(0, 0, 1, 0));
-
+	
 	return output;
 }
 
