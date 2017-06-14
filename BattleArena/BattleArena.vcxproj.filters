@@ -128,6 +128,12 @@
     <ClCompile Include="src\bullet_behaviour.cpp">
       <Filter>src\components</Filter>
     </ClCompile>
+    <ClCompile Include="src\health_bar_factory.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\health_bar.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
     <ClCompile Include="src\projectile.cpp">
       <Filter>src\entities</Filter>
     </ClCompile>
@@ -165,6 +171,9 @@
     </ClInclude>
     <ClInclude Include="include\cannon_weapon_component.h">
       <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bullet.h">
+      <Filter>include\entities</Filter>
     </ClInclude>
     <ClInclude Include="include\test_behaviour.h">
       <Filter>include\components</Filter>
@@ -207,6 +216,12 @@
     </ClInclude>
     <ClInclude Include="include\bullet_behaviour.h">
       <Filter>include\components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\health_bar_factory.h">
+      <Filter>include\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\health_bar.h">
+      <Filter>include\entities</Filter>
     </ClInclude>
     <ClInclude Include="include\projectile.h">
       <Filter>include\entities</Filter>

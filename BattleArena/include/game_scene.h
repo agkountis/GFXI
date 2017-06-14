@@ -3,7 +3,7 @@
 #include "scene.h"
 #include "player_factory.h"
 #include "weapon_factory.h"
-
+#include "health_bar_factory.h"
 
 class GameScene : public Blade::Scene
 {
@@ -24,6 +24,7 @@ public:
 private:
 	PlayerFactory m_PlayerFactory;
 	WeaponFactory m_WeaponFactory;
+	HealthBarFactory m_HealthBarFactory;
 };
 
 #endif //BATTLE_ARENA_GAME_SCENE_H_

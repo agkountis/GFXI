@@ -2,19 +2,22 @@
 #define HEALTH_COMPONENT_H_
 #include "behaviour_component.h"
 #include "timer.h"
+#include "health_bar.h"
 
 class HealthComponent : public Blade::BehaviourComponent
 {
 private:
-	const int m_InitialValue{ 10 };
+	const int m_InitialValue{ 100 };
 
 	const int m_CollisionTimeOffset{ 20 };
 
-	const int m_Damage{ 1 };
+	const int m_Damage{ 10 };
 
 	int m_HealthValue{ m_InitialValue };
 
 	Blade::Timer m_Timer;
+
+	HealthBar* m_pListenerBar{ nullptr };
 
 public:
 	HealthComponent(Blade::Entity* parent);
@@ -42,6 +45,9 @@ public:
 	 * \return heatlh value
 	 */
 	int GetHealthValue() const noexcept;
+
+
+	void SetListenerBar(HealthBar* healthBar);
 };
 #endif
 

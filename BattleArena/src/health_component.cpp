@@ -34,17 +34,29 @@ void HealthComponent::OnCollision(Entity * other) noexcept
 			if (m_HealthValue > 0)
 			{
 				m_HealthValue -= m_Damage;
+				if (m_pListenerBar)
+				{
+					m_pListenerBar->SetHealthValue(m_HealthValue);
+				}
 			}
 			else if (m_HealthValue <= 0)
 			{
 				GetParent()->SetAlive(false);
 			}
+			
+
 			m_Timer.Reset();
 		}
+
 	}
 }
 
 int HealthComponent::GetHealthValue() const noexcept
 {
 	return m_HealthValue;
+}
+
+void HealthComponent::SetListenerBar(HealthBar * healthBar)
+{
+	m_pListenerBar = healthBar;
 }
