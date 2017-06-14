@@ -165,6 +165,11 @@ namespace Blade
 	}
 
 
+	NCF* ConfigFile::GetNcf()
+	{
+		return m_Ncf;
+	}
+
 	// --- ConfigEntry ---
 	ConfigEntry::ConfigEntry()
 	{

@@ -7,8 +7,12 @@
 
 class GameScene : public Blade::Scene
 {
+private:
+	PlayerFactory m_PlayerFactory;
+	WeaponFactory m_WeaponFactory;
+
 public:
-	void Initialize() override;
+	bool Initialize() override;
 
 	void OnKeyDown(unsigned char key, int x, int y) noexcept override;
 
@@ -21,10 +25,6 @@ public:
 	void Update(float deltaTime, long time) noexcept override;
 
 	void Draw() const noexcept override;
-private:
-	PlayerFactory m_PlayerFactory;
-	WeaponFactory m_WeaponFactory;
-	HealthBarFactory m_HealthBarFactory;
 };
 
 #endif //BATTLE_ARENA_GAME_SCENE_H_

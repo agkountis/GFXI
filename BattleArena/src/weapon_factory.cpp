@@ -44,25 +44,21 @@ void WeaponFactory::SetArena(Entity * arena) noexcept
 void WeaponFactory::GenerateWeapons() const noexcept
 {
 	int aux{ 1 };
+	m_Arena->Update(0, 0);
 	while (m_Arena->GetEntityFromHierarchy("WS," + std::to_string(aux)))
 	{
 		auto entity{ m_Arena->GetEntityFromHierarchy("WS," + std::to_string(aux)) };
 		if (aux % 2 == 0)
 		{
-			G_SceneManager.GetCurrentScene()->AddEntity( CreateWeapon1("weapon1_" + std::to_string(aux), entity->GetLocalPosition()));
+			G_SceneManager.GetCurrentScene()->AddEntity( CreateWeapon1("weapon1_" + std::to_string(aux), entity->GetWorldPosition()));
 		}
 		else
 		{
-			G_SceneManager.GetCurrentScene()->AddEntity(CreateWeapon2("weapon2_" + std::to_string(aux), entity->GetLocalPosition()));
+			G_SceneManager.GetCurrentScene()->AddEntity(CreateWeapon2("weapon2_" + std::to_string(aux), entity->GetWorldPosition()));
 		}
 		++aux;
 
 	}
-
-	
-
-
-
 }
 
 Weapon* WeaponFactory::CreateWeapon1(const std::string & name,const Vec3f& pos) const  noexcept
@@ -101,6 +97,7 @@ Weapon* WeaponFactory::CreateWeapon2(const std::string& name, const Vec3f& pos) 
 	emc->SetTexture(tex);
 	emc->SetMesh(G_ResourceManager.Get<Mesh>(L"plane"));
 	auto cc{ new ColliderComponent(weapon,std::make_unique<BoundingSphere>(1.0f)) };
+
 #if _DEBUG
 	RenderComponent* rc{ new RenderComponent{ weapon } };
 	Material material;

@@ -7,6 +7,7 @@
 #include "multiplayer.h"
 #include "trace.h"
 #include "assimp_utils.h"
+#include "networked_lobby_scene.h"
 
 using namespace Blade;
 
@@ -141,7 +142,11 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 	}
 
 	BLADE_TRACE("Allocating and pusing the GameScreen into the ScreenManager!");
-	G_SceneManager.PushScene(std::make_unique<GameScene>());
+	
+	if (!G_SceneManager.PushScene(std::make_unique<NetworkedLobbyScene>()))
+	{
+		return false;
+	}
 
 	BLADE_TRACE("BattleArenaApplication Initialization Successfull!");
 	return true;

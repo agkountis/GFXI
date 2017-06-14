@@ -40,7 +40,7 @@ namespace Blade
 		/*
 		\brief Initialize the scene
 		*/
-		virtual void Initialize() = 0;
+		virtual bool Initialize() = 0;
 
 		/*
 		\brief Adds a new entity to the scene

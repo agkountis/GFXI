@@ -8,7 +8,7 @@ HealthBar::HealthBar(Entity* parent, Entity* emptyBar, Entity* fullBar, int maxH
 	m_pFullBar{fullBar},
 	m_MaxHealth{maxHealthValue}
 {
-	this->SetParent(parent);
+	parent->AddChild(this);
 	
 	this->AddChild(m_pEmptyBar);
 	this->AddChild(m_pFullBar);
@@ -16,13 +16,13 @@ HealthBar::HealthBar(Entity* parent, Entity* emptyBar, Entity* fullBar, int maxH
 }
 
 
-void HealthBar::SetHealthValue(int healthValue)
+void HealthBar::SetHealthValue(int healthValue) const
 {
 
 	if (healthValue > m_MaxHealth) healthValue = m_MaxHealth;
 	if (healthValue < 0) healthValue = 0;
 
-	float percentage = (float)healthValue / (float)m_MaxHealth;
+	float percentage = static_cast<float>(healthValue) / static_cast<float>(m_MaxHealth);
 	float maxBarScale = 4.0f;
 	
 	Vec3f scale = m_pFullBar->GetScale();

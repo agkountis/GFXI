@@ -33,15 +33,17 @@ void HealthComponent::OnCollision(Entity * other) noexcept
 			//Collision detected
 			if (m_HealthValue > 0)
 			{
-				m_HealthValue -= m_Damage;
+				m_HealthValue -= 100;
 				if (m_pListenerBar)
 				{
 					m_pListenerBar->SetHealthValue(m_HealthValue);
 				}
 			}
-			else if (m_HealthValue <= 0)
+			
+			if (m_HealthValue <= 0)
 			{
 				GetParent()->SetAlive(false);
+				m_pListenerBar = nullptr;
 			}
 			
 

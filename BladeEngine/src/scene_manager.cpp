@@ -2,11 +2,17 @@
 
 namespace Blade
 {
-	void SceneManager::PushScene(std::unique_ptr<Scene> scene) noexcept
+	bool SceneManager::PushScene(std::unique_ptr<Scene> scene) noexcept
 	{
 		m_Scenes.push_back(std::move(scene));
-		m_Scenes.back()->Initialize();
 		
+		if (!m_Scenes.back()->Initialize())
+		{
+			m_Scenes.pop_back();
+			return false;
+		}
+
+		return true;
 	}
 
 	void SceneManager::PopScene() noexcept
@@ -69,6 +75,7 @@ namespace Blade
 			m_Scenes.back()->Draw();
 		}
 	}
+
 	Scene * SceneManager::GetCurrentScene() const noexcept
 	{
 		return m_Scenes.back().get();

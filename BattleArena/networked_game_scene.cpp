@@ -1,35 +1,29 @@
-#include "game_scene.h"
-#include "entity.h"
-#include "render_component.h"
-#include "mesh_utils.h"
-#include "resource_manager.h"
+#include "networked_game_scene.h"
 #include "engine_context.h"
 #include "game_scene_color_pass.h"
-#include "pipeline.h"
-#include "d3d/D3D11_texture.h"
-#include "windowing_service.h"
-#include "directional_light_component.h"
-#include "camera.h"
 #include "directional_light.h"
-#include "collider_component.h"
+#include "camera.h"
+#include "windowing_service.h"
+#include "d3d/D3D11_texture.h"
+#include "mesh_utils.h"
 #include "plane_collider.h"
-#include "emitter_component.h"
-#include "player_joypad_component.h"
-#include "test_behaviour.h"
-#include "cannon_weapon_component.h"
-#include "other_weapon_component.h"
-#include "player.h"
-#include <iostream>
-#include "bounding_sphere.h"
-
-#ifdef BLADE_BUILD_OVR
-#include "game_scene_color_pass_ovr.h"
-#endif
 
 using namespace Blade;
 
-bool GameScene::Initialize()
+
+NetworkedGameScene::NetworkedGameScene(const std::vector<PlayerInfo>& pInfos)
+	: m_PlayerInfos{ pInfos }
 {
+}
+
+bool NetworkedGameScene::Initialize()
+{
+//	for (auto player : m_Players)
+//	{
+//		BLADE_TRACE("Adding Player");
+//		AddEntity(player);
+//	}
+
 	// Renderable Entity creation ----------------------------------------------------------------------------------------
 	//Generate a Sphere.
 	Mesh* cube{ MeshUtils::GenerateUvSphere(1.0f, 30, 30, 1.0f, 1.0f) };
@@ -71,13 +65,22 @@ bool GameScene::Initialize()
 	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-40.0f) } };
 	AddEntity(entity);
 
-	auto p{ m_PlayerFactory.CreateLocalJoypadPlayer("player1",L"player1.fbx") };
-	p->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
-	AddEntity(p);
+	for (const auto& playerInfo : m_PlayerInfos)
+	{
+		BLADE_TRACE("Adding Player");
+		Player* p{ m_PlayerFactory.CreateLocalJoypadPlayer(playerInfo.playerName, playerInfo.fileName) };
+		p->SetPosition(playerInfo.spawnLocation);
+		m_Players.push_back(p);
+		AddEntity(p);
+	}
 
-	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
-	p2->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
-	AddEntity(p2);
+//	auto p{ m_PlayerFactory.CreateLocalJoypadPlayer("player1",L"player1.fbx") };
+//	p->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
+//	AddEntity(p);
+//
+//	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
+//	p2->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
+//	AddEntity(p2);
 
 	m_WeaponFactory.GenerateWeapons();
 
@@ -102,7 +105,7 @@ bool GameScene::Initialize()
 	cam = new Camera{ "Camera2", cd };
 	cam->SetPosition(Vec3f{ 0.0f, 5.0f, -20.0f });
 	AddEntity(cam);
-	cam->SetParent(p);
+	cam->SetParent(m_Players[0]);
 
 	cam = new Camera{ "Camera3", cd };
 	cam->SetPosition(Vec3f{ 0.0f, 10.0f, -50.0f });
@@ -112,8 +115,8 @@ bool GameScene::Initialize()
 	cam = new Camera{ "Camera4", cd };
 
 	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -4.0f });
-	cam->SetParent(p);
-	//AddEntity(cam);
+	cam->SetParent(m_Players[0]);
+	AddEntity(cam);
 
 	//Instruct the Camera system to set this camera as the active one.
 	G_CameraSystem.SetActiveCamera("Camera3");
@@ -128,7 +131,7 @@ bool GameScene::Initialize()
 	dlDesc.diffuseIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
 	dlDesc.specularIntensity = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
 
-	DirectionalLight* dl{ new DirectionalLight{"DirectionalLight1", dlDesc} };
+	DirectionalLight* dl{ new DirectionalLight{ "DirectionalLight1", dlDesc } };
 
 	dl->SetPosition(Vec3f{ 0.0f, 10.0f, -3.0f });
 
@@ -162,7 +165,7 @@ bool GameScene::Initialize()
 #else
 	//Allocate and initialize the a render pass pipeline stage.
 	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
-	if(!colorPassStage->Initialize())
+	if (!colorPassStage->Initialize())
 	{
 		BLADE_ERROR("Failed to initialize the color pass stage.");
 		return false;
@@ -174,12 +177,11 @@ bool GameScene::Initialize()
 	//Set the pipeline to the render system.
 	G_RenderSystem.SetRenderPassPipeline(pipeline);
 
-
 	return true;
 	// --------------------------------------------------------------------------------------------------------------------
 }
 
-void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
+void NetworkedGameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 {
 	switch (key)
 	{
@@ -195,24 +197,27 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	case '4':
 		G_CameraSystem.SetActiveCamera("Camera4");
 		break;
+	case 27:
+		G_SceneManager.PopScene();
+		break;
 	default:
 		break;
 	}
 }
 
-void GameScene::OnKeyUp(unsigned char key, int x, int y) noexcept
+void NetworkedGameScene::OnKeyUp(unsigned char key, int x, int y) noexcept
 {
 }
 
-void GameScene::OnMouseMotion(int x, int y) noexcept
+void NetworkedGameScene::OnMouseMotion(int x, int y) noexcept
 {
 }
 
-void GameScene::OnMouseClick(int button, bool state, int x, int y) noexcept
+void NetworkedGameScene::OnMouseClick(int button, bool state, int x, int y) noexcept
 {
 }
 
-void GameScene::Update(float deltaTime, long time) noexcept
+void NetworkedGameScene::Update(float deltaTime, long time) noexcept
 {
 	Scene::Update(deltaTime, time);
 
@@ -223,10 +228,9 @@ void GameScene::Update(float deltaTime, long time) noexcept
 	G_LightSystem.Process();
 
 	G_BehaviourSystem.Process(deltaTime, time);
-
 }
 
-void GameScene::Draw() const noexcept
+void NetworkedGameScene::Draw() const noexcept
 {
 	G_RenderSystem.Process();
 }
