@@ -11,7 +11,7 @@ private:
 
 	const int m_CollisionTimeOffset{ 20 };
 
-	const int m_Damage{ 10 };
+	const int m_Damage{ 20 };
 
 	int m_HealthValue{ m_InitialValue };
 
