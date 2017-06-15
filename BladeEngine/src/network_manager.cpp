@@ -13,7 +13,8 @@ namespace Blade
 	{
 		Socket socket;
 
-		BLADE_TRACE("Opening listening socket.");
+		BLADE_TRACE("Opening listening socket. Port: " + std::to_string(port));
+		BLADE_TRACE("Listening...");
 		if (!socket.Listen(port))
 		{
 			return;

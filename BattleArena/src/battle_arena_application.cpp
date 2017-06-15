@@ -65,8 +65,6 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 
 	SetLoadEntityCallback(AssimpUtils::LoadEntity);
 
-	Multiplayer::Initialize("config\\test.cfg");
-
 	WindowFunctionCallbacks callbacks;
 	callbacks.passive_motion_func = PassiveMouseMotion;
 	callbacks.motion_func = MouseMotion;

@@ -2,7 +2,8 @@
 #include "cfg.h"
 #include "resource_manager.h"
 #include "engine_context.h"
-#include "../networked_game_scene.h"
+#include "networked_game_scene.h"
+#include "multiplayer.h"
 
 using namespace Blade;
 using namespace StringUtils;
@@ -21,7 +22,7 @@ bool NetworkedLobbyScene::Initialize()
 	}
 
 	std::string playerName{ cfg.GetString("attributes.player") };
-	
+
 	Vec4f sLoc{ cfg.GetVec4f("attributes.spawnLocation") };
 
 	m_PlayerInfos.emplace_back(playerName, ToWstring(playerName) + L".fbx", sLoc.xyz);
@@ -29,6 +30,10 @@ bool NetworkedLobbyScene::Initialize()
 	unsigned short port = cfg.GetInteger("attributes.listenTo.port", 0);
 
 	G_NetworkManager.Listen(port);
+
+	G_NetworkManager.SetOnNewClientCallback(Multiplayer::OnNewClient);
+	G_NetworkManager.SetOnNewPacketCallback(Multiplayer::OnNewPacket);
+	G_NetworkManager.SetOnClientDisconnectCallback(Multiplayer::OnClientDisconnect);
 
 	NCF* node{ cfg.GetNcf() };
 

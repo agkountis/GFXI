@@ -137,10 +137,10 @@
     <ClCompile Include="src\health_bar_factory.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\networked_lobby_scene.cpp">
+    <ClCompile Include="src\networked_game_scene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="networked_game_scene.cpp">
+    <ClCompile Include="src\networked_lobby_scene.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -232,7 +232,7 @@
     <ClInclude Include="include\networked_lobby_scene.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="networked_game_scene.h">
+    <ClInclude Include="include\networked_game_scene.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

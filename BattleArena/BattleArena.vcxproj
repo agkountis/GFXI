@@ -172,7 +172,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
-      <AdditionalDependencies>BladeEngine.lib;zlibstaticd.lib;assimp-vc140-mt-static-deb.lib;LibOVRd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>BladeEngine.lib;zlibstaticd.lib;assimp-vc140-mt-static-deb.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DirectX - OVR|Win32'">
@@ -305,11 +305,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="networked_game_scene.cpp" />
     <ClCompile Include="src\bullet_behaviour.cpp" />
     <ClCompile Include="src\health_bar.cpp" />
     <ClCompile Include="src\health_bar_factory.cpp" />
     <ClCompile Include="src\health_component.cpp" />
+    <ClCompile Include="src\networked_game_scene.cpp" />
     <ClCompile Include="src\networked_lobby_scene.cpp" />
     <ClCompile Include="src\player_behaviour.cpp" />
     <ClCompile Include="src\player_factory.cpp" />
@@ -335,6 +335,7 @@
     <ClCompile Include="src\weapon_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\networked_game_scene.h" />
     <ClInclude Include="include\networked_lobby_scene.h" />
     <ClInclude Include="include\projectile.h" />
     <ClInclude Include="include\bullet_behaviour.h" />
@@ -364,7 +365,6 @@
     <ClInclude Include="include\player_commands.h" />
     <ClInclude Include="include\test_commands_battle_arena.h" />
     <ClInclude Include="include\weapon_factory.h" />
-    <ClInclude Include="networked_game_scene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\arcane_fountain.cfg" />
