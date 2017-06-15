@@ -25,17 +25,17 @@ namespace Blade
 			ConnectionInfo connectionInfo;
 			Socket clientSocket{ socket.Accept(&connectionInfo) };
 
-			if(m_Connections[std::get<unsigned long>(connectionInfo.ip)])
-			{
-				BLADE_TRACE("Connection already established. Aborting");
-				return;
-			}
-
 			if (clientSocket.IsValid())
 			{
 				BLADE_TRACE("Accepting connection!");
 				{
 					std::lock_guard<std::mutex> lock{ m_Mutex };
+
+					if (m_Connections[std::get<unsigned long>(connectionInfo.ip)])
+					{
+						BLADE_TRACE("Connection already established. Aborting");
+						continue;
+					}
 
 					m_Connections[std::get<unsigned long>(connectionInfo.ip)] = std::make_unique<Socket>(std::move(clientSocket));
 
@@ -69,16 +69,16 @@ namespace Blade
 
 			if (connectionSocket.Connect(host, port, &connectionInfo))
 			{
-				if (m_Connections[std::get<unsigned long>(connectionInfo.ip)])
-				{
-					BLADE_TRACE("Connection already established. Aborting");
-					return;
-				}
-
-				BLADE_TRACE("Connection successful!");
-
 				{
 					std::lock_guard<std::mutex> lock{ m_Mutex };
+
+					if (m_Connections[std::get<unsigned long>(connectionInfo.ip)])
+					{
+						BLADE_TRACE("Connection already established. Aborting");
+						return;
+					}
+
+					BLADE_TRACE("Connection successful!");
 
 					m_Connections[std::get<unsigned long>(connectionInfo.ip)] = std::make_unique<Socket>(std::move(connectionSocket));
 
