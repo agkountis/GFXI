@@ -63,7 +63,7 @@ bool NetworkedLobbyScene::Initialize()
 
 		m_PlayerInfos.emplace_back(name, ToWstring(name) + L".fbx", spawnLocation.xyz);
 
-//		G_NetworkManager.Connect(ip, port);
+		G_NetworkManager.Connect(ip, port);
 	}
 
 

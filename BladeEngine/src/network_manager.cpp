@@ -59,6 +59,18 @@ namespace Blade
 
 		while (reconnectionAttempts && !m_Terminating)
 		{
+			hostent* hostAddr{ gethostbyname(host.c_str()) };
+
+			long id = *reinterpret_cast<unsigned long*>(hostAddr->h_addr);
+
+			auto& socket = m_Connections[id];
+
+			if (socket)
+			{
+				BLADE_TRACE("Connection already established. Aborting.");
+				return;
+			}
+
 			ConnectionInfo connectionInfo;
 
 			if (connectionSocket.Connect(host, port, &connectionInfo))
