@@ -16,7 +16,7 @@ namespace Multiplayer
 	{
 		BLADE_TRACE("New Player Connected!!!");
 		BLADE_TRACE(std::get<std::string>(connectionInfo.ip));
-		BLADE_TRACE(std::to_string(std::get<long>(connectionInfo.ip)));
+		BLADE_TRACE(std::to_string(std::get<unsigned long>(connectionInfo.ip)));
 	}
 
 	void Multiplayer::OnClientDisconnect()

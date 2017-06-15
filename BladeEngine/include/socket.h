@@ -19,7 +19,7 @@ namespace Blade
 
 	struct ConnectionInfo
 	{
-		std::tuple<std::string, long> ip;
+		std::tuple<std::string, unsigned long> ip;
 		unsigned short port;
 	};
 

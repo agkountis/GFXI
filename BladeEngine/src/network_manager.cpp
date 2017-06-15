@@ -25,18 +25,24 @@ namespace Blade
 			ConnectionInfo connectionInfo;
 			Socket clientSocket{ socket.Accept(&connectionInfo) };
 
+			if(m_Connections[std::get<unsigned long>(connectionInfo.ip)])
+			{
+				BLADE_TRACE("COnnection already established. Aborting");
+				return;
+			}
+
 			if (clientSocket.IsValid())
 			{
 				BLADE_TRACE("Accepting connection!");
 				{
 					std::lock_guard<std::mutex> lock{ m_Mutex };
 
-					m_Connections[std::get<long>(connectionInfo.ip)] = std::make_unique<Socket>(std::move(clientSocket));
+					m_Connections[std::get<unsigned long>(connectionInfo.ip)] = std::make_unique<Socket>(std::move(clientSocket));
 
 					BLADE_TRACE("Connection count: " + std::to_string(m_Connections.size()));
 				}
 
-				long id{ std::get<long>(connectionInfo.ip) };
+				unsigned long id{ std::get<unsigned long>(connectionInfo.ip) };
 				std::thread clientThread{ [id, this]() { ReceiveThreadMain(id); } };
 
 				m_Threads.push_back(std::move(clientThread));
@@ -61,7 +67,7 @@ namespace Blade
 		{
 			hostent* hostAddr{ gethostbyname(host.c_str()) };
 
-			long id = *reinterpret_cast<unsigned long*>(hostAddr->h_addr);
+			unsigned long id{ *reinterpret_cast<unsigned long*>(hostAddr->h_addr) };
 
 			auto& socket = m_Connections[id];
 
@@ -80,12 +86,13 @@ namespace Blade
 				{
 					std::lock_guard<std::mutex> lock{ m_Mutex };
 
-					m_Connections[std::get<long>(connectionInfo.ip)] = std::make_unique<Socket>(std::move(connectionSocket));
+					m_Connections[std::get<unsigned long>(connectionInfo.ip)] = std::make_unique<Socket>(std::move(connectionSocket));
 
 					BLADE_TRACE("Connection count: " + std::to_string(m_Connections.size()));
 				}
 
-				long id{ std::get<long>(connectionInfo.ip) };
+				id = std::get<unsigned long>(connectionInfo.ip);
+
 				std::thread clientThread{ [id, this]() { ReceiveThreadMain(id); } };
 
 				m_Threads.push_back(std::move(clientThread));
@@ -108,7 +115,7 @@ namespace Blade
 		BLADE_ERROR("Failed to connect! Host: " + host + " Port: " + std::to_string(port));
 	}
 
-	void NetworkManager::ReceiveThreadMain(const long idx)
+	void NetworkManager::ReceiveThreadMain(const unsigned long idx)
 	{
 		int receivedBytes{ 0 };
 		Byte buffer[1024];
