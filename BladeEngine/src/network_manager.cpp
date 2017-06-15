@@ -27,7 +27,7 @@ namespace Blade
 
 			if(m_Connections[std::get<unsigned long>(connectionInfo.ip)])
 			{
-				BLADE_TRACE("COnnection already established. Aborting");
+				BLADE_TRACE("Connection already established. Aborting");
 				return;
 			}
 
@@ -65,22 +65,16 @@ namespace Blade
 
 		while (reconnectionAttempts && !m_Terminating)
 		{
-			hostent* hostAddr{ gethostbyname(host.c_str()) };
-
-			unsigned long id{ *reinterpret_cast<unsigned long*>(hostAddr->h_addr) };
-
-			auto& socket = m_Connections[id];
-
-			if (socket)
-			{
-				BLADE_TRACE("Connection already established. Aborting.");
-				return;
-			}
-
 			ConnectionInfo connectionInfo;
 
 			if (connectionSocket.Connect(host, port, &connectionInfo))
 			{
+				if (m_Connections[std::get<unsigned long>(connectionInfo.ip)])
+				{
+					BLADE_TRACE("Connection already established. Aborting");
+					return;
+				}
+
 				BLADE_TRACE("Connection successful!");
 
 				{
@@ -91,7 +85,7 @@ namespace Blade
 					BLADE_TRACE("Connection count: " + std::to_string(m_Connections.size()));
 				}
 
-				id = std::get<unsigned long>(connectionInfo.ip);
+				unsigned long id{ std::get<unsigned long>(connectionInfo.ip) };
 
 				std::thread clientThread{ [id, this]() { ReceiveThreadMain(id); } };
 
