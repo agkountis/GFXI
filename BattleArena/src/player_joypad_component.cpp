@@ -4,8 +4,8 @@
 
 using namespace  Blade;
 
-PlayerJoypadComponent::PlayerJoypadComponent(Entity* parent, JoypadNumber joypadNumber):
-	JoypadInputComponent(parent, joypadNumber)
+PlayerJoypadComponent::PlayerJoypadComponent(Entity* parent, JoypadNumber joypadNumber,bool online):
+	JoypadInputComponent(parent, joypadNumber,online)
 {
 
 }
@@ -23,9 +23,9 @@ void PlayerJoypadComponent::Update(const float dt, const long time) noexcept
 
 void PlayerJoypadComponent::Setup() noexcept
 {
-	auto move_command = std::make_shared<MoveCommand>();
-	auto shoot_left_command = std::make_shared<ShootLeftWeapon>();
-	auto shoot_right_command = std::make_shared<ShootRightWeapon>();
+	auto move_command = std::make_shared<MoveCommand>(m_Online);
+	auto shoot_left_command = std::make_shared<ShootLeftWeapon>(m_Online);
+	auto shoot_right_command = std::make_shared<ShootRightWeapon>(m_Online);
 
 	m_JoypadCommandMap[STICK_LEFT] = move_command;
 	m_JoypadCommandMap[STICK_RIGHT] = move_command;

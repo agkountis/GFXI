@@ -14,7 +14,7 @@ namespace Blade
 
 		using KeyboardCommandMap = std::map<VirtualKey, std::shared_ptr<Command>>;
 
-		explicit KeyboardInputComponent(Entity* parent);
+		explicit KeyboardInputComponent(Entity* parent, bool online);
 
 		KeyboardInputComponent(const KeyboardInputComponent& other) = delete;
 

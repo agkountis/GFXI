@@ -4,7 +4,7 @@
 #include "engine_context.h"
 #include "networked_game_scene.h"
 #include "multiplayer.h"
-#include "test_message.h"
+#include "command_message.h"
 
 using namespace Blade;
 using namespace StringUtils;
@@ -80,9 +80,6 @@ void NetworkedLobbyScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	case 's':
 	case 'S':
 		G_SceneManager.PushScene(std::make_unique<NetworkedGameScene>(m_PlayerInfos));
-		break;
-	case ' ':
-		G_NetworkManager.QueueMessage(std::make_shared<TestMessage>(1, RECIPIENT_ID_BROADCAST));
 		break;
 	default:
 		break;

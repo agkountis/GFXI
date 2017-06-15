@@ -71,13 +71,22 @@ bool GameScene::Initialize()
 	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-40.0f) } };
 	AddEntity(entity);
 
-	auto p{ m_PlayerFactory.CreateLocalJoypadPlayer("player1",L"player1.fbx") };
+	auto p{ m_PlayerFactory.CreateJoypadPlayer("player1",L"player1.fbx", 1, false) };
 	p->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
 	AddEntity(p);
 
-	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
+	auto p2{ m_PlayerFactory.CreateJoypadPlayer("player2",L"player2.fbx", 2, false) };
 	p2->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
 	AddEntity(p2);
+
+	auto p3{ m_PlayerFactory.CreateJoypadPlayer("player3",L"player3.fbx", 3, false) };
+	p2->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
+	AddEntity(p3);
+
+	auto p4{ m_PlayerFactory.CreateJoypadPlayer("player4",L"player4.fbx", 4, false) };
+	p2->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
+	AddEntity(p4);
+
 
 	m_WeaponFactory.GenerateWeapons();
 

@@ -5,8 +5,8 @@
 
 using namespace Blade;
 
-Player::Player(const std::string& name)
-	: Entity(name)
+Player::Player(const std::string& name,const int id)
+	: Entity(name),m_Id{id}
 {
 }
 
@@ -66,4 +66,9 @@ Vec3f Player::GetLeftWeaponPos() const noexcept
 Vec3f Player::GetRightWeaponPos() const noexcept
 {
 	return (GetXform() * Vec4f(m_RightWeaponPos, 1.0f)).xyz;
+}
+
+int Player::GetID() const noexcept
+{
+	return m_Id;
 }

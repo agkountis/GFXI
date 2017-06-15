@@ -3,7 +3,7 @@
 #include <iostream>
 #include "network_message_types.h"
 #include "engine_context.h"
-#include "test_message.h"
+#include "command_message.h"
 #include "ncf.h"
 #include "trace.h"
 
@@ -43,25 +43,25 @@ namespace Multiplayer
 
 		switch (msgType)
 		{
-		case BA_TEST_MESSAGE:
-			int val;
-			Unpack(packet, offset, val);
+		case BA_SHOOT_LEFT:
+			break;
 
-			if (val == 0)
-			{
-				std::cout << "Hello!: " << val << std::endl;
-				G_NetworkManager.QueueMessage(std::make_shared<TestMessage>(1, RECIPIENT_ID_BROADCAST));
-			}
-			else if (val == 1)
-			{
-				std::cout << "Hey there!" << val << std::endl;
-				G_NetworkManager.QueueMessage(std::make_shared<TestMessage>(0, RECIPIENT_ID_BROADCAST));
-			}
-			else
-			{
-				BLADE_ERROR("Unercognised TestMessage value!");
-			}
+		case BA_SHOOT_RIGHT:
+			break;
 
+		case BA_MOVE_BY_VEC:
+			break;
+
+		case BA_MOVE_FORWARD:
+			break;
+
+		case BA_MOVE_BACK:
+			break;
+
+		case BA_MOVE_LEFT:
+			break;
+
+		case BA_MOVE_RIGHT:
 			break;
 		default:
 			break;

@@ -71,9 +71,6 @@
     <ClCompile Include="src\game_scene_color_pass.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\test_message.cpp">
-      <Filter>src\networking\messages</Filter>
-    </ClCompile>
     <ClCompile Include="src\multiplayer.cpp">
       <Filter>src\networking</Filter>
     </ClCompile>
@@ -143,6 +140,9 @@
     <ClCompile Include="src\networked_lobby_scene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\command_message.cpp">
+      <Filter>src\networking\messages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
@@ -153,9 +153,6 @@
     </ClInclude>
     <ClInclude Include="include\game_scene_color_pass.h">
       <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\test_message.h">
-      <Filter>include\networking\messages</Filter>
     </ClInclude>
     <ClInclude Include="include\network_message_types.h">
       <Filter>include\networking</Filter>
@@ -234,6 +231,9 @@
     </ClInclude>
     <ClInclude Include="include\networked_game_scene.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\command_message.h">
+      <Filter>include\networking\messages</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

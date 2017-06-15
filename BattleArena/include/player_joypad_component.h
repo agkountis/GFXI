@@ -5,7 +5,7 @@
 class PlayerJoypadComponent : public Blade::JoypadInputComponent
 {
 public:
-	PlayerJoypadComponent(Blade::Entity* parent, Blade::JoypadNumber joypadNumber);
+	PlayerJoypadComponent(Blade::Entity* parent, Blade::JoypadNumber joypadNumber,bool online);
 
 	void Update(const float dt, const long time) noexcept override;
 

@@ -65,22 +65,21 @@ bool NetworkedGameScene::Initialize()
 	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-40.0f) } };
 	AddEntity(entity);
 
-	for (const auto& playerInfo : m_PlayerInfos)
+	int localPlayerNumber = std::atoi(&m_PlayerInfos[0].playerName.at(6));
+	Player* p{ m_PlayerFactory.CreateJoypadPlayer(m_PlayerInfos[0].playerName, m_PlayerInfos[0].fileName, localPlayerNumber, true) };
+	p->SetPosition(m_PlayerInfos[0].spawnLocation);
+	m_Players.push_back(p);
+	AddEntity(p);
+
+	for (int i{ 1 }; i<m_PlayerInfos.size();i++)
 	{
 		BLADE_TRACE("Adding Player");
-		Player* p{ m_PlayerFactory.CreateLocalJoypadPlayer(playerInfo.playerName, playerInfo.fileName) };
-		p->SetPosition(playerInfo.spawnLocation);
+		int playerNumber = std::atoi(&m_PlayerInfos[i].playerName.at(6));
+		Player* p{ m_PlayerFactory.CreateJoypadPlayer(m_PlayerInfos[i].playerName, m_PlayerInfos[i].fileName, playerNumber, false) };
+		p->SetPosition(m_PlayerInfos[i].spawnLocation);
 		m_Players.push_back(p);
 		AddEntity(p);
 	}
-
-//	auto p{ m_PlayerFactory.CreateLocalJoypadPlayer("player1",L"player1.fbx") };
-//	p->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
-//	AddEntity(p);
-//
-//	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
-//	p2->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
-//	AddEntity(p2);
 
 	m_WeaponFactory.GenerateWeapons();
 

@@ -7,6 +7,8 @@
 class MoveForward : public Blade::Command
 {
 public:
+	MoveForward(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		using namespace Blade;
@@ -28,6 +30,8 @@ public:
 class MoveBack : public Blade::Command
 {
 public:
+	MoveBack(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		using namespace Blade;
@@ -47,6 +51,7 @@ public:
 class MoveLeft : public Blade::Command
 {
 public:
+	MoveLeft(bool online) :Blade::Command(online) {}
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		using namespace Blade;
@@ -68,6 +73,8 @@ public:
 class MoveRight : public Blade::Command
 {
 public:
+	MoveRight(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		using namespace Blade;
@@ -86,6 +93,8 @@ public:
 class MoveCommand : public Blade::Command
 {
 public:
+	MoveCommand(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		using namespace Blade;
@@ -118,6 +127,8 @@ public:
 class ShootLeftWeapon : public Blade::Command
 {
 public:
+	ShootLeftWeapon(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		using namespace Blade;
@@ -158,6 +169,8 @@ public:
 class ShootRightWeapon : public Blade::Command
 {
 public:
+	ShootRightWeapon(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		using namespace Blade;
@@ -183,6 +196,7 @@ public:
 					if (weapon->GetWeaponPosition() == WeaponPosition::RIGHT)
 					{
 						weapon->Shoot(p->GetRightWeaponPos());
+
 						return;
 					}
 				}
