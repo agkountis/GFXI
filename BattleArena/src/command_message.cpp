@@ -16,18 +16,25 @@ std::vector<Byte> CommandMessage::Serialize() noexcept
 {
 	std::vector<Byte> serializedData;
 	int dataSize{ 0 };
-	Vec3f stickPos;
+	Vec3f stickRot;
+	Vec3f stickMov;
 	if (m_Data)
 	{
-		dataSize = sizeof m_PlayerID + 3 * sizeof(float);
+		dataSize = sizeof m_PlayerID + 6 * sizeof(float);
 
 		Byte* buff = reinterpret_cast<Byte*>(m_Data);
 
-		stickPos.x = *reinterpret_cast<float*>(buff);
+		stickRot.x = *reinterpret_cast<float*>(buff);
 		buff += sizeof(float);
-		stickPos.y = *reinterpret_cast<float*>(buff);
+		stickRot.y = *reinterpret_cast<float*>(buff);
 		buff += sizeof(float);
-		stickPos.z = *reinterpret_cast<float*>(buff);
+		stickRot.z = *reinterpret_cast<float*>(buff);
+		buff += sizeof(float);
+		stickMov.x = *reinterpret_cast<float*>(buff);
+		buff += sizeof(float);
+		stickMov.y = *reinterpret_cast<float*>(buff);
+		buff += sizeof(float);
+		stickMov.z = *reinterpret_cast<float*>(buff);
 
 	}
 	else
@@ -46,7 +53,7 @@ std::vector<Byte> CommandMessage::Serialize() noexcept
 
 	if (m_Data)
 	{
-		Pack(serializedData, stickPos);
+		Pack(serializedData, stickRot);
 	}
 
 

@@ -8,7 +8,7 @@ private:
 	int m_PlayerID;
 	void* m_Data;
 public:
-	explicit CommandMessage(int value,int messageType, long recipientId, void* data = nullptr);
+	explicit CommandMessage(int playerID,int messageType, long recipientId, void* data = nullptr);
 
 	std::vector<Blade::Byte> Serialize() noexcept override;
 };

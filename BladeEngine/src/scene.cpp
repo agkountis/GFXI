@@ -5,27 +5,27 @@ namespace Blade
 {
 	Scene::~Scene()
 	{
-		for (const auto object : m_Entities)
+		for (const auto object : m_pEntities)
 		{
 			delete object;
 		}
 
-		m_Entities.clear();
+		m_pEntities.clear();
 	}
 
 	void Scene::AddEntity(Entity* object) noexcept
 	{
-		m_Entities.push_back(object);
+		m_pEntities.push_back(object);
 	}
 
 
 	void Scene::RemoveEntity(const std::string& name) noexcept
 	{
-		for (auto entity : m_Entities)
+		for (auto entity : m_pEntities)
 		{
 			if (entity->GetName() == name)
 			{
-				m_NeedToBeRemovedEntities.push_back(entity);
+				m_pNeedToBeRemovedEntities.push_back(entity);
 			}
 		}
 	}
@@ -33,16 +33,16 @@ namespace Blade
 	void Scene::RemoveEntities() noexcept
 	{
 
-		for(auto needToBeRemovedEntity: m_NeedToBeRemovedEntities)
+		for(auto needToBeRemovedEntity: m_pNeedToBeRemovedEntities)
 		{
-			auto it{ m_Entities.begin() };
+			auto it{ m_pEntities.begin() };
 
-			while (it != m_Entities.end())
+			while (it != m_pEntities.end())
 			{
 				auto entry{ *it };
 				if (entry->GetName() == needToBeRemovedEntity->GetName())
 				{
-					it = m_Entities.erase(it);
+					it = m_pEntities.erase(it);
 				}
 				else
 				{
@@ -50,27 +50,38 @@ namespace Blade
 				}
 			}
 		}
-		m_NeedToBeRemovedEntities.clear();
+		m_pNeedToBeRemovedEntities.clear();
 	}
 
 	const std::vector<Entity*>& Scene::GetEntities() const noexcept
 	{
-		return m_Entities;
+		return m_pEntities;
+	}
+
+	Entity * Scene::GetEntityByName(const std::string & name) noexcept
+	{
+		for (auto entity : m_pEntities)
+		{
+			if (entity->GetName() == name)
+			{
+				return entity;
+			}
+		}
 	}
 
 	void Scene::Update(float delta_time, long time) noexcept
 	{
 		RemoveEntities();
 
-		auto it{ m_Entities.begin() };
+		auto it{ m_pEntities.begin() };
 
-		while (it != m_Entities.end())
+		while (it != m_pEntities.end())
 		{
 			auto object{ *it };
 			if (!object->IsAlive())
 			{
 				delete object;
-				it = m_Entities.erase(it);
+				it = m_pEntities.erase(it);
 			}
 			else
 			{
@@ -82,7 +93,7 @@ namespace Blade
 
 	void Scene::OnMessage(const MessageContainer<std::string>& msg) const noexcept
 	{
-		for (auto object : m_Entities)
+		for (auto object : m_pEntities)
 		{
 			object->BroadcastMessage(msg);
 		}

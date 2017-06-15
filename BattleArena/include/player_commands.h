@@ -123,6 +123,42 @@ public:
 	}
 };
 
+class NetworkMoveCommand : public Blade::Command
+{
+private:
+	Blade::Vec3f rotationVec;
+	Blade::Vec3f movementVec;
+public:
+	NetworkMoveCommand(bool online, const Blade::Vec3f& rotation, const Blade::Vec3f& movement) :Blade::Command(online),
+	rotationVec{rotation}, movementVec{movement}
+	{}
+
+	void Execute(Blade::Entity* entity, const float dt) override
+	{
+		using namespace Blade;
+
+
+		if (entity->GetComponent("co_sim"))
+		{
+			//auto rt_value{ G_InputManager.GetActiveDevice(joypadNumber)->GetCurrentState().triggerRight};
+			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
+
+			//change orientation
+			Quatf q = entity->GetOrientation();
+			entity->SetOrientation(glm::rotate(q, rotationVec.x * dt, glm::vec3(0, 1, 0)));
+
+			//use orientation to influence the force that is being added to the simulation component
+			simComp->AddForce(Vec3f(Mat4f(q) * Vec4f(movementVec.x * 0.5f, 0.0f, movementVec.y, 0)) * dt * (2000.0f));
+		}
+		Player* pl = dynamic_cast<Player*>(entity);
+		if (pl)
+		{
+			pl->GetHeading();
+		}
+	}
+};
+
+
 
 class ShootLeftWeapon : public Blade::Command
 {
@@ -204,5 +240,7 @@ public:
 		}
 	}
 };
+
+
 
 #endif

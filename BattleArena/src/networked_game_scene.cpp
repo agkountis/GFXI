@@ -81,6 +81,9 @@ bool NetworkedGameScene::Initialize()
 		AddEntity(p);
 	}
 
+	auto test{ GetEntityByName("player2") };
+
+
 	m_WeaponFactory.GenerateWeapons();
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
