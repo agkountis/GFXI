@@ -226,16 +226,14 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	case '2':		
 		{
 			G_CameraSystem.SetActiveCamera("Camera2");
+			G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 			for (int i = 0; i < 4; ++i)
 			{
 				m_pColumnMaterials[i]->diffuse.a = 1.0f;
 				m_pColumnMaterials[i]->blendState = Blade::RenderStateType::BS_BLEND_ALPHA;
 
 			}
-		}
-	case '2':
-		G_CameraSystem.SetActiveCamera("Camera2");
-		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
+		}		
 		break;
 	case '3':
 		G_CameraSystem.SetActiveCamera("Camera3");
