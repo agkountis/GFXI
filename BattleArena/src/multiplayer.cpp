@@ -49,18 +49,21 @@ namespace Multiplayer
 		offset += sizeof playerID;
 		const std::string playerString{ "player"+std::to_string(playerID) };
 		auto player{ static_cast<Player*>(G_SceneManager.GetCurrentScene()->GetEntityByName(playerString)) };
-
+		std::cout << "Message from :" << playerString << std::endl;
 		switch (msgType)
 		{
 		case BA_SHOOT_LEFT:
 		{
+			std::cout << " Shoot left message" << std::endl;
 			ShootLeftWeapon command{false};
 			command.Execute(player, 0.1f);
+			
 		}
 			break;
 
 		case BA_SHOOT_RIGHT:
 		{
+			std::cout << " Shoot right message" << std::endl;
 			ShootRightWeapon command{ false };
 			command.Execute(player, 0.1f);
 		}
@@ -68,6 +71,7 @@ namespace Multiplayer
 
 		case BA_MOVE_BY_VEC:
 		{
+			std::cout << " Move by vec message" << std::endl;
 			Vec3f rotation;
 			Unpack<Vec3f>(packet, offset, rotation);
 			offset += sizeof rotation;
@@ -81,6 +85,7 @@ namespace Multiplayer
 
 		case BA_MOVE_FORWARD:
 		{
+			std::cout << " Move forward message" << std::endl;
 			MoveForward command{ false };
 			command.Execute(player, 0.1f);
 		}
@@ -88,6 +93,7 @@ namespace Multiplayer
 
 		case BA_MOVE_BACK:
 		{
+			std::cout << " Move back message" << std::endl;
 			MoveBack command{ false };
 			command.Execute(player, 0.1f);
 		}
@@ -95,6 +101,7 @@ namespace Multiplayer
 
 		case BA_MOVE_LEFT:
 		{
+			std::cout << " Move left message" << std::endl;
 			MoveLeft command{ false };
 			command.Execute(player, 0.1f);
 		}
@@ -102,6 +109,7 @@ namespace Multiplayer
 
 		case BA_MOVE_RIGHT:
 		{
+			std::cout << " Move right message" << std::endl;
 			MoveRight command{ false };
 			command.Execute(player, 0.1f);
 		}
