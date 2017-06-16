@@ -11,6 +11,8 @@ private:
 	PlayerFactory m_PlayerFactory;
 	WeaponFactory m_WeaponFactory;
 
+	Blade::Material* m_pColumnMaterials[4] = { nullptr };
+
 public:
 	bool Initialize() override;
 

@@ -25,5 +25,6 @@ void BulletBehaviour::Teardown() noexcept
 
 void BulletBehaviour::OnCollision(Blade::Entity* other) noexcept
 {
+	std::cout << "collision with " << other->GetName() << std::endl;
 	GetParent()->SetAlive(false);
 }

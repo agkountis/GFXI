@@ -62,6 +62,26 @@ bool GameScene::Initialize()
 	Entity* arena{ new Entity{ "arena" } };
 	arena->Load(L"data/models/arena5.fbx");
 	AddEntity(arena);
+	auto trPilar{ arena->GetEntityFromHierarchy("PillarTR") };
+	auto tlPilar{ arena->GetEntityFromHierarchy("PillarTL") };
+	auto brPilar{ arena->GetEntityFromHierarchy("PillarBR") };
+	auto blPilar{ arena->GetEntityFromHierarchy("PillarBL") };
+
+	m_pColumnMaterials[0] = const_cast<Material*>(&(static_cast<RenderComponent*>(trPilar->GetComponent("co_render"))->GetMaterial()));
+	m_pColumnMaterials[1] = const_cast<Material*>(&(static_cast<RenderComponent*>(tlPilar->GetComponent("co_render"))->GetMaterial()));
+	m_pColumnMaterials[2] = const_cast<Material*>(&(static_cast<RenderComponent*>(brPilar->GetComponent("co_render"))->GetMaterial()));
+	m_pColumnMaterials[3] = const_cast<Material*>(&(static_cast<RenderComponent*>(blPilar->GetComponent("co_render"))->GetMaterial()));
+
+
+	for (int i = 0; i < 4; ++i)
+	{
+		m_pColumnMaterials[i]->diffuse.a = 0.7f;
+		m_pColumnMaterials[i]->blendState = Blade::RenderStateType::BS_BLEND_ALPHA;
+
+	}
+
+
+
 	m_WeaponFactory.SetArena(arena);
 	Entity* entity{ new Entity{ "Environment" } };
 	ColliderComponent* floor{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,1.0f,0.0f },0.0f) } };
@@ -71,20 +91,23 @@ bool GameScene::Initialize()
 	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-40.0f) } };
 	AddEntity(entity);
 
+
+
+
 	auto p{ m_PlayerFactory.CreateJoypadPlayer("player1",L"player1.fbx", 1, false) };
-	p->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
+	p->SetPosition(Vec3f(15.0f, 1.0f, 10.0f));
 	AddEntity(p);
 
 	auto p2{ m_PlayerFactory.CreateJoypadPlayer("player2",L"player2.fbx", 2, false) };
-	p2->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
+	p2->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
 	AddEntity(p2);
 
 	auto p3{ m_PlayerFactory.CreateJoypadPlayer("player3",L"player3.fbx", 3, false) };
-	p2->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
+	p3->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
 	AddEntity(p3);
 
 	auto p4{ m_PlayerFactory.CreateJoypadPlayer("player4",L"player4.fbx", 4, false) };
-	p2->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
+	p4->SetPosition(Vec3f(-15.0f, 1.0f, 10.0f));
 	AddEntity(p4);
 
 
@@ -104,6 +127,8 @@ bool GameScene::Initialize()
 	//Set the position of the camera.
 	cam->SetPosition(Vec3f{ 0.0f, 60.0f, -70.0f });
 	cam->SetOrientation(Vec3f{ 1.0f, 0.0f, 0.0f }, MathUtils::ToRadians(40.0f));
+	//cam->SetPosition(Vec3f{ 0.0f, 70.0f, -60.0f });
+	//cam->SetOrientation(Vec3f{ 1.0f, 0.0f, 0.0f }, MathUtils::ToRadians(50.0f));
 
 	//Add it to the scene.
 	AddEntity(cam);
@@ -116,13 +141,6 @@ bool GameScene::Initialize()
 	cam = new Camera{ "Camera3", cd };
 	cam->SetPosition(Vec3f{ 0.0f, 10.0f, -50.0f });
 	AddEntity(cam);
-
-
-	cam = new Camera{ "Camera4", cd };
-
-	cam->SetPosition(Vec3f{ 0.0f, 0.0f, -4.0f });
-	cam->SetParent(p);
-	//AddEntity(cam);
 
 	//Instruct the Camera system to set this camera as the active one.
 	G_CameraSystem.SetActiveCamera("Camera3");
@@ -193,10 +211,26 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	switch (key)
 	{
 	case '1':
+	{
 		G_CameraSystem.SetActiveCamera("Camera1");
+		for (int i = 0; i < 4; ++i)
+		{
+			m_pColumnMaterials[i]->diffuse.a = 0.7f;
+			m_pColumnMaterials[i]->blendState = Blade::RenderStateType::BS_BLEND_ALPHA;
+
+		}
+	}
 		break;
-	case '2':
-		G_CameraSystem.SetActiveCamera("Camera2");
+	case '2':		
+		{
+			G_CameraSystem.SetActiveCamera("Camera2");
+			for (int i = 0; i < 4; ++i)
+			{
+				m_pColumnMaterials[i]->diffuse.a = 1.0f;
+				m_pColumnMaterials[i]->blendState = Blade::RenderStateType::BS_BLEND_ALPHA;
+
+			}
+		}
 		break;
 	case '3':
 		G_CameraSystem.SetActiveCamera("Camera3");

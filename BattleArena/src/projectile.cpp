@@ -56,8 +56,9 @@ void Projectile::Update(float dt, long time /*= 0*/) noexcept
 {
 	if(!m_Active)
 	{
-		if (m_Timer.GetMsec() > 50)
+		if (m_Timer.GetMsec() > 75)
 		{
+
 			ColliderComponent* colC{ new ColliderComponent{ this,std::make_unique<BoundingSphere>(m_Radius) } };
 			auto bv{ new BulletBehaviour{ this } };
 			colC->AddListener(bv);

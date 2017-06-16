@@ -1,4 +1,5 @@
 #include "render_system.h"
+#include <algorithm>
 
 namespace Blade
 {
@@ -60,6 +61,13 @@ namespace Blade
 
 	void RenderSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
 	{
+		std::sort(m_RenderComponents.begin(), m_RenderComponents.end(), [](RenderComponent* a, RenderComponent* b)->bool
+		{
+
+			return a->GetMaterial().diffuse.a > b->GetMaterial().diffuse.a;
+
+		});
+
 		m_RenderPassPipeline->Execute(m_RenderComponents);
 	}
 }
