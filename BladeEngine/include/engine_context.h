@@ -14,6 +14,7 @@
 #include "shader_program_manager.h"
 #include "particle_system.h"
 #include "input_manager.h"
+#include "audio_manager.h"
 
 #ifdef BLADE_BUILD_OVR
 #include "ovr_manager.h"
@@ -54,6 +55,7 @@ namespace Blade
 		static SceneManager m_SceneManager;
 		static ShaderProgramManager m_ShaderProgramManager;
 		static InputManager m_InputManager;
+		static AudioManager m_AudioManager;
 
 #ifdef BLADE_BUILD_OVR
 		static OvrManager m_OvrManager;
@@ -102,6 +104,8 @@ namespace Blade
 
 		static Application& GetApplication() noexcept;
 
+		static AudioManager& GetAudioManager() noexcept;
+
 #ifdef BLADE_BUILD_OVR
 		static OvrManager& GetOvrManager() noexcept;
 #endif
@@ -125,6 +129,7 @@ namespace Blade
 #define G_InputManager Blade::EngineContext::GetInputManager()
 #define G_ParticleSystem Blade::EngineContext::GetParticleSystem()
 #define G_Application Blade::EngineContext::GetApplication()
+#define G_AudioManager Blade::EngineContext::GetAudioManager()
 
 #ifdef BLADE_BUILD_OVR
 #define G_OvrManager Blade::EngineContext::GetOvrManager()

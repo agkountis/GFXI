@@ -3,7 +3,7 @@
 #include <map>
 #include <iostream>
 #include "resource.h"
-#include "string_utils.h" 
+#include "string_utils.h"
 #include "trace.h"
 
 namespace Blade
@@ -11,6 +11,7 @@ namespace Blade
 	static const std::wstring MODELS_PATH{ L"data/models/" };
 	static const std::wstring TEXTURE_PATH{ L"data/textures/" };
 	static const std::wstring CONFIGURATION_PATH{ L"config/" };
+	static const std::wstring AUDIO_PATH{ L"data/audio/" };
 
 	static int s_Id = 0;
 
@@ -31,14 +32,24 @@ namespace Blade
 		std::map<unsigned int, Resource*> m_ResourcesById;
 
 	public:
-		~ResourceManager();
+		ResourceManager::~ResourceManager()
+		{
+			for (auto resource : m_ResourcesByName)
+			{
+				delete resource.second;
+			}
 
-		template <typename T>
+			m_ResourcesByName.clear();
+
+			m_ResourcesById.clear();
+		}
+
 		/*
 		\brief Load a new resource by file name
 		\return true if the resource is loaded correctly,
 		false otherwise.
 		*/
+		template <typename T>
 		bool Load(const std::wstring& fileName)
 		{
 			T* resource{ new T };
