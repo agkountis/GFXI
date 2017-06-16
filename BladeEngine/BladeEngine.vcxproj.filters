@@ -93,6 +93,12 @@
     <Filter Include="src\oculus">
       <UniqueIdentifier>{b6274c53-48b7-4959-af8f-b9456c459889}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\audio">
+      <UniqueIdentifier>{59524315-7e9d-41d9-894c-6463d4e3462a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\audio">
+      <UniqueIdentifier>{dca6456e-43f1-44e7-9e37-4b1d741a244e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -407,6 +413,30 @@
     <ClInclude Include="include\keyboard_input.h">
       <Filter>include\input</Filter>
     </ClInclude>
+    <ClInclude Include="include\audio.h">
+      <Filter>include\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\openal.h">
+      <Filter>include\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ovstream.h">
+      <Filter>include\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sample.h">
+      <Filter>include\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\source.h">
+      <Filter>include\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stream.h">
+      <Filter>include\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\audio_manager.h">
+      <Filter>include\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resource_utils.h">
+      <Filter>include\utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">
@@ -470,9 +500,6 @@
       <Filter>src\d3d</Filter>
     </ClCompile>
     <ClCompile Include="src\render_state_manager.cpp">
-      <Filter>src\managers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\resource_manager.cpp">
       <Filter>src\managers</Filter>
     </ClCompile>
     <ClCompile Include="src\shader_program_manager.cpp">
@@ -651,6 +678,27 @@
     </ClCompile>
     <ClCompile Include="src\keyboard_input.cpp">
       <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio.cpp">
+      <Filter>src\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ovstream.cpp">
+      <Filter>src\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sample.cpp">
+      <Filter>src\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source.cpp">
+      <Filter>src\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stream.cpp">
+      <Filter>src\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio_manager.cpp">
+      <Filter>src\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource_utils.cpp">
+      <Filter>src\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

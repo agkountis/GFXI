@@ -36,7 +36,7 @@ namespace Blade
 		MessageQueue m_MessageQueue;
 
 		/*
-		\brief Vector of threads 
+		\brief Vector of threads
 		*/
 		std::vector<std::thread> m_Threads;
 
@@ -44,7 +44,6 @@ namespace Blade
 
 		void ConnectionAcceptorThreadMain(const unsigned short port);
 
-		
 		void ConnectThreadMain(const std::string& host, const unsigned short port);
 
 		/*
@@ -85,7 +84,7 @@ namespace Blade
 		void Listen(const unsigned short port) noexcept;
 
 		/*
-		\brief Connect to an host 
+		\brief Connect to an host
 		*/
 		void Connect(const std::string& host, const unsigned short port) noexcept;
 

@@ -34,6 +34,7 @@ namespace Blade
 	SceneManager EngineContext::m_SceneManager;
 	ShaderProgramManager EngineContext::m_ShaderProgramManager;
 	InputManager EngineContext::m_InputManager;
+	AudioManager EngineContext::m_AudioManager;
 
 #ifdef BLADE_BUILD_OVR
 	OvrManager EngineContext::m_OvrManager;
@@ -176,6 +177,11 @@ namespace Blade
 	Application& EngineContext::GetApplication() noexcept
 	{
 		return *m_pApplication;
+	}
+
+	AudioManager& EngineContext::GetAudioManager() noexcept
+	{
+		return m_AudioManager;
 	}
 
 #ifdef BLADE_BUILD_OVR
