@@ -141,7 +141,7 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 
 	BLADE_TRACE("Allocating and pusing the GameScreen into the ScreenManager!");
 	
-	if (!G_SceneManager.PushScene(std::make_unique<NetworkedLobbyScene>()))
+	if (!G_SceneManager.PushScene(std::make_unique<GameScene>()))
 	{
 		return false;
 	}
