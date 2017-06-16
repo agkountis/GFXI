@@ -15,7 +15,7 @@ namespace Blade
 		float fov;
 	};
 
-	class Camera : public Entity
+	class Camera : public Entity                                                           
 	{
 	private:
 		CameraComponent* m_CameraComponent{ nullptr };

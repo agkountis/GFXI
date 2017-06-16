@@ -143,6 +143,7 @@ bool GameScene::Initialize()
 	cam->SetPosition(Vec3f{ 0.0f, 5.0f, -20.0f });
 	AddEntity(cam);
 	cam->SetParent(p);
+	HealthBar::SetCurrentCamera(cam);
 
 	cam = new Camera{ "Camera3", cd };
 	cam->SetPosition(Vec3f{ 0.0f, 10.0f, -50.0f });
@@ -151,6 +152,8 @@ bool GameScene::Initialize()
 	//Instruct the Camera system to set this camera as the active one.
 	G_CameraSystem.SetActiveCamera("Camera3");
 
+	
+	
 
 	// --------------------------------------------------------------------------------------------------------------------
 
