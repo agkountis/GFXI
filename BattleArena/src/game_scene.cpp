@@ -16,17 +16,17 @@
 #include "emitter_component.h"
 #include "player_joypad_component.h"
 #include "test_behaviour.h"
-#include "cannon_weapon_component.h"
 #include "other_weapon_component.h"
 #include "player.h"
 #include <iostream>
-#include "bounding_sphere.h"
+#include "resource_utils.h"
 
 #ifdef BLADE_BUILD_OVR
 #include "game_scene_color_pass_ovr.h"
 #endif
 
 using namespace Blade;
+using namespace ResourceUtils;
 
 bool GameScene::Initialize()
 {
@@ -201,6 +201,7 @@ bool GameScene::Initialize()
 	//Set the pipeline to the render system.
 	G_RenderSystem.SetRenderPassPipeline(pipeline);
 
+	G_AudioManager.PlayStream(AUDIO_PATH + L"destructoid.ogg", 0.1f, AUDIO_PLAYMODE_LOOP);
 
 	return true;
 	// --------------------------------------------------------------------------------------------------------------------
@@ -213,6 +214,7 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	case '1':
 	{
 		G_CameraSystem.SetActiveCamera("Camera1");
+		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		for (int i = 0; i < 4; ++i)
 		{
 			m_pColumnMaterials[i]->diffuse.a = 0.7f;
@@ -231,12 +233,17 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 
 			}
 		}
+	case '2':
+		G_CameraSystem.SetActiveCamera("Camera2");
+		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		break;
 	case '3':
 		G_CameraSystem.SetActiveCamera("Camera3");
+		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		break;
 	case '4':
 		G_CameraSystem.SetActiveCamera("Camera4");
+		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		break;
 	default:
 		break;

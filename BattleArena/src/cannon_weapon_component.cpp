@@ -4,7 +4,10 @@
 #include "entity.h"
 #include "projectile.h"
 #include "player.h"
+#include "resource_utils.h"
+
 using namespace Blade;
+using namespace ResourceUtils;
 
 CannonWeaponComponent::CannonWeaponComponent(Blade::Entity* parent):
 	WeaponComponent(parent)
@@ -25,7 +28,10 @@ void CannonWeaponComponent::Shoot(const Vec3f& position)
 {
 	if (m_Timer.GetMsec() > 700)
 	{
-		std::cout << "Red weapon!!" << std::endl;
+		G_AudioManager.SetListenerPosition(GetParent()->GetWorldPosition());
+		G_AudioManager.SetListenerOrientation(-static_cast<Player*>(GetParent())->GetHeading(), Vec3f{ 0.0f, 1.0f, 0.0f });
+		G_AudioManager.PlaySample(GetAudioSample(L"laser_gun.ogg"), 0.5f, AUDIO_PLAYMODE_ONCE, position);
+
 		Material material;
 		material.diffuse = Vec4f{ 40.0f, 1.0f, 1.0f, 1.0f };
 		material.specular = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f }; //the w value is the shininess.

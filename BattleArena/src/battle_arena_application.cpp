@@ -7,9 +7,10 @@
 #include "multiplayer.h"
 #include "trace.h"
 #include "assimp_utils.h"
-#include "networked_lobby_scene.h"
+#include "resource_utils.h"
 
 using namespace Blade;
+using namespace ResourceUtils;
 
 // Static event callbacks ---------------------------------------------------------------
 static void Reshape(int x, int y)
@@ -145,6 +146,11 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 	{
 		return false;
 	}
+
+	BLADE_TRACE("Loading assets");
+	GetAudioSample(L"ui_action.ogg");
+	GetAudioSample(L"explosion.ogg");
+	GetAudioSample(L"laser_gun.ogg");
 
 	BLADE_TRACE("BattleArenaApplication Initialization Successfull!");
 	return true;
