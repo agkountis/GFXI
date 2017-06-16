@@ -18,6 +18,7 @@
 #include "test_behaviour.h"
 #include "other_weapon_component.h"
 #include "player.h"
+#include "explosion.h"
 #include <iostream>
 #include "resource_utils.h"
 
@@ -112,6 +113,11 @@ bool GameScene::Initialize()
 
 
 	m_WeaponFactory.GenerateWeapons();
+
+	//Explosion* expl = new Explosion(0.9f);
+	//expl->SetPosition(Vec3f(0, 10, 0));
+	//expl->RegisterWithScene();
+	//AddEntity(expl);
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Get the window size.

@@ -40,6 +40,8 @@ public:
 
 	int GetID() const noexcept;
 
+	void Explode(const Blade::Vec3f& position);
+
 
 
 };

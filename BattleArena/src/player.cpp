@@ -2,7 +2,7 @@
 #include "engine_context.h"
 #include <iostream>
 #include "weapon_component.h"
-
+#include "explosion.h"
 using namespace Blade;
 
 Player::Player(const std::string& name,const int id)
@@ -71,4 +71,11 @@ Vec3f Player::GetRightWeaponPos() const noexcept
 int Player::GetID() const noexcept
 {
 	return m_Id;
+}
+
+void Player::Explode(const Vec3f& position)
+{
+	Explosion* expl = new Explosion(0.9f);
+	expl->SetPosition(position);
+	expl->RegisterWithScene();
 }
