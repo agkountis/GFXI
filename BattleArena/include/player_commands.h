@@ -27,7 +27,7 @@ public:
 
 				if (m_Online)
 				{
-					std::cout << "Sending... move forward" << std::endl;
+					//std::cout << "Sending... move forward" << std::endl;
 					G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(pl->GetID(), BA_MOVE_FORWARD, RECIPIENT_ID_BROADCAST, nullptr));
 				}
 
@@ -54,7 +54,7 @@ public:
 				simComp->AddForce(-heading * dt * (10000.0f));
 				if (m_Online)
 				{
-					std::cout << "Sending... move back" << std::endl;
+					//std::cout << "Sending... move back" << std::endl;
 					G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(pl->GetID(), BA_MOVE_BACK, RECIPIENT_ID_BROADCAST, nullptr));
 				}
 			}
@@ -81,7 +81,7 @@ public:
 			simComp->AddForce(Vec3f(Mat4f(q) * Vec4f(-1.0f, 0.0f, 0.0f, 0)) * dt * (1000.0f));
 			if (m_Online)
 			{
-				std::cout << "Sending... move left" << std::endl;
+				//std::cout << "Sending... move left" << std::endl;
 				G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(pl->GetID(), BA_MOVE_LEFT, RECIPIENT_ID_BROADCAST, nullptr));
 			}
 		}
@@ -108,7 +108,7 @@ public:
 			simComp->AddForce(Vec3f(Mat4f(q) * Vec4f(1.0f, 0.0f, 0.0f, 0)) * dt * (1000.0f));
 			if (m_Online)
 			{
-				std::cout << "Sending... move right" << std::endl;
+				//std::cout << "Sending... move right" << std::endl;
 				G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(pl->GetID(), BA_MOVE_RIGHT, RECIPIENT_ID_BROADCAST, nullptr));
 			}
 		}
@@ -221,7 +221,7 @@ public:
 						weapon->Shoot(p->GetLeftWeaponPos());
 						if (m_Online)
 						{
-							std::cout << "Sending... shoot left" << std::endl;
+							//std::cout << "Sending... shoot left" << std::endl;
 							G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(p->GetID(), BA_SHOOT_LEFT, RECIPIENT_ID_BROADCAST, nullptr));
 						}
 						return;
@@ -265,7 +265,7 @@ public:
 						weapon->Shoot(p->GetRightWeaponPos());
 						if (m_Online)
 						{
-							std::cout << "Sending... right left" << std::endl;
+							//std::cout << "Sending... right left" << std::endl;
 							G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(p->GetID(), BA_SHOOT_RIGHT, RECIPIENT_ID_BROADCAST, nullptr));
 						}
 						return;

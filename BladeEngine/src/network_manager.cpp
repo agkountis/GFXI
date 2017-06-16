@@ -57,7 +57,7 @@ namespace Blade
 
 	void NetworkManager::ConnectThreadMain(const std::string& host, const unsigned short port)
 	{
-		int reconnectionAttempts{ 30 };
+		int reconnectionAttempts{ 100 };
 
 		Socket connectionSocket;
 
@@ -100,7 +100,7 @@ namespace Blade
 			}
 
 			using namespace std::chrono_literals;
-			std::this_thread::sleep_for(10s);
+			std::this_thread::sleep_for(2s);
 
 			--reconnectionAttempts;
 		}
@@ -269,7 +269,7 @@ namespace Blade
 
 	void NetworkManager::QueueMessage(const std::shared_ptr<NetworkMessage>& message) noexcept
 	{
-		std::lock_guard<std::mutex> lock{ m_Mutex };
+		//std::lock_guard<std::mutex> lock{ m_Mutex };
 		m_MessageQueue.push(message);
 	}
 
