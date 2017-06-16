@@ -15,8 +15,8 @@ namespace Blade
 	using namespace MathUtils;
 
 	float SimulationSystem::frequency = 2000.0f;
-	float SimulationSystem::elasticity = 0.5f;
-	float SimulationSystem::friction = 0.2f;
+	float SimulationSystem::elasticity = 0.3f;
+	float SimulationSystem::friction = 1.0f;
 	float SimulationSystem::dt = 0.0f;
 	float SimulationSystem::dtScale = 1.0f;
 

@@ -23,7 +23,7 @@ CannonWeaponComponent::~CannonWeaponComponent()
 
 void CannonWeaponComponent::Shoot(const Vec3f& position)
 {
-	if (m_Timer.GetMsec() > 500)
+	if (m_Timer.GetMsec() > 700)
 	{
 		std::cout << "Red weapon!!" << std::endl;
 		Material material;
@@ -32,7 +32,7 @@ void CannonWeaponComponent::Shoot(const Vec3f& position)
 
 		auto p{ static_cast<Player*>(GetParent()) };
 
-		Projectile* cannonBullet{ new Projectile("projectile_1", L"cube", material, 0.3f, 0.5f,
+		Projectile* cannonBullet{ new Projectile("projectile_1", L"cube", material, 0.3f, 0.1f,
 			position,
 			p->GetHeading()*100.0f) };
 
