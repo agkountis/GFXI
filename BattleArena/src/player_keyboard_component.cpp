@@ -17,7 +17,7 @@ void PlayerKeyboardComponent::Update(const float dt, const long time) noexcept
 	{
 		if (G_InputManager.QueryKeyState(key.first))
 		{
-			key.second->Execute(GetParent(), dt);
+			key.second->Execute(GetParent(), 0.1f);
 		}
 	}
 	//Mouse
