@@ -5,6 +5,7 @@
 #include "player.h"
 #include "command_message.h"
 #include "network_message_types.h"
+#include "resource_utils.h"
 
 class MoveForward : public Blade::Command
 {

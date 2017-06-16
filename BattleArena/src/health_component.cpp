@@ -1,6 +1,8 @@
 #include "health_component.h"
 #include "trace.h"
 #include "projectile.h"
+#include "engine_context.h"
+#include "resource_utils.h"
 using namespace Blade;
 
 
