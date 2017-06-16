@@ -23,12 +23,14 @@ Projectile::Projectile(const std::string& name,
 
 	SetScale(Vec3f(radius, radius, radius));
 	SetPosition(position);
+	//#if _DEBUG
 	RenderComponent* rc{ new RenderComponent{ this } };
 	rc->SetMesh(G_ResourceManager.Get<Mesh>(mesh));
 	rc->SetMaterial(material);
+	//#endif
 	SimulationComponent* simC{ new SimulationComponent{ this ,mass } };
 	simC->SetVelocity(velocity);
-//#if !_DEBUG
+
 	EmitterComponent* ec = new EmitterComponent{ this };
 	ec->SetLifeSpan(1.0f);
 	ec->SetMaxParticles(1000);
@@ -46,7 +48,7 @@ Projectile::Projectile(const std::string& name,
 	Texture* tex{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"expl02.png") };
 	tex->SetTextureType(TEX_DIFFUSE);
 	ec->SetTexture(tex);
-//#endif
+
 	m_Timer.Start();
 	//auto bv{ new BulletBehaviour{ this } };
 	//colC->AddListener(bv);

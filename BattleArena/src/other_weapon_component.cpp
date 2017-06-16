@@ -2,6 +2,7 @@
 #include "engine_context.h"
 #include "projectile.h"
 #include "player.h"
+#include "d3d/D3D11_texture.h"
 using namespace Blade;
 
 OtherWeaponComponent::OtherWeaponComponent(Blade::Entity * parent):
@@ -30,13 +31,11 @@ void OtherWeaponComponent::Shoot(const Vec3f & position)
 		Material material;
 		material.diffuse = Vec4f{ 1.0f, 55.0f, 1.0f, 1.0f };
 		material.specular = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f }; //the w value is the shininess.
+		material.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"spacecraftDiff.jpg");
+		material.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
 
-		//Mat4f rot{};
-		//rot = MathUtils::Rotate(rot, 30.0f, Vec3f(1.0f, 0.0f, 0.0f));
 		auto heading{ p->GetHeading() +Vec3f(0.0f,1.275,0.0f)};
-		//auto velocity{  Vec3f(rot * Vec4f(heading,1.0f)) *20.0f};
 
-		
 		Projectile* otherWeaponBullet{ new Projectile("projectile_2", L"cube", material, 1.5f, 0.5f,
 			position,
 			heading*9.945f)};
