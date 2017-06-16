@@ -4,6 +4,7 @@
 
 class BattleArenaApplication : public Blade::Application
 {
+
 public:
 	bool Initialize(int* argc, char* argv[]) override;
 
