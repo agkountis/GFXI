@@ -3,18 +3,15 @@
 #include <vector>
 #include "types.h"
 #include "socket.h"
+#include "player_commands.h"
 
-class Multiplayer
+namespace Multiplayer
 {
-private:
-	static void OnNewClient(Blade::ConnectionInfo connectionInfo);
+	void OnNewClient(Blade::ConnectionInfo connectionInfo);
 
-	static void OnClientDisconnect();
+	void OnClientDisconnect();
 
-	static void OnNewPacket(std::vector<Blade::Byte> packet);
-
-public:
-	static bool Initialize(const std::string& networkConfigFileName) noexcept;
+	void OnNewPacket(std::vector<Blade::Byte> packet);
 };
 
 #endif //MULTIPLAYER_H_

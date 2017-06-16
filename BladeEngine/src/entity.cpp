@@ -24,10 +24,7 @@ namespace Blade
 
 		for (auto child : m_Children)
 		{
-			
 			 delete child;
-			
-
 		}
 
 		m_Children.clear();

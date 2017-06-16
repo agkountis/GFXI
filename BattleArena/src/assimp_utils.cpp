@@ -299,10 +299,7 @@ namespace AssimpUtils
 		aiVector3D aiScaling;
 
 		aiNode->mTransformation.Decompose(aiScaling, aiOrientation, aiPosition);
-		//Mat4f scale;
-		//memcopy(&scale[0],)
 
-		//entity->SetXform()
 		entity->SetPosition(AssToBlade(aiPosition));
 		entity->SetOrientation(AssToBlade(aiOrientation));
 		entity->SetScale(AssToBlade(aiScaling));

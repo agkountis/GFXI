@@ -13,7 +13,8 @@ namespace Blade
 	{
 		Socket socket;
 
-		BLADE_TRACE("Opening listening socket.");
+		BLADE_TRACE("Opening listening socket. Port: " + std::to_string(port));
+		BLADE_TRACE("Listening...");
 		if (!socket.Listen(port))
 		{
 			return;
@@ -30,12 +31,18 @@ namespace Blade
 				{
 					std::lock_guard<std::mutex> lock{ m_Mutex };
 
-					m_Connections[std::get<long>(connectionInfo.ip)] = std::make_unique<Socket>(std::move(clientSocket));
+					if (m_Connections[std::get<unsigned long>(connectionInfo.ip)])
+					{
+						BLADE_TRACE("Connection already established. Aborting");
+						continue;
+					}
+
+					m_Connections[std::get<unsigned long>(connectionInfo.ip)] = std::make_unique<Socket>(std::move(clientSocket));
 
 					BLADE_TRACE("Connection count: " + std::to_string(m_Connections.size()));
 				}
 
-				long id{ std::get<long>(connectionInfo.ip) };
+				unsigned long id{ std::get<unsigned long>(connectionInfo.ip) };
 				std::thread clientThread{ [id, this]() { ReceiveThreadMain(id); } };
 
 				m_Threads.push_back(std::move(clientThread));
@@ -50,7 +57,7 @@ namespace Blade
 
 	void NetworkManager::ConnectThreadMain(const std::string& host, const unsigned short port)
 	{
-		int reconnectionAttempts{ 30 };
+		int reconnectionAttempts{ 100 };
 
 		Socket connectionSocket;
 
@@ -62,17 +69,24 @@ namespace Blade
 
 			if (connectionSocket.Connect(host, port, &connectionInfo))
 			{
-				BLADE_TRACE("Connection successful!");
-
 				{
 					std::lock_guard<std::mutex> lock{ m_Mutex };
 
-					m_Connections[std::get<long>(connectionInfo.ip)] = std::make_unique<Socket>(std::move(connectionSocket));
+					if (m_Connections[std::get<unsigned long>(connectionInfo.ip)])
+					{
+						BLADE_TRACE("Connection already established. Aborting");
+						return;
+					}
+
+					BLADE_TRACE("Connection successful!");
+
+					m_Connections[std::get<unsigned long>(connectionInfo.ip)] = std::make_unique<Socket>(std::move(connectionSocket));
 
 					BLADE_TRACE("Connection count: " + std::to_string(m_Connections.size()));
 				}
 
-				long id{ std::get<long>(connectionInfo.ip) };
+				unsigned long id{ std::get<unsigned long>(connectionInfo.ip) };
+
 				std::thread clientThread{ [id, this]() { ReceiveThreadMain(id); } };
 
 				m_Threads.push_back(std::move(clientThread));
@@ -86,7 +100,7 @@ namespace Blade
 			}
 
 			using namespace std::chrono_literals;
-			std::this_thread::sleep_for(10s);
+			std::this_thread::sleep_for(2s);
 
 			--reconnectionAttempts;
 		}
@@ -95,7 +109,7 @@ namespace Blade
 		BLADE_ERROR("Failed to connect! Host: " + host + " Port: " + std::to_string(port));
 	}
 
-	void NetworkManager::ReceiveThreadMain(const long idx)
+	void NetworkManager::ReceiveThreadMain(const unsigned long idx)
 	{
 		int receivedBytes{ 0 };
 		Byte buffer[1024];
@@ -255,7 +269,7 @@ namespace Blade
 
 	void NetworkManager::QueueMessage(const std::shared_ptr<NetworkMessage>& message) noexcept
 	{
-		std::lock_guard<std::mutex> lock{ m_Mutex };
+		//std::lock_guard<std::mutex> lock{ m_Mutex };
 		m_MessageQueue.push(message);
 	}
 

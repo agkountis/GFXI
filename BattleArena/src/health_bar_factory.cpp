@@ -53,7 +53,6 @@ HealthBar * HealthBarFactory::CreateHealthBar(Blade::Entity* parent, int maxHeal
 	rc = new RenderComponent{ fullBar } ;
 	rc->SetMesh(G_ResourceManager.Get<Mesh>(L"BarCube"));
 	rc->SetMaterial(material2);
-	G_SceneManager.GetCurrentScene()->AddEntity(hb);
 
 	return hb;
 }

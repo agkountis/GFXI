@@ -2,8 +2,8 @@
 
 namespace Blade
 {
-	KeyboardInputComponent::KeyboardInputComponent( Entity * parent)
-		:InputComponent("co_kic",parent)
+	KeyboardInputComponent::KeyboardInputComponent( Entity * parent, bool online)
+		:InputComponent("co_kic",parent, online)
 	{
 	}
 	KeyboardInputComponent::~KeyboardInputComponent()

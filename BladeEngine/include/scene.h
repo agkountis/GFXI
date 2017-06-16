@@ -16,17 +16,17 @@ namespace Blade
 		/*
 		\brief The collection of the entities present in this scene.
 		*/
-		std::vector<Entity*> m_Entities;
+		std::vector<Entity*> m_pEntities;
 
 		/*
 		\brief The collection of the entities that need be removed the next frame.
 		*/
-		std::vector<Entity*> m_NeedToBeRemovedEntities;
+		std::vector<Entity*> m_pNeedToBeRemovedEntities;
 
 		/*
 		\brief The collection of the entities that need be deleted the next frame.
 		*/
-		std::vector<Entity*> m_NeedToBeDeletedEntities;
+		std::vector<Entity*> m_pNeedToBeDeletedEntities;
 
 	public:
 		Scene() = default;
@@ -40,7 +40,7 @@ namespace Blade
 		/*
 		\brief Initialize the scene
 		*/
-		virtual void Initialize() = 0;
+		virtual bool Initialize() = 0;
 
 		/*
 		\brief Adds a new entity to the scene
@@ -63,6 +63,8 @@ namespace Blade
 		* \brief Getters of the collections of entities that are currently in the scene.
 		*/
 		const std::vector<Entity*>& GetEntities() const noexcept;
+
+		Entity* GetEntityByName(const std::string& name) noexcept;
 
 		/*
 		\brief Defines how the scene should response when a key is pressed

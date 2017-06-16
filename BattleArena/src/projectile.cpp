@@ -34,7 +34,7 @@ Projectile::Projectile(const std::string& name,
 	ec->SetMaxParticles(1000);
 	ec->SetSpawnRate(200);
 	ec->SetActive(true);
-	ec->SetParticleSize(0.8f);
+	ec->SetParticleSize(2.0f);
 	ec->SetSpawnRadius(m_Radius);
 	ec->SetVelocity(Vec3f{ 0.0f, 1.0f, 0.0f });
 	ec->SetVelocityRange(1.3f);

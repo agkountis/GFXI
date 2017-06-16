@@ -34,6 +34,7 @@ namespace Blade
 		float GetFloat(const char *optname, float def = 0.0f) const;
 		Vec4f GetVec4f(const char *optname, const Vec4f& def = Vec4f{ 0.0f, 0.0f, 0.0f, 1.0f }) const;
 		void SetNcf(NCF *n);
+		NCF* GetNcf();
 	};
 
 	class ConfigEntry {

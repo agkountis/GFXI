@@ -6,8 +6,8 @@
 using namespace Blade;
 
 
-PlayerKeyboardComponent::PlayerKeyboardComponent(Entity* parent)
-	: KeyboardInputComponent(parent)
+PlayerKeyboardComponent::PlayerKeyboardComponent(Entity* parent,bool online)
+	: KeyboardInputComponent(parent,online)
 {
 }
 
@@ -38,12 +38,12 @@ void PlayerKeyboardComponent::Update(const float dt, const long time) noexcept
 void PlayerKeyboardComponent::Setup() noexcept
 {
 	//Keyboard
-	auto move_up_command = std::make_shared<MoveForward>();
-	auto move_down_command = std::make_shared<MoveBack>();
-	auto move_left_command = std::make_shared<MoveLeft>();
-	auto move_right_command = std::make_shared<MoveRight>();
-	auto shoot_left_command = std::make_shared<ShootLeftWeapon>();
-	auto shoot_right_command = std::make_shared<ShootRightWeapon>();
+	auto move_up_command = std::make_shared<MoveForward>(m_Online);
+	auto move_down_command = std::make_shared<MoveBack>(m_Online);
+	auto move_left_command = std::make_shared<MoveLeft>(m_Online);
+	auto move_right_command = std::make_shared<MoveRight>(m_Online);
+	auto shoot_left_command = std::make_shared<ShootLeftWeapon>(m_Online);
+	auto shoot_right_command = std::make_shared<ShootRightWeapon>(m_Online);
 
 	m_KeyboardCommandMap[KEY_W] = move_up_command;
 	m_KeyboardCommandMap[KEY_A] = move_left_command;

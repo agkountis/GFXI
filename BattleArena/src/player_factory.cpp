@@ -10,29 +10,30 @@
 
 using namespace Blade;
 
-Player* PlayerFactory::CreateLocalKeyboardPlayer(const std::string& name, const std::wstring& modelPath) noexcept
+
+Player* PlayerFactory::CreateKeyboardPlayer(const std::string& name, const std::wstring& modelPath, const int playerID, bool online) noexcept
 {
-	auto player{ CreateMultiplayerPlayer(name, modelPath) };
-	PlayerKeyboardComponent* pkc{ new PlayerKeyboardComponent{ player } };
+	auto player{ CreatePlayer(name, modelPath,playerID) };
+	PlayerKeyboardComponent* pkc{ new PlayerKeyboardComponent{ player,online } };
 	pkc->Setup();
 	m_KeyboardPlayer = true;
 	return player;
 }
 
 
-Player* PlayerFactory::CreateLocalJoypadPlayer(const std::string& name, const std::wstring& modelPath) noexcept
+Player* PlayerFactory::CreateJoypadPlayer(const std::string& name, const std::wstring& modelPath, const int playerID, bool online) noexcept
 {
-	auto player{ CreateMultiplayerPlayer(name, modelPath) };
+	auto player{ CreatePlayer(name, modelPath,playerID) };
 	auto counter{ m_KeyboardPlayer ? m_Counter - 2 : m_Counter - 1 };
 	JoypadNumber joypadNumber{ static_cast<JoypadNumber>(counter) };
-	PlayerJoypadComponent* pjc{ new PlayerJoypadComponent{ player,joypadNumber } };
+	PlayerJoypadComponent* pjc{ new PlayerJoypadComponent{ player,joypadNumber,online } };
 	pjc->Setup();
 	return player;
 }
 
-Player* PlayerFactory::CreateMultiplayerPlayer(const std::string& name, const std::wstring& modelPath) noexcept
+Player* PlayerFactory::CreatePlayer(const std::string& name, const std::wstring& modelPath,const int playerID) noexcept
 {
-	Player* player{ new Player{ name } };
+	Player* player{ new Player{ name,playerID } };
 
 	player->Load(MODELS_PATH + modelPath);
 

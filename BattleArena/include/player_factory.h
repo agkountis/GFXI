@@ -13,10 +13,11 @@ private:
 	HealthBarFactory m_HealthBarFactory;
 
 public:
-	Player* CreateLocalKeyboardPlayer(const std::string& name, const std::wstring& modelPath) noexcept;
 
-	Player* CreateLocalJoypadPlayer(const std::string& name, const std::wstring& modelPath) noexcept;
+	Player* PlayerFactory::CreateKeyboardPlayer(const std::string& name, const std::wstring& modelPath, const int playerID, bool online) noexcept;
 
-	Player* CreateMultiplayerPlayer(const std::string& name, const std::wstring& modelPath) noexcept;
+	Player* PlayerFactory::CreateJoypadPlayer(const std::string& name, const std::wstring& modelPath, const int playerID, bool online) noexcept;
+
+	Player* CreatePlayer(const std::string& name, const std::wstring& modelPath, const int playerID) noexcept;
 };
 #endif

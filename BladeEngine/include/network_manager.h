@@ -15,7 +15,7 @@ namespace Blade
 
 	using OnClientDisconnectCallback = std::function<void()>;
 
-	using ConnectionMap = std::map<long, std::unique_ptr<Socket>>;
+	using ConnectionMap = std::map<unsigned long, std::unique_ptr<Socket>>;
 
 	using MessageQueue = std::queue<std::shared_ptr<NetworkMessage>>;
 
@@ -49,7 +49,7 @@ namespace Blade
 		/*
 		\brief Receive thread main used by the threads to perform the receiving process.
 		*/
-		void ReceiveThreadMain(const long clientId);
+		void ReceiveThreadMain(const unsigned long clientId);
 
 		/*
 		\brief Send thread main used by the threads to perform the sending process.

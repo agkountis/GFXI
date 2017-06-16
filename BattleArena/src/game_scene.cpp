@@ -16,19 +16,19 @@
 #include "emitter_component.h"
 #include "player_joypad_component.h"
 #include "test_behaviour.h"
+#include "cannon_weapon_component.h"
 #include "other_weapon_component.h"
 #include "player.h"
-#include "resource_utils.h"
 #include <iostream>
+#include "bounding_sphere.h"
 
 #ifdef BLADE_BUILD_OVR
 #include "game_scene_color_pass_ovr.h"
 #endif
 
 using namespace Blade;
-using namespace ResourceUtils;
 
-void GameScene::Initialize()
+bool GameScene::Initialize()
 {
 	// Renderable Entity creation ----------------------------------------------------------------------------------------
 	//Generate a Sphere.
@@ -39,22 +39,22 @@ void GameScene::Initialize()
 	Mesh* plane{ MeshUtils::GeneratePlaneXy(1.0f) };
 	G_ResourceManager.RegisterResource(plane, L"plane");
 
-	Texture* tex = GetD3D11Texture(L"star.jpg");
+	Texture* tex = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"star.jpg");
 
 	//Define a material.
 	Material material;
 	material.diffuse = Vec4f{ 1.0f, 1.0f, 1.0f, 1.0f };
 	material.specular = Vec4f{ 1.0f, 1.0f, 1.0f, 60.0f }; //the w value is the shininess.
 
-	Texture* diffuseTexture{ GetD3D11Texture(L"tunnelDiff5.png") };
+	Texture* diffuseTexture{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelDiff5.png") };
 	diffuseTexture->SetTextureType(TEX_DIFFUSE);
 	material.textures[TEX_DIFFUSE] = diffuseTexture;
 
-	Texture* specularTexture{ GetD3D11Texture(L"tunnelSpec5.png") };
+	Texture* specularTexture{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelSpec5.png") };
 	specularTexture->SetTextureType(TEX_SPECULAR);
 	material.textures[TEX_SPECULAR] = specularTexture;
 
-	Texture* normalmapTexture{ GetD3D11Texture(L"tunnelNorm5.png") };
+	Texture* normalmapTexture{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelNorm5.png") };
 	normalmapTexture->SetTextureType(TEX_NORMAL);
 	material.textures[TEX_NORMAL] = normalmapTexture;
 	//////////////////////////////////////////////////////////////////////////
@@ -71,18 +71,24 @@ void GameScene::Initialize()
 	ColliderComponent* wall4{ new ColliderComponent{ entity,std::make_unique<PlaneCollider>(Vec3f{ 0.0f,0.0f,-1.0f },-40.0f) } };
 	AddEntity(entity);
 
-
-	auto p{ m_PlayerFactory.CreateLocalJoypadPlayer("player1",L"player1.fbx") };
+	auto p{ m_PlayerFactory.CreateJoypadPlayer("player1",L"player1.fbx", 1, false) };
 	p->SetPosition(Vec3f(15.0f, 1.0f, -10.0f));
 	AddEntity(p);
 
-	auto p2{ m_PlayerFactory.CreateLocalJoypadPlayer("player2",L"player1.fbx") };
+	auto p2{ m_PlayerFactory.CreateJoypadPlayer("player2",L"player2.fbx", 2, false) };
 	p2->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
 	AddEntity(p2);
 
+	auto p3{ m_PlayerFactory.CreateJoypadPlayer("player3",L"player3.fbx", 3, false) };
+	p2->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
+	AddEntity(p3);
+
+	auto p4{ m_PlayerFactory.CreateJoypadPlayer("player4",L"player4.fbx", 4, false) };
+	p2->SetPosition(Vec3f(-15.0f, 1.0f, -10.0f));
+	AddEntity(p4);
+
+
 	m_WeaponFactory.GenerateWeapons();
-
-
 
 	// Camera creation ---------------------------------------------------------------------------------------------------
 	//Get the window size.
@@ -155,20 +161,30 @@ void GameScene::Initialize()
 
 #ifdef BLADE_BUILD_OVR
 	GameSceneColorPassStageOvr* ovrStage{ new GameSceneColorPassStageOvr{ " ovrPass " } };
-	ovrStage->Initialize();
+	if (!ovrStage->Initialize())
+	{
+		BLADE_ERROR("Failed to initialize the ovr pass stage.");
+		return false;
+	}
+
 	pipeline->AddStage(ovrStage);
 #else
 	//Allocate and initialize the a render pass pipeline stage.
 	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
-	colorPassStage->Initialize();
+	if(!colorPassStage->Initialize())
+	{
+		BLADE_ERROR("Failed to initialize the color pass stage.");
+		return false;
+	}
+
 	pipeline->AddStage(colorPassStage);
 #endif
 
 	//Set the pipeline to the render system.
 	G_RenderSystem.SetRenderPassPipeline(pipeline);
 
-	G_AudioManager.PlayStream(AUDIO_PATH + L"mad_science_trimmed2.ogg", 1.0f, AUDIO_PLAYMODE_LOOP);
 
+	return true;
 	// --------------------------------------------------------------------------------------------------------------------
 }
 
@@ -178,19 +194,15 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	{
 	case '1':
 		G_CameraSystem.SetActiveCamera("Camera1");
-		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		break;
 	case '2':
 		G_CameraSystem.SetActiveCamera("Camera2");
-		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		break;
 	case '3':
 		G_CameraSystem.SetActiveCamera("Camera3");
-		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		break;
 	case '4':
 		G_CameraSystem.SetActiveCamera("Camera4");
-		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		break;
 	default:
 		break;
@@ -220,6 +232,7 @@ void GameScene::Update(float deltaTime, long time) noexcept
 	G_LightSystem.Process();
 
 	G_BehaviourSystem.Process(deltaTime, time);
+
 }
 
 void GameScene::Draw() const noexcept

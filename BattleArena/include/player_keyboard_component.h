@@ -6,7 +6,7 @@
 class PlayerKeyboardComponent : public Blade::KeyboardInputComponent
 {
 public:
-	explicit PlayerKeyboardComponent(Blade::Entity* parent);
+	explicit PlayerKeyboardComponent(Blade::Entity* parent,bool online);
 
 	void Update(const float dt, const long time) noexcept override;
 

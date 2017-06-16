@@ -17,6 +17,8 @@ Blade::JoypadNumber GetJoypadNumberByEntity(Blade::Entity* entity);
 class PrintA : public Blade::Command
 {
 public:
+	PrintA(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		std::cout << "A" << std::endl;
@@ -27,6 +29,8 @@ public:
 class PrintB : public Blade::Command
 {
 public:
+	PrintB(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		std::cout << "B" << std::endl;
@@ -36,6 +40,8 @@ public:
 class PrintY : public Blade::Command
 {
 public:
+	PrintY(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		std::cout << "Y" << std::endl;
@@ -45,6 +51,8 @@ public:
 class PrintX : public Blade::Command
 {
 public:
+	PrintX(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		std::cout << "X" << std::endl;
@@ -54,6 +62,8 @@ public:
 class PrintRB : public Blade::Command
 {
 public:
+	PrintRB(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		std::cout << "RB" << std::endl;
@@ -63,6 +73,8 @@ public:
 class PrintRT : public Blade::Command
 {
 public:
+	PrintRT(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		std::cout << "RT" << std::endl;
@@ -72,6 +84,8 @@ public:
 class PrintLB : public Blade::Command
 {
 public:
+	PrintLB(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		std::cout << "LB" << std::endl;
@@ -81,6 +95,8 @@ public:
 class PrintLT : public Blade::Command
 {
 public:
+	PrintLT(bool online) :Blade::Command(online) {}
+	
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		std::cout << "LT" << std::endl;
@@ -90,6 +106,8 @@ public:
 class PrintStart : public Blade::Command
 {
 public:
+	PrintStart(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		std::cout << "START" << std::endl;
@@ -99,6 +117,8 @@ public:
 class PrintSelect : public Blade::Command
 {
 public:
+	PrintSelect(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		std::cout << "SELECT" << std::endl;
@@ -109,6 +129,8 @@ public:
 class PrintLeftStick : public Blade::Command
 {
 public:
+	PrintLeftStick(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		using namespace Blade;
@@ -121,6 +143,8 @@ public:
 class PrintRightStick : public Blade::Command
 {
 public:
+	PrintRightStick(bool online) :Blade::Command(online) {}
+
 	void Execute(Blade::Entity* entity, const float dt) override
 	{
 		using namespace Blade;

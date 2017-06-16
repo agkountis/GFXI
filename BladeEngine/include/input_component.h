@@ -10,13 +10,16 @@ namespace Blade
 	*/
 	class InputComponent : public BehaviourComponent
 	{
+	protected:
+		bool m_Online;
+
 	public:
 		/*
 		\brief Input component constructor.
 		\param type The type of the InputComponent as a string
 		\param parent The entity the InputComponent will be attached to.
 		*/
-		explicit InputComponent(const std::string& type, Entity* parent);
+		explicit InputComponent(const std::string& type, Entity* parent, bool online = false);
 
 		InputComponent(const InputComponent& other) = delete;
 

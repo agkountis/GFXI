@@ -16,7 +16,7 @@ namespace Blade
 		using JoypadCommandMap = std::map<InputSensor, std::shared_ptr<Command>>;
 
 	public:
-		explicit JoypadInputComponent(Entity* parent, JoypadNumber joypad_number);
+		explicit JoypadInputComponent(Entity* parent, JoypadNumber joypad_number, bool online);
 
 		JoypadInputComponent(const JoypadInputComponent&other) = delete;
 

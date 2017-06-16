@@ -7,6 +7,7 @@
 #include "multiplayer.h"
 #include "trace.h"
 #include "assimp_utils.h"
+#include "networked_lobby_scene.h"
 
 using namespace Blade;
 
@@ -63,8 +64,6 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 	BLADE_TRACE("BattleArenaApplication Initialization Starts!");
 
 	SetLoadEntityCallback(AssimpUtils::LoadEntity);
-
-	Multiplayer::Initialize("config\\test.cfg");
 
 	WindowFunctionCallbacks callbacks;
 	callbacks.passive_motion_func = PassiveMouseMotion;
@@ -141,7 +140,11 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 	}
 
 	BLADE_TRACE("Allocating and pusing the GameScreen into the ScreenManager!");
-	G_SceneManager.PushScene(std::make_unique<GameScene>());
+	
+	if (!G_SceneManager.PushScene(std::make_unique<NetworkedLobbyScene>()))
+	{
+		return false;
+	}
 
 	BLADE_TRACE("BattleArenaApplication Initialization Successfull!");
 	return true;
@@ -156,7 +159,7 @@ void BattleArenaApplication::Draw() const noexcept
 {
 	G_SceneManager.Draw();
 
-	WindowingService::SwapBuffers();
+	WindowingService::SwapBuffers(1);
 }
 
 int BattleArenaApplication::Run() noexcept

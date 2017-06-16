@@ -10,7 +10,12 @@ namespace Blade
 	*/
 	class Command
 	{
+	protected:
+		bool m_Online;
+
 	public:
+		Command(bool online = false) :m_Online{ online } {}
+
 		virtual ~Command() = default;
 
 		/*
@@ -19,6 +24,8 @@ namespace Blade
 		\param dt the delta time.
 		*/
 		virtual void Execute(Entity* entity, const float dt) = 0;
+
+	
 	};
 
 }
