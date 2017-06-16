@@ -7,7 +7,6 @@
 
 namespace Multiplayer
 {
-
 	void OnNewClient(Blade::ConnectionInfo connectionInfo);
 
 	void OnClientDisconnect();

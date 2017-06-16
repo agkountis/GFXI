@@ -13,6 +13,9 @@ using namespace SerializationUtils;
 
 namespace Multiplayer
 {
+	
+
+
 	void Multiplayer::OnNewClient(ConnectionInfo connectionInfo)
 	{
 		BLADE_TRACE("New Player Connected!!!");

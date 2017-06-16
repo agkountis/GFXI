@@ -39,6 +39,9 @@ public:
 	Blade::Vec3f GetRightWeaponPos() const noexcept;
 
 	int GetID() const noexcept;
+
+
+
 };
 
 #endif

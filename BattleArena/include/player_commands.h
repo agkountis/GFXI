@@ -3,6 +3,8 @@
 #include "test_commands_battle_arena.h"
 #include "weapon_component.h"
 #include "player.h"
+#include "command_message.h"
+#include "network_message_types.h"
 
 class MoveForward : public Blade::Command
 {
@@ -22,6 +24,12 @@ public:
 				const Vec3f& heading = pl->GetHeading();
 				//BLADE_TRACE("HEADING ON MOVE: " << heading.x << ", " << heading.z);
 				simComp->AddForce(heading * dt * (10000.0f));
+
+				if (m_Online)
+				{
+					G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(pl->GetID(), BA_MOVE_FORWARD, RECIPIENT_ID_BROADCAST, nullptr));
+				}
+
 			}
 		}
 	}
@@ -43,6 +51,10 @@ public:
 			{
 				const Vec3f& heading = pl->GetHeading();
 				simComp->AddForce(-heading * dt * (10000.0f));
+				if (m_Online)
+				{
+					G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(pl->GetID(), BA_MOVE_BACK, RECIPIENT_ID_BROADCAST, nullptr));
+				}
 			}
 		}
 	}
@@ -60,11 +72,15 @@ public:
 		{
 			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
 			//simComp->AddForce(Vec3f(-1.0f, 0.0f, 0.0f)*dt*(10000.0f));
-
+			Player* pl = static_cast<Player*>(entity);
 			//change orientation
 			Quatf q = entity->GetOrientation();
 			//use orientation to influence the force that is being added to the simulation component
 			simComp->AddForce(Vec3f(Mat4f(q) * Vec4f(-1.0f, 0.0f, 0.0f, 0)) * dt * (1000.0f));
+			if (m_Online)
+			{
+				G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(pl->GetID(), BA_MOVE_LEFT, RECIPIENT_ID_BROADCAST, nullptr));
+			}
 		}
 	}
 };
@@ -82,9 +98,15 @@ public:
 		{
 			auto simComp = static_cast<SimulationComponent*>(entity->GetComponent("co_sim"));
 			//change orientation
+			Player* pl = static_cast<Player*>(entity);
+
 			Quatf q = entity->GetOrientation();
 			//use orientation to influence the force that is being added to the simulation component
 			simComp->AddForce(Vec3f(Mat4f(q) * Vec4f(1.0f, 0.0f, 0.0f, 0)) * dt * (1000.0f));
+			if (m_Online)
+			{
+				G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(pl->GetID(), BA_MOVE_RIGHT, RECIPIENT_ID_BROADCAST, nullptr));
+			}
 		}
 	}
 };
@@ -193,6 +215,10 @@ public:
 					if (weapon->GetWeaponPosition() == WeaponPosition::LEFT)
 					{
 						weapon->Shoot(p->GetLeftWeaponPos());
+						if (m_Online)
+						{
+							G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(p->GetID(), BA_SHOOT_LEFT, RECIPIENT_ID_BROADCAST, nullptr));
+						}
 						return;
 					}
 				}
@@ -232,7 +258,10 @@ public:
 					if (weapon->GetWeaponPosition() == WeaponPosition::RIGHT)
 					{
 						weapon->Shoot(p->GetRightWeaponPos());
-
+						if (m_Online)
+						{
+							G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(p->GetID(), BA_SHOOT_RIGHT, RECIPIENT_ID_BROADCAST, nullptr));
+						}
 						return;
 					}
 				}
