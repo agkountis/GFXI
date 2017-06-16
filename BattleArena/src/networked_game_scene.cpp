@@ -221,7 +221,6 @@ void NetworkedGameScene::OnMouseClick(int button, bool state, int x, int y) noex
 
 void NetworkedGameScene::Update(float deltaTime, long time) noexcept
 {
-	std::cout << deltaTime << std::endl;
 	Scene::Update(deltaTime, time);
 
 	G_InputManager.Update(deltaTime);
