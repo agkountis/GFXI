@@ -159,7 +159,7 @@ void BattleArenaApplication::Draw() const noexcept
 {
 	G_SceneManager.Draw();
 
-	WindowingService::SwapBuffers();
+	WindowingService::SwapBuffers(1);
 }
 
 int BattleArenaApplication::Run() noexcept

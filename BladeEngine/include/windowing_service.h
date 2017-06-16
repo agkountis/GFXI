@@ -38,7 +38,7 @@ namespace Blade
 
 		static size_t GetWindowCount() noexcept;
 
-		static void SwapBuffers() noexcept;
+		static void SwapBuffers(int syncInterval) noexcept;
 	};
 }
 

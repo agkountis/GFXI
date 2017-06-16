@@ -241,7 +241,6 @@ namespace Blade
 	void SimulationSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
 	{
 		dt = deltaTime;
-		dt = 1.0f / 500.f;
 		timeSec = static_cast<float>(G_Application.GetSec());
 		
 		//Integrate all the component stored in the m_SimulationComponets

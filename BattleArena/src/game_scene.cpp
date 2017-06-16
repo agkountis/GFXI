@@ -223,6 +223,7 @@ void GameScene::OnMouseClick(int button, bool state, int x, int y) noexcept
 
 void GameScene::Update(float deltaTime, long time) noexcept
 {
+	std::cout << deltaTime << std::endl;
 	Scene::Update(deltaTime, time);
 
 	G_InputManager.Update(deltaTime);

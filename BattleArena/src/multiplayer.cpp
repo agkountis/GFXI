@@ -56,7 +56,7 @@ namespace Multiplayer
 		{
 		//	std::cout << " Shoot left message" << std::endl;
 			ShootLeftWeapon command{false};
-			command.Execute(player, 0.1f);
+			command.Execute(player, 0.016f);
 			
 		}
 			break;
@@ -65,7 +65,7 @@ namespace Multiplayer
 		{
 		//	std::cout << " Shoot right message" << std::endl;
 			ShootRightWeapon command{ false };
-			command.Execute(player, 0.1f);
+			command.Execute(player, 0.016f);
 		}
 			break;
 
@@ -79,7 +79,7 @@ namespace Multiplayer
 			Unpack<Vec3f>(packet, offset, movement);
 			offset += sizeof movement;
 			NetworkMoveCommand command{ false,rotation,movement };
-			command.Execute(player,0.1f);
+			command.Execute(player, 0.016f);
 		}
 			break;
 
@@ -87,7 +87,7 @@ namespace Multiplayer
 		{
 		//	std::cout << " Move forward message" << std::endl;
 			MoveForward command{ false };
-			command.Execute(player, 0.1f);
+			command.Execute(player, 0.016f);
 		}
 			break;
 
@@ -95,7 +95,7 @@ namespace Multiplayer
 		{
 		//	std::cout << " Move back message" << std::endl;
 			MoveBack command{ false };
-			command.Execute(player, 0.1f);
+			command.Execute(player, 0.016f);
 		}
 			break;
 
@@ -103,7 +103,7 @@ namespace Multiplayer
 		{
 		//	std::cout << " Move left message" << std::endl;
 			MoveLeft command{ false };
-			command.Execute(player, 0.1f);
+			command.Execute(player, 0.016f);
 		}
 			break;
 
@@ -111,7 +111,7 @@ namespace Multiplayer
 		{
 		//	std::cout << " Move right message" << std::endl;
 			MoveRight command{ false };
-			command.Execute(player, 0.1f);
+			command.Execute(player, 0.016f);
 		}
 			break;
 		default:

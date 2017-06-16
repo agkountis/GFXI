@@ -66,7 +66,7 @@ bool NetworkedGameScene::Initialize()
 	AddEntity(entity);
 
 	int localPlayerNumber = std::atoi(&m_PlayerInfos[0].playerName.at(6));
-	Player* p{ m_PlayerFactory.CreateJoypadPlayer(m_PlayerInfos[0].playerName, m_PlayerInfos[0].fileName, localPlayerNumber, true) };
+	Player* p{ m_PlayerFactory.CreateKeyboardPlayer(m_PlayerInfos[0].playerName, m_PlayerInfos[0].fileName, localPlayerNumber, true) };
 	p->SetPosition(m_PlayerInfos[0].spawnLocation);
 	m_Players.push_back(p);
 	AddEntity(p);
@@ -221,6 +221,7 @@ void NetworkedGameScene::OnMouseClick(int button, bool state, int x, int y) noex
 
 void NetworkedGameScene::Update(float deltaTime, long time) noexcept
 {
+	std::cout << deltaTime << std::endl;
 	Scene::Update(deltaTime, time);
 
 	G_InputManager.Update(deltaTime);

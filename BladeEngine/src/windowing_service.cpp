@@ -92,11 +92,11 @@ namespace Blade
 		return m_Windows.size();
 	}
 
-	void WindowingService::SwapBuffers() noexcept
+	void WindowingService::SwapBuffers(int syncInterval) noexcept
 	{
 		for (const auto window : m_Windows)
 		{
-			window->SwapBuffers();
+			window->SwapBuffers(syncInterval);
 		}
 	}
 }
