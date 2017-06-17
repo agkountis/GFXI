@@ -267,5 +267,17 @@
     <None Include="config\engine_fire.cfg">
       <Filter>configuration</Filter>
     </None>
+    <None Include="config\mediumfire_emitter.cfg">
+      <Filter>configuration</Filter>
+    </None>
+    <None Include="config\tinyfire_emitter.cfg">
+      <Filter>configuration</Filter>
+    </None>
+    <None Include="config\ship1_menu_emitter.cfg">
+      <Filter>configuration</Filter>
+    </None>
+    <None Include="config\ship2_menu_emitter.cfg">
+      <Filter>configuration</Filter>
+    </None>
   </ItemGroup>
 </Project>
