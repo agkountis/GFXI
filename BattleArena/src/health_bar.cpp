@@ -1,5 +1,7 @@
 #include "health_bar.h"
 #include "trace.h"
+#include "camera_component.h"
+
 using namespace Blade;
 Camera* HealthBar::s_pCurrentCamera{ nullptr };
 
@@ -45,8 +47,15 @@ void HealthBar::SetCurrentCamera(Blade::Camera * camera)
 
 void HealthBar::Update(float dt, long time /*= 0*/) noexcept
 {
+	if (!s_pCurrentCamera)
+		return;
 	Entity::Update(dt, time);
 	//Why isn't his working?
-	Quatf q = s_pCurrentCamera->GetOrientation();
+
+	Quatf parQ = MathUtils::Inverse(GetParent()->GetOrientation());
+	Quatf q = s_pCurrentCamera->GetParent()->GetOrientation() * parQ;
+
+
 	this->SetOrientation(q);
+	
 }
