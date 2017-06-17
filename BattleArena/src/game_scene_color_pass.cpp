@@ -421,6 +421,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 			ParticleUniformBuffer uniforms;
 			uniforms.MVP = MathUtils::Transpose(MVP);
 			uniforms.diffuse = particle.color;
+			uniforms.brightness = m_Brightness;
 
 			D3D11_MAPPED_SUBRESOURCE ms;
 

@@ -21,6 +21,9 @@ struct ParticleUniformBuffer
 {
 	Blade::Mat4f MVP;
 	Blade::Vec4f diffuse;
+	Blade::Vec3f pad;
+	float brightness;
+
 };
 
 #endif //UNIFORM_BUFFERS_H_

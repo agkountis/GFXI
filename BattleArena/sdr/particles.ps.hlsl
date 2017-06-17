@@ -8,6 +8,8 @@ cbuffer uniforms
 {
 	float4x4 MVP;
 	float4 diffuse;
+	float3 pad;
+	float brightness;
 };
 
 Texture2D diffuse_tex : register(t0);
@@ -21,5 +23,5 @@ float4 main(VOut input) : SV_TARGET
 	float4 final_color = diffuse * texel;
 	final_color.a = diffuse.a;
 	
-	return final_color;
+	return final_color*brightness;
 }
