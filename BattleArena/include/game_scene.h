@@ -4,7 +4,7 @@
 #include "player_factory.h"
 #include "weapon_factory.h"
 #include "health_bar_factory.h"
-
+#include "timer.h"
 class GameScene : public Blade::Scene
 {
 private:
@@ -12,6 +12,8 @@ private:
 	WeaponFactory m_WeaponFactory;
 
 	Blade::Material* m_pColumnMaterials[4] = { nullptr };
+	Blade::Timer m_Timer;
+	bool m_Fading{ false };
 
 public:
 	bool Initialize() override;

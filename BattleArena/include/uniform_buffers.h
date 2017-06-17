@@ -14,7 +14,7 @@ struct UniformBuffer
 	int pointLightCount;
 	int directionalLightCount;
 	int spotlightCount;
-	int pad;
+	float pad;
 };
 
 struct ParticleUniformBuffer

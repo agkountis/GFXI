@@ -27,7 +27,7 @@ cbuffer uniforms : register(c0)
 	int pointLightCount;
 	int directionalLightCount;
 	int spotlightCount;
-	int pad;
+	float pad;
 };
 
 SamplerState textureSamplerLinear : register(s0);
@@ -80,7 +80,7 @@ POutput main(PInput input)
 
 	finalColor.a = diffuse.a;
 	
-	output.color = finalColor;
+	output.color = finalColor*pad;
 
 	return output;
 }

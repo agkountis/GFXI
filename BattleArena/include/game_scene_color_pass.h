@@ -26,9 +26,12 @@ private:
 
 	Blade::Texture* m_DummyDiff{ nullptr };
 	Blade::Texture* m_DummySpec{ nullptr };
-	Blade::Texture* m_DummyNorm{ nullptr };
+    Blade::Texture* m_DummyNorm{ nullptr };
+
+	float m_Brightness{ 1.0f };
 
 	void DisplayToScreen() const;
+
 
 public:
 	GameSceneColorPassStage(const std::string& name)
@@ -40,6 +43,8 @@ public:
 
 	Blade::PipelineData<Blade::D3D11RenderTarget*> Execute(const std::vector<Blade::RenderComponent*>& data,
 	                                                       const Blade::PipelineData<Blade::D3D11RenderTarget*>& tdata) noexcept override;
+	void SetBrightness(float brightness);
+
 };
 
 #endif //BATTLE_ARENA_GAME_SCENE_COLOR_PASS_STAGE_H_

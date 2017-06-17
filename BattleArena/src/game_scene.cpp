@@ -213,6 +213,7 @@ bool GameScene::Initialize()
 
 void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 {
+	
 	switch (key)
 	{
 	case '1':
@@ -281,11 +282,20 @@ void GameScene::Update(float deltaTime, long time) noexcept
 		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD3, InputSensor::BTN_OPTION_2) ||
 		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD4, InputSensor::BTN_OPTION_2)  )
 	{
+		//G_SceneManager.PopScene();
+		//G_SceneManager.PushScene(std::make_unique<MainScene>());
+		m_Fading = true;
+	}
+
+	if (m_Fading)
+	{
+		m_Timer.Start();
+	}
+	if (m_Timer.GetSec() > 2)
+	{
 		G_SceneManager.PopScene();
 		G_SceneManager.PushScene(std::make_unique<MainScene>());
 	}
-
-
 }
 
 void GameScene::Draw() const noexcept

@@ -198,6 +198,11 @@ bool GameSceneColorPassStage::Initialize()
 	return true;
 }
 
+void GameSceneColorPassStage::SetBrightness(float brightness)
+{
+	m_Brightness = brightness;
+}
+
 PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vector<RenderComponent*>& data,
 	const PipelineData<D3D11RenderTarget*>& tdata) noexcept
 {
@@ -287,6 +292,8 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vec
 		uniforms.pointLightCount = pointLights.size();
 		uniforms.directionalLightCount = directionalLights.size();
 		uniforms.spotlightCount = spotlights.size();
+		uniforms.pad = m_Brightness;
+		
 
 		//Get the material from the RenderComponent.
 		Material material{ renderComponent->GetMaterial() };
