@@ -8,6 +8,10 @@
 #include "mesh_utils.h"
 #include "plane_collider.h"
 
+#ifdef BLADE_BUILD_OVR
+#include "game_scene_color_pass_ovr.h"
+#endif
+
 using namespace Blade;
 
 

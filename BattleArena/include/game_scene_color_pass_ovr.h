@@ -31,6 +31,8 @@ private:
 
 
 public:
+	float scale{ 1.0f };
+
 	explicit GameSceneColorPassStageOvr(const std::string& name);
 
 	bool Initialize() override;

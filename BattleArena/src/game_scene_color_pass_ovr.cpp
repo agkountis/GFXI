@@ -179,7 +179,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::
 			G_OvrManager.BindRenderTarget(eye);
 			G_OvrManager.ClearRenderTarget(eye, Vec4f{ 0.1f, 0.1f, 0.1f, 0.0f });
 
-			OvrXformData ovrData{ G_OvrManager.GetOvrXformDataPerEye(eye, nearPlane, farPlane, 50.0f) };
+			OvrXformData ovrData{ G_OvrManager.GetOvrXformDataPerEye(eye, nearPlane, farPlane, scale) };
 
 			ovrData.viewport.Set();
 

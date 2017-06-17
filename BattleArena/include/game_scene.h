@@ -5,6 +5,10 @@
 #include "weapon_factory.h"
 #include "health_bar_factory.h"
 
+#ifdef BLADE_BUILD_OVR
+class GameSceneColorPassStageOvr;
+#endif
+
 class GameScene : public Blade::Scene
 {
 private:
@@ -12,6 +16,10 @@ private:
 	WeaponFactory m_WeaponFactory;
 
 	Blade::Material* m_pColumnMaterials[4] = { nullptr };
+
+#ifdef BLADE_BUILD_OVR
+	GameSceneColorPassStageOvr* ovrStage{ nullptr };
+#endif
 
 public:
 	bool Initialize() override;
