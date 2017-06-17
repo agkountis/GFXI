@@ -297,5 +297,11 @@
     <None Include="config\ship2_menu_emitter.cfg">
       <Filter>configuration</Filter>
     </None>
+    <None Include="config\ship3_menu_emitter.cfg">
+      <Filter>configuration</Filter>
+    </None>
+    <None Include="config\ship4_menu_emitter.cfg">
+      <Filter>configuration</Filter>
+    </None>
   </ItemGroup>
 </Project>
