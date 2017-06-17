@@ -241,7 +241,7 @@
       <OptimizeReferences>
       </OptimizeReferences>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
-      <AdditionalDependencies>BladeEngine.lib;zlibstaticd.lib;assimp-vc140-mt-static-rel.lib;LibOVR.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>BladeEngine.lib;zlibstaticd.lib;assimp-vc140-mt-static-rel.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers />
     </Link>
   </ItemDefinitionGroup>
