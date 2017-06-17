@@ -203,6 +203,13 @@ void GameSceneColorPassStage::SetBrightness(float brightness)
 	m_Brightness = brightness;
 }
 
+void GameSceneColorPassStage::UpdateBrightness(float amount)
+{
+	m_Brightness += amount;
+	if (m_Brightness > 1.0f) m_Brightness = 1.0f;
+	if (m_Brightness < 0.0f) m_Brightness = 0.0f;
+}
+
 PipelineData<D3D11RenderTarget*> GameSceneColorPassStage::Execute(const std::vector<RenderComponent*>& data,
 	const PipelineData<D3D11RenderTarget*>& tdata) noexcept
 {

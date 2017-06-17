@@ -196,14 +196,15 @@ bool GameScene::Initialize()
 	HealthBar::SetCurrentCamera();
 #else
 	//Allocate and initialize the a render pass pipeline stage.
-	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
-	if(!colorPassStage->Initialize())
+	m_ColorPass = new GameSceneColorPassStage{ "GameSceneColorPass" } ;
+
+	if(!m_ColorPass->Initialize())
 	{
 		BLADE_ERROR("Failed to initialize the color pass stage.");
 		return false;
 	}
 
-	pipeline->AddStage(colorPassStage);
+	pipeline->AddStage(m_ColorPass);
 #endif
 
 	//Set the pipeline to the render system.
@@ -304,11 +305,13 @@ void GameScene::Update(float deltaTime, long time) noexcept
 		//G_SceneManager.PopScene();
 		//G_SceneManager.PushScene(std::make_unique<MainScene>());
 		m_Fading = true;
+		m_Timer.Start();
 	}
 
 	if (m_Fading)
 	{
-		m_Timer.Start();
+		m_ColorPass->UpdateBrightness(-0.01f);
+		
 	}
 	if (m_Timer.GetSec() > 2)
 	{

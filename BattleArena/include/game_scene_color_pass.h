@@ -44,6 +44,7 @@ public:
 	Blade::PipelineData<Blade::D3D11RenderTarget*> Execute(const std::vector<Blade::RenderComponent*>& data,
 	                                                       const Blade::PipelineData<Blade::D3D11RenderTarget*>& tdata) noexcept override;
 	void SetBrightness(float brightness);
+	void UpdateBrightness(float amount);
 
 };
 

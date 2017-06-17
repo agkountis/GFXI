@@ -5,8 +5,12 @@
 #include "weapon_factory.h"
 #include "health_bar_factory.h"
 
+
+
 #ifdef BLADE_BUILD_OVR
 class GameSceneColorPassStageOvr;
+#else
+class GameSceneColorPassStage;
 #endif
 
 #include "timer.h"
@@ -19,6 +23,7 @@ private:
 	Blade::Material* m_pColumnMaterials[4] = { nullptr };
 	Blade::Timer m_Timer;
 	bool m_Fading{ false };
+	GameSceneColorPassStage* m_ColorPass{ nullptr };
 
 #ifdef BLADE_BUILD_OVR
 	GameSceneColorPassStageOvr* ovrStage{ nullptr };
