@@ -8,6 +8,7 @@
 #include "trace.h"
 #include "assimp_utils.h"
 #include "resource_utils.h"
+#include "main_scene.h"
 
 using namespace Blade;
 using namespace ResourceUtils;
@@ -142,7 +143,7 @@ bool BattleArenaApplication::Initialize(int* argc, char* argv[])
 
 	BLADE_TRACE("Allocating and pusing the GameScreen into the ScreenManager!");
 	
-	if (!G_SceneManager.PushScene(std::make_unique<GameScene>()))
+	if (!G_SceneManager.PushScene(std::make_unique<MainScene>()))
 	{
 		return false;
 	}

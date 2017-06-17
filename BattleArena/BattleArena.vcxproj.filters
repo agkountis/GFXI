@@ -149,6 +149,9 @@
     <ClCompile Include="src\explosion_behaviour.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\main_scene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\battle_arena_application.h">
@@ -245,6 +248,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\explosion_behaviour.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\main_scene.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
