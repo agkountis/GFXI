@@ -47,12 +47,22 @@ bool NetworkedLobbyScene::Initialize()
 	cd.farPlane = 500.0f;
 	cd.fov = MathUtils::ToRadians(45.0f);
 
+#ifdef BLADE_BUILD_OVR
+	//Set the position of the camera.
+	Camera* cam{ new Camera{ "Camera1", cd } };
+	cam->SetPosition(Vec3f{ 0.0f, 2.23423f, -10.0f });
+	//cam->SetOrientation(Vec3f{ 1.0f, 0.0f, 0.0f }, MathUtils::ToRadians(40.0f));
+	AddEntity(cam);
+	G_CameraSystem.SetActiveCamera("Camera1");
+#else
 	//Set the position of the camera.
 	Camera* cam{ new Camera{ "Camera1", cd } };
 	cam->SetPosition(Vec3f{ 0.0f, 5.23423f, -25.0f });
 	//cam->SetOrientation(Vec3f{ 1.0f, 0.0f, 0.0f }, MathUtils::ToRadians(40.0f));
 	AddEntity(cam);
 	G_CameraSystem.SetActiveCamera("Camera1");
+	// --------------------------------------------------------------------------------------------------------------------
+#endif
 	// --------------------------------------------------------------------------------------------------------------------
 
 	//Light Creation ------------------------------------------------------------------------------------------------------
@@ -92,6 +102,7 @@ bool NetworkedLobbyScene::Initialize()
 
 #ifdef BLADE_BUILD_OVR
 	GameSceneColorPassStageOvr* ovrStage{ new GameSceneColorPassStageOvr{ " ovrPass " } };
+	ovrStage->scale = 2.5f;
 	if (!ovrStage->Initialize())
 	{
 		BLADE_ERROR("Failed to initialize the ovr pass stage.");

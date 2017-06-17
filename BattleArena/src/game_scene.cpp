@@ -74,13 +74,14 @@ bool GameScene::Initialize()
 	m_pColumnMaterials[2] = const_cast<Material*>(&(static_cast<RenderComponent*>(brPilar->GetComponent("co_render"))->GetMaterial()));
 	m_pColumnMaterials[3] = const_cast<Material*>(&(static_cast<RenderComponent*>(blPilar->GetComponent("co_render"))->GetMaterial()));
 
-
+#ifndef BLADE_BUILD_OVR
 	for (int i = 0; i < 4; ++i)
 	{
 		m_pColumnMaterials[i]->diffuse.a = 0.7f;
 		m_pColumnMaterials[i]->blendState = Blade::RenderStateType::BS_BLEND_ALPHA;
 
 	}
+#endif
 
 	m_WeaponFactory.SetArena(arena);
 	Entity* entity{ new Entity{ "Environment" } };
@@ -182,7 +183,8 @@ bool GameScene::Initialize()
 	RenderPassPipeline* pipeline{ new RenderPassPipeline };
 
 #ifdef BLADE_BUILD_OVR
-	GameSceneColorPassStageOvr* ovrStage{ new GameSceneColorPassStageOvr{ " ovrPass " } };
+	ovrStage = new GameSceneColorPassStageOvr{ " ovrPass " };
+	ovrStage->scale = 50.0f;
 	if (!ovrStage->Initialize())
 	{
 		BLADE_ERROR("Failed to initialize the ovr pass stage.");
@@ -190,6 +192,8 @@ bool GameScene::Initialize()
 	}
 
 	pipeline->AddStage(ovrStage);
+	G_CameraSystem.SetActiveCamera("Camera3");
+	HealthBar::SetCurrentCamera();
 #else
 	//Allocate and initialize the a render pass pipeline stage.
 	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
@@ -218,6 +222,9 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	{
 	case '1':
 	{
+#ifdef BLADE_BUILD_OVR
+		ovrStage->scale = 50.0f;
+#endif
 		G_CameraSystem.SetActiveCamera("Camera1");
 		HealthBar::SetCurrentCamera();
 		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
@@ -231,6 +238,9 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 		break;
 	case '2':		
 		{
+#ifdef BLADE_BUILD_OVR
+		ovrStage->scale = 5.0f;	
+#endif
 			G_CameraSystem.SetActiveCamera("Camera2");
 			HealthBar::SetCurrentCamera();
 			G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
@@ -243,9 +253,18 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 		}		
 		break;
 	case '3':
+#ifdef BLADE_BUILD_OVR
+		ovrStage->scale = 50.0f;
+#endif
 		G_CameraSystem.SetActiveCamera("Camera3");
 		HealthBar::SetCurrentCamera();
 		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
+		for (int i = 0; i < 4; ++i)
+		{
+			m_pColumnMaterials[i]->diffuse.a = 1.0f;
+			m_pColumnMaterials[i]->blendState = Blade::RenderStateType::BS_BLEND_ALPHA;
+
+		}
 		break;
 	default:
 		break;

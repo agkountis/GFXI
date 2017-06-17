@@ -5,6 +5,10 @@
 #include "weapon_factory.h"
 #include "player_factory.h"
 
+#ifdef BLADE_BUILD_OVR
+class GameSceneColorPassStageOvr;
+#endif
+
 class NetworkedGameScene : public Blade::Scene
 {
 private:
@@ -12,6 +16,11 @@ private:
 	std::vector<PlayerInfo> m_PlayerInfos;
 	std::vector<Player*> m_Players;
 	WeaponFactory m_WeaponFactory;
+
+
+#ifdef BLADE_BUILD_OVR
+	GameSceneColorPassStageOvr* ovrStage{ nullptr };
+#endif
 
 public:
 	NetworkedGameScene(const std::vector<PlayerInfo>& pInfos);

@@ -4,6 +4,11 @@
 #include "player_factory.h"
 #include "weapon_factory.h"
 #include "health_bar_factory.h"
+
+#ifdef BLADE_BUILD_OVR
+class GameSceneColorPassStageOvr;
+#endif
+
 #include "timer.h"
 class GameScene : public Blade::Scene
 {
@@ -14,6 +19,10 @@ private:
 	Blade::Material* m_pColumnMaterials[4] = { nullptr };
 	Blade::Timer m_Timer;
 	bool m_Fading{ false };
+
+#ifdef BLADE_BUILD_OVR
+	GameSceneColorPassStageOvr* ovrStage{ nullptr };
+#endif
 
 public:
 	bool Initialize() override;

@@ -7,6 +7,11 @@
 #include "d3d/D3D11_texture.h"
 #include "mesh_utils.h"
 #include "plane_collider.h"
+#include "resource_utils.h"
+
+#ifdef BLADE_BUILD_OVR
+#include "game_scene_color_pass_ovr.h"
+#endif
 
 using namespace Blade;
 
@@ -156,7 +161,8 @@ bool NetworkedGameScene::Initialize()
 	RenderPassPipeline* pipeline{ new RenderPassPipeline };
 
 #ifdef BLADE_BUILD_OVR
-	GameSceneColorPassStageOvr* ovrStage{ new GameSceneColorPassStageOvr{ " ovrPass " } };
+	ovrStage = new GameSceneColorPassStageOvr{ " ovrPass " };
+	ovrStage->scale = 50.0f;
 	if (!ovrStage->Initialize())
 	{
 		BLADE_ERROR("Failed to initialize the ovr pass stage.");
@@ -164,6 +170,8 @@ bool NetworkedGameScene::Initialize()
 	}
 
 	pipeline->AddStage(ovrStage);
+	G_CameraSystem.SetActiveCamera("Camera3");
+	HealthBar::SetCurrentCamera();
 #else
 	//Allocate and initialize the a render pass pipeline stage.
 	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
@@ -188,13 +196,33 @@ void NetworkedGameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	switch (key)
 	{
 	case '1':
+	{
+#ifdef BLADE_BUILD_OVR
+		ovrStage->scale = 50.0f;
+#endif
 		G_CameraSystem.SetActiveCamera("Camera1");
-		break;
+		HealthBar::SetCurrentCamera();
+		G_AudioManager.PlaySample(ResourceUtils::GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
+
+	}
+	break;
 	case '2':
+	{
+#ifdef BLADE_BUILD_OVR
+		ovrStage->scale = 5.0f;
+#endif
 		G_CameraSystem.SetActiveCamera("Camera2");
-		break;
+		HealthBar::SetCurrentCamera();
+		G_AudioManager.PlaySample(ResourceUtils::GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
+	}
+	break;
 	case '3':
+#ifdef BLADE_BUILD_OVR
+		ovrStage->scale = 50.0f;
+#endif
 		G_CameraSystem.SetActiveCamera("Camera3");
+		HealthBar::SetCurrentCamera();
+		G_AudioManager.PlaySample(ResourceUtils::GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		break;
 	default:
 		break;
