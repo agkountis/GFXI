@@ -150,7 +150,7 @@ bool NetworkedGameScene::Initialize()
 
 	AddEntity(dl);
 	// --------------------------------------------------------------------------------------------------------------------
-
+	G_RenderSystem.SetSorting(true);
 	// Pipeline Creation --------------------------------------------------------------------------------------------------
 	//Allocate a render pass pipeline.
 	RenderPassPipeline* pipeline{ new RenderPassPipeline };

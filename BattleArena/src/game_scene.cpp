@@ -21,6 +21,7 @@
 #include "explosion.h"
 #include <iostream>
 #include "resource_utils.h"
+#include "main_scene.h"
 
 #ifdef BLADE_BUILD_OVR
 #include "game_scene_color_pass_ovr.h"
@@ -147,10 +148,9 @@ bool GameScene::Initialize()
 	//Instruct the Camera system to set this camera as the active one.
 	G_CameraSystem.SetActiveCamera("Camera1");
 	HealthBar::SetCurrentCamera();
-	
-	
-
 	// --------------------------------------------------------------------------------------------------------------------
+	G_RenderSystem.SetSorting(true);
+
 
 	//Light Creation ------------------------------------------------------------------------------------------------------
 
@@ -279,6 +279,17 @@ void GameScene::Update(float deltaTime, long time) noexcept
 	G_LightSystem.Process();
 
 	G_BehaviourSystem.Process(deltaTime, time);
+
+
+	if (G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD1, InputSensor::BTN_OPTION_2) ||
+		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD2, InputSensor::BTN_OPTION_2) ||
+		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD3, InputSensor::BTN_OPTION_2) ||
+		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD4, InputSensor::BTN_OPTION_2)  )
+	{
+		G_SceneManager.PopScene();
+		G_SceneManager.PushScene(std::make_unique<MainScene>());
+	}
+
 
 }
 

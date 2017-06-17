@@ -23,6 +23,8 @@ namespace Blade
 		 * by the RenderSystem.
 		 */
 		std::vector<RenderComponent*> m_RenderComponents;
+
+		bool m_Sort{ false };
 		
 	public:
 		/**
@@ -64,6 +66,9 @@ namespace Blade
 		 * \param deltaTime The time elapsed from the previous frame of the application.
 		 */
 		void Process(float deltaTime=.0f, long time=0) noexcept override;
+
+
+		void SetSorting(bool sorting) noexcept;
 	};
 }
 
