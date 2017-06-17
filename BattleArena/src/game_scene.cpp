@@ -30,6 +30,8 @@
 using namespace Blade;
 using namespace ResourceUtils;
 
+
+
 bool GameScene::Initialize()
 {
 	// Renderable Entity creation ----------------------------------------------------------------------------------------
@@ -302,25 +304,30 @@ void GameScene::Update(float deltaTime, long time) noexcept
 		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD3, InputSensor::BTN_OPTION_2) ||
 		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD4, InputSensor::BTN_OPTION_2)  )
 	{
-		//G_SceneManager.PopScene();
-		//G_SceneManager.PushScene(std::make_unique<MainScene>());
 		m_Fading = true;
 		m_Timer.Start();
 	}
 
+	FadeOutLogic();
+}
+
+void GameScene::Draw() const noexcept
+{
+	G_RenderSystem.Process();
+}
+
+
+void GameScene::FadeOutLogic()
+{
 	if (m_Fading)
 	{
 		m_ColorPass->UpdateBrightness(-0.01f);
-		
+
 	}
 	if (m_Timer.GetSec() > 2)
 	{
 		G_SceneManager.PopScene();
 		G_SceneManager.PushScene(std::make_unique<MainScene>());
 	}
-}
 
-void GameScene::Draw() const noexcept
-{
-	G_RenderSystem.Process();
 }

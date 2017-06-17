@@ -86,20 +86,15 @@ void MainScene::OnMove(Move move)
 
 void MainScene::OnPress()
 {
-	if(m_State==CurrentState::NETWORK)
-	{
-		G_SceneManager.PopScene();
-		G_SceneManager.PushScene(std::make_unique<NetworkedLobbyScene>());
-	}
-	if (m_State == CurrentState::LOCAL)
-	{
-		G_SceneManager.PopScene();
-		G_SceneManager.PushScene(std::make_unique<GameScene>());
-	}
+	if (m_State == CurrentState::LOGO) return;
+	m_Fading = true;
+	m_Timer.Start();
+	
 }
 
 bool MainScene::Initialize()
 {
+	m_State = CurrentState::LOGO ;
 	// Renderable Entity creation ----------------------------------------------------------------------------------------
 	//Generate a Sphere.
 	Mesh* cube{ MeshUtils::GenerateUvSphere(1.0f, 30, 30, 1.0f, 1.0f) };
@@ -212,14 +207,14 @@ bool MainScene::Initialize()
 	pipeline->AddStage(ovrStage);
 #else
 	//Allocate and initialize the a render pass pipeline stage.
-	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
-	if (!colorPassStage->Initialize())
+	m_ColorPass = new GameSceneColorPassStage{ "GameSceneColorPass" };
+	if (!m_ColorPass->Initialize())
 	{
 		BLADE_ERROR("Failed to initialize the color pass stage.");
 		return false;
 	}
 
-	pipeline->AddStage(colorPassStage);
+	pipeline->AddStage(m_ColorPass);
 #endif
 
 	//Set the pipeline to the render system.
@@ -264,10 +259,35 @@ void MainScene::Update(float deltaTime, long time) noexcept
 	G_BehaviourSystem.Process(deltaTime, time);
 
 	CheckInputDevice();
+
+	FadeOutLogic();
 }
 
 void MainScene::Draw() const noexcept
 {
 	G_RenderSystem.Process();
+}
+
+void MainScene::FadeOutLogic()
+{
+	if (m_Fading)
+	{
+		m_ColorPass->UpdateBrightness(-0.01f);
+
+	}
+	if (m_Timer.GetSec() > 2)
+	{
+		if (m_State == CurrentState::NETWORK)
+		{
+			G_SceneManager.PopScene();
+			G_SceneManager.PushScene(std::make_unique<NetworkedLobbyScene>());
+		}
+		if (m_State == CurrentState::LOCAL)
+		{
+			G_SceneManager.PopScene();
+			G_SceneManager.PushScene(std::make_unique<GameScene>());
+		}
+	}
+
 }
 

@@ -1,6 +1,12 @@
 #ifndef MAIN_SCENE_H_
 #define MAIN_SCENE_H_
 #include "scene.h"
+#include "timer.h"
+#ifdef BLADE_BUILD_OVR
+class GameSceneColorPassStageOvr;
+#else
+class GameSceneColorPassStage;
+#endif
 
 
 enum class Move 
@@ -27,6 +33,16 @@ private:
 	void OnMove(Move move);
 	void OnPress();
 	CurrentState m_State{ CurrentState::LOGO };
+
+	Blade::Timer m_Timer;
+	bool m_Fading{ false };
+	GameSceneColorPassStage* m_ColorPass{ nullptr };
+
+#ifdef BLADE_BUILD_OVR
+	GameSceneColorPassStageOvr* ovrStage{ nullptr };
+#endif
+	void FadeOutLogic();
+
 
 public:
 	bool Initialize() override;
