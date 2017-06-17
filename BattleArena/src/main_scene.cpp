@@ -19,6 +19,7 @@
 #include "mesh_utils.h"
 #include "engine_context.h"
 #include "game_scene_color_pass.h"
+#include "render_component.h"
 
 #ifdef BLADE_BUILD_OVR
 #include "game_scene_color_pass_ovr.h"
@@ -57,11 +58,26 @@ bool MainScene::Initialize()
 	Texture* normalmapTexture{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"tunnelNorm5.png") };
 	normalmapTexture->SetTextureType(TEX_NORMAL);
 	material.textures[TEX_NORMAL] = normalmapTexture;
+
+	Texture* local{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"local-multiplayer.png") };
+	local->SetTextureType(TEX_DIFFUSE);
+
+	Texture* network{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"network-multiplayer.png") };
+	network->SetTextureType(TEX_DIFFUSE);
+
+	Texture* waiting{ G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"waiting-for-players.png") };
+	waiting->SetTextureType(TEX_DIFFUSE);
+
 	//////////////////////////////////////////////////////////////////////////
 	Entity* arena{ new Entity{ "arena" } };
 	arena->Load(L"data/models/main_menu.fbx");
 	AddEntity(arena);
 
+
+
+	m_pBillobard = arena->GetEntityFromHierarchy("Billboard");
+
+	m_pScreen = arena->GetEntityFromHierarchy("SCREEN");
 	//////////////////////////////////////////////////////////////////////////
 	Vec2i windowSize{ WindowingService::GetWindow(0)->GetSize() };
 	CameraDesc cd;
@@ -139,7 +155,27 @@ bool MainScene::Initialize()
 
 void MainScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 {
-
+	switch (key)
+	{
+		case '1':
+		{
+			auto rc{ static_cast<RenderComponent*>(m_pScreen->GetComponent("co_render")) };
+			auto material{ rc->GetMaterial() };
+			material.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"network-multiplayer.png");
+			//material.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
+			rc->SetMaterial(material);
+		}
+		break;
+		case '2':
+		{
+			auto rc{ static_cast<RenderComponent*>(m_pScreen->GetComponent("co_render")) };
+			auto material{ rc->GetMaterial() };
+			material.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"local-multiplayer.png");
+			//material.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
+			rc->SetMaterial(material);
+		}
+		break;
+	}
 }
 
 void MainScene::OnKeyUp(unsigned char key, int x, int y) noexcept

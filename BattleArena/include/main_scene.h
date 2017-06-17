@@ -4,6 +4,9 @@
 
 class MainScene : public Blade::Scene
 {
+private:
+	Blade::Entity* m_pBillobard;
+	Blade::Entity* m_pScreen;
 public:
 	bool Initialize() override;
 
