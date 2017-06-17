@@ -17,7 +17,7 @@ private:
 public:
 	HealthBar(Blade::Entity* parent,Blade::Entity* emptyBar, Blade::Entity* fullBar, int maxHealthValue);
 	void SetHealthValue(int healthValue) const;
-	static void SetCurrentCamera(Blade::Camera* camera);
+	static void SetCurrentCamera();
 	void Update(float dt, long time /*= 0*/) noexcept override;
 
 };

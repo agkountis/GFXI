@@ -143,15 +143,15 @@ bool GameScene::Initialize()
 	cam->SetPosition(Vec3f{ 0.0f, 5.0f, -20.0f });
 	AddEntity(cam);
 	cam->SetParent(p);
-	HealthBar::SetCurrentCamera(cam);
+	
 
 	cam = new Camera{ "Camera3", cd };
 	cam->SetPosition(Vec3f{ 0.0f, 10.0f, -50.0f });
 	AddEntity(cam);
 
 	//Instruct the Camera system to set this camera as the active one.
-	G_CameraSystem.SetActiveCamera("Camera3");
-
+	G_CameraSystem.SetActiveCamera("Camera1");
+	HealthBar::SetCurrentCamera();
 	
 	
 
@@ -223,6 +223,7 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	case '1':
 	{
 		G_CameraSystem.SetActiveCamera("Camera1");
+		HealthBar::SetCurrentCamera();
 		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		for (int i = 0; i < 4; ++i)
 		{
@@ -235,6 +236,7 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	case '2':		
 		{
 			G_CameraSystem.SetActiveCamera("Camera2");
+			HealthBar::SetCurrentCamera();
 			G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 			for (int i = 0; i < 4; ++i)
 			{
@@ -246,10 +248,12 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 		break;
 	case '3':
 		G_CameraSystem.SetActiveCamera("Camera3");
+		HealthBar::SetCurrentCamera();
 		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		break;
 	case '4':
 		G_CameraSystem.SetActiveCamera("Camera4");
+		HealthBar::SetCurrentCamera();
 		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		break;
 	default:

@@ -5,14 +5,6 @@
 #include "directional_light_component.h"
 #include "camera.h"
 #include "directional_light.h"
-#include "collider_component.h"
-#include "plane_collider.h"
-#include "emitter_component.h"
-#include "player_joypad_component.h"
-#include "test_behaviour.h"
-#include "other_weapon_component.h"
-#include "player.h"
-#include "explosion.h"
 #include <iostream>
 #include "resource_utils.h"
 #include "resource_manager.h"
@@ -20,6 +12,9 @@
 #include "engine_context.h"
 #include "game_scene_color_pass.h"
 #include "render_component.h"
+#include <memory>
+#include "networked_lobby_scene.h"
+#include "game_scene.h"
 
 #ifdef BLADE_BUILD_OVR
 #include "game_scene_color_pass_ovr.h"
@@ -28,6 +23,80 @@
 
 using namespace Blade;
 using namespace ResourceUtils;
+
+
+void MainScene::CheckInputDevice()
+{
+	if (G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD1, InputSensor::STICK_LEFT))
+	{
+		auto vec{ G_InputManager.GetAnalogStickVector(JoypadNumber::JOYPAD1, InputSensor::STICK_LEFT) };
+		if (vec.x > 0.4f)
+			OnMove(Move::RIGHT);
+		if (vec.x < -.4f)
+			OnMove(Move::LEFT);
+	}
+	if (G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD1, InputSensor::BTN_FACE_1)||
+		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD1, InputSensor::BTN_OPTION_1))
+	{
+		OnPress();
+	}
+
+	if (G_InputManager.QueryKeyState(VirtualKey::KEY_SPACE) ||
+		G_InputManager.QueryKeyState(VirtualKey::KEY_RETURN))
+	{
+		OnPress();
+	}
+
+	if (G_InputManager.QueryKeyState(VirtualKey::KEY_LEFT))
+	{
+		OnMove(Move::LEFT);
+	}
+	else if (G_InputManager.QueryKeyState(VirtualKey::KEY_RIGHT))
+	{
+		OnMove(Move::RIGHT);
+	}
+
+
+}
+
+void MainScene::OnMove(Move move)
+{
+	std::cout << (int)move << std::endl;
+	if (move == Move::LEFT)
+	{
+		auto rc{ static_cast<RenderComponent*>(m_pScreen->GetComponent("co_render")) };
+		auto material{ rc->GetMaterial() };
+		material.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"network-multiplayer.png");
+		//material.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
+		rc->SetMaterial(material);
+		m_State = CurrentState::NETWORK;
+	}
+	else if (move == Move::RIGHT)
+	{
+		auto rc{ static_cast<RenderComponent*>(m_pScreen->GetComponent("co_render")) };
+		auto material{ rc->GetMaterial() };
+		material.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"local-multiplayer.png");
+		//material.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
+		rc->SetMaterial(material);
+		m_State = CurrentState::LOCAL;
+	}
+
+
+}
+
+void MainScene::OnPress()
+{
+	if(m_State==CurrentState::NETWORK)
+	{
+		G_SceneManager.PopScene();
+		G_SceneManager.PushScene(std::make_unique<NetworkedLobbyScene>());
+	}
+	if (m_State == CurrentState::LOCAL)
+	{
+		G_SceneManager.PopScene();
+		G_SceneManager.PushScene(std::make_unique<GameScene>());
+	}
+}
 
 bool MainScene::Initialize()
 {
@@ -155,27 +224,7 @@ bool MainScene::Initialize()
 
 void MainScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 {
-	switch (key)
-	{
-		case '1':
-		{
-			auto rc{ static_cast<RenderComponent*>(m_pScreen->GetComponent("co_render")) };
-			auto material{ rc->GetMaterial() };
-			material.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"network-multiplayer.png");
-			//material.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
-			rc->SetMaterial(material);
-		}
-		break;
-		case '2':
-		{
-			auto rc{ static_cast<RenderComponent*>(m_pScreen->GetComponent("co_render")) };
-			auto material{ rc->GetMaterial() };
-			material.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"local-multiplayer.png");
-			//material.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
-			rc->SetMaterial(material);
-		}
-		break;
-	}
+
 }
 
 void MainScene::OnKeyUp(unsigned char key, int x, int y) noexcept
@@ -204,6 +253,8 @@ void MainScene::Update(float deltaTime, long time) noexcept
 	G_LightSystem.Process();
 
 	G_BehaviourSystem.Process(deltaTime, time);
+
+	CheckInputDevice();
 }
 
 void MainScene::Draw() const noexcept
