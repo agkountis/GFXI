@@ -3,6 +3,8 @@
 #include "projectile.h"
 #include "engine_context.h"
 #include "resource_utils.h"
+#include "player.h"
+#include "explosion.h"
 using namespace Blade;
 
 
@@ -44,11 +46,16 @@ void HealthComponent::OnCollision(Entity * other) noexcept
 			
 			if (m_HealthValue <= 0)
 			{
+				Player* p = dynamic_cast<Player*>(this->GetParent());
+				if (p)
+				{
+					p->Explode(this->GetParent()->GetWorldPosition());
+				}
 				GetParent()->SetAlive(false);
 				m_pListenerBar = nullptr;
+				
 			}
-			
-
+		
 			m_Timer.Reset();
 		}
 
