@@ -74,13 +74,14 @@ bool GameScene::Initialize()
 	m_pColumnMaterials[2] = const_cast<Material*>(&(static_cast<RenderComponent*>(brPilar->GetComponent("co_render"))->GetMaterial()));
 	m_pColumnMaterials[3] = const_cast<Material*>(&(static_cast<RenderComponent*>(blPilar->GetComponent("co_render"))->GetMaterial()));
 
-
+#ifndef BLADE_BUILD_OVR
 	for (int i = 0; i < 4; ++i)
 	{
 		m_pColumnMaterials[i]->diffuse.a = 0.7f;
 		m_pColumnMaterials[i]->blendState = Blade::RenderStateType::BS_BLEND_ALPHA;
 
 	}
+#endif
 
 	m_WeaponFactory.SetArena(arena);
 	Entity* entity{ new Entity{ "Environment" } };
@@ -257,6 +258,12 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 		G_CameraSystem.SetActiveCamera("Camera3");
 		HealthBar::SetCurrentCamera();
 		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
+		for (int i = 0; i < 4; ++i)
+		{
+			m_pColumnMaterials[i]->diffuse.a = 1.0f;
+			m_pColumnMaterials[i]->blendState = Blade::RenderStateType::BS_BLEND_ALPHA;
+
+		}
 		break;
 	default:
 		break;
