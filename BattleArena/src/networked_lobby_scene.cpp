@@ -210,10 +210,24 @@ void NetworkedLobbyScene::Update(float deltaTime, long time) noexcept
 
 	G_BehaviourSystem.Process(deltaTime, time);
 
+	G_InputManager.Update(deltaTime);
+
 	if (G_NetworkManager.GetConnectionCount() == 3)
 	{
 		G_SceneManager.PopScene();
 		G_SceneManager.PushScene(std::make_unique<NetworkedLobbyScene>());
+	}
+	if (G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD1, InputSensor::BTN_OPTION_2) ||
+		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD1, InputSensor::BTN_FACE_2) ||
+		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD2, InputSensor::BTN_OPTION_2) ||
+		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD2, InputSensor::BTN_FACE_2) ||
+		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD3, InputSensor::BTN_FACE_2) ||
+		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD3, InputSensor::BTN_OPTION_2) ||
+		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD4, InputSensor::BTN_FACE_2) ||
+		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD4, InputSensor::BTN_OPTION_2))
+	{
+		G_SceneManager.PopScene();
+		G_SceneManager.PushScene(std::make_unique<MainScene>());
 	}
 
 }

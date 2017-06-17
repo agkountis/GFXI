@@ -54,6 +54,11 @@ namespace Blade
 		}
 	}
 
+	void RenderSystem::SetSorting(bool sorting) noexcept
+	{
+		m_Sort = sorting;
+	}
+
 	bool RenderSystem::Initialize() noexcept
 	{
 		return true;
@@ -61,12 +66,15 @@ namespace Blade
 
 	void RenderSystem::Process(float deltaTime/*=.0f*/, long time/*=0*/) noexcept
 	{
+		if(m_Sort)
+		{
 		std::sort(m_RenderComponents.begin(), m_RenderComponents.end(), [](RenderComponent* a, RenderComponent* b)->bool
 		{
 
 			return a->GetMaterial().diffuse.a > b->GetMaterial().diffuse.a;
 
 		});
+		}
 
 		m_RenderPassPipeline->Execute(m_RenderComponents);
 	}
