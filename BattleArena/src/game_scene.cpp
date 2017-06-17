@@ -304,6 +304,7 @@ void GameScene::Update(float deltaTime, long time) noexcept
 		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD3, InputSensor::BTN_OPTION_2) ||
 		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD4, InputSensor::BTN_OPTION_2)  )
 	{
+
 		m_Fading = true;
 		m_Timer.Start();
 	}
