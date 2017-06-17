@@ -246,11 +246,6 @@ void GameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 		HealthBar::SetCurrentCamera();
 		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
 		break;
-	case '4':
-		G_CameraSystem.SetActiveCamera("Camera4");
-		HealthBar::SetCurrentCamera();
-		G_AudioManager.PlaySample(GetAudioSample(L"ui_action.ogg"), 1.0f, AUDIO_PLAYMODE_ONCE);
-		break;
 	default:
 		break;
 	}

@@ -196,12 +196,6 @@ void NetworkedGameScene::OnKeyDown(unsigned char key, int x, int y) noexcept
 	case '3':
 		G_CameraSystem.SetActiveCamera("Camera3");
 		break;
-	case '4':
-		G_CameraSystem.SetActiveCamera("Camera4");
-		break;
-	case 27:
-		G_SceneManager.PopScene();
-		break;
 	default:
 		break;
 	}
@@ -230,6 +224,8 @@ void NetworkedGameScene::Update(float deltaTime, long time) noexcept
 	G_LightSystem.Process();
 
 	G_BehaviourSystem.Process(deltaTime, time);
+
+
 }
 
 void NetworkedGameScene::Draw() const noexcept
