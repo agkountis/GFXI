@@ -7,7 +7,8 @@ class NetworkedLobbyScene : public Blade::Scene
 {
 private:
 	std::vector<PlayerInfo> m_PlayerInfos;
-
+	Blade::Entity* m_pBillobard;
+	Blade::Entity* m_pScreen;
 public:
 	bool Initialize() override;
 	void OnKeyDown(unsigned char key, int x, int y) noexcept override;
