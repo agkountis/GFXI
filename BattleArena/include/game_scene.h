@@ -4,7 +4,7 @@
 #include "player_factory.h"
 #include "weapon_factory.h"
 #include "health_bar_factory.h"
-
+#include "timer.h"
 
 
 #ifdef BLADE_BUILD_OVR
@@ -13,7 +13,7 @@ class GameSceneColorPassStageOvr;
 class GameSceneColorPassStage;
 #endif
 
-#include "timer.h"
+
 class GameScene : public Blade::Scene
 {
 private:
@@ -28,7 +28,7 @@ private:
 #ifdef BLADE_BUILD_OVR
 	GameSceneColorPassStageOvr* ovrStage{ nullptr };
 #endif
-	void FadeOutLogic();
+	void FadeOutLogic(float deltaTime);
 
 public:
 	bool Initialize() override;

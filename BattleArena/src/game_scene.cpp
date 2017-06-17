@@ -308,7 +308,7 @@ void GameScene::Update(float deltaTime, long time) noexcept
 		m_Timer.Start();
 	}
 
-	FadeOutLogic();
+	FadeOutLogic(deltaTime);
 }
 
 void GameScene::Draw() const noexcept
@@ -317,14 +317,14 @@ void GameScene::Draw() const noexcept
 }
 
 
-void GameScene::FadeOutLogic()
+void GameScene::FadeOutLogic(float deltaTime)
 {
 	if (m_Fading)
 	{
-		m_ColorPass->UpdateBrightness(-0.01f);
+		m_ColorPass->UpdateBrightness(-0.6f*deltaTime);
 
 	}
-	if (m_Timer.GetSec() > 2)
+	if (m_Timer.GetSec() > 2.0f)
 	{
 		G_SceneManager.PopScene();
 		G_SceneManager.PushScene(std::make_unique<MainScene>());

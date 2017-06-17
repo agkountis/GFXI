@@ -2,6 +2,14 @@
 #define NETWORKED_LOBBY_SCENE_H_
 #include "scene.h"
 #include "player.h"
+#include "timer.h"
+
+#ifdef BLADE_BUILD_OVR
+class GameSceneColorPassStageOvr;
+#else
+class GameSceneColorPassStage;
+#endif
+
 
 class NetworkedLobbyScene : public Blade::Scene
 {
@@ -9,6 +17,18 @@ private:
 	std::vector<PlayerInfo> m_PlayerInfos;
 	Blade::Entity* m_pBillobard;
 	Blade::Entity* m_pScreen;
+
+
+	Blade::Timer m_Timer;
+	bool m_Fading{ false };
+	GameSceneColorPassStage* m_ColorPass{ nullptr };
+
+#ifdef BLADE_BUILD_OVR
+	GameSceneColorPassStageOvr* ovrStage{ nullptr };
+#endif
+	void FadeOutLogic(float deltaTime);
+
+
 public:
 	bool Initialize() override;
 	void OnKeyDown(unsigned char key, int x, int y) noexcept override;

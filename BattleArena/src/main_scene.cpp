@@ -260,7 +260,7 @@ void MainScene::Update(float deltaTime, long time) noexcept
 
 	CheckInputDevice();
 
-	FadeOutLogic();
+	FadeOutLogic(deltaTime);
 }
 
 void MainScene::Draw() const noexcept
@@ -268,14 +268,14 @@ void MainScene::Draw() const noexcept
 	G_RenderSystem.Process();
 }
 
-void MainScene::FadeOutLogic()
+void MainScene::FadeOutLogic(float deltaTime)
 {
 	if (m_Fading)
 	{
-		m_ColorPass->UpdateBrightness(-0.01f);
+		m_ColorPass->UpdateBrightness(-0.6f*deltaTime);
 
 	}
-	if (m_Timer.GetSec() > 2)
+	if (m_Timer.GetSec() > 2.0f)
 	{
 		if (m_State == CurrentState::NETWORK)
 		{

@@ -112,14 +112,14 @@ bool NetworkedLobbyScene::Initialize()
 	pipeline->AddStage(ovrStage);
 #else
 	//Allocate and initialize the a render pass pipeline stage.
-	GameSceneColorPassStage* colorPassStage{ new GameSceneColorPassStage{ "GameSceneColorPass" } };
-	if (!colorPassStage->Initialize())
+	m_ColorPass = new GameSceneColorPassStage{ "GameSceneColorPass" };
+	if (!m_ColorPass->Initialize())
 	{
 		BLADE_ERROR("Failed to initialize the color pass stage.");
 		return false;
 	}
 
-	pipeline->AddStage(colorPassStage);
+	pipeline->AddStage(m_ColorPass);
 #endif
 
 	//Set the pipeline to the render system.
@@ -236,6 +236,25 @@ void NetworkedLobbyScene::Update(float deltaTime, long time) noexcept
 		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD3, InputSensor::BTN_OPTION_2) ||
 		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD4, InputSensor::BTN_FACE_2) ||
 		G_InputManager.QueryDeviceState(JoypadNumber::JOYPAD4, InputSensor::BTN_OPTION_2))
+	{
+		//G_SceneManager.PopScene();
+		//G_SceneManager.PushScene(std::make_unique<MainScene>());
+		m_Fading = true;
+		m_Timer.Start();
+	}
+
+	FadeOutLogic(deltaTime);
+}
+
+
+void  NetworkedLobbyScene::FadeOutLogic(float deltaTime)
+{
+	if (m_Fading)
+	{
+		m_ColorPass->UpdateBrightness(-0.6f*deltaTime);
+
+	}
+	if (m_Timer.GetSec() > 2.0f)
 	{
 		G_SceneManager.PopScene();
 		G_SceneManager.PushScene(std::make_unique<MainScene>());
