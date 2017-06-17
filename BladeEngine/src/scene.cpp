@@ -67,6 +67,7 @@ namespace Blade
 				return entity;
 			}
 		}
+		return nullptr;
 	}
 
 	void Scene::Update(float delta_time, long time) noexcept
