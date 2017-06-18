@@ -15,18 +15,19 @@ namespace Blade
 
 	static int s_Id = 0;
 
-	/*
-	\brief Resource manager class of the engine.
+	/**
+	\brief Resource manager class of the engine. Manages several types of resources: models, textures, configuration
+	and audio.
 	*/
 	class ResourceManager
 	{
 	private:
-		/*
+		/**
 		\brief Correlate resource by names.
 		*/
 		std::map<std::wstring, Resource*> m_ResourcesByName;
 
-		/*
+		/**
 		\brief Correlate resources by indices.
 		*/
 		std::map<unsigned int, Resource*> m_ResourcesById;
@@ -44,7 +45,7 @@ namespace Blade
 			m_ResourcesById.clear();
 		}
 
-		/*
+		/**
 		\brief Load a new resource by file name
 		\return true if the resource is loaded correctly,
 		false otherwise.
@@ -65,7 +66,7 @@ namespace Blade
 			return false;
 		}
 
-		/*
+		/**
 		\brief Get a resource by name
 		\return the resource
 		*/
@@ -90,10 +91,10 @@ namespace Blade
 			return res;
 		}
 
-		/*
+		/**
 		\brief Register a new resource by name
 		\param resource the resource to register
-		\name the name of the resource.
+		\param the name of the resource.
 		*/
 		void RegisterResource(Resource* resource, const std::wstring& name)
 		{

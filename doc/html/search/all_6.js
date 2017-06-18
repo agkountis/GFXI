@@ -1,7 +1,7 @@
 var searchData=
 [
   ['gapicontext',['GAPIContext',['../class_blade_1_1_g_a_p_i_context.html',1,'Blade']]],
-  ['get',['Get',['../class_blade_1_1_pipeline_data.html#a5fabd7938e03537063559256d21c8253',1,'Blade::PipelineData']]],
+  ['get',['Get',['../class_blade_1_1_pipeline_data.html#a5fabd7938e03537063559256d21c8253',1,'Blade::PipelineData::Get()'],['../class_blade_1_1_resource_manager.html#a84e678264f844a6b4bca8d46ee16336b',1,'Blade::ResourceManager::Get()'],['../class_blade_1_1_shader_program_manager.html#a5e9744ef91a953b1ca5cc38160568804',1,'Blade::ShaderProgramManager::Get()']]],
   ['getactivecamera',['GetActiveCamera',['../class_blade_1_1_camera_system.html#aad7510843cd3b0ab6beeff854c96f6ad',1,'Blade::CameraSystem']]],
   ['getactivecameraprojectionmatrtix',['GetActiveCameraProjectionMatrtix',['../class_blade_1_1_camera_system.html#ab70602bec3fdc6fbfe26d90a789d40bc',1,'Blade::CameraSystem']]],
   ['getactivecameraviewmatrix',['GetActiveCameraViewMatrix',['../class_blade_1_1_camera_system.html#a37ed2fa73706463322331377c6eb8a7f',1,'Blade::CameraSystem']]],
@@ -10,6 +10,8 @@ var searchData=
   ['getanalogstickvector',['GetAnalogStickVector',['../class_blade_1_1_input_manager.html#ab41a4d4a8352903e18ba578316c36dc7',1,'Blade::InputManager']]],
   ['getcamera',['GetCamera',['../class_blade_1_1_camera_system.html#aa6fcc138bf6920081fb7a36ddf362894',1,'Blade::CameraSystem']]],
   ['getclippingplanes',['GetClippingPlanes',['../class_blade_1_1_camera_component.html#a2eac5f51fbae88dd50ee1077777088c3',1,'Blade::CameraComponent']]],
+  ['getconnectioncount',['GetConnectionCount',['../class_blade_1_1_network_manager.html#ac8dcbba66d285f6a14ad1bcfa346ae5e',1,'Blade::NetworkManager']]],
+  ['getcurrentscene',['GetCurrentScene',['../class_blade_1_1_scene_manager.html#a52232b73f5749916a22b6cf01707140e',1,'Blade::SceneManager']]],
   ['getcurrentstate',['GetCurrentState',['../class_blade_1_1_input_device.html#a71a14408ab206c4d983012b06b921d37',1,'Blade::InputDevice']]],
   ['getdeadzone',['GetDeadzone',['../class_blade_1_1_input_device.html#ab851fc6f3f7f40a376804be9d66a748d',1,'Blade::InputDevice']]],
   ['getdeviceid',['GetDeviceID',['../class_blade_1_1_input_device.html#af05aace5ac1decaa1bf64bfefbcf013b',1,'Blade::InputDevice']]],

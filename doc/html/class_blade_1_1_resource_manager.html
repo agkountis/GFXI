@@ -69,21 +69,136 @@ $(function() {
 <div class="title">Blade::ResourceManager Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_blade_1_1_resource.html">Resource</a> manager class of the engine. Manages several types of resources: models, textures, configuration and audio.  
+ <a href="class_blade_1_1_resource_manager.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="resource__manager_8h_source.html">resource_manager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad99695e0e3d6cf66e3645b61dcede9b8"><td class="memTemplParams" colspan="2"><a id="ad99695e0e3d6cf66e3645b61dcede9b8"></a>
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ad99695e0e3d6cf66e3645b61dcede9b8"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Load</b> (const std::wstring &amp;fileName)</td></tr>
+<tr class="memitem:ad99695e0e3d6cf66e3645b61dcede9b8"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ad99695e0e3d6cf66e3645b61dcede9b8"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_blade_1_1_resource_manager.html#ad99695e0e3d6cf66e3645b61dcede9b8">Load</a> (const std::wstring &amp;fileName)</td></tr>
+<tr class="memdesc:ad99695e0e3d6cf66e3645b61dcede9b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a new resource by file name.  <a href="#ad99695e0e3d6cf66e3645b61dcede9b8">More...</a><br /></td></tr>
 <tr class="separator:ad99695e0e3d6cf66e3645b61dcede9b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84e678264f844a6b4bca8d46ee16336b"><td class="memTemplParams" colspan="2"><a id="a84e678264f844a6b4bca8d46ee16336b"></a>
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a84e678264f844a6b4bca8d46ee16336b"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Get</b> (const std::wstring &amp;fileName)</td></tr>
+<tr class="memitem:a84e678264f844a6b4bca8d46ee16336b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a84e678264f844a6b4bca8d46ee16336b"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_blade_1_1_resource_manager.html#a84e678264f844a6b4bca8d46ee16336b">Get</a> (const std::wstring &amp;fileName)</td></tr>
+<tr class="memdesc:a84e678264f844a6b4bca8d46ee16336b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a resource by name.  <a href="#a84e678264f844a6b4bca8d46ee16336b">More...</a><br /></td></tr>
 <tr class="separator:a84e678264f844a6b4bca8d46ee16336b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa406f90716a7758669b424a290549256"><td class="memItemLeft" align="right" valign="top"><a id="aa406f90716a7758669b424a290549256"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>RegisterResource</b> (<a class="el" href="class_blade_1_1_resource.html">Resource</a> *resource, const std::wstring &amp;name)</td></tr>
+<tr class="memitem:aa406f90716a7758669b424a290549256"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_resource_manager.html#aa406f90716a7758669b424a290549256">RegisterResource</a> (<a class="el" href="class_blade_1_1_resource.html">Resource</a> *resource, const std::wstring &amp;name)</td></tr>
+<tr class="memdesc:aa406f90716a7758669b424a290549256"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a new resource by name.  <a href="#aa406f90716a7758669b424a290549256">More...</a><br /></td></tr>
 <tr class="separator:aa406f90716a7758669b424a290549256"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_blade_1_1_resource.html">Resource</a> manager class of the engine. Manages several types of resources: models, textures, configuration and audio. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a84e678264f844a6b4bca8d46ee16336b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84e678264f844a6b4bca8d46ee16336b">&#9670;&nbsp;</a></span>Get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T* Blade::ResourceManager::Get </td>
+          <td>(</td>
+          <td class="paramtype">const std::wstring &amp;&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a resource by name. </p>
+<dl class="section return"><dt>Returns</dt><dd>the resource </dd></dl>
+
+</div>
+</div>
+<a id="ad99695e0e3d6cf66e3645b61dcede9b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad99695e0e3d6cf66e3645b61dcede9b8">&#9670;&nbsp;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Blade::ResourceManager::Load </td>
+          <td>(</td>
+          <td class="paramtype">const std::wstring &amp;&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Load a new resource by file name. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the resource is loaded correctly, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="aa406f90716a7758669b424a290549256"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa406f90716a7758669b424a290549256">&#9670;&nbsp;</a></span>RegisterResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::ResourceManager::RegisterResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_blade_1_1_resource.html">Resource</a> *&#160;</td>
+          <td class="paramname"><em>resource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::wstring &amp;&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register a new resource by name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resource</td><td>the resource to register </td></tr>
+    <tr><td class="paramname">the</td><td>name of the resource. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="resource__manager_8h_source.html">resource_manager.h</a></li>
 </ul>

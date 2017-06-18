@@ -1,32 +1,119 @@
 \hypertarget{class_blade_1_1_network_manager}{}\section{Blade\+:\+:Network\+Manager Class Reference}
 \label{class_blade_1_1_network_manager}\index{Blade\+::\+Network\+Manager@{Blade\+::\+Network\+Manager}}
+
+
+Network manager of the engine. Manages the listening, connection, sending and receiving to different multiple sockets.  
+
+
+
+
+{\ttfamily \#include $<$network\+\_\+manager.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{class_blade_1_1_network_manager_a9b1c863473df3dddfd4347c4fa570a80}\label{class_blade_1_1_network_manager_a9b1c863473df3dddfd4347c4fa570a80}} 
-bool {\bfseries Initialize} () noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_network_manager_a1e097a251026499832bd7238adb48d8a}\label{class_blade_1_1_network_manager_a1e097a251026499832bd7238adb48d8a}} 
-void {\bfseries Listen} (const unsigned short port) noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_network_manager_a61a872d6eec9050280dc041a7cda3759}\label{class_blade_1_1_network_manager_a61a872d6eec9050280dc041a7cda3759}} 
-void {\bfseries Connect} (const std\+::string \&host, const unsigned short port) noexcept
-\item 
+bool \hyperlink{class_blade_1_1_network_manager_a9b1c863473df3dddfd4347c4fa570a80}{Initialize} () noexcept
+\begin{DoxyCompactList}\small\item\em Initialize the network manager. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_network_manager_a1e097a251026499832bd7238adb48d8a}{Listen} (const unsigned short port) noexcept
+\begin{DoxyCompactList}\small\item\em The sockets starts listen to that port. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_network_manager_a61a872d6eec9050280dc041a7cda3759}{Connect} (const std\+::string \&host, const unsigned short port) noexcept
+\begin{DoxyCompactList}\small\item\em Connect to an host. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_blade_1_1_network_manager_a3127ee70f644dedfa8be9372805f6d5a}\label{class_blade_1_1_network_manager_a3127ee70f644dedfa8be9372805f6d5a}} 
-void {\bfseries Queue\+Message} (const std\+::shared\+\_\+ptr$<$ \hyperlink{class_blade_1_1_network_message}{Network\+Message} $>$ \&message) noexcept
-\item 
+void \hyperlink{class_blade_1_1_network_manager_a3127ee70f644dedfa8be9372805f6d5a}{Queue\+Message} (const std\+::shared\+\_\+ptr$<$ \hyperlink{class_blade_1_1_network_message}{Network\+Message} $>$ \&message) noexcept
+\begin{DoxyCompactList}\small\item\em Queue a new message. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_blade_1_1_network_manager_ac8dcbba66d285f6a14ad1bcfa346ae5e}\label{class_blade_1_1_network_manager_ac8dcbba66d285f6a14ad1bcfa346ae5e}} 
-size\+\_\+t {\bfseries Get\+Connection\+Count} () noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_network_manager_a12f5afdfc075b71ea82d4d657a78d780}\label{class_blade_1_1_network_manager_a12f5afdfc075b71ea82d4d657a78d780}} 
-void {\bfseries Set\+On\+New\+Packet\+Callback} (const On\+New\+Packet\+Callback \&callback) noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_network_manager_a192f822f26e76829c2414f1505418a78}\label{class_blade_1_1_network_manager_a192f822f26e76829c2414f1505418a78}} 
-void {\bfseries Set\+On\+New\+Client\+Callback} (const On\+New\+Client\+Callback \&callback) noexcept
-\item 
+size\+\_\+t \hyperlink{class_blade_1_1_network_manager_ac8dcbba66d285f6a14ad1bcfa346ae5e}{Get\+Connection\+Count} () noexcept
+\begin{DoxyCompactList}\small\item\em Return the number of open connection. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_network_manager_a12f5afdfc075b71ea82d4d657a78d780}{Set\+On\+New\+Packet\+Callback} (const On\+New\+Packet\+Callback \&callback) noexcept
+\begin{DoxyCompactList}\small\item\em Set the callback that execute when a new packet is received. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_network_manager_a192f822f26e76829c2414f1505418a78}{Set\+On\+New\+Client\+Callback} (const On\+New\+Client\+Callback \&callback) noexcept
+\begin{DoxyCompactList}\small\item\em Set the callback that execute when a new client is connected. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_network_manager_ada4cd3f291d3775e7467c5be31090a99}{Set\+On\+Client\+Disconnect\+Callback} (const On\+Client\+Disconnect\+Callback \&callback) noexcept
+\begin{DoxyCompactList}\small\item\em Set the callback that execute when a client is disconnected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Network manager of the engine. Manages the listening, connection, sending and receiving to different multiple sockets. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_blade_1_1_network_manager_a61a872d6eec9050280dc041a7cda3759}\label{class_blade_1_1_network_manager_a61a872d6eec9050280dc041a7cda3759}} 
+\index{Blade\+::\+Network\+Manager@{Blade\+::\+Network\+Manager}!Connect@{Connect}}
+\index{Connect@{Connect}!Blade\+::\+Network\+Manager@{Blade\+::\+Network\+Manager}}
+\subsubsection{\texorpdfstring{Connect()}{Connect()}}
+{\footnotesize\ttfamily void Blade\+::\+Network\+Manager\+::\+Connect (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{host,  }\item[{const unsigned short}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Connect to an host. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em host} & The IP address of the host \\
+\hline
+{\em port} & The port number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_network_manager_a1e097a251026499832bd7238adb48d8a}\label{class_blade_1_1_network_manager_a1e097a251026499832bd7238adb48d8a}} 
+\index{Blade\+::\+Network\+Manager@{Blade\+::\+Network\+Manager}!Listen@{Listen}}
+\index{Listen@{Listen}!Blade\+::\+Network\+Manager@{Blade\+::\+Network\+Manager}}
+\subsubsection{\texorpdfstring{Listen()}{Listen()}}
+{\footnotesize\ttfamily void Blade\+::\+Network\+Manager\+::\+Listen (\begin{DoxyParamCaption}\item[{const unsigned short}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+The sockets starts listen to that port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & the port to listen to \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_blade_1_1_network_manager_ada4cd3f291d3775e7467c5be31090a99}\label{class_blade_1_1_network_manager_ada4cd3f291d3775e7467c5be31090a99}} 
-void {\bfseries Set\+On\+Client\+Disconnect\+Callback} (const On\+Client\+Disconnect\+Callback \&callback) noexcept
-\end{DoxyCompactItemize}
+\index{Blade\+::\+Network\+Manager@{Blade\+::\+Network\+Manager}!Set\+On\+Client\+Disconnect\+Callback@{Set\+On\+Client\+Disconnect\+Callback}}
+\index{Set\+On\+Client\+Disconnect\+Callback@{Set\+On\+Client\+Disconnect\+Callback}!Blade\+::\+Network\+Manager@{Blade\+::\+Network\+Manager}}
+\subsubsection{\texorpdfstring{Set\+On\+Client\+Disconnect\+Callback()}{SetOnClientDisconnectCallback()}}
+{\footnotesize\ttfamily void Blade\+::\+Network\+Manager\+::\+Set\+On\+Client\+Disconnect\+Callback (\begin{DoxyParamCaption}\item[{const On\+Client\+Disconnect\+Callback \&}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Set the callback that execute when a client is disconnected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The callback to set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_network_manager_a192f822f26e76829c2414f1505418a78}\label{class_blade_1_1_network_manager_a192f822f26e76829c2414f1505418a78}} 
+\index{Blade\+::\+Network\+Manager@{Blade\+::\+Network\+Manager}!Set\+On\+New\+Client\+Callback@{Set\+On\+New\+Client\+Callback}}
+\index{Set\+On\+New\+Client\+Callback@{Set\+On\+New\+Client\+Callback}!Blade\+::\+Network\+Manager@{Blade\+::\+Network\+Manager}}
+\subsubsection{\texorpdfstring{Set\+On\+New\+Client\+Callback()}{SetOnNewClientCallback()}}
+{\footnotesize\ttfamily void Blade\+::\+Network\+Manager\+::\+Set\+On\+New\+Client\+Callback (\begin{DoxyParamCaption}\item[{const On\+New\+Client\+Callback \&}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Set the callback that execute when a new client is connected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The callback to set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_network_manager_a12f5afdfc075b71ea82d4d657a78d780}\label{class_blade_1_1_network_manager_a12f5afdfc075b71ea82d4d657a78d780}} 
+\index{Blade\+::\+Network\+Manager@{Blade\+::\+Network\+Manager}!Set\+On\+New\+Packet\+Callback@{Set\+On\+New\+Packet\+Callback}}
+\index{Set\+On\+New\+Packet\+Callback@{Set\+On\+New\+Packet\+Callback}!Blade\+::\+Network\+Manager@{Blade\+::\+Network\+Manager}}
+\subsubsection{\texorpdfstring{Set\+On\+New\+Packet\+Callback()}{SetOnNewPacketCallback()}}
+{\footnotesize\ttfamily void Blade\+::\+Network\+Manager\+::\+Set\+On\+New\+Packet\+Callback (\begin{DoxyParamCaption}\item[{const On\+New\+Packet\+Callback \&}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Set the callback that execute when a new packet is received. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The callback to set. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

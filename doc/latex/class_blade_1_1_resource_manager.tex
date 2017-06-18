@@ -1,17 +1,74 @@
 \hypertarget{class_blade_1_1_resource_manager}{}\section{Blade\+:\+:Resource\+Manager Class Reference}
 \label{class_blade_1_1_resource_manager}\index{Blade\+::\+Resource\+Manager@{Blade\+::\+Resource\+Manager}}
+
+
+\hyperlink{class_blade_1_1_resource}{Resource} manager class of the engine. Manages several types of resources\+: models, textures, configuration and audio.  
+
+
+
+
+{\ttfamily \#include $<$resource\+\_\+manager.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_blade_1_1_resource_manager_ad99695e0e3d6cf66e3645b61dcede9b8}\label{class_blade_1_1_resource_manager_ad99695e0e3d6cf66e3645b61dcede9b8}} 
-{\footnotesize template$<$typename T $>$ }\\bool {\bfseries Load} (const std\+::wstring \&file\+Name)
-\item 
+{\footnotesize template$<$typename T $>$ }\\bool \hyperlink{class_blade_1_1_resource_manager_ad99695e0e3d6cf66e3645b61dcede9b8}{Load} (const std\+::wstring \&file\+Name)
+\begin{DoxyCompactList}\small\item\em Load a new resource by file name. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \hyperlink{class_blade_1_1_resource_manager_a84e678264f844a6b4bca8d46ee16336b}{Get} (const std\+::wstring \&file\+Name)
+\begin{DoxyCompactList}\small\item\em Get a resource by name. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_resource_manager_aa406f90716a7758669b424a290549256}{Register\+Resource} (\hyperlink{class_blade_1_1_resource}{Resource} $\ast$resource, const std\+::wstring \&name)
+\begin{DoxyCompactList}\small\item\em Register a new resource by name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_blade_1_1_resource}{Resource} manager class of the engine. Manages several types of resources\+: models, textures, configuration and audio. 
+
+\subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_blade_1_1_resource_manager_a84e678264f844a6b4bca8d46ee16336b}\label{class_blade_1_1_resource_manager_a84e678264f844a6b4bca8d46ee16336b}} 
-{\footnotesize template$<$typename T $>$ }\\T $\ast$ {\bfseries Get} (const std\+::wstring \&file\+Name)
-\item 
+\index{Blade\+::\+Resource\+Manager@{Blade\+::\+Resource\+Manager}!Get@{Get}}
+\index{Get@{Get}!Blade\+::\+Resource\+Manager@{Blade\+::\+Resource\+Manager}}
+\subsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T$\ast$ Blade\+::\+Resource\+Manager\+::\+Get (\begin{DoxyParamCaption}\item[{const std\+::wstring \&}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get a resource by name. 
+
+\begin{DoxyReturn}{Returns}
+the resource 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_resource_manager_ad99695e0e3d6cf66e3645b61dcede9b8}\label{class_blade_1_1_resource_manager_ad99695e0e3d6cf66e3645b61dcede9b8}} 
+\index{Blade\+::\+Resource\+Manager@{Blade\+::\+Resource\+Manager}!Load@{Load}}
+\index{Load@{Load}!Blade\+::\+Resource\+Manager@{Blade\+::\+Resource\+Manager}}
+\subsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Blade\+::\+Resource\+Manager\+::\+Load (\begin{DoxyParamCaption}\item[{const std\+::wstring \&}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Load a new resource by file name. 
+
+\begin{DoxyReturn}{Returns}
+true if the resource is loaded correctly, false otherwise. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_blade_1_1_resource_manager_aa406f90716a7758669b424a290549256}\label{class_blade_1_1_resource_manager_aa406f90716a7758669b424a290549256}} 
-void {\bfseries Register\+Resource} (\hyperlink{class_blade_1_1_resource}{Resource} $\ast$resource, const std\+::wstring \&name)
-\end{DoxyCompactItemize}
+\index{Blade\+::\+Resource\+Manager@{Blade\+::\+Resource\+Manager}!Register\+Resource@{Register\+Resource}}
+\index{Register\+Resource@{Register\+Resource}!Blade\+::\+Resource\+Manager@{Blade\+::\+Resource\+Manager}}
+\subsubsection{\texorpdfstring{Register\+Resource()}{RegisterResource()}}
+{\footnotesize\ttfamily void Blade\+::\+Resource\+Manager\+::\+Register\+Resource (\begin{DoxyParamCaption}\item[{\hyperlink{class_blade_1_1_resource}{Resource} $\ast$}]{resource,  }\item[{const std\+::wstring \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Register a new resource by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em resource} & the resource to register \\
+\hline
+{\em the} & name of the resource. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

@@ -1,14 +1,60 @@
 \hypertarget{class_blade_1_1_shader_program_manager}{}\section{Blade\+:\+:Shader\+Program\+Manager Class Reference}
 \label{class_blade_1_1_shader_program_manager}\index{Blade\+::\+Shader\+Program\+Manager@{Blade\+::\+Shader\+Program\+Manager}}
+
+
+\hyperlink{class_blade_1_1_shader}{Shader} program manager of the engine. Stores the shader program and provide function to create and get them.  
+
+
+
+
+{\ttfamily \#include $<$shader\+\_\+program\+\_\+manager.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+bool \hyperlink{class_blade_1_1_shader_program_manager_a8273a7106a27e3a75169fba65ac3902e}{Create} (const \hyperlink{struct_blade_1_1_shader_program_desc}{Shader\+Program\+Desc} \&shader\+Program\+Desc) noexcept
+\begin{DoxyCompactList}\small\item\em Create a new shader program. \end{DoxyCompactList}\item 
+\hyperlink{class_blade_1_1_shader_program}{Shader\+Program} $\ast$ \hyperlink{class_blade_1_1_shader_program_manager_a5e9744ef91a953b1ca5cc38160568804}{Get} (const std\+::string \&prog\+Name) noexcept
+\begin{DoxyCompactList}\small\item\em Get the shader program by name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_blade_1_1_shader}{Shader} program manager of the engine. Stores the shader program and provide function to create and get them. 
+
+\subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_blade_1_1_shader_program_manager_a8273a7106a27e3a75169fba65ac3902e}\label{class_blade_1_1_shader_program_manager_a8273a7106a27e3a75169fba65ac3902e}} 
-bool {\bfseries Create} (const \hyperlink{struct_blade_1_1_shader_program_desc}{Shader\+Program\+Desc} \&shader\+Program\+Desc) noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_shader_program_manager_a5e9744ef91a953b1ca5cc38160568804}\label{class_blade_1_1_shader_program_manager_a5e9744ef91a953b1ca5cc38160568804}} 
-\hyperlink{class_blade_1_1_shader_program}{Shader\+Program} $\ast$ {\bfseries Get} (const std\+::string \&prog\+Name) noexcept
-\end{DoxyCompactItemize}
+\index{Blade\+::\+Shader\+Program\+Manager@{Blade\+::\+Shader\+Program\+Manager}!Create@{Create}}
+\index{Create@{Create}!Blade\+::\+Shader\+Program\+Manager@{Blade\+::\+Shader\+Program\+Manager}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily bool Blade\+::\+Shader\+Program\+Manager\+::\+Create (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_blade_1_1_shader_program_desc}{Shader\+Program\+Desc} \&}]{shader\+Program\+Desc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Create a new shader program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shared\+Program\+Desc} & The shader program description.\\
+\hline
+\end{DoxyParams}
+If the shader program is already created, not re-\/create it. \mbox{\Hypertarget{class_blade_1_1_shader_program_manager_a5e9744ef91a953b1ca5cc38160568804}\label{class_blade_1_1_shader_program_manager_a5e9744ef91a953b1ca5cc38160568804}} 
+\index{Blade\+::\+Shader\+Program\+Manager@{Blade\+::\+Shader\+Program\+Manager}!Get@{Get}}
+\index{Get@{Get}!Blade\+::\+Shader\+Program\+Manager@{Blade\+::\+Shader\+Program\+Manager}}
+\subsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily \hyperlink{class_blade_1_1_shader_program}{Shader\+Program} $\ast$ Blade\+::\+Shader\+Program\+Manager\+::\+Get (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{prog\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Get the shader program by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prog\+Name} & the shader program name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The shader program 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

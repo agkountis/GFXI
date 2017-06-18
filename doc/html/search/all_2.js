@@ -11,6 +11,8 @@ var searchData=
   ['component',['Component',['../class_blade_1_1_component.html',1,'Blade::Component'],['../class_blade_1_1_component.html#a9afd6318db086a2fa6bfdbbbc009ef85',1,'Blade::Component::Component()']]],
   ['configentry',['ConfigEntry',['../class_blade_1_1_config_entry.html',1,'Blade']]],
   ['configfile',['ConfigFile',['../class_blade_1_1_config_file.html',1,'Blade']]],
+  ['connect',['Connect',['../class_blade_1_1_network_manager.html#a61a872d6eec9050280dc041a7cda3759',1,'Blade::NetworkManager']]],
   ['connectioninfo',['ConnectionInfo',['../struct_blade_1_1_connection_info.html',1,'Blade']]],
-  ['contactmanifold',['ContactManifold',['../class_blade_1_1_contact_manifold.html',1,'Blade']]]
+  ['contactmanifold',['ContactManifold',['../class_blade_1_1_contact_manifold.html',1,'Blade']]],
+  ['create',['Create',['../class_blade_1_1_shader_program_manager.html#a8273a7106a27e3a75169fba65ac3902e',1,'Blade::ShaderProgramManager']]]
 ];
