@@ -60,7 +60,7 @@
 
 namespace Blade
 {
-	/*
+	/**
 	 * \brief Enumeration for input device buttons (digital values)
 	 * \details Uses bit flags defined in the device to for mappings where available
 	 */
@@ -96,18 +96,32 @@ namespace Blade
 
 	/**
 	 * \brief InputState describes the current state of a device.
-	 * \details Only joy pad support for the moment. A function to compare two states has to be provided
 	 */
 	struct InputState
 	{
+		/**
+		\brief The digital button data
+		*/
 		int digitalButtonData{ 0 };
 
+		/**
+		\brief The left analog stick.
+		*/
 		ThumbStick stickLeft{ 0 };
 
+		/**
+		\brief The right analog stick.
+		*/
 		ThumbStick stickRight{ 0 };
 
+		/**
+		\brief The left trigger.
+		*/
 		float triggerLeft{ 0.0f };
 
+		/**
+		\brief The right trigger.
+		*/
 		float triggerRight{ 0.0f };
 
 		InputState();

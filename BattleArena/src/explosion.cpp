@@ -2,7 +2,7 @@
 #include "engine_context.h"
 #include "d3d\D3D11_texture.h"
 #include "explosion_behaviour.h"
-
+#include "resource_utils.h"
 using namespace Blade;
 
 int Explosion::s_Counter{ 0 };
@@ -33,6 +33,8 @@ Explosion::Explosion(float lifeTimeInSeconds):Entity("Explosion " + std::to_stri
 	emc->SetTexture(tex);
 	emc->SetMesh(G_ResourceManager.Get<Mesh>(L"plane"));
 	auto bc = new ExplosionBehaviour(this,lifeTimeInSeconds);
+
+	G_AudioManager.PlaySample(Blade::ResourceUtils::GetAudioSample(L"explosion.ogg"), 2.0f, AUDIO_PLAYMODE_ONCE, this->GetWorldPosition(), nullptr);
 
 }
 

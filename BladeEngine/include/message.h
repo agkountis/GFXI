@@ -3,7 +3,7 @@
 
 namespace Blade
 {
-	/*
+	/**
 	\brief Message structure used by the engine.
 	\details The Message class is generic. 
 	*/
@@ -11,7 +11,7 @@ namespace Blade
 	class Message
 	{
 	private:
-		/*
+		/**
 		\brief Message type
 		*/
 		T m_Type;
@@ -22,7 +22,8 @@ namespace Blade
 		}
 
 		virtual ~Message() = default;
-		/*
+
+		/**
 		\brief Return the type of the message
 		\return The message type
 		*/

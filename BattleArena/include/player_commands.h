@@ -6,6 +6,7 @@
 #include "command_message.h"
 #include "network_message_types.h"
 #include "resource_utils.h"
+#include "player_joypad_component.h"
 
 class MoveForward : public Blade::Command
 {
@@ -219,11 +220,24 @@ public:
 				{
 					if (weapon->GetWeaponPosition() == WeaponPosition::LEFT)
 					{
+						auto joypadComp = dynamic_cast<PlayerJoypadComponent*>( entity->GetComponent("co_jpic"));
+						if (joypadComp)
+						{
+							auto joypad{ G_InputManager.GetActiveDevice(joypadComp->m_JoypadNum) };
+							joypad->SetVibration(1.0f, 1.0f);
+						}
+
 						weapon->Shoot(p->GetLeftWeaponPos());
 						if (m_Online)
 						{
 							//std::cout << "Sending... shoot left" << std::endl;
 							G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(p->GetID(), BA_SHOOT_LEFT, RECIPIENT_ID_BROADCAST, nullptr));
+						}
+
+						if (joypadComp)
+						{
+							auto joypad{ G_InputManager.GetActiveDevice(joypadComp->m_JoypadNum) };
+							joypad->SetVibration(0.0f, 0.0f);
 						}
 						return;
 					}
@@ -263,11 +277,23 @@ public:
 				{
 					if (weapon->GetWeaponPosition() == WeaponPosition::RIGHT)
 					{
+						auto joypadComp = dynamic_cast<PlayerJoypadComponent*>(entity->GetComponent("co_jpic"));
+						if (joypadComp)
+						{
+							auto joypad{ G_InputManager.GetActiveDevice(joypadComp->m_JoypadNum) };
+							joypad->SetVibration(1.0f, 1.0f);
+						}
 						weapon->Shoot(p->GetRightWeaponPos());
 						if (m_Online)
 						{
 							//std::cout << "Sending... right left" << std::endl;
 							G_NetworkManager.QueueMessage(std::make_shared<CommandMessage>(p->GetID(), BA_SHOOT_RIGHT, RECIPIENT_ID_BROADCAST, nullptr));
+						}
+
+						if (joypadComp)
+						{
+							auto joypad{ G_InputManager.GetActiveDevice(joypadComp->m_JoypadNum) };
+							joypad->SetVibration(0.0f, 0.0f);
 						}
 						return;
 					}

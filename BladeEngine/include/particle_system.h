@@ -5,7 +5,7 @@
 
 namespace Blade 
 {
-	/*
+	/**
 	\brief A system responsible of storing the EmitterComponents.
 	*/
 	class ParticleSystem : public System
@@ -38,6 +38,8 @@ namespace Blade
 
 		/*
 		\brief The particle system do no need to process anything.
+		\param deltaTime The delta time 
+		\param time Seconds since the application startup.
 		*/
 		void Process(float deltaTime=.0f, long time=0) noexcept override;
 
