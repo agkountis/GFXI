@@ -22,7 +22,8 @@ class Player : public Blade::Entity
 private:
 	int m_WeaponCount{0};
 	int m_Id;
-
+	Blade::Vec3f m_LeftWeaponPos;
+	Blade::Vec3f m_RightWeaponPos;
 public:
 	explicit Player(const std::string& name,const int id);
 
@@ -38,6 +39,8 @@ public:
 
 	void Explode(const Blade::Vec3f& position);
 
+
+	void SetWeaponPositions(const Blade::Vec3f& leftWeaponPos, const Blade::Vec3f rightWeaponPos);
 
 
 };
