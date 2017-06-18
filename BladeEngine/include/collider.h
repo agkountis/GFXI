@@ -9,13 +9,13 @@ namespace Blade
 	class BoundingSphere;
 	class PlaneCollider;
 
-	/*
+	/**
 	\brief This class represents a general collider.
 	*/
 	class Collider
 	{
 	private:
-		/*
+		/**
 		\brief Holds the pointer to the correspondent collider component
 		*/
 		ColliderComponent* m_Parent{ nullptr };
@@ -28,7 +28,7 @@ namespace Blade
 		virtual ~Collider() = default;
 
 
-		/*
+		/**
 		* \brief Interface method for collision detection with other collider.
 		* \param collider Pointer to other collider. 
 		* \param manifold Reference to contact manifold to which the information about the collision will be added.
@@ -38,7 +38,7 @@ namespace Blade
 		virtual bool Collide(const Collider* collider, ContactManifold& manifold) const noexcept = 0;
 
 
-		/*
+		/**
 		* \brief Interface method for collision detection between this collider and Bounding Sphere collider.
 		* \param bsphere Pointer to other collider - bounding sphere.
 		* \param manifold Reference to contact manifold to which the information about the collision will be added.
@@ -47,7 +47,7 @@ namespace Blade
 		virtual bool Collide(const BoundingSphere* bsphere, ContactManifold& manifold) const noexcept = 0;
 
 
-		/*
+		/**
 		* \brief Interface method  for collision detection between this collider and plane collider.
 		* \param plane Pointer to other collider - plane colider.
 		* \param manifold Reference to contact manifold to which the information about the collision will be added.
@@ -57,7 +57,7 @@ namespace Blade
 
 
 
-		/*
+		/**
 		* \brief Returns the pointer to correspondent collider component
 		* \return the pointer to correspondent collider component
 		*/
@@ -65,7 +65,7 @@ namespace Blade
 
 
 
-		/*
+		/**
 		* \brief Sets correspondent collider component of this collider.
 		* \param colliderComponent Corresponding collider component to be set and used.
 		*/
