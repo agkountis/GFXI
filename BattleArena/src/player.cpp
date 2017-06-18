@@ -53,16 +53,12 @@ Vec3f Player::GetHeading() const noexcept
 
 Vec3f Player::GetLeftWeaponPos() noexcept
 {
-	//Update(0, 0);
-	//return GetEntityFromHierarchy("LeftWeaponSocket")->GetWorldPosition();
-	return (GetXform() * Vec4f(m_LeftWeaponPos, 1.0f)).xyz;
+	return GetEntityFromHierarchy("LeftWeaponSocket")->GetWorldPosition();
 }
 
 Vec3f Player::GetRightWeaponPos() noexcept
 {
-	/*Update(0, 0);
-	return GetEntityFromHierarchy("RightWeaponSocket")->GetWorldPosition();*/
-	return (GetXform() * Vec4f(m_RightWeaponPos, 1.0f)).xyz;
+	return GetEntityFromHierarchy("RightWeaponSocket")->GetWorldPosition();
 }
 
 int Player::GetID() const noexcept
@@ -75,10 +71,4 @@ void Player::Explode(const Vec3f& position)
 	Explosion* expl = new Explosion(0.9f);
 	expl->SetPosition(position);
 	expl->RegisterWithScene();
-}
-
-void Player::SetWeaponPositions(const Blade::Vec3f & leftWeaponPos, const Blade::Vec3f rightWeaponPos)
-{
-	m_LeftWeaponPos = leftWeaponPos;
-	m_RightWeaponPos = rightWeaponPos;
 }

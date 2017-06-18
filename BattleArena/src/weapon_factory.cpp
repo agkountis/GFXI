@@ -63,6 +63,9 @@ void WeaponFactory::GenerateWeapons() const noexcept
 
 Weapon* WeaponFactory::CreateWeapon1(const std::string & name,const Vec3f& pos) const  noexcept
 {
+
+	Vec3f final_pos{ pos };
+	final_pos.y = 1.0f;
 	Weapon* weapon{ new Weapon{name} };
 	auto cwc{ new CannonWeaponComponent{weapon} };
 	auto emc{ new EmitterComponent{weapon, m_DescriptorWeapon1} };
@@ -81,14 +84,14 @@ Weapon* WeaponFactory::CreateWeapon1(const std::string & name,const Vec3f& pos) 
 	rc->SetMaterial(material);
 
 #endif
-
-	//#needtorefactor add position logic
-	weapon->SetPosition(pos);
+	weapon->SetPosition(final_pos);
 	return weapon;
 }
 
 Weapon* WeaponFactory::CreateWeapon2(const std::string& name, const Vec3f& pos) const noexcept
 {
+	Vec3f final_pos{ pos };
+	final_pos.y = 1.0f;
 	Weapon* weapon{ new Weapon{ name } };
 	auto cwc{ new OtherWeaponComponent{ weapon } };
 	auto emc{ new EmitterComponent{ weapon, m_DescriptorWeapon2 } };
@@ -109,6 +112,6 @@ Weapon* WeaponFactory::CreateWeapon2(const std::string& name, const Vec3f& pos) 
 
 #endif
 
-	weapon->SetPosition(pos);
+	weapon->SetPosition(final_pos);
 	return weapon;
 }

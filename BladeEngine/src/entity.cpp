@@ -7,8 +7,8 @@ namespace Blade
 {
 	Entity::Entity(const std::string& name)
 		: m_Name{ name },
-		  m_Alive{ true },
-		  m_pParent{ nullptr }
+		m_Alive{ true },
+		m_pParent{ nullptr }
 	{
 	}
 
@@ -24,7 +24,7 @@ namespace Blade
 
 		for (auto child : m_Children)
 		{
-			 delete child;
+			delete child;
 		}
 
 		m_Children.clear();
@@ -32,14 +32,14 @@ namespace Blade
 
 	Entity::Entity(const Entity& other)
 		: ObserverSubject{ other },
-		  m_Components{ other.m_Components },
-		  m_Name{ other.m_Name },
-		  m_Alive{ other.m_Alive },
-		  m_Position{ other.m_Position },
-		  m_Orientation{ other.m_Orientation },
-		  m_Scale{ other.m_Scale },
-		  m_Xform{ other.m_Xform },
-		  m_pParent{ other.m_pParent }
+		m_Components{ other.m_Components },
+		m_Name{ other.m_Name },
+		m_Alive{ other.m_Alive },
+		m_Position{ other.m_Position },
+		m_Orientation{ other.m_Orientation },
+		m_Scale{ other.m_Scale },
+		m_Xform{ other.m_Xform },
+		m_pParent{ other.m_pParent }
 	{
 	}
 
