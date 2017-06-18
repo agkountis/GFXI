@@ -22,6 +22,7 @@ namespace Blade
 		/**
 		* \brief Processes the BehaviourComponent.
 		* \param deltaTime The time elapsed from the previous frame of the application.
+		* \param time The time since the application startup
 		*/
 		void Process(float deltaTime=.0f, long time=0) noexcept override;
 		/**

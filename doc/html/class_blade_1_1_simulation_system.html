@@ -94,58 +94,62 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad190fdcf46746653d25eba680ff67521"><td class="memItemLeft" align="right" valign="top"><a id="ad190fdcf46746653d25eba680ff67521"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>SimulationSystem</b> (<a class="el" href="class_blade_1_1_simulation_system.html">SimulationSystem</a> &amp;)=delete</td></tr>
 <tr class="separator:ad190fdcf46746653d25eba680ff67521"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44ca3c7941497162d70f1e9e53b016f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#a44ca3c7941497162d70f1e9e53b016f9">Initialize</a> () noexcept override</td></tr>
-<tr class="memdesc:a44ca3c7941497162d70f1e9e53b016f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual method implemented by the engine's systems to perform their initialization.  <a href="#a44ca3c7941497162d70f1e9e53b016f9">More...</a><br /></td></tr>
+<tr class="memitem:a44ca3c7941497162d70f1e9e53b016f9"><td class="memItemLeft" align="right" valign="top"><a id="a44ca3c7941497162d70f1e9e53b016f9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#a44ca3c7941497162d70f1e9e53b016f9">Initialize</a> () noexcept override</td></tr>
+<tr class="memdesc:a44ca3c7941497162d70f1e9e53b016f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the simulation system. <br /></td></tr>
 <tr class="separator:a44ca3c7941497162d70f1e9e53b016f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade81487a31325272e8489c772530ccf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#ade81487a31325272e8489c772530ccf5">Process</a> (float deltaTime=.0f, long time=0) noexcept override</td></tr>
-<tr class="memdesc:ade81487a31325272e8489c772530ccf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual method implemented by the engine's systems to process the registered components.  <a href="#ade81487a31325272e8489c772530ccf5">More...</a><br /></td></tr>
+<tr class="memdesc:ade81487a31325272e8489c772530ccf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the simulation loop: update the simulation, calculate the contacts and store them inside the manifold and then resolve the contacts.  <a href="#ade81487a31325272e8489c772530ccf5">More...</a><br /></td></tr>
 <tr class="separator:ade81487a31325272e8489c772530ccf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a638c4b8971944ab94cfda2c59a651665"><td class="memItemLeft" align="right" valign="top"><a id="a638c4b8971944ab94cfda2c59a651665"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>RegisterComponent</b> (<a class="el" href="class_blade_1_1_simulation_component.html">SimulationComponent</a> *simComp) noexcept</td></tr>
+<tr class="memitem:a638c4b8971944ab94cfda2c59a651665"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#a638c4b8971944ab94cfda2c59a651665">RegisterComponent</a> (<a class="el" href="class_blade_1_1_simulation_component.html">SimulationComponent</a> *simComp) noexcept</td></tr>
+<tr class="memdesc:a638c4b8971944ab94cfda2c59a651665"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a simulation component to the system.  <a href="#a638c4b8971944ab94cfda2c59a651665">More...</a><br /></td></tr>
 <tr class="separator:a638c4b8971944ab94cfda2c59a651665"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1a98c60a727feba8899e57cacfbab70"><td class="memItemLeft" align="right" valign="top"><a id="ad1a98c60a727feba8899e57cacfbab70"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>RegisterComponent</b> (<a class="el" href="class_blade_1_1_collider_component.html">ColliderComponent</a> *colComp) noexcept</td></tr>
+<tr class="memitem:ad1a98c60a727feba8899e57cacfbab70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#ad1a98c60a727feba8899e57cacfbab70">RegisterComponent</a> (<a class="el" href="class_blade_1_1_collider_component.html">ColliderComponent</a> *colComp) noexcept</td></tr>
+<tr class="memdesc:ad1a98c60a727feba8899e57cacfbab70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a collider component to the system.  <a href="#ad1a98c60a727feba8899e57cacfbab70">More...</a><br /></td></tr>
 <tr class="separator:ad1a98c60a727feba8899e57cacfbab70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbe62f3517c05851909ee221d5a48c44"><td class="memItemLeft" align="right" valign="top"><a id="abbe62f3517c05851909ee221d5a48c44"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UnregisterComponent</b> (<a class="el" href="class_blade_1_1_simulation_component.html">SimulationComponent</a> *simComp) noexcept</td></tr>
+<tr class="memitem:abbe62f3517c05851909ee221d5a48c44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#abbe62f3517c05851909ee221d5a48c44">UnregisterComponent</a> (<a class="el" href="class_blade_1_1_simulation_component.html">SimulationComponent</a> *simComp) noexcept</td></tr>
+<tr class="memdesc:abbe62f3517c05851909ee221d5a48c44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregister a simulation component to the system, that component won't be update anymore.  <a href="#abbe62f3517c05851909ee221d5a48c44">More...</a><br /></td></tr>
 <tr class="separator:abbe62f3517c05851909ee221d5a48c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade3b0573c4addb1a306179fcc50a7454"><td class="memItemLeft" align="right" valign="top"><a id="ade3b0573c4addb1a306179fcc50a7454"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UnregisterComponent</b> (<a class="el" href="class_blade_1_1_collider_component.html">ColliderComponent</a> *colComp) noexcept</td></tr>
+<tr class="memitem:ade3b0573c4addb1a306179fcc50a7454"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#ade3b0573c4addb1a306179fcc50a7454">UnregisterComponent</a> (<a class="el" href="class_blade_1_1_collider_component.html">ColliderComponent</a> *colComp) noexcept</td></tr>
+<tr class="memdesc:ade3b0573c4addb1a306179fcc50a7454"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregister a collider component to the system, that component won't be taken in consideration for further collision detection and therefore response.  <a href="#ade3b0573c4addb1a306179fcc50a7454">More...</a><br /></td></tr>
 <tr class="separator:ade3b0573c4addb1a306179fcc50a7454"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a768e9c35386f9c52e2b06ce381ce7050"><td class="memItemLeft" align="right" valign="top"><a id="a768e9c35386f9c52e2b06ce381ce7050"></a>
-const std::vector&lt; <a class="el" href="class_blade_1_1_simulation_component.html">SimulationComponent</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetSimulationComponents</b> () const noexcept</td></tr>
+<tr class="memitem:a768e9c35386f9c52e2b06ce381ce7050"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="class_blade_1_1_simulation_component.html">SimulationComponent</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#a768e9c35386f9c52e2b06ce381ce7050">GetSimulationComponents</a> () const noexcept</td></tr>
+<tr class="memdesc:a768e9c35386f9c52e2b06ce381ce7050"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of the simulation components that the system holds.  <a href="#a768e9c35386f9c52e2b06ce381ce7050">More...</a><br /></td></tr>
 <tr class="separator:a768e9c35386f9c52e2b06ce381ce7050"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a529db90489191ac072e3906326393a3a"><td class="memItemLeft" align="right" valign="top"><a id="a529db90489191ac072e3906326393a3a"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>timeSec</b></td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#a529db90489191ac072e3906326393a3a">timeSec</a></td></tr>
+<tr class="memdesc:a529db90489191ac072e3906326393a3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time in second of the application. <br /></td></tr>
 <tr class="separator:a529db90489191ac072e3906326393a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:afb86549d4ab57f5a426aa8cf228d76eb"><td class="memItemLeft" align="right" valign="top"><a id="afb86549d4ab57f5a426aa8cf228d76eb"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>frequency</b> = 2000.0f</td></tr>
+static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#afb86549d4ab57f5a426aa8cf228d76eb">frequency</a> = 2000.0f</td></tr>
+<tr class="memdesc:afb86549d4ab57f5a426aa8cf228d76eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The frequency of the simulation thread. <br /></td></tr>
 <tr class="separator:afb86549d4ab57f5a426aa8cf228d76eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7d0bb11aafd59e102723b08271c7d9e"><td class="memItemLeft" align="right" valign="top"><a id="aa7d0bb11aafd59e102723b08271c7d9e"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>elasticity</b> = 0.3f</td></tr>
+<tr class="memitem:aa7d0bb11aafd59e102723b08271c7d9e"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#aa7d0bb11aafd59e102723b08271c7d9e">elasticity</a> = 0.3f</td></tr>
+<tr class="memdesc:aa7d0bb11aafd59e102723b08271c7d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The elasticity factor of the entire simulation.  <a href="#aa7d0bb11aafd59e102723b08271c7d9e">More...</a><br /></td></tr>
 <tr class="separator:aa7d0bb11aafd59e102723b08271c7d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a899426b05cdf0fa83104ea106a2aab04"><td class="memItemLeft" align="right" valign="top"><a id="a899426b05cdf0fa83104ea106a2aab04"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>friction</b> = 1.0f</td></tr>
+<tr class="memitem:a899426b05cdf0fa83104ea106a2aab04"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#a899426b05cdf0fa83104ea106a2aab04">friction</a> = 1.0f</td></tr>
+<tr class="memdesc:a899426b05cdf0fa83104ea106a2aab04"><td class="mdescLeft">&#160;</td><td class="mdescRight">The friction factor of the simulation.  <a href="#a899426b05cdf0fa83104ea106a2aab04">More...</a><br /></td></tr>
 <tr class="separator:a899426b05cdf0fa83104ea106a2aab04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a046b4016dac9015dc1b3cb2c59cdf860"><td class="memItemLeft" align="right" valign="top"><a id="a046b4016dac9015dc1b3cb2c59cdf860"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>dt</b> = 0.0f</td></tr>
+static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#a046b4016dac9015dc1b3cb2c59cdf860">dt</a> = 0.0f</td></tr>
+<tr class="memdesc:a046b4016dac9015dc1b3cb2c59cdf860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulation system delta time. <br /></td></tr>
 <tr class="separator:a046b4016dac9015dc1b3cb2c59cdf860"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7c3441e3a8a9b97fbdd12ec936b963e"><td class="memItemLeft" align="right" valign="top"><a id="ad7c3441e3a8a9b97fbdd12ec936b963e"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>dtScale</b> = 1.0f</td></tr>
+<tr class="memitem:ad7c3441e3a8a9b97fbdd12ec936b963e"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_simulation_system.html#ad7c3441e3a8a9b97fbdd12ec936b963e">dtScale</a> = 1.0f</td></tr>
+<tr class="memdesc:ad7c3441e3a8a9b97fbdd12ec936b963e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulation system delta time scale.  <a href="#ad7c3441e3a8a9b97fbdd12ec936b963e">More...</a><br /></td></tr>
 <tr class="separator:ad7c3441e3a8a9b97fbdd12ec936b963e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The simulation system of the engine. </p>
 <p>Performs the simulation routine: update, detection, response using threads. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a44ca3c7941497162d70f1e9e53b016f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44ca3c7941497162d70f1e9e53b016f9">&#9670;&nbsp;</a></span>Initialize()</h2>
+<a id="a768e9c35386f9c52e2b06ce381ce7050"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a768e9c35386f9c52e2b06ce381ce7050">&#9670;&nbsp;</a></span>GetSimulationComponents()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -154,23 +158,21 @@ static float&#160;</td><td class="memItemRight" valign="bottom"><b>dtScale</b> =
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Blade::SimulationSystem::Initialize </td>
+          <td class="memname">const std::vector&lt; <a class="el" href="class_blade_1_1_simulation_component.html">SimulationComponent</a> * &gt; &amp; Blade::SimulationSystem::GetSimulationComponents </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Pure virtual method implemented by the engine's systems to perform their initialization. </p>
-<dl class="section return"><dt>Returns</dt><dd>TRUE if initialization is successfull, FALSE otherwise. </dd></dl>
-
-<p>Implements <a class="el" href="class_blade_1_1_system.html#a63fa00af40dc54d093300eff4785f26f">Blade::System</a>.</p>
+<p>Returns a vector of the simulation components that the system holds. </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector of the simulation components registered to the system. </dd></dl>
 
 </div>
 </div>
@@ -208,15 +210,228 @@ static float&#160;</td><td class="memItemRight" valign="bottom"><b>dtScale</b> =
 </table>
 </div><div class="memdoc">
 
-<p>Pure virtual method implemented by the engine's systems to process the registered components. </p>
+<p>Perform the simulation loop: update the simulation, calculate the contacts and store them inside the manifold and then resolve the contacts. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">deltaTime</td><td>The time elapsed from the previous frame of the application. </td></tr>
+    <tr><td class="paramname">deltaTime</td><td>The delta time </td></tr>
+    <tr><td class="paramname">time</td><td>The seconds since the application startup. </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Implements <a class="el" href="class_blade_1_1_system.html#a80c186f5f9f8fa4fd317b861853fe6a8">Blade::System</a>.</p>
+
+</div>
+</div>
+<a id="a638c4b8971944ab94cfda2c59a651665"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a638c4b8971944ab94cfda2c59a651665">&#9670;&nbsp;</a></span>RegisterComponent() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::SimulationSystem::RegisterComponent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_blade_1_1_simulation_component.html">SimulationComponent</a> *&#160;</td>
+          <td class="paramname"><em>simComp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register a simulation component to the system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">simComp</td><td>the new component that needs to be registered to the system. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad1a98c60a727feba8899e57cacfbab70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1a98c60a727feba8899e57cacfbab70">&#9670;&nbsp;</a></span>RegisterComponent() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::SimulationSystem::RegisterComponent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_blade_1_1_collider_component.html">ColliderComponent</a> *&#160;</td>
+          <td class="paramname"><em>colComp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register a collider component to the system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">colComp</td><td>the new component that needs to be registered to the system. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abbe62f3517c05851909ee221d5a48c44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbe62f3517c05851909ee221d5a48c44">&#9670;&nbsp;</a></span>UnregisterComponent() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::SimulationSystem::UnregisterComponent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_blade_1_1_simulation_component.html">SimulationComponent</a> *&#160;</td>
+          <td class="paramname"><em>simComp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unregister a simulation component to the system, that component won't be update anymore. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">simComp</td><td>the pointer to the <a class="el" href="class_blade_1_1_simulation_component.html">SimulationComponent</a> that we need to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ade3b0573c4addb1a306179fcc50a7454"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade3b0573c4addb1a306179fcc50a7454">&#9670;&nbsp;</a></span>UnregisterComponent() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::SimulationSystem::UnregisterComponent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_blade_1_1_collider_component.html">ColliderComponent</a> *&#160;</td>
+          <td class="paramname"><em>colComp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unregister a collider component to the system, that component won't be taken in consideration for further collision detection and therefore response. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">simComp</td><td>the pointer to the <a class="el" href="class_blade_1_1_collider_component.html">ColliderComponent</a> that we need to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ad7c3441e3a8a9b97fbdd12ec936b963e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7c3441e3a8a9b97fbdd12ec936b963e">&#9670;&nbsp;</a></span>dtScale</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Blade::SimulationSystem::dtScale = 1.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Simulation system delta time scale. </p>
+<p>Can be used to tweak the delta time of the simulation. </p>
+
+</div>
+</div>
+<a id="aa7d0bb11aafd59e102723b08271c7d9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7d0bb11aafd59e102723b08271c7d9e">&#9670;&nbsp;</a></span>elasticity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Blade::SimulationSystem::elasticity = 0.3f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The elasticity factor of the entire simulation. </p>
+<p>The elasticity can be changed at runtime. </p>
+
+</div>
+</div>
+<a id="a899426b05cdf0fa83104ea106a2aab04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a899426b05cdf0fa83104ea106a2aab04">&#9670;&nbsp;</a></span>friction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Blade::SimulationSystem::friction = 1.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The friction factor of the simulation. </p>
+<p>The friction scalar can be changed at runtime. </p>
 
 </div>
 </div>

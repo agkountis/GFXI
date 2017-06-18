@@ -24,49 +24,42 @@ Inheritance diagram for Blade\+:\+:Simulation\+System\+:\begin{figure}[H]
 \mbox{\Hypertarget{class_blade_1_1_simulation_system_ad190fdcf46746653d25eba680ff67521}\label{class_blade_1_1_simulation_system_ad190fdcf46746653d25eba680ff67521}} 
 {\bfseries Simulation\+System} (\hyperlink{class_blade_1_1_simulation_system}{Simulation\+System} \&)=delete
 \item 
+\mbox{\Hypertarget{class_blade_1_1_simulation_system_a44ca3c7941497162d70f1e9e53b016f9}\label{class_blade_1_1_simulation_system_a44ca3c7941497162d70f1e9e53b016f9}} 
 bool \hyperlink{class_blade_1_1_simulation_system_a44ca3c7941497162d70f1e9e53b016f9}{Initialize} () noexcept override
-\begin{DoxyCompactList}\small\item\em Pure virtual method implemented by the engine\textquotesingle{}s systems to perform their initialization. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Initialize the simulation system. \end{DoxyCompactList}\item 
 void \hyperlink{class_blade_1_1_simulation_system_ade81487a31325272e8489c772530ccf5}{Process} (float delta\+Time=.\+0f, long time=0) noexcept override
-\begin{DoxyCompactList}\small\item\em Pure virtual method implemented by the engine\textquotesingle{}s systems to process the registered components. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_blade_1_1_simulation_system_a638c4b8971944ab94cfda2c59a651665}\label{class_blade_1_1_simulation_system_a638c4b8971944ab94cfda2c59a651665}} 
-void {\bfseries Register\+Component} (\hyperlink{class_blade_1_1_simulation_component}{Simulation\+Component} $\ast$sim\+Comp) noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_simulation_system_ad1a98c60a727feba8899e57cacfbab70}\label{class_blade_1_1_simulation_system_ad1a98c60a727feba8899e57cacfbab70}} 
-void {\bfseries Register\+Component} (\hyperlink{class_blade_1_1_collider_component}{Collider\+Component} $\ast$col\+Comp) noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_simulation_system_abbe62f3517c05851909ee221d5a48c44}\label{class_blade_1_1_simulation_system_abbe62f3517c05851909ee221d5a48c44}} 
-void {\bfseries Unregister\+Component} (\hyperlink{class_blade_1_1_simulation_component}{Simulation\+Component} $\ast$sim\+Comp) noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_simulation_system_ade3b0573c4addb1a306179fcc50a7454}\label{class_blade_1_1_simulation_system_ade3b0573c4addb1a306179fcc50a7454}} 
-void {\bfseries Unregister\+Component} (\hyperlink{class_blade_1_1_collider_component}{Collider\+Component} $\ast$col\+Comp) noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_simulation_system_a768e9c35386f9c52e2b06ce381ce7050}\label{class_blade_1_1_simulation_system_a768e9c35386f9c52e2b06ce381ce7050}} 
-const std\+::vector$<$ \hyperlink{class_blade_1_1_simulation_component}{Simulation\+Component} $\ast$ $>$ \& {\bfseries Get\+Simulation\+Components} () const noexcept
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Perform the simulation loop\+: update the simulation, calculate the contacts and store them inside the manifold and then resolve the contacts. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_simulation_system_a638c4b8971944ab94cfda2c59a651665}{Register\+Component} (\hyperlink{class_blade_1_1_simulation_component}{Simulation\+Component} $\ast$sim\+Comp) noexcept
+\begin{DoxyCompactList}\small\item\em Register a simulation component to the system. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_simulation_system_ad1a98c60a727feba8899e57cacfbab70}{Register\+Component} (\hyperlink{class_blade_1_1_collider_component}{Collider\+Component} $\ast$col\+Comp) noexcept
+\begin{DoxyCompactList}\small\item\em Register a collider component to the system. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_simulation_system_abbe62f3517c05851909ee221d5a48c44}{Unregister\+Component} (\hyperlink{class_blade_1_1_simulation_component}{Simulation\+Component} $\ast$sim\+Comp) noexcept
+\begin{DoxyCompactList}\small\item\em Unregister a simulation component to the system, that component won\textquotesingle{}t be update anymore. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_simulation_system_ade3b0573c4addb1a306179fcc50a7454}{Unregister\+Component} (\hyperlink{class_blade_1_1_collider_component}{Collider\+Component} $\ast$col\+Comp) noexcept
+\begin{DoxyCompactList}\small\item\em Unregister a collider component to the system, that component won\textquotesingle{}t be taken in consideration for further collision detection and therefore response. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \hyperlink{class_blade_1_1_simulation_component}{Simulation\+Component} $\ast$ $>$ \& \hyperlink{class_blade_1_1_simulation_system_a768e9c35386f9c52e2b06ce381ce7050}{Get\+Simulation\+Components} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns a vector of the simulation components that the system holds. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{class_blade_1_1_simulation_system_a529db90489191ac072e3906326393a3a}\label{class_blade_1_1_simulation_system_a529db90489191ac072e3906326393a3a}} 
-float {\bfseries time\+Sec}
-\end{DoxyCompactItemize}
+float \hyperlink{class_blade_1_1_simulation_system_a529db90489191ac072e3906326393a3a}{time\+Sec}
+\begin{DoxyCompactList}\small\item\em Time in second of the application. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{class_blade_1_1_simulation_system_afb86549d4ab57f5a426aa8cf228d76eb}\label{class_blade_1_1_simulation_system_afb86549d4ab57f5a426aa8cf228d76eb}} 
-static float {\bfseries frequency} = 2000.\+0f
-\item 
-\mbox{\Hypertarget{class_blade_1_1_simulation_system_aa7d0bb11aafd59e102723b08271c7d9e}\label{class_blade_1_1_simulation_system_aa7d0bb11aafd59e102723b08271c7d9e}} 
-static float {\bfseries elasticity} = 0.\+3f
-\item 
-\mbox{\Hypertarget{class_blade_1_1_simulation_system_a899426b05cdf0fa83104ea106a2aab04}\label{class_blade_1_1_simulation_system_a899426b05cdf0fa83104ea106a2aab04}} 
-static float {\bfseries friction} = 1.\+0f
-\item 
+static float \hyperlink{class_blade_1_1_simulation_system_afb86549d4ab57f5a426aa8cf228d76eb}{frequency} = 2000.\+0f
+\begin{DoxyCompactList}\small\item\em The frequency of the simulation thread. \end{DoxyCompactList}\item 
+static float \hyperlink{class_blade_1_1_simulation_system_aa7d0bb11aafd59e102723b08271c7d9e}{elasticity} = 0.\+3f
+\begin{DoxyCompactList}\small\item\em The elasticity factor of the entire simulation. \end{DoxyCompactList}\item 
+static float \hyperlink{class_blade_1_1_simulation_system_a899426b05cdf0fa83104ea106a2aab04}{friction} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em The friction factor of the simulation. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_blade_1_1_simulation_system_a046b4016dac9015dc1b3cb2c59cdf860}\label{class_blade_1_1_simulation_system_a046b4016dac9015dc1b3cb2c59cdf860}} 
-static float {\bfseries dt} = 0.\+0f
-\item 
-\mbox{\Hypertarget{class_blade_1_1_simulation_system_ad7c3441e3a8a9b97fbdd12ec936b963e}\label{class_blade_1_1_simulation_system_ad7c3441e3a8a9b97fbdd12ec936b963e}} 
-static float {\bfseries dt\+Scale} = 1.\+0f
-\end{DoxyCompactItemize}
+static float \hyperlink{class_blade_1_1_simulation_system_a046b4016dac9015dc1b3cb2c59cdf860}{dt} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Simulation system delta time. \end{DoxyCompactList}\item 
+static float \hyperlink{class_blade_1_1_simulation_system_ad7c3441e3a8a9b97fbdd12ec936b963e}{dt\+Scale} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Simulation system delta time scale. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -75,23 +68,19 @@ The simulation system of the engine.
 Performs the simulation routine\+: update, detection, response using threads. 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_blade_1_1_simulation_system_a44ca3c7941497162d70f1e9e53b016f9}\label{class_blade_1_1_simulation_system_a44ca3c7941497162d70f1e9e53b016f9}} 
-\index{Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}!Initialize@{Initialize}}
-\index{Initialize@{Initialize}!Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}}
-\subsubsection{\texorpdfstring{Initialize()}{Initialize()}}
-{\footnotesize\ttfamily bool Blade\+::\+Simulation\+System\+::\+Initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+\mbox{\Hypertarget{class_blade_1_1_simulation_system_a768e9c35386f9c52e2b06ce381ce7050}\label{class_blade_1_1_simulation_system_a768e9c35386f9c52e2b06ce381ce7050}} 
+\index{Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}!Get\+Simulation\+Components@{Get\+Simulation\+Components}}
+\index{Get\+Simulation\+Components@{Get\+Simulation\+Components}!Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}}
+\subsubsection{\texorpdfstring{Get\+Simulation\+Components()}{GetSimulationComponents()}}
+{\footnotesize\ttfamily const std\+::vector$<$ \hyperlink{class_blade_1_1_simulation_component}{Simulation\+Component} $\ast$ $>$ \& Blade\+::\+Simulation\+System\+::\+Get\+Simulation\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 
 
-Pure virtual method implemented by the engine\textquotesingle{}s systems to perform their initialization. 
+Returns a vector of the simulation components that the system holds. 
 
 \begin{DoxyReturn}{Returns}
-T\+R\+UE if initialization is successfull, F\+A\+L\+SE otherwise. 
+Vector of the simulation components registered to the system. 
 \end{DoxyReturn}
-
-
-Implements \hyperlink{class_blade_1_1_system_a63fa00af40dc54d093300eff4785f26f}{Blade\+::\+System}.
-
 \mbox{\Hypertarget{class_blade_1_1_simulation_system_ade81487a31325272e8489c772530ccf5}\label{class_blade_1_1_simulation_system_ade81487a31325272e8489c772530ccf5}} 
 \index{Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}!Process@{Process}}
 \index{Process@{Process}!Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}}
@@ -100,18 +89,113 @@ Implements \hyperlink{class_blade_1_1_system_a63fa00af40dc54d093300eff4785f26f}{
 
 
 
-Pure virtual method implemented by the engine\textquotesingle{}s systems to process the registered components. 
+Perform the simulation loop\+: update the simulation, calculate the contacts and store them inside the manifold and then resolve the contacts. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em delta\+Time} & The time elapsed from the previous frame of the application. \\
+{\em delta\+Time} & The delta time \\
+\hline
+{\em time} & The seconds since the application startup. \\
 \hline
 \end{DoxyParams}
 
 
 Implements \hyperlink{class_blade_1_1_system_a80c186f5f9f8fa4fd317b861853fe6a8}{Blade\+::\+System}.
 
+\mbox{\Hypertarget{class_blade_1_1_simulation_system_a638c4b8971944ab94cfda2c59a651665}\label{class_blade_1_1_simulation_system_a638c4b8971944ab94cfda2c59a651665}} 
+\index{Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}!Register\+Component@{Register\+Component}}
+\index{Register\+Component@{Register\+Component}!Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}}
+\subsubsection{\texorpdfstring{Register\+Component()}{RegisterComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Blade\+::\+Simulation\+System\+::\+Register\+Component (\begin{DoxyParamCaption}\item[{\hyperlink{class_blade_1_1_simulation_component}{Simulation\+Component} $\ast$}]{sim\+Comp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
+
+
+Register a simulation component to the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sim\+Comp} & the new component that needs to be registered to the system. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_simulation_system_ad1a98c60a727feba8899e57cacfbab70}\label{class_blade_1_1_simulation_system_ad1a98c60a727feba8899e57cacfbab70}} 
+\index{Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}!Register\+Component@{Register\+Component}}
+\index{Register\+Component@{Register\+Component}!Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}}
+\subsubsection{\texorpdfstring{Register\+Component()}{RegisterComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Blade\+::\+Simulation\+System\+::\+Register\+Component (\begin{DoxyParamCaption}\item[{\hyperlink{class_blade_1_1_collider_component}{Collider\+Component} $\ast$}]{col\+Comp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Register a collider component to the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+Comp} & the new component that needs to be registered to the system. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_simulation_system_abbe62f3517c05851909ee221d5a48c44}\label{class_blade_1_1_simulation_system_abbe62f3517c05851909ee221d5a48c44}} 
+\index{Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}!Unregister\+Component@{Unregister\+Component}}
+\index{Unregister\+Component@{Unregister\+Component}!Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}}
+\subsubsection{\texorpdfstring{Unregister\+Component()}{UnregisterComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Blade\+::\+Simulation\+System\+::\+Unregister\+Component (\begin{DoxyParamCaption}\item[{\hyperlink{class_blade_1_1_simulation_component}{Simulation\+Component} $\ast$}]{sim\+Comp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Unregister a simulation component to the system, that component won\textquotesingle{}t be update anymore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sim\+Comp} & the pointer to the \hyperlink{class_blade_1_1_simulation_component}{Simulation\+Component} that we need to remove. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_simulation_system_ade3b0573c4addb1a306179fcc50a7454}\label{class_blade_1_1_simulation_system_ade3b0573c4addb1a306179fcc50a7454}} 
+\index{Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}!Unregister\+Component@{Unregister\+Component}}
+\index{Unregister\+Component@{Unregister\+Component}!Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}}
+\subsubsection{\texorpdfstring{Unregister\+Component()}{UnregisterComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Blade\+::\+Simulation\+System\+::\+Unregister\+Component (\begin{DoxyParamCaption}\item[{\hyperlink{class_blade_1_1_collider_component}{Collider\+Component} $\ast$}]{col\+Comp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Unregister a collider component to the system, that component won\textquotesingle{}t be taken in consideration for further collision detection and therefore response. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sim\+Comp} & the pointer to the \hyperlink{class_blade_1_1_collider_component}{Collider\+Component} that we need to remove. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_blade_1_1_simulation_system_ad7c3441e3a8a9b97fbdd12ec936b963e}\label{class_blade_1_1_simulation_system_ad7c3441e3a8a9b97fbdd12ec936b963e}} 
+\index{Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}!dt\+Scale@{dt\+Scale}}
+\index{dt\+Scale@{dt\+Scale}!Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}}
+\subsubsection{\texorpdfstring{dt\+Scale}{dtScale}}
+{\footnotesize\ttfamily float Blade\+::\+Simulation\+System\+::dt\+Scale = 1.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Simulation system delta time scale. 
+
+Can be used to tweak the delta time of the simulation. \mbox{\Hypertarget{class_blade_1_1_simulation_system_aa7d0bb11aafd59e102723b08271c7d9e}\label{class_blade_1_1_simulation_system_aa7d0bb11aafd59e102723b08271c7d9e}} 
+\index{Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}!elasticity@{elasticity}}
+\index{elasticity@{elasticity}!Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}}
+\subsubsection{\texorpdfstring{elasticity}{elasticity}}
+{\footnotesize\ttfamily float Blade\+::\+Simulation\+System\+::elasticity = 0.\+3f\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The elasticity factor of the entire simulation. 
+
+The elasticity can be changed at runtime. \mbox{\Hypertarget{class_blade_1_1_simulation_system_a899426b05cdf0fa83104ea106a2aab04}\label{class_blade_1_1_simulation_system_a899426b05cdf0fa83104ea106a2aab04}} 
+\index{Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}!friction@{friction}}
+\index{friction@{friction}!Blade\+::\+Simulation\+System@{Blade\+::\+Simulation\+System}}
+\subsubsection{\texorpdfstring{friction}{friction}}
+{\footnotesize\ttfamily float Blade\+::\+Simulation\+System\+::friction = 1.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The friction factor of the simulation. 
+
+The friction scalar can be changed at runtime. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

@@ -67,7 +67,11 @@ namespace Blade
 		 */
 		void Process(float deltaTime=.0f, long time=0) noexcept override;
 
-
+		/**
+		\brief Set the sorting flag
+		\details If sorting is enable, the render components are sorted by alpha value.
+		\param sorting The sorting flag: TRUE enable sorting.
+		*/
 		void SetSorting(bool sorting) noexcept;
 	};
 }

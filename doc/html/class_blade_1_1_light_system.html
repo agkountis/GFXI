@@ -102,7 +102,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ace130c5e66ef2459a8dba36ea448124c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a vector of the chached spotlight description structs.  <a href="#ace130c5e66ef2459a8dba36ea448124c">More...</a><br /></td></tr>
 <tr class="separator:ace130c5e66ef2459a8dba36ea448124c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af87b68ecd946b49576a17e59bfc88934"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_light_system.html#af87b68ecd946b49576a17e59bfc88934">Initialize</a> () noexcept override</td></tr>
-<tr class="memdesc:af87b68ecd946b49576a17e59bfc88934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual method implemented by the engine's systems to perform their initialization.  <a href="#af87b68ecd946b49576a17e59bfc88934">More...</a><br /></td></tr>
+<tr class="memdesc:af87b68ecd946b49576a17e59bfc88934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the Light system.  <a href="#af87b68ecd946b49576a17e59bfc88934">More...</a><br /></td></tr>
 <tr class="separator:af87b68ecd946b49576a17e59bfc88934"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbad47302dca40e57322a68252cb08e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_light_system.html#afbad47302dca40e57322a68252cb08e7">Process</a> (float deltaTime=.0f, long time=0) noexcept override</td></tr>
 <tr class="memdesc:afbad47302dca40e57322a68252cb08e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes the LightComponents.  <a href="#afbad47302dca40e57322a68252cb08e7">More...</a><br /></td></tr>
@@ -227,8 +227,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </table>
 </div><div class="memdoc">
 
-<p>Pure virtual method implemented by the engine's systems to perform their initialization. </p>
-<dl class="section return"><dt>Returns</dt><dd>TRUE if initialization is successfull, FALSE otherwise. </dd></dl>
+<p>Initialize the Light system. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the initialization is successful, false otherwise </dd></dl>
 
 <p>Implements <a class="el" href="class_blade_1_1_system.html#a63fa00af40dc54d093300eff4785f26f">Blade::System</a>.</p>
 
@@ -272,6 +272,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>This method iterates through all the active LightComponents. Based on their type it updates the position/direction data members of each <a class="el" href="class_blade_1_1_light_component.html" title="Abstract class that describes a LightComponent. Provides the base functinality of a LightComponent...">LightComponent</a>'s light description contained in the matching cache. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">deltaTime</td><td>The time elapsed from the previous frame of the application. </td></tr>
+    <tr><td class="paramname">time</td><td>THe time since the startup of the application. </td></tr>
   </table>
   </dd>
 </dl>

@@ -34,9 +34,8 @@ bool \hyperlink{class_blade_1_1_render_system_a476d3d55dcc9f65e8a88096aace6dcfc}
 \begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_blade_1_1_render_system}{Render\+System}. \end{DoxyCompactList}\item 
 void \hyperlink{class_blade_1_1_render_system_a8edd0d0c9d5d54c395a03f98f6b16fb9}{Process} (float delta\+Time=.\+0f, long time=0) noexcept override
 \begin{DoxyCompactList}\small\item\em Processes the Render\+Components by passing them through the Render\+Pass\+Pipeline. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_blade_1_1_render_system_a6bbc18b56812347c4960336f5d15effa}\label{class_blade_1_1_render_system_a6bbc18b56812347c4960336f5d15effa}} 
-void {\bfseries Set\+Sorting} (bool sorting) noexcept
-\end{DoxyCompactItemize}
+void \hyperlink{class_blade_1_1_render_system_a6bbc18b56812347c4960336f5d15effa}{Set\+Sorting} (bool sorting) noexcept
+\begin{DoxyCompactList}\small\item\em Set the sorting flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -107,6 +106,21 @@ Sets the pipeline that the \hyperlink{class_blade_1_1_render_system}{Render\+Sys
 
 \begin{DoxyParams}{Parameters}
 {\em render\+Pass\+Pipeline} & The pipeline that processes the Render\+Components. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_render_system_a6bbc18b56812347c4960336f5d15effa}\label{class_blade_1_1_render_system_a6bbc18b56812347c4960336f5d15effa}} 
+\index{Blade\+::\+Render\+System@{Blade\+::\+Render\+System}!Set\+Sorting@{Set\+Sorting}}
+\index{Set\+Sorting@{Set\+Sorting}!Blade\+::\+Render\+System@{Blade\+::\+Render\+System}}
+\subsubsection{\texorpdfstring{Set\+Sorting()}{SetSorting()}}
+{\footnotesize\ttfamily void Blade\+::\+Render\+System\+::\+Set\+Sorting (\begin{DoxyParamCaption}\item[{bool}]{sorting }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Set the sorting flag. 
+
+If sorting is enable, the render components are sorted by alpha value. 
+\begin{DoxyParams}{Parameters}
+{\em sorting} & The sorting flag\+: T\+R\+UE enable sorting. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_blade_1_1_render_system_afaaca8d329f9fa9903a28202959f8958}\label{class_blade_1_1_render_system_afaaca8d329f9fa9903a28202959f8958}} 

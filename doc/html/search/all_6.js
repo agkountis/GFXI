@@ -27,6 +27,7 @@ var searchData=
   ['getpreviousstate',['GetPreviousState',['../class_blade_1_1_input_device.html#a45c90dad5932209601cf8eeea85f4036',1,'Blade::InputDevice']]],
   ['getprojectionmatrix',['GetProjectionMatrix',['../class_blade_1_1_camera_component.html#a5d79b698eb708d55538f9b8c045368c6',1,'Blade::CameraComponent']]],
   ['getrect',['GetRect',['../class_blade_1_1_abstract_viewport.html#abd3c922bb2552224fccea3f940160f05',1,'Blade::AbstractViewport']]],
+  ['getsimulationcomponents',['GetSimulationComponents',['../class_blade_1_1_simulation_system.html#a768e9c35386f9c52e2b06ce381ce7050',1,'Blade::SimulationSystem']]],
   ['getspotlightdescriptions',['GetSpotlightDescriptions',['../class_blade_1_1_light_system.html#ace130c5e66ef2459a8dba36ea448124c',1,'Blade::LightSystem']]],
   ['gettype',['GetType',['../class_blade_1_1_component.html#a0ad0c264894e64c7b336c12165b6beac',1,'Blade::Component']]],
   ['getviewmatrix',['GetViewMatrix',['../class_blade_1_1_camera_component.html#a5b8dbf3a13f82da25a0f21d21d92fd99',1,'Blade::CameraComponent']]],

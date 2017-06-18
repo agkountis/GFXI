@@ -92,6 +92,10 @@ namespace Blade
 		 */
 		std::vector<SpotlightDesc> GetSpotlightDescriptions() const noexcept;
 
+		/**
+		\brief Initialize the Light system.
+		\return True if the initialization is successful, false otherwise
+		*/
 		bool Initialize() noexcept override;
 
 		/**
@@ -100,6 +104,7 @@ namespace Blade
 		 * type it updates the position/direction data members of each LightComponent's
 		 * light description contained in the matching cache.
 		 * \param deltaTime The time elapsed from the previous frame of the application.
+		 * \param time THe time since the startup of the application.
 		 */
 		void Process(float deltaTime=.0f, long time=0) noexcept override;
 	};

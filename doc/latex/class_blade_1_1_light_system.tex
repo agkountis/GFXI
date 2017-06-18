@@ -29,7 +29,7 @@ std\+::vector$<$ \hyperlink{struct_blade_1_1_directional_light_desc}{Directional
 std\+::vector$<$ \hyperlink{struct_blade_1_1_spotlight_desc}{Spotlight\+Desc} $>$ \hyperlink{class_blade_1_1_light_system_ace130c5e66ef2459a8dba36ea448124c}{Get\+Spotlight\+Descriptions} () const noexcept
 \begin{DoxyCompactList}\small\item\em Provides a vector of the chached spotlight description structs. \end{DoxyCompactList}\item 
 bool \hyperlink{class_blade_1_1_light_system_af87b68ecd946b49576a17e59bfc88934}{Initialize} () noexcept override
-\begin{DoxyCompactList}\small\item\em Pure virtual method implemented by the engine\textquotesingle{}s systems to perform their initialization. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Initialize the Light system. \end{DoxyCompactList}\item 
 void \hyperlink{class_blade_1_1_light_system_afbad47302dca40e57322a68252cb08e7}{Process} (float delta\+Time=.\+0f, long time=0) noexcept override
 \begin{DoxyCompactList}\small\item\em Processes the Light\+Components. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -85,10 +85,10 @@ A vector of the cached spotlight description structs.
 
 
 
-Pure virtual method implemented by the engine\textquotesingle{}s systems to perform their initialization. 
+Initialize the Light system. 
 
 \begin{DoxyReturn}{Returns}
-T\+R\+UE if initialization is successfull, F\+A\+L\+SE otherwise. 
+True if the initialization is successful, false otherwise 
 \end{DoxyReturn}
 
 
@@ -107,6 +107,8 @@ Processes the Light\+Components.
 This method iterates through all the active Light\+Components. Based on their type it updates the position/direction data members of each \hyperlink{class_blade_1_1_light_component}{Light\+Component}\textquotesingle{}s light description contained in the matching cache. 
 \begin{DoxyParams}{Parameters}
 {\em delta\+Time} & The time elapsed from the previous frame of the application. \\
+\hline
+{\em time} & T\+He time since the startup of the application. \\
 \hline
 \end{DoxyParams}
 

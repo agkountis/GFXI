@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['triggerleft',['triggerLeft',['../struct_blade_1_1_input_state.html#a8db118c60d2f8ec3fcd945fcdccb676d',1,'Blade::InputState']]],
-  ['triggerright',['triggerRight',['../struct_blade_1_1_input_state.html#aee406e5fca67a20a0483019150355f87',1,'Blade::InputState']]]
+  ['frequency',['frequency',['../class_blade_1_1_simulation_system.html#afb86549d4ab57f5a426aa8cf228d76eb',1,'Blade::SimulationSystem']]],
+  ['friction',['friction',['../class_blade_1_1_simulation_system.html#a899426b05cdf0fa83104ea106a2aab04',1,'Blade::SimulationSystem']]]
 ];
