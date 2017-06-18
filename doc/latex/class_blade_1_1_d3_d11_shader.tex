@@ -12,9 +12,33 @@ Inheritance diagram for Blade\+:\+:D3\+D11\+Shader\+:\begin{figure}[H]
 \mbox{\Hypertarget{class_blade_1_1_d3_d11_shader_a3e46be884a59d7bf6ac3142e4f8c8626}\label{class_blade_1_1_d3_d11_shader_a3e46be884a59d7bf6ac3142e4f8c8626}} 
 I\+D3\+D\+Blob $\ast$ {\bfseries Get\+Blob} () const noexcept
 \item 
+bool \hyperlink{class_blade_1_1_d3_d11_shader_a713231594415a37d484f115478acf084}{Load} (const std\+::wstring \&file\+Name) noexcept override
+\begin{DoxyCompactList}\small\item\em Load a resource form a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_blade_1_1_d3_d11_shader_a713231594415a37d484f115478acf084}\label{class_blade_1_1_d3_d11_shader_a713231594415a37d484f115478acf084}} 
-bool {\bfseries Load} (const std\+::wstring \&file\+Name) noexcept override
-\end{DoxyCompactItemize}
+\index{Blade\+::\+D3\+D11\+Shader@{Blade\+::\+D3\+D11\+Shader}!Load@{Load}}
+\index{Load@{Load}!Blade\+::\+D3\+D11\+Shader@{Blade\+::\+D3\+D11\+Shader}}
+\subsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily bool Blade\+::\+D3\+D11\+Shader\+::\+Load (\begin{DoxyParamCaption}\item[{const std\+::wstring \&}]{file\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Load a resource form a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & The path of the file where the resource is stored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if the loading has been successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_blade_1_1_resource_ad89ab00a3b81df1338a8310ec92c5cff}{Blade\+::\+Resource}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

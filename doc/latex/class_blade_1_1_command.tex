@@ -1,20 +1,68 @@
 \hypertarget{class_blade_1_1_command}{}\section{Blade\+:\+:Command Class Reference}
 \label{class_blade_1_1_command}\index{Blade\+::\+Command@{Blade\+::\+Command}}
+
+
+\hyperlink{class_blade_1_1_command}{Command} pattern class.\+Encapsulate a request as an object, thereby letting users parameterize clients with different requests,queue or log requests, and support undo able operations.  
+
+
+
+
+{\ttfamily \#include $<$command.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_blade_1_1_command_ad2d8d0d0f38cb5e3142ae4876e041946}\label{class_blade_1_1_command_ad2d8d0d0f38cb5e3142ae4876e041946}} 
-{\bfseries Command} (bool online=false)
-\item 
-\mbox{\Hypertarget{class_blade_1_1_command_a9110a3b9580a9e820c9318cf96bb6c41}\label{class_blade_1_1_command_a9110a3b9580a9e820c9318cf96bb6c41}} 
-virtual void {\bfseries Execute} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$entity, const float dt)=0
-\end{DoxyCompactItemize}
+\hyperlink{class_blade_1_1_command_ad2d8d0d0f38cb5e3142ae4876e041946}{Command} (bool online=false)
+\begin{DoxyCompactList}\small\item\em Constructor of a command. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_blade_1_1_command_a9110a3b9580a9e820c9318cf96bb6c41}{Execute} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$entity, const float dt)=0
+\begin{DoxyCompactList}\small\item\em Execute method of the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{class_blade_1_1_command_ab473805a51a806fc54204078604d4550}\label{class_blade_1_1_command_ab473805a51a806fc54204078604d4550}} 
 bool {\bfseries m\+\_\+\+Online}
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_blade_1_1_command}{Command} pattern class.\+Encapsulate a request as an object, thereby letting users parameterize clients with different requests,queue or log requests, and support undo able operations. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_blade_1_1_command_ad2d8d0d0f38cb5e3142ae4876e041946}\label{class_blade_1_1_command_ad2d8d0d0f38cb5e3142ae4876e041946}} 
+\index{Blade\+::\+Command@{Blade\+::\+Command}!Command@{Command}}
+\index{Command@{Command}!Blade\+::\+Command@{Blade\+::\+Command}}
+\subsubsection{\texorpdfstring{Command()}{Command()}}
+{\footnotesize\ttfamily Blade\+::\+Command\+::\+Command (\begin{DoxyParamCaption}\item[{bool}]{online = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of a command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em online} & T\+R\+UE if the command has to adopt a special treatment for online functionalities (sending messages etc). \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_blade_1_1_command_a9110a3b9580a9e820c9318cf96bb6c41}\label{class_blade_1_1_command_a9110a3b9580a9e820c9318cf96bb6c41}} 
+\index{Blade\+::\+Command@{Blade\+::\+Command}!Execute@{Execute}}
+\index{Execute@{Execute}!Blade\+::\+Command@{Blade\+::\+Command}}
+\subsubsection{\texorpdfstring{Execute()}{Execute()}}
+{\footnotesize\ttfamily virtual void Blade\+::\+Command\+::\+Execute (\begin{DoxyParamCaption}\item[{\hyperlink{class_blade_1_1_entity}{Entity} $\ast$}]{entity,  }\item[{const float}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Execute method of the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & the entity that performs the action \\
+\hline
+{\em dt} & the delta time. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

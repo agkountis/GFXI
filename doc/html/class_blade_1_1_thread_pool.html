@@ -69,34 +69,117 @@ $(function() {
 <div class="title">Blade::ThreadPool Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_blade_1_1_thread_pool.html" title="ThreadPool class of the engine. ">ThreadPool</a> class of the engine.  
+ <a href="class_blade_1_1_thread_pool.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="thread__pool_8h_source.html">thread_pool.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a47f7b1929e59c4be260f1616a7340ca7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_thread_pool.html#a47f7b1929e59c4be260f1616a7340ca7">Initialize</a> ()</td></tr>
+<tr class="memdesc:a47f7b1929e59c4be260f1616a7340ca7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the thread pool.  <a href="#a47f7b1929e59c4be260f1616a7340ca7">More...</a><br /></td></tr>
 <tr class="separator:a47f7b1929e59c4be260f1616a7340ca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4d1c27beaf4747690dae01a00f9037b"><td class="memItemLeft" align="right" valign="top"><a id="af4d1c27beaf4747690dae01a00f9037b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Wait</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_thread_pool.html#af4d1c27beaf4747690dae01a00f9037b">Wait</a> ()</td></tr>
+<tr class="memdesc:af4d1c27beaf4747690dae01a00f9037b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait function of the thread pool. <br /></td></tr>
 <tr class="separator:af4d1c27beaf4747690dae01a00f9037b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ed5801d197bac182a28e2d430007db0"><td class="memItemLeft" align="right" valign="top"><a id="a5ed5801d197bac182a28e2d430007db0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Terminate</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_thread_pool.html#a5ed5801d197bac182a28e2d430007db0">Terminate</a> ()</td></tr>
+<tr class="memdesc:a5ed5801d197bac182a28e2d430007db0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shutdown the thread pool. <br /></td></tr>
 <tr class="separator:a5ed5801d197bac182a28e2d430007db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc1d6c39383a95582641b5b34d44040c"><td class="memItemLeft" align="right" valign="top"><a id="acc1d6c39383a95582641b5b34d44040c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AddTask</b> (std::function&lt; void()&gt; job)</td></tr>
+<tr class="memitem:acc1d6c39383a95582641b5b34d44040c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_thread_pool.html#acc1d6c39383a95582641b5b34d44040c">AddTask</a> (std::function&lt; void()&gt; job)</td></tr>
+<tr class="memdesc:acc1d6c39383a95582641b5b34d44040c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add new task to the task queue.  <a href="#acc1d6c39383a95582641b5b34d44040c">More...</a><br /></td></tr>
 <tr class="separator:acc1d6c39383a95582641b5b34d44040c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acacbc26ec4bf163a12b5005c3d1fd0c5"><td class="memItemLeft" align="right" valign="top"><a id="acacbc26ec4bf163a12b5005c3d1fd0c5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AddTasks</b> (const std::vector&lt; std::function&lt; void()&gt;&gt; &amp;jobs)</td></tr>
+<tr class="memitem:acacbc26ec4bf163a12b5005c3d1fd0c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_thread_pool.html#acacbc26ec4bf163a12b5005c3d1fd0c5">AddTasks</a> (const std::vector&lt; std::function&lt; void()&gt;&gt; &amp;jobs)</td></tr>
+<tr class="memdesc:acacbc26ec4bf163a12b5005c3d1fd0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new collection of task to the task queue.  <a href="#acacbc26ec4bf163a12b5005c3d1fd0c5">More...</a><br /></td></tr>
 <tr class="separator:acacbc26ec4bf163a12b5005c3d1fd0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30124532ff2e5e72c1d03ae9f6029b91"><td class="memItemLeft" align="right" valign="top"><a id="a30124532ff2e5e72c1d03ae9f6029b91"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>QueuedTaskCount</b> () const</td></tr>
+<tr class="memitem:a30124532ff2e5e72c1d03ae9f6029b91"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_thread_pool.html#a30124532ff2e5e72c1d03ae9f6029b91">QueuedTaskCount</a> () const</td></tr>
+<tr class="memdesc:a30124532ff2e5e72c1d03ae9f6029b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of queue task.  <a href="#a30124532ff2e5e72c1d03ae9f6029b91">More...</a><br /></td></tr>
 <tr class="separator:a30124532ff2e5e72c1d03ae9f6029b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f046b3e1be7b85ef0a21f94c2380aa8"><td class="memItemLeft" align="right" valign="top"><a id="a0f046b3e1be7b85ef0a21f94c2380aa8"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>ActiveTaskCount</b> () const</td></tr>
+<tr class="memitem:a0f046b3e1be7b85ef0a21f94c2380aa8"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_thread_pool.html#a0f046b3e1be7b85ef0a21f94c2380aa8">ActiveTaskCount</a> () const</td></tr>
+<tr class="memdesc:a0f046b3e1be7b85ef0a21f94c2380aa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of the task currently active.  <a href="#a0f046b3e1be7b85ef0a21f94c2380aa8">More...</a><br /></td></tr>
 <tr class="separator:a0f046b3e1be7b85ef0a21f94c2380aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af24597a7aa14bc296735f9f2d7d460df"><td class="memItemLeft" align="right" valign="top"><a id="af24597a7aa14bc296735f9f2d7d460df"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>PendingTaskCount</b> () const</td></tr>
+<tr class="memitem:af24597a7aa14bc296735f9f2d7d460df"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_thread_pool.html#af24597a7aa14bc296735f9f2d7d460df">PendingTaskCount</a> () const</td></tr>
+<tr class="memdesc:af24597a7aa14bc296735f9f2d7d460df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the pending task count.  <a href="#af24597a7aa14bc296735f9f2d7d460df">More...</a><br /></td></tr>
 <tr class="separator:af24597a7aa14bc296735f9f2d7d460df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_blade_1_1_thread_pool.html" title="ThreadPool class of the engine. ">ThreadPool</a> class of the engine. </p>
+<p>This class can be use to efficiently execute asynchronous callbacks on the application. It provides methods to manage the worker threads. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0f046b3e1be7b85ef0a21f94c2380aa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f046b3e1be7b85ef0a21f94c2380aa8">&#9670;&nbsp;</a></span>ActiveTaskCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Blade::ThreadPool::ActiveTaskCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of the task currently active. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of the task in process. </dd></dl>
+
+</div>
+</div>
+<a id="acc1d6c39383a95582641b5b34d44040c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc1d6c39383a95582641b5b34d44040c">&#9670;&nbsp;</a></span>AddTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::ThreadPool::AddTask </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; void()&gt;&#160;</td>
+          <td class="paramname"><em>job</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add new task to the task queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">job</td><td>The new task that need to be added </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acacbc26ec4bf163a12b5005c3d1fd0c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acacbc26ec4bf163a12b5005c3d1fd0c5">&#9670;&nbsp;</a></span>AddTasks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::ThreadPool::AddTasks </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::function&lt; void()&gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>jobs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a new collection of task to the task queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jobs</td><td>The vector of the task that need to be added </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a47f7b1929e59c4be260f1616a7340ca7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a47f7b1929e59c4be260f1616a7340ca7">&#9670;&nbsp;</a></span>Initialize()</h2>
 
@@ -111,9 +194,52 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>PendingTaskCount</b
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initialize the thread pool. </p>
+<p>Creates the workers. </p>
 <p>Get the system's supported thread count.</p>
 <p>Spawn the worker threads.</p>
 <p>The workers will execute an infinite loop function and will wait for a job to enter the job queue. Once a job is in the the queue the threads will wake up to acquire and execute it.</p>
+
+</div>
+</div>
+<a id="af24597a7aa14bc296735f9f2d7d460df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af24597a7aa14bc296735f9f2d7d460df">&#9670;&nbsp;</a></span>PendingTaskCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Blade::ThreadPool::PendingTaskCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the pending task count. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of pending task (activeTask + tasks in the queue). </dd></dl>
+
+</div>
+</div>
+<a id="a30124532ff2e5e72c1d03ae9f6029b91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30124532ff2e5e72c1d03ae9f6029b91">&#9670;&nbsp;</a></span>QueuedTaskCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Blade::ThreadPool::QueuedTaskCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of queue task. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of tasks in the queue </dd></dl>
 
 </div>
 </div>

@@ -1,5 +1,14 @@
 \hypertarget{class_blade_1_1_serializable}{}\section{Blade\+:\+:Serializable Class Reference}
 \label{class_blade_1_1_serializable}\index{Blade\+::\+Serializable@{Blade\+::\+Serializable}}
+
+
+\hyperlink{class_blade_1_1_serializable}{Serializable} Interface of the engine.  
+
+
+
+
+{\ttfamily \#include $<$serializable.\+h$>$}
+
 Inheritance diagram for Blade\+:\+:Serializable\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,9 +18,27 @@ Inheritance diagram for Blade\+:\+:Serializable\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+virtual std\+::vector$<$ Byte $>$ \hyperlink{class_blade_1_1_serializable_a0ae79c24827f91f620f9c267f17f1088}{Serialize} () noexcept=0
+\begin{DoxyCompactList}\small\item\em Serialize the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_blade_1_1_serializable}{Serializable} Interface of the engine. 
+
+\subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_blade_1_1_serializable_a0ae79c24827f91f620f9c267f17f1088}\label{class_blade_1_1_serializable_a0ae79c24827f91f620f9c267f17f1088}} 
-virtual std\+::vector$<$ Byte $>$ {\bfseries Serialize} () noexcept=0
-\end{DoxyCompactItemize}
+\index{Blade\+::\+Serializable@{Blade\+::\+Serializable}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!Blade\+::\+Serializable@{Blade\+::\+Serializable}}
+\subsubsection{\texorpdfstring{Serialize()}{Serialize()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$Byte$>$ Blade\+::\+Serializable\+::\+Serialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Serialize the object. 
+
+\begin{DoxyReturn}{Returns}
+The serialized object represented by a vector of bytes. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

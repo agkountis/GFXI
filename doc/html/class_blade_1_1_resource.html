@@ -69,6 +69,11 @@ $(function() {
 <div class="title">Blade::Resource Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_blade_1_1_resource.html" title="Resource class of the engine. ">Resource</a> class of the engine.  
+ <a href="class_blade_1_1_resource.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="resource_8h_source.html">resource.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Blade::Resource:</div>
 <div class="dyncontent">
@@ -95,16 +100,119 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aad67c68d5164726a1029c534fe7d003b"><td class="memItemLeft" align="right" valign="top"><a id="aad67c68d5164726a1029c534fe7d003b"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Resource</b> (unsigned int id)</td></tr>
 <tr class="separator:aad67c68d5164726a1029c534fe7d003b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2346c235601b0a703287bff9ad2c3432"><td class="memItemLeft" align="right" valign="top"><a id="a2346c235601b0a703287bff9ad2c3432"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>GetId</b> () const noexcept</td></tr>
+<tr class="memitem:a2346c235601b0a703287bff9ad2c3432"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_resource.html#a2346c235601b0a703287bff9ad2c3432">GetId</a> () const noexcept</td></tr>
+<tr class="memdesc:a2346c235601b0a703287bff9ad2c3432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter of the resource id.  <a href="#a2346c235601b0a703287bff9ad2c3432">More...</a><br /></td></tr>
 <tr class="separator:a2346c235601b0a703287bff9ad2c3432"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76912ec0d2dfb35a5fffc7364b8a867d"><td class="memItemLeft" align="right" valign="top"><a id="a76912ec0d2dfb35a5fffc7364b8a867d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetId</b> (unsigned int id) noexcept</td></tr>
+<tr class="memitem:a76912ec0d2dfb35a5fffc7364b8a867d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_resource.html#a76912ec0d2dfb35a5fffc7364b8a867d">SetId</a> (unsigned int id) noexcept</td></tr>
+<tr class="memdesc:a76912ec0d2dfb35a5fffc7364b8a867d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the resource ID.  <a href="#a76912ec0d2dfb35a5fffc7364b8a867d">More...</a><br /></td></tr>
 <tr class="separator:a76912ec0d2dfb35a5fffc7364b8a867d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad89ab00a3b81df1338a8310ec92c5cff"><td class="memItemLeft" align="right" valign="top"><a id="ad89ab00a3b81df1338a8310ec92c5cff"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>Load</b> (const std::wstring &amp;file_name) noexcept=0</td></tr>
+<tr class="memitem:ad89ab00a3b81df1338a8310ec92c5cff"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_resource.html#ad89ab00a3b81df1338a8310ec92c5cff">Load</a> (const std::wstring &amp;file_name) noexcept=0</td></tr>
+<tr class="memdesc:ad89ab00a3b81df1338a8310ec92c5cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a resource form a file.  <a href="#ad89ab00a3b81df1338a8310ec92c5cff">More...</a><br /></td></tr>
 <tr class="separator:ad89ab00a3b81df1338a8310ec92c5cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_blade_1_1_resource.html" title="Resource class of the engine. ">Resource</a> class of the engine. </p>
+<p>A resource is type agnostic. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2346c235601b0a703287bff9ad2c3432"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2346c235601b0a703287bff9ad2c3432">&#9670;&nbsp;</a></span>GetId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Blade::Resource::GetId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Getter of the resource id. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_blade_1_1_resource.html" title="Resource class of the engine. ">Resource</a> ID </dd></dl>
+
+</div>
+</div>
+<a id="ad89ab00a3b81df1338a8310ec92c5cff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad89ab00a3b81df1338a8310ec92c5cff">&#9670;&nbsp;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool Blade::Resource::Load </td>
+          <td>(</td>
+          <td class="paramtype">const std::wstring &amp;&#160;</td>
+          <td class="paramname"><em>file_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Load a resource form a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>The path of the file where the resource is stored. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if the loading has been successful, false otherwise. </dd></dl>
+
+<p>Implemented in <a class="el" href="class_blade_1_1_entity.html#a1e23e9402a5c5a1d266c208c7637c539">Blade::Entity</a>, <a class="el" href="class_blade_1_1_mesh.html#a999b87101e849d8a6618d95c69387ec1">Blade::Mesh</a>, <a class="el" href="struct_blade_1_1_emitter_descriptor.html#ac3bf4ccedee573630235f498a0c47822">Blade::EmitterDescriptor</a>, <a class="el" href="class_blade_1_1_d3_d11_shader.html#a713231594415a37d484f115478acf084">Blade::D3D11Shader</a>, <a class="el" href="class_blade_1_1_d3_d11_texture.html#ae9f6d01709ba9db4085cf6b3d90b3ac7">Blade::D3D11Texture</a>, and <a class="el" href="class_blade_1_1_audio_sample.html#a27bc4a11067251a2c820f1e3096bb812">Blade::AudioSample</a>.</p>
+
+</div>
+</div>
+<a id="a76912ec0d2dfb35a5fffc7364b8a867d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76912ec0d2dfb35a5fffc7364b8a867d">&#9670;&nbsp;</a></span>SetId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::Resource::SetId </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setter for the resource ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>the resource ID </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="resource_8h_source.html">resource.h</a></li>
 <li>src/resource.cpp</li>

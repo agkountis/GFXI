@@ -96,9 +96,33 @@ void {\bfseries Set\+Alive} (bool state) noexcept
 \mbox{\Hypertarget{class_blade_1_1_entity_a472f9a9c9c2cd4e963b28fe9f7e7b9f4}\label{class_blade_1_1_entity_a472f9a9c9c2cd4e963b28fe9f7e7b9f4}} 
 virtual void {\bfseries Update} (float dt, long time=0) noexcept
 \item 
+bool \hyperlink{class_blade_1_1_entity_a1e23e9402a5c5a1d266c208c7637c539}{Load} (const std\+::wstring \&file\+Name) noexcept override
+\begin{DoxyCompactList}\small\item\em Load a resource form a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_blade_1_1_entity_a1e23e9402a5c5a1d266c208c7637c539}\label{class_blade_1_1_entity_a1e23e9402a5c5a1d266c208c7637c539}} 
-bool {\bfseries Load} (const std\+::wstring \&file\+Name) noexcept override
-\end{DoxyCompactItemize}
+\index{Blade\+::\+Entity@{Blade\+::\+Entity}!Load@{Load}}
+\index{Load@{Load}!Blade\+::\+Entity@{Blade\+::\+Entity}}
+\subsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily bool Blade\+::\+Entity\+::\+Load (\begin{DoxyParamCaption}\item[{const std\+::wstring \&}]{file\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Load a resource form a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & The path of the file where the resource is stored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if the loading has been successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_blade_1_1_resource_ad89ab00a3b81df1338a8310ec92c5cff}{Blade\+::\+Resource}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

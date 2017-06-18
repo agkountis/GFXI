@@ -54,12 +54,36 @@ unsigned int $\ast$ {\bfseries Get\+Index\+Data} () const noexcept
 \mbox{\Hypertarget{class_blade_1_1_mesh_a1c77eda2ea16ed8ebeb74dc97dfc2df8}\label{class_blade_1_1_mesh_a1c77eda2ea16ed8ebeb74dc97dfc2df8}} 
 void {\bfseries Add\+Index} (unsigned int index) noexcept
 \item 
-\mbox{\Hypertarget{class_blade_1_1_mesh_a999b87101e849d8a6618d95c69387ec1}\label{class_blade_1_1_mesh_a999b87101e849d8a6618d95c69387ec1}} 
-bool {\bfseries Load} (const std\+::wstring \&file\+Name) noexcept override
-\item 
+bool \hyperlink{class_blade_1_1_mesh_a999b87101e849d8a6618d95c69387ec1}{Load} (const std\+::wstring \&file\+Name) noexcept override
+\begin{DoxyCompactList}\small\item\em Load a resource form a file. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_blade_1_1_mesh_ae9a08be7c3e4c6f6877d99bae35811b6}\label{class_blade_1_1_mesh_ae9a08be7c3e4c6f6877d99bae35811b6}} 
 void {\bfseries Generate\+Indices} (Vertex\+Winding winding) noexcept
 \end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_blade_1_1_mesh_a999b87101e849d8a6618d95c69387ec1}\label{class_blade_1_1_mesh_a999b87101e849d8a6618d95c69387ec1}} 
+\index{Blade\+::\+Mesh@{Blade\+::\+Mesh}!Load@{Load}}
+\index{Load@{Load}!Blade\+::\+Mesh@{Blade\+::\+Mesh}}
+\subsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily bool Blade\+::\+Mesh\+::\+Load (\begin{DoxyParamCaption}\item[{const std\+::wstring \&}]{file\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Load a resource form a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & The path of the file where the resource is stored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if the loading has been successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_blade_1_1_resource_ad89ab00a3b81df1338a8310ec92c5cff}{Blade\+::\+Resource}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -69,6 +69,11 @@ $(function() {
 <div class="title">Blade::Application Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_blade_1_1_application.html" title="Application class of the engine. ">Application</a> class of the engine.  
+ <a href="class_blade_1_1_application.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="application_8h_source.html">application.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -78,49 +83,294 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad7528afe280f12aa19f0dcbefd5083aa"><td class="memItemLeft" align="right" valign="top"><a id="ad7528afe280f12aa19f0dcbefd5083aa"></a>
 <a class="el" href="class_blade_1_1_application.html">Application</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_blade_1_1_application.html">Application</a> &amp;application)=delete</td></tr>
 <tr class="separator:ad7528afe280f12aa19f0dcbefd5083aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74d0bed9493b107ac522db1a40ebe19d"><td class="memItemLeft" align="right" valign="top"><a id="a74d0bed9493b107ac522db1a40ebe19d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTermination</b> (bool state) noexcept</td></tr>
+<tr class="memitem:a74d0bed9493b107ac522db1a40ebe19d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#a74d0bed9493b107ac522db1a40ebe19d">SetTermination</a> (bool state) noexcept</td></tr>
+<tr class="memdesc:a74d0bed9493b107ac522db1a40ebe19d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the termination flag.  <a href="#a74d0bed9493b107ac522db1a40ebe19d">More...</a><br /></td></tr>
 <tr class="separator:a74d0bed9493b107ac522db1a40ebe19d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68aba5838320ebb7b2683954ffee050b"><td class="memItemLeft" align="right" valign="top"><a id="a68aba5838320ebb7b2683954ffee050b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>ShouldTerminate</b> () const noexcept</td></tr>
+<tr class="memitem:a68aba5838320ebb7b2683954ffee050b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#a68aba5838320ebb7b2683954ffee050b">ShouldTerminate</a> () const noexcept</td></tr>
+<tr class="memdesc:a68aba5838320ebb7b2683954ffee050b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the should terminate flag.  <a href="#a68aba5838320ebb7b2683954ffee050b">More...</a><br /></td></tr>
 <tr class="separator:a68aba5838320ebb7b2683954ffee050b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e144f5f05fc638339fc19afe142bbab"><td class="memItemLeft" align="right" valign="top"><a id="a8e144f5f05fc638339fc19afe142bbab"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetDelta</b> () const noexcept</td></tr>
+<tr class="memitem:a8e144f5f05fc638339fc19afe142bbab"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#a8e144f5f05fc638339fc19afe142bbab">GetDelta</a> () const noexcept</td></tr>
+<tr class="memdesc:a8e144f5f05fc638339fc19afe142bbab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the delta time of the application.  <a href="#a8e144f5f05fc638339fc19afe142bbab">More...</a><br /></td></tr>
 <tr class="separator:a8e144f5f05fc638339fc19afe142bbab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fd401f7a7ea78a8d222ccc920cb1968"><td class="memItemLeft" align="right" valign="top"><a id="a0fd401f7a7ea78a8d222ccc920cb1968"></a>
-long&#160;</td><td class="memItemRight" valign="bottom"><b>GetMsec</b> () const noexcept</td></tr>
+<tr class="memitem:a0fd401f7a7ea78a8d222ccc920cb1968"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#a0fd401f7a7ea78a8d222ccc920cb1968">GetMsec</a> () const noexcept</td></tr>
+<tr class="memdesc:a0fd401f7a7ea78a8d222ccc920cb1968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the time elapse since the startup in milliseconds.  <a href="#a0fd401f7a7ea78a8d222ccc920cb1968">More...</a><br /></td></tr>
 <tr class="separator:a0fd401f7a7ea78a8d222ccc920cb1968"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a025118e872031944df57560e820cfde2"><td class="memItemLeft" align="right" valign="top"><a id="a025118e872031944df57560e820cfde2"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>GetSec</b> () const noexcept</td></tr>
+<tr class="memitem:a025118e872031944df57560e820cfde2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#a025118e872031944df57560e820cfde2">GetSec</a> () const noexcept</td></tr>
+<tr class="memdesc:a025118e872031944df57560e820cfde2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the time elapsed since the startup in seconds.  <a href="#a025118e872031944df57560e820cfde2">More...</a><br /></td></tr>
 <tr class="separator:a025118e872031944df57560e820cfde2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c8f0f5698682bd2b205ae1616020073"><td class="memItemLeft" align="right" valign="top"><a id="a3c8f0f5698682bd2b205ae1616020073"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Pause</b> () noexcept</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#a3c8f0f5698682bd2b205ae1616020073">Pause</a> () noexcept</td></tr>
+<tr class="memdesc:a3c8f0f5698682bd2b205ae1616020073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pause the application. <br /></td></tr>
 <tr class="separator:a3c8f0f5698682bd2b205ae1616020073"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8626a9bc16bffa5d94d2e5851e378a2"><td class="memItemLeft" align="right" valign="top"><a id="ab8626a9bc16bffa5d94d2e5851e378a2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UnPause</b> () noexcept</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#ab8626a9bc16bffa5d94d2e5851e378a2">UnPause</a> () noexcept</td></tr>
+<tr class="memdesc:ab8626a9bc16bffa5d94d2e5851e378a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Un pause the application. <br /></td></tr>
 <tr class="separator:ab8626a9bc16bffa5d94d2e5851e378a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80cb2abe5d175dde76be4f461bd82183"><td class="memItemLeft" align="right" valign="top"><a id="a80cb2abe5d175dde76be4f461bd82183"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsPaused</b> () const noexcept</td></tr>
+<tr class="memitem:a80cb2abe5d175dde76be4f461bd82183"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#a80cb2abe5d175dde76be4f461bd82183">IsPaused</a> () const noexcept</td></tr>
+<tr class="memdesc:a80cb2abe5d175dde76be4f461bd82183"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the application is paused.  <a href="#a80cb2abe5d175dde76be4f461bd82183">More...</a><br /></td></tr>
 <tr class="separator:a80cb2abe5d175dde76be4f461bd82183"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a328d42f7cb14a418ad3b9c54aa055132"><td class="memItemLeft" align="right" valign="top"><a id="a328d42f7cb14a418ad3b9c54aa055132"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetLoadEntityCallback</b> (const LoadEntityCallback &amp;callback) noexcept</td></tr>
+<tr class="memitem:a328d42f7cb14a418ad3b9c54aa055132"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#a328d42f7cb14a418ad3b9c54aa055132">SetLoadEntityCallback</a> (const LoadEntityCallback &amp;callback) noexcept</td></tr>
+<tr class="memdesc:a328d42f7cb14a418ad3b9c54aa055132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the load entity call back.  <a href="#a328d42f7cb14a418ad3b9c54aa055132">More...</a><br /></td></tr>
 <tr class="separator:a328d42f7cb14a418ad3b9c54aa055132"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5964be32df8e0787b832896c0811ae6"><td class="memItemLeft" align="right" valign="top"><a id="ac5964be32df8e0787b832896c0811ae6"></a>
-const LoadEntityCallback &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetLoadEntityCallback</b> () const noexcept</td></tr>
+<tr class="memitem:ac5964be32df8e0787b832896c0811ae6"><td class="memItemLeft" align="right" valign="top">const LoadEntityCallback &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#ac5964be32df8e0787b832896c0811ae6">GetLoadEntityCallback</a> () const noexcept</td></tr>
+<tr class="memdesc:ac5964be32df8e0787b832896c0811ae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the load entity call back of the engine.  <a href="#ac5964be32df8e0787b832896c0811ae6">More...</a><br /></td></tr>
 <tr class="separator:ac5964be32df8e0787b832896c0811ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5abbd8e3d830a6543f4abbc2d100c562"><td class="memItemLeft" align="right" valign="top"><a id="a5abbd8e3d830a6543f4abbc2d100c562"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>Initialize</b> (int *argc, char *argv[])</td></tr>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#a5abbd8e3d830a6543f4abbc2d100c562">Initialize</a> (int *argc, char *argv[])</td></tr>
+<tr class="memdesc:a5abbd8e3d830a6543f4abbc2d100c562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the application. <br /></td></tr>
 <tr class="separator:a5abbd8e3d830a6543f4abbc2d100c562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18b70b1a66b3c639e723464a0f31cc5f"><td class="memItemLeft" align="right" valign="top"><a id="a18b70b1a66b3c639e723464a0f31cc5f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> () noexcept=0</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#a18b70b1a66b3c639e723464a0f31cc5f">Update</a> () noexcept=0</td></tr>
+<tr class="memdesc:a18b70b1a66b3c639e723464a0f31cc5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the application. <br /></td></tr>
 <tr class="separator:a18b70b1a66b3c639e723464a0f31cc5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a660b728e2e7855548d02316c328da2f7"><td class="memItemLeft" align="right" valign="top"><a id="a660b728e2e7855548d02316c328da2f7"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> () const noexcept=0</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#a660b728e2e7855548d02316c328da2f7">Draw</a> () const noexcept=0</td></tr>
+<tr class="memdesc:a660b728e2e7855548d02316c328da2f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the application on screen. <br /></td></tr>
 <tr class="separator:a660b728e2e7855548d02316c328da2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a969f20210bd185cc6912b7794a0eea5b"><td class="memItemLeft" align="right" valign="top"><a id="a969f20210bd185cc6912b7794a0eea5b"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>Run</b> () noexcept=0</td></tr>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_application.html#a969f20210bd185cc6912b7794a0eea5b">Run</a> () noexcept=0</td></tr>
+<tr class="memdesc:a969f20210bd185cc6912b7794a0eea5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the application. <br /></td></tr>
 <tr class="separator:a969f20210bd185cc6912b7794a0eea5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_blade_1_1_application.html" title="Application class of the engine. ">Application</a> class of the engine. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8e144f5f05fc638339fc19afe142bbab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e144f5f05fc638339fc19afe142bbab">&#9670;&nbsp;</a></span>GetDelta()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Blade::Application::GetDelta </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the delta time of the application. </p>
+<dl class="section return"><dt>Returns</dt><dd>The delta time. </dd></dl>
+
+</div>
+</div>
+<a id="ac5964be32df8e0787b832896c0811ae6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5964be32df8e0787b832896c0811ae6">&#9670;&nbsp;</a></span>GetLoadEntityCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const LoadEntityCallback &amp; Blade::Application::GetLoadEntityCallback </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the load entity call back of the engine. </p>
+<dl class="section return"><dt>Returns</dt><dd>The callback used to load entities. </dd></dl>
+
+</div>
+</div>
+<a id="a0fd401f7a7ea78a8d222ccc920cb1968"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fd401f7a7ea78a8d222ccc920cb1968">&#9670;&nbsp;</a></span>GetMsec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long Blade::Application::GetMsec </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the time elapse since the startup in milliseconds. </p>
+<dl class="section return"><dt>Returns</dt><dd>time elapsed in milliseconds </dd></dl>
+
+</div>
+</div>
+<a id="a025118e872031944df57560e820cfde2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a025118e872031944df57560e820cfde2">&#9670;&nbsp;</a></span>GetSec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Blade::Application::GetSec </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the time elapsed since the startup in seconds. </p>
+<dl class="section return"><dt>Returns</dt><dd>time elapsed in seconds. </dd></dl>
+
+</div>
+</div>
+<a id="a80cb2abe5d175dde76be4f461bd82183"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80cb2abe5d175dde76be4f461bd82183">&#9670;&nbsp;</a></span>IsPaused()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Blade::Application::IsPaused </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the application is paused. </p>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if the application is paused, FALSE otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a328d42f7cb14a418ad3b9c54aa055132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a328d42f7cb14a418ad3b9c54aa055132">&#9670;&nbsp;</a></span>SetLoadEntityCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::Application::SetLoadEntityCallback </td>
+          <td>(</td>
+          <td class="paramtype">const LoadEntityCallback &amp;&#160;</td>
+          <td class="paramname"><em>callback</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the load entity call back. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callback</td><td>The callback used to load entities from file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a74d0bed9493b107ac522db1a40ebe19d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74d0bed9493b107ac522db1a40ebe19d">&#9670;&nbsp;</a></span>SetTermination()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::Application::SetTermination </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the termination flag. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The state of the application to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a68aba5838320ebb7b2683954ffee050b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68aba5838320ebb7b2683954ffee050b">&#9670;&nbsp;</a></span>ShouldTerminate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Blade::Application::ShouldTerminate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the should terminate flag. </p>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if the application should terminate, false otherwise </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="application_8h_source.html">application.h</a></li>
 <li>src/application.cpp</li>

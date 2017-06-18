@@ -82,18 +82,16 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a9b1c863473df3dddfd4347c4fa570a80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the network manager. <br /></td></tr>
 <tr class="separator:a9b1c863473df3dddfd4347c4fa570a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e097a251026499832bd7238adb48d8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_network_manager.html#a1e097a251026499832bd7238adb48d8a">Listen</a> (const unsigned short port) noexcept</td></tr>
-<tr class="memdesc:a1e097a251026499832bd7238adb48d8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The sockets starts listen to that port.  <a href="#a1e097a251026499832bd7238adb48d8a">More...</a><br /></td></tr>
+<tr class="memdesc:a1e097a251026499832bd7238adb48d8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listen to an assigned port using the provided callback.  <a href="#a1e097a251026499832bd7238adb48d8a">More...</a><br /></td></tr>
 <tr class="separator:a1e097a251026499832bd7238adb48d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61a872d6eec9050280dc041a7cda3759"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_network_manager.html#a61a872d6eec9050280dc041a7cda3759">Connect</a> (const std::string &amp;host, const unsigned short port) noexcept</td></tr>
-<tr class="memdesc:a61a872d6eec9050280dc041a7cda3759"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect to an host.  <a href="#a61a872d6eec9050280dc041a7cda3759">More...</a><br /></td></tr>
+<tr class="memdesc:a61a872d6eec9050280dc041a7cda3759"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect to a host using the provided callback.  <a href="#a61a872d6eec9050280dc041a7cda3759">More...</a><br /></td></tr>
 <tr class="separator:a61a872d6eec9050280dc041a7cda3759"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3127ee70f644dedfa8be9372805f6d5a"><td class="memItemLeft" align="right" valign="top"><a id="a3127ee70f644dedfa8be9372805f6d5a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_network_manager.html#a3127ee70f644dedfa8be9372805f6d5a">QueueMessage</a> (const std::shared_ptr&lt; <a class="el" href="class_blade_1_1_network_message.html">NetworkMessage</a> &gt; &amp;message) noexcept</td></tr>
-<tr class="memdesc:a3127ee70f644dedfa8be9372805f6d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queue a new message. <br /></td></tr>
+<tr class="memitem:a3127ee70f644dedfa8be9372805f6d5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_network_manager.html#a3127ee70f644dedfa8be9372805f6d5a">QueueMessage</a> (const std::shared_ptr&lt; <a class="el" href="class_blade_1_1_network_message.html">NetworkMessage</a> &gt; &amp;message) noexcept</td></tr>
+<tr class="memdesc:a3127ee70f644dedfa8be9372805f6d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queue a new message.  <a href="#a3127ee70f644dedfa8be9372805f6d5a">More...</a><br /></td></tr>
 <tr class="separator:a3127ee70f644dedfa8be9372805f6d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8dcbba66d285f6a14ad1bcfa346ae5e"><td class="memItemLeft" align="right" valign="top"><a id="ac8dcbba66d285f6a14ad1bcfa346ae5e"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_network_manager.html#ac8dcbba66d285f6a14ad1bcfa346ae5e">GetConnectionCount</a> () noexcept</td></tr>
-<tr class="memdesc:ac8dcbba66d285f6a14ad1bcfa346ae5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of open connection. <br /></td></tr>
+<tr class="memitem:ac8dcbba66d285f6a14ad1bcfa346ae5e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_network_manager.html#ac8dcbba66d285f6a14ad1bcfa346ae5e">GetConnectionCount</a> () noexcept</td></tr>
+<tr class="memdesc:ac8dcbba66d285f6a14ad1bcfa346ae5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getters of the connection count.  <a href="#ac8dcbba66d285f6a14ad1bcfa346ae5e">More...</a><br /></td></tr>
 <tr class="separator:ac8dcbba66d285f6a14ad1bcfa346ae5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12f5afdfc075b71ea82d4d657a78d780"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_network_manager.html#a12f5afdfc075b71ea82d4d657a78d780">SetOnNewPacketCallback</a> (const OnNewPacketCallback &amp;callback) noexcept</td></tr>
 <tr class="memdesc:a12f5afdfc075b71ea82d4d657a78d780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the callback that execute when a new packet is received.  <a href="#a12f5afdfc075b71ea82d4d657a78d780">More...</a><br /></td></tr>
@@ -142,14 +140,42 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 </table>
 </div><div class="memdoc">
 
-<p>Connect to an host. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Connect to a host using the provided callback. </p>
+<p>The connection process is being process on its own thread. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">host</td><td>The IP address of the host </td></tr>
     <tr><td class="paramname">port</td><td>The port number </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ac8dcbba66d285f6a14ad1bcfa346ae5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8dcbba66d285f6a14ad1bcfa346ae5e">&#9670;&nbsp;</a></span>GetConnectionCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Blade::NetworkManager::GetConnectionCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Getters of the connection count. </p>
+<dl class="section return"><dt>Returns</dt><dd>the number of open connections. </dd></dl>
 
 </div>
 </div>
@@ -177,10 +203,44 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 </table>
 </div><div class="memdoc">
 
-<p>The sockets starts listen to that port. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Listen to an assigned port using the provided callback. </p>
+<p>The listening process is being process on its own thread. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td>the port to listen to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3127ee70f644dedfa8be9372805f6d5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3127ee70f644dedfa8be9372805f6d5a">&#9670;&nbsp;</a></span>QueueMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::NetworkManager::QueueMessage </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="class_blade_1_1_network_message.html">NetworkMessage</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Queue a new message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>The message to queue. </td></tr>
   </table>
   </dd>
 </dl>
@@ -214,7 +274,7 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <p>Set the callback that execute when a client is disconnected. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">callback</td><td>The callback to set. </td></tr>
+    <tr><td class="paramname">callback</td><td>The on client disconnect callback to set. </td></tr>
   </table>
   </dd>
 </dl>
@@ -248,7 +308,7 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <p>Set the callback that execute when a new client is connected. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">callback</td><td>The callback to set. </td></tr>
+    <tr><td class="paramname">callback</td><td>The on new client callback to set. </td></tr>
   </table>
   </dd>
 </dl>
@@ -282,7 +342,7 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <p>Set the callback that execute when a new packet is received. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">callback</td><td>The callback to set. </td></tr>
+    <tr><td class="paramname">callback</td><td>The on new packet callback to set. </td></tr>
   </table>
   </dd>
 </dl>

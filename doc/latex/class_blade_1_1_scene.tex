@@ -1,5 +1,14 @@
 \hypertarget{class_blade_1_1_scene}{}\section{Blade\+:\+:Scene Class Reference}
 \label{class_blade_1_1_scene}\index{Blade\+::\+Scene@{Blade\+::\+Scene}}
+
+
+Represents a scene of the game.  
+
+
+
+
+{\ttfamily \#include $<$scene.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -10,45 +19,168 @@
 \hyperlink{class_blade_1_1_scene}{Scene} \& {\bfseries operator=} (const \hyperlink{class_blade_1_1_scene}{Scene} \&other)=delete
 \item 
 \mbox{\Hypertarget{class_blade_1_1_scene_a0bd508e8d4ab8db0b91eb8959056bb93}\label{class_blade_1_1_scene_a0bd508e8d4ab8db0b91eb8959056bb93}} 
-virtual bool {\bfseries Initialize} ()=0
-\item 
-\mbox{\Hypertarget{class_blade_1_1_scene_a0f17cd32cb502502fd5a3a39c72b4856}\label{class_blade_1_1_scene_a0f17cd32cb502502fd5a3a39c72b4856}} 
-void {\bfseries Add\+Entity} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$object) noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_scene_ae04a504f28ab2c80099863d067cb6914}\label{class_blade_1_1_scene_ae04a504f28ab2c80099863d067cb6914}} 
-void {\bfseries Remove\+Entity} (const std\+::string \&name) noexcept
-\item 
+virtual bool \hyperlink{class_blade_1_1_scene_a0bd508e8d4ab8db0b91eb8959056bb93}{Initialize} ()=0
+\begin{DoxyCompactList}\small\item\em Initialize the scene. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_scene_a0f17cd32cb502502fd5a3a39c72b4856}{Add\+Entity} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$object) noexcept
+\begin{DoxyCompactList}\small\item\em Adds a new entity to the scene. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_scene_ae04a504f28ab2c80099863d067cb6914}{Remove\+Entity} (const std\+::string \&name) noexcept
+\begin{DoxyCompactList}\small\item\em Remove entity. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_blade_1_1_scene_a41c8f3a8a59307c42a17163614ba8dd8}\label{class_blade_1_1_scene_a41c8f3a8a59307c42a17163614ba8dd8}} 
-void {\bfseries Remove\+Entities} () noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_scene_abd8993ff5deae13c05bfcdffbe9af6ff}\label{class_blade_1_1_scene_abd8993ff5deae13c05bfcdffbe9af6ff}} 
-const std\+::vector$<$ \hyperlink{class_blade_1_1_entity}{Entity} $\ast$ $>$ \& {\bfseries Get\+Entities} () const noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_scene_a4aa00824c68cf68734f85ac465796385}\label{class_blade_1_1_scene_a4aa00824c68cf68734f85ac465796385}} 
-\hyperlink{class_blade_1_1_entity}{Entity} $\ast$ {\bfseries Get\+Entity\+By\+Name} (const std\+::string \&name) noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_scene_abb80a0590b4d723b5f13ec8c488e513a}\label{class_blade_1_1_scene_abb80a0590b4d723b5f13ec8c488e513a}} 
-virtual void {\bfseries On\+Key\+Down} (unsigned char key, int x, int y) noexcept=0
-\item 
-\mbox{\Hypertarget{class_blade_1_1_scene_abe25ad91527c82b56409be7097afbf49}\label{class_blade_1_1_scene_abe25ad91527c82b56409be7097afbf49}} 
-virtual void {\bfseries On\+Key\+Up} (unsigned char key, int x, int y) noexcept=0
-\item 
-\mbox{\Hypertarget{class_blade_1_1_scene_aa0296f990fc1cacbfc97f657d6cb958f}\label{class_blade_1_1_scene_aa0296f990fc1cacbfc97f657d6cb958f}} 
-virtual void {\bfseries On\+Mouse\+Motion} (int x, int y) noexcept=0
-\item 
+void \hyperlink{class_blade_1_1_scene_a41c8f3a8a59307c42a17163614ba8dd8}{Remove\+Entities} () noexcept
+\begin{DoxyCompactList}\small\item\em Removes and deletes that entities that need to be removed or deleted. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \hyperlink{class_blade_1_1_entity}{Entity} $\ast$ $>$ \& \hyperlink{class_blade_1_1_scene_abd8993ff5deae13c05bfcdffbe9af6ff}{Get\+Entities} () const noexcept
+\begin{DoxyCompactList}\small\item\em Getters of the collections of entities that are currently in the scene. \end{DoxyCompactList}\item 
+\hyperlink{class_blade_1_1_entity}{Entity} $\ast$ \hyperlink{class_blade_1_1_scene_a4aa00824c68cf68734f85ac465796385}{Get\+Entity\+By\+Name} (const std\+::string \&name) noexcept
+\begin{DoxyCompactList}\small\item\em Return an entity owned by the scene by name. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_blade_1_1_scene_abb80a0590b4d723b5f13ec8c488e513a}{On\+Key\+Down} (unsigned char key, int x, int y) noexcept=0
+\begin{DoxyCompactList}\small\item\em Defines how the scene should response when a key is pressed. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_blade_1_1_scene_abe25ad91527c82b56409be7097afbf49}{On\+Key\+Up} (unsigned char key, int x, int y) noexcept=0
+\begin{DoxyCompactList}\small\item\em Defines how a scene should response when a key is released. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_blade_1_1_scene_aa0296f990fc1cacbfc97f657d6cb958f}{On\+Mouse\+Motion} (int x, int y) noexcept=0
+\begin{DoxyCompactList}\small\item\em Defines how a scene should response when the mouse is moved. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_blade_1_1_scene_ab54558db189ce57505ede242ffc303d2}\label{class_blade_1_1_scene_ab54558db189ce57505ede242ffc303d2}} 
-virtual void {\bfseries On\+Mouse\+Click} (int button, bool state, int x, int y) noexcept=0
-\item 
+virtual void \hyperlink{class_blade_1_1_scene_ab54558db189ce57505ede242ffc303d2}{On\+Mouse\+Click} (int button, bool state, int x, int y) noexcept=0
+\begin{DoxyCompactList}\small\item\em Defines how the scene should response when a button is clicked. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_blade_1_1_scene_a657797f1b08ac81bea28a2f9ed0e9c6f}\label{class_blade_1_1_scene_a657797f1b08ac81bea28a2f9ed0e9c6f}} 
-virtual void {\bfseries Update} (float delta\+Time, long time=0) noexcept
-\item 
+virtual void \hyperlink{class_blade_1_1_scene_a657797f1b08ac81bea28a2f9ed0e9c6f}{Update} (float delta\+Time, long time=0) noexcept
+\begin{DoxyCompactList}\small\item\em Update the current scene. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_blade_1_1_scene_ad1e610e1b5ea1cc4c6eaeac74e1c365b}\label{class_blade_1_1_scene_ad1e610e1b5ea1cc4c6eaeac74e1c365b}} 
-virtual void {\bfseries Draw} () const noexcept=0
-\item 
-\mbox{\Hypertarget{class_blade_1_1_scene_ac49cdbb30d13096320971ef9389d0a54}\label{class_blade_1_1_scene_ac49cdbb30d13096320971ef9389d0a54}} 
-virtual void {\bfseries On\+Message} (const \hyperlink{class_blade_1_1_ref_counted_container}{Message\+Container}$<$ std\+::string $>$ \&msg) const noexcept
-\end{DoxyCompactItemize}
+virtual void \hyperlink{class_blade_1_1_scene_ad1e610e1b5ea1cc4c6eaeac74e1c365b}{Draw} () const noexcept=0
+\begin{DoxyCompactList}\small\item\em Draws the current scene on screen. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_blade_1_1_scene_ac49cdbb30d13096320971ef9389d0a54}{On\+Message} (const \hyperlink{class_blade_1_1_ref_counted_container}{Message\+Container}$<$ std\+::string $>$ \&msg) const noexcept
+\begin{DoxyCompactList}\small\item\em Broadcast a messaged from the scene to all the entities stored. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Represents a scene of the game. 
+
+For example main menu scene, game play scene etc. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_blade_1_1_scene_a0f17cd32cb502502fd5a3a39c72b4856}\label{class_blade_1_1_scene_a0f17cd32cb502502fd5a3a39c72b4856}} 
+\index{Blade\+::\+Scene@{Blade\+::\+Scene}!Add\+Entity@{Add\+Entity}}
+\index{Add\+Entity@{Add\+Entity}!Blade\+::\+Scene@{Blade\+::\+Scene}}
+\subsubsection{\texorpdfstring{Add\+Entity()}{AddEntity()}}
+{\footnotesize\ttfamily void Blade\+::\+Scene\+::\+Add\+Entity (\begin{DoxyParamCaption}\item[{\hyperlink{class_blade_1_1_entity}{Entity} $\ast$}]{object }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Adds a new entity to the scene. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em object} & The entity pointer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_scene_abd8993ff5deae13c05bfcdffbe9af6ff}\label{class_blade_1_1_scene_abd8993ff5deae13c05bfcdffbe9af6ff}} 
+\index{Blade\+::\+Scene@{Blade\+::\+Scene}!Get\+Entities@{Get\+Entities}}
+\index{Get\+Entities@{Get\+Entities}!Blade\+::\+Scene@{Blade\+::\+Scene}}
+\subsubsection{\texorpdfstring{Get\+Entities()}{GetEntities()}}
+{\footnotesize\ttfamily const std\+::vector$<$ \hyperlink{class_blade_1_1_entity}{Entity} $\ast$ $>$ \& Blade\+::\+Scene\+::\+Get\+Entities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Getters of the collections of entities that are currently in the scene. 
+
+\begin{DoxyReturn}{Returns}
+Return the collection of the entities owned by the scene. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_scene_a4aa00824c68cf68734f85ac465796385}\label{class_blade_1_1_scene_a4aa00824c68cf68734f85ac465796385}} 
+\index{Blade\+::\+Scene@{Blade\+::\+Scene}!Get\+Entity\+By\+Name@{Get\+Entity\+By\+Name}}
+\index{Get\+Entity\+By\+Name@{Get\+Entity\+By\+Name}!Blade\+::\+Scene@{Blade\+::\+Scene}}
+\subsubsection{\texorpdfstring{Get\+Entity\+By\+Name()}{GetEntityByName()}}
+{\footnotesize\ttfamily \hyperlink{class_blade_1_1_entity}{Entity} $\ast$ Blade\+::\+Scene\+::\+Get\+Entity\+By\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Return an entity owned by the scene by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the entity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The pointer of the entity, nullptr if the entity is not inside the scene. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_scene_abb80a0590b4d723b5f13ec8c488e513a}\label{class_blade_1_1_scene_abb80a0590b4d723b5f13ec8c488e513a}} 
+\index{Blade\+::\+Scene@{Blade\+::\+Scene}!On\+Key\+Down@{On\+Key\+Down}}
+\index{On\+Key\+Down@{On\+Key\+Down}!Blade\+::\+Scene@{Blade\+::\+Scene}}
+\subsubsection{\texorpdfstring{On\+Key\+Down()}{OnKeyDown()}}
+{\footnotesize\ttfamily virtual void Blade\+::\+Scene\+::\+On\+Key\+Down (\begin{DoxyParamCaption}\item[{unsigned char}]{key,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Defines how the scene should response when a key is pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & the key pressed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_scene_abe25ad91527c82b56409be7097afbf49}\label{class_blade_1_1_scene_abe25ad91527c82b56409be7097afbf49}} 
+\index{Blade\+::\+Scene@{Blade\+::\+Scene}!On\+Key\+Up@{On\+Key\+Up}}
+\index{On\+Key\+Up@{On\+Key\+Up}!Blade\+::\+Scene@{Blade\+::\+Scene}}
+\subsubsection{\texorpdfstring{On\+Key\+Up()}{OnKeyUp()}}
+{\footnotesize\ttfamily virtual void Blade\+::\+Scene\+::\+On\+Key\+Up (\begin{DoxyParamCaption}\item[{unsigned char}]{key,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Defines how a scene should response when a key is released. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & the key pressed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_scene_ac49cdbb30d13096320971ef9389d0a54}\label{class_blade_1_1_scene_ac49cdbb30d13096320971ef9389d0a54}} 
+\index{Blade\+::\+Scene@{Blade\+::\+Scene}!On\+Message@{On\+Message}}
+\index{On\+Message@{On\+Message}!Blade\+::\+Scene@{Blade\+::\+Scene}}
+\subsubsection{\texorpdfstring{On\+Message()}{OnMessage()}}
+{\footnotesize\ttfamily void Blade\+::\+Scene\+::\+On\+Message (\begin{DoxyParamCaption}\item[{const \hyperlink{class_blade_1_1_ref_counted_container}{Message\+Container}$<$ std\+::string $>$ \&}]{msg }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Broadcast a messaged from the scene to all the entities stored. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_scene_aa0296f990fc1cacbfc97f657d6cb958f}\label{class_blade_1_1_scene_aa0296f990fc1cacbfc97f657d6cb958f}} 
+\index{Blade\+::\+Scene@{Blade\+::\+Scene}!On\+Mouse\+Motion@{On\+Mouse\+Motion}}
+\index{On\+Mouse\+Motion@{On\+Mouse\+Motion}!Blade\+::\+Scene@{Blade\+::\+Scene}}
+\subsubsection{\texorpdfstring{On\+Mouse\+Motion()}{OnMouseMotion()}}
+{\footnotesize\ttfamily virtual void Blade\+::\+Scene\+::\+On\+Mouse\+Motion (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Defines how a scene should response when the mouse is moved. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & the x value of the cursor position \\
+\hline
+{\em y} & the y value of the cursor position \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_scene_ae04a504f28ab2c80099863d067cb6914}\label{class_blade_1_1_scene_ae04a504f28ab2c80099863d067cb6914}} 
+\index{Blade\+::\+Scene@{Blade\+::\+Scene}!Remove\+Entity@{Remove\+Entity}}
+\index{Remove\+Entity@{Remove\+Entity}!Blade\+::\+Scene@{Blade\+::\+Scene}}
+\subsubsection{\texorpdfstring{Remove\+Entity()}{RemoveEntity()}}
+{\footnotesize\ttfamily void Blade\+::\+Scene\+::\+Remove\+Entity (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Remove entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the entity\\
+\hline
+\end{DoxyParams}
+Do not delete the entity, this is used to change ownership 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

@@ -8,5 +8,6 @@ var searchData=
   ['querymousemovement',['QueryMouseMovement',['../class_blade_1_1_input_manager.html#ab1fe795118afeb4642342567d3e27b3f',1,'Blade::InputManager']]],
   ['querymousemovementnormalized',['QueryMouseMovementNormalized',['../class_blade_1_1_input_manager.html#aa96a587de7ed5234b2b7883df48c0a09',1,'Blade::InputManager']]],
   ['querymouseposition',['QueryMousePosition',['../class_blade_1_1_input_manager.html#a0bd64dfa38174d3fa87c445ee261d8c3',1,'Blade::InputManager']]],
+  ['queuedtaskcount',['QueuedTaskCount',['../class_blade_1_1_thread_pool.html#a30124532ff2e5e72c1d03ae9f6029b91',1,'Blade::ThreadPool']]],
   ['queuemessage',['QueueMessage',['../class_blade_1_1_network_manager.html#a3127ee70f644dedfa8be9372805f6d5a',1,'Blade::NetworkManager']]]
 ];

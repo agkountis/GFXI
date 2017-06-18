@@ -69,6 +69,11 @@ $(function() {
 <div class="title">Blade::Socket Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>TCP <a class="el" href="class_blade_1_1_socket.html" title="TCP Socket of the engine. ">Socket</a> of the engine.  
+ <a href="class_blade_1_1_socket.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="socket_8h_source.html">socket.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -81,34 +86,354 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3966e8e3444f85b1a8fae6c9b42e18f0"><td class="memItemLeft" align="right" valign="top"><a id="a3966e8e3444f85b1a8fae6c9b42e18f0"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Socket</b> (<a class="el" href="class_blade_1_1_socket.html">Socket</a> &amp;&amp;other) noexcept</td></tr>
 <tr class="separator:a3966e8e3444f85b1a8fae6c9b42e18f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a7d54bb3818ac3145095dc1f3cf7a51"><td class="memItemLeft" align="right" valign="top"><a id="a3a7d54bb3818ac3145095dc1f3cf7a51"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Connect</b> (const std::string &amp;host, unsigned short port, <a class="el" href="struct_blade_1_1_connection_info.html">ConnectionInfo</a> *connection_info=nullptr) const noexcept</td></tr>
+<tr class="memitem:a3a7d54bb3818ac3145095dc1f3cf7a51"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_socket.html#a3a7d54bb3818ac3145095dc1f3cf7a51">Connect</a> (const std::string &amp;host, unsigned short port, <a class="el" href="struct_blade_1_1_connection_info.html">ConnectionInfo</a> *connection_info=nullptr) const noexcept</td></tr>
+<tr class="memdesc:a3a7d54bb3818ac3145095dc1f3cf7a51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect the socket and stores back theConnectionInfo.  <a href="#a3a7d54bb3818ac3145095dc1f3cf7a51">More...</a><br /></td></tr>
 <tr class="separator:a3a7d54bb3818ac3145095dc1f3cf7a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a801888c94b0ba8cc2ca912a72ee50a1b"><td class="memItemLeft" align="right" valign="top"><a id="a801888c94b0ba8cc2ca912a72ee50a1b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Listen</b> (unsigned short port, int maxQueueSize=8) const noexcept</td></tr>
+<tr class="memitem:a801888c94b0ba8cc2ca912a72ee50a1b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_socket.html#a801888c94b0ba8cc2ca912a72ee50a1b">Listen</a> (unsigned short port, int maxQueueSize=8) const noexcept</td></tr>
+<tr class="memdesc:a801888c94b0ba8cc2ca912a72ee50a1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">List to the selected port.  <a href="#a801888c94b0ba8cc2ca912a72ee50a1b">More...</a><br /></td></tr>
 <tr class="separator:a801888c94b0ba8cc2ca912a72ee50a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5806bdcd320ec474de73347f53ccf4f0"><td class="memItemLeft" align="right" valign="top"><a id="a5806bdcd320ec474de73347f53ccf4f0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Close</b> () noexcept</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_socket.html#a5806bdcd320ec474de73347f53ccf4f0">Close</a> () noexcept</td></tr>
+<tr class="memdesc:a5806bdcd320ec474de73347f53ccf4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close the socket and the connection. <br /></td></tr>
 <tr class="separator:a5806bdcd320ec474de73347f53ccf4f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafaf8dc48b92aec2f7b9589077838859"><td class="memItemLeft" align="right" valign="top"><a id="aafaf8dc48b92aec2f7b9589077838859"></a>
-<a class="el" href="class_blade_1_1_socket.html">Socket</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Accept</b> (<a class="el" href="struct_blade_1_1_connection_info.html">ConnectionInfo</a> *connectionInfo=nullptr) const noexcept</td></tr>
+<tr class="memitem:aafaf8dc48b92aec2f7b9589077838859"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_blade_1_1_socket.html">Socket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_socket.html#aafaf8dc48b92aec2f7b9589077838859">Accept</a> (<a class="el" href="struct_blade_1_1_connection_info.html">ConnectionInfo</a> *connectionInfo=nullptr) const noexcept</td></tr>
+<tr class="memdesc:aafaf8dc48b92aec2f7b9589077838859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accept the connection.  <a href="#aafaf8dc48b92aec2f7b9589077838859">More...</a><br /></td></tr>
 <tr class="separator:aafaf8dc48b92aec2f7b9589077838859"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac459be555495e99117c4a98a50e2f92b"><td class="memItemLeft" align="right" valign="top"><a id="ac459be555495e99117c4a98a50e2f92b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsValid</b> () const noexcept</td></tr>
+<tr class="memitem:ac459be555495e99117c4a98a50e2f92b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_socket.html#ac459be555495e99117c4a98a50e2f92b">IsValid</a> () const noexcept</td></tr>
+<tr class="memdesc:ac459be555495e99117c4a98a50e2f92b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the socket is valid.  <a href="#ac459be555495e99117c4a98a50e2f92b">More...</a><br /></td></tr>
 <tr class="separator:ac459be555495e99117c4a98a50e2f92b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1af1996fc8de7ba17106903560d45efb"><td class="memItemLeft" align="right" valign="top"><a id="a1af1996fc8de7ba17106903560d45efb"></a>
-SocketHandle&#160;</td><td class="memItemRight" valign="bottom"><b>GetHandle</b> () const noexcept</td></tr>
+<tr class="memitem:a1af1996fc8de7ba17106903560d45efb"><td class="memItemLeft" align="right" valign="top">SocketHandle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_socket.html#a1af1996fc8de7ba17106903560d45efb">GetHandle</a> () const noexcept</td></tr>
+<tr class="memdesc:a1af1996fc8de7ba17106903560d45efb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter of the handle.  <a href="#a1af1996fc8de7ba17106903560d45efb">More...</a><br /></td></tr>
 <tr class="separator:a1af1996fc8de7ba17106903560d45efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb437f4e6ee09e6bcaf6b48d536e504e"><td class="memItemLeft" align="right" valign="top"><a id="adb437f4e6ee09e6bcaf6b48d536e504e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetHandle</b> (SocketHandle handle) noexcept</td></tr>
+<tr class="memitem:adb437f4e6ee09e6bcaf6b48d536e504e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_socket.html#adb437f4e6ee09e6bcaf6b48d536e504e">SetHandle</a> (SocketHandle handle) noexcept</td></tr>
+<tr class="memdesc:adb437f4e6ee09e6bcaf6b48d536e504e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter of the handle.  <a href="#adb437f4e6ee09e6bcaf6b48d536e504e">More...</a><br /></td></tr>
 <tr class="separator:adb437f4e6ee09e6bcaf6b48d536e504e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a619058cf7a937e45aa0d4e50971bde24"><td class="memItemLeft" align="right" valign="top"><a id="a619058cf7a937e45aa0d4e50971bde24"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Send</b> (const char *buffer, int size) const noexcept</td></tr>
+<tr class="memitem:a619058cf7a937e45aa0d4e50971bde24"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_socket.html#a619058cf7a937e45aa0d4e50971bde24">Send</a> (const char *buffer, int size) const noexcept</td></tr>
+<tr class="memdesc:a619058cf7a937e45aa0d4e50971bde24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send data to this socket.  <a href="#a619058cf7a937e45aa0d4e50971bde24">More...</a><br /></td></tr>
 <tr class="separator:a619058cf7a937e45aa0d4e50971bde24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6e77d46652d77508f6fdd1c5d3161ba"><td class="memItemLeft" align="right" valign="top"><a id="ab6e77d46652d77508f6fdd1c5d3161ba"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Receive</b> (char *buffer, int size) const noexcept</td></tr>
+<tr class="memitem:ab6e77d46652d77508f6fdd1c5d3161ba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_socket.html#ab6e77d46652d77508f6fdd1c5d3161ba">Receive</a> (char *buffer, int size) const noexcept</td></tr>
+<tr class="memdesc:ab6e77d46652d77508f6fdd1c5d3161ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive data from the network.  <a href="#ab6e77d46652d77508f6fdd1c5d3161ba">More...</a><br /></td></tr>
 <tr class="separator:ab6e77d46652d77508f6fdd1c5d3161ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>TCP <a class="el" href="class_blade_1_1_socket.html" title="TCP Socket of the engine. ">Socket</a> of the engine. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aafaf8dc48b92aec2f7b9589077838859"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafaf8dc48b92aec2f7b9589077838859">&#9670;&nbsp;</a></span>Accept()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_blade_1_1_socket.html">Socket</a> Blade::Socket::Accept </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_blade_1_1_connection_info.html">ConnectionInfo</a> *&#160;</td>
+          <td class="paramname"><em>connectionInfo</em> = <code>nullptr</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Accept the connection. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connectionInfo</td><td>The connection to accept. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The socket created after the accept. </dd></dl>
+
+</div>
+</div>
+<a id="a3a7d54bb3818ac3145095dc1f3cf7a51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a7d54bb3818ac3145095dc1f3cf7a51">&#9670;&nbsp;</a></span>Connect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Blade::Socket::Connect </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>host</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_blade_1_1_connection_info.html">ConnectionInfo</a> *&#160;</td>
+          <td class="paramname"><em>connection_info</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Connect the socket and stores back theConnectionInfo. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">host</td><td>The IP address to connect to. </td></tr>
+    <tr><td class="paramname">port</td><td>The port number </td></tr>
+    <tr><td class="paramname">connection_info</td><td>A connection info pointer to store back the information of the connection, only if that succeeded. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if the connection happened, FALSE otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a1af1996fc8de7ba17106903560d45efb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1af1996fc8de7ba17106903560d45efb">&#9670;&nbsp;</a></span>GetHandle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SocketHandle Blade::Socket::GetHandle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Getter of the handle. </p>
+<dl class="section return"><dt>Returns</dt><dd>The socket handle. </dd></dl>
+
+</div>
+</div>
+<a id="ac459be555495e99117c4a98a50e2f92b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac459be555495e99117c4a98a50e2f92b">&#9670;&nbsp;</a></span>IsValid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Blade::Socket::IsValid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the socket is valid. </p>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if is valid, FALSE otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a801888c94b0ba8cc2ca912a72ee50a1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a801888c94b0ba8cc2ca912a72ee50a1b">&#9670;&nbsp;</a></span>Listen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Blade::Socket::Listen </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxQueueSize</em> = <code>8</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List to the selected port. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>The port to listen at </td></tr>
+    <tr><td class="paramname">maxQueueSize</td><td>The max queue size </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if somebody connected, FALSE otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ab6e77d46652d77508f6fdd1c5d3161ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6e77d46652d77508f6fdd1c5d3161ba">&#9670;&nbsp;</a></span>Receive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Blade::Socket::Receive </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Receive data from the network. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>The pointer the buffer where to store the coming data. </td></tr>
+    <tr><td class="paramname">size</td><td>The dimension of the buffer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int the number of bytes read. </dd></dl>
+
+</div>
+</div>
+<a id="a619058cf7a937e45aa0d4e50971bde24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a619058cf7a937e45aa0d4e50971bde24">&#9670;&nbsp;</a></span>Send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Blade::Socket::Send </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Send data to this socket. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>Pointer to the buffer that needs to be sent. </td></tr>
+    <tr><td class="paramname">size</td><td>The size of the buffer that needs to be sent. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if the sent happened, FALSE otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="adb437f4e6ee09e6bcaf6b48d536e504e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb437f4e6ee09e6bcaf6b48d536e504e">&#9670;&nbsp;</a></span>SetHandle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::Socket::SetHandle </td>
+          <td>(</td>
+          <td class="paramtype">SocketHandle&#160;</td>
+          <td class="paramname"><em>handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setter of the handle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>The socket handle to set.s </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/<a class="el" href="socket_8h_source.html">socket.h</a></li>
 <li>src/socket.cpp</li>

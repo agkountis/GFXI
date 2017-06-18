@@ -70,14 +70,19 @@ $(function() {
 <div class="title">Blade::Command Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_blade_1_1_command.html" title="Command pattern class.Encapsulate a request as an object, thereby letting users parameterize clients ...">Command</a> pattern class.Encapsulate a request as an object, thereby letting users parameterize clients with different requests,queue or log requests, and support undo able operations.  
+ <a href="class_blade_1_1_command.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="command_8h_source.html">command.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad2d8d0d0f38cb5e3142ae4876e041946"><td class="memItemLeft" align="right" valign="top"><a id="ad2d8d0d0f38cb5e3142ae4876e041946"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Command</b> (bool online=false)</td></tr>
+<tr class="memitem:ad2d8d0d0f38cb5e3142ae4876e041946"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_command.html#ad2d8d0d0f38cb5e3142ae4876e041946">Command</a> (bool online=false)</td></tr>
+<tr class="memdesc:ad2d8d0d0f38cb5e3142ae4876e041946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of a command.  <a href="#ad2d8d0d0f38cb5e3142ae4876e041946">More...</a><br /></td></tr>
 <tr class="separator:ad2d8d0d0f38cb5e3142ae4876e041946"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9110a3b9580a9e820c9318cf96bb6c41"><td class="memItemLeft" align="right" valign="top"><a id="a9110a3b9580a9e820c9318cf96bb6c41"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Execute</b> (<a class="el" href="class_blade_1_1_entity.html">Entity</a> *entity, const float dt)=0</td></tr>
+<tr class="memitem:a9110a3b9580a9e820c9318cf96bb6c41"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_command.html#a9110a3b9580a9e820c9318cf96bb6c41">Execute</a> (<a class="el" href="class_blade_1_1_entity.html">Entity</a> *entity, const float dt)=0</td></tr>
+<tr class="memdesc:a9110a3b9580a9e820c9318cf96bb6c41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute method of the command.  <a href="#a9110a3b9580a9e820c9318cf96bb6c41">More...</a><br /></td></tr>
 <tr class="separator:a9110a3b9580a9e820c9318cf96bb6c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -86,6 +91,89 @@ Protected Attributes</h2></td></tr>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_Online</b></td></tr>
 <tr class="separator:ab473805a51a806fc54204078604d4550"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_blade_1_1_command.html" title="Command pattern class.Encapsulate a request as an object, thereby letting users parameterize clients ...">Command</a> pattern class.Encapsulate a request as an object, thereby letting users parameterize clients with different requests,queue or log requests, and support undo able operations. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad2d8d0d0f38cb5e3142ae4876e041946"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2d8d0d0f38cb5e3142ae4876e041946">&#9670;&nbsp;</a></span>Command()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Blade::Command::Command </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>online</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor of a command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">online</td><td>TRUE if the command has to adopt a special treatment for online functionalities (sending messages etc). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9110a3b9580a9e820c9318cf96bb6c41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9110a3b9580a9e820c9318cf96bb6c41">&#9670;&nbsp;</a></span>Execute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Blade::Command::Execute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_blade_1_1_entity.html">Entity</a> *&#160;</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Execute method of the command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>the entity that performs the action </td></tr>
+    <tr><td class="paramname">dt</td><td>the delta time. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="command_8h_source.html">command.h</a></li>
 </ul>

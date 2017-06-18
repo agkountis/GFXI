@@ -1,5 +1,14 @@
 \hypertarget{class_blade_1_1_observer_subject}{}\section{Blade\+:\+:Observer\+Subject Class Reference}
 \label{class_blade_1_1_observer_subject}\index{Blade\+::\+Observer\+Subject@{Blade\+::\+Observer\+Subject}}
+
+
+Objeserver\+Subject implemented by the engine.  
+
+
+
+
+{\ttfamily \#include $<$observer\+\_\+subject.\+h$>$}
+
 Inheritance diagram for Blade\+:\+:Observer\+Subject\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,15 +18,69 @@ Inheritance diagram for Blade\+:\+:Observer\+Subject\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_blade_1_1_observer_subject_af8e103e7a7cb33062ea5fbf189902272}\label{class_blade_1_1_observer_subject_af8e103e7a7cb33062ea5fbf189902272}} 
-void {\bfseries Register\+Observer} (const std\+::string \&msg, \hyperlink{class_blade_1_1_observer}{Observer} $\ast$o) noexcept
-\item 
-\mbox{\Hypertarget{class_blade_1_1_observer_subject_a780cc6b90ee1b46fe936a8c712c41a58}\label{class_blade_1_1_observer_subject_a780cc6b90ee1b46fe936a8c712c41a58}} 
-void {\bfseries Unregister\+Observer} (const std\+::string \&msg, \hyperlink{class_blade_1_1_observer}{Observer} $\ast$o) noexcept
-\item 
+void \hyperlink{class_blade_1_1_observer_subject_af8e103e7a7cb33062ea5fbf189902272}{Register\+Observer} (const std\+::string \&msg, \hyperlink{class_blade_1_1_observer}{Observer} $\ast$o) noexcept
+\begin{DoxyCompactList}\small\item\em Register an observer for a particular type of message. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_observer_subject_a780cc6b90ee1b46fe936a8c712c41a58}{Unregister\+Observer} (const std\+::string \&msg, \hyperlink{class_blade_1_1_observer}{Observer} $\ast$o) noexcept
+\begin{DoxyCompactList}\small\item\em Unregister an observer for a particular type of message. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_observer_subject_a4d8b26a245fa28769456e5f54049b86b}{Broadcast\+Message} (const \hyperlink{class_blade_1_1_ref_counted_container}{Message\+Container}$<$ std\+::string $>$ \&msg) const noexcept
+\begin{DoxyCompactList}\small\item\em Broadcast a message to any listeners. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Objeserver\+Subject implemented by the engine. 
+
+The engine provides observer pattern interface 
+
+\subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_blade_1_1_observer_subject_a4d8b26a245fa28769456e5f54049b86b}\label{class_blade_1_1_observer_subject_a4d8b26a245fa28769456e5f54049b86b}} 
-void {\bfseries Broadcast\+Message} (const \hyperlink{class_blade_1_1_ref_counted_container}{Message\+Container}$<$ std\+::string $>$ \&msg) const noexcept
-\end{DoxyCompactItemize}
+\index{Blade\+::\+Observer\+Subject@{Blade\+::\+Observer\+Subject}!Broadcast\+Message@{Broadcast\+Message}}
+\index{Broadcast\+Message@{Broadcast\+Message}!Blade\+::\+Observer\+Subject@{Blade\+::\+Observer\+Subject}}
+\subsubsection{\texorpdfstring{Broadcast\+Message()}{BroadcastMessage()}}
+{\footnotesize\ttfamily void Blade\+::\+Observer\+Subject\+::\+Broadcast\+Message (\begin{DoxyParamCaption}\item[{const \hyperlink{class_blade_1_1_ref_counted_container}{Message\+Container}$<$ std\+::string $>$ \&}]{msg }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Broadcast a message to any listeners. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & the message to broadcast. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_observer_subject_af8e103e7a7cb33062ea5fbf189902272}\label{class_blade_1_1_observer_subject_af8e103e7a7cb33062ea5fbf189902272}} 
+\index{Blade\+::\+Observer\+Subject@{Blade\+::\+Observer\+Subject}!Register\+Observer@{Register\+Observer}}
+\index{Register\+Observer@{Register\+Observer}!Blade\+::\+Observer\+Subject@{Blade\+::\+Observer\+Subject}}
+\subsubsection{\texorpdfstring{Register\+Observer()}{RegisterObserver()}}
+{\footnotesize\ttfamily void Blade\+::\+Observer\+Subject\+::\+Register\+Observer (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{msg,  }\item[{\hyperlink{class_blade_1_1_observer}{Observer} $\ast$}]{o }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Register an observer for a particular type of message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & the message type \\
+\hline
+{\em o} & the observer to register. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_observer_subject_a780cc6b90ee1b46fe936a8c712c41a58}\label{class_blade_1_1_observer_subject_a780cc6b90ee1b46fe936a8c712c41a58}} 
+\index{Blade\+::\+Observer\+Subject@{Blade\+::\+Observer\+Subject}!Unregister\+Observer@{Unregister\+Observer}}
+\index{Unregister\+Observer@{Unregister\+Observer}!Blade\+::\+Observer\+Subject@{Blade\+::\+Observer\+Subject}}
+\subsubsection{\texorpdfstring{Unregister\+Observer()}{UnregisterObserver()}}
+{\footnotesize\ttfamily void Blade\+::\+Observer\+Subject\+::\+Unregister\+Observer (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{msg,  }\item[{\hyperlink{class_blade_1_1_observer}{Observer} $\ast$}]{o }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Unregister an observer for a particular type of message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & the message type \\
+\hline
+{\em o} & the observer to unregister. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

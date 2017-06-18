@@ -1,45 +1,127 @@
 \hypertarget{class_blade_1_1_thread_pool}{}\section{Blade\+:\+:Thread\+Pool Class Reference}
 \label{class_blade_1_1_thread_pool}\index{Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}}
+
+
+\hyperlink{class_blade_1_1_thread_pool}{Thread\+Pool} class of the engine.  
+
+
+
+
+{\ttfamily \#include $<$thread\+\_\+pool.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 bool \hyperlink{class_blade_1_1_thread_pool_a47f7b1929e59c4be260f1616a7340ca7}{Initialize} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initialize the thread pool. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_blade_1_1_thread_pool_af4d1c27beaf4747690dae01a00f9037b}\label{class_blade_1_1_thread_pool_af4d1c27beaf4747690dae01a00f9037b}} 
-void {\bfseries Wait} ()
-\item 
+void \hyperlink{class_blade_1_1_thread_pool_af4d1c27beaf4747690dae01a00f9037b}{Wait} ()
+\begin{DoxyCompactList}\small\item\em Wait function of the thread pool. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_blade_1_1_thread_pool_a5ed5801d197bac182a28e2d430007db0}\label{class_blade_1_1_thread_pool_a5ed5801d197bac182a28e2d430007db0}} 
-void {\bfseries Terminate} ()
-\item 
-\mbox{\Hypertarget{class_blade_1_1_thread_pool_acc1d6c39383a95582641b5b34d44040c}\label{class_blade_1_1_thread_pool_acc1d6c39383a95582641b5b34d44040c}} 
-void {\bfseries Add\+Task} (std\+::function$<$ void()$>$ job)
-\item 
-\mbox{\Hypertarget{class_blade_1_1_thread_pool_acacbc26ec4bf163a12b5005c3d1fd0c5}\label{class_blade_1_1_thread_pool_acacbc26ec4bf163a12b5005c3d1fd0c5}} 
-void {\bfseries Add\+Tasks} (const std\+::vector$<$ std\+::function$<$ void()$>$$>$ \&jobs)
-\item 
-\mbox{\Hypertarget{class_blade_1_1_thread_pool_a30124532ff2e5e72c1d03ae9f6029b91}\label{class_blade_1_1_thread_pool_a30124532ff2e5e72c1d03ae9f6029b91}} 
-size\+\_\+t {\bfseries Queued\+Task\+Count} () const
-\item 
-\mbox{\Hypertarget{class_blade_1_1_thread_pool_a0f046b3e1be7b85ef0a21f94c2380aa8}\label{class_blade_1_1_thread_pool_a0f046b3e1be7b85ef0a21f94c2380aa8}} 
-size\+\_\+t {\bfseries Active\+Task\+Count} () const
-\item 
-\mbox{\Hypertarget{class_blade_1_1_thread_pool_af24597a7aa14bc296735f9f2d7d460df}\label{class_blade_1_1_thread_pool_af24597a7aa14bc296735f9f2d7d460df}} 
-size\+\_\+t {\bfseries Pending\+Task\+Count} () const
-\end{DoxyCompactItemize}
+void \hyperlink{class_blade_1_1_thread_pool_a5ed5801d197bac182a28e2d430007db0}{Terminate} ()
+\begin{DoxyCompactList}\small\item\em Shutdown the thread pool. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_thread_pool_acc1d6c39383a95582641b5b34d44040c}{Add\+Task} (std\+::function$<$ void()$>$ job)
+\begin{DoxyCompactList}\small\item\em Add new task to the task queue. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_thread_pool_acacbc26ec4bf163a12b5005c3d1fd0c5}{Add\+Tasks} (const std\+::vector$<$ std\+::function$<$ void()$>$$>$ \&jobs)
+\begin{DoxyCompactList}\small\item\em Add a new collection of task to the task queue. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{class_blade_1_1_thread_pool_a30124532ff2e5e72c1d03ae9f6029b91}{Queued\+Task\+Count} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of queue task. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{class_blade_1_1_thread_pool_a0f046b3e1be7b85ef0a21f94c2380aa8}{Active\+Task\+Count} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of the task currently active. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{class_blade_1_1_thread_pool_af24597a7aa14bc296735f9f2d7d460df}{Pending\+Task\+Count} () const
+\begin{DoxyCompactList}\small\item\em Return the pending task count. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+\hyperlink{class_blade_1_1_thread_pool}{Thread\+Pool} class of the engine. 
+
+This class can be use to efficiently execute asynchronous callbacks on the application. It provides methods to manage the worker threads. 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_blade_1_1_thread_pool_a0f046b3e1be7b85ef0a21f94c2380aa8}\label{class_blade_1_1_thread_pool_a0f046b3e1be7b85ef0a21f94c2380aa8}} 
+\index{Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}!Active\+Task\+Count@{Active\+Task\+Count}}
+\index{Active\+Task\+Count@{Active\+Task\+Count}!Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}}
+\subsubsection{\texorpdfstring{Active\+Task\+Count()}{ActiveTaskCount()}}
+{\footnotesize\ttfamily size\+\_\+t Blade\+::\+Thread\+Pool\+::\+Active\+Task\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the number of the task currently active. 
+
+\begin{DoxyReturn}{Returns}
+The number of the task in process. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_thread_pool_acc1d6c39383a95582641b5b34d44040c}\label{class_blade_1_1_thread_pool_acc1d6c39383a95582641b5b34d44040c}} 
+\index{Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}!Add\+Task@{Add\+Task}}
+\index{Add\+Task@{Add\+Task}!Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}}
+\subsubsection{\texorpdfstring{Add\+Task()}{AddTask()}}
+{\footnotesize\ttfamily void Blade\+::\+Thread\+Pool\+::\+Add\+Task (\begin{DoxyParamCaption}\item[{std\+::function$<$ void()$>$}]{job }\end{DoxyParamCaption})}
+
+
+
+Add new task to the task queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em job} & The new task that need to be added \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_thread_pool_acacbc26ec4bf163a12b5005c3d1fd0c5}\label{class_blade_1_1_thread_pool_acacbc26ec4bf163a12b5005c3d1fd0c5}} 
+\index{Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}!Add\+Tasks@{Add\+Tasks}}
+\index{Add\+Tasks@{Add\+Tasks}!Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}}
+\subsubsection{\texorpdfstring{Add\+Tasks()}{AddTasks()}}
+{\footnotesize\ttfamily void Blade\+::\+Thread\+Pool\+::\+Add\+Tasks (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::function$<$ void()$>$$>$ \&}]{jobs }\end{DoxyParamCaption})}
+
+
+
+Add a new collection of task to the task queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em jobs} & The vector of the task that need to be added \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_blade_1_1_thread_pool_a47f7b1929e59c4be260f1616a7340ca7}\label{class_blade_1_1_thread_pool_a47f7b1929e59c4be260f1616a7340ca7}} 
 \index{Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}!Initialize@{Initialize}}
 \index{Initialize@{Initialize}!Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}}
 \subsubsection{\texorpdfstring{Initialize()}{Initialize()}}
 {\footnotesize\ttfamily bool Blade\+::\+Thread\+Pool\+::\+Initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Get the system\textquotesingle{}s supported thread count.
+
+
+Initialize the thread pool. 
+
+Creates the workers. Get the system\textquotesingle{}s supported thread count.
 
 Spawn the worker threads.
 
-The workers will execute an infinite loop function and will wait for a job to enter the job queue. Once a job is in the the queue the threads will wake up to acquire and execute it.
+The workers will execute an infinite loop function and will wait for a job to enter the job queue. Once a job is in the the queue the threads will wake up to acquire and execute it.\mbox{\Hypertarget{class_blade_1_1_thread_pool_af24597a7aa14bc296735f9f2d7d460df}\label{class_blade_1_1_thread_pool_af24597a7aa14bc296735f9f2d7d460df}} 
+\index{Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}!Pending\+Task\+Count@{Pending\+Task\+Count}}
+\index{Pending\+Task\+Count@{Pending\+Task\+Count}!Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}}
+\subsubsection{\texorpdfstring{Pending\+Task\+Count()}{PendingTaskCount()}}
+{\footnotesize\ttfamily size\+\_\+t Blade\+::\+Thread\+Pool\+::\+Pending\+Task\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Return the pending task count. 
+
+\begin{DoxyReturn}{Returns}
+The number of pending task (active\+Task + tasks in the queue). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_thread_pool_a30124532ff2e5e72c1d03ae9f6029b91}\label{class_blade_1_1_thread_pool_a30124532ff2e5e72c1d03ae9f6029b91}} 
+\index{Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}!Queued\+Task\+Count@{Queued\+Task\+Count}}
+\index{Queued\+Task\+Count@{Queued\+Task\+Count}!Blade\+::\+Thread\+Pool@{Blade\+::\+Thread\+Pool}}
+\subsubsection{\texorpdfstring{Queued\+Task\+Count()}{QueuedTaskCount()}}
+{\footnotesize\ttfamily size\+\_\+t Blade\+::\+Thread\+Pool\+::\+Queued\+Task\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the number of queue task. 
+
+\begin{DoxyReturn}{Returns}
+The number of tasks in the queue 
+\end{DoxyReturn}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

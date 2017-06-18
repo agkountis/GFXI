@@ -70,7 +70,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Base <a class="el" href="class_blade_1_1_component.html" title="Base Component class of the engine. All the components of the engine derive from this class...">Component</a> class of the engine. All the components of the engine derive from this class. Compoment inherits from the <a class="el" href="class_blade_1_1_observer.html">Observer</a> class so it can register and receive specific messages.  
+<p>Base <a class="el" href="class_blade_1_1_component.html" title="Base Component class of the engine. All the components of the engine derive from this class...">Component</a> class of the engine. All the components of the engine derive from this class. Compoment inherits from the <a class="el" href="class_blade_1_1_observer.html" title="Observer class of the engine. ">Observer</a> class so it can register and receive specific messages.  
  <a href="class_blade_1_1_component.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="component_8h_source.html">component.h</a>&gt;</code></p>
@@ -80,7 +80,7 @@ Inheritance diagram for Blade::Component:</div>
  <div class="center">
   <img src="class_blade_1_1_component.png" usemap="#Blade::Component_map" alt=""/>
   <map id="Blade::Component_map" name="Blade::Component_map">
-<area href="class_blade_1_1_observer.html" alt="Blade::Observer" shape="rect" coords="633,0,834,24"/>
+<area href="class_blade_1_1_observer.html" title="Observer class of the engine. " alt="Blade::Observer" shape="rect" coords="633,0,834,24"/>
 <area href="class_blade_1_1_behaviour_component.html" alt="Blade::BehaviourComponent" shape="rect" coords="105,112,306,136"/>
 <area href="class_blade_1_1_camera_component.html" title="Represents a CameraComponent. This component contains all the information needed for the view and pro..." alt="Blade::CameraComponent" shape="rect" coords="316,112,517,136"/>
 <area href="class_blade_1_1_collider_component.html" alt="Blade::ColliderComponent" shape="rect" coords="527,112,728,136"/>
@@ -125,11 +125,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetParent</b> (<a cla
 <tr class="memdesc:ab92acfebdc935b55b9275f0442d9c047"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the unique <a class="el" href="class_blade_1_1_component.html" title="Base Component class of the engine. All the components of the engine derive from this class...">Component</a> ID.  <a href="#ab92acfebdc935b55b9275f0442d9c047">More...</a><br /></td></tr>
 <tr class="separator:ab92acfebdc935b55b9275f0442d9c047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b33e2a714ea0ccdf754c29969fa8f67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_component.html#a4b33e2a714ea0ccdf754c29969fa8f67">OnMessage</a> (const <a class="el" href="class_blade_1_1_ref_counted_container.html">MessageContainer</a>&lt; std::string &gt; &amp;msg) override</td></tr>
-<tr class="memdesc:a4b33e2a714ea0ccdf754c29969fa8f67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broadcasts the recieved message to the current active <a class="el" href="class_blade_1_1_scene.html">Scene</a> through the <a class="el" href="class_blade_1_1_scene_manager.html" title="Scene manager of the engine. ">SceneManager</a>.  <a href="#a4b33e2a714ea0ccdf754c29969fa8f67">More...</a><br /></td></tr>
+<tr class="memdesc:a4b33e2a714ea0ccdf754c29969fa8f67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broadcasts the recieved message to the current active <a class="el" href="class_blade_1_1_scene.html" title="Represents a scene of the game. ">Scene</a> through the <a class="el" href="class_blade_1_1_scene_manager.html" title="Scene manager of the engine. ">SceneManager</a>.  <a href="#a4b33e2a714ea0ccdf754c29969fa8f67">More...</a><br /></td></tr>
 <tr class="separator:a4b33e2a714ea0ccdf754c29969fa8f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Base <a class="el" href="class_blade_1_1_component.html" title="Base Component class of the engine. All the components of the engine derive from this class...">Component</a> class of the engine. All the components of the engine derive from this class. Compoment inherits from the <a class="el" href="class_blade_1_1_observer.html">Observer</a> class so it can register and receive specific messages. </p>
+<div class="textblock"><p>Base <a class="el" href="class_blade_1_1_component.html" title="Base Component class of the engine. All the components of the engine derive from this class...">Component</a> class of the engine. All the components of the engine derive from this class. Compoment inherits from the <a class="el" href="class_blade_1_1_observer.html" title="Observer class of the engine. ">Observer</a> class so it can register and receive specific messages. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9afd6318db086a2fa6bfdbbbc009ef85"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9afd6318db086a2fa6bfdbbbc009ef85">&#9670;&nbsp;</a></span>Component()</h2>
@@ -277,7 +277,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetParent</b> (<a cla
 </table>
 </div><div class="memdoc">
 
-<p>Broadcasts the recieved message to the current active <a class="el" href="class_blade_1_1_scene.html">Scene</a> through the <a class="el" href="class_blade_1_1_scene_manager.html" title="Scene manager of the engine. ">SceneManager</a>. </p>
+<p>Broadcasts the recieved message to the current active <a class="el" href="class_blade_1_1_scene.html" title="Represents a scene of the game. ">Scene</a> through the <a class="el" href="class_blade_1_1_scene_manager.html" title="Scene manager of the engine. ">SceneManager</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>The message received. </td></tr>

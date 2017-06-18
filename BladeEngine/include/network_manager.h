@@ -79,13 +79,15 @@ namespace Blade
 		bool Initialize() noexcept;
 
 		/**
-		\brief The sockets starts listen to that port
+		\brief Listen to an assigned port using the provided callback.
+		\details The listening process is being process on its own thread.
 		\param port the port to listen to
 		*/
 		void Listen(const unsigned short port) noexcept;
 
 		/**
-		\brief Connect to an host
+		\brief Connect to a host using the provided callback
+		\details The connection process is being process on its own thread.
 		\param host The IP address of the host
 		\param port The port number 
 		*/
@@ -93,29 +95,31 @@ namespace Blade
 
 		/**
 		\brief Queue a new message
+		\param message The message to queue. 
 		*/
 		void QueueMessage(const std::shared_ptr<NetworkMessage>& message) noexcept;
 
 		/**
-		\brief Return the number of open connection.
+		\brief Getters of the connection count.
+		\return the number of open connections.
 		*/
 		size_t GetConnectionCount() noexcept;
 
 		/**
 		\brief Set the callback that execute when a new packet is received.
-		\param callback The callback to set.
+		\param callback The on new packet callback to set.
 		*/
 		void SetOnNewPacketCallback(const OnNewPacketCallback& callback) noexcept;
 
 		/**
 		\brief Set the callback that execute when a new client is connected.
-		\param callback The callback to set.
+		\param callback The on new client callback to set.
 		*/
 		void SetOnNewClientCallback(const OnNewClientCallback& callback) noexcept;
 
 		/**
 		\brief Set the callback that execute when a client is disconnected.
-		\param callback The callback to set.
+		\param callback The on client disconnect callback to set.
 		*/
 		void SetOnClientDisconnectCallback(const OnClientDisconnectCallback& callback) noexcept;
 	};
