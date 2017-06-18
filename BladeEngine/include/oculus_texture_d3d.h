@@ -1,7 +1,7 @@
 #ifndef BLADE_OCULUS_TEXTURE_D3D_H_
 #define BLADE_OCULUS_TEXTURE_D3D_H_
 
-#ifdef BLADE_BUILD_OVR
+//#ifdef BLADE_BUILD_OVR
 
 #include <OVR/OVR_CAPI.h>
 #include "D3D/D3D11.h"
@@ -66,6 +66,6 @@ namespace Blade
 	};
 }
 
-#endif //BLADE_BUILD_OVR
+//#endif //BLADE_BUILD_OVR
 
 #endif //BLADE_OCULUS_TEXTURE_D3D_H_
