@@ -17,6 +17,8 @@
 
 #ifdef BLADE_BUILD_OVR
 #include "game_scene_color_pass_ovr.h"
+#else
+#include "game_scene_color_pass.h"
 #endif
 
 

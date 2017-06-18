@@ -18,13 +18,14 @@
 #include "test_behaviour.h"
 #include "other_weapon_component.h"
 #include "player.h"
-#include "explosion.h"
 #include <iostream>
 #include "resource_utils.h"
 #include "main_scene.h"
 
 #ifdef BLADE_BUILD_OVR
 #include "game_scene_color_pass_ovr.h"
+#else
+#include "game_scene_color_pass.h"
 #endif
 
 using namespace Blade;

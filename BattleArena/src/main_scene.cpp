@@ -2,7 +2,6 @@
 #include "pipeline.h"
 #include "d3d/D3D11_texture.h"
 #include "windowing_service.h"
-#include "directional_light_component.h"
 #include "camera.h"
 #include "directional_light.h"
 #include <iostream>
@@ -10,7 +9,6 @@
 #include "resource_manager.h"
 #include "mesh_utils.h"
 #include "engine_context.h"
-#include "game_scene_color_pass.h"
 #include "render_component.h"
 #include <memory>
 #include "networked_lobby_scene.h"
@@ -18,6 +16,8 @@
 
 #ifdef BLADE_BUILD_OVR
 #include "game_scene_color_pass_ovr.h"
+#else
+#include "game_scene_color_pass.h"
 #endif
 
 
