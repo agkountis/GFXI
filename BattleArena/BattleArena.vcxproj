@@ -377,8 +377,12 @@
     <None Include="config\engine_fire.cfg" />
     <None Include="config\mediumfire_emitter.cfg" />
     <None Include="config\ship1_menu_emitter.cfg" />
+    <None Include="config\ship2_engine.cfg" />
     <None Include="config\ship2_menu_emitter.cfg" />
+    <None Include="config\ship3_engine.cfg" />
     <None Include="config\ship3_menu_emitter.cfg" />
+    <None Include="config\ship4_engine.cfg" />
+    <None Include="config\ship4_front.cfg" />
     <None Include="config\ship4_menu_emitter.cfg" />
     <None Include="config\test.cfg" />
     <None Include="config\tinyfire_emitter.cfg" />

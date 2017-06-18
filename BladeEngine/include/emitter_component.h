@@ -54,10 +54,12 @@ namespace Blade
 
 		RenderStateType blendStateType;
 
-		float particlesToSpawn;
+		float particlesToSpawn{ 0 };
 		float velocityRange;
 
 		bool active;
+
+		EmitterDescriptor();
 
 		bool Load(const std::wstring& file_name) noexcept override;
 	};

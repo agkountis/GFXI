@@ -47,25 +47,20 @@ Vec3f Player::GetHeading() const noexcept
 	//change orientation
 	Quatf q = this->GetOrientation();
 	Vec3f output = Vec3f(Mat4f(q) * Vec4f(0, 0, 1, 0));
-	
+
 	return output;
 }
 
-void Player::SetWeaponPositions(const Vec3f& leftWeaponPos, const Vec3f& rightWeaponPos) noexcept
+Vec3f Player::GetLeftWeaponPos() noexcept
 {
-	m_LeftWeaponPos = leftWeaponPos;
-
-	m_RightWeaponPos = rightWeaponPos;
+	Update(0, 0);
+	return GetEntityFromHierarchy("LeftWeaponSocket")->GetWorldPosition();
 }
 
-Vec3f Player::GetLeftWeaponPos() const noexcept
+Vec3f Player::GetRightWeaponPos() noexcept
 {
-	return (GetXform() * Vec4f(m_LeftWeaponPos, 1.0f)).xyz;
-}
-
-Vec3f Player::GetRightWeaponPos() const noexcept
-{
-	return (GetXform() * Vec4f(m_RightWeaponPos, 1.0f)).xyz;
+	Update(0, 0);
+	return GetEntityFromHierarchy("RightWeaponSocket")->GetWorldPosition();
 }
 
 int Player::GetID() const noexcept

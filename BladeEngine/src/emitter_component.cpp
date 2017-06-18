@@ -17,6 +17,20 @@
 
 namespace Blade
 {
+	EmitterDescriptor::EmitterDescriptor()
+		: spawnRate{ 1.0f },
+		  lifespan{ 1.0f },
+		  maxParticles{ 1 },
+		  spawnRadius{ 0.0f },
+		  particleSize{ 1.0f },
+		  texture{ nullptr },
+		  blendStateType{ RenderStateType::BS_BLEND_ADDITIVE },
+		  particlesToSpawn{ 0 },
+		  velocityRange{ 0.0f },
+		  active{ true }
+	{
+	}
+
 	// EmitterDescriptor functions ------------------------------------------------------------------
 	bool EmitterDescriptor::Load(const std::wstring& file_name) noexcept
 	{
@@ -184,6 +198,7 @@ namespace Blade
 	void EmitterComponent::EmitParticles(const float dt, double tsec) noexcept
 	{
 		m_Descriptor.particlesToSpawn += m_Descriptor.spawnRate * dt;
+
 		int numSpawn = m_Descriptor.particlesToSpawn;
 		m_Descriptor.particlesToSpawn -= numSpawn;
 

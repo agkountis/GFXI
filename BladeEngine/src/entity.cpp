@@ -72,7 +72,7 @@ namespace Blade
 	Vec3f Entity::GetWorldPosition() noexcept
 	{
 		CalculateXform();
-		return (m_Xform*Vec4f(1.0f)).xyz;
+		return (m_Xform*Vec4f(0.0f, 0.0, 0.0, 1.0)).xyz;
 	}
 
 	void Entity::SetPosition(const Vec3f& position) noexcept

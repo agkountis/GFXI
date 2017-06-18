@@ -61,13 +61,11 @@ void MainScene::CheckInputDevice()
 
 void MainScene::OnMove(Move move)
 {
-	std::cout << (int)move << std::endl;
 	if (move == Move::LEFT)
 	{
 		auto rc{ static_cast<RenderComponent*>(m_pScreen->GetComponent("co_render")) };
 		auto material{ rc->GetMaterial() };
 		material.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"network-multiplayer.png");
-		//material.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
 		rc->SetMaterial(material);
 		m_State = CurrentState::NETWORK;
 	}
@@ -76,12 +74,9 @@ void MainScene::OnMove(Move move)
 		auto rc{ static_cast<RenderComponent*>(m_pScreen->GetComponent("co_render")) };
 		auto material{ rc->GetMaterial() };
 		material.textures[TEX_DIFFUSE] = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"local-multiplayer.png");
-		//material.textures[TEX_DIFFUSE]->SetTextureType(TEX_DIFFUSE);
 		rc->SetMaterial(material);
 		m_State = CurrentState::LOCAL;
 	}
-
-
 }
 
 void MainScene::OnPress()
@@ -89,7 +84,6 @@ void MainScene::OnPress()
 	if (m_State == CurrentState::LOGO) return;
 	m_Fading = true;
 	m_Timer.Start();
-	
 }
 
 bool MainScene::Initialize()
@@ -220,7 +214,7 @@ bool MainScene::Initialize()
 	//Set the pipeline to the render system.
 	G_RenderSystem.SetRenderPassPipeline(pipeline);
 
-	G_AudioManager.PlayStream(AUDIO_PATH + L"destructoid.ogg", 0.1f, AUDIO_PLAYMODE_LOOP);
+	G_AudioManager.PlayStream(AUDIO_PATH + L"hyper_sun.ogg", 0.1f, AUDIO_PLAYMODE_ONCE);
 
 	return true;
 
@@ -268,7 +262,7 @@ void MainScene::Draw() const noexcept
 	G_RenderSystem.Process();
 }
 
-void MainScene::FadeOutLogic(float deltaTime)
+void MainScene::FadeOutLogic(float deltaTime) const
 {
 	if (m_Fading)
 	{
@@ -284,6 +278,7 @@ void MainScene::FadeOutLogic(float deltaTime)
 		}
 		if (m_State == CurrentState::LOCAL)
 		{
+			G_AudioManager.StopStreams();
 			G_SceneManager.PopScene();
 			G_SceneManager.PushScene(std::make_unique<GameScene>());
 		}

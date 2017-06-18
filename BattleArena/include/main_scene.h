@@ -41,7 +41,7 @@ private:
 #ifdef BLADE_BUILD_OVR
 	GameSceneColorPassStageOvr* ovrStage{ nullptr };
 #endif
-	void FadeOutLogic(float deltaTime);
+	void FadeOutLogic(float deltaTime) const;
 
 
 public:

@@ -22,8 +22,7 @@ class Player : public Blade::Entity
 private:
 	int m_WeaponCount{0};
 	int m_Id;
-	Blade::Vec3f m_LeftWeaponPos;
-	Blade::Vec3f m_RightWeaponPos;
+
 public:
 	explicit Player(const std::string& name,const int id);
 
@@ -31,12 +30,9 @@ public:
 
 	Blade::Vec3f GetHeading() const noexcept;
 
-	void SetWeaponPositions(const Blade::Vec3f& leftWeaponPos, const Blade::Vec3f& rightWeaponPos) noexcept;
+	Blade::Vec3f GetLeftWeaponPos() noexcept;
 
-
-	Blade::Vec3f GetLeftWeaponPos() const noexcept;
-
-	Blade::Vec3f GetRightWeaponPos() const noexcept;
+	Blade::Vec3f GetRightWeaponPos() noexcept;
 
 	int GetID() const noexcept;
 

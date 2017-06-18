@@ -303,5 +303,17 @@
     <None Include="config\ship4_menu_emitter.cfg">
       <Filter>configuration</Filter>
     </None>
+    <None Include="config\ship2_engine.cfg">
+      <Filter>configuration</Filter>
+    </None>
+    <None Include="config\ship4_engine.cfg">
+      <Filter>configuration</Filter>
+    </None>
+    <None Include="config\ship4_front.cfg">
+      <Filter>configuration</Filter>
+    </None>
+    <None Include="config\ship3_engine.cfg">
+      <Filter>configuration</Filter>
+    </None>
   </ItemGroup>
 </Project>

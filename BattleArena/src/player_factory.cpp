@@ -58,7 +58,6 @@ Player* PlayerFactory::CreatePlayer(const std::string& name, const std::wstring&
     hb->SetHealthValue(100);
 
 	hcom->SetListenerBar(hb);
-	player->SetWeaponPositions(player->GetEntityFromHierarchy("LeftWeaponSocket")->GetLocalPosition(), player->GetEntityFromHierarchy("RightWeaponSocket")->GetLocalPosition());
 
 	m_Counter++;
 	return player;
