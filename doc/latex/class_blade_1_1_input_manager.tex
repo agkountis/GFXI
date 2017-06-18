@@ -1,20 +1,25 @@
 \hypertarget{class_blade_1_1_input_manager}{}\section{Blade\+:\+:Input\+Manager Class Reference}
 \label{class_blade_1_1_input_manager}\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+
+
+\hyperlink{class_blade_1_1_input_manager}{Input\+Manager} class of the engine. This class holds and deals with all the external inputs. It supports a polling function to query the current state of a joypad and other helper functions to find the change in states between updates.  
+
+
+
+
+{\ttfamily \#include $<$input\+\_\+manager.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_blade_1_1_input_manager_a4670405f916ccabf83465154f3649d17}\label{class_blade_1_1_input_manager_a4670405f916ccabf83465154f3649d17}} 
-void {\bfseries Set\+Mouse\+Button\+State} (Mouse\+Button state, bool value)
-\item 
-\mbox{\Hypertarget{class_blade_1_1_input_manager_a61209430d6682ade700cc9fa89c7f50e}\label{class_blade_1_1_input_manager_a61209430d6682ade700cc9fa89c7f50e}} 
-void {\bfseries Update\+Mouse\+Pos} (Vec2i mousepos)
-\item 
-\mbox{\Hypertarget{class_blade_1_1_input_manager_a97307f47638f62a6c9736675a6906f14}\label{class_blade_1_1_input_manager_a97307f47638f62a6c9736675a6906f14}} 
-Vec2f {\bfseries Get\+Analog\+Stick\+Vector} (Joypad\+Number player, Input\+Sensor sensor)
-\item 
-bool \hyperlink{class_blade_1_1_input_manager_a8d8e424cb1de012c830296a0812ceebc}{Query\+Key\+State} (Virtual\+Key key) const noexcept
+\mbox{\Hypertarget{class_blade_1_1_input_manager_afdd309a456f24335b01544db7d55f400}\label{class_blade_1_1_input_manager_afdd309a456f24335b01544db7d55f400}} 
+\hyperlink{class_blade_1_1_input_manager_afdd309a456f24335b01544db7d55f400}{$\sim$\+Input\+Manager} ()
+\begin{DoxyCompactList}\small\item\em The input manager destructor. \end{DoxyCompactList}\item 
+Vec2f \hyperlink{class_blade_1_1_input_manager_ab41a4d4a8352903e18ba578316c36dc7}{Get\+Analog\+Stick\+Vector} (Joypad\+Number joypad\+Number, \hyperlink{namespace_blade_a1ecca198b7e0afbe43139ec2b0db937c}{Input\+Sensor} sensor)
+\begin{DoxyCompactList}\small\item\em Returns a vector indicating the position of the analog stick requested. \end{DoxyCompactList}\item 
+bool \hyperlink{class_blade_1_1_input_manager_a8d8e424cb1de012c830296a0812ceebc}{Query\+Key\+State} (\hyperlink{namespace_blade_a15d9bde4921fb2a9a953f8d97ea49d1c}{Virtual\+Key} key) const noexcept
 \begin{DoxyCompactList}\small\item\em Query the keyboard device for the state of a key. \end{DoxyCompactList}\item 
-bool \hyperlink{class_blade_1_1_input_manager_a6223ce5641fedc88d8e8591deb73ac90}{Query\+All\+Key\+States} (std\+::map$<$ Virtual\+Key, bool $>$ \&dest\+Map) const noexcept
+bool \hyperlink{class_blade_1_1_input_manager_a6223ce5641fedc88d8e8591deb73ac90}{Query\+All\+Key\+States} (std\+::map$<$ \hyperlink{namespace_blade_a15d9bde4921fb2a9a953f8d97ea49d1c}{Virtual\+Key}, bool $>$ \&dest\+Map) const noexcept
 \begin{DoxyCompactList}\small\item\em Query the Keyboard device for the state of A\+LL keys associated to the device. \end{DoxyCompactList}\item 
 Vec2f \hyperlink{class_blade_1_1_input_manager_ab1fe795118afeb4642342567d3e27b3f}{Query\+Mouse\+Movement} ()
 \begin{DoxyCompactList}\small\item\em Query the Keyboard device for the state of A\+LL keys associated to the device. \end{DoxyCompactList}\item 
@@ -24,13 +29,10 @@ Vec2i \hyperlink{class_blade_1_1_input_manager_a0bd64dfa38174d3fa87c445ee261d8c3
 \begin{DoxyCompactList}\small\item\em Query the Keyboard device for the state of A\+LL keys associated to the device. \end{DoxyCompactList}\item 
 bool \hyperlink{class_blade_1_1_input_manager_ad2537487a4c3c80e7eb6b8c0ea37b09b}{Query\+Mouse\+Button\+State} (Mouse\+Button button)
 \begin{DoxyCompactList}\small\item\em Query the state of the mouse buttons (providing an enum per button) \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_blade_1_1_input_manager_a94dc87364eb3e84cbe56906e483c2b5b}\label{class_blade_1_1_input_manager_a94dc87364eb3e84cbe56906e483c2b5b}} 
-bool \hyperlink{class_blade_1_1_input_manager_a94dc87364eb3e84cbe56906e483c2b5b}{Query\+Device\+State} (Joypad\+Number player, Input\+Sensor sensor)
-\begin{DoxyCompactList}\small\item\em Query the state of a sensor on an active pad linked to player. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_blade_1_1_input_manager_aefed17ef43650b20e93f23e5e08c8e89}\label{class_blade_1_1_input_manager_aefed17ef43650b20e93f23e5e08c8e89}} 
-bool \hyperlink{class_blade_1_1_input_manager_aefed17ef43650b20e93f23e5e08c8e89}{Query\+Device\+All\+States} (Joypad\+Number player, std\+::map$<$ Input\+Sensor, bool $>$ \&map)
+bool \hyperlink{class_blade_1_1_input_manager_aeeafae24c87fd12586942eba26956807}{Query\+Device\+State} (Joypad\+Number joypad\+Number, \hyperlink{namespace_blade_a1ecca198b7e0afbe43139ec2b0db937c}{Input\+Sensor} sensor)
+\begin{DoxyCompactList}\small\item\em Query the state of a sensor on an active pad linked. \end{DoxyCompactList}\item 
+bool \hyperlink{class_blade_1_1_input_manager_ac07153a9c34d35a445ede6c89aa6cbf3}{Query\+Device\+All\+States} (Joypad\+Number joypad\+Number, std\+::map$<$ \hyperlink{namespace_blade_a1ecca198b7e0afbe43139ec2b0db937c}{Input\+Sensor}, bool $>$ \&map)
 \begin{DoxyCompactList}\small\item\em Query the input states of sensors on an active device linked to player, return in supplied map. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_blade_1_1_input_manager_a1184a42c2c6b0f96d4169936090f9480}\label{class_blade_1_1_input_manager_a1184a42c2c6b0f96d4169936090f9480}} 
 void \hyperlink{class_blade_1_1_input_manager_a1184a42c2c6b0f96d4169936090f9480}{Update} (float delta\+Time)
 \begin{DoxyCompactList}\small\item\em Update the states of managed input devices, and re-\/enumerate input devices. \end{DoxyCompactList}\item 
 bool \hyperlink{class_blade_1_1_input_manager_a979db0aea29e22ed95c2642649922a41}{Initialize} () noexcept
@@ -43,13 +45,20 @@ bool \hyperlink{class_blade_1_1_input_manager_ae3ccc72d662ee90161206ef64722380f}
 \begin{DoxyCompactList}\small\item\em Search the device pool for a device with id equal to device\+Id. \end{DoxyCompactList}\item 
 bool \hyperlink{class_blade_1_1_input_manager_a6aadb5a4fd8ccfe2de69c1f2d62df37d}{Active\+Device\+Exists} (int device\+Id)
 \begin{DoxyCompactList}\small\item\em Search the active device map for a device with id equal to device\+Id. \end{DoxyCompactList}\item 
-bool \hyperlink{class_blade_1_1_input_manager_a1c7e8d968e53123e3077c2386eaac7ae}{Assign\+Device\+To\+Player} (Joypad\+Number player\+ID, int device\+Number)
+bool \hyperlink{class_blade_1_1_input_manager_a5369c3110e39e5b3d01349ce7aa676ed}{Assign\+Device\+To\+Player} (Joypad\+Number joypad\+Number, int device\+Number)
 \begin{DoxyCompactList}\small\item\em Assigns a player to an input device. \end{DoxyCompactList}\item 
-bool \hyperlink{class_blade_1_1_input_manager_a13f1624084d79930b4ad6c6615277a5b}{Unassign\+Device} (Joypad\+Number player\+ID)
-\begin{DoxyCompactList}\small\item\em Unassigns an input device from a player (by player ID). \end{DoxyCompactList}\item 
-\hyperlink{class_blade_1_1_input_device}{Input\+Device} $\ast$ \hyperlink{class_blade_1_1_input_manager_a8b5863fec63f8e322476cd1a4a4292dc}{Get\+Active\+Device} (Joypad\+Number player\+ID)
-\begin{DoxyCompactList}\small\item\em Returns an active (not in the pool) assigned input device, searched by player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+bool \hyperlink{class_blade_1_1_input_manager_ab436b8828eb3022334b544f8e201249e}{Unassign\+Device} (Joypad\+Number joypad\+Number)
+\begin{DoxyCompactList}\small\item\em Unassigns an input device from a player (by player ID) \end{DoxyCompactList}\item 
+\hyperlink{class_blade_1_1_input_device}{Input\+Device} $\ast$ \hyperlink{class_blade_1_1_input_manager_af7047c9533684d365fb3c61c10911c8c}{Get\+Active\+Device} (Joypad\+Number joypad\+Number)
+\begin{DoxyCompactList}\small\item\em Returns an active (not in the pool) assigned input device, searched by player. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_input_manager_a61209430d6682ade700cc9fa89c7f50e}{Update\+Mouse\+Pos} (Vec2i mousepos)
+\begin{DoxyCompactList}\small\item\em Update the position of the mouse. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_input_manager_a4670405f916ccabf83465154f3649d17}{Set\+Mouse\+Button\+State} (Mouse\+Button state, bool value)
+\begin{DoxyCompactList}\small\item\em Update the state of a button of the mouse. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+\hyperlink{class_blade_1_1_input_manager}{Input\+Manager} class of the engine. This class holds and deals with all the external inputs. It supports a polling function to query the current state of a joypad and other helper functions to find the change in states between updates. 
 
 \subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_blade_1_1_input_manager_a6aadb5a4fd8ccfe2de69c1f2d62df37d}\label{class_blade_1_1_input_manager_a6aadb5a4fd8ccfe2de69c1f2d62df37d}} 
@@ -62,19 +71,31 @@ bool \hyperlink{class_blade_1_1_input_manager_a13f1624084d79930b4ad6c6615277a5b}
 
 Search the active device map for a device with id equal to device\+Id. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em device\+Id} & The device number you need to find in the map. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the device is found, otherwise false 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_blade_1_1_input_manager_a1c7e8d968e53123e3077c2386eaac7ae}\label{class_blade_1_1_input_manager_a1c7e8d968e53123e3077c2386eaac7ae}} 
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a5369c3110e39e5b3d01349ce7aa676ed}\label{class_blade_1_1_input_manager_a5369c3110e39e5b3d01349ce7aa676ed}} 
 \index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Assign\+Device\+To\+Player@{Assign\+Device\+To\+Player}}
 \index{Assign\+Device\+To\+Player@{Assign\+Device\+To\+Player}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
 \subsubsection{\texorpdfstring{Assign\+Device\+To\+Player()}{AssignDeviceToPlayer()}}
-{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Assign\+Device\+To\+Player (\begin{DoxyParamCaption}\item[{Joypad\+Number}]{player\+ID,  }\item[{int}]{device\+Number }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Assign\+Device\+To\+Player (\begin{DoxyParamCaption}\item[{Joypad\+Number}]{joypad\+Number,  }\item[{int}]{device\+Number }\end{DoxyParamCaption})}
 
 
 
 Assigns a player to an input device. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em joypad\+Number} & The joy pad number. \\
+\hline
+{\em device\+Number} & The number of the device from the pool. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if successful, false otherwise 
 \end{DoxyReturn}
@@ -88,6 +109,11 @@ True if successful, false otherwise
 
 Query a device pool for its type. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em device\+Id} & The device number. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Device\+Type enum of the device in the pool denoted by dev\+Index 
 \end{DoxyReturn}
@@ -107,18 +133,43 @@ Counts and store the number of connected devices to the machine.
 \begin{DoxyReturn}{Returns}
 An integer representing the number of connected input devices 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_blade_1_1_input_manager_a8b5863fec63f8e322476cd1a4a4292dc}\label{class_blade_1_1_input_manager_a8b5863fec63f8e322476cd1a4a4292dc}} 
+\mbox{\Hypertarget{class_blade_1_1_input_manager_af7047c9533684d365fb3c61c10911c8c}\label{class_blade_1_1_input_manager_af7047c9533684d365fb3c61c10911c8c}} 
 \index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Get\+Active\+Device@{Get\+Active\+Device}}
 \index{Get\+Active\+Device@{Get\+Active\+Device}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
 \subsubsection{\texorpdfstring{Get\+Active\+Device()}{GetActiveDevice()}}
-{\footnotesize\ttfamily \hyperlink{class_blade_1_1_input_device}{Input\+Device} $\ast$ Blade\+::\+Input\+Manager\+::\+Get\+Active\+Device (\begin{DoxyParamCaption}\item[{Joypad\+Number}]{player\+ID }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{class_blade_1_1_input_device}{Input\+Device} $\ast$ Blade\+::\+Input\+Manager\+::\+Get\+Active\+Device (\begin{DoxyParamCaption}\item[{Joypad\+Number}]{joypad\+Number }\end{DoxyParamCaption})}
 
 
 
 Returns an active (not in the pool) assigned input device, searched by player. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em joypad\+Number} & The number of the joy pad number. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Active input device for player id, nullptr otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_ab41a4d4a8352903e18ba578316c36dc7}\label{class_blade_1_1_input_manager_ab41a4d4a8352903e18ba578316c36dc7}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Get\+Analog\+Stick\+Vector@{Get\+Analog\+Stick\+Vector}}
+\index{Get\+Analog\+Stick\+Vector@{Get\+Analog\+Stick\+Vector}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Get\+Analog\+Stick\+Vector()}{GetAnalogStickVector()}}
+{\footnotesize\ttfamily Vec2f Blade\+::\+Input\+Manager\+::\+Get\+Analog\+Stick\+Vector (\begin{DoxyParamCaption}\item[{Joypad\+Number}]{joypad\+Number,  }\item[{\hyperlink{namespace_blade_a1ecca198b7e0afbe43139ec2b0db937c}{Input\+Sensor}}]{sensor }\end{DoxyParamCaption})}
+
+
+
+Returns a vector indicating the position of the analog stick requested. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em joypad\+Number} & The joypad number. \\
+\hline
+{\em sensor} & The stick that need to be checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector that represent the stick position normalized outside dead zones. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_blade_1_1_input_manager_a979db0aea29e22ed95c2642649922a41}\label{class_blade_1_1_input_manager_a979db0aea29e22ed95c2642649922a41}} 
 \index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Initialize@{Initialize}}
@@ -143,6 +194,11 @@ True if the initialization is successful, false otherwise
 
 Search the device pool for a device with id equal to device\+Id. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em device\+ID} & The device number. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the device is found, otherwise false 
 \end{DoxyReturn}
@@ -150,25 +206,75 @@ True if the device is found, otherwise false
 \index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Query\+All\+Key\+States@{Query\+All\+Key\+States}}
 \index{Query\+All\+Key\+States@{Query\+All\+Key\+States}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
 \subsubsection{\texorpdfstring{Query\+All\+Key\+States()}{QueryAllKeyStates()}}
-{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Query\+All\+Key\+States (\begin{DoxyParamCaption}\item[{std\+::map$<$ Virtual\+Key, bool $>$ \&}]{dest\+Map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Query\+All\+Key\+States (\begin{DoxyParamCaption}\item[{std\+::map$<$ \hyperlink{namespace_blade_a15d9bde4921fb2a9a953f8d97ea49d1c}{Virtual\+Key}, bool $>$ \&}]{dest\+Map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 
 
 Query the Keyboard device for the state of A\+LL keys associated to the device. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em map} & The reference to a map of all keyboard states. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if successful, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_ac07153a9c34d35a445ede6c89aa6cbf3}\label{class_blade_1_1_input_manager_ac07153a9c34d35a445ede6c89aa6cbf3}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Query\+Device\+All\+States@{Query\+Device\+All\+States}}
+\index{Query\+Device\+All\+States@{Query\+Device\+All\+States}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Query\+Device\+All\+States()}{QueryDeviceAllStates()}}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Query\+Device\+All\+States (\begin{DoxyParamCaption}\item[{Joypad\+Number}]{joypad\+Number,  }\item[{std\+::map$<$ \hyperlink{namespace_blade_a1ecca198b7e0afbe43139ec2b0db937c}{Input\+Sensor}, bool $>$ \&}]{map }\end{DoxyParamCaption})}
+
+
+
+Query the input states of sensors on an active device linked to player, return in supplied map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em joypad\+Number} & The queried joypad number. \\
+\hline
+{\em map} & A reference to a map of the state of the joypad. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if the Joypad\+Number is active, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_aeeafae24c87fd12586942eba26956807}\label{class_blade_1_1_input_manager_aeeafae24c87fd12586942eba26956807}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Query\+Device\+State@{Query\+Device\+State}}
+\index{Query\+Device\+State@{Query\+Device\+State}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Query\+Device\+State()}{QueryDeviceState()}}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Query\+Device\+State (\begin{DoxyParamCaption}\item[{Joypad\+Number}]{joypad\+Number,  }\item[{\hyperlink{namespace_blade_a1ecca198b7e0afbe43139ec2b0db937c}{Input\+Sensor}}]{sensor }\end{DoxyParamCaption})}
+
+
+
+Query the state of a sensor on an active pad linked. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em joypad\+Number} & The queried joypad number \\
+\hline
+{\em sensor} & The sensor to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if the the sensor is active (button pressed, stick out of the deadzone), F\+A\+L\+SE otherwise. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_blade_1_1_input_manager_a8d8e424cb1de012c830296a0812ceebc}\label{class_blade_1_1_input_manager_a8d8e424cb1de012c830296a0812ceebc}} 
 \index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Query\+Key\+State@{Query\+Key\+State}}
 \index{Query\+Key\+State@{Query\+Key\+State}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
 \subsubsection{\texorpdfstring{Query\+Key\+State()}{QueryKeyState()}}
-{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Query\+Key\+State (\begin{DoxyParamCaption}\item[{Virtual\+Key}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Query\+Key\+State (\begin{DoxyParamCaption}\item[{\hyperlink{namespace_blade_a15d9bde4921fb2a9a953f8d97ea49d1c}{Virtual\+Key}}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 
 
 Query the keyboard device for the state of a key. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em key} & A keyboard key. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the key is a P\+R\+E\+S\+S\+ED state (down), false otherwise 
 \end{DoxyReturn}
@@ -182,6 +288,11 @@ True if the key is a P\+R\+E\+S\+S\+ED state (down), false otherwise
 
 Query the state of the mouse buttons (providing an enum per button) 
 
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The mouse button \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if pressed, false otherwise 
 \end{DoxyReturn}
@@ -224,20 +335,72 @@ Query the Keyboard device for the state of A\+LL keys associated to the device.
 \begin{DoxyReturn}{Returns}
 True if successful, false otherwise 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_blade_1_1_input_manager_a13f1624084d79930b4ad6c6615277a5b}\label{class_blade_1_1_input_manager_a13f1624084d79930b4ad6c6615277a5b}} 
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a4670405f916ccabf83465154f3649d17}\label{class_blade_1_1_input_manager_a4670405f916ccabf83465154f3649d17}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Set\+Mouse\+Button\+State@{Set\+Mouse\+Button\+State}}
+\index{Set\+Mouse\+Button\+State@{Set\+Mouse\+Button\+State}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Set\+Mouse\+Button\+State()}{SetMouseButtonState()}}
+{\footnotesize\ttfamily void Blade\+::\+Input\+Manager\+::\+Set\+Mouse\+Button\+State (\begin{DoxyParamCaption}\item[{Mouse\+Button}]{state,  }\item[{bool}]{value }\end{DoxyParamCaption})}
+
+
+
+Update the state of a button of the mouse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The button of the mouse that has changed (left of right) \\
+\hline
+{\em value} & The boolean value associate with that flag\+: T\+R\+UE pressed.\\
+\hline
+\end{DoxyParams}
+This method is been called inside the window update loop. \mbox{\Hypertarget{class_blade_1_1_input_manager_ab436b8828eb3022334b544f8e201249e}\label{class_blade_1_1_input_manager_ab436b8828eb3022334b544f8e201249e}} 
 \index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Unassign\+Device@{Unassign\+Device}}
 \index{Unassign\+Device@{Unassign\+Device}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
 \subsubsection{\texorpdfstring{Unassign\+Device()}{UnassignDevice()}}
-{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Unassign\+Device (\begin{DoxyParamCaption}\item[{Joypad\+Number}]{player\+ID }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Unassign\+Device (\begin{DoxyParamCaption}\item[{Joypad\+Number}]{joypad\+Number }\end{DoxyParamCaption})}
 
 
 
-Unassigns an input device from a player (by player ID). 
+Unassigns an input device from a player (by player ID) 
 
+
+\begin{DoxyParams}{Parameters}
+{\em joypad\+Number} & The number of the joy pad player number. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Destroy the association between player and device, and mark device as inactive 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a1184a42c2c6b0f96d4169936090f9480}\label{class_blade_1_1_input_manager_a1184a42c2c6b0f96d4169936090f9480}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Update@{Update}}
+\index{Update@{Update}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Blade\+::\+Input\+Manager\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
 
+
+
+Update the states of managed input devices, and re-\/enumerate input devices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & The delta time. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a61209430d6682ade700cc9fa89c7f50e}\label{class_blade_1_1_input_manager_a61209430d6682ade700cc9fa89c7f50e}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Update\+Mouse\+Pos@{Update\+Mouse\+Pos}}
+\index{Update\+Mouse\+Pos@{Update\+Mouse\+Pos}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Update\+Mouse\+Pos()}{UpdateMousePos()}}
+{\footnotesize\ttfamily void Blade\+::\+Input\+Manager\+::\+Update\+Mouse\+Pos (\begin{DoxyParamCaption}\item[{Vec2i}]{mousepos }\end{DoxyParamCaption})}
+
+
+
+Update the position of the mouse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mousepos} & A vector that represents the mouse position relative to window.\\
+\hline
+\end{DoxyParams}
+This method is been called inside the window update loop. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

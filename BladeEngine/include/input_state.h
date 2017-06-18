@@ -60,7 +60,7 @@
 
 namespace Blade
 {
-	/*
+	/**
 	 * \brief Enumeration for input device buttons (digital values)
 	 * \details Uses bit flags defined in the device to for mappings where available
 	 */
@@ -99,27 +99,27 @@ namespace Blade
 	 */
 	struct InputState
 	{
-		/*
+		/**
 		\brief The digital button data
 		*/
 		int digitalButtonData{ 0 };
 
-		/*
+		/**
 		\brief The left analog stick.
 		*/
 		ThumbStick stickLeft{ 0 };
 
-		/*
+		/**
 		\brief The right analog stick.
 		*/
 		ThumbStick stickRight{ 0 };
 
-		/*
+		/**
 		\brief The left trigger.
 		*/
 		float triggerLeft{ 0.0f };
 
-		/*
+		/**
 		\brief The right trigger.
 		*/
 		float triggerRight{ 0.0f };

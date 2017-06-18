@@ -10,7 +10,7 @@
   \item {Active\+Device\+Exists}
     \subitem {Blade\+::\+Input\+Manager}, \hyperpage{58}
   \item {Add\+Stage}
-    \subitem {Blade\+::\+Pipeline}, \hyperpage{77}
+    \subitem {Blade\+::\+Pipeline}, \hyperpage{79}
   \item {Assign\+Device\+To\+Player}
     \subitem {Blade\+::\+Input\+Manager}, \hyperpage{59}
 
@@ -109,121 +109,125 @@
     \subitem {Active\+Device\+Exists}, \hyperpage{58}
     \subitem {Assign\+Device\+To\+Player}, \hyperpage{59}
     \subitem {Device\+Pool\+Query\+Type}, \hyperpage{59}
-    \subitem {Enumerate\+Devices}, \hyperpage{59}
-    \subitem {Get\+Active\+Device}, \hyperpage{59}
-    \subitem {Initialize}, \hyperpage{60}
-    \subitem {Pooled\+Device\+Exists}, \hyperpage{60}
-    \subitem {Query\+All\+Key\+States}, \hyperpage{60}
-    \subitem {Query\+Key\+State}, \hyperpage{60}
-    \subitem {Query\+Mouse\+Button\+State}, \hyperpage{61}
-    \subitem {Query\+Mouse\+Movement}, \hyperpage{61}
-    \subitem {Query\+Mouse\+Movement\+Normalized}, \hyperpage{61}
-    \subitem {Query\+Mouse\+Position}, \hyperpage{61}
-    \subitem {Unassign\+Device}, \hyperpage{62}
-  \item {Blade\+::\+Input\+State}, \hyperpage{62}
-  \item {Blade\+::\+Joypad\+Input\+Component}, \hyperpage{63}
+    \subitem {Enumerate\+Devices}, \hyperpage{60}
+    \subitem {Get\+Active\+Device}, \hyperpage{60}
+    \subitem {Get\+Analog\+Stick\+Vector}, \hyperpage{60}
+    \subitem {Initialize}, \hyperpage{61}
+    \subitem {Pooled\+Device\+Exists}, \hyperpage{61}
+    \subitem {Query\+All\+Key\+States}, \hyperpage{61}
+    \subitem {Query\+Device\+All\+States}, \hyperpage{62}
+    \subitem {Query\+Device\+State}, \hyperpage{62}
+    \subitem {Query\+Key\+State}, \hyperpage{62}
+    \subitem {Query\+Mouse\+Button\+State}, \hyperpage{63}
+    \subitem {Query\+Mouse\+Movement}, \hyperpage{63}
+    \subitem {Query\+Mouse\+Movement\+Normalized}, \hyperpage{63}
+    \subitem {Query\+Mouse\+Position}, \hyperpage{63}
+    \subitem {Unassign\+Device}, \hyperpage{64}
     \subitem {Update}, \hyperpage{64}
-  \item {Blade\+::\+Keyboard\+Input}, \hyperpage{64}
-    \subitem {Query\+All\+Key\+States}, \hyperpage{65}
-    \subitem {Query\+Key\+State}, \hyperpage{65}
-  \item {Blade\+::\+Keyboard\+Input\+Component}, \hyperpage{65}
+  \item {Blade\+::\+Input\+State}, \hyperpage{64}
+  \item {Blade\+::\+Joypad\+Input\+Component}, \hyperpage{65}
     \subitem {Update}, \hyperpage{66}
-  \item {Blade\+::\+Keyframe$<$ T $>$}, \hyperpage{67}
-  \item {Blade\+::\+Light\+Component}, \hyperpage{67}
-  \item {Blade\+::\+Light\+System}, \hyperpage{68}
-    \subitem {Get\+Directional\+Light\+Descriptions}, \hyperpage{68}
-    \subitem {Get\+Point\+Light\+Descriptions}, \hyperpage{69}
-    \subitem {Get\+Spotlight\+Descriptions}, \hyperpage{69}
-    \subitem {Initialize}, \hyperpage{69}
-    \subitem {Process}, \hyperpage{69}
-    \subitem {Register\+Component}, \hyperpage{70}
-    \subitem {Unregister\+Component}, \hyperpage{70}
-  \item {Blade\+::\+Manifold\+Entry}, \hyperpage{70}
-  \item {Blade\+::\+Material}, \hyperpage{71}
+  \item {Blade\+::\+Keyboard\+Input}, \hyperpage{67}
+    \subitem {Query\+All\+Key\+States}, \hyperpage{67}
+    \subitem {Query\+Key\+State}, \hyperpage{67}
+  \item {Blade\+::\+Keyboard\+Input\+Component}, \hyperpage{68}
+    \subitem {Update}, \hyperpage{69}
+  \item {Blade\+::\+Keyframe$<$ T $>$}, \hyperpage{69}
+  \item {Blade\+::\+Light\+Component}, \hyperpage{70}
+  \item {Blade\+::\+Light\+System}, \hyperpage{70}
+    \subitem {Get\+Directional\+Light\+Descriptions}, \hyperpage{71}
+    \subitem {Get\+Point\+Light\+Descriptions}, \hyperpage{71}
+    \subitem {Get\+Spotlight\+Descriptions}, \hyperpage{71}
+    \subitem {Initialize}, \hyperpage{72}
+    \subitem {Process}, \hyperpage{72}
+    \subitem {Register\+Component}, \hyperpage{72}
+    \subitem {Unregister\+Component}, \hyperpage{73}
+  \item {Blade\+::\+Manifold\+Entry}, \hyperpage{73}
+  \item {Blade\+::\+Material}, \hyperpage{73}
   \item {Blade\+::\+Math\+Utils\+::\+Derivative}, \hyperpage{49}
   \item {Blade\+::\+Math\+Utils\+::\+Runge\+Kutta4\+Integrator}, 
-		\hyperpage{90}
-  \item {Blade\+::\+Math\+Utils\+::\+State}, \hyperpage{98}
-  \item {Blade\+::\+Mesh}, \hyperpage{71}
-  \item {Blade\+::\+Message$<$ T $>$}, \hyperpage{72}
-  \item {Blade\+::\+N\+CF}, \hyperpage{72}
-  \item {Blade\+::\+Network\+Manager}, \hyperpage{73}
-  \item {Blade\+::\+Network\+Message}, \hyperpage{73}
-  \item {Blade\+::\+Observer}, \hyperpage{74}
-  \item {Blade\+::\+Observer\+Subject}, \hyperpage{74}
-  \item {Blade\+::\+Ogg\+Vorbis\+Stream}, \hyperpage{75}
-  \item {Blade\+::\+Particle}, \hyperpage{75}
-  \item {Blade\+::\+Particle\+System}, \hyperpage{75}
-    \subitem {Initialize}, \hyperpage{76}
-    \subitem {Process}, \hyperpage{76}
+		\hyperpage{92}
+  \item {Blade\+::\+Math\+Utils\+::\+State}, \hyperpage{101}
+  \item {Blade\+::\+Mesh}, \hyperpage{74}
+  \item {Blade\+::\+Message$<$ T $>$}, \hyperpage{75}
+  \item {Blade\+::\+N\+CF}, \hyperpage{75}
+  \item {Blade\+::\+Network\+Manager}, \hyperpage{75}
+  \item {Blade\+::\+Network\+Message}, \hyperpage{76}
+  \item {Blade\+::\+Observer}, \hyperpage{76}
+  \item {Blade\+::\+Observer\+Subject}, \hyperpage{76}
+  \item {Blade\+::\+Ogg\+Vorbis\+Stream}, \hyperpage{77}
+  \item {Blade\+::\+Particle}, \hyperpage{77}
+  \item {Blade\+::\+Particle\+System}, \hyperpage{78}
+    \subitem {Initialize}, \hyperpage{78}
+    \subitem {Process}, \hyperpage{78}
   \item {Blade\+::\+Pipeline}
-    \subitem {Add\+Stage}, \hyperpage{77}
-    \subitem {Execute}, \hyperpage{77}
-  \item {Blade\+::\+Pipeline$<$ T, Tdata $>$}, \hyperpage{77}
-  \item {Blade\+::\+Pipeline\+Data}
-    \subitem {Get}, \hyperpage{79}
-    \subitem {Pipeline\+Data}, \hyperpage{78}
-  \item {Blade\+::\+Pipeline\+Data$<$ T $>$}, \hyperpage{78}
-  \item {Blade\+::\+Pipeline\+Stage}
+    \subitem {Add\+Stage}, \hyperpage{79}
     \subitem {Execute}, \hyperpage{80}
-    \subitem {Initialize}, \hyperpage{81}
-    \subitem {Pipeline\+Stage}, \hyperpage{80}
-  \item {Blade\+::\+Pipeline\+Stage$<$ T, Tdata $>$}, \hyperpage{79}
-  \item {Blade\+::\+Plane\+Collider}, \hyperpage{81}
-  \item {Blade\+::\+Point\+Light}, \hyperpage{82}
-  \item {Blade\+::\+Point\+Light\+Component}, \hyperpage{82}
-  \item {Blade\+::\+Point\+Light\+Desc}, \hyperpage{83}
-  \item {Blade\+::\+Ref\+Counted\+Container$<$ T $>$}, \hyperpage{83}
-  \item {Blade\+::\+Render\+Component}, \hyperpage{84}
-    \subitem {Get\+Material}, \hyperpage{85}
-    \subitem {Get\+Mesh}, \hyperpage{85}
-    \subitem {Render\+Component}, \hyperpage{84}
-    \subitem {Set\+Material}, \hyperpage{85}
-    \subitem {Set\+Mesh}, \hyperpage{85}
-  \item {Blade\+::\+Render\+State}, \hyperpage{86}
-  \item {Blade\+::\+Render\+State\+Manager}, \hyperpage{86}
-  \item {Blade\+::\+Render\+System}, \hyperpage{87}
-    \subitem {Initialize}, \hyperpage{87}
-    \subitem {Process}, \hyperpage{87}
-    \subitem {Register\+Component}, \hyperpage{88}
-    \subitem {Set\+Render\+Pass\+Pipeline}, \hyperpage{88}
-    \subitem {Unregister\+Component}, \hyperpage{88}
-  \item {Blade\+::\+Render\+Target}, \hyperpage{89}
-  \item {Blade\+::\+Resource}, \hyperpage{89}
-  \item {Blade\+::\+Resource\+Manager}, \hyperpage{90}
-  \item {Blade\+::\+Sample\+Playlist}, \hyperpage{90}
-  \item {Blade\+::\+Scene}, \hyperpage{91}
-  \item {Blade\+::\+Scene\+Manager}, \hyperpage{91}
-  \item {Blade\+::\+Serializable}, \hyperpage{92}
-  \item {Blade\+::\+Shader}, \hyperpage{92}
-  \item {Blade\+::\+Shader\+Program}, \hyperpage{92}
-  \item {Blade\+::\+Shader\+Program\+Desc}, \hyperpage{93}
-  \item {Blade\+::\+Shader\+Program\+Manager}, \hyperpage{93}
-  \item {Blade\+::\+Simulation\+Component}, \hyperpage{94}
-  \item {Blade\+::\+Simulation\+Component\+State}, \hyperpage{94}
-  \item {Blade\+::\+Simulation\+System}, \hyperpage{95}
-    \subitem {Initialize}, \hyperpage{95}
-    \subitem {Process}, \hyperpage{96}
-  \item {Blade\+::\+Socket}, \hyperpage{96}
-  \item {Blade\+::\+Spotlight}, \hyperpage{97}
-  \item {Blade\+::\+Spotlight\+Component}, \hyperpage{97}
-  \item {Blade\+::\+Spotlight\+Desc}, \hyperpage{98}
-  \item {Blade\+::\+Stream\+Playlist}, \hyperpage{99}
-  \item {Blade\+::\+System}, \hyperpage{99}
-    \subitem {Initialize}, \hyperpage{99}
-    \subitem {Process}, \hyperpage{100}
-  \item {Blade\+::\+Texture}, \hyperpage{100}
-  \item {Blade\+::\+Thread\+Pool}, \hyperpage{101}
-    \subitem {Initialize}, \hyperpage{101}
-  \item {Blade\+::\+Thumb\+Stick}, \hyperpage{101}
-  \item {Blade\+::\+Timer}, \hyperpage{102}
-  \item {Blade\+::\+V\+BO}, \hyperpage{102}
-  \item {Blade\+::\+Vertex}, \hyperpage{103}
-  \item {Blade\+::\+Win32\+Window}, \hyperpage{103}
-  \item {Blade\+::\+Window}, \hyperpage{104}
-  \item {Blade\+::\+Window\+Function\+Callbacks}, \hyperpage{105}
-  \item {Blade\+::\+Windowing\+Service}, \hyperpage{105}
-  \item {Blade\+::\+X\+Input\+Device}, \hyperpage{106}
+  \item {Blade\+::\+Pipeline$<$ T, Tdata $>$}, \hyperpage{79}
+  \item {Blade\+::\+Pipeline\+Data}
+    \subitem {Get}, \hyperpage{81}
+    \subitem {Pipeline\+Data}, \hyperpage{81}
+  \item {Blade\+::\+Pipeline\+Data$<$ T $>$}, \hyperpage{80}
+  \item {Blade\+::\+Pipeline\+Stage}
+    \subitem {Execute}, \hyperpage{82}
+    \subitem {Initialize}, \hyperpage{83}
+    \subitem {Pipeline\+Stage}, \hyperpage{82}
+  \item {Blade\+::\+Pipeline\+Stage$<$ T, Tdata $>$}, \hyperpage{81}
+  \item {Blade\+::\+Plane\+Collider}, \hyperpage{83}
+  \item {Blade\+::\+Point\+Light}, \hyperpage{84}
+  \item {Blade\+::\+Point\+Light\+Component}, \hyperpage{85}
+  \item {Blade\+::\+Point\+Light\+Desc}, \hyperpage{85}
+  \item {Blade\+::\+Ref\+Counted\+Container$<$ T $>$}, \hyperpage{86}
+  \item {Blade\+::\+Render\+Component}, \hyperpage{86}
+    \subitem {Get\+Material}, \hyperpage{87}
+    \subitem {Get\+Mesh}, \hyperpage{87}
+    \subitem {Render\+Component}, \hyperpage{87}
+    \subitem {Set\+Material}, \hyperpage{87}
+    \subitem {Set\+Mesh}, \hyperpage{88}
+  \item {Blade\+::\+Render\+State}, \hyperpage{88}
+  \item {Blade\+::\+Render\+State\+Manager}, \hyperpage{89}
+  \item {Blade\+::\+Render\+System}, \hyperpage{89}
+    \subitem {Initialize}, \hyperpage{90}
+    \subitem {Process}, \hyperpage{90}
+    \subitem {Register\+Component}, \hyperpage{90}
+    \subitem {Set\+Render\+Pass\+Pipeline}, \hyperpage{90}
+    \subitem {Unregister\+Component}, \hyperpage{91}
+  \item {Blade\+::\+Render\+Target}, \hyperpage{91}
+  \item {Blade\+::\+Resource}, \hyperpage{92}
+  \item {Blade\+::\+Resource\+Manager}, \hyperpage{92}
+  \item {Blade\+::\+Sample\+Playlist}, \hyperpage{93}
+  \item {Blade\+::\+Scene}, \hyperpage{93}
+  \item {Blade\+::\+Scene\+Manager}, \hyperpage{94}
+  \item {Blade\+::\+Serializable}, \hyperpage{94}
+  \item {Blade\+::\+Shader}, \hyperpage{94}
+  \item {Blade\+::\+Shader\+Program}, \hyperpage{95}
+  \item {Blade\+::\+Shader\+Program\+Desc}, \hyperpage{95}
+  \item {Blade\+::\+Shader\+Program\+Manager}, \hyperpage{96}
+  \item {Blade\+::\+Simulation\+Component}, \hyperpage{96}
+  \item {Blade\+::\+Simulation\+Component\+State}, \hyperpage{97}
+  \item {Blade\+::\+Simulation\+System}, \hyperpage{97}
+    \subitem {Initialize}, \hyperpage{98}
+    \subitem {Process}, \hyperpage{98}
+  \item {Blade\+::\+Socket}, \hyperpage{99}
+  \item {Blade\+::\+Spotlight}, \hyperpage{99}
+  \item {Blade\+::\+Spotlight\+Component}, \hyperpage{100}
+  \item {Blade\+::\+Spotlight\+Desc}, \hyperpage{100}
+  \item {Blade\+::\+Stream\+Playlist}, \hyperpage{101}
+  \item {Blade\+::\+System}, \hyperpage{101}
+    \subitem {Initialize}, \hyperpage{102}
+    \subitem {Process}, \hyperpage{102}
+  \item {Blade\+::\+Texture}, \hyperpage{103}
+  \item {Blade\+::\+Thread\+Pool}, \hyperpage{103}
+    \subitem {Initialize}, \hyperpage{103}
+  \item {Blade\+::\+Thumb\+Stick}, \hyperpage{104}
+  \item {Blade\+::\+Timer}, \hyperpage{104}
+  \item {Blade\+::\+V\+BO}, \hyperpage{105}
+  \item {Blade\+::\+Vertex}, \hyperpage{105}
+  \item {Blade\+::\+Win32\+Window}, \hyperpage{106}
+  \item {Blade\+::\+Window}, \hyperpage{106}
+  \item {Blade\+::\+Window\+Function\+Callbacks}, \hyperpage{107}
+  \item {Blade\+::\+Windowing\+Service}, \hyperpage{108}
+  \item {Blade\+::\+X\+Input\+Device}, \hyperpage{108}
 
   \indexspace
 
@@ -242,15 +246,15 @@
   \indexspace
 
   \item {Enumerate\+Devices}
-    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{59}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{60}
   \item {Execute}
-    \subitem {Blade\+::\+Pipeline}, \hyperpage{77}
-    \subitem {Blade\+::\+Pipeline\+Stage}, \hyperpage{80}
+    \subitem {Blade\+::\+Pipeline}, \hyperpage{80}
+    \subitem {Blade\+::\+Pipeline\+Stage}, \hyperpage{82}
 
   \indexspace
 
   \item {Get}
-    \subitem {Blade\+::\+Pipeline\+Data}, \hyperpage{79}
+    \subitem {Blade\+::\+Pipeline\+Data}, \hyperpage{81}
   \item {Get\+Active\+Camera}
     \subitem {Blade\+::\+Camera\+System}, \hyperpage{35}
   \item {Get\+Active\+Camera\+Projection\+Matrtix}
@@ -260,13 +264,15 @@
   \item {Get\+Active\+Camera\+Viewport}
     \subitem {Blade\+::\+Camera\+System}, \hyperpage{35}
   \item {Get\+Active\+Device}
-    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{59}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{60}
+  \item {Get\+Analog\+Stick\+Vector}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{60}
   \item {Get\+Camera}
     \subitem {Blade\+::\+Camera\+System}, \hyperpage{35}
   \item {Get\+Clipping\+Planes}
     \subitem {Blade\+::\+Camera\+Component}, \hyperpage{30}
   \item {Get\+Directional\+Light\+Descriptions}
-    \subitem {Blade\+::\+Light\+System}, \hyperpage{68}
+    \subitem {Blade\+::\+Light\+System}, \hyperpage{71}
   \item {Get\+Far\+Plane}
     \subitem {Blade\+::\+Camera\+Component}, \hyperpage{30}
   \item {Get\+Fov}
@@ -274,21 +280,21 @@
   \item {Get\+Id}
     \subitem {Blade\+::\+Component}, \hyperpage{39}
   \item {Get\+Material}
-    \subitem {Blade\+::\+Render\+Component}, \hyperpage{85}
+    \subitem {Blade\+::\+Render\+Component}, \hyperpage{87}
   \item {Get\+Mesh}
-    \subitem {Blade\+::\+Render\+Component}, \hyperpage{85}
+    \subitem {Blade\+::\+Render\+Component}, \hyperpage{87}
   \item {Get\+Near\+Plane}
     \subitem {Blade\+::\+Camera\+Component}, \hyperpage{30}
   \item {Get\+Parent}
     \subitem {Blade\+::\+Component}, \hyperpage{40}
   \item {Get\+Point\+Light\+Descriptions}
-    \subitem {Blade\+::\+Light\+System}, \hyperpage{69}
+    \subitem {Blade\+::\+Light\+System}, \hyperpage{71}
   \item {Get\+Projection\+Matrix}
     \subitem {Blade\+::\+Camera\+Component}, \hyperpage{31}
   \item {Get\+Rect}
     \subitem {Blade\+::\+Abstract\+Viewport}, \hyperpage{18}
   \item {Get\+Spotlight\+Descriptions}
-    \subitem {Blade\+::\+Light\+System}, \hyperpage{69}
+    \subitem {Blade\+::\+Light\+System}, \hyperpage{71}
   \item {Get\+Type}
     \subitem {Blade\+::\+Component}, \hyperpage{40}
   \item {Get\+View\+Matrix}
@@ -300,14 +306,14 @@
 
   \item {Initialize}
     \subitem {Blade\+::\+Behaviour\+System}, \hyperpage{25}
-    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{60}
-    \subitem {Blade\+::\+Light\+System}, \hyperpage{69}
-    \subitem {Blade\+::\+Particle\+System}, \hyperpage{76}
-    \subitem {Blade\+::\+Pipeline\+Stage}, \hyperpage{81}
-    \subitem {Blade\+::\+Render\+System}, \hyperpage{87}
-    \subitem {Blade\+::\+Simulation\+System}, \hyperpage{95}
-    \subitem {Blade\+::\+System}, \hyperpage{99}
-    \subitem {Blade\+::\+Thread\+Pool}, \hyperpage{101}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{61}
+    \subitem {Blade\+::\+Light\+System}, \hyperpage{72}
+    \subitem {Blade\+::\+Particle\+System}, \hyperpage{78}
+    \subitem {Blade\+::\+Pipeline\+Stage}, \hyperpage{83}
+    \subitem {Blade\+::\+Render\+System}, \hyperpage{90}
+    \subitem {Blade\+::\+Simulation\+System}, \hyperpage{98}
+    \subitem {Blade\+::\+System}, \hyperpage{102}
+    \subitem {Blade\+::\+Thread\+Pool}, \hyperpage{103}
 
   \indexspace
 
@@ -317,45 +323,49 @@
   \indexspace
 
   \item {Pipeline\+Data}
-    \subitem {Blade\+::\+Pipeline\+Data}, \hyperpage{78}
+    \subitem {Blade\+::\+Pipeline\+Data}, \hyperpage{81}
   \item {Pipeline\+Stage}
-    \subitem {Blade\+::\+Pipeline\+Stage}, \hyperpage{80}
+    \subitem {Blade\+::\+Pipeline\+Stage}, \hyperpage{82}
   \item {Pooled\+Device\+Exists}
-    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{60}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{61}
   \item {Process}
     \subitem {Blade\+::\+Behaviour\+System}, \hyperpage{25}
-    \subitem {Blade\+::\+Light\+System}, \hyperpage{69}
-    \subitem {Blade\+::\+Particle\+System}, \hyperpage{76}
-    \subitem {Blade\+::\+Render\+System}, \hyperpage{87}
-    \subitem {Blade\+::\+Simulation\+System}, \hyperpage{96}
-    \subitem {Blade\+::\+System}, \hyperpage{100}
+    \subitem {Blade\+::\+Light\+System}, \hyperpage{72}
+    \subitem {Blade\+::\+Particle\+System}, \hyperpage{78}
+    \subitem {Blade\+::\+Render\+System}, \hyperpage{90}
+    \subitem {Blade\+::\+Simulation\+System}, \hyperpage{98}
+    \subitem {Blade\+::\+System}, \hyperpage{102}
 
   \indexspace
 
   \item {Query\+All\+Key\+States}
-    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{60}
-    \subitem {Blade\+::\+Keyboard\+Input}, \hyperpage{65}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{61}
+    \subitem {Blade\+::\+Keyboard\+Input}, \hyperpage{67}
+  \item {Query\+Device\+All\+States}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{62}
+  \item {Query\+Device\+State}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{62}
   \item {Query\+Key\+State}
-    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{60}
-    \subitem {Blade\+::\+Keyboard\+Input}, \hyperpage{65}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{62}
+    \subitem {Blade\+::\+Keyboard\+Input}, \hyperpage{67}
   \item {Query\+Mouse\+Button\+State}
-    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{61}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{63}
   \item {Query\+Mouse\+Movement}
-    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{61}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{63}
   \item {Query\+Mouse\+Movement\+Normalized}
-    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{61}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{63}
   \item {Query\+Mouse\+Position}
-    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{61}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{63}
 
   \indexspace
 
   \item {Register\+Component}
     \subitem {Blade\+::\+Behaviour\+System}, \hyperpage{25}
     \subitem {Blade\+::\+Camera\+System}, \hyperpage{36}
-    \subitem {Blade\+::\+Light\+System}, \hyperpage{70}
-    \subitem {Blade\+::\+Render\+System}, \hyperpage{88}
+    \subitem {Blade\+::\+Light\+System}, \hyperpage{72}
+    \subitem {Blade\+::\+Render\+System}, \hyperpage{90}
   \item {Render\+Component}
-    \subitem {Blade\+::\+Render\+Component}, \hyperpage{84}
+    \subitem {Blade\+::\+Render\+Component}, \hyperpage{87}
 
   \indexspace
 
@@ -368,15 +378,15 @@
   \item {Set\+Fov}
     \subitem {Blade\+::\+Camera\+Component}, \hyperpage{32}
   \item {Set\+Material}
-    \subitem {Blade\+::\+Render\+Component}, \hyperpage{85}
+    \subitem {Blade\+::\+Render\+Component}, \hyperpage{87}
   \item {Set\+Mesh}
-    \subitem {Blade\+::\+Render\+Component}, \hyperpage{85}
+    \subitem {Blade\+::\+Render\+Component}, \hyperpage{88}
   \item {Set\+Near\+Plane}
     \subitem {Blade\+::\+Camera\+Component}, \hyperpage{33}
   \item {Set\+Rect}
     \subitem {Blade\+::\+Abstract\+Viewport}, \hyperpage{18}
   \item {Set\+Render\+Pass\+Pipeline}
-    \subitem {Blade\+::\+Render\+System}, \hyperpage{88}
+    \subitem {Blade\+::\+Render\+System}, \hyperpage{90}
   \item {Set\+View\+Matrix}
     \subitem {Blade\+::\+Camera\+Component}, \hyperpage{33}
   \item {Set\+Viewport}
@@ -385,17 +395,18 @@
   \indexspace
 
   \item {Unassign\+Device}
-    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{62}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{64}
   \item {Unregister\+Component}
     \subitem {Blade\+::\+Behaviour\+System}, \hyperpage{26}
     \subitem {Blade\+::\+Camera\+System}, \hyperpage{36}
-    \subitem {Blade\+::\+Light\+System}, \hyperpage{70}
-    \subitem {Blade\+::\+Render\+System}, \hyperpage{88}
+    \subitem {Blade\+::\+Light\+System}, \hyperpage{73}
+    \subitem {Blade\+::\+Render\+System}, \hyperpage{91}
   \item {Update}
     \subitem {Blade\+::\+Behaviour\+Component}, \hyperpage{24}
     \subitem {Blade\+::\+Emitter\+Component}, \hyperpage{51}
     \subitem {Blade\+::\+Input\+Component}, \hyperpage{56}
-    \subitem {Blade\+::\+Joypad\+Input\+Component}, \hyperpage{64}
-    \subitem {Blade\+::\+Keyboard\+Input\+Component}, \hyperpage{66}
+    \subitem {Blade\+::\+Input\+Manager}, \hyperpage{64}
+    \subitem {Blade\+::\+Joypad\+Input\+Component}, \hyperpage{66}
+    \subitem {Blade\+::\+Keyboard\+Input\+Component}, \hyperpage{69}
 
 \end{theindex}

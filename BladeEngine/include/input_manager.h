@@ -43,10 +43,10 @@ namespace Blade
 	enum class MouseButton { LEFT = 0, RIGHT = 1 };
 
 	class InputDevice;
-	/*
-	* \brief InputManager class of the engine. This class holds and deals with all the external inputs.
-	* It supports a polling function to query the current state of a joypad and other helper functions
-	* to find the change in states between updates.
+	/**
+	\brief InputManager class of the engine. This class holds and deals with all the external inputs.
+	It supports a polling function to query the current state of a joypad and other helper functions
+	to find the change in states between updates.
 	*/
 	class InputManager
 	{
@@ -61,33 +61,33 @@ namespace Blade
 		*/
 		std::map<JoypadNumber, InputDevice*> m_ActiveDevices;
 
-		/*
+		/**
 		\brief Update the active devices
 		*/
 		void UpdateActiveDevices();
 
-		/*
+		/**
 		\brief The mouse position.
 		*/
 		Vec2f m_MousePos{ 0.0f };
 
-		/*
+		/**
 		\brief The previous mouse position.
 		*/
 		Vec2f m_MousePosPrevious{ 0.0f };
 
-		/*
+		/**
 		\brief The amount of change of mouse movement between an update and another.
 		*/
 		Vec2f m_MouseMovement{ 0.0f, 0.0f };
 
-		/*
+		/**
 		\brief The mouse buttons. 
 		*/
 		bool m_MouseButton[2]{ false, false };
 
 	public:
-		/*
+		/**
 		\brief The input manager destructor.
 		*/
 		~InputManager();
@@ -219,14 +219,14 @@ namespace Blade
 		InputDevice* GetActiveDevice(JoypadNumber joypadNumber);
 
 
-		/*
+		/**
 		\brief Update the position of the mouse.
 		\param mousepos A vector that represents the mouse position relative to window.
 		\details This method is been called inside the window update loop.
 		*/
 		void UpdateMousePos(Vec2i mousepos);
 
-		/*
+		/**
 		\brief Update the state of a button of the mouse.
 		\param state The button of the mouse that has changed (left of right)
 		\param value The boolean value associate with that flag: TRUE pressed.

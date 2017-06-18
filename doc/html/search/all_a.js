@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['manifoldentry',['ManifoldEntry',['../struct_blade_1_1_manifold_entry.html',1,'Blade']]],
-  ['material',['Material',['../struct_blade_1_1_material.html',1,'Blade']]],
-  ['mesh',['Mesh',['../class_blade_1_1_mesh.html',1,'Blade']]],
-  ['message',['Message',['../class_blade_1_1_message.html',1,'Blade']]],
-  ['message_3c_20int_20_3e',['Message&lt; int &gt;',['../class_blade_1_1_message.html',1,'Blade']]]
+  ['lightcomponent',['LightComponent',['../class_blade_1_1_light_component.html',1,'Blade']]],
+  ['lightsystem',['LightSystem',['../class_blade_1_1_light_system.html',1,'Blade']]],
+  ['lighttype',['LightType',['../namespace_blade.html#ab0c52aa137a4f43360f7440da56e6b03',1,'Blade']]]
 ];

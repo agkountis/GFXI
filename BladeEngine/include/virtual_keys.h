@@ -9,7 +9,7 @@
 
 namespace Blade
 {
-	/*
+	/**
 	\brief Keyboard key identifier.
 	*/
 	enum VirtualKey : int

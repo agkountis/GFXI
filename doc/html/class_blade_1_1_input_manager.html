@@ -69,22 +69,25 @@ $(function() {
 <div class="title">Blade::InputManager Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_blade_1_1_input_manager.html" title="InputManager class of the engine. This class holds and deals with all the external inputs...">InputManager</a> class of the engine. This class holds and deals with all the external inputs. It supports a polling function to query the current state of a joypad and other helper functions to find the change in states between updates.  
+ <a href="class_blade_1_1_input_manager.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="input__manager_8h_source.html">input_manager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4670405f916ccabf83465154f3649d17"><td class="memItemLeft" align="right" valign="top"><a id="a4670405f916ccabf83465154f3649d17"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMouseButtonState</b> (MouseButton state, bool value)</td></tr>
-<tr class="separator:a4670405f916ccabf83465154f3649d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61209430d6682ade700cc9fa89c7f50e"><td class="memItemLeft" align="right" valign="top"><a id="a61209430d6682ade700cc9fa89c7f50e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateMousePos</b> (Vec2i mousepos)</td></tr>
-<tr class="separator:a61209430d6682ade700cc9fa89c7f50e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97307f47638f62a6c9736675a6906f14"><td class="memItemLeft" align="right" valign="top"><a id="a97307f47638f62a6c9736675a6906f14"></a>
-Vec2f&#160;</td><td class="memItemRight" valign="bottom"><b>GetAnalogStickVector</b> (JoypadNumber player, InputSensor sensor)</td></tr>
-<tr class="separator:a97307f47638f62a6c9736675a6906f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d8e424cb1de012c830296a0812ceebc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a8d8e424cb1de012c830296a0812ceebc">QueryKeyState</a> (VirtualKey key) const noexcept</td></tr>
+<tr class="memitem:afdd309a456f24335b01544db7d55f400"><td class="memItemLeft" align="right" valign="top"><a id="afdd309a456f24335b01544db7d55f400"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#afdd309a456f24335b01544db7d55f400">~InputManager</a> ()</td></tr>
+<tr class="memdesc:afdd309a456f24335b01544db7d55f400"><td class="mdescLeft">&#160;</td><td class="mdescRight">The input manager destructor. <br /></td></tr>
+<tr class="separator:afdd309a456f24335b01544db7d55f400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab41a4d4a8352903e18ba578316c36dc7"><td class="memItemLeft" align="right" valign="top">Vec2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#ab41a4d4a8352903e18ba578316c36dc7">GetAnalogStickVector</a> (JoypadNumber joypadNumber, <a class="el" href="namespace_blade.html#a1ecca198b7e0afbe43139ec2b0db937c">InputSensor</a> sensor)</td></tr>
+<tr class="memdesc:ab41a4d4a8352903e18ba578316c36dc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector indicating the position of the analog stick requested.  <a href="#ab41a4d4a8352903e18ba578316c36dc7">More...</a><br /></td></tr>
+<tr class="separator:ab41a4d4a8352903e18ba578316c36dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d8e424cb1de012c830296a0812ceebc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a8d8e424cb1de012c830296a0812ceebc">QueryKeyState</a> (<a class="el" href="namespace_blade.html#a15d9bde4921fb2a9a953f8d97ea49d1c">VirtualKey</a> key) const noexcept</td></tr>
 <tr class="memdesc:a8d8e424cb1de012c830296a0812ceebc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query the keyboard device for the state of a key.  <a href="#a8d8e424cb1de012c830296a0812ceebc">More...</a><br /></td></tr>
 <tr class="separator:a8d8e424cb1de012c830296a0812ceebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6223ce5641fedc88d8e8591deb73ac90"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a6223ce5641fedc88d8e8591deb73ac90">QueryAllKeyStates</a> (std::map&lt; VirtualKey, bool &gt; &amp;destMap) const noexcept</td></tr>
+<tr class="memitem:a6223ce5641fedc88d8e8591deb73ac90"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a6223ce5641fedc88d8e8591deb73ac90">QueryAllKeyStates</a> (std::map&lt; <a class="el" href="namespace_blade.html#a15d9bde4921fb2a9a953f8d97ea49d1c">VirtualKey</a>, bool &gt; &amp;destMap) const noexcept</td></tr>
 <tr class="memdesc:a6223ce5641fedc88d8e8591deb73ac90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query the Keyboard device for the state of ALL keys associated to the device.  <a href="#a6223ce5641fedc88d8e8591deb73ac90">More...</a><br /></td></tr>
 <tr class="separator:a6223ce5641fedc88d8e8591deb73ac90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1fe795118afeb4642342567d3e27b3f"><td class="memItemLeft" align="right" valign="top">Vec2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#ab1fe795118afeb4642342567d3e27b3f">QueryMouseMovement</a> ()</td></tr>
@@ -99,17 +102,14 @@ Vec2f&#160;</td><td class="memItemRight" valign="bottom"><b>GetAnalogStickVector
 <tr class="memitem:ad2537487a4c3c80e7eb6b8c0ea37b09b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#ad2537487a4c3c80e7eb6b8c0ea37b09b">QueryMouseButtonState</a> (MouseButton button)</td></tr>
 <tr class="memdesc:ad2537487a4c3c80e7eb6b8c0ea37b09b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query the state of the mouse buttons (providing an enum per button)  <a href="#ad2537487a4c3c80e7eb6b8c0ea37b09b">More...</a><br /></td></tr>
 <tr class="separator:ad2537487a4c3c80e7eb6b8c0ea37b09b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94dc87364eb3e84cbe56906e483c2b5b"><td class="memItemLeft" align="right" valign="top"><a id="a94dc87364eb3e84cbe56906e483c2b5b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a94dc87364eb3e84cbe56906e483c2b5b">QueryDeviceState</a> (JoypadNumber player, InputSensor sensor)</td></tr>
-<tr class="memdesc:a94dc87364eb3e84cbe56906e483c2b5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query the state of a sensor on an active pad linked to player. <br /></td></tr>
-<tr class="separator:a94dc87364eb3e84cbe56906e483c2b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefed17ef43650b20e93f23e5e08c8e89"><td class="memItemLeft" align="right" valign="top"><a id="aefed17ef43650b20e93f23e5e08c8e89"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#aefed17ef43650b20e93f23e5e08c8e89">QueryDeviceAllStates</a> (JoypadNumber player, std::map&lt; InputSensor, bool &gt; &amp;map)</td></tr>
-<tr class="memdesc:aefed17ef43650b20e93f23e5e08c8e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query the input states of sensors on an active device linked to player, return in supplied map. <br /></td></tr>
-<tr class="separator:aefed17ef43650b20e93f23e5e08c8e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1184a42c2c6b0f96d4169936090f9480"><td class="memItemLeft" align="right" valign="top"><a id="a1184a42c2c6b0f96d4169936090f9480"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a1184a42c2c6b0f96d4169936090f9480">Update</a> (float deltaTime)</td></tr>
-<tr class="memdesc:a1184a42c2c6b0f96d4169936090f9480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the states of managed input devices, and re-enumerate input devices. <br /></td></tr>
+<tr class="memitem:aeeafae24c87fd12586942eba26956807"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#aeeafae24c87fd12586942eba26956807">QueryDeviceState</a> (JoypadNumber joypadNumber, <a class="el" href="namespace_blade.html#a1ecca198b7e0afbe43139ec2b0db937c">InputSensor</a> sensor)</td></tr>
+<tr class="memdesc:aeeafae24c87fd12586942eba26956807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query the state of a sensor on an active pad linked.  <a href="#aeeafae24c87fd12586942eba26956807">More...</a><br /></td></tr>
+<tr class="separator:aeeafae24c87fd12586942eba26956807"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac07153a9c34d35a445ede6c89aa6cbf3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#ac07153a9c34d35a445ede6c89aa6cbf3">QueryDeviceAllStates</a> (JoypadNumber joypadNumber, std::map&lt; <a class="el" href="namespace_blade.html#a1ecca198b7e0afbe43139ec2b0db937c">InputSensor</a>, bool &gt; &amp;map)</td></tr>
+<tr class="memdesc:ac07153a9c34d35a445ede6c89aa6cbf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query the input states of sensors on an active device linked to player, return in supplied map.  <a href="#ac07153a9c34d35a445ede6c89aa6cbf3">More...</a><br /></td></tr>
+<tr class="separator:ac07153a9c34d35a445ede6c89aa6cbf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1184a42c2c6b0f96d4169936090f9480"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a1184a42c2c6b0f96d4169936090f9480">Update</a> (float deltaTime)</td></tr>
+<tr class="memdesc:a1184a42c2c6b0f96d4169936090f9480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the states of managed input devices, and re-enumerate input devices.  <a href="#a1184a42c2c6b0f96d4169936090f9480">More...</a><br /></td></tr>
 <tr class="separator:a1184a42c2c6b0f96d4169936090f9480"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a979db0aea29e22ed95c2642649922a41"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a979db0aea29e22ed95c2642649922a41">Initialize</a> () noexcept</td></tr>
 <tr class="memdesc:a979db0aea29e22ed95c2642649922a41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the input manager.  <a href="#a979db0aea29e22ed95c2642649922a41">More...</a><br /></td></tr>
@@ -126,17 +126,25 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a6aadb5a4fd8ccfe2de69c1f2d62df37d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a6aadb5a4fd8ccfe2de69c1f2d62df37d">ActiveDeviceExists</a> (int deviceId)</td></tr>
 <tr class="memdesc:a6aadb5a4fd8ccfe2de69c1f2d62df37d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search the active device map for a device with id equal to deviceId.  <a href="#a6aadb5a4fd8ccfe2de69c1f2d62df37d">More...</a><br /></td></tr>
 <tr class="separator:a6aadb5a4fd8ccfe2de69c1f2d62df37d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c7e8d968e53123e3077c2386eaac7ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a1c7e8d968e53123e3077c2386eaac7ae">AssignDeviceToPlayer</a> (JoypadNumber playerID, int deviceNumber)</td></tr>
-<tr class="memdesc:a1c7e8d968e53123e3077c2386eaac7ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns a player to an input device.  <a href="#a1c7e8d968e53123e3077c2386eaac7ae">More...</a><br /></td></tr>
-<tr class="separator:a1c7e8d968e53123e3077c2386eaac7ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13f1624084d79930b4ad6c6615277a5b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a13f1624084d79930b4ad6c6615277a5b">UnassignDevice</a> (JoypadNumber playerID)</td></tr>
-<tr class="memdesc:a13f1624084d79930b4ad6c6615277a5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unassigns an input device from a player (by player ID).  <a href="#a13f1624084d79930b4ad6c6615277a5b">More...</a><br /></td></tr>
-<tr class="separator:a13f1624084d79930b4ad6c6615277a5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b5863fec63f8e322476cd1a4a4292dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_blade_1_1_input_device.html">InputDevice</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a8b5863fec63f8e322476cd1a4a4292dc">GetActiveDevice</a> (JoypadNumber playerID)</td></tr>
-<tr class="memdesc:a8b5863fec63f8e322476cd1a4a4292dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an active (not in the pool) assigned input device, searched by player.  <a href="#a8b5863fec63f8e322476cd1a4a4292dc">More...</a><br /></td></tr>
-<tr class="separator:a8b5863fec63f8e322476cd1a4a4292dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5369c3110e39e5b3d01349ce7aa676ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a5369c3110e39e5b3d01349ce7aa676ed">AssignDeviceToPlayer</a> (JoypadNumber joypadNumber, int deviceNumber)</td></tr>
+<tr class="memdesc:a5369c3110e39e5b3d01349ce7aa676ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns a player to an input device.  <a href="#a5369c3110e39e5b3d01349ce7aa676ed">More...</a><br /></td></tr>
+<tr class="separator:a5369c3110e39e5b3d01349ce7aa676ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab436b8828eb3022334b544f8e201249e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#ab436b8828eb3022334b544f8e201249e">UnassignDevice</a> (JoypadNumber joypadNumber)</td></tr>
+<tr class="memdesc:ab436b8828eb3022334b544f8e201249e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unassigns an input device from a player (by player ID)  <a href="#ab436b8828eb3022334b544f8e201249e">More...</a><br /></td></tr>
+<tr class="separator:ab436b8828eb3022334b544f8e201249e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7047c9533684d365fb3c61c10911c8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_blade_1_1_input_device.html">InputDevice</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#af7047c9533684d365fb3c61c10911c8c">GetActiveDevice</a> (JoypadNumber joypadNumber)</td></tr>
+<tr class="memdesc:af7047c9533684d365fb3c61c10911c8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an active (not in the pool) assigned input device, searched by player.  <a href="#af7047c9533684d365fb3c61c10911c8c">More...</a><br /></td></tr>
+<tr class="separator:af7047c9533684d365fb3c61c10911c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61209430d6682ade700cc9fa89c7f50e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a61209430d6682ade700cc9fa89c7f50e">UpdateMousePos</a> (Vec2i mousepos)</td></tr>
+<tr class="memdesc:a61209430d6682ade700cc9fa89c7f50e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the position of the mouse.  <a href="#a61209430d6682ade700cc9fa89c7f50e">More...</a><br /></td></tr>
+<tr class="separator:a61209430d6682ade700cc9fa89c7f50e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4670405f916ccabf83465154f3649d17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_blade_1_1_input_manager.html#a4670405f916ccabf83465154f3649d17">SetMouseButtonState</a> (MouseButton state, bool value)</td></tr>
+<tr class="memdesc:a4670405f916ccabf83465154f3649d17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the state of a button of the mouse.  <a href="#a4670405f916ccabf83465154f3649d17">More...</a><br /></td></tr>
+<tr class="separator:a4670405f916ccabf83465154f3649d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_blade_1_1_input_manager.html" title="InputManager class of the engine. This class holds and deals with all the external inputs...">InputManager</a> class of the engine. This class holds and deals with all the external inputs. It supports a polling function to query the current state of a joypad and other helper functions to find the change in states between updates. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a6aadb5a4fd8ccfe2de69c1f2d62df37d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6aadb5a4fd8ccfe2de69c1f2d62df37d">&#9670;&nbsp;</a></span>ActiveDeviceExists()</h2>
 
@@ -154,12 +162,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Search the active device map for a device with id equal to deviceId. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deviceId</td><td>The device number you need to find in the map. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the device is found, otherwise false </dd></dl>
 
 </div>
 </div>
-<a id="a1c7e8d968e53123e3077c2386eaac7ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c7e8d968e53123e3077c2386eaac7ae">&#9670;&nbsp;</a></span>AssignDeviceToPlayer()</h2>
+<a id="a5369c3110e39e5b3d01349ce7aa676ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5369c3110e39e5b3d01349ce7aa676ed">&#9670;&nbsp;</a></span>AssignDeviceToPlayer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -168,7 +182,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td class="memname">bool Blade::InputManager::AssignDeviceToPlayer </td>
           <td>(</td>
           <td class="paramtype">JoypadNumber&#160;</td>
-          <td class="paramname"><em>playerID</em>, </td>
+          <td class="paramname"><em>joypadNumber</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -185,6 +199,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Assigns a player to an input device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joypadNumber</td><td>The joy pad number. </td></tr>
+    <tr><td class="paramname">deviceNumber</td><td>The number of the device from the pool. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful, false otherwise </dd></dl>
 
 </div>
@@ -206,6 +227,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Query a device pool for its type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deviceId</td><td>The device number. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>DeviceType enum of the device in the pool denoted by devIndex </dd></dl>
 <dl class="section remark"><dt>Remarks</dt><dd>If the device is not found, or an error has occurred, DEVTYPE_ERROR is returned </dd></dl>
 
@@ -239,8 +266,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a8b5863fec63f8e322476cd1a4a4292dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b5863fec63f8e322476cd1a4a4292dc">&#9670;&nbsp;</a></span>GetActiveDevice()</h2>
+<a id="af7047c9533684d365fb3c61c10911c8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7047c9533684d365fb3c61c10911c8c">&#9670;&nbsp;</a></span>GetActiveDevice()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -249,14 +276,58 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td class="memname"><a class="el" href="class_blade_1_1_input_device.html">InputDevice</a> * Blade::InputManager::GetActiveDevice </td>
           <td>(</td>
           <td class="paramtype">JoypadNumber&#160;</td>
-          <td class="paramname"><em>playerID</em></td><td>)</td>
+          <td class="paramname"><em>joypadNumber</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Returns an active (not in the pool) assigned input device, searched by player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joypadNumber</td><td>The number of the joy pad number. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>Active input device for player id, nullptr otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ab41a4d4a8352903e18ba578316c36dc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab41a4d4a8352903e18ba578316c36dc7">&#9670;&nbsp;</a></span>GetAnalogStickVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vec2f Blade::InputManager::GetAnalogStickVector </td>
+          <td>(</td>
+          <td class="paramtype">JoypadNumber&#160;</td>
+          <td class="paramname"><em>joypadNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_blade.html#a1ecca198b7e0afbe43139ec2b0db937c">InputSensor</a>&#160;</td>
+          <td class="paramname"><em>sensor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a vector indicating the position of the analog stick requested. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joypadNumber</td><td>The joypad number. </td></tr>
+    <tr><td class="paramname">sensor</td><td>The stick that need to be checked </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The vector that represent the stick position normalized outside dead zones. </dd></dl>
 
 </div>
 </div>
@@ -305,6 +376,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Search the device pool for a device with id equal to deviceId. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deviceID</td><td>The device number. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the device is found, otherwise false </dd></dl>
 
 </div>
@@ -321,7 +398,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">bool Blade::InputManager::QueryAllKeyStates </td>
           <td>(</td>
-          <td class="paramtype">std::map&lt; VirtualKey, bool &gt; &amp;&#160;</td>
+          <td class="paramtype">std::map&lt; <a class="el" href="namespace_blade.html#a15d9bde4921fb2a9a953f8d97ea49d1c">VirtualKey</a>, bool &gt; &amp;&#160;</td>
           <td class="paramname"><em>destMap</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -334,7 +411,89 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Query the Keyboard device for the state of ALL keys associated to the device. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map</td><td>The reference to a map of all keyboard states. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ac07153a9c34d35a445ede6c89aa6cbf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac07153a9c34d35a445ede6c89aa6cbf3">&#9670;&nbsp;</a></span>QueryDeviceAllStates()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Blade::InputManager::QueryDeviceAllStates </td>
+          <td>(</td>
+          <td class="paramtype">JoypadNumber&#160;</td>
+          <td class="paramname"><em>joypadNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; <a class="el" href="namespace_blade.html#a1ecca198b7e0afbe43139ec2b0db937c">InputSensor</a>, bool &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Query the input states of sensors on an active device linked to player, return in supplied map. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joypadNumber</td><td>The queried joypad number. </td></tr>
+    <tr><td class="paramname">map</td><td>A reference to a map of the state of the joypad. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if the JoypadNumber is active, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="aeeafae24c87fd12586942eba26956807"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeafae24c87fd12586942eba26956807">&#9670;&nbsp;</a></span>QueryDeviceState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Blade::InputManager::QueryDeviceState </td>
+          <td>(</td>
+          <td class="paramtype">JoypadNumber&#160;</td>
+          <td class="paramname"><em>joypadNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_blade.html#a1ecca198b7e0afbe43139ec2b0db937c">InputSensor</a>&#160;</td>
+          <td class="paramname"><em>sensor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Query the state of a sensor on an active pad linked. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joypadNumber</td><td>The queried joypad number </td></tr>
+    <tr><td class="paramname">sensor</td><td>The sensor to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if the the sensor is active (button pressed, stick out of the deadzone), FALSE otherwise. </dd></dl>
 
 </div>
 </div>
@@ -350,7 +509,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">bool Blade::InputManager::QueryKeyState </td>
           <td>(</td>
-          <td class="paramtype">VirtualKey&#160;</td>
+          <td class="paramtype"><a class="el" href="namespace_blade.html#a15d9bde4921fb2a9a953f8d97ea49d1c">VirtualKey</a>&#160;</td>
           <td class="paramname"><em>key</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -363,6 +522,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Query the keyboard device for the state of a key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>A keyboard key. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the key is a PRESSED state (down), false otherwise </dd></dl>
 
 </div>
@@ -384,6 +549,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Query the state of the mouse buttons (providing an enum per button) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">button</td><td>The mouse button </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>True if pressed, false otherwise </dd></dl>
 
 </div>
@@ -456,8 +627,46 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a13f1624084d79930b4ad6c6615277a5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13f1624084d79930b4ad6c6615277a5b">&#9670;&nbsp;</a></span>UnassignDevice()</h2>
+<a id="a4670405f916ccabf83465154f3649d17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4670405f916ccabf83465154f3649d17">&#9670;&nbsp;</a></span>SetMouseButtonState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::InputManager::SetMouseButtonState </td>
+          <td>(</td>
+          <td class="paramtype">MouseButton&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the state of a button of the mouse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>The button of the mouse that has changed (left of right) </td></tr>
+    <tr><td class="paramname">value</td><td>The boolean value associate with that flag: TRUE pressed.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This method is been called inside the window update loop. </p>
+
+</div>
+</div>
+<a id="ab436b8828eb3022334b544f8e201249e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab436b8828eb3022334b544f8e201249e">&#9670;&nbsp;</a></span>UnassignDevice()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -466,14 +675,73 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td class="memname">bool Blade::InputManager::UnassignDevice </td>
           <td>(</td>
           <td class="paramtype">JoypadNumber&#160;</td>
-          <td class="paramname"><em>playerID</em></td><td>)</td>
+          <td class="paramname"><em>joypadNumber</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unassigns an input device from a player (by player ID). </p>
+<p>Unassigns an input device from a player (by player ID) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joypadNumber</td><td>The number of the joy pad player number. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>Destroy the association between player and device, and mark device as inactive </dd></dl>
+
+</div>
+</div>
+<a id="a1184a42c2c6b0f96d4169936090f9480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1184a42c2c6b0f96d4169936090f9480">&#9670;&nbsp;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::InputManager::Update </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>deltaTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the states of managed input devices, and re-enumerate input devices. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>The delta time. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a61209430d6682ade700cc9fa89c7f50e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61209430d6682ade700cc9fa89c7f50e">&#9670;&nbsp;</a></span>UpdateMousePos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Blade::InputManager::UpdateMousePos </td>
+          <td>(</td>
+          <td class="paramtype">Vec2i&#160;</td>
+          <td class="paramname"><em>mousepos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the position of the mouse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mousepos</td><td>A vector that represents the mouse position relative to window.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This method is been called inside the window update loop. </p>
 
 </div>
 </div>

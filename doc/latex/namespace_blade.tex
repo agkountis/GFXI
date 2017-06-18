@@ -101,7 +101,7 @@ class \hyperlink{class_blade_1_1_input_component}{Input\+Component}
 class \hyperlink{class_blade_1_1_input_device}{Input\+Device}
 \item 
 class \hyperlink{class_blade_1_1_input_manager}{Input\+Manager}
-\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_blade_1_1_input_manager}{Input\+Manager} class of the engine. This class holds and deals with all the external inputs. It supports a polling function to query the current state of a joypad and other helper functions to find the change in states between updates. \end{DoxyCompactList}\item 
 struct \hyperlink{struct_blade_1_1_input_state}{Input\+State}
 \begin{DoxyCompactList}\small\item\em \hyperlink{struct_blade_1_1_input_state}{Input\+State} describes the current state of a device. \end{DoxyCompactList}\item 
 class \hyperlink{class_blade_1_1_joypad_input_component}{Joypad\+Input\+Component}
@@ -225,7 +225,7 @@ struct \hyperlink{struct_blade_1_1_window_function_callbacks}{Window\+Function\+
 class \hyperlink{class_blade_1_1_windowing_service}{Windowing\+Service}
 \item 
 class \hyperlink{class_blade_1_1_x_input_device}{X\+Input\+Device}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em X\+Input Device class. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
@@ -401,8 +401,7 @@ enum {\bfseries Mouse\+Button} \{ {\bfseries L\+E\+FT} = 0,
 {\bfseries R\+I\+G\+HT} = 1
  \}
 \item 
-\mbox{\Hypertarget{namespace_blade_a1ecca198b7e0afbe43139ec2b0db937c}\label{namespace_blade_a1ecca198b7e0afbe43139ec2b0db937c}} 
-enum {\bfseries Input\+Sensor} \{ \newline
+enum \hyperlink{namespace_blade_a1ecca198b7e0afbe43139ec2b0db937c}{Input\+Sensor} \{ \newline
 {\bfseries B\+T\+N\+\_\+\+F\+A\+C\+E\+\_\+1} = J\+O\+Y\+B\+T\+N\+\_\+\+F\+A\+C\+E1, 
 {\bfseries B\+T\+N\+\_\+\+F\+A\+C\+E\+\_\+2} = J\+O\+Y\+B\+T\+N\+\_\+\+F\+A\+C\+E2, 
 {\bfseries B\+T\+N\+\_\+\+F\+A\+C\+E\+\_\+3} = J\+O\+Y\+B\+T\+N\+\_\+\+F\+A\+C\+E3, 
@@ -425,7 +424,7 @@ enum {\bfseries Input\+Sensor} \{ \newline
 \newline
 {\bfseries S\+T\+I\+C\+K\+\_\+\+L\+E\+FT}, 
 {\bfseries S\+T\+I\+C\+K\+\_\+\+R\+I\+G\+HT}
- \}
+ \}\begin{DoxyCompactList}\small\item\em Enumeration for input device buttons (digital values) \end{DoxyCompactList}
 \item 
 \mbox{\Hypertarget{namespace_blade_ab0c52aa137a4f43360f7440da56e6b03}\label{namespace_blade_ab0c52aa137a4f43360f7440da56e6b03}} 
 enum \hyperlink{namespace_blade_ab0c52aa137a4f43360f7440da56e6b03}{Light\+Type} \{ {\bfseries P\+O\+I\+NT}, 
@@ -516,7 +515,7 @@ enum {\bfseries Primitive\+Topology} \{ {\bfseries T\+R\+I\+A\+N\+G\+L\+E\+\_\+\
  \}
 \item 
 \mbox{\Hypertarget{namespace_blade_a15d9bde4921fb2a9a953f8d97ea49d1c}\label{namespace_blade_a15d9bde4921fb2a9a953f8d97ea49d1c}} 
-enum {\bfseries Virtual\+Key} \+: int \{ \newline
+enum \hyperlink{namespace_blade_a15d9bde4921fb2a9a953f8d97ea49d1c}{Virtual\+Key} \+: int \{ \newline
 {\bfseries K\+E\+Y\+\_\+\+B\+A\+C\+K\+S\+P\+A\+CE} = V\+K\+\_\+\+B\+A\+CK, 
 {\bfseries K\+E\+Y\+\_\+\+T\+AB} = V\+K\+\_\+\+T\+AB, 
 {\bfseries K\+E\+Y\+\_\+\+R\+E\+T\+U\+RN} = V\+K\+\_\+\+R\+E\+T\+U\+RN, 
@@ -648,7 +647,7 @@ enum {\bfseries Virtual\+Key} \+: int \{ \newline
 {\bfseries K\+E\+Y\+\_\+\+W\+I\+N\+\_\+R} = V\+K\+\_\+\+R\+W\+IN, 
 \newline
 {\bfseries K\+E\+Y\+\_\+\+A\+P\+PS} = V\+K\+\_\+\+A\+P\+PS
- \}
+ \}\begin{DoxyCompactList}\small\item\em Keyboard key identifier. \end{DoxyCompactList}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -660,3 +659,16 @@ bool {\bfseries Attach\+Current\+Thread\+To\+Core} (unsigned int core\+Number)
 
 \subsection{Detailed Description}
 Key values for keyboard input. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespace_blade_a1ecca198b7e0afbe43139ec2b0db937c}\label{namespace_blade_a1ecca198b7e0afbe43139ec2b0db937c}} 
+\index{Blade@{Blade}!Input\+Sensor@{Input\+Sensor}}
+\index{Input\+Sensor@{Input\+Sensor}!Blade@{Blade}}
+\subsubsection{\texorpdfstring{Input\+Sensor}{InputSensor}}
+{\footnotesize\ttfamily enum \hyperlink{namespace_blade_a1ecca198b7e0afbe43139ec2b0db937c}{Blade\+::\+Input\+Sensor}}
+
+
+
+Enumeration for input device buttons (digital values) 
+
+Uses bit flags defined in the device to for mappings where available 

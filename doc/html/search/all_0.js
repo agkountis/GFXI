@@ -5,7 +5,7 @@ var searchData=
   ['addstage',['AddStage',['../class_blade_1_1_pipeline.html#a9fb99991044731f11512623dee4f1879',1,'Blade::Pipeline']]],
   ['animation',['Animation',['../class_blade_1_1_animation.html',1,'Blade']]],
   ['application',['Application',['../class_blade_1_1_application.html',1,'Blade']]],
-  ['assigndevicetoplayer',['AssignDeviceToPlayer',['../class_blade_1_1_input_manager.html#a1c7e8d968e53123e3077c2386eaac7ae',1,'Blade::InputManager']]],
+  ['assigndevicetoplayer',['AssignDeviceToPlayer',['../class_blade_1_1_input_manager.html#a5369c3110e39e5b3d01349ce7aa676ed',1,'Blade::InputManager']]],
   ['audiomanager',['AudioManager',['../class_blade_1_1_audio_manager.html',1,'Blade']]],
   ['audiosample',['AudioSample',['../class_blade_1_1_audio_sample.html',1,'Blade']]],
   ['audiosource',['AudioSource',['../class_blade_1_1_audio_source.html',1,'Blade']]],

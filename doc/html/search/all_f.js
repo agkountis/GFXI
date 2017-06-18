@@ -1,14 +1,11 @@
 var searchData=
 [
-  ['recti',['Recti',['../namespace_blade.html#ac765e9c5c8205009994e4243d9d6f81c',1,'Blade']]],
-  ['refcountedcontainer',['RefCountedContainer',['../class_blade_1_1_ref_counted_container.html',1,'Blade']]],
-  ['registercomponent',['RegisterComponent',['../class_blade_1_1_behaviour_system.html#aafcc2463979e3442abb93c086b4d0cbc',1,'Blade::BehaviourSystem::RegisterComponent()'],['../class_blade_1_1_camera_system.html#a67a9d2ce6b3f06212dfe882dab6334c6',1,'Blade::CameraSystem::RegisterComponent()'],['../class_blade_1_1_light_system.html#a0d98342c2927dd165f41ccb50d4845ab',1,'Blade::LightSystem::RegisterComponent()'],['../class_blade_1_1_render_system.html#a36ad263f137b6634542966dea0229047',1,'Blade::RenderSystem::RegisterComponent()']]],
-  ['rendercomponent',['RenderComponent',['../class_blade_1_1_render_component.html',1,'Blade::RenderComponent'],['../class_blade_1_1_render_component.html#a7bd09f012ebce3b94c882ed4afd5698f',1,'Blade::RenderComponent::RenderComponent()']]],
-  ['renderstate',['RenderState',['../class_blade_1_1_render_state.html',1,'Blade']]],
-  ['renderstatemanager',['RenderStateManager',['../class_blade_1_1_render_state_manager.html',1,'Blade']]],
-  ['rendersystem',['RenderSystem',['../class_blade_1_1_render_system.html',1,'Blade']]],
-  ['rendertarget',['RenderTarget',['../class_blade_1_1_render_target.html',1,'Blade']]],
-  ['resource',['Resource',['../class_blade_1_1_resource.html',1,'Blade']]],
-  ['resourcemanager',['ResourceManager',['../class_blade_1_1_resource_manager.html',1,'Blade']]],
-  ['rungekutta4integrator',['RungeKutta4Integrator',['../class_blade_1_1_math_utils_1_1_runge_kutta4_integrator.html',1,'Blade::MathUtils']]]
+  ['queryallkeystates',['QueryAllKeyStates',['../class_blade_1_1_input_manager.html#a6223ce5641fedc88d8e8591deb73ac90',1,'Blade::InputManager::QueryAllKeyStates()'],['../class_blade_1_1_keyboard_input.html#acf01cd89bda99e5508dbe7560447651c',1,'Blade::KeyboardInput::QueryAllKeyStates()']]],
+  ['querydeviceallstates',['QueryDeviceAllStates',['../class_blade_1_1_input_manager.html#ac07153a9c34d35a445ede6c89aa6cbf3',1,'Blade::InputManager']]],
+  ['querydevicestate',['QueryDeviceState',['../class_blade_1_1_input_manager.html#aeeafae24c87fd12586942eba26956807',1,'Blade::InputManager']]],
+  ['querykeystate',['QueryKeyState',['../class_blade_1_1_input_manager.html#a8d8e424cb1de012c830296a0812ceebc',1,'Blade::InputManager::QueryKeyState()'],['../class_blade_1_1_keyboard_input.html#a9430c44501f4c2a4c3550be2b4bc05d0',1,'Blade::KeyboardInput::QueryKeyState()']]],
+  ['querymousebuttonstate',['QueryMouseButtonState',['../class_blade_1_1_input_manager.html#ad2537487a4c3c80e7eb6b8c0ea37b09b',1,'Blade::InputManager']]],
+  ['querymousemovement',['QueryMouseMovement',['../class_blade_1_1_input_manager.html#ab1fe795118afeb4642342567d3e27b3f',1,'Blade::InputManager']]],
+  ['querymousemovementnormalized',['QueryMouseMovementNormalized',['../class_blade_1_1_input_manager.html#aa96a587de7ed5234b2b7883df48c0a09',1,'Blade::InputManager']]],
+  ['querymouseposition',['QueryMousePosition',['../class_blade_1_1_input_manager.html#a0bd64dfa38174d3fa87c445ee261d8c3',1,'Blade::InputManager']]]
 ];

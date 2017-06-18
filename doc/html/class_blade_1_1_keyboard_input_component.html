@@ -87,7 +87,7 @@ Inheritance diagram for Blade::KeyboardInputComponent:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:ae4c93cd11eba12bbf832b25977cd6ff4"><td class="memItemLeft" align="right" valign="top"><a id="ae4c93cd11eba12bbf832b25977cd6ff4"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>KeyboardCommandMap</b> = std::map&lt; VirtualKey, std::shared_ptr&lt; <a class="el" href="class_blade_1_1_command.html">Command</a> &gt; &gt;</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>KeyboardCommandMap</b> = std::map&lt; <a class="el" href="namespace_blade.html#a15d9bde4921fb2a9a953f8d97ea49d1c">VirtualKey</a>, std::shared_ptr&lt; <a class="el" href="class_blade_1_1_command.html">Command</a> &gt; &gt;</td></tr>
 <tr class="separator:ae4c93cd11eba12bbf832b25977cd6ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -113,7 +113,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memdesc:ae62cebd0c5fa0595460275060be472f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs actions before the <a class="el" href="class_blade_1_1_behaviour_component.html">BehaviourComponent</a> is destroyed. <br /></td></tr>
 <tr class="separator:ae62cebd0c5fa0595460275060be472f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29dccb52007e5cac972a7af8aee18902"><td class="memItemLeft" align="right" valign="top"><a id="a29dccb52007e5cac972a7af8aee18902"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>LoadConfiguration</b> (std::vector&lt; VirtualKey &gt; &amp;keys, const std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_blade_1_1_command.html">Command</a> &gt;&gt; &amp;commands) noexcept</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>LoadConfiguration</b> (std::vector&lt; <a class="el" href="namespace_blade.html#a15d9bde4921fb2a9a953f8d97ea49d1c">VirtualKey</a> &gt; &amp;keys, const std::vector&lt; std::shared_ptr&lt; <a class="el" href="class_blade_1_1_command.html">Command</a> &gt;&gt; &amp;commands) noexcept</td></tr>
 <tr class="separator:a29dccb52007e5cac972a7af8aee18902"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac254b07f58bf9bbe4b936883e113950e"><td class="memItemLeft" align="right" valign="top"><a id="ac254b07f58bf9bbe4b936883e113950e"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>LoadConfiguration</b> (const KeyboardCommandMap &amp;map)</td></tr>

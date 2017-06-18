@@ -12,9 +12,9 @@ Keyboard abstraction of the engine.
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static bool \hyperlink{class_blade_1_1_keyboard_input_a9430c44501f4c2a4c3550be2b4bc05d0}{Query\+Key\+State} (Virtual\+Key value) noexcept
+static bool \hyperlink{class_blade_1_1_keyboard_input_a9430c44501f4c2a4c3550be2b4bc05d0}{Query\+Key\+State} (\hyperlink{namespace_blade_a15d9bde4921fb2a9a953f8d97ea49d1c}{Virtual\+Key} value) noexcept
 \begin{DoxyCompactList}\small\item\em Query the state of a virtual key. \end{DoxyCompactList}\item 
-static bool \hyperlink{class_blade_1_1_keyboard_input_acf01cd89bda99e5508dbe7560447651c}{Query\+All\+Key\+States} (std\+::map$<$ Virtual\+Key, bool $>$ \&dest\+Map) noexcept
+static bool \hyperlink{class_blade_1_1_keyboard_input_acf01cd89bda99e5508dbe7560447651c}{Query\+All\+Key\+States} (std\+::map$<$ \hyperlink{namespace_blade_a15d9bde4921fb2a9a953f8d97ea49d1c}{Virtual\+Key}, bool $>$ \&dest\+Map) noexcept
 \begin{DoxyCompactList}\small\item\em Query all virtual key states for attached keyboard. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -26,12 +26,17 @@ Keyboard abstraction of the engine.
 \index{Blade\+::\+Keyboard\+Input@{Blade\+::\+Keyboard\+Input}!Query\+All\+Key\+States@{Query\+All\+Key\+States}}
 \index{Query\+All\+Key\+States@{Query\+All\+Key\+States}!Blade\+::\+Keyboard\+Input@{Blade\+::\+Keyboard\+Input}}
 \subsubsection{\texorpdfstring{Query\+All\+Key\+States()}{QueryAllKeyStates()}}
-{\footnotesize\ttfamily bool Blade\+::\+Keyboard\+Input\+::\+Query\+All\+Key\+States (\begin{DoxyParamCaption}\item[{std\+::map$<$ Virtual\+Key, bool $>$ \&}]{dest\+Map }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Blade\+::\+Keyboard\+Input\+::\+Query\+All\+Key\+States (\begin{DoxyParamCaption}\item[{std\+::map$<$ \hyperlink{namespace_blade_a15d9bde4921fb2a9a953f8d97ea49d1c}{Virtual\+Key}, bool $>$ \&}]{dest\+Map }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 
 
 Query all virtual key states for attached keyboard. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em dest\+Map} & A reference to a map storing all the keyboard keys. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if successful, false otherwise 
 \end{DoxyReturn}
@@ -39,12 +44,17 @@ True if successful, false otherwise
 \index{Blade\+::\+Keyboard\+Input@{Blade\+::\+Keyboard\+Input}!Query\+Key\+State@{Query\+Key\+State}}
 \index{Query\+Key\+State@{Query\+Key\+State}!Blade\+::\+Keyboard\+Input@{Blade\+::\+Keyboard\+Input}}
 \subsubsection{\texorpdfstring{Query\+Key\+State()}{QueryKeyState()}}
-{\footnotesize\ttfamily bool Blade\+::\+Keyboard\+Input\+::\+Query\+Key\+State (\begin{DoxyParamCaption}\item[{Virtual\+Key}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Blade\+::\+Keyboard\+Input\+::\+Query\+Key\+State (\begin{DoxyParamCaption}\item[{\hyperlink{namespace_blade_a15d9bde4921fb2a9a953f8d97ea49d1c}{Virtual\+Key}}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 
 
 Query the state of a virtual key. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The key that to check. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the key being queried is P\+R\+E\+S\+S\+ED (down), false otherwise 
 \end{DoxyReturn}
