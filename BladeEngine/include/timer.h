@@ -11,7 +11,7 @@ namespace Blade
 
 	using HighResolutionTimePoint = std::chrono::time_point<std::chrono::high_resolution_clock>;
 
-	/*
+	/**
 	\brief Timer class of the engine
 	\details Provides chronometer functionalities.
 	*/
@@ -31,7 +31,7 @@ namespace Blade
 		{
 		}
 
-		/*
+		/**
 		\brief Reset the timer.
 		*/
 		void Reset() noexcept
@@ -40,7 +40,7 @@ namespace Blade
 			m_Start = HighResolutionClock::now();
 		}
 
-		/*
+		/**
 		\brief Start the timer
 		*/
 		void Start() noexcept
@@ -54,7 +54,7 @@ namespace Blade
 			}
 		}
 
-		/*
+		/**
 		\brief Stop the timer.
 		*/
 		void Stop() noexcept
@@ -67,17 +67,18 @@ namespace Blade
 			}
 		}
 
-		/*
+		/**
 		\brief Getter for the timer running-flag
-		\return TRUE if the timer is running, flase otherwise
+		\return TRUE if the timer is running, false otherwise
 		*/
 		bool IsRunning() const noexcept
 		{
 			return m_Running;
 		}
 
-		/*
+		/**
 		\brief Return the elapsed time in milliseconds.
+		\return Elapsed time in milliseconds
 		*/
 		long long GetMsec() const noexcept
 		{
@@ -90,8 +91,10 @@ namespace Blade
 
 			return duration_cast<milliseconds>(HighResolutionClock::now() - m_Start).count();
 		}
-		/*
+
+		/**
 		\brief Return the elapsed time in seconds.
+		\return Elapsed time in seconds
 		*/
 		double GetSec() const noexcept
 		{
@@ -105,7 +108,7 @@ namespace Blade
 			return duration<double>{ HighResolutionClock::now() - m_Start }.count();
 		}
 
-		/*
+		/**
 		\brief Returns delta time
 		\return delta time.
 		*/

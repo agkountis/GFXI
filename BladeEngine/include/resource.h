@@ -4,14 +4,14 @@
 
 namespace Blade
 {
-	/*
+	/**
 	\brief Resource class of the engine
 	\details A resource is type agnostic.
 	*/
 	class Resource
 	{
 	private:
-		/*
+		/**
 		\brief ID of the resource
 		*/
 		unsigned int m_Id;
@@ -27,7 +27,7 @@ namespace Blade
 
 		virtual ~Resource();
 
-		/*
+		/**
 		\brief Getter of the resource id
 		\return Resource ID
 		*/
@@ -36,7 +36,7 @@ namespace Blade
 			return m_Id;
 		}
 
-		/*
+		/**
 		\brief Setter for the resource ID
 		\param id the resource ID
 		*/
@@ -45,9 +45,10 @@ namespace Blade
 			m_Id = id;
 		}
 
-		/*
+		/**
 		\brief Load a resource form a file
 		\param file_name The path of the file where the resource is stored.
+		\return TRUE if the loading has been successful, false otherwise.
 		*/
 		virtual bool Load(const std::wstring& file_name) noexcept = 0;
 	};
