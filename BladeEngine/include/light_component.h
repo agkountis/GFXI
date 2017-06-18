@@ -83,17 +83,28 @@ namespace Blade
 		 */
 		int m_LightDescCacheIndex{ -1 };
 
+
 	public:
+		/**
+		* \brief Creates new instance of light component.
+		* \param lightType Type of light to be created. Possible types: Directional, Point, Spotlight.
+		* \param parent Pointer to parent entity of the component.
+		*/
 		LightComponent(LightType lightType, Entity* parent)
 			: Component{ "co_light", parent },
 			m_LightType{ lightType }
 		{
 		}
 
+		/**
+		* \brief Returns light type of this component.
+		* \return Light type of this component.
+		*/
 		LightType GetLightType() const noexcept
 		{
 			return m_LightType;
 		}
+
 
 		int GetLightDescCacheIndex() const noexcept
 		{
@@ -104,6 +115,8 @@ namespace Blade
 		{
 			m_LightDescCacheIndex = index;
 		}
+
+
 	};
 }
 
