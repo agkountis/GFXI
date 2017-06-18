@@ -5,7 +5,7 @@
 
 namespace Blade
 {
-	/*
+	/**
 	\brief Observer class of the engine.
 	\details The engine provides observer pattern interface
 	*/

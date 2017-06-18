@@ -39,7 +39,7 @@ namespace Blade
 		~RenderComponent();
 
 		/**
-		 * \brief Provides a pointer to the Mesh contained in the RenderComponent.
+		 * \brief Returns pointer to the Mesh contained in the RenderComponent.
 		 * \return The pointer to the Mesh of the RenderComponent.
 		 */
 		Mesh* GetMesh() const noexcept;

@@ -6,12 +6,21 @@
 
 namespace Blade
 {
+	/**
+	* \brief DirectionalLight class of the engine.
+	*  Object used to generate directional light in the scene
+	*/
 	class DirectionalLight : public Entity
 	{
 	private:
 		DirectionalLightComponent* m_DirectionalLightComponent{ nullptr };
 
 	public:
+		/**
+		* \brief Creates new instance of the light object.
+		* \param name Name of the light to be created.
+		* \param lightDescription Description structure of the light.
+		*/
 		DirectionalLight(const std::string& name, const DirectionalLightDesc& lightDescription);
 	};
 }
