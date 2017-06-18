@@ -36,11 +36,13 @@ private:
 
 	Blade::Timer m_Timer;
 	bool m_Fading{ false };
-	GameSceneColorPassStage* m_ColorPass{ nullptr };
 
 #ifdef BLADE_BUILD_OVR
 	GameSceneColorPassStageOvr* ovrStage{ nullptr };
+#else
+	GameSceneColorPassStage* m_ColorPass{ nullptr };
 #endif
+
 	void FadeOutLogic(float deltaTime) const;
 
 

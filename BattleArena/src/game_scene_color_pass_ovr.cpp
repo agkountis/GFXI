@@ -164,6 +164,11 @@ bool GameSceneColorPassStageOvr::Initialize()
 	return true;
 }
 
+void GameSceneColorPassStageOvr::UpdateBrightness(float brightness) noexcept
+{
+	m_Brightness = brightness;
+}
+
 PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::vector<RenderComponent*>& data,
                                                                      const PipelineData<D3D11RenderTarget*>& tdata) noexcept
 {
@@ -257,6 +262,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::
 				uniforms.pointLightCount = pointLights.size();
 				uniforms.directionalLightCount = directionalLights.size();
 				uniforms.spotlightCount = spotlights.size();
+				uniforms.pad = m_Brightness;
 
 				//Get the material from the RenderComponent.
 				Material material{ renderComponent->GetMaterial() };
@@ -372,6 +378,7 @@ PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::
 					ParticleUniformBuffer uniforms;
 					uniforms.MVP = MathUtils::Transpose(MVP);
 					uniforms.diffuse = particle.color;
+					uniforms.brightness = m_Brightness;
 
 					D3D11_MAPPED_SUBRESOURCE ms;
 

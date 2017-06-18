@@ -4,7 +4,6 @@
 #include "pipeline.h"
 #include "d3d/D3D11_texture.h"
 #include "windowing_service.h"
-#include "directional_light_component.h"
 #include "camera.h"
 #include "directional_light.h"
 #include <iostream>
@@ -12,13 +11,9 @@
 #include "resource_manager.h"
 #include "mesh_utils.h"
 #include "engine_context.h"
-#include "game_scene_color_pass.h"
 #include "render_component.h"
 #include <memory>
-#include "networked_lobby_scene.h"
-#include "game_scene.h"
 #include "multiplayer.h"
-#include "networked_game_scene.h"
 
 #ifdef BLADE_BUILD_OVR
 #include "game_scene_color_pass_ovr.h"
@@ -124,9 +119,6 @@ bool NetworkedLobbyScene::Initialize()
 	G_RenderSystem.SetRenderPassPipeline(pipeline);
 
 	G_AudioManager.PlayStream(AUDIO_PATH + L"destructoid.ogg", 0.1f, AUDIO_PLAYMODE_LOOP);
-
-	return true;
-
 
 	ConfigFile cfg;
 
@@ -249,7 +241,11 @@ void  NetworkedLobbyScene::FadeOutLogic(float deltaTime)
 {
 	if (m_Fading)
 	{
+#ifdef BLADE_BUILD_OVR
+		ovrStage->UpdateBrightness(-0.6f*deltaTime);
+#else
 		m_ColorPass->UpdateBrightness(-0.6f*deltaTime);
+#endif
 
 	}
 	if (m_Timer.GetSec() > 2.0f)

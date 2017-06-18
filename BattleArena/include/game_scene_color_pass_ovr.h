@@ -29,6 +29,7 @@ private:
 	Blade::Texture* m_DummySpec{ nullptr };
 	Blade::Texture* m_DummyNorm{ nullptr };
 
+	float m_Brightness{ 1.0f };
 
 public:
 	float scale{ 1.0f };
@@ -36,6 +37,8 @@ public:
 	explicit GameSceneColorPassStageOvr(const std::string& name);
 
 	bool Initialize() override;
+
+	void UpdateBrightness(float brightness) noexcept;
 
 	Blade::PipelineData<Blade::D3D11RenderTarget*> Execute(const std::vector<Blade::RenderComponent*>& data, const Blade::PipelineData<Blade::D3D11RenderTarget*>& tdata) noexcept override;
 };

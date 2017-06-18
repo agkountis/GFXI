@@ -190,7 +190,7 @@ bool MainScene::Initialize()
 	RenderPassPipeline* pipeline{ new RenderPassPipeline };
 
 #ifdef BLADE_BUILD_OVR
-	GameSceneColorPassStageOvr* ovrStage{ new GameSceneColorPassStageOvr{ " ovrPass " } };
+	ovrStage = new GameSceneColorPassStageOvr{ " ovrPass " };
 	ovrStage->scale = 2.5f;
 	if (!ovrStage->Initialize())
 	{
@@ -266,8 +266,11 @@ void MainScene::FadeOutLogic(float deltaTime) const
 {
 	if (m_Fading)
 	{
+#ifdef BLADE_BUILD_OVR
+		ovrStage->UpdateBrightness(-0.6f*deltaTime);
+#else
 		m_ColorPass->UpdateBrightness(-0.6f*deltaTime);
-
+#endif
 	}
 	if (m_Timer.GetSec() > 2.0f)
 	{

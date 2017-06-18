@@ -316,8 +316,11 @@ void GameScene::FadeOutLogic(float deltaTime)
 {
 	if (m_Fading)
 	{
+#ifdef BLADE_BUILD_OVR
+		ovrStage->UpdateBrightness(-0.6f*deltaTime);
+#else
 		m_ColorPass->UpdateBrightness(-0.6f*deltaTime);
-
+#endif
 	}
 	if (m_Timer.GetSec() > 2.0f)
 	{
