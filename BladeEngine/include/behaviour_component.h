@@ -4,7 +4,7 @@
 #include "trace.h"
 namespace Blade
 {
-	/*
+	/**
 	 * \brief BehaviourComponent class of the engine. All the components of the engine
 	 * that needs to perform and action derive from this class. BehaviourComponent inherits from the Component class so it can
 	 * register and receive specific messages.
@@ -42,6 +42,12 @@ namespace Blade
 		*/
 		virtual void Teardown() noexcept = 0;
 
+
+		/**
+		* \brief Method called when collision between parent of this component and other enitity is detected.
+		* \param other Pointer to other that was part of the collision.
+		* \remarks In order for the collision to be detected, both entities need to have colliders.
+		*/
 		virtual void OnCollision(Entity* other) noexcept { }
 	};
 }

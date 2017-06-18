@@ -1,0 +1,500 @@
+C:\Users\525623\GFX1\BladeEngine\include\collider_component.h
+c:\users\525623\gfx1\bladeengine\include\component.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\string
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\istream
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ostream
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ios
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xlocnum
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\climits
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\yvals.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xkeycheck.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\crtdefs.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\sal.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ConcurrencySal.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vadefs.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\use_ansi.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\cmath
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\math.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xtgmath.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xtr1common
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\cstdlib
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdlib.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_malloc.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_search.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stddef.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wstdlib.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\cstdio
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wstdio.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_stdio_config.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\streambuf
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xiosbase
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xlocale
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\cstring
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\string.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_memory.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_memcpy_s.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\errno.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_string.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wstring.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdexcept
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\exception
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\type_traits
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xstddef
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\cstddef
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\initializer_list
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\malloc.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_exception.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\eh.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_terminate.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xstring
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xmemory0
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\cstdint
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdint.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\limits
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ymath.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\cfloat
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\float.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\cwchar
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\wchar.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wconio.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wctype.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wdirect.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wio.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_share.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wprocess.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wtime.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\sys\stat.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\sys\types.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\new
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_new.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xutility
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\utility
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\iosfwd
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\crtdbg.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_new_debug.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xatomic0.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\intrin.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\setjmp.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\immintrin.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\wmmintrin.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\nmmintrin.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\smmintrin.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\tmmintrin.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\pmmintrin.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\emmintrin.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xmmintrin.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\mmintrin.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ammintrin.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\mm3dnow.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\typeinfo
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime_typeinfo.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xlocinfo
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xlocinfo.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\ctype.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\locale.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xfacet
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\system_error
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\cerrno
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\share.h
+c:\users\525623\gfx1\bladeengine\include\observer.h
+c:\users\525623\gfx1\bladeengine\include\types.h
+C:\Users\525623\GFX1\deps\include\GLM\glm.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\_fixes.hpp
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\cassert
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\assert.h
+c:\users\525623\gfx1\deps\include\glm\fwd.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_int.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\setup.hpp
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\cassert
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\assert.h
+c:\users\525623\gfx1\deps\include\glm\simd\platform.h
+c:\users\525623\gfx1\deps\include\glm\detail\type_float.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_vec.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\precision.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat.hpp
+c:\users\525623\gfx1\deps\include\glm\vec2.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_vec2.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\_swizzle.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_vec2.inl
+c:\users\525623\gfx1\deps\include\glm\vec3.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_vec3.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_vec3.inl
+c:\users\525623\gfx1\deps\include\glm\vec4.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_vec4.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_vec4.inl
+c:\users\525623\gfx1\deps\include\glm\detail\type_vec4_simd.inl
+c:\users\525623\gfx1\deps\include\glm\mat2x2.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat2x2.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat2x2.inl
+c:\users\525623\gfx1\deps\include\glm\detail\func_matrix.hpp
+c:\users\525623\gfx1\deps\include\glm\mat2x3.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat2x3.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat2x3.inl
+c:\users\525623\gfx1\deps\include\glm\mat2x4.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat2x4.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat2x4.inl
+c:\users\525623\gfx1\deps\include\glm\mat3x2.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat3x2.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat3x2.inl
+c:\users\525623\gfx1\deps\include\glm\mat3x3.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat3x3.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat3x3.inl
+c:\users\525623\gfx1\deps\include\glm\mat3x4.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat3x4.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat3x4.inl
+c:\users\525623\gfx1\deps\include\glm\mat4x2.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat4x2.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat4x2.inl
+c:\users\525623\gfx1\deps\include\glm\mat4x3.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat4x3.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat4x3.inl
+c:\users\525623\gfx1\deps\include\glm\mat4x4.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat4x4.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat4x4.inl
+c:\users\525623\gfx1\deps\include\glm\detail\type_mat4x4_simd.inl
+c:\users\525623\gfx1\deps\include\glm\detail\func_matrix.inl
+c:\users\525623\gfx1\deps\include\glm\geometric.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\func_geometric.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\func_geometric.inl
+c:\users\525623\gfx1\deps\include\glm\detail\func_exponential.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_vec1.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_vec1.inl
+c:\users\525623\gfx1\deps\include\glm\detail\func_exponential.inl
+c:\users\525623\gfx1\deps\include\glm\detail\func_vector_relational.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\func_vector_relational.inl
+c:\users\525623\gfx1\deps\include\glm\detail\func_vector_relational_simd.inl
+c:\users\525623\gfx1\deps\include\glm\detail\_vectorize.hpp
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\cassert
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\assert.h
+c:\users\525623\gfx1\deps\include\glm\detail\func_exponential_simd.inl
+c:\users\525623\gfx1\deps\include\glm\simd\exponential.h
+c:\users\525623\gfx1\deps\include\glm\detail\func_common.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\_fixes.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\func_common.inl
+c:\users\525623\gfx1\deps\include\glm\detail\func_common_simd.inl
+c:\users\525623\gfx1\deps\include\glm\simd\common.h
+c:\users\525623\gfx1\deps\include\glm\detail\func_geometric_simd.inl
+c:\users\525623\gfx1\deps\include\glm\simd\geometric.h
+c:\users\525623\gfx1\deps\include\glm\detail\func_matrix_simd.inl
+c:\users\525623\gfx1\deps\include\glm\simd\matrix.h
+c:\users\525623\gfx1\deps\include\glm\trigonometric.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\func_trigonometric.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\func_trigonometric.inl
+c:\users\525623\gfx1\deps\include\glm\detail\func_trigonometric_simd.inl
+c:\users\525623\gfx1\deps\include\glm\exponential.hpp
+c:\users\525623\gfx1\deps\include\glm\common.hpp
+c:\users\525623\gfx1\deps\include\glm\packing.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\func_packing.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\func_packing.inl
+c:\users\525623\gfx1\deps\include\glm\detail\type_half.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\type_half.inl
+c:\users\525623\gfx1\deps\include\glm\detail\func_packing_simd.inl
+c:\users\525623\gfx1\deps\include\glm\matrix.hpp
+c:\users\525623\gfx1\deps\include\glm\vector_relational.hpp
+c:\users\525623\gfx1\deps\include\glm\integer.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\func_integer.hpp
+c:\users\525623\gfx1\deps\include\glm\detail\func_integer.inl
+c:\users\525623\gfx1\deps\include\glm\detail\func_integer_simd.inl
+c:\users\525623\gfx1\deps\include\glm\simd\integer.h
+C:\Users\525623\GFX1\deps\include\GLM\gtx\quaternion.hpp
+c:\users\525623\gfx1\deps\include\glm\gtc\constants.hpp
+c:\users\525623\gfx1\deps\include\glm\gtc\constants.inl
+c:\users\525623\gfx1\deps\include\glm\gtc\quaternion.hpp
+c:\users\525623\gfx1\deps\include\glm\gtc\quaternion.inl
+c:\users\525623\gfx1\deps\include\glm\gtc\quaternion_simd.inl
+c:\users\525623\gfx1\deps\include\glm\gtx\norm.hpp
+c:\users\525623\gfx1\deps\include\glm\gtx\norm.inl
+c:\users\525623\gfx1\deps\include\glm\gtx\quaternion.inl
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\wrl.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\wrl\client.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\unknwn.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpc.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\windows.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\winapifamily.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\sdkddkver.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\excpt.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\windef.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\minwindef.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\specstrings.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\specstrings_strict.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\specstrings_undef.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\driverspecs.h
+c:\program files (x86)\windows kits\8.1\include\shared\sdv_driverspecs.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\winnt.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\kernelspecs.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\basetsd.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\guiddef.h
+c:\program files (x86)\windows kits\8.1\include\shared\pshpack4.h
+c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
+c:\program files (x86)\windows kits\8.1\include\shared\pshpack4.h
+c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack4.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+c:\program files (x86)\windows kits\8.1\include\shared\pshpack4.h
+c:\program files (x86)\windows kits\8.1\include\shared\pshpack2.h
+c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
+c:\program files (x86)\windows kits\8.1\include\shared\pshpack2.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack2.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
+c:\program files (x86)\windows kits\8.1\include\shared\pshpack8.h
+c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
+c:\program files (x86)\windows kits\8.1\include\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\apiset.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\ktmtypes.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\winbase.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\apisetcconv.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\minwinbase.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\processenv.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\fileapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\debugapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\utilapiset.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\handleapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\errhandlingapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\fibersapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\namedpipeapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\profileapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\heapapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\ioapiset.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\synchapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\interlockedapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\processthreadsapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\sysinfoapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\memoryapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\threadpoollegacyapiset.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\threadpoolapiset.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\bemapiset.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\jobapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\wow64apiset.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\libloaderapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\securitybaseapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\namespaceapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\systemtopologyapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\processtopologyapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\securityappcontainer.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\realtimeapiset.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\winerror.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\timezoneapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\wingdi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack1.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack2.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack2.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack4.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack4.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\winuser.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack2.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\tvout.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\winnls.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\datetimeapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\stringapiset.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\winnls.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\wincon.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\consoleapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\winver.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\verrsrc.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\winreg.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\reason.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\winnetwk.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\wnnc.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\stralign.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\winsvc.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\mcx.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\imm.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\ime_cmodes.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpcdce.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpcdcep.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\rpcnsi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpcnterr.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpcasync.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpcndr.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack8.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\rpcnsip.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\rpcsal.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+c:\program files (x86)\windows kits\8.1\include\um\ole2.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack8.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\objbase.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack8.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\combaseapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack8.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\wtypesbase.h
+c:\program files (x86)\windows kits\8.1\include\shared\guiddef.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\unknwnbase.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\objidlbase.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\guiddef.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\cguid.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\objidl.h
+c:\program files (x86)\windows kits\8.1\include\um\unknwn.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\wtypes.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\urlmon.h
+c:\program files (x86)\windows kits\8.1\include\um\oleidl.h
+c:\program files (x86)\windows kits\8.1\include\um\servprov.h
+c:\program files (x86)\windows kits\8.1\include\um\msxml.h
+c:\program files (x86)\windows kits\8.1\include\um\oaidl.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\propidl.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\oleauto.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\pshpack8.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\weakreference.h
+c:\program files (x86)\windows kits\8.1\include\winrt\inspectable.h
+c:\program files (x86)\windows kits\8.1\include\winrt\hstring.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\roapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\activation.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\wrl\def.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\wrl\internal.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\wrl\implements.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\WinString.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\new.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\crtdefs.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
+c:\program files (x86)\windows kits\8.1\include\winrt\roerrorapi.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\restrictedErrorInfo.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\wrl\module.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\wrl\ftm.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\wrl\wrappers\corewrappers.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\intsafe.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\wrl\event.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\winrt\eventtoken.h
+c:\users\525623\gfx1\bladeengine\include\message.h
+c:\users\525623\gfx1\bladeengine\include\ref_counted_container.h
+c:\users\525623\gfx1\bladeengine\include\collider.h
+c:\users\525623\gfx1\bladeengine\include\contact_manifold.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vector
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xmemory
+c:\users\525623\gfx1\bladeengine\include\trace.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\iostream
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\memory
+C:\Users\525623\GFX1\BladeEngine\include\entity.h
+c:\users\525623\gfx1\bladeengine\include\math_utils.h
+C:\Users\525623\GFX1\deps\include\GLM\gtc\matrix_transform.hpp
+c:\users\525623\gfx1\deps\include\glm\gtc\matrix_transform.inl
+C:\Users\525623\GFX1\deps\include\GLM\gtx\spline.hpp
+c:\users\525623\gfx1\deps\include\glm\gtx\optimum_pow.hpp
+c:\users\525623\gfx1\deps\include\glm\gtx\optimum_pow.inl
+c:\users\525623\gfx1\deps\include\glm\gtx\spline.inl
+c:\users\525623\gfx1\bladeengine\include\observer_subject.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\map
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\tuple
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xtree
+c:\users\525623\gfx1\bladeengine\include\resource.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\functional
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xfunctional
+C:\Users\525623\GFX1\BladeEngine\include\simulation_system.h
+c:\users\525623\gfx1\bladeengine\include\system.h
+c:\users\525623\gfx1\bladeengine\include\simulation_component.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\thread
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\chrono
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\ratio
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\time.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\thr\xtimec.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\thr\xthrcommon.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\thr\xthread
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\thr\xtime
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\thr\xthreads.h
+C:\Users\525623\GFX1\BladeEngine\include\engine_context.h
+c:\users\525623\gfx1\bladeengine\include\d3d\D3D11_context.h
+c:\users\525623\gfx1\bladeengine\include\GAPI_context.h
+C:\Users\525623\GFX1\deps\include\D3D\d3d11.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\ocidl.h
+c:\users\525623\gfx1\deps\include\d3d\dxgi.h
+c:\users\525623\gfx1\deps\include\d3d\dxgitype.h
+c:\users\525623\gfx1\deps\include\d3d\dxgiformat.h
+c:\users\525623\gfx1\deps\include\d3d\d3dcommon.h
+c:\users\525623\gfx1\deps\include\d3d\d3d10_1.h
+c:\users\525623\gfx1\deps\include\d3d\d3d10.h
+c:\users\525623\gfx1\deps\include\d3d\d3d10sdklayers.h
+c:\users\525623\gfx1\deps\include\d3d\d3d10misc.h
+c:\users\525623\gfx1\deps\include\d3d\d3d10shader.h
+c:\users\525623\gfx1\deps\include\d3d\d3d10effect.h
+c:\users\525623\gfx1\deps\include\d3d\d3d10_1shader.h
+c:\users\525623\gfx1\deps\include\d3d\d3d11sdklayers.h
+c:\users\525623\gfx1\bladeengine\include\render_system.h
+c:\users\525623\gfx1\bladeengine\include\pipeline.h
+c:\users\525623\gfx1\bladeengine\include\pipeline_stage.h
+c:\users\525623\gfx1\bladeengine\include\render_component.h
+c:\users\525623\gfx1\bladeengine\include\mesh.h
+c:\users\525623\gfx1\bladeengine\include\vertex.h
+c:\users\525623\gfx1\bladeengine\include\VBO.h
+c:\users\525623\gfx1\bladeengine\include\IBO.h
+c:\users\525623\gfx1\bladeengine\include\material.h
+c:\users\525623\gfx1\bladeengine\include\texture.h
+c:\users\525623\gfx1\bladeengine\include\render_state.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\array
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\algorithm
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\iterator
+c:\users\525623\gfx1\bladeengine\include\d3d\D3D11_render_target.h
+c:\users\525623\gfx1\bladeengine\include\render_target.h
+c:\users\525623\gfx1\bladeengine\include\camera_system.h
+c:\users\525623\gfx1\bladeengine\include\camera_component.h
+c:\users\525623\gfx1\bladeengine\include\viewport.h
+c:\users\525623\gfx1\bladeengine\include\d3d\D3D11_viewport.h
+c:\users\525623\gfx1\bladeengine\include\abstract_viewport.h
+c:\users\525623\gfx1\bladeengine\include\light_system.h
+c:\users\525623\gfx1\bladeengine\include\light_component.h
+c:\users\525623\gfx1\bladeengine\include\behaviour_system.h
+c:\users\525623\gfx1\bladeengine\include\behaviour_component.h
+c:\users\525623\gfx1\bladeengine\include\thread_pool.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\queue
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\deque
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\mutex
+c:\users\525623\gfx1\bladeengine\include\network_manager.h
+c:\users\525623\gfx1\bladeengine\include\network_message.h
+c:\users\525623\gfx1\bladeengine\include\serializable.h
+c:\users\525623\gfx1\bladeengine\include\socket.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\winsock2.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\ws2def.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\inaddr.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\shared\qos.h
+c:\users\525623\gfx1\bladeengine\include\render_state_manager.h
+c:\users\525623\gfx1\bladeengine\include\resource_manager.h
+c:\users\525623\gfx1\bladeengine\include\string_utils.h
+c:\users\525623\gfx1\bladeengine\include\scene_manager.h
+c:\users\525623\gfx1\bladeengine\include\scene.h
+c:\users\525623\gfx1\bladeengine\include\shader_program_manager.h
+c:\users\525623\gfx1\bladeengine\include\shader_program.h
+c:\users\525623\gfx1\bladeengine\include\shader.h
+c:\users\525623\gfx1\bladeengine\include\d3d\D3D11_shader.h
+c:\users\525623\gfx1\bladeengine\include\particle_system.h
+c:\users\525623\gfx1\bladeengine\include\emitter_component.h
+c:\users\525623\gfx1\bladeengine\include\input_manager.h
+C:\Program Files (x86)\Windows Kits\8.1\Include\um\Xinput.h
+c:\users\525623\gfx1\bladeengine\include\xinput_device.h
+c:\users\525623\gfx1\bladeengine\include\input_device.h
+c:\users\525623\gfx1\bladeengine\include\input_state.h
+c:\users\525623\gfx1\bladeengine\include\keyboard_input.h
+c:\users\525623\gfx1\bladeengine\include\virtual_keys.h
+c:\users\525623\gfx1\bladeengine\include\audio_manager.h
+c:\users\525623\gfx1\bladeengine\include\ovstream.h
+C:\Users\525623\GFX1\deps\include\vorbis\vorbisfile.h
+c:\users\525623\gfx1\deps\include\vorbis\codec.h
+C:\Users\525623\GFX1\deps\include\ogg\ogg.h
+C:\Users\525623\GFX1\deps\include\ogg\os_types.h
+c:\users\525623\gfx1\bladeengine\include\stream.h
+c:\users\525623\gfx1\bladeengine\include\source.h
+c:\users\525623\gfx1\bladeengine\include\sample.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\list
