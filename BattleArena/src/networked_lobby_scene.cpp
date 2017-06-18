@@ -34,8 +34,6 @@ bool NetworkedLobbyScene::Initialize()
 	arena->Load(L"data/models/main_menu.fbx");
 	AddEntity(arena);
 
-
-
 	m_pBillobard = arena->GetEntityFromHierarchy("Billboard");
 
 	m_pScreen = arena->GetEntityFromHierarchy("SCREEN");

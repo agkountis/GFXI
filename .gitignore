@@ -442,3 +442,5 @@ BladeEngine/Debug - DirectX - OVR/
 /BattleArena/3dsmax/player1.max
 /BattleArena/3dsmax/main_menu.max
 /BattleArena/3dsmax/battle_arena.max
+BladeEngine/ClassDiagram.cd
+doc/

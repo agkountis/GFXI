@@ -8,6 +8,9 @@
 
 namespace Blade
 {
+	/**
+	 * \brief Type alias for a D3D representation of an Oculus texture.
+	 */
 	using OculusTexture = OculusTextureD3D;
 }
 
