@@ -1,0 +1,44 @@
+\hypertarget{class_blade_1_1_config_file}{}\section{Blade\+:\+:Config\+File Class Reference}
+\label{class_blade_1_1_config_file}\index{Blade\+::\+Config\+File@{Blade\+::\+Config\+File}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_config_file_aaf113f1e5d402c63625d397a30619f1b}\label{class_blade_1_1_config_file_aaf113f1e5d402c63625d397a30619f1b}} 
+{\bfseries Config\+File} (const char $\ast$fname)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_config_file_aae189be82cf4f62839e5c668ac8faeef}\label{class_blade_1_1_config_file_aae189be82cf4f62839e5c668ac8faeef}} 
+bool {\bfseries Open} (const char $\ast$fname)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_config_file_a28e0d8ec6d97a67442795d939c347f12}\label{class_blade_1_1_config_file_a28e0d8ec6d97a67442795d939c347f12}} 
+bool {\bfseries Is\+Open} () const
+\item 
+\mbox{\Hypertarget{class_blade_1_1_config_file_afcb28d317c1291e5b7d56da5b5d91d40}\label{class_blade_1_1_config_file_afcb28d317c1291e5b7d56da5b5d91d40}} 
+\hyperlink{class_blade_1_1_config_entry}{Config\+Entry} {\bfseries Get} (const char $\ast$optname) const
+\item 
+\mbox{\Hypertarget{class_blade_1_1_config_file_a2f177d8c7cde9124088da117d71d470d}\label{class_blade_1_1_config_file_a2f177d8c7cde9124088da117d71d470d}} 
+std\+::list$<$ \hyperlink{class_blade_1_1_config_entry}{Config\+Entry} $>$ {\bfseries Get\+All} (const char $\ast$groupname) const
+\item 
+\mbox{\Hypertarget{class_blade_1_1_config_file_a0038b08cc76f58996a2c4f31a3bfda64}\label{class_blade_1_1_config_file_a0038b08cc76f58996a2c4f31a3bfda64}} 
+const char $\ast$ {\bfseries Get\+String} (const char $\ast$optname, const char $\ast$def=nullptr) const
+\item 
+\mbox{\Hypertarget{class_blade_1_1_config_file_a8321c4f637586b2ddd8729ce3d476304}\label{class_blade_1_1_config_file_a8321c4f637586b2ddd8729ce3d476304}} 
+int {\bfseries Get\+Integer} (const char $\ast$optname, int def=0) const
+\item 
+\mbox{\Hypertarget{class_blade_1_1_config_file_a64a881ca86d9656dc5828f3bbf5f648e}\label{class_blade_1_1_config_file_a64a881ca86d9656dc5828f3bbf5f648e}} 
+float {\bfseries Get\+Float} (const char $\ast$optname, float def=0.\+0f) const
+\item 
+\mbox{\Hypertarget{class_blade_1_1_config_file_aeb60c5a14c306d4099bbac38d3252197}\label{class_blade_1_1_config_file_aeb60c5a14c306d4099bbac38d3252197}} 
+Vec4f {\bfseries Get\+Vec4f} (const char $\ast$optname, const Vec4f \&def=Vec4f\{ 0.\+0f, 0.\+0f, 0.\+0f, 1.\+0f \}) const
+\item 
+\mbox{\Hypertarget{class_blade_1_1_config_file_ad818a9b7355c26582bc1e2448795eef5}\label{class_blade_1_1_config_file_ad818a9b7355c26582bc1e2448795eef5}} 
+void {\bfseries Set\+Ncf} (\hyperlink{class_blade_1_1_n_c_f}{N\+CF} $\ast$n)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_config_file_abd5103b4b9bc45da033217b8d78fd1c1}\label{class_blade_1_1_config_file_abd5103b4b9bc45da033217b8d78fd1c1}} 
+\hyperlink{class_blade_1_1_n_c_f}{N\+CF} $\ast$ {\bfseries Get\+Ncf} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/cfg.\+h\item 
+src/cfg.\+cpp\end{DoxyCompactItemize}

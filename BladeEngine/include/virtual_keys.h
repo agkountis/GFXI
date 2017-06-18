@@ -9,6 +9,9 @@
 
 namespace Blade
 {
+	/*
+	\brief Keyboard key identifier.
+	*/
 	enum VirtualKey : int
 	{
 		KEY_BACKSPACE = VK_BACK,

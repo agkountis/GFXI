@@ -1,0 +1,100 @@
+\hypertarget{class_blade_1_1_pipeline_stage}{}\section{Blade\+:\+:Pipeline\+Stage$<$ T, Tdata $>$ Class Template Reference}
+\label{class_blade_1_1_pipeline_stage}\index{Blade\+::\+Pipeline\+Stage$<$ T, Tdata $>$@{Blade\+::\+Pipeline\+Stage$<$ T, Tdata $>$}}
+
+
+This class describes an abstract stage of a pipeline that processes the specified type of data and returns the specified type of data.  
+
+
+
+
+{\ttfamily \#include $<$pipeline\+\_\+stage.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_blade_1_1_pipeline_stage_acc9f2dc27495c661bd4d985f9b7ab764}{Pipeline\+Stage} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_blade_1_1_pipeline_stage}{Pipeline\+Stage} constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_pipeline_stage_a305d6399b99d4bc67ebd6512eedead8a}\label{class_blade_1_1_pipeline_stage_a305d6399b99d4bc67ebd6512eedead8a}} 
+virtual \hyperlink{class_blade_1_1_pipeline_stage_a305d6399b99d4bc67ebd6512eedead8a}{$\sim$\+Pipeline\+Stage} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor of the \hyperlink{class_blade_1_1_pipeline_stage}{Pipeline\+Stage}. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_blade_1_1_pipeline_stage_a0b1cca63a255807448e12721c60d91fc}{Initialize} ()=0
+\begin{DoxyCompactList}\small\item\em Initializes the \hyperlink{class_blade_1_1_pipeline_stage}{Pipeline\+Stage}. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_blade_1_1_pipeline_data}{Pipeline\+Data}$<$ Tdata $>$ \hyperlink{class_blade_1_1_pipeline_stage_a0536c99a8bfd4dc16c6b5d7dca43ed58}{Execute} (const std\+::vector$<$ T $>$ \&data, const \hyperlink{class_blade_1_1_pipeline_data}{Pipeline\+Data}$<$ Tdata $>$ \&tdata) noexcept=0
+\begin{DoxyCompactList}\small\item\em Processes the vector of objects provided and return the result. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T, typename Tdata$>$\newline
+class Blade\+::\+Pipeline\+Stage$<$ T, Tdata $>$}
+
+This class describes an abstract stage of a pipeline that processes the specified type of data and returns the specified type of data. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of data the \hyperlink{class_blade_1_1_pipeline_stage}{Pipeline\+Stage} will process. \\
+\hline
+{\em Tdata} & The type of data the \hyperlink{class_blade_1_1_pipeline_stage}{Pipeline\+Stage} will return. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_blade_1_1_pipeline_stage_acc9f2dc27495c661bd4d985f9b7ab764}\label{class_blade_1_1_pipeline_stage_acc9f2dc27495c661bd4d985f9b7ab764}} 
+\index{Blade\+::\+Pipeline\+Stage@{Blade\+::\+Pipeline\+Stage}!Pipeline\+Stage@{Pipeline\+Stage}}
+\index{Pipeline\+Stage@{Pipeline\+Stage}!Blade\+::\+Pipeline\+Stage@{Blade\+::\+Pipeline\+Stage}}
+\subsubsection{\texorpdfstring{Pipeline\+Stage()}{PipelineStage()}}
+{\footnotesize\ttfamily template$<$typename T, typename Tdata$>$ \\
+\hyperlink{class_blade_1_1_pipeline_stage}{Blade\+::\+Pipeline\+Stage}$<$ T, Tdata $>$\+::\hyperlink{class_blade_1_1_pipeline_stage}{Pipeline\+Stage} (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+\hyperlink{class_blade_1_1_pipeline_stage}{Pipeline\+Stage} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the \hyperlink{class_blade_1_1_pipeline_stage}{Pipeline\+Stage}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_blade_1_1_pipeline_stage_a0536c99a8bfd4dc16c6b5d7dca43ed58}\label{class_blade_1_1_pipeline_stage_a0536c99a8bfd4dc16c6b5d7dca43ed58}} 
+\index{Blade\+::\+Pipeline\+Stage@{Blade\+::\+Pipeline\+Stage}!Execute@{Execute}}
+\index{Execute@{Execute}!Blade\+::\+Pipeline\+Stage@{Blade\+::\+Pipeline\+Stage}}
+\subsubsection{\texorpdfstring{Execute()}{Execute()}}
+{\footnotesize\ttfamily template$<$typename T, typename Tdata$>$ \\
+virtual \hyperlink{class_blade_1_1_pipeline_data}{Pipeline\+Data}$<$Tdata$>$ \hyperlink{class_blade_1_1_pipeline_stage}{Blade\+::\+Pipeline\+Stage}$<$ T, Tdata $>$\+::Execute (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{data,  }\item[{const \hyperlink{class_blade_1_1_pipeline_data}{Pipeline\+Data}$<$ Tdata $>$ \&}]{tdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Processes the vector of objects provided and return the result. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The type of data the \hyperlink{class_blade_1_1_pipeline_stage}{Pipeline\+Stage} will process. \\
+\hline
+{\em tdata} & The type of data the \hyperlink{class_blade_1_1_pipeline_stage}{Pipeline\+Stage} will return. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{class_blade_1_1_pipeline_data}{Pipeline\+Data} container with the the appropriate data type encapsulated. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_pipeline_stage_a0b1cca63a255807448e12721c60d91fc}\label{class_blade_1_1_pipeline_stage_a0b1cca63a255807448e12721c60d91fc}} 
+\index{Blade\+::\+Pipeline\+Stage@{Blade\+::\+Pipeline\+Stage}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Blade\+::\+Pipeline\+Stage@{Blade\+::\+Pipeline\+Stage}}
+\subsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily template$<$typename T, typename Tdata$>$ \\
+virtual bool \hyperlink{class_blade_1_1_pipeline_stage}{Blade\+::\+Pipeline\+Stage}$<$ T, Tdata $>$\+::Initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Initializes the \hyperlink{class_blade_1_1_pipeline_stage}{Pipeline\+Stage}. 
+
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if initialization succeded, F\+A\+L\+SE otherwise. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/pipeline\+\_\+stage.\+h\end{DoxyCompactItemize}

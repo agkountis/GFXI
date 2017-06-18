@@ -1,0 +1,56 @@
+\hypertarget{class_blade_1_1_scene}{}\section{Blade\+:\+:Scene Class Reference}
+\label{class_blade_1_1_scene}\index{Blade\+::\+Scene@{Blade\+::\+Scene}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_a80a9bba828a6faf60ca9a91301e6e707}\label{class_blade_1_1_scene_a80a9bba828a6faf60ca9a91301e6e707}} 
+{\bfseries Scene} (const \hyperlink{class_blade_1_1_scene}{Scene} \&other)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_ae2d9a202f00b35daf25d8bb7acbb8b16}\label{class_blade_1_1_scene_ae2d9a202f00b35daf25d8bb7acbb8b16}} 
+\hyperlink{class_blade_1_1_scene}{Scene} \& {\bfseries operator=} (const \hyperlink{class_blade_1_1_scene}{Scene} \&other)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_a0bd508e8d4ab8db0b91eb8959056bb93}\label{class_blade_1_1_scene_a0bd508e8d4ab8db0b91eb8959056bb93}} 
+virtual bool {\bfseries Initialize} ()=0
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_a0f17cd32cb502502fd5a3a39c72b4856}\label{class_blade_1_1_scene_a0f17cd32cb502502fd5a3a39c72b4856}} 
+void {\bfseries Add\+Entity} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$object) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_ae04a504f28ab2c80099863d067cb6914}\label{class_blade_1_1_scene_ae04a504f28ab2c80099863d067cb6914}} 
+void {\bfseries Remove\+Entity} (const std\+::string \&name) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_a41c8f3a8a59307c42a17163614ba8dd8}\label{class_blade_1_1_scene_a41c8f3a8a59307c42a17163614ba8dd8}} 
+void {\bfseries Remove\+Entities} () noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_abd8993ff5deae13c05bfcdffbe9af6ff}\label{class_blade_1_1_scene_abd8993ff5deae13c05bfcdffbe9af6ff}} 
+const std\+::vector$<$ \hyperlink{class_blade_1_1_entity}{Entity} $\ast$ $>$ \& {\bfseries Get\+Entities} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_a4aa00824c68cf68734f85ac465796385}\label{class_blade_1_1_scene_a4aa00824c68cf68734f85ac465796385}} 
+\hyperlink{class_blade_1_1_entity}{Entity} $\ast$ {\bfseries Get\+Entity\+By\+Name} (const std\+::string \&name) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_abb80a0590b4d723b5f13ec8c488e513a}\label{class_blade_1_1_scene_abb80a0590b4d723b5f13ec8c488e513a}} 
+virtual void {\bfseries On\+Key\+Down} (unsigned char key, int x, int y) noexcept=0
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_abe25ad91527c82b56409be7097afbf49}\label{class_blade_1_1_scene_abe25ad91527c82b56409be7097afbf49}} 
+virtual void {\bfseries On\+Key\+Up} (unsigned char key, int x, int y) noexcept=0
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_aa0296f990fc1cacbfc97f657d6cb958f}\label{class_blade_1_1_scene_aa0296f990fc1cacbfc97f657d6cb958f}} 
+virtual void {\bfseries On\+Mouse\+Motion} (int x, int y) noexcept=0
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_ab54558db189ce57505ede242ffc303d2}\label{class_blade_1_1_scene_ab54558db189ce57505ede242ffc303d2}} 
+virtual void {\bfseries On\+Mouse\+Click} (int button, bool state, int x, int y) noexcept=0
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_a657797f1b08ac81bea28a2f9ed0e9c6f}\label{class_blade_1_1_scene_a657797f1b08ac81bea28a2f9ed0e9c6f}} 
+virtual void {\bfseries Update} (float delta\+Time, long time=0) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_ad1e610e1b5ea1cc4c6eaeac74e1c365b}\label{class_blade_1_1_scene_ad1e610e1b5ea1cc4c6eaeac74e1c365b}} 
+virtual void {\bfseries Draw} () const noexcept=0
+\item 
+\mbox{\Hypertarget{class_blade_1_1_scene_ac49cdbb30d13096320971ef9389d0a54}\label{class_blade_1_1_scene_ac49cdbb30d13096320971ef9389d0a54}} 
+virtual void {\bfseries On\+Message} (const \hyperlink{class_blade_1_1_ref_counted_container}{Message\+Container}$<$ std\+::string $>$ \&msg) const noexcept
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/scene.\+h\item 
+src/scene.\+cpp\end{DoxyCompactItemize}

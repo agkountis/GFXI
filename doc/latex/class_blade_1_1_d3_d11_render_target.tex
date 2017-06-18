@@ -1,0 +1,41 @@
+\hypertarget{class_blade_1_1_d3_d11_render_target}{}\section{Blade\+:\+:D3\+D11\+Render\+Target Class Reference}
+\label{class_blade_1_1_d3_d11_render_target}\index{Blade\+::\+D3\+D11\+Render\+Target@{Blade\+::\+D3\+D11\+Render\+Target}}
+Inheritance diagram for Blade\+:\+:D3\+D11\+Render\+Target\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_blade_1_1_d3_d11_render_target}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_d3_d11_render_target_adef14b01974b716aa68cffadacfcfd43}\label{class_blade_1_1_d3_d11_render_target_adef14b01974b716aa68cffadacfcfd43}} 
+{\bfseries D3\+D11\+Render\+Target} (const Vec2i \&size, bool M\+S\+AA, int sample\+Count)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_d3_d11_render_target_a050ec4d67f45491e1dfb92d7dfd7cc40}\label{class_blade_1_1_d3_d11_render_target_a050ec4d67f45491e1dfb92d7dfd7cc40}} 
+bool {\bfseries Create} (const Vec2i \&size) override
+\item 
+\mbox{\Hypertarget{class_blade_1_1_d3_d11_render_target_acabe7c18fb8a6cf52a5088653c5c500d}\label{class_blade_1_1_d3_d11_render_target_acabe7c18fb8a6cf52a5088653c5c500d}} 
+bool {\bfseries Bind} (Render\+Target\+Bind\+Type bind\+Type) const override
+\item 
+\mbox{\Hypertarget{class_blade_1_1_d3_d11_render_target_a9abf752799c1e0780dd25e4250622dfc}\label{class_blade_1_1_d3_d11_render_target_a9abf752799c1e0780dd25e4250622dfc}} 
+bool {\bfseries Unbind} () const override
+\item 
+\mbox{\Hypertarget{class_blade_1_1_d3_d11_render_target_ae689e2c81356685e5100b6d62eef53ee}\label{class_blade_1_1_d3_d11_render_target_ae689e2c81356685e5100b6d62eef53ee}} 
+void {\bfseries Clear} (float $\ast$color) const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_d3_d11_render_target_a9430e7028c9517ba19bdb2957c649922}\label{class_blade_1_1_d3_d11_render_target_a9430e7028c9517ba19bdb2957c649922}} 
+void {\bfseries Set\+Color\+Attachment} (I\+D3\+D11\+Texture2D $\ast$color\+Attachment, D\+X\+G\+I\+\_\+\+F\+O\+R\+M\+AT format) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_d3_d11_render_target_a296069b64de6a78e2113acd49b978cb6}\label{class_blade_1_1_d3_d11_render_target_a296069b64de6a78e2113acd49b978cb6}} 
+I\+D3\+D11\+Shader\+Resource\+View $\ast$ {\bfseries Get\+Color\+Attachment} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_d3_d11_render_target_a3108ea56abb5804a38c0293b7034e11a}\label{class_blade_1_1_d3_d11_render_target_a3108ea56abb5804a38c0293b7034e11a}} 
+I\+D3\+D11\+Shader\+Resource\+View $\ast$ {\bfseries Get\+Depth\+Attachment} () const noexcept
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/d3d/D3\+D11\+\_\+render\+\_\+target.\+h\item 
+src/d3d/D3\+D11\+\_\+render\+\_\+target.\+cpp\end{DoxyCompactItemize}

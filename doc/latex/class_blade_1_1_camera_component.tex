@@ -1,0 +1,337 @@
+\hypertarget{class_blade_1_1_camera_component}{}\section{Blade\+:\+:Camera\+Component Class Reference}
+\label{class_blade_1_1_camera_component}\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+
+
+Represents a \hyperlink{class_blade_1_1_camera_component}{Camera\+Component}. This component contains all the information needed for the view and projection transformations. Managed by the \hyperlink{class_blade_1_1_camera_system}{Camera\+System}.  
+
+
+
+
+{\ttfamily \#include $<$camera\+\_\+component.\+h$>$}
+
+Inheritance diagram for Blade\+:\+:Camera\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_blade_1_1_camera_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_blade_1_1_camera_component_a6f66ead0c16432f9840070d40236f099}{Camera\+Component} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_blade_1_1_camera_component}{Camera\+Component}\textquotesingle{}s constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_blade_1_1_camera_component_aeb0111051de5e6156dde78ec88cf5afe}{Camera\+Component} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$parent, float fov, const Viewport \&viewport, float near\+Plane, float far\+Plane)
+\item 
+\hyperlink{class_blade_1_1_camera_component_ab34dcc016e588bb1b5316e1fd06d9246}{Camera\+Component} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$parent, float fov, const Viewport \&viewport, const Vec2f \&clipping\+Planes)
+\item 
+\hyperlink{class_blade_1_1_camera_component_ab0efd673adcb54e7464accfbe80bb612}{$\sim$\+Camera\+Component} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_blade_1_1_camera_component}{Camera\+Component}\textquotesingle{}s destructor. \end{DoxyCompactList}\item 
+float \hyperlink{class_blade_1_1_camera_component_a74c21029f3b9cc3964e87ef048eebe90}{Get\+Fov} () const noexcept
+\begin{DoxyCompactList}\small\item\em Provides the field of view. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_camera_component_a7d3b2934f93bdb601b177c23e9c1088f}{Set\+Fov} (float fov) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the field of view. \end{DoxyCompactList}\item 
+const Viewport \& \hyperlink{class_blade_1_1_camera_component_a3ddce5974c61927eb3bb06f2381d780e}{Get\+Viewport} () const noexcept
+\begin{DoxyCompactList}\small\item\em Provides the Viewport. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_camera_component_a9270ae358568b454a760dccaafc1d0c1}{Set\+Viewport} (const Viewport \&viewport) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the Viewport. \end{DoxyCompactList}\item 
+const Vec2f \& \hyperlink{class_blade_1_1_camera_component_a2eac5f51fbae88dd50ee1077777088c3}{Get\+Clipping\+Planes} () const noexcept
+\begin{DoxyCompactList}\small\item\em Provides the clipping planes as a Vec2f. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_camera_component_aee047bbc83b264db1cea4ebd6445495b}{Set\+Clipping\+Planes} (float near\+Plane, float far\+Plane) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the near and the far clipping planes. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_camera_component_a30416422c87afed3e80a26b14215948f}{Set\+Clipping\+Planes} (const Vec2f \&clipping\+Planes) noexcept
+\item 
+float \hyperlink{class_blade_1_1_camera_component_a2c1a4dd439d7c27c37e0a15146fe976f}{Get\+Near\+Plane} () const noexcept
+\begin{DoxyCompactList}\small\item\em Provides the near clipping plane. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_camera_component_a808877ff7c5af8c68f900d44ab2e554b}{Set\+Near\+Plane} (float near\+Plane) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the near clipping plane. \end{DoxyCompactList}\item 
+float \hyperlink{class_blade_1_1_camera_component_ae7f0621c1db163ee530c75775829401b}{Get\+Far\+Plane} () const noexcept
+\begin{DoxyCompactList}\small\item\em Provides the far clipping plane. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_camera_component_a431e7ecb3e2c4302cb1d07c07cb89dc4}{Set\+Far\+Plane} (float far\+Plane) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the far clipping plane. \end{DoxyCompactList}\item 
+const Mat4f \& \hyperlink{class_blade_1_1_camera_component_a5b8dbf3a13f82da25a0f21d21d92fd99}{Get\+View\+Matrix} () const noexcept
+\begin{DoxyCompactList}\small\item\em Provides the view matrix. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_camera_component_ad1972814c236509dd7fcc9525e068e46}{Set\+View\+Matrix} (const Mat4f \&view\+Matrix) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the view matrix. \end{DoxyCompactList}\item 
+const Mat4f \& \hyperlink{class_blade_1_1_camera_component_a5d79b698eb708d55538f9b8c045368c6}{Get\+Projection\+Matrix} () const noexcept
+\begin{DoxyCompactList}\small\item\em Provides the projection matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a4e8109fb88659b5e08f71ccc3a176fa4}\label{class_blade_1_1_camera_component_a4e8109fb88659b5e08f71ccc3a176fa4}} 
+void \hyperlink{class_blade_1_1_camera_component_a4e8109fb88659b5e08f71ccc3a176fa4}{Use\+Perspective\+Projection} () noexcept
+\begin{DoxyCompactList}\small\item\em Set the projection matrix with perspective\+LH. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents a \hyperlink{class_blade_1_1_camera_component}{Camera\+Component}. This component contains all the information needed for the view and projection transformations. Managed by the \hyperlink{class_blade_1_1_camera_system}{Camera\+System}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a6f66ead0c16432f9840070d40236f099}\label{class_blade_1_1_camera_component_a6f66ead0c16432f9840070d40236f099}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Camera\+Component@{Camera\+Component}}
+\index{Camera\+Component@{Camera\+Component}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Camera\+Component()}{CameraComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Blade\+::\+Camera\+Component\+::\+Camera\+Component (\begin{DoxyParamCaption}\item[{\hyperlink{class_blade_1_1_entity}{Entity} $\ast$}]{parent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\hyperlink{class_blade_1_1_camera_component}{Camera\+Component}\textquotesingle{}s constructor. 
+
+Registers the component to the \hyperlink{class_blade_1_1_camera_system}{Camera\+System}. 
+\begin{DoxyParams}{Parameters}
+{\em parent} & The entity the \hyperlink{class_blade_1_1_camera_component}{Camera\+Component} will be attached to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_aeb0111051de5e6156dde78ec88cf5afe}\label{class_blade_1_1_camera_component_aeb0111051de5e6156dde78ec88cf5afe}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Camera\+Component@{Camera\+Component}}
+\index{Camera\+Component@{Camera\+Component}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Camera\+Component()}{CameraComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Blade\+::\+Camera\+Component\+::\+Camera\+Component (\begin{DoxyParamCaption}\item[{\hyperlink{class_blade_1_1_entity}{Entity} $\ast$}]{parent,  }\item[{float}]{fov,  }\item[{const Viewport \&}]{viewport,  }\item[{float}]{near\+Plane,  }\item[{float}]{far\+Plane }\end{DoxyParamCaption})}
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+\begin{DoxyParams}{Parameters}
+{\em parent} & The entity the \hyperlink{class_blade_1_1_camera_component}{Camera\+Component} will be attached to. \\
+\hline
+{\em fov} & The field of view. \\
+\hline
+{\em viewport} & The viewport of the camera. \\
+\hline
+{\em near\+Plane} & The near clipping plane. \\
+\hline
+{\em far\+Plane} & The far clipping plane. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_ab34dcc016e588bb1b5316e1fd06d9246}\label{class_blade_1_1_camera_component_ab34dcc016e588bb1b5316e1fd06d9246}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Camera\+Component@{Camera\+Component}}
+\index{Camera\+Component@{Camera\+Component}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Camera\+Component()}{CameraComponent()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Blade\+::\+Camera\+Component\+::\+Camera\+Component (\begin{DoxyParamCaption}\item[{\hyperlink{class_blade_1_1_entity}{Entity} $\ast$}]{parent,  }\item[{float}]{fov,  }\item[{const Viewport \&}]{viewport,  }\item[{const Vec2f \&}]{clipping\+Planes }\end{DoxyParamCaption})}
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+\begin{DoxyParams}{Parameters}
+{\em parent} & The entity the \hyperlink{class_blade_1_1_camera_component}{Camera\+Component} will be attached to. \\
+\hline
+{\em fov} & The field of view. \\
+\hline
+{\em viewport} & The viewport of the camera. \\
+\hline
+{\em clipping\+Planes} & The clipping planes for the projection.\\
+\hline
+\end{DoxyParams}
+clipping\+Planes.\+x -\/ The near clipping plane.
+
+clipping\+Planes.\+y -\/ The far clipping plane. \mbox{\Hypertarget{class_blade_1_1_camera_component_ab0efd673adcb54e7464accfbe80bb612}\label{class_blade_1_1_camera_component_ab0efd673adcb54e7464accfbe80bb612}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!````~Camera\+Component@{$\sim$\+Camera\+Component}}
+\index{````~Camera\+Component@{$\sim$\+Camera\+Component}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{$\sim$\+Camera\+Component()}{~CameraComponent()}}
+{\footnotesize\ttfamily Blade\+::\+Camera\+Component\+::$\sim$\+Camera\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_blade_1_1_camera_component}{Camera\+Component}\textquotesingle{}s destructor. 
+
+Unregisters the component from the \hyperlink{class_blade_1_1_camera_system}{Camera\+System}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a2eac5f51fbae88dd50ee1077777088c3}\label{class_blade_1_1_camera_component_a2eac5f51fbae88dd50ee1077777088c3}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Get\+Clipping\+Planes@{Get\+Clipping\+Planes}}
+\index{Get\+Clipping\+Planes@{Get\+Clipping\+Planes}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Get\+Clipping\+Planes()}{GetClippingPlanes()}}
+{\footnotesize\ttfamily const Vec2f \& Blade\+::\+Camera\+Component\+::\+Get\+Clipping\+Planes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Provides the clipping planes as a Vec2f. 
+
+x -\/ The near clipping plane.
+
+y -\/ The far clipping plane. \begin{DoxyReturn}{Returns}
+The clipping planes as a Vec2f. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_ae7f0621c1db163ee530c75775829401b}\label{class_blade_1_1_camera_component_ae7f0621c1db163ee530c75775829401b}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Get\+Far\+Plane@{Get\+Far\+Plane}}
+\index{Get\+Far\+Plane@{Get\+Far\+Plane}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Get\+Far\+Plane()}{GetFarPlane()}}
+{\footnotesize\ttfamily float Blade\+::\+Camera\+Component\+::\+Get\+Far\+Plane (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Provides the far clipping plane. 
+
+\begin{DoxyReturn}{Returns}
+The far clipping plane. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a74c21029f3b9cc3964e87ef048eebe90}\label{class_blade_1_1_camera_component_a74c21029f3b9cc3964e87ef048eebe90}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Get\+Fov@{Get\+Fov}}
+\index{Get\+Fov@{Get\+Fov}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Get\+Fov()}{GetFov()}}
+{\footnotesize\ttfamily float Blade\+::\+Camera\+Component\+::\+Get\+Fov (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Provides the field of view. 
+
+\begin{DoxyReturn}{Returns}
+The field of view. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a2c1a4dd439d7c27c37e0a15146fe976f}\label{class_blade_1_1_camera_component_a2c1a4dd439d7c27c37e0a15146fe976f}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Get\+Near\+Plane@{Get\+Near\+Plane}}
+\index{Get\+Near\+Plane@{Get\+Near\+Plane}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Get\+Near\+Plane()}{GetNearPlane()}}
+{\footnotesize\ttfamily float Blade\+::\+Camera\+Component\+::\+Get\+Near\+Plane (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Provides the near clipping plane. 
+
+\begin{DoxyReturn}{Returns}
+The near clipping plane. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a5d79b698eb708d55538f9b8c045368c6}\label{class_blade_1_1_camera_component_a5d79b698eb708d55538f9b8c045368c6}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Get\+Projection\+Matrix@{Get\+Projection\+Matrix}}
+\index{Get\+Projection\+Matrix@{Get\+Projection\+Matrix}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Get\+Projection\+Matrix()}{GetProjectionMatrix()}}
+{\footnotesize\ttfamily const Mat4f \& Blade\+::\+Camera\+Component\+::\+Get\+Projection\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Provides the projection matrix. 
+
+\begin{DoxyReturn}{Returns}
+The projection matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a5b8dbf3a13f82da25a0f21d21d92fd99}\label{class_blade_1_1_camera_component_a5b8dbf3a13f82da25a0f21d21d92fd99}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Get\+View\+Matrix@{Get\+View\+Matrix}}
+\index{Get\+View\+Matrix@{Get\+View\+Matrix}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Get\+View\+Matrix()}{GetViewMatrix()}}
+{\footnotesize\ttfamily const Mat4f \& Blade\+::\+Camera\+Component\+::\+Get\+View\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Provides the view matrix. 
+
+\begin{DoxyReturn}{Returns}
+The view matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a3ddce5974c61927eb3bb06f2381d780e}\label{class_blade_1_1_camera_component_a3ddce5974c61927eb3bb06f2381d780e}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Get\+Viewport@{Get\+Viewport}}
+\index{Get\+Viewport@{Get\+Viewport}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Get\+Viewport()}{GetViewport()}}
+{\footnotesize\ttfamily const Viewport \& Blade\+::\+Camera\+Component\+::\+Get\+Viewport (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Provides the Viewport. 
+
+\begin{DoxyReturn}{Returns}
+The Viewport. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_aee047bbc83b264db1cea4ebd6445495b}\label{class_blade_1_1_camera_component_aee047bbc83b264db1cea4ebd6445495b}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Set\+Clipping\+Planes@{Set\+Clipping\+Planes}}
+\index{Set\+Clipping\+Planes@{Set\+Clipping\+Planes}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Set\+Clipping\+Planes()}{SetClippingPlanes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Blade\+::\+Camera\+Component\+::\+Set\+Clipping\+Planes (\begin{DoxyParamCaption}\item[{float}]{near\+Plane,  }\item[{float}]{far\+Plane }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the near and the far clipping planes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em near\+Plane} & The near clipping plane. \\
+\hline
+{\em far\+Plane} & The far clipping plane. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a30416422c87afed3e80a26b14215948f}\label{class_blade_1_1_camera_component_a30416422c87afed3e80a26b14215948f}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Set\+Clipping\+Planes@{Set\+Clipping\+Planes}}
+\index{Set\+Clipping\+Planes@{Set\+Clipping\+Planes}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Set\+Clipping\+Planes()}{SetClippingPlanes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Blade\+::\+Camera\+Component\+::\+Set\+Clipping\+Planes (\begin{DoxyParamCaption}\item[{const Vec2f \&}]{clipping\+Planes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.
+
+x -\/ The near clipping plane.
+
+y -\/ The far clipping plane. 
+\begin{DoxyParams}{Parameters}
+{\em clipping\+Planes} & The clipping planes as a Vec2f. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a431e7ecb3e2c4302cb1d07c07cb89dc4}\label{class_blade_1_1_camera_component_a431e7ecb3e2c4302cb1d07c07cb89dc4}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Set\+Far\+Plane@{Set\+Far\+Plane}}
+\index{Set\+Far\+Plane@{Set\+Far\+Plane}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Set\+Far\+Plane()}{SetFarPlane()}}
+{\footnotesize\ttfamily void Blade\+::\+Camera\+Component\+::\+Set\+Far\+Plane (\begin{DoxyParamCaption}\item[{float}]{far\+Plane }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the far clipping plane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em far\+Plane} & The far clipping plane. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a7d3b2934f93bdb601b177c23e9c1088f}\label{class_blade_1_1_camera_component_a7d3b2934f93bdb601b177c23e9c1088f}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Set\+Fov@{Set\+Fov}}
+\index{Set\+Fov@{Set\+Fov}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Set\+Fov()}{SetFov()}}
+{\footnotesize\ttfamily void Blade\+::\+Camera\+Component\+::\+Set\+Fov (\begin{DoxyParamCaption}\item[{float}]{fov }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the field of view. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fov} & The field of view. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a808877ff7c5af8c68f900d44ab2e554b}\label{class_blade_1_1_camera_component_a808877ff7c5af8c68f900d44ab2e554b}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Set\+Near\+Plane@{Set\+Near\+Plane}}
+\index{Set\+Near\+Plane@{Set\+Near\+Plane}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Set\+Near\+Plane()}{SetNearPlane()}}
+{\footnotesize\ttfamily void Blade\+::\+Camera\+Component\+::\+Set\+Near\+Plane (\begin{DoxyParamCaption}\item[{float}]{near\+Plane }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the near clipping plane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em near\+Plane} & The near clipping plane. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_ad1972814c236509dd7fcc9525e068e46}\label{class_blade_1_1_camera_component_ad1972814c236509dd7fcc9525e068e46}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Set\+View\+Matrix@{Set\+View\+Matrix}}
+\index{Set\+View\+Matrix@{Set\+View\+Matrix}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Set\+View\+Matrix()}{SetViewMatrix()}}
+{\footnotesize\ttfamily void Blade\+::\+Camera\+Component\+::\+Set\+View\+Matrix (\begin{DoxyParamCaption}\item[{const Mat4f \&}]{view\+Matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the view matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em far\+Plane} & The new view matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_blade_1_1_camera_component_a9270ae358568b454a760dccaafc1d0c1}\label{class_blade_1_1_camera_component_a9270ae358568b454a760dccaafc1d0c1}} 
+\index{Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}!Set\+Viewport@{Set\+Viewport}}
+\index{Set\+Viewport@{Set\+Viewport}!Blade\+::\+Camera\+Component@{Blade\+::\+Camera\+Component}}
+\subsubsection{\texorpdfstring{Set\+Viewport()}{SetViewport()}}
+{\footnotesize\ttfamily void Blade\+::\+Camera\+Component\+::\+Set\+Viewport (\begin{DoxyParamCaption}\item[{const Viewport \&}]{viewport }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the Viewport. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em viewport} & The Viewport. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/camera\+\_\+component.\+h\item 
+src/camera\+\_\+component.\+cpp\end{DoxyCompactItemize}

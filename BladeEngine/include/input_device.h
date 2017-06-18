@@ -88,6 +88,9 @@ namespace Blade
 		DEVTYPE_ERROR
 	};
 
+	/*
+	\brief Describe the analog dead zones. 
+	*/
 	enum class AnalogDeadzone
 	{
 		ANALOG_STICK_LEFT,
@@ -101,6 +104,9 @@ namespace Blade
 	class InputDevice
 	{
 	private:
+		/*
+		\brief The ID of the device.
+		*/
 		int m_deviceID{ -1 };
 
 		/*
@@ -137,24 +143,28 @@ namespace Blade
 
 		/*
 		 * \brief Filters input state data
+		 * \param stateIn The initial input state that need to be filtered
+		 * \param stateOut The reference to the final state after the filtering process.
 		 * \details Applies limits, scales and clamps for the device (such as deadzones and tolerances) to the specified input data
 		 */
 		static void FilterStateData(const InputState& stateIn, InputState& stateOut);
 
 		/*
 		 * \brief Gets the device ID (input API handle)
+		 * \param id The ID to set.
 		 */
 		void SetDeviceID(int id) { m_deviceID = id; }
 
 		/*
 		 * \brief Sets the type of the device
+		 * \param devType The type of the device.
+		 * \brief param devType The type of the device
 		 */
 		void SetDeviceType(DeviceType devType) { m_DeviceType = devType; }
 
-
-
 		/*
 		 * \brief Moves the newest input state to the previous state and stores the provided state as newest
+		 * \param state The input state.
 		 */
 		void SetInputState(const InputState& state);
 
@@ -167,7 +177,9 @@ namespace Blade
 		virtual bool Initialize() = 0;
 
 	public:
-
+		/*
+		\brief The constructor of the InputDevice.
+		*/
 		InputDevice();
 
 		virtual ~InputDevice() = default;
@@ -186,20 +198,28 @@ namespace Blade
 		 */
 		InputDevice(int device_id, DeviceType devType);
 
+		/*
+		\brief Get the current input state.
+		\return The current input state of the device.
+		*/
 		const InputState& GetInputState() const { return GetCurrentState(); }
 
 		/*
 		 * \brief Gets the device ID (input API handle)
+		 * \return The ID of the device
 		 */
 		int GetDeviceID() const { return m_deviceID; }
 
 		/*
 		 * \brief Updates the active devices to the latest input states available and buffers the most recent previous state
+		 * \param fDeltaTime the delta time.
 		 */
 		virtual void Update(float fDeltaTime) = 0;
 
 		/*
 		 * \brief Sets vibration parameters of input device (if supported)
+		 * \param leftMotor The amount of left motor of the controller
+		 * \param rightMotor The amount of right motor of the controller.
 		 * \details Left and right motors are set independently from 0.0 (off) to 1.0 (100%)
 		 * \return True if successful, false otherwise
 		 */
@@ -208,6 +228,8 @@ namespace Blade
 		/*
 		 * \brief Set dead zone information for an analog sensor on the the device (stick, trigger, etc)
 		 * \details Overrides the pre-defined DEADZONE_ASTICKL/DEADZONE_ASTICKR/DEADZONE_ATRIGGERS values
+		 * \param flag The identifier of the dead zone that you want to affect.
+		 * \param value The analog dead zone threshold.
 		 * \remarks The flag enum is of type Analog_Deadzone, and represents which value to update.
 		 * Use AnalogStickL to set the left analog stick dead zone, AnalogStickR to set the right
 		 * analog stick dead zone,	and AnalogTrigger to set the dead zone for both analog triggers.
@@ -217,6 +239,7 @@ namespace Blade
 
 		/*
 		 * \brief Get dead zone information for an analog sensor on the the device (stick, trigger, etc)
+		 * \param flag The flag of the dead zone.
 		 * \remarks The flag enum is of type Analog_Deadzone, and represents which value to update.
 		 * Use AnalogStickL to get the left analog stick dead zone, AnalogStickR to get the right
 		 * analog stick dead zone,	and AnalogTrigger to get the dead zone for both analog triggers.
@@ -238,11 +261,13 @@ namespace Blade
 
 		/*
 		 * \brief Gets the last (newest) buffered input state to read
+		 * \return The current input state. 
 		 */
 		const InputState& GetCurrentState() const { return m_CurrentState; }
 
 		/*
 		 * \brief Gets the previous buffered previous input state to read
+		 * \return The previous input state.
 		 */
 		const InputState& GetPreviousState() const { return m_PreviousState; }
 	};

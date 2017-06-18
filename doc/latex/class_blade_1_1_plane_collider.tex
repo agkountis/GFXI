@@ -1,0 +1,53 @@
+\hypertarget{class_blade_1_1_plane_collider}{}\section{Blade\+:\+:Plane\+Collider Class Reference}
+\label{class_blade_1_1_plane_collider}\index{Blade\+::\+Plane\+Collider@{Blade\+::\+Plane\+Collider}}
+
+
+Bounding Plane class is a collider.  
+
+
+
+
+{\ttfamily \#include $<$plane\+\_\+collider.\+h$>$}
+
+Inheritance diagram for Blade\+:\+:Plane\+Collider\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_blade_1_1_plane_collider}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_plane_collider_afde68d33241cd30bc0a68c29ba5ab177}\label{class_blade_1_1_plane_collider_afde68d33241cd30bc0a68c29ba5ab177}} 
+{\bfseries Plane\+Collider} (const Vec3f \&plane\+Normal, const float offset)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_plane_collider_a0eec57eec3a14a57ddbb14549e3f4de8}\label{class_blade_1_1_plane_collider_a0eec57eec3a14a57ddbb14549e3f4de8}} 
+bool {\bfseries Collide} (const \hyperlink{class_blade_1_1_collider}{Collider} $\ast$collider, \hyperlink{class_blade_1_1_contact_manifold}{Contact\+Manifold} \&manifold) const noexcept override
+\item 
+\mbox{\Hypertarget{class_blade_1_1_plane_collider_a41656313053cd2529b0815deb94d2713}\label{class_blade_1_1_plane_collider_a41656313053cd2529b0815deb94d2713}} 
+bool {\bfseries Collide} (const \hyperlink{class_blade_1_1_bounding_sphere}{Bounding\+Sphere} $\ast$bsphere, \hyperlink{class_blade_1_1_contact_manifold}{Contact\+Manifold} \&manifold) const noexcept override
+\item 
+\mbox{\Hypertarget{class_blade_1_1_plane_collider_a06dbb0b93993c13c36b9fcfcdfa2a19b}\label{class_blade_1_1_plane_collider_a06dbb0b93993c13c36b9fcfcdfa2a19b}} 
+bool {\bfseries Collide} (const \hyperlink{class_blade_1_1_plane_collider}{Plane\+Collider} $\ast$plane, \hyperlink{class_blade_1_1_contact_manifold}{Contact\+Manifold} \&manifold) const noexcept override
+\item 
+\mbox{\Hypertarget{class_blade_1_1_plane_collider_a34f5aed7ac8bf8fde0d7e4b2981d6468}\label{class_blade_1_1_plane_collider_a34f5aed7ac8bf8fde0d7e4b2981d6468}} 
+const Vec3f \& {\bfseries Get\+Plane\+Normal} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_plane_collider_a7c958fc80ebb794cbe9b321335ab1a7c}\label{class_blade_1_1_plane_collider_a7c958fc80ebb794cbe9b321335ab1a7c}} 
+void {\bfseries Set\+Plane\+Normal} (const Vec3f \&normal) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_plane_collider_aa139681f2b510ca30dd86e0c9e22d919}\label{class_blade_1_1_plane_collider_aa139681f2b510ca30dd86e0c9e22d919}} 
+float {\bfseries Get\+Offeset} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_plane_collider_a858ff3ff302c656cf1d0b0387802588d}\label{class_blade_1_1_plane_collider_a858ff3ff302c656cf1d0b0387802588d}} 
+void {\bfseries Set\+Offset} (const float offset) noexcept
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Bounding Plane class is a collider. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/plane\+\_\+collider.\+h\item 
+src/plane\+\_\+collider.\+cpp\end{DoxyCompactItemize}

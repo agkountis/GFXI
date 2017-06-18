@@ -1,0 +1,79 @@
+\hypertarget{class_blade_1_1_joypad_input_component}{}\section{Blade\+:\+:Joypad\+Input\+Component Class Reference}
+\label{class_blade_1_1_joypad_input_component}\index{Blade\+::\+Joypad\+Input\+Component@{Blade\+::\+Joypad\+Input\+Component}}
+Inheritance diagram for Blade\+:\+:Joypad\+Input\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_blade_1_1_joypad_input_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_joypad_input_component_a69c169898e9f45399da66f9d912da2cf}\label{class_blade_1_1_joypad_input_component_a69c169898e9f45399da66f9d912da2cf}} 
+{\bfseries Joypad\+Input\+Component} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$parent, Joypad\+Number joypad\+\_\+number, bool online)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_joypad_input_component_a683bd84cfddc9c0427d673b209feb3a5}\label{class_blade_1_1_joypad_input_component_a683bd84cfddc9c0427d673b209feb3a5}} 
+{\bfseries Joypad\+Input\+Component} (const \hyperlink{class_blade_1_1_joypad_input_component}{Joypad\+Input\+Component} \&other)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_joypad_input_component_a50da9013022078ae5d73a25b3149aad3}\label{class_blade_1_1_joypad_input_component_a50da9013022078ae5d73a25b3149aad3}} 
+\hyperlink{class_blade_1_1_joypad_input_component}{Joypad\+Input\+Component} \& {\bfseries operator=} (const \hyperlink{class_blade_1_1_joypad_input_component}{Joypad\+Input\+Component} \&other)=delete
+\item 
+virtual void \hyperlink{class_blade_1_1_joypad_input_component_a386bea7c84d17eefa0d40bfa17575e04}{Update} (const float dt, const long time=0) noexcept=0
+\begin{DoxyCompactList}\small\item\em Updates the \hyperlink{class_blade_1_1_component}{Component} on each frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_joypad_input_component_a06b676433645ed509e516061f90589c2}\label{class_blade_1_1_joypad_input_component_a06b676433645ed509e516061f90589c2}} 
+virtual void \hyperlink{class_blade_1_1_joypad_input_component_a06b676433645ed509e516061f90589c2}{Setup} () noexcept=0
+\begin{DoxyCompactList}\small\item\em Performs setup actions after the \hyperlink{class_blade_1_1_behaviour_component}{Behaviour\+Component}\textquotesingle{}s creation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_joypad_input_component_ab5009626ea7dd18b3713b4e3ee8fa650}\label{class_blade_1_1_joypad_input_component_ab5009626ea7dd18b3713b4e3ee8fa650}} 
+virtual void \hyperlink{class_blade_1_1_joypad_input_component_ab5009626ea7dd18b3713b4e3ee8fa650}{Teardown} () noexcept=0
+\begin{DoxyCompactList}\small\item\em Performs actions before the \hyperlink{class_blade_1_1_behaviour_component}{Behaviour\+Component} is destroyed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_joypad_input_component_aa72a4910f2db050a9d25051e1482b812}\label{class_blade_1_1_joypad_input_component_aa72a4910f2db050a9d25051e1482b812}} 
+bool {\bfseries Load\+Configuration} (const std\+::vector$<$ Input\+Sensor $>$ \&control, const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{class_blade_1_1_command}{Command} $>$$>$ \&commands) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_joypad_input_component_a1829016a46492b0e1387db96b5b1ceb0}\label{class_blade_1_1_joypad_input_component_a1829016a46492b0e1387db96b5b1ceb0}} 
+bool {\bfseries Load\+Configuration} (const Joypad\+Command\+Map \&map)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_joypad_input_component_a0835408ffdcf5f6fb44f726f053a7152}\label{class_blade_1_1_joypad_input_component_a0835408ffdcf5f6fb44f726f053a7152}} 
+const Joypad\+Command\+Map \& {\bfseries Get\+Command\+Map} () const noexcept
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_joypad_input_component_ad67873042be4c780de3d2257ba2bd88b}\label{class_blade_1_1_joypad_input_component_ad67873042be4c780de3d2257ba2bd88b}} 
+Joypad\+Number {\bfseries m\+\_\+\+Joypad\+Num}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_joypad_input_component_a17ae33415867c4d3128cfa28f30e46d2}\label{class_blade_1_1_joypad_input_component_a17ae33415867c4d3128cfa28f30e46d2}} 
+Joypad\+Command\+Map {\bfseries m\+\_\+\+Joypad\+Command\+Map}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_blade_1_1_joypad_input_component_a386bea7c84d17eefa0d40bfa17575e04}\label{class_blade_1_1_joypad_input_component_a386bea7c84d17eefa0d40bfa17575e04}} 
+\index{Blade\+::\+Joypad\+Input\+Component@{Blade\+::\+Joypad\+Input\+Component}!Update@{Update}}
+\index{Update@{Update}!Blade\+::\+Joypad\+Input\+Component@{Blade\+::\+Joypad\+Input\+Component}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily virtual void Blade\+::\+Joypad\+Input\+Component\+::\+Update (\begin{DoxyParamCaption}\item[{const float}]{dt,  }\item[{const long}]{time = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Updates the \hyperlink{class_blade_1_1_component}{Component} on each frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The time elapsed from the previous frame of the \hyperlink{class_blade_1_1_application}{Application}. \\
+\hline
+{\em time} & The elapsed time since the start of the \hyperlink{class_blade_1_1_application}{Application}. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_blade_1_1_input_component_aa7869b52200bb0a8c0c304fdf6147098}{Blade\+::\+Input\+Component}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/joypad\+\_\+input\+\_\+component.\+h\item 
+src/joypad\+\_\+input\+\_\+component.\+cpp\end{DoxyCompactItemize}

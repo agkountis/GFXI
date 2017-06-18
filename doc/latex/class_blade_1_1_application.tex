@@ -1,0 +1,59 @@
+\hypertarget{class_blade_1_1_application}{}\section{Blade\+:\+:Application Class Reference}
+\label{class_blade_1_1_application}\index{Blade\+::\+Application@{Blade\+::\+Application}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a73ea9e8a20297c3dd47a565302e46b10}\label{class_blade_1_1_application_a73ea9e8a20297c3dd47a565302e46b10}} 
+{\bfseries Application} (const \hyperlink{class_blade_1_1_application}{Application} \&application)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_ad7528afe280f12aa19f0dcbefd5083aa}\label{class_blade_1_1_application_ad7528afe280f12aa19f0dcbefd5083aa}} 
+\hyperlink{class_blade_1_1_application}{Application} \& {\bfseries operator=} (const \hyperlink{class_blade_1_1_application}{Application} \&application)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a74d0bed9493b107ac522db1a40ebe19d}\label{class_blade_1_1_application_a74d0bed9493b107ac522db1a40ebe19d}} 
+void {\bfseries Set\+Termination} (bool state) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a68aba5838320ebb7b2683954ffee050b}\label{class_blade_1_1_application_a68aba5838320ebb7b2683954ffee050b}} 
+bool {\bfseries Should\+Terminate} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a8e144f5f05fc638339fc19afe142bbab}\label{class_blade_1_1_application_a8e144f5f05fc638339fc19afe142bbab}} 
+double {\bfseries Get\+Delta} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a0fd401f7a7ea78a8d222ccc920cb1968}\label{class_blade_1_1_application_a0fd401f7a7ea78a8d222ccc920cb1968}} 
+long {\bfseries Get\+Msec} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a025118e872031944df57560e820cfde2}\label{class_blade_1_1_application_a025118e872031944df57560e820cfde2}} 
+double {\bfseries Get\+Sec} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a3c8f0f5698682bd2b205ae1616020073}\label{class_blade_1_1_application_a3c8f0f5698682bd2b205ae1616020073}} 
+void {\bfseries Pause} () noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_ab8626a9bc16bffa5d94d2e5851e378a2}\label{class_blade_1_1_application_ab8626a9bc16bffa5d94d2e5851e378a2}} 
+void {\bfseries Un\+Pause} () noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a80cb2abe5d175dde76be4f461bd82183}\label{class_blade_1_1_application_a80cb2abe5d175dde76be4f461bd82183}} 
+bool {\bfseries Is\+Paused} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a328d42f7cb14a418ad3b9c54aa055132}\label{class_blade_1_1_application_a328d42f7cb14a418ad3b9c54aa055132}} 
+void {\bfseries Set\+Load\+Entity\+Callback} (const Load\+Entity\+Callback \&callback) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_ac5964be32df8e0787b832896c0811ae6}\label{class_blade_1_1_application_ac5964be32df8e0787b832896c0811ae6}} 
+const Load\+Entity\+Callback \& {\bfseries Get\+Load\+Entity\+Callback} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a5abbd8e3d830a6543f4abbc2d100c562}\label{class_blade_1_1_application_a5abbd8e3d830a6543f4abbc2d100c562}} 
+virtual bool {\bfseries Initialize} (int $\ast$argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a18b70b1a66b3c639e723464a0f31cc5f}\label{class_blade_1_1_application_a18b70b1a66b3c639e723464a0f31cc5f}} 
+virtual void {\bfseries Update} () noexcept=0
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a660b728e2e7855548d02316c328da2f7}\label{class_blade_1_1_application_a660b728e2e7855548d02316c328da2f7}} 
+virtual void {\bfseries Draw} () const noexcept=0
+\item 
+\mbox{\Hypertarget{class_blade_1_1_application_a969f20210bd185cc6912b7794a0eea5b}\label{class_blade_1_1_application_a969f20210bd185cc6912b7794a0eea5b}} 
+virtual int {\bfseries Run} () noexcept=0
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/application.\+h\item 
+src/application.\+cpp\end{DoxyCompactItemize}

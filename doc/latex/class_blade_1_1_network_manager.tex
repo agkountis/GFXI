@@ -1,0 +1,35 @@
+\hypertarget{class_blade_1_1_network_manager}{}\section{Blade\+:\+:Network\+Manager Class Reference}
+\label{class_blade_1_1_network_manager}\index{Blade\+::\+Network\+Manager@{Blade\+::\+Network\+Manager}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_network_manager_a9b1c863473df3dddfd4347c4fa570a80}\label{class_blade_1_1_network_manager_a9b1c863473df3dddfd4347c4fa570a80}} 
+bool {\bfseries Initialize} () noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_network_manager_a1e097a251026499832bd7238adb48d8a}\label{class_blade_1_1_network_manager_a1e097a251026499832bd7238adb48d8a}} 
+void {\bfseries Listen} (const unsigned short port) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_network_manager_a61a872d6eec9050280dc041a7cda3759}\label{class_blade_1_1_network_manager_a61a872d6eec9050280dc041a7cda3759}} 
+void {\bfseries Connect} (const std\+::string \&host, const unsigned short port) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_network_manager_a3127ee70f644dedfa8be9372805f6d5a}\label{class_blade_1_1_network_manager_a3127ee70f644dedfa8be9372805f6d5a}} 
+void {\bfseries Queue\+Message} (const std\+::shared\+\_\+ptr$<$ \hyperlink{class_blade_1_1_network_message}{Network\+Message} $>$ \&message) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_network_manager_ac8dcbba66d285f6a14ad1bcfa346ae5e}\label{class_blade_1_1_network_manager_ac8dcbba66d285f6a14ad1bcfa346ae5e}} 
+size\+\_\+t {\bfseries Get\+Connection\+Count} () noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_network_manager_a12f5afdfc075b71ea82d4d657a78d780}\label{class_blade_1_1_network_manager_a12f5afdfc075b71ea82d4d657a78d780}} 
+void {\bfseries Set\+On\+New\+Packet\+Callback} (const On\+New\+Packet\+Callback \&callback) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_network_manager_a192f822f26e76829c2414f1505418a78}\label{class_blade_1_1_network_manager_a192f822f26e76829c2414f1505418a78}} 
+void {\bfseries Set\+On\+New\+Client\+Callback} (const On\+New\+Client\+Callback \&callback) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_network_manager_ada4cd3f291d3775e7467c5be31090a99}\label{class_blade_1_1_network_manager_ada4cd3f291d3775e7467c5be31090a99}} 
+void {\bfseries Set\+On\+Client\+Disconnect\+Callback} (const On\+Client\+Disconnect\+Callback \&callback) noexcept
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/network\+\_\+manager.\+h\item 
+src/network\+\_\+manager.\+cpp\end{DoxyCompactItemize}

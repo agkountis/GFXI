@@ -1,0 +1,245 @@
+\hypertarget{class_blade_1_1_input_manager}{}\section{Blade\+:\+:Input\+Manager Class Reference}
+\label{class_blade_1_1_input_manager}\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a4670405f916ccabf83465154f3649d17}\label{class_blade_1_1_input_manager_a4670405f916ccabf83465154f3649d17}} 
+void {\bfseries Set\+Mouse\+Button\+State} (Mouse\+Button state, bool value)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a61209430d6682ade700cc9fa89c7f50e}\label{class_blade_1_1_input_manager_a61209430d6682ade700cc9fa89c7f50e}} 
+void {\bfseries Update\+Mouse\+Pos} (Vec2i mousepos)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a97307f47638f62a6c9736675a6906f14}\label{class_blade_1_1_input_manager_a97307f47638f62a6c9736675a6906f14}} 
+Vec2f {\bfseries Get\+Analog\+Stick\+Vector} (Joypad\+Number player, Input\+Sensor sensor)
+\item 
+bool \hyperlink{class_blade_1_1_input_manager_a8d8e424cb1de012c830296a0812ceebc}{Query\+Key\+State} (Virtual\+Key key) const noexcept
+\begin{DoxyCompactList}\small\item\em Query the keyboard device for the state of a key. \end{DoxyCompactList}\item 
+bool \hyperlink{class_blade_1_1_input_manager_a6223ce5641fedc88d8e8591deb73ac90}{Query\+All\+Key\+States} (std\+::map$<$ Virtual\+Key, bool $>$ \&dest\+Map) const noexcept
+\begin{DoxyCompactList}\small\item\em Query the Keyboard device for the state of A\+LL keys associated to the device. \end{DoxyCompactList}\item 
+Vec2f \hyperlink{class_blade_1_1_input_manager_ab1fe795118afeb4642342567d3e27b3f}{Query\+Mouse\+Movement} ()
+\begin{DoxyCompactList}\small\item\em Query the Keyboard device for the state of A\+LL keys associated to the device. \end{DoxyCompactList}\item 
+Vec2f \hyperlink{class_blade_1_1_input_manager_aa96a587de7ed5234b2b7883df48c0a09}{Query\+Mouse\+Movement\+Normalized} ()
+\begin{DoxyCompactList}\small\item\em Query the Keyboard device for the state of A\+LL keys associated to the device. \end{DoxyCompactList}\item 
+Vec2i \hyperlink{class_blade_1_1_input_manager_a0bd64dfa38174d3fa87c445ee261d8c3}{Query\+Mouse\+Position} () const noexcept
+\begin{DoxyCompactList}\small\item\em Query the Keyboard device for the state of A\+LL keys associated to the device. \end{DoxyCompactList}\item 
+bool \hyperlink{class_blade_1_1_input_manager_ad2537487a4c3c80e7eb6b8c0ea37b09b}{Query\+Mouse\+Button\+State} (Mouse\+Button button)
+\begin{DoxyCompactList}\small\item\em Query the state of the mouse buttons (providing an enum per button) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a94dc87364eb3e84cbe56906e483c2b5b}\label{class_blade_1_1_input_manager_a94dc87364eb3e84cbe56906e483c2b5b}} 
+bool \hyperlink{class_blade_1_1_input_manager_a94dc87364eb3e84cbe56906e483c2b5b}{Query\+Device\+State} (Joypad\+Number player, Input\+Sensor sensor)
+\begin{DoxyCompactList}\small\item\em Query the state of a sensor on an active pad linked to player. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_input_manager_aefed17ef43650b20e93f23e5e08c8e89}\label{class_blade_1_1_input_manager_aefed17ef43650b20e93f23e5e08c8e89}} 
+bool \hyperlink{class_blade_1_1_input_manager_aefed17ef43650b20e93f23e5e08c8e89}{Query\+Device\+All\+States} (Joypad\+Number player, std\+::map$<$ Input\+Sensor, bool $>$ \&map)
+\begin{DoxyCompactList}\small\item\em Query the input states of sensors on an active device linked to player, return in supplied map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a1184a42c2c6b0f96d4169936090f9480}\label{class_blade_1_1_input_manager_a1184a42c2c6b0f96d4169936090f9480}} 
+void \hyperlink{class_blade_1_1_input_manager_a1184a42c2c6b0f96d4169936090f9480}{Update} (float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Update the states of managed input devices, and re-\/enumerate input devices. \end{DoxyCompactList}\item 
+bool \hyperlink{class_blade_1_1_input_manager_a979db0aea29e22ed95c2642649922a41}{Initialize} () noexcept
+\begin{DoxyCompactList}\small\item\em Initialize the input manager. \end{DoxyCompactList}\item 
+int \hyperlink{class_blade_1_1_input_manager_afdb7935349eacd9dab51a5b06c8d3864}{Enumerate\+Devices} () noexcept
+\begin{DoxyCompactList}\small\item\em Counts and store the number of connected devices to the machine. \end{DoxyCompactList}\item 
+Device\+Type \hyperlink{class_blade_1_1_input_manager_a308a056833ddd9aa528ac4fbdbf9df4c}{Device\+Pool\+Query\+Type} (int device\+Id)
+\begin{DoxyCompactList}\small\item\em Query a device pool for its type. \end{DoxyCompactList}\item 
+bool \hyperlink{class_blade_1_1_input_manager_ae3ccc72d662ee90161206ef64722380f}{Pooled\+Device\+Exists} (int device\+Id)
+\begin{DoxyCompactList}\small\item\em Search the device pool for a device with id equal to device\+Id. \end{DoxyCompactList}\item 
+bool \hyperlink{class_blade_1_1_input_manager_a6aadb5a4fd8ccfe2de69c1f2d62df37d}{Active\+Device\+Exists} (int device\+Id)
+\begin{DoxyCompactList}\small\item\em Search the active device map for a device with id equal to device\+Id. \end{DoxyCompactList}\item 
+bool \hyperlink{class_blade_1_1_input_manager_a1c7e8d968e53123e3077c2386eaac7ae}{Assign\+Device\+To\+Player} (Joypad\+Number player\+ID, int device\+Number)
+\begin{DoxyCompactList}\small\item\em Assigns a player to an input device. \end{DoxyCompactList}\item 
+bool \hyperlink{class_blade_1_1_input_manager_a13f1624084d79930b4ad6c6615277a5b}{Unassign\+Device} (Joypad\+Number player\+ID)
+\begin{DoxyCompactList}\small\item\em Unassigns an input device from a player (by player ID). \end{DoxyCompactList}\item 
+\hyperlink{class_blade_1_1_input_device}{Input\+Device} $\ast$ \hyperlink{class_blade_1_1_input_manager_a8b5863fec63f8e322476cd1a4a4292dc}{Get\+Active\+Device} (Joypad\+Number player\+ID)
+\begin{DoxyCompactList}\small\item\em Returns an active (not in the pool) assigned input device, searched by player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a6aadb5a4fd8ccfe2de69c1f2d62df37d}\label{class_blade_1_1_input_manager_a6aadb5a4fd8ccfe2de69c1f2d62df37d}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Active\+Device\+Exists@{Active\+Device\+Exists}}
+\index{Active\+Device\+Exists@{Active\+Device\+Exists}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Active\+Device\+Exists()}{ActiveDeviceExists()}}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Active\+Device\+Exists (\begin{DoxyParamCaption}\item[{int}]{device\+Id }\end{DoxyParamCaption})}
+
+
+
+Search the active device map for a device with id equal to device\+Id. 
+
+\begin{DoxyReturn}{Returns}
+True if the device is found, otherwise false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a1c7e8d968e53123e3077c2386eaac7ae}\label{class_blade_1_1_input_manager_a1c7e8d968e53123e3077c2386eaac7ae}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Assign\+Device\+To\+Player@{Assign\+Device\+To\+Player}}
+\index{Assign\+Device\+To\+Player@{Assign\+Device\+To\+Player}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Assign\+Device\+To\+Player()}{AssignDeviceToPlayer()}}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Assign\+Device\+To\+Player (\begin{DoxyParamCaption}\item[{Joypad\+Number}]{player\+ID,  }\item[{int}]{device\+Number }\end{DoxyParamCaption})}
+
+
+
+Assigns a player to an input device. 
+
+\begin{DoxyReturn}{Returns}
+True if successful, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a308a056833ddd9aa528ac4fbdbf9df4c}\label{class_blade_1_1_input_manager_a308a056833ddd9aa528ac4fbdbf9df4c}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Device\+Pool\+Query\+Type@{Device\+Pool\+Query\+Type}}
+\index{Device\+Pool\+Query\+Type@{Device\+Pool\+Query\+Type}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Device\+Pool\+Query\+Type()}{DevicePoolQueryType()}}
+{\footnotesize\ttfamily Device\+Type Blade\+::\+Input\+Manager\+::\+Device\+Pool\+Query\+Type (\begin{DoxyParamCaption}\item[{int}]{device\+Id }\end{DoxyParamCaption})}
+
+
+
+Query a device pool for its type. 
+
+\begin{DoxyReturn}{Returns}
+Device\+Type enum of the device in the pool denoted by dev\+Index 
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+If the device is not found, or an error has occurred, D\+E\+V\+T\+Y\+P\+E\+\_\+\+E\+R\+R\+OR is returned 
+\end{DoxyRemark}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_afdb7935349eacd9dab51a5b06c8d3864}\label{class_blade_1_1_input_manager_afdb7935349eacd9dab51a5b06c8d3864}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Enumerate\+Devices@{Enumerate\+Devices}}
+\index{Enumerate\+Devices@{Enumerate\+Devices}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Enumerate\+Devices()}{EnumerateDevices()}}
+{\footnotesize\ttfamily int Blade\+::\+Input\+Manager\+::\+Enumerate\+Devices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Counts and store the number of connected devices to the machine. 
+
+\begin{DoxyReturn}{Returns}
+An integer representing the number of connected input devices 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a8b5863fec63f8e322476cd1a4a4292dc}\label{class_blade_1_1_input_manager_a8b5863fec63f8e322476cd1a4a4292dc}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Get\+Active\+Device@{Get\+Active\+Device}}
+\index{Get\+Active\+Device@{Get\+Active\+Device}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Get\+Active\+Device()}{GetActiveDevice()}}
+{\footnotesize\ttfamily \hyperlink{class_blade_1_1_input_device}{Input\+Device} $\ast$ Blade\+::\+Input\+Manager\+::\+Get\+Active\+Device (\begin{DoxyParamCaption}\item[{Joypad\+Number}]{player\+ID }\end{DoxyParamCaption})}
+
+
+
+Returns an active (not in the pool) assigned input device, searched by player. 
+
+\begin{DoxyReturn}{Returns}
+Active input device for player id, nullptr otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a979db0aea29e22ed95c2642649922a41}\label{class_blade_1_1_input_manager_a979db0aea29e22ed95c2642649922a41}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Initialize the input manager. 
+
+\begin{DoxyReturn}{Returns}
+True if the initialization is successful, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_ae3ccc72d662ee90161206ef64722380f}\label{class_blade_1_1_input_manager_ae3ccc72d662ee90161206ef64722380f}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Pooled\+Device\+Exists@{Pooled\+Device\+Exists}}
+\index{Pooled\+Device\+Exists@{Pooled\+Device\+Exists}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Pooled\+Device\+Exists()}{PooledDeviceExists()}}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Pooled\+Device\+Exists (\begin{DoxyParamCaption}\item[{int}]{device\+Id }\end{DoxyParamCaption})}
+
+
+
+Search the device pool for a device with id equal to device\+Id. 
+
+\begin{DoxyReturn}{Returns}
+True if the device is found, otherwise false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a6223ce5641fedc88d8e8591deb73ac90}\label{class_blade_1_1_input_manager_a6223ce5641fedc88d8e8591deb73ac90}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Query\+All\+Key\+States@{Query\+All\+Key\+States}}
+\index{Query\+All\+Key\+States@{Query\+All\+Key\+States}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Query\+All\+Key\+States()}{QueryAllKeyStates()}}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Query\+All\+Key\+States (\begin{DoxyParamCaption}\item[{std\+::map$<$ Virtual\+Key, bool $>$ \&}]{dest\+Map }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Query the Keyboard device for the state of A\+LL keys associated to the device. 
+
+\begin{DoxyReturn}{Returns}
+True if successful, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a8d8e424cb1de012c830296a0812ceebc}\label{class_blade_1_1_input_manager_a8d8e424cb1de012c830296a0812ceebc}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Query\+Key\+State@{Query\+Key\+State}}
+\index{Query\+Key\+State@{Query\+Key\+State}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Query\+Key\+State()}{QueryKeyState()}}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Query\+Key\+State (\begin{DoxyParamCaption}\item[{Virtual\+Key}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Query the keyboard device for the state of a key. 
+
+\begin{DoxyReturn}{Returns}
+True if the key is a P\+R\+E\+S\+S\+ED state (down), false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_ad2537487a4c3c80e7eb6b8c0ea37b09b}\label{class_blade_1_1_input_manager_ad2537487a4c3c80e7eb6b8c0ea37b09b}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Query\+Mouse\+Button\+State@{Query\+Mouse\+Button\+State}}
+\index{Query\+Mouse\+Button\+State@{Query\+Mouse\+Button\+State}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Query\+Mouse\+Button\+State()}{QueryMouseButtonState()}}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Query\+Mouse\+Button\+State (\begin{DoxyParamCaption}\item[{Mouse\+Button}]{button }\end{DoxyParamCaption})}
+
+
+
+Query the state of the mouse buttons (providing an enum per button) 
+
+\begin{DoxyReturn}{Returns}
+True if pressed, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_ab1fe795118afeb4642342567d3e27b3f}\label{class_blade_1_1_input_manager_ab1fe795118afeb4642342567d3e27b3f}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Query\+Mouse\+Movement@{Query\+Mouse\+Movement}}
+\index{Query\+Mouse\+Movement@{Query\+Mouse\+Movement}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Query\+Mouse\+Movement()}{QueryMouseMovement()}}
+{\footnotesize\ttfamily Vec2f Blade\+::\+Input\+Manager\+::\+Query\+Mouse\+Movement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Query the Keyboard device for the state of A\+LL keys associated to the device. 
+
+\begin{DoxyReturn}{Returns}
+True if successful, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_aa96a587de7ed5234b2b7883df48c0a09}\label{class_blade_1_1_input_manager_aa96a587de7ed5234b2b7883df48c0a09}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Query\+Mouse\+Movement\+Normalized@{Query\+Mouse\+Movement\+Normalized}}
+\index{Query\+Mouse\+Movement\+Normalized@{Query\+Mouse\+Movement\+Normalized}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Query\+Mouse\+Movement\+Normalized()}{QueryMouseMovementNormalized()}}
+{\footnotesize\ttfamily Vec2f Blade\+::\+Input\+Manager\+::\+Query\+Mouse\+Movement\+Normalized (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Query the Keyboard device for the state of A\+LL keys associated to the device. 
+
+\begin{DoxyReturn}{Returns}
+True if successful, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a0bd64dfa38174d3fa87c445ee261d8c3}\label{class_blade_1_1_input_manager_a0bd64dfa38174d3fa87c445ee261d8c3}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Query\+Mouse\+Position@{Query\+Mouse\+Position}}
+\index{Query\+Mouse\+Position@{Query\+Mouse\+Position}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Query\+Mouse\+Position()}{QueryMousePosition()}}
+{\footnotesize\ttfamily Vec2i Blade\+::\+Input\+Manager\+::\+Query\+Mouse\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Query the Keyboard device for the state of A\+LL keys associated to the device. 
+
+\begin{DoxyReturn}{Returns}
+True if successful, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_input_manager_a13f1624084d79930b4ad6c6615277a5b}\label{class_blade_1_1_input_manager_a13f1624084d79930b4ad6c6615277a5b}} 
+\index{Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}!Unassign\+Device@{Unassign\+Device}}
+\index{Unassign\+Device@{Unassign\+Device}!Blade\+::\+Input\+Manager@{Blade\+::\+Input\+Manager}}
+\subsubsection{\texorpdfstring{Unassign\+Device()}{UnassignDevice()}}
+{\footnotesize\ttfamily bool Blade\+::\+Input\+Manager\+::\+Unassign\+Device (\begin{DoxyParamCaption}\item[{Joypad\+Number}]{player\+ID }\end{DoxyParamCaption})}
+
+
+
+Unassigns an input device from a player (by player ID). 
+
+\begin{DoxyReturn}{Returns}
+Destroy the association between player and device, and mark device as inactive 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/input\+\_\+manager.\+h\item 
+src/input\+\_\+manager.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,132 @@
+\hypertarget{class_blade_1_1_component}{}\section{Blade\+:\+:Component Class Reference}
+\label{class_blade_1_1_component}\index{Blade\+::\+Component@{Blade\+::\+Component}}
+
+
+Base \hyperlink{class_blade_1_1_component}{Component} class of the engine. All the components of the engine derive from this class. Compoment inherits from the \hyperlink{class_blade_1_1_observer}{Observer} class so it can register and receive specific messages.  
+
+
+
+
+{\ttfamily \#include $<$component.\+h$>$}
+
+Inheritance diagram for Blade\+:\+:Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.913875cm]{class_blade_1_1_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_blade_1_1_component_a9afd6318db086a2fa6bfdbbbc009ef85}{Component} (const std\+::string \&type, \hyperlink{class_blade_1_1_entity}{Entity} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_blade_1_1_component}{Component} constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_component_a8f82f850d6487c061112513171a3ebe2}\label{class_blade_1_1_component_a8f82f850d6487c061112513171a3ebe2}} 
+{\bfseries Component} (const \hyperlink{class_blade_1_1_component}{Component} \&other)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_component_abbed7271dc6e5d937a6a1fd0135a8614}\label{class_blade_1_1_component_abbed7271dc6e5d937a6a1fd0135a8614}} 
+\hyperlink{class_blade_1_1_component}{Component} \& {\bfseries operator=} (const \hyperlink{class_blade_1_1_component}{Component} \&other)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_component_abeec5b76a9868647abb96b7f575d9e11}\label{class_blade_1_1_component_abeec5b76a9868647abb96b7f575d9e11}} 
+virtual \hyperlink{class_blade_1_1_component_abeec5b76a9868647abb96b7f575d9e11}{$\sim$\+Component} ()
+\begin{DoxyCompactList}\small\item\em Default destructor of the \hyperlink{class_blade_1_1_component}{Component}. \end{DoxyCompactList}\item 
+const std\+::string \& \hyperlink{class_blade_1_1_component_a0ad0c264894e64c7b336c12165b6beac}{Get\+Type} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the type of the \hyperlink{class_blade_1_1_component}{Component}. \end{DoxyCompactList}\item 
+\hyperlink{class_blade_1_1_entity}{Entity} $\ast$ \hyperlink{class_blade_1_1_component_aadb58e9f58725b7022ee672124bc1518}{Get\+Parent} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the \hyperlink{class_blade_1_1_entity}{Entity} that the \hyperlink{class_blade_1_1_component}{Component} is attached to. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_component_aa2c3b3da057763028c83ae550b2ed20f}\label{class_blade_1_1_component_aa2c3b3da057763028c83ae550b2ed20f}} 
+void {\bfseries Set\+Parent} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$parent) noexcept
+\item 
+int \hyperlink{class_blade_1_1_component_ab92acfebdc935b55b9275f0442d9c047}{Get\+Id} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the unique \hyperlink{class_blade_1_1_component}{Component} ID. \end{DoxyCompactList}\item 
+void \hyperlink{class_blade_1_1_component_a4b33e2a714ea0ccdf754c29969fa8f67}{On\+Message} (const \hyperlink{class_blade_1_1_ref_counted_container}{Message\+Container}$<$ std\+::string $>$ \&msg) override
+\begin{DoxyCompactList}\small\item\em Broadcasts the recieved message to the current active \hyperlink{class_blade_1_1_scene}{Scene} through the \hyperlink{class_blade_1_1_scene_manager}{Scene\+Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base \hyperlink{class_blade_1_1_component}{Component} class of the engine. All the components of the engine derive from this class. Compoment inherits from the \hyperlink{class_blade_1_1_observer}{Observer} class so it can register and receive specific messages. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_blade_1_1_component_a9afd6318db086a2fa6bfdbbbc009ef85}\label{class_blade_1_1_component_a9afd6318db086a2fa6bfdbbbc009ef85}} 
+\index{Blade\+::\+Component@{Blade\+::\+Component}!Component@{Component}}
+\index{Component@{Component}!Blade\+::\+Component@{Blade\+::\+Component}}
+\subsubsection{\texorpdfstring{Component()}{Component()}}
+{\footnotesize\ttfamily Blade\+::\+Component\+::\+Component (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{type,  }\item[{\hyperlink{class_blade_1_1_entity}{Entity} $\ast$}]{parent }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_blade_1_1_component}{Component} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the \hyperlink{class_blade_1_1_component}{Component} as a string. \\
+\hline
+{\em parent} & The \hyperlink{class_blade_1_1_entity}{Entity} the \hyperlink{class_blade_1_1_component}{Component} will be attached to. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_blade_1_1_component_ab92acfebdc935b55b9275f0442d9c047}\label{class_blade_1_1_component_ab92acfebdc935b55b9275f0442d9c047}} 
+\index{Blade\+::\+Component@{Blade\+::\+Component}!Get\+Id@{Get\+Id}}
+\index{Get\+Id@{Get\+Id}!Blade\+::\+Component@{Blade\+::\+Component}}
+\subsubsection{\texorpdfstring{Get\+Id()}{GetId()}}
+{\footnotesize\ttfamily int Blade\+::\+Component\+::\+Get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Returns the unique \hyperlink{class_blade_1_1_component}{Component} ID. 
+
+\begin{DoxyReturn}{Returns}
+The unique \hyperlink{class_blade_1_1_component}{Component} ID. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_component_aadb58e9f58725b7022ee672124bc1518}\label{class_blade_1_1_component_aadb58e9f58725b7022ee672124bc1518}} 
+\index{Blade\+::\+Component@{Blade\+::\+Component}!Get\+Parent@{Get\+Parent}}
+\index{Get\+Parent@{Get\+Parent}!Blade\+::\+Component@{Blade\+::\+Component}}
+\subsubsection{\texorpdfstring{Get\+Parent()}{GetParent()}}
+{\footnotesize\ttfamily \hyperlink{class_blade_1_1_entity}{Entity} $\ast$ Blade\+::\+Component\+::\+Get\+Parent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Returns the \hyperlink{class_blade_1_1_entity}{Entity} that the \hyperlink{class_blade_1_1_component}{Component} is attached to. 
+
+\begin{DoxyReturn}{Returns}
+The \hyperlink{class_blade_1_1_entity}{Entity} that the \hyperlink{class_blade_1_1_component}{Component} is attached to. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_component_a0ad0c264894e64c7b336c12165b6beac}\label{class_blade_1_1_component_a0ad0c264894e64c7b336c12165b6beac}} 
+\index{Blade\+::\+Component@{Blade\+::\+Component}!Get\+Type@{Get\+Type}}
+\index{Get\+Type@{Get\+Type}!Blade\+::\+Component@{Blade\+::\+Component}}
+\subsubsection{\texorpdfstring{Get\+Type()}{GetType()}}
+{\footnotesize\ttfamily const std\+::string \& Blade\+::\+Component\+::\+Get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Returns the type of the \hyperlink{class_blade_1_1_component}{Component}. 
+
+\begin{DoxyReturn}{Returns}
+The type of the \hyperlink{class_blade_1_1_component}{Component}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_blade_1_1_component_a4b33e2a714ea0ccdf754c29969fa8f67}\label{class_blade_1_1_component_a4b33e2a714ea0ccdf754c29969fa8f67}} 
+\index{Blade\+::\+Component@{Blade\+::\+Component}!On\+Message@{On\+Message}}
+\index{On\+Message@{On\+Message}!Blade\+::\+Component@{Blade\+::\+Component}}
+\subsubsection{\texorpdfstring{On\+Message()}{OnMessage()}}
+{\footnotesize\ttfamily void Blade\+::\+Component\+::\+On\+Message (\begin{DoxyParamCaption}\item[{const \hyperlink{class_blade_1_1_ref_counted_container}{Message\+Container}$<$ std\+::string $>$ \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Broadcasts the recieved message to the current active \hyperlink{class_blade_1_1_scene}{Scene} through the \hyperlink{class_blade_1_1_scene_manager}{Scene\+Manager}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message received. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_blade_1_1_observer}{Blade\+::\+Observer}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/component.\+h\item 
+src/component.\+cpp\end{DoxyCompactItemize}

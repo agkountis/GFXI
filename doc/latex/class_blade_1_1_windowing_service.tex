@@ -1,0 +1,41 @@
+\hypertarget{class_blade_1_1_windowing_service}{}\section{Blade\+:\+:Windowing\+Service Class Reference}
+\label{class_blade_1_1_windowing_service}\index{Blade\+::\+Windowing\+Service@{Blade\+::\+Windowing\+Service}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_windowing_service_a321963043ad61bacadf6b566642341d7}\label{class_blade_1_1_windowing_service_a321963043ad61bacadf6b566642341d7}} 
+{\bfseries Windowing\+Service} (const \hyperlink{class_blade_1_1_windowing_service}{Windowing\+Service} \&service)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_windowing_service_a43e16945b6c244c5b08313a3d62d78aa}\label{class_blade_1_1_windowing_service_a43e16945b6c244c5b08313a3d62d78aa}} 
+\hyperlink{class_blade_1_1_windowing_service}{Windowing\+Service} \& {\bfseries operator=} (const \hyperlink{class_blade_1_1_windowing_service}{Windowing\+Service} \&service)=delete
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_windowing_service_a0aebfbe56c654a96c59673dce01ef0bd}\label{class_blade_1_1_windowing_service_a0aebfbe56c654a96c59673dce01ef0bd}} 
+static void {\bfseries Add\+Window} (\hyperlink{class_blade_1_1_window}{Window} $\ast$window)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_windowing_service_a5b4f744bc32f511819ac2e619f1f44b6}\label{class_blade_1_1_windowing_service_a5b4f744bc32f511819ac2e619f1f44b6}} 
+static void {\bfseries Create} (const std\+::wstring \&title, const Vec2i \&size, const Vec2i \&position, const bool focused, const bool minimized, const bool resizeable, const bool show\+Cursor, const bool enable\+M\+S\+AA, const int M\+S\+A\+A\+Sample\+Count, const \hyperlink{struct_blade_1_1_window_function_callbacks}{Window\+Function\+Callbacks} \&callbacks)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_windowing_service_aed58ecc984625483ab4689f8f3cbc66d}\label{class_blade_1_1_windowing_service_aed58ecc984625483ab4689f8f3cbc66d}} 
+static void {\bfseries Destroy\+Window} (unsigned int win\+\_\+id)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_windowing_service_ac989c0b2fe33243c693f754dd29bfa90}\label{class_blade_1_1_windowing_service_ac989c0b2fe33243c693f754dd29bfa90}} 
+static \hyperlink{class_blade_1_1_window}{Window} $\ast$ {\bfseries Get\+Window} (unsigned int win\+\_\+id) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_windowing_service_ae8df3158d80f6a637288c9c33bd07082}\label{class_blade_1_1_windowing_service_ae8df3158d80f6a637288c9c33bd07082}} 
+static \hyperlink{class_blade_1_1_window}{Window} $\ast$ {\bfseries Get\+Window} (const std\+::wstring \&title) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_windowing_service_ae4efa373fd41150f975bed1d20a6996b}\label{class_blade_1_1_windowing_service_ae4efa373fd41150f975bed1d20a6996b}} 
+static size\+\_\+t {\bfseries Get\+Window\+Count} () noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_windowing_service_aa56c7383e513d9269d697e18742e687f}\label{class_blade_1_1_windowing_service_aa56c7383e513d9269d697e18742e687f}} 
+static void {\bfseries Swap\+Buffers} (int sync\+Interval) noexcept
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/windowing\+\_\+service.\+h\item 
+src/windowing\+\_\+service.\+cpp\end{DoxyCompactItemize}

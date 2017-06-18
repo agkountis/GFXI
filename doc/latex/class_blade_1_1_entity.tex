@@ -1,0 +1,107 @@
+\hypertarget{class_blade_1_1_entity}{}\section{Blade\+:\+:Entity Class Reference}
+\label{class_blade_1_1_entity}\index{Blade\+::\+Entity@{Blade\+::\+Entity}}
+Inheritance diagram for Blade\+:\+:Entity\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.727273cm]{class_blade_1_1_entity}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a6d34bb601af516537890e7eb34324887}\label{class_blade_1_1_entity_a6d34bb601af516537890e7eb34324887}} 
+{\bfseries Entity} (const std\+::string \&name)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a78520c1c2c0e3bc3e259053d4299da92}\label{class_blade_1_1_entity_a78520c1c2c0e3bc3e259053d4299da92}} 
+{\bfseries Entity} (const \hyperlink{class_blade_1_1_entity}{Entity} \&other)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a55d9348cb6292911799415ca9a344dfc}\label{class_blade_1_1_entity_a55d9348cb6292911799415ca9a344dfc}} 
+\hyperlink{class_blade_1_1_entity}{Entity} \& {\bfseries operator=} (const \hyperlink{class_blade_1_1_entity}{Entity} \&other)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a8a71a64caa88b47b6218174a2cde1308}\label{class_blade_1_1_entity_a8a71a64caa88b47b6218174a2cde1308}} 
+const std\+::string \& {\bfseries Get\+Name} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a68bc45aa86d40320388cad65ad7f9e0d}\label{class_blade_1_1_entity_a68bc45aa86d40320388cad65ad7f9e0d}} 
+const Vec3f \& {\bfseries Get\+Local\+Position} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a3cd447ee5d8945ce3b17986ee7ed528a}\label{class_blade_1_1_entity_a3cd447ee5d8945ce3b17986ee7ed528a}} 
+Vec3f {\bfseries Get\+World\+Position} () noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a451527105bd9298c9dc04f2afdedd9c5}\label{class_blade_1_1_entity_a451527105bd9298c9dc04f2afdedd9c5}} 
+void {\bfseries Set\+Position} (const Vec3f \&position) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_ad1f7d81b8247f69ff497f176ccd6f1d5}\label{class_blade_1_1_entity_ad1f7d81b8247f69ff497f176ccd6f1d5}} 
+const Quatf \& {\bfseries Get\+Orientation} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_af0644051f5dc7524143ac3088167b736}\label{class_blade_1_1_entity_af0644051f5dc7524143ac3088167b736}} 
+void {\bfseries Set\+Orientation} (const Quatf \&orientation) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a101a91226ccb27bb754c14d8850c3cb9}\label{class_blade_1_1_entity_a101a91226ccb27bb754c14d8850c3cb9}} 
+void {\bfseries Set\+Orientation} (const Vec3f \&axis, float angle) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a37223f2655e93abd22c50e247c668f70}\label{class_blade_1_1_entity_a37223f2655e93abd22c50e247c668f70}} 
+const Vec3f \& {\bfseries Get\+Scale} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a7958a603c4120cf627f668dd1a1c12e4}\label{class_blade_1_1_entity_a7958a603c4120cf627f668dd1a1c12e4}} 
+void {\bfseries Set\+Scale} (const Vec3f \&scale) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_ae617eb77e89f3f87b0705cbb01603c03}\label{class_blade_1_1_entity_ae617eb77e89f3f87b0705cbb01603c03}} 
+\hyperlink{class_blade_1_1_entity}{Entity} $\ast$ {\bfseries Get\+Parent} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a1ad0c4309437aa33dd08cd6f713c8d77}\label{class_blade_1_1_entity_a1ad0c4309437aa33dd08cd6f713c8d77}} 
+void {\bfseries Set\+Parent} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$entity) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a4e16c43896a8d8899ad69799851c734e}\label{class_blade_1_1_entity_a4e16c43896a8d8899ad69799851c734e}} 
+const std\+::vector$<$ \hyperlink{class_blade_1_1_entity}{Entity} $\ast$ $>$ \& {\bfseries Get\+Children} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_acb8d257cd8c984511d9a3ed86968678c}\label{class_blade_1_1_entity_acb8d257cd8c984511d9a3ed86968678c}} 
+\hyperlink{class_blade_1_1_entity}{Entity} $\ast$ {\bfseries Get\+Child} (int index) const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a2946223b0c7dfef47a60dcf3b440a4bc}\label{class_blade_1_1_entity_a2946223b0c7dfef47a60dcf3b440a4bc}} 
+\hyperlink{class_blade_1_1_entity}{Entity} $\ast$ {\bfseries Get\+Entity\+From\+Hierarchy} (const std\+::string \&name) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a528b991cf5ab76dfd6b05cd18869b9d5}\label{class_blade_1_1_entity_a528b991cf5ab76dfd6b05cd18869b9d5}} 
+void {\bfseries Add\+Child} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$entity) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a4f1211f066ed924315b830355361c900}\label{class_blade_1_1_entity_a4f1211f066ed924315b830355361c900}} 
+size\+\_\+t {\bfseries Get\+Children\+Count} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a3d3aeafc92f2e8f8b510a94ad01f6361}\label{class_blade_1_1_entity_a3d3aeafc92f2e8f8b510a94ad01f6361}} 
+const Mat4f \& {\bfseries Get\+Xform} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_ad69a2e7b6f43cf2965150c17eb1df15d}\label{class_blade_1_1_entity_ad69a2e7b6f43cf2965150c17eb1df15d}} 
+void {\bfseries Set\+Xform} (const Mat4f \&xform) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_ad6476f0fea2763050744f606bae27a57}\label{class_blade_1_1_entity_ad6476f0fea2763050744f606bae27a57}} 
+void {\bfseries Calculate\+Xform} () noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a8b13a51096740b31ae205eb2877afc15}\label{class_blade_1_1_entity_a8b13a51096740b31ae205eb2877afc15}} 
+\hyperlink{class_blade_1_1_component}{Component} $\ast$ {\bfseries Get\+Component} (const std\+::string \&type) const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_aa5a6d79575c25056f8e809277d456a3c}\label{class_blade_1_1_entity_aa5a6d79575c25056f8e809277d456a3c}} 
+void {\bfseries Entity\+::\+Remove\+Component} (const int id) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a03a193877e136ceb85909a3bc0944968}\label{class_blade_1_1_entity_a03a193877e136ceb85909a3bc0944968}} 
+std\+::vector$<$ \hyperlink{class_blade_1_1_component}{Component} $\ast$ $>$ {\bfseries Get\+Components} (const std\+::string \&type) const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_acf8c99d68959692c47696a1b0a4a3454}\label{class_blade_1_1_entity_acf8c99d68959692c47696a1b0a4a3454}} 
+void {\bfseries Add\+Component} (\hyperlink{class_blade_1_1_component}{Component} $\ast$component) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a97c777c4554eb238b566615b7116ee92}\label{class_blade_1_1_entity_a97c777c4554eb238b566615b7116ee92}} 
+bool {\bfseries Is\+Alive} () const noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a215a8ed4c4fb90a6aa2dc6cf7ca28a1a}\label{class_blade_1_1_entity_a215a8ed4c4fb90a6aa2dc6cf7ca28a1a}} 
+void {\bfseries Set\+Alive} (bool state) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a472f9a9c9c2cd4e963b28fe9f7e7b9f4}\label{class_blade_1_1_entity_a472f9a9c9c2cd4e963b28fe9f7e7b9f4}} 
+virtual void {\bfseries Update} (float dt, long time=0) noexcept
+\item 
+\mbox{\Hypertarget{class_blade_1_1_entity_a1e23e9402a5c5a1d266c208c7637c539}\label{class_blade_1_1_entity_a1e23e9402a5c5a1d266c208c7637c539}} 
+bool {\bfseries Load} (const std\+::wstring \&file\+Name) noexcept override
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/entity.\+h\item 
+src/entity.\+cpp\end{DoxyCompactItemize}

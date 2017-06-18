@@ -1,0 +1,83 @@
+\hypertarget{class_blade_1_1_input_device}{}\section{Blade\+:\+:Input\+Device Class Reference}
+\label{class_blade_1_1_input_device}\index{Blade\+::\+Input\+Device@{Blade\+::\+Input\+Device}}
+Inheritance diagram for Blade\+:\+:Input\+Device\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_blade_1_1_input_device}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a15fe798555362cbdb43f24d6ffd6c6d5}\label{class_blade_1_1_input_device_a15fe798555362cbdb43f24d6ffd6c6d5}} 
+{\bfseries Input\+Device} (const \hyperlink{class_blade_1_1_input_device}{Input\+Device} \&)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a9df7cd958600cc44a020bf92998ac0a6}\label{class_blade_1_1_input_device_a9df7cd958600cc44a020bf92998ac0a6}} 
+\hyperlink{class_blade_1_1_input_device}{Input\+Device} \& {\bfseries operator=} (const \hyperlink{class_blade_1_1_input_device}{Input\+Device} \&rhs)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a4c17142daef8c51926d9c77a13c023e2}\label{class_blade_1_1_input_device_a4c17142daef8c51926d9c77a13c023e2}} 
+{\bfseries Input\+Device} (\hyperlink{class_blade_1_1_input_device}{Input\+Device} \&\&src)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_ac9b63f949dba2011abded48a1237d08f}\label{class_blade_1_1_input_device_ac9b63f949dba2011abded48a1237d08f}} 
+\hyperlink{class_blade_1_1_input_device}{Input\+Device} \& {\bfseries operator=} (\hyperlink{class_blade_1_1_input_device}{Input\+Device} \&\&rhs)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a3d54abe984387d8748ff4d8868bb458f}\label{class_blade_1_1_input_device_a3d54abe984387d8748ff4d8868bb458f}} 
+{\bfseries Input\+Device} (int device\+\_\+id, Device\+Type dev\+Type)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a0c652079b55274cf661ecf2657f65967}\label{class_blade_1_1_input_device_a0c652079b55274cf661ecf2657f65967}} 
+const \hyperlink{struct_blade_1_1_input_state}{Input\+State} \& {\bfseries Get\+Input\+State} () const
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_af05aace5ac1decaa1bf64bfefbcf013b}\label{class_blade_1_1_input_device_af05aace5ac1decaa1bf64bfefbcf013b}} 
+int {\bfseries Get\+Device\+ID} () const
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a6c0b653604f7c2a4840116c9e893b3e5}\label{class_blade_1_1_input_device_a6c0b653604f7c2a4840116c9e893b3e5}} 
+virtual void {\bfseries Update} (float f\+Delta\+Time)=0
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a49858a83478b83d04f95d746cc6a4b75}\label{class_blade_1_1_input_device_a49858a83478b83d04f95d746cc6a4b75}} 
+virtual bool {\bfseries Set\+Vibration} (float left\+Motor, float right\+Motor) const =0
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a6bb50d40148c2bd07d1b979c4fed8adb}\label{class_blade_1_1_input_device_a6bb50d40148c2bd07d1b979c4fed8adb}} 
+void {\bfseries Set\+Deadzone} (Analog\+Deadzone flag, float value)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_ab851fc6f3f7f40a376804be9d66a748d}\label{class_blade_1_1_input_device_ab851fc6f3f7f40a376804be9d66a748d}} 
+float {\bfseries Get\+Deadzone} (Analog\+Deadzone flag) const
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_aa9cc6d93af07d3fb28db79f663752c4c}\label{class_blade_1_1_input_device_aa9cc6d93af07d3fb28db79f663752c4c}} 
+virtual bool {\bfseries Is\+Connected} () const =0
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a4af210da6267e595e1239bab35f8e9e3}\label{class_blade_1_1_input_device_a4af210da6267e595e1239bab35f8e9e3}} 
+Device\+Type {\bfseries Get\+Device\+Type} () const
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a71a14408ab206c4d983012b06b921d37}\label{class_blade_1_1_input_device_a71a14408ab206c4d983012b06b921d37}} 
+const \hyperlink{struct_blade_1_1_input_state}{Input\+State} \& {\bfseries Get\+Current\+State} () const
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a45c90dad5932209601cf8eeea85f4036}\label{class_blade_1_1_input_device_a45c90dad5932209601cf8eeea85f4036}} 
+const \hyperlink{struct_blade_1_1_input_state}{Input\+State} \& {\bfseries Get\+Previous\+State} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_aa61d2df62fef1370b09ffb7469fc5da4}\label{class_blade_1_1_input_device_aa61d2df62fef1370b09ffb7469fc5da4}} 
+void {\bfseries Set\+Device\+ID} (int id)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_ab810d1917cee9709b339db1074d10e9a}\label{class_blade_1_1_input_device_ab810d1917cee9709b339db1074d10e9a}} 
+void {\bfseries Set\+Device\+Type} (Device\+Type dev\+Type)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a7e01bfa10e141d916b4459051a08b645}\label{class_blade_1_1_input_device_a7e01bfa10e141d916b4459051a08b645}} 
+void {\bfseries Set\+Input\+State} (const \hyperlink{struct_blade_1_1_input_state}{Input\+State} \&state)
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_a701823a23160c1e4e169716647d6570b}\label{class_blade_1_1_input_device_a701823a23160c1e4e169716647d6570b}} 
+virtual bool {\bfseries Initialize} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_blade_1_1_input_device_ad9d8a25471322063e459f7b13f328d20}\label{class_blade_1_1_input_device_ad9d8a25471322063e459f7b13f328d20}} 
+static void {\bfseries Filter\+State\+Data} (const \hyperlink{struct_blade_1_1_input_state}{Input\+State} \&state\+In, \hyperlink{struct_blade_1_1_input_state}{Input\+State} \&state\+Out)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/input\+\_\+device.\+h\item 
+src/input\+\_\+device.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,80 @@
+\hypertarget{class_blade_1_1_behaviour_component}{}\section{Blade\+:\+:Behaviour\+Component Class Reference}
+\label{class_blade_1_1_behaviour_component}\index{Blade\+::\+Behaviour\+Component@{Blade\+::\+Behaviour\+Component}}
+Inheritance diagram for Blade\+:\+:Behaviour\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.597701cm]{class_blade_1_1_behaviour_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_blade_1_1_behaviour_component_a64cc587591d1b38147ce1dbfb8283f7b}{Behaviour\+Component} (const std\+::string \&type, \hyperlink{class_blade_1_1_entity}{Entity} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_blade_1_1_component}{Component} constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_behaviour_component_a2a441fcd82f5b28d588d1eae47a6eaad}\label{class_blade_1_1_behaviour_component_a2a441fcd82f5b28d588d1eae47a6eaad}} 
+{\bfseries Behaviour\+Component} (const \hyperlink{class_blade_1_1_behaviour_component}{Behaviour\+Component} \&other)=delete
+\item 
+\mbox{\Hypertarget{class_blade_1_1_behaviour_component_a7dbee722a714cb89ef12a808d2e48210}\label{class_blade_1_1_behaviour_component_a7dbee722a714cb89ef12a808d2e48210}} 
+\hyperlink{class_blade_1_1_behaviour_component}{Behaviour\+Component} \& {\bfseries operator=} (const \hyperlink{class_blade_1_1_behaviour_component}{Behaviour\+Component} \&other)=delete
+\item 
+virtual void \hyperlink{class_blade_1_1_behaviour_component_a90ec3079534ea1f7225c676881b30c17}{Update} (const float dt, const long time=0) noexcept=0
+\begin{DoxyCompactList}\small\item\em Updates the \hyperlink{class_blade_1_1_component}{Component} on each frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_behaviour_component_a41aef293d91db79beb3bb99528158ce1}\label{class_blade_1_1_behaviour_component_a41aef293d91db79beb3bb99528158ce1}} 
+virtual void \hyperlink{class_blade_1_1_behaviour_component_a41aef293d91db79beb3bb99528158ce1}{Setup} () noexcept=0
+\begin{DoxyCompactList}\small\item\em Performs setup actions after the \hyperlink{class_blade_1_1_behaviour_component}{Behaviour\+Component}\textquotesingle{}s creation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_behaviour_component_a017af86093f174c2b376064f557dcbac}\label{class_blade_1_1_behaviour_component_a017af86093f174c2b376064f557dcbac}} 
+virtual void \hyperlink{class_blade_1_1_behaviour_component_a017af86093f174c2b376064f557dcbac}{Teardown} () noexcept=0
+\begin{DoxyCompactList}\small\item\em Performs actions before the \hyperlink{class_blade_1_1_behaviour_component}{Behaviour\+Component} is destroyed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_blade_1_1_behaviour_component_a3258a2802f2338855ae2bedb30fe82e7}\label{class_blade_1_1_behaviour_component_a3258a2802f2338855ae2bedb30fe82e7}} 
+virtual void {\bfseries On\+Collision} (\hyperlink{class_blade_1_1_entity}{Entity} $\ast$other) noexcept
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_blade_1_1_behaviour_component_a64cc587591d1b38147ce1dbfb8283f7b}\label{class_blade_1_1_behaviour_component_a64cc587591d1b38147ce1dbfb8283f7b}} 
+\index{Blade\+::\+Behaviour\+Component@{Blade\+::\+Behaviour\+Component}!Behaviour\+Component@{Behaviour\+Component}}
+\index{Behaviour\+Component@{Behaviour\+Component}!Blade\+::\+Behaviour\+Component@{Blade\+::\+Behaviour\+Component}}
+\subsubsection{\texorpdfstring{Behaviour\+Component()}{BehaviourComponent()}}
+{\footnotesize\ttfamily Blade\+::\+Behaviour\+Component\+::\+Behaviour\+Component (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{type,  }\item[{\hyperlink{class_blade_1_1_entity}{Entity} $\ast$}]{parent }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_blade_1_1_component}{Component} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the \hyperlink{class_blade_1_1_component}{Component} as a string. \\
+\hline
+{\em parent} & The \hyperlink{class_blade_1_1_entity}{Entity} the \hyperlink{class_blade_1_1_component}{Component} will be attached to. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_blade_1_1_behaviour_component_a90ec3079534ea1f7225c676881b30c17}\label{class_blade_1_1_behaviour_component_a90ec3079534ea1f7225c676881b30c17}} 
+\index{Blade\+::\+Behaviour\+Component@{Blade\+::\+Behaviour\+Component}!Update@{Update}}
+\index{Update@{Update}!Blade\+::\+Behaviour\+Component@{Blade\+::\+Behaviour\+Component}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily virtual void Blade\+::\+Behaviour\+Component\+::\+Update (\begin{DoxyParamCaption}\item[{const float}]{dt,  }\item[{const long}]{time = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Updates the \hyperlink{class_blade_1_1_component}{Component} on each frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The time elapsed from the previous frame of the \hyperlink{class_blade_1_1_application}{Application}. \\
+\hline
+{\em time} & The elapsed time since the start of the \hyperlink{class_blade_1_1_application}{Application}. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_blade_1_1_emitter_component_ac9fe8dec74fec5c575b960cc9d1411ac}{Blade\+::\+Emitter\+Component}, \hyperlink{class_blade_1_1_input_component_aa7869b52200bb0a8c0c304fdf6147098}{Blade\+::\+Input\+Component}, \hyperlink{class_blade_1_1_joypad_input_component_a386bea7c84d17eefa0d40bfa17575e04}{Blade\+::\+Joypad\+Input\+Component}, and \hyperlink{class_blade_1_1_keyboard_input_component_a0945515e8c0513eaa5b536fd4cb2022c}{Blade\+::\+Keyboard\+Input\+Component}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/behaviour\+\_\+component.\+h\item 
+src/behaviour\+\_\+component.\+cpp\end{DoxyCompactItemize}
