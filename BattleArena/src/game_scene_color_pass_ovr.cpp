@@ -166,7 +166,7 @@ bool GameSceneColorPassStageOvr::Initialize()
 
 void GameSceneColorPassStageOvr::UpdateBrightness(float brightness) noexcept
 {
-	m_Brightness = brightness;
+	m_Brightness += brightness;
 }
 
 PipelineData<D3D11RenderTarget*> GameSceneColorPassStageOvr::Execute(const std::vector<RenderComponent*>& data,

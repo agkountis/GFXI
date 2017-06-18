@@ -267,7 +267,7 @@ void MainScene::FadeOutLogic(float deltaTime) const
 	if (m_Fading)
 	{
 #ifdef BLADE_BUILD_OVR
-		ovrStage->UpdateBrightness(-0.6f*deltaTime);
+		ovrStage->UpdateBrightness(-0.5f*deltaTime);
 #else
 		m_ColorPass->UpdateBrightness(-0.6f*deltaTime);
 #endif
