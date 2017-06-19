@@ -6,6 +6,9 @@
 
 namespace Blade
 {
+	/**
+	 * \brief Contains utilities for math operations.
+	 */
 	namespace MathUtils
 	{
 		constexpr float PI_F{ glm::pi<float>() };

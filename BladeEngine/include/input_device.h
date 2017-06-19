@@ -22,10 +22,9 @@
 
 #endif
 
-/*
-\brief The delta tolerance between states of an analog sensor before a change is recognized. Normalized to [0.0...1.0]
-*/
-
+/**
+ * \brief The delta tolerance between states of an analog sensor before a change is recognized. Normalized to [0.0...1.0]
+ */
 #if defined(BLADE_BUILD_D3D)
 
 #define DEADZONE_ASTICK_L	XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE
@@ -42,11 +41,11 @@
 
 #elif defined(BLADE_BUILD_PS4)
 
-/*
-Updates to PS4 firmware means these values are best not to be predefined, but defined
-by data from a call to scePadGetControllerInformation (returning a pad structure). These
-values are for leagacy use only.
-*/
+/**
+ * \brief Updates to PS4 firmware means these values are best not to be predefined, but defined
+ * by data from a call to scePadGetControllerInformation (returning a pad structure). These
+ * values are for leagacy use only.
+ */
 #define DEADZONE_ASTICK_L	0x0d
 #define DEADZONE_ASTICK_R	0x0d
 #define DEADZONE_ATRIGGERS	0x0d
@@ -77,9 +76,9 @@ values are for leagacy use only.
 
 namespace Blade
 {
-	/*
-	* \brief Describe the type of the device.
-	*/
+	/**
+	 * \brief Describes the type of the device.
+	 */
 	enum class DeviceType
 	{
 		KEYBAORD,
@@ -88,9 +87,9 @@ namespace Blade
 		DEVTYPE_ERROR
 	};
 
-	/*
-	\brief Describe the analog dead zones. 
-	*/
+	/**
+	 * \brief Describes the analog dead zones. 
+	 */
 	enum class AnalogDeadzone
 	{
 		ANALOG_STICK_LEFT,
@@ -98,15 +97,15 @@ namespace Blade
 		ANALOG_TRIGGER
 	};
 
-	/*
-	\brief InputDevice provides a useful abstraction for every type of input device.
-	*/
+	/**
+	 * \brief InputDevice provides a useful abstraction for every type of input device.
+	 */
 	class InputDevice
 	{
 	private:
 		/**
-		\brief The ID of the device.
-		*/
+		 * \brief The ID of the device.
+		 */
 		int m_deviceID{ -1 };
 
 		/**
@@ -146,7 +145,6 @@ namespace Blade
 		 * \param stateIn The initial input state that need to be filtered
 		 * \param stateOut The reference to the final state after the filtering process.
 		 * \details Applies limits, scales and clamps for the device (such as deadzones and tolerances) to the specified input data
-		 * \remarks AAAJAJAFE
 		 */
 		static void FilterStateData(const InputState& stateIn, InputState& stateOut);
 
@@ -179,8 +177,8 @@ namespace Blade
 
 	public:
 		/**
-		\brief The constructor of the InputDevice.
-		*/
+		 * \brief The constructor of the InputDevice.
+		 */
 		InputDevice();
 
 		virtual ~InputDevice() = default;
@@ -200,9 +198,9 @@ namespace Blade
 		InputDevice(int device_id, DeviceType devType);
 
 		/**
-		\brief Get the current input state.
-		\return The current input state of the device.
-		*/
+		 * \brief Get the current input state.
+		 * \return The current input state of the device.
+		 */
 		const InputState& GetInputState() const { return GetCurrentState(); }
 
 		/**

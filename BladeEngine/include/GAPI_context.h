@@ -5,9 +5,9 @@
 
 namespace Blade
 {
-	/*
-	\brief Graphic Api Context class of the engine
-	*/
+	/**
+	 * \brief Graphic Api Context class of the engine
+	 */
 	class GAPIContext
 	{
 	public:

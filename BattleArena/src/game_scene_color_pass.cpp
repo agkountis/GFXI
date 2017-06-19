@@ -182,10 +182,6 @@ bool GameSceneColorPassStage::Initialize()
 		return false;
 	}
 
-
-
-
-
 	m_DummyDiff = G_ResourceManager.Get<D3D11Texture>(TEXTURE_PATH + L"dummyDiff.jpg");
 	m_DummyDiff->SetTextureType(TEX_DIFFUSE);
 

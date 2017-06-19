@@ -8,9 +8,9 @@ namespace Blade
 	class Entity;
 
 	/**
-	\brief Represents a scene of the game
-	\details For example main menu scene, game play scene etc.
-	*/
+	 * \brief Represents a scene of the game
+	 * \details For example main menu scene, game play scene etc.
+	 */
 	class Scene
 	{
 	private:

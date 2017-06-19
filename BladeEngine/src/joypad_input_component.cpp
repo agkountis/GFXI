@@ -21,11 +21,14 @@ namespace Blade
 			{
 				m_JoypadCommandMap[control[i]] = commands[i];
 			}
+
 			return true;
 		}
+
 		return false;
 	}
-	bool JoypadInputComponent::LoadConfiguration(const JoypadCommandMap & map)
+
+	bool JoypadInputComponent::LoadConfiguration(const JoypadCommandMap& map)
 	{
 		m_JoypadCommandMap = map;
 		return true;

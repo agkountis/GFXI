@@ -314,6 +314,7 @@
     <ClInclude Include="include\behaviour_system.h" />
     <ClInclude Include="include\cfg.h" />
     <ClInclude Include="include\command.h" />
+    <ClInclude Include="include\doc_mainpage.h" />
     <ClInclude Include="include\emitter_component.h" />
     <ClInclude Include="include\input_component.h" />
     <ClInclude Include="include\joypad_input_component.h" />

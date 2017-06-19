@@ -11,7 +11,8 @@ namespace Blade
 	//Forward declaration
 	class Entity;
 	class BehaviourComponent;
-	/*
+	
+	/**
 	* \brief ColliderComponent class of the engine is a component without behaviour
 	*/
 	class ColliderComponent : public Component
@@ -31,10 +32,6 @@ namespace Blade
 
 
 		std::vector<BehaviourComponent*>  m_pListeners;
-
-	//protected:
-	
-
 
 	public:
 

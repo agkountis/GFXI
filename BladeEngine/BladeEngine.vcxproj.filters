@@ -437,6 +437,9 @@
     <ClInclude Include="include\resource_utils.h">
       <Filter>include\utilities</Filter>
     </ClInclude>
+    <ClInclude Include="include\doc_mainpage.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp">

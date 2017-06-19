@@ -3,10 +3,6 @@
 
 #include <Windows.h>
 
-/**
-* \brief Key values for keyboard input
-*/
-
 namespace Blade
 {
 	/**

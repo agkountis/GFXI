@@ -7,60 +7,60 @@ namespace Blade
 	//Forward declaration
 	class Entity;
 
-	/*
-	\brief SimulationComponent is the component used to perform linear motion
-	*/
+	/**
+	 * \brief SimulationComponent is the component used to perform linear motion
+	 */
 	class SimulationComponent : public Component
 	{
 	private:
 		//#needtorefactor change the alignment here
 
-		/*
-		\brief Force accumulator of the object
-		*/
+		/**
+		 * \brief Force accumulator of the object
+	 	 */
 		Vec3f m_Force;
 
 		Vec3f m_Velocity;
 
 		Vec3f m_Acceleration;
 
-		/*
-		\brief Mass of the simulation component
-		*/
+		/**
+		 * \brief Mass of the simulation component
+		 */
 		float m_Mass;
 
-		/*
-		\brief Inverse mass of the simulation component, used
-		in the integration process.
-		*/
+		/**
+		 * \brief Inverse mass of the simulation component, used
+		 * in the integration process.
+		 */
 		float m_InverseMass;
 
-		/*
-		\brief Last frame force accumulator
-		*/
+		/**
+		 * \brief Last frame force accumulator
+		 */
 		Vec3f m_PrevForce;
 
-		/*
-		\brief Last frame velocity
-		*/
+		/**
+		 * \brief Last frame velocity
+		 */
 		Vec3f m_PrevVel;
 
-		/*
-		\brief Last frame position
-		*/
+		/**
+		 * \brief Last frame position
+		 */
 		Vec3f m_PrevPos;
 
-		/*
-		\brief
-		*/
+		/**
+		 * \brief
+		 */
 		bool m_IsActive{ true };
 
 	public:
 		/**
-		* \brief Creates new instance of simulation component.
-		* \param mass Mass of the physics body (kilograms assumed).
-		* \param parent Pointer to parent entity of the component.
-		*/
+		 * \brief Creates new instance of simulation component.
+		 * \param mass Mass of the physics body (kilograms assumed).
+		 * \param parent Pointer to parent entity of the component.
+		 */
 		SimulationComponent(Entity* parent, float mass);
 
 		~SimulationComponent();
@@ -109,7 +109,6 @@ namespace Blade
 		*/
 		const Vec3f& GetPreviousForce() const noexcept;
 
-		//#warning check if the reset functionalities also in the system.
 		/**
 		* \brief Clears force accumulator (current).
 		*/
@@ -174,14 +173,12 @@ namespace Blade
 		* \brief Setter for the active flag
 		*/
 		void SetActive(bool active) noexcept;
-
-
 	};
 
-	/*
-	* \brief SimulationComponentState holds the information about
-	* simulation component. It is used by RK4 integrator.
-	*/
+	/**
+	 * \brief SimulationComponentState holds the information about
+	 * simulation component. It is used by RK4 integrator.
+	 */
 	struct SimulationComponentState
 	{
 		Vec3f force;

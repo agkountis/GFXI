@@ -4,6 +4,9 @@
 
 namespace Blade
 {
+	/**
+	 * \brief Point light implementation of the LightComponent.
+	 */
 	class PointLightComponent : public LightComponent
 	{
 	private:
@@ -14,8 +17,16 @@ namespace Blade
 
 		~PointLightComponent();
 
+		/**
+		 * \brief Returns the description of the point light.
+		 * \return The description of the point light.
+		 */
 		const PointLightDesc& GetLightDescription() const noexcept;
 
+		/**
+		 * \brief Returns a pointer to the description of the point light.
+		 * \return A pointer to the description of the point light.
+		 */
 		PointLightDesc* GetLightDescriptionPtr() noexcept;
 	};
 }

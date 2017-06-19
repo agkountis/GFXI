@@ -20,6 +20,9 @@
 #include "ovr_manager.h"
 #endif
 
+/**
+ * \brief Contains every class and function belonging to the Blade Engine.
+ */
 namespace Blade
 {
 	class Application;
