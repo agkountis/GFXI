@@ -96,7 +96,7 @@ bool NetworkedLobbyScene::Initialize()
 	RenderPassPipeline* pipeline{ new RenderPassPipeline };
 
 #ifdef BLADE_BUILD_OVR
-	GameSceneColorPassStageOvr* ovrStage{ new GameSceneColorPassStageOvr{ " ovrPass " } };
+	ovrStage = new GameSceneColorPassStageOvr{ " ovrPass " };
 	ovrStage->scale = 2.5f;
 	if (!ovrStage->Initialize())
 	{
